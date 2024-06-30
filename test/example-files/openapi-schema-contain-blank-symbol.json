@@ -1,0 +1,195 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Swagger Petstore",
+    "description": "This is a sample server Petstore server.  You can find out more about     Swagger at [http://swagger.io](http://swagger.io) or on [irc.freenode.net, #swagger](http://swagger.io/irc/).      For this sample, you can use the api key `special-key` to test the authorization     filters.",
+    "termsOfService": "http://swagger.io/terms/",
+    "contact": {
+      "email": "apiteam@swagger.io"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    },
+    "version": "1.0.0"
+  },
+  "externalDocs": {
+    "description": "Find out more about Swagger",
+    "url": "http://swagger.io"
+  },
+  "servers": [
+    {
+      "url": "https://petstore.swagger.io/v2"
+    },
+    {
+      "url": "http://petstore.swagger.io/v2"
+    }
+  ],
+  "tags": [
+    {
+      "name": "pet",
+      "description": "Everything about your Pets",
+      "externalDocs": {
+        "description": "Find out more",
+        "url": "http://swagger.io"
+      }
+    },
+    {
+      "name": "store",
+      "description": "Access to Petstore orders"
+    },
+    {
+      "name": "user",
+      "description": "Operations about user",
+      "externalDocs": {
+        "description": "Find out more about our store",
+        "url": "http://swagger.io"
+      }
+    }
+  ],
+  "paths": {
+    "/electricity/classification/time-sharing-electricity": {
+      "post": {
+        "tags": ["分项用电模块{6C76B49E435F7713E0531F0B10AC7013}"],
+        "summary": "分时电量查询",
+        "operationId": "timeSharingElectricityUsingPOST",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/分项、设备 自然时间 统计查询 dto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/StatisticsQueryVo"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "分项、设备 自然时间 统计查询 dto": {
+        "title": "分项、设备 自然时间 统计查询 dto",
+        "type": "object",
+        "properties": {
+          "businessType": {
+            "type": "string",
+            "description": "业务类型",
+            "enum": ["CLASSIFICATION", "DEVICE", "INSTRUMENT"]
+          },
+          "endTime": {
+            "type": "string",
+            "description": "结束时间",
+            "format": "date-time"
+          },
+          "energyType": {
+            "type": "string",
+            "description": "能源类型"
+          },
+          "ids": {
+            "type": "array",
+            "description": "根据业务类型传勾选id",
+            "items": {
+              "type": "string"
+            }
+          },
+          "startTime": {
+            "type": "string",
+            "description": "开始时间",
+            "format": "date-time"
+          },
+          "timeInterval": {
+            "type": "string",
+            "description": "时间粒度",
+            "enum": [
+              "DAY",
+              "HALFHOUR",
+              "HOUR",
+              "MINUTE",
+              "MONTH",
+              "QUARTERHOUR",
+              "YEAR"
+            ]
+          },
+          "timeQueryType": {
+            "type": "string",
+            "description": "查询类型 自然时间-NATURAL,班制时间-SHIFT",
+            "enum": ["NATURAL", "SHIFT"]
+          },
+          "vsEndTime": {
+            "type": "string",
+            "description": "对比结束时间",
+            "format": "date-time"
+          },
+          "vsStartTime": {
+            "type": "string",
+            "description": "对比开始时间",
+            "format": "date-time"
+          },
+          "vsType": {
+            "type": "string",
+            "description": "比较类型",
+            "enum": ["CLASSIFICATION", "DEVICE", "TIME"]
+          }
+        }
+      },
+      "ApiResponse": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "type": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "petstore_auth": {
+        "type": "oauth2",
+        "flows": {
+          "implicit": {
+            "authorizationUrl": "http://petstore.swagger.io/oauth/dialog",
+            "scopes": {
+              "write:pets": "modify pets in your account",
+              "read:pets": "read your pets"
+            }
+          }
+        }
+      },
+      "api_key": {
+        "type": "apiKey",
+        "name": "api_key",
+        "in": "header"
+      }
+    }
+  }
+}

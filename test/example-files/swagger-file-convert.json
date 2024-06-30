@@ -1,0 +1,112 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "file swagger",
+    "version": "1.0.0"
+  },
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "file-controller",
+      "description": "FileController"
+    }
+  ],
+  "paths": {
+    "/webapi/clear/importNavReCheckFile": {
+      "post": {
+        "tags": ["file-controller"],
+        "summary": "导入文件",
+        "description": "导入文件",
+        "operationId": "importNavReCheckFileUsingPOST",
+        "consumes": ["multipart/form-data"],
+        "produces": ["*/*"],
+        "parameters": [
+          {
+            "name": "file",
+            "in": "formData",
+            "description": "file",
+            "required": true,
+            "type": "file"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "结果",
+            "schema": {
+              "originalRef": "Response«string»",
+              "$ref": "#/definitions/Response«string»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    }
+  },
+  "definitions": {
+    "Response«string»": {
+      "type": "object",
+      "properties": {
+        "msg": {
+          "type": "string"
+        },
+        "result": {
+          "type": "string"
+        },
+        "resultCode": {
+          "type": "string"
+        },
+        "success": {
+          "type": "boolean"
+        }
+      },
+      "title": "Response«string»"
+    },
+    "中文测试1": {
+      "type": "object",
+      "properties": {
+        "msg": {
+          "type": "string"
+        },
+        "result": {
+          "type": "string"
+        },
+        "resultCode": {
+          "type": "string"
+        },
+        "success": {
+          "type": "boolean"
+        }
+      },
+      "title": "Response«string»"
+    },
+    "中文测试2": {
+      "type": "object",
+      "properties": {
+        "msg": {
+          "type": "string"
+        },
+        "result": {
+          "type": "string"
+        },
+        "resultCode": {
+          "type": "string"
+        },
+        "success": {
+          "type": "boolean"
+        }
+      }
+    }
+  }
+}

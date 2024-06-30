@@ -1,0 +1,654 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "version": "1.0.20210224155647",
+    "description": "custom-hook-swagger",
+    "title": "custom-hook-test"
+  },
+  "servers": [
+    {
+      "url": "http://127.0.0.1:9421",
+      "description": "Inferred Url"
+    }
+  ],
+  "tags": [
+    {
+      "name": "帐号 租户帐号 UserAccount"
+    },
+    {
+      "name": "帐号 验证码 Captcha"
+    }
+  ],
+  "paths": {
+    "/api/v1/captcha/img/check.json": {
+      "post": {
+        "tags": ["帐号 验证码 Captcha"],
+        "summary": "验证图片验证码是否正确",
+        "operationId": "checkImgCaptchaUsingPOST",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CheckImgCaptchaReq"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiRes«CaptchaTokenVO»"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/v1/captcha/img/get.json": {
+      "post": {
+        "tags": ["帐号 验证码 Captcha"],
+        "summary": "获取图片验证码",
+        "operationId": "getImageCaptchaUsingPOST",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ImgCaptchaReq"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiRes«ImgCaptchaDTO»"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/v1/user/account/login.json": {
+      "post": {
+        "tags": ["帐号 租户帐号 UserAccount"],
+        "summary": "登录 - 帐密登录",
+        "description": "参数：account",
+        "operationId": "accountLoginUsingPOST",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AccountLoginReq"
+              }
+            }
+          }
+        },
+        "responses": {
+          "default": {
+            "description": "true代表登录成功，否则为提示信息",
+            "content": { "*/*": { "schema": { "type": "string" } } }
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiRes«TokenDTO»"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/v1/user/account/loginIsNeedCaptcha.json": {
+      "post": {
+        "tags": ["帐号 租户帐号 UserAccount"],
+        "summary": "登录 - 帐密登录是否需验证码验证",
+        "operationId": "loginIsNeedCaptchaUsingPOST",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginIsNeedCaptchaReq"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiRes«boolean»"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/v1/user/account/register.json": {
+      "post": {
+        "tags": ["帐号 租户帐号 UserAccount"],
+        "summary": "注册 - 帐密方式",
+        "description": "图片验证码验证方式二选一：ID + token || ID + 验证码",
+        "operationId": "accountRegisterUsingPOST",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AccountRegisterReq"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiRes«TokenDTO»"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/v1/user/edit/pwd.json": {
+      "post": {
+        "tags": ["帐号 租户帐号 UserAccount"],
+        "summary": "修改密码 - 原密码方式",
+        "operationId": "editPasswordUsingPOST",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EditPasswordReq"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiRes«TokenDTO»"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/v1/user/forgot/pwd/sms.json": {
+      "post": {
+        "tags": ["帐号 租户帐号 UserAccount"],
+        "summary": "忘记密码 - 手机号方式",
+        "operationId": "forgotPasswordUsingPOST",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApiReq"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiRes«TokenDTO»"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AccountLoginReq": {
+        "title": "AccountLoginReq",
+        "required": ["password", "username"],
+        "type": "object",
+        "properties": {
+          "captcha": {
+            "type": "string",
+            "description": "验证码"
+          },
+          "captchaId": {
+            "type": "integer",
+            "description": "验证码ID",
+            "format": "int64"
+          },
+          "captchaToken": {
+            "type": "string",
+            "description": "验证令牌"
+          },
+          "password": {
+            "type": "string",
+            "description": "密码(客户端使用 “墙]・▽・)ノ 嗨,美女+密码” 的MD5值提交，32位小写)",
+            "example": "123456"
+          },
+          "username": {
+            "type": "string",
+            "description": "用户名",
+            "example": "fastdev"
+          }
+        }
+      },
+      "AccountRegisterReq": {
+        "title": "AccountRegisterReq",
+        "required": ["captchaId", "password", "username"],
+        "type": "object",
+        "properties": {
+          "captcha": {
+            "type": "string",
+            "description": "验证码"
+          },
+          "captchaId": {
+            "type": "integer",
+            "description": "验证码ID",
+            "format": "int64"
+          },
+          "captchaToken": {
+            "type": "string",
+            "description": "验证令牌"
+          },
+          "password": {
+            "type": "string",
+            "description": "密码(输入的密码，需要检测密码是否合法)",
+            "example": "123456"
+          },
+          "username": {
+            "type": "string",
+            "description": "用户名",
+            "example": "fastdev"
+          }
+        }
+      },
+      "ApiReq": {
+        "title": "ApiReq",
+        "type": "object"
+      },
+      "ApiRes«CaptchaTokenVO»": {
+        "title": "ApiRes«CaptchaTokenVO»",
+        "required": ["code", "msg", "showType"],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "integer",
+            "description": "状态码；大于零为处理成功的不同状态，小于零的状态则视为失败的情况",
+            "format": "int32",
+            "example": 200
+          },
+          "data": {
+            "description": "相应数据",
+            "$ref": "#/components/schemas/CaptchaTokenVO",
+            "example": "{}"
+          },
+          "msg": {
+            "type": "string",
+            "description": "提示消息",
+            "example": "请求成功"
+          },
+          "showType": {
+            "type": "string",
+            "description": "消息提示方式",
+            "example": "0",
+            "enum": [
+              "DIALOG",
+              "ERROR",
+              "NOTIFICATION",
+              "PAGE",
+              "SLIENT",
+              "SUCCESS",
+              "UNUSED_6",
+              "UNUSED_7",
+              "UNUSED_8",
+              "WARN"
+            ]
+          }
+        }
+      },
+      "ApiRes«ImgCaptchaDTO»": {
+        "title": "ApiRes«ImgCaptchaDTO»",
+        "required": ["code", "msg", "showType"],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "integer",
+            "description": "状态码；大于零为处理成功的不同状态，小于零的状态则视为失败的情况",
+            "format": "int32",
+            "example": 200
+          },
+          "data": {
+            "description": "相应数据",
+            "$ref": "#/components/schemas/ImgCaptchaDTO",
+            "example": "{}"
+          },
+          "msg": {
+            "type": "string",
+            "description": "提示消息",
+            "example": "请求成功"
+          },
+          "showType": {
+            "type": "string",
+            "description": "消息提示方式",
+            "example": "0",
+            "enum": [
+              "DIALOG",
+              "ERROR",
+              "NOTIFICATION",
+              "PAGE",
+              "SLIENT",
+              "SUCCESS",
+              "UNUSED_6",
+              "UNUSED_7",
+              "UNUSED_8",
+              "WARN"
+            ]
+          }
+        }
+      },
+      "ApiRes«TokenDTO»": {
+        "title": "ApiRes«TokenDTO»",
+        "required": ["code", "msg", "showType"],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "integer",
+            "description": "状态码；大于零为处理成功的不同状态，小于零的状态则视为失败的情况",
+            "format": "int32",
+            "example": 200
+          },
+          "data": {
+            "description": "相应数据",
+            "$ref": "#/components/schemas/TokenDTO",
+            "example": "{}"
+          },
+          "msg": {
+            "type": "string",
+            "description": "提示消息",
+            "example": "请求成功"
+          },
+          "showType": {
+            "type": "string",
+            "description": "消息提示方式",
+            "example": "0",
+            "enum": [
+              "DIALOG",
+              "ERROR",
+              "NOTIFICATION",
+              "PAGE",
+              "SLIENT",
+              "SUCCESS",
+              "UNUSED_6",
+              "UNUSED_7",
+              "UNUSED_8",
+              "WARN"
+            ]
+          }
+        }
+      },
+      "ApiRes«boolean»": {
+        "title": "ApiRes«boolean»",
+        "required": ["code", "msg", "showType"],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "integer",
+            "description": "状态码；大于零为处理成功的不同状态，小于零的状态则视为失败的情况",
+            "format": "int32",
+            "example": 200
+          },
+          "data": {
+            "type": "boolean",
+            "description": "相应数据",
+            "example": false
+          },
+          "msg": {
+            "type": "string",
+            "description": "提示消息",
+            "example": "请求成功"
+          },
+          "showType": {
+            "type": "string",
+            "description": "消息提示方式",
+            "example": "0",
+            "enum": [
+              "DIALOG",
+              "ERROR",
+              "NOTIFICATION",
+              "PAGE",
+              "SLIENT",
+              "SUCCESS",
+              "UNUSED_6",
+              "UNUSED_7",
+              "UNUSED_8",
+              "WARN"
+            ]
+          }
+        }
+      },
+      "CaptchaTokenVO": {
+        "title": "CaptchaTokenVO",
+        "required": ["token"],
+        "type": "object",
+        "properties": {
+          "token": {
+            "type": "string",
+            "description": "验证令牌"
+          }
+        }
+      },
+      "CheckImgCaptchaReq": {
+        "title": "CheckImgCaptchaReq",
+        "required": ["captcha", "id", "type"],
+        "type": "object",
+        "properties": {
+          "captcha": {
+            "type": "string",
+            "description": "验证码"
+          },
+          "id": {
+            "type": "integer",
+            "description": "验证码ID",
+            "format": "int64"
+          },
+          "type": {
+            "type": "string",
+            "description": "验证码类型，1->注册，2->登录，3->忘记密码，4->修改密码",
+            "enum": ["EDIT_PASSWORD", "FORGOT_PASSWORD", "LOGIN", "REGISTER"]
+          }
+        }
+      },
+      "EditPasswordReq": {
+        "title": "EditPasswordReq",
+        "required": ["newPassword", "password", "token", "uid"],
+        "type": "object",
+        "properties": {
+          "newPassword": {
+            "type": "string",
+            "description": "新密码"
+          },
+          "password": {
+            "type": "string",
+            "description": "当前的密码"
+          },
+          "token": {
+            "type": "string",
+            "description": "用户通行令牌"
+          },
+          "uid": {
+            "type": "integer",
+            "description": "用户ID",
+            "format": "int64"
+          }
+        }
+      },
+      "ImgCaptchaDTO": {
+        "title": "ImgCaptchaDTO",
+        "required": ["id", "url"],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "验证码ID",
+            "format": "int64"
+          },
+          "url": {
+            "type": "string",
+            "description": "图片验证码URL"
+          }
+        }
+      },
+      "ImgCaptchaReq": {
+        "title": "ImgCaptchaReq",
+        "required": ["type"],
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "验证码类型",
+            "enum": ["EDIT_PASSWORD", "FORGOT_PASSWORD", "LOGIN", "REGISTER"]
+          }
+        }
+      },
+      "LoginIsNeedCaptchaReq": {
+        "title": "LoginIsNeedCaptchaReq",
+        "required": ["username"],
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string",
+            "description": "用户名",
+            "example": "fastdev"
+          }
+        }
+      },
+      "TokenDTO": {
+        "title": "TokenDTO",
+        "required": ["accessToken", "refreshToken", "userId"],
+        "type": "object",
+        "properties": {
+          "accessToken": {
+            "type": "string",
+            "description": "通行令牌"
+          },
+          "refreshToken": {
+            "type": "string",
+            "description": "刷新令牌"
+          },
+          "userId": {
+            "type": "integer",
+            "description": "用户ID",
+            "format": "int64"
+          }
+        }
+      }
+    }
+  }
+}

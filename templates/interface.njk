@@ -1,0 +1,54 @@
+/* eslint-disable */
+// @ts-ignore
+{% for type in list -%}
+  {%- if type.props.length %}
+    export type {{ type.typeName | safe }} =
+    {%- for prop in type.props %}
+      {%- if prop.length > 1 %}
+        {
+      {%- endif %}
+      {%- if prop.length == 1 %}
+        {%- if not prop[0].$ref or prop[0].name %}
+        {
+        {%- endif %}
+      {%- endif %}
+        {%- for p in prop %}
+          {%- if p.desc %}
+            /** {{ p.desc }} */
+          {%- endif %}
+          {%- if p["$ref"] and not p.name %}
+            // {{ p.$ref }}
+            {{ p.type | safe }}
+          {%- else %}
+            {%- if nullable %}
+              '{{ p.name }}': {{ p.type | safe }}{{'' if p.required else '| null'}};
+            {%- else %}
+              '{{ p.name }}'{{ '' if p.required else '?' }}: {{ p.type | safe }};
+            {%- endif %}
+          {%- endif %}
+        {%- endfor %}
+      {%- if prop.length > 1 %}
+        }
+      {%- endif %}
+      {%- if prop.length == 1 %}
+        {%- if not prop[0].$ref or prop[0].name %}
+        }
+        {%- endif %}
+      {%- endif %}
+      {%- if prop.length == 0 %}
+        {}
+      {%- endif %}
+      {{ '' if loop.last === true else ' & '  }}
+    {%- endfor %}
+  {%- else %}
+    {%- if type.isEnum  %}
+      export enum {{ type.typeName | safe }} {{ type.type }};
+
+      export type I{{ type.typeName | safe }} = keyof typeof {{ type.typeName }}
+    {%- else %}
+      export type {{ type.typeName | safe }} = {{ type.type }};
+    {%- endif %}
+  {%- endif %}
+{% endfor %}
+
+export default {}

@@ -1,0 +1,13 @@
+/* eslint-disable */
+// @ts-ignore
+import * as {{ namespace }} from './{{ interfaceFileName }}';
+{% for api in list -%}
+import * as {{ api.controllerName }} from './{{ api.fileName }}';
+{% endfor -%}
+
+export default {
+  {{ namespace }},
+  {% for api in list -%}
+  {{ api.controllerName }},
+  {% endfor -%}
+}

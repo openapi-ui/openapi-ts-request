@@ -1,0 +1,72 @@
+{
+  "components": {
+    "schemas": {
+      "Batch": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/Response"
+          },
+          {
+            "$ref": "#/components/schemas/Batch_allOf"
+          }
+        ]
+      },
+      "BatchList": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/Response"
+          },
+          {
+            "properties": {
+              "data": {
+                "items": {
+                  "$ref": "#/components/schemas/Batch"
+                },
+                "type": "array"
+              }
+            },
+            "type": "object"
+          }
+        ]
+      },
+      "Batch_allOf": {
+        "properties": {
+          "data": {
+            "type": "object"
+          }
+        },
+        "type": "object"
+      },
+      "Response": {
+        "description": "所有API的返回数据，如果业务处理失败，success必然是false，\n如果业务处理成功，success为True，并添加data字段携带需要的数据\n",
+        "properties": {
+          "errorCode": {
+            "description": "业务约定的错误码",
+            "type": "string"
+          },
+          "errorMessage": {
+            "description": "业务上的错误信息",
+            "type": "string"
+          },
+          "success": {
+            "description": "业务上的请求是否成功",
+            "type": "boolean"
+          }
+        },
+        "required": ["success"],
+        "type": "object"
+      }
+    }
+  },
+  "info": {
+    "title": "Test allOf API",
+    "version": "1.0.0"
+  },
+  "openapi": "3.0.1",
+  "paths": {},
+  "servers": [
+    {
+      "url": "http://localhost:1234/"
+    }
+  ]
+}

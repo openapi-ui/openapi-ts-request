@@ -1,0 +1,4173 @@
+{
+  "basePath": "/",
+  "definitions": {
+    "area.Area": {
+      "properties": {
+        "children": {
+          "$ref": "#/definitions/area.Areas"
+        },
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "pid": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "area.Areas": {
+      "items": {
+        "$ref": "#/definitions/area.Area"
+      },
+      "type": "array"
+    },
+    "model.AdminCreateArg": {
+      "properties": {
+        "name": {
+          "description": "成员姓名",
+          "type": "string"
+        },
+        "number": {
+          "description": "成员手机号",
+          "type": "string"
+        },
+        "organization_id": {
+          "description": "成员所属机构",
+          "type": "string"
+        },
+        "role": {
+          "description": "成员角色",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "model.AdminCreateRet": {
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "model.AdminInfo": {
+      "properties": {
+        "created_at": {
+          "type": "string"
+        },
+        "enabled": {
+          "type": "boolean"
+        },
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "number": {
+          "type": "string"
+        },
+        "organization": {
+          "$ref": "#/definitions/model.OrganizationInfo"
+        },
+        "organization_id": {
+          "type": "string"
+        },
+        "permissions": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "role": {
+          "type": "string"
+        },
+        "role_value": {
+          "type": "string"
+        },
+        "updated_at": {
+          "type": "string"
+        },
+        "visited_at": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "model.AdminListRet": {
+      "properties": {
+        "list": {
+          "items": {
+            "$ref": "#/definitions/model.AdminListRow"
+          },
+          "type": "array"
+        },
+        "page": {
+          "$ref": "#/definitions/model.Page"
+        }
+      },
+      "type": "object"
+    },
+    "model.AdminListRow": {
+      "properties": {
+        "created_at": {
+          "type": "string"
+        },
+        "enabled": {
+          "type": "boolean"
+        },
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "number": {
+          "type": "string"
+        },
+        "organization_id": {
+          "type": "string"
+        },
+        "organization_name": {
+          "type": "string"
+        },
+        "role": {
+          "type": "string"
+        },
+        "role_value": {
+          "type": "string"
+        },
+        "updated_at": {
+          "type": "string"
+        },
+        "visited_at": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "model.AdminLogExportRet": {
+      "properties": {
+        "excel_url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "model.AdminLogListRet": {
+      "properties": {
+        "list": {
+          "items": {
+            "$ref": "#/definitions/model.AdminLogListRow"
+          },
+          "type": "array"
+        },
+        "page": {
+          "$ref": "#/definitions/model.Page"
+        }
+      },
+      "type": "object"
+    },
+    "model.AdminLogListRow": {
+      "properties": {
+        "action": {
+          "type": "string"
+        },
+        "action_value": {
+          "type": "string"
+        },
+        "created_at": {
+          "type": "string"
+        },
+        "detail": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "module": {
+          "type": "string"
+        },
+        "module_value": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "organization_name": {
+          "type": "string"
+        },
+        "role": {
+          "type": "string"
+        },
+        "role_value": {
+          "type": "string"
+        },
+        "updated_at": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "model.AdminLogModuleDict": {
+      "properties": {
+        "actions": {
+          "items": {
+            "$ref": "#/definitions/model.Dict"
+          },
+          "type": "array"
+        },
+        "hidden": {
+          "type": "boolean"
+        },
+        "key": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "model.AdminLoginArg": {
+      "properties": {
+        "number": {
+          "description": "手机号",
+          "example": "13131313131",
+          "type": "string"
+        },
+        "password": {
+          "description": "密码",
+          "example": "7c4a8d09ca3762af61e59520943dc26494f8941b",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "model.AdminPermission": {
+      "properties": {
+        "cate": {
+          "type": "string"
+        },
+        "permissions": {
+          "items": {
+            "$ref": "#/definitions/model.Dict"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "model.AdminResetRet": {
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "model.AdminSetPermissionsArg": {
+      "properties": {
+        "permissions": {
+          "description": "成员权限",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "role": {
+          "description": "成员角色",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "model.AdminToggleArg": {
+      "properties": {
+        "enabled": {
+          "description": "成员状态",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "model.AdminUpdateArg": {
+      "properties": {
+        "name": {
+          "description": "成员姓名",
+          "type": "string"
+        },
+        "number": {
+          "description": "成员手机号",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "model.Dict": {
+      "properties": {
+        "hidden": {
+          "type": "boolean"
+        },
+        "key": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "model.EvaluationCreateArg": {
+      "properties": {
+        "auto_send": {
+          "description": "自动发送报告",
+          "type": "boolean"
+        },
+        "ended_at": {
+          "description": "结束时间",
+          "type": "string"
+        },
+        "limit": {
+          "description": "计划答题次数",
+          "type": "integer"
+        },
+        "limit_each": {
+          "description": "单用户答题次数",
+          "type": "integer"
+        },
+        "name": {
+          "description": "测评名称",
+          "type": "string"
+        },
+        "scale_id": {
+          "description": "量表id",
+          "type": "string"
+        },
+        "started_at": {
+          "description": "开始时间",
+          "type": "string"
+        },
+        "user_sheet_id": {
+          "description": "用户信息表id",
+          "type": "string"
+        },
+        "visible_admins": {
+          "description": "报告查看权限",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "model.EvaluationCreateRet": {
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "model.EvaluationData": {
+      "properties": {
+        "age": {
+          "items": {
+            "$ref": "#/definitions/model.EvaluationDataRow"
+          },
+          "type": "array"
+        },
+        "department": {
+          "items": {
+            "$ref": "#/definitions/model.EvaluationDataRow"
+          },
+          "type": "array"
+        },
+        "education": {
+          "items": {
+            "$ref": "#/definitions/model.EvaluationDataRow"
+          },
+          "type": "array"
+        },
+        "enterprise": {
+          "items": {
+            "$ref": "#/definitions/model.EvaluationDataRow"
+          },
+          "type": "array"
+        },
+        "gender": {
+          "items": {
+            "$ref": "#/definitions/model.EvaluationDataRow"
+          },
+          "type": "array"
+        },
+        "marriage": {
+          "items": {
+            "$ref": "#/definitions/model.EvaluationDataRow"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "model.EvaluationDataRow": {
+      "properties": {
+        "high": {
+          "type": "integer"
+        },
+        "low": {
+          "type": "integer"
+        },
+        "medium": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "total": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "model.EvaluationInfo": {
+      "properties": {
+        "auto_send": {
+          "type": "boolean"
+        },
+        "created_at": {
+          "type": "string"
+        },
+        "ended_at": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "limit": {
+          "type": "integer"
+        },
+        "limit_each": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "organization_id": {
+          "type": "string"
+        },
+        "report_disabled_reason": {
+          "type": "string"
+        },
+        "report_enabled": {
+          "type": "boolean"
+        },
+        "scale": {
+          "$ref": "#/definitions/model.ScaleInst"
+        },
+        "scale_id": {
+          "type": "string"
+        },
+        "started_at": {
+          "type": "string"
+        },
+        "updated_at": {
+          "type": "string"
+        },
+        "user_sheet_id": {
+          "type": "string"
+        },
+        "visible_admins": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "model.EvaluationListRet": {
+      "properties": {
+        "list": {
+          "items": {
+            "$ref": "#/definitions/model.EvaluationListRow"
+          },
+          "type": "array"
+        },
+        "page": {
+          "$ref": "#/definitions/model.Page"
+        }
+      },
+      "type": "object"
+    },
+    "model.EvaluationListRow": {
+      "properties": {
+        "auto_send": {
+          "type": "boolean"
+        },
+        "created_at": {
+          "type": "string"
+        },
+        "ended_at": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "limit": {
+          "type": "integer"
+        },
+        "limit_each": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "organization_id": {
+          "type": "string"
+        },
+        "organization_name": {
+          "type": "string"
+        },
+        "scale_id": {
+          "type": "string"
+        },
+        "scale_name": {
+          "type": "string"
+        },
+        "started_at": {
+          "type": "string"
+        },
+        "updated_at": {
+          "type": "string"
+        },
+        "user_sheet_id": {
+          "type": "string"
+        },
+        "user_sheet_name": {
+          "type": "string"
+        },
+        "visible_admins": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "model.EvaluationReportCreateArg": {
+      "properties": {
+        "choices": {
+          "additionalProperties": true,
+          "description": "用户选择结果",
+          "type": "object"
+        },
+        "duration": {
+          "description": "操作时长(s)",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "model.EvaluationReportCreateRet": {
+      "properties": {
+        "report_id": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "model.EvaluationReportData": {
+      "properties": {
+        "choices": {
+          "items": {
+            "$ref": "#/definitions/model.ScaleUserResultChoice"
+          },
+          "type": "array"
+        },
+        "created_at": {
+          "type": "string"
+        },
+        "evaluation_id": {
+          "type": "string"
+        },
+        "evaluation_name": {
+          "type": "string"
+        },
+        "examined_at": {
+          "type": "string"
+        },
+        "examiner_id": {
+          "type": "string"
+        },
+        "examiner_name": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "result": {
+          "$ref": "#/definitions/model.ScaleUserResult"
+        },
+        "sent_at": {
+          "type": "string"
+        },
+        "updated_at": {
+          "type": "string"
+        },
+        "user": {
+          "$ref": "#/definitions/model.UserInfo"
+        }
+      },
+      "type": "object"
+    },
+    "model.EvaluationReportExportRet": {
+      "properties": {
+        "excel_url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "model.EvaluationReportListRet": {
+      "properties": {
+        "list": {
+          "items": {
+            "$ref": "#/definitions/model.EvaluationReportListRow"
+          },
+          "type": "array"
+        },
+        "page": {
+          "$ref": "#/definitions/model.Page"
+        }
+      },
+      "type": "object"
+    },
+    "model.EvaluationReportListRow": {
+      "properties": {
+        "created_at": {
+          "type": "string"
+        },
+        "duration": {
+          "type": "integer"
+        },
+        "duration_format": {
+          "type": "string"
+        },
+        "evaluation_id": {
+          "type": "string"
+        },
+        "evaluation_name": {
+          "type": "string"
+        },
+        "examined_at": {
+          "type": "string"
+        },
+        "examiner_id": {
+          "type": "string"
+        },
+        "examiner_name": {
+          "type": "string"
+        },
+        "health_level": {
+          "type": "string"
+        },
+        "health_level_value": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "organization_id": {
+          "type": "string"
+        },
+        "organization_name": {
+          "type": "string"
+        },
+        "results": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "scale_id": {
+          "type": "string"
+        },
+        "scale_name": {
+          "type": "string"
+        },
+        "sent_at": {
+          "type": "string"
+        },
+        "updated_at": {
+          "type": "string"
+        },
+        "user_enterprise": {
+          "type": "string"
+        },
+        "user_gender": {
+          "type": "string"
+        },
+        "user_id": {
+          "type": "string"
+        },
+        "user_name": {
+          "type": "string"
+        },
+        "user_number": {
+          "type": "string"
+        },
+        "user_sheet_id": {
+          "type": "string"
+        },
+        "user_sheet_name": {
+          "type": "string"
+        },
+        "warning_level": {
+          "type": "string"
+        },
+        "warning_level_value": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "model.EvaluationReportUserListRet": {
+      "properties": {
+        "list": {
+          "items": {
+            "$ref": "#/definitions/model.EvaluationReportUserListRow"
+          },
+          "type": "array"
+        },
+        "page": {
+          "$ref": "#/definitions/model.Page"
+        }
+      },
+      "type": "object"
+    },
+    "model.EvaluationReportUserListRow": {
+      "properties": {
+        "created_at": {
+          "type": "string"
+        },
+        "evaluation_id": {
+          "type": "string"
+        },
+        "evaluation_name": {
+          "type": "string"
+        },
+        "examined_at": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "results": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "scale_id": {
+          "type": "string"
+        },
+        "scale_name": {
+          "type": "string"
+        },
+        "updated_at": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "model.EvaluationUpdateArg": {
+      "properties": {
+        "auto_send": {
+          "description": "自动发送报告",
+          "type": "boolean"
+        },
+        "ended_at": {
+          "description": "结束时间",
+          "type": "string"
+        },
+        "limit": {
+          "description": "计划答题次数",
+          "type": "integer"
+        },
+        "started_at": {
+          "description": "开始时间",
+          "type": "string"
+        },
+        "visible_admins": {
+          "description": "报告查看权限",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "model.OrganizationAllInfo": {
+      "properties": {
+        "children": {
+          "$ref": "#/definitions/model.OrganizationAllRet"
+        },
+        "enabled": {
+          "type": "boolean"
+        },
+        "id": {
+          "type": "string"
+        },
+        "level": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "pid": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "model.OrganizationAllRet": {
+      "items": {
+        "$ref": "#/definitions/model.OrganizationAllInfo"
+      },
+      "type": "array"
+    },
+    "model.OrganizationCreateArg": {
+      "properties": {
+        "address": {
+          "description": "机构地址",
+          "type": "string"
+        },
+        "admin_name": {
+          "description": "负责人姓名",
+          "type": "string"
+        },
+        "admin_number": {
+          "description": "负责人手机号",
+          "type": "string"
+        },
+        "area": {
+          "description": "机构地区",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "modules": {
+          "description": "开通模块",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "name": {
+          "description": "机构名称",
+          "type": "string"
+        },
+        "pid": {
+          "description": "上级机构id",
+          "type": "string"
+        },
+        "type": {
+          "description": "机构类别",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "model.OrganizationCreateRet": {
+      "properties": {
+        "admin": {
+          "$ref": "#/definitions/model.AdminCreateRet"
+        },
+        "id": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "model.OrganizationInfo": {
+      "properties": {
+        "address": {
+          "type": "string"
+        },
+        "area": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "created_at": {
+          "type": "string"
+        },
+        "enabled": {
+          "type": "boolean"
+        },
+        "id": {
+          "type": "string"
+        },
+        "level": {
+          "type": "integer"
+        },
+        "modules": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "name": {
+          "type": "string"
+        },
+        "pid": {
+          "type": "string"
+        },
+        "super_admin": {
+          "$ref": "#/definitions/model.AdminInfo"
+        },
+        "type": {
+          "type": "string"
+        },
+        "type_value": {
+          "type": "string"
+        },
+        "updated_at": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "model.OrganizationMoveArg": {
+      "properties": {
+        "pid": {
+          "description": "上级机构id",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "model.OrganizationToggleArg": {
+      "properties": {
+        "enabled": {
+          "description": "机构状态",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "model.OrganizationUpdateArg": {
+      "properties": {
+        "address": {
+          "description": "机构地址",
+          "type": "string"
+        },
+        "area": {
+          "description": "机构地区",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "modules": {
+          "description": "开通模块",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "name": {
+          "description": "机构名称",
+          "type": "string"
+        },
+        "type": {
+          "description": "机构类别",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "model.Page": {
+      "properties": {
+        "current": {
+          "type": "integer"
+        },
+        "max": {
+          "type": "integer"
+        },
+        "rows": {
+          "type": "integer"
+        },
+        "size": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "model.Response": {
+      "properties": {
+        "code": {
+          "type": "integer"
+        },
+        "data": {
+          "type": "object"
+        },
+        "msg": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "model.ScaleImportArg": {
+      "properties": {
+        "excel": {
+          "description": "excel文件id",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "model.ScaleImportRet": {
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "model.ScaleInst": {
+      "properties": {
+        "age": {
+          "type": "string"
+        },
+        "created_at": {
+          "type": "string"
+        },
+        "deleted_at": {
+          "type": "string"
+        },
+        "dimensions": {
+          "items": {
+            "$ref": "#/definitions/model.ScaleInstDimension"
+          },
+          "type": "array"
+        },
+        "gender": {
+          "type": "string"
+        },
+        "guide": {
+          "type": "string"
+        },
+        "healths": {
+          "items": {
+            "$ref": "#/definitions/model.ScaleInstWarning"
+          },
+          "type": "array"
+        },
+        "id": {
+          "type": "string"
+        },
+        "introduce": {
+          "type": "string"
+        },
+        "maps": {
+          "items": {
+            "$ref": "#/definitions/model.ScaleInstMap"
+          },
+          "type": "array"
+        },
+        "name": {
+          "type": "string"
+        },
+        "norms": {
+          "items": {
+            "$ref": "#/definitions/model.ScaleInstNorm"
+          },
+          "type": "array"
+        },
+        "questions": {
+          "items": {
+            "$ref": "#/definitions/model.ScaleInstQuestion"
+          },
+          "type": "array"
+        },
+        "source": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "type_value": {
+          "type": "string"
+        },
+        "version": {
+          "type": "integer"
+        },
+        "warnings": {
+          "items": {
+            "$ref": "#/definitions/model.ScaleInstWarning"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "model.ScaleInstDimension": {
+      "properties": {
+        "display": {
+          "type": "boolean"
+        },
+        "formula": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "method": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "results": {
+          "items": {
+            "$ref": "#/definitions/model.ScaleInstResult"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "model.ScaleInstMap": {
+      "properties": {
+        "age": {
+          "type": "string"
+        },
+        "dimension_name": {
+          "type": "string"
+        },
+        "gender": {
+          "type": "string"
+        },
+        "standard": {
+          "items": {
+            "type": "integer"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "model.ScaleInstNorm": {
+      "properties": {
+        "age": {
+          "type": "string"
+        },
+        "average": {
+          "type": "number"
+        },
+        "dimension_name": {
+          "type": "string"
+        },
+        "gender": {
+          "type": "string"
+        },
+        "standard": {
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "model.ScaleInstOption": {
+      "properties": {
+        "number": {
+          "type": "integer"
+        },
+        "option": {
+          "type": "string"
+        },
+        "score": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "model.ScaleInstQuestion": {
+      "properties": {
+        "number": {
+          "type": "integer"
+        },
+        "options": {
+          "items": {
+            "$ref": "#/definitions/model.ScaleInstOption"
+          },
+          "type": "array"
+        },
+        "question": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "model.ScaleInstResult": {
+      "properties": {
+        "age": {
+          "type": "string"
+        },
+        "explain": {
+          "type": "string"
+        },
+        "gender": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "score": {
+          "type": "string"
+        },
+        "suggest": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "model.ScaleInstWarning": {
+      "properties": {
+        "dimension_name": {
+          "type": "string"
+        },
+        "level": {
+          "type": "string"
+        },
+        "result_name": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "model.ScaleListRet": {
+      "properties": {
+        "list": {
+          "items": {
+            "$ref": "#/definitions/model.ScaleListRow"
+          },
+          "type": "array"
+        },
+        "page": {
+          "$ref": "#/definitions/model.Page"
+        }
+      },
+      "type": "object"
+    },
+    "model.ScaleListRow": {
+      "properties": {
+        "created_at": {
+          "type": "string"
+        },
+        "enabled": {
+          "type": "boolean"
+        },
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "questions": {
+          "type": "integer"
+        },
+        "title": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "type_value": {
+          "type": "string"
+        },
+        "updated_at": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "model.ScaleToggleArg": {
+      "properties": {
+        "enabled": {
+          "description": "量表状态",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "model.ScaleUserDimension": {
+      "properties": {
+        "display": {
+          "type": "boolean"
+        },
+        "explain": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "result": {
+          "type": "string"
+        },
+        "result_id": {
+          "type": "string"
+        },
+        "score": {
+          "type": "number"
+        },
+        "suggest": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "model.ScaleUserResult": {
+      "properties": {
+        "dimensions": {
+          "items": {
+            "$ref": "#/definitions/model.ScaleUserDimension"
+          },
+          "type": "array"
+        },
+        "health_level": {
+          "type": "string"
+        },
+        "health_level_value": {
+          "type": "string"
+        },
+        "warning_level": {
+          "type": "string"
+        },
+        "warning_level_value": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "model.ScaleUserResultChoice": {
+      "properties": {
+        "option": {
+          "type": "string"
+        },
+        "option_number": {
+          "type": "integer"
+        },
+        "option_score": {
+          "type": "integer"
+        },
+        "question": {
+          "type": "string"
+        },
+        "question_number": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "model.SystemScreenData": {
+      "properties": {
+        "area_count": {
+          "additionalProperties": {
+            "type": "integer"
+          },
+          "type": "object"
+        },
+        "group_count": {
+          "type": "integer"
+        },
+        "health_high_count": {
+          "type": "integer"
+        },
+        "health_low_count": {
+          "type": "integer"
+        },
+        "health_medium_count": {
+          "type": "integer"
+        },
+        "organization_count": {
+          "items": {
+            "$ref": "#/definitions/model.SystemScreenDataCountRow"
+          },
+          "type": "array"
+        },
+        "personal_count": {
+          "type": "integer"
+        },
+        "scale_count": {
+          "items": {
+            "$ref": "#/definitions/model.SystemScreenDataCountRow"
+          },
+          "type": "array"
+        },
+        "total_count": {
+          "type": "integer"
+        },
+        "user_age_count": {
+          "items": {
+            "$ref": "#/definitions/model.SystemScreenDataRow"
+          },
+          "type": "array"
+        },
+        "user_education_count": {
+          "items": {
+            "$ref": "#/definitions/model.SystemScreenDataRow"
+          },
+          "type": "array"
+        },
+        "user_gender_count": {
+          "items": {
+            "$ref": "#/definitions/model.SystemScreenDataRow"
+          },
+          "type": "array"
+        },
+        "user_type_count": {
+          "items": {
+            "$ref": "#/definitions/model.SystemScreenDataRow"
+          },
+          "type": "array"
+        },
+        "warning_high_count": {
+          "type": "integer"
+        },
+        "warning_list": {
+          "items": {
+            "$ref": "#/definitions/model.SystemScreenDataWarningListRow"
+          },
+          "type": "array"
+        },
+        "warning_low_count": {
+          "type": "integer"
+        },
+        "warning_medium_count": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "model.SystemScreenDataCountRow": {
+      "properties": {
+        "count": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "model.SystemScreenDataRow": {
+      "properties": {
+        "high": {
+          "type": "integer"
+        },
+        "low": {
+          "type": "integer"
+        },
+        "medium": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "model.SystemScreenDataWarningListRow": {
+      "properties": {
+        "created_at": {
+          "type": "string"
+        },
+        "user_name": {
+          "type": "string"
+        },
+        "warning": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "model.UploadRet": {
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "size": {
+          "type": "integer"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "model.UserInfo": {
+      "properties": {
+        "address": {
+          "type": "string"
+        },
+        "age": {
+          "type": "integer"
+        },
+        "birthday": {
+          "type": "string"
+        },
+        "created_at": {
+          "type": "string"
+        },
+        "department": {
+          "type": "string"
+        },
+        "disease": {
+          "type": "string"
+        },
+        "education": {
+          "type": "string"
+        },
+        "education_value": {
+          "type": "string"
+        },
+        "enter_year": {
+          "type": "string"
+        },
+        "enterprise": {
+          "type": "string"
+        },
+        "gender": {
+          "type": "string"
+        },
+        "gender_value": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "marriage": {
+          "type": "string"
+        },
+        "marriage_value": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "number": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "type_value": {
+          "type": "string"
+        },
+        "updated_at": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "model.UserListRet": {
+      "properties": {
+        "list": {
+          "items": {
+            "$ref": "#/definitions/model.UserListRow"
+          },
+          "type": "array"
+        },
+        "page": {
+          "$ref": "#/definitions/model.Page"
+        }
+      },
+      "type": "object"
+    },
+    "model.UserListRow": {
+      "properties": {
+        "age": {
+          "type": "integer"
+        },
+        "birthday": {
+          "type": "string"
+        },
+        "created_at": {
+          "type": "string"
+        },
+        "enabled": {
+          "type": "boolean"
+        },
+        "gender": {
+          "type": "string"
+        },
+        "gender_value": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "number": {
+          "type": "string"
+        },
+        "organization_id": {
+          "type": "string"
+        },
+        "organization_name": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "type_value": {
+          "type": "string"
+        },
+        "updated_at": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "model.UserLoginArg": {
+      "properties": {
+        "code": {
+          "description": "验证码",
+          "type": "string"
+        },
+        "evaluation_id": {
+          "description": "测评任务id",
+          "type": "string"
+        },
+        "number": {
+          "description": "手机号或学号",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "model.UserLoginRet": {
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "new": {
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "model.UserSheetCreateArg": {
+      "properties": {
+        "excel": {
+          "description": "文件",
+          "type": "string"
+        },
+        "name": {
+          "description": "信息表名称",
+          "type": "string"
+        },
+        "type": {
+          "description": "类别",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "model.UserSheetCreateRet": {
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "size": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "model.UserSheetListRet": {
+      "properties": {
+        "list": {
+          "items": {
+            "$ref": "#/definitions/model.UserSheetListRow"
+          },
+          "type": "array"
+        },
+        "page": {
+          "$ref": "#/definitions/model.Page"
+        }
+      },
+      "type": "object"
+    },
+    "model.UserSheetListRow": {
+      "properties": {
+        "created_at": {
+          "type": "string"
+        },
+        "enabled": {
+          "type": "boolean"
+        },
+        "excel": {
+          "type": "string"
+        },
+        "excel_url": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "organization_id": {
+          "type": "string"
+        },
+        "organization_name": {
+          "type": "string"
+        },
+        "size": {
+          "type": "integer"
+        },
+        "type": {
+          "type": "string"
+        },
+        "type_value": {
+          "type": "string"
+        },
+        "updated_at": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "model.UserSheetToggleArg": {
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "model.UserSheetUpdateArg": {
+      "properties": {
+        "excel": {
+          "description": "文件",
+          "type": "string"
+        },
+        "name": {
+          "description": "信息表名称",
+          "type": "string"
+        },
+        "type": {
+          "description": "类别",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "model.UserToggleArg": {
+      "properties": {
+        "enabled": {
+          "description": "用户状态",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "model.UserUpdateArg": {
+      "properties": {
+        "birthday": {
+          "description": "出生日期",
+          "type": "string"
+        },
+        "department": {
+          "description": "部门",
+          "type": "string"
+        },
+        "education": {
+          "description": "学历",
+          "type": "string"
+        },
+        "enterprise": {
+          "description": "企业名称",
+          "type": "string"
+        },
+        "gender": {
+          "description": "性别",
+          "type": "string"
+        },
+        "name": {
+          "description": "姓名",
+          "type": "string"
+        },
+        "type": {
+          "description": "用户类别",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "model.UserVerifyArg": {
+      "properties": {
+        "number": {
+          "description": "手机号",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "model.UserVerifyRet": {
+      "properties": {
+        "duration": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "model.UtilDataAdminRet": {
+      "properties": {
+        "admin_log_modules": {
+          "items": {
+            "$ref": "#/definitions/model.AdminLogModuleDict"
+          },
+          "type": "array"
+        },
+        "admin_permissions": {
+          "items": {
+            "$ref": "#/definitions/model.AdminPermission"
+          },
+          "type": "array"
+        },
+        "admin_role_permissions": {
+          "additionalProperties": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "type": "object"
+        },
+        "admin_roles": {
+          "items": {
+            "$ref": "#/definitions/model.Dict"
+          },
+          "type": "array"
+        },
+        "organization_modules": {
+          "items": {
+            "$ref": "#/definitions/model.Dict"
+          },
+          "type": "array"
+        },
+        "organization_types": {
+          "items": {
+            "$ref": "#/definitions/model.Dict"
+          },
+          "type": "array"
+        },
+        "scale_health_levels": {
+          "items": {
+            "$ref": "#/definitions/model.Dict"
+          },
+          "type": "array"
+        },
+        "scale_methods": {
+          "items": {
+            "$ref": "#/definitions/model.Dict"
+          },
+          "type": "array"
+        },
+        "scale_types": {
+          "items": {
+            "$ref": "#/definitions/model.Dict"
+          },
+          "type": "array"
+        },
+        "scale_warning_levels": {
+          "items": {
+            "$ref": "#/definitions/model.Dict"
+          },
+          "type": "array"
+        },
+        "user_educations": {
+          "items": {
+            "$ref": "#/definitions/model.Dict"
+          },
+          "type": "array"
+        },
+        "user_genders": {
+          "items": {
+            "$ref": "#/definitions/model.Dict"
+          },
+          "type": "array"
+        },
+        "user_marriages": {
+          "items": {
+            "$ref": "#/definitions/model.Dict"
+          },
+          "type": "array"
+        },
+        "user_sheet_tpl": {
+          "items": {
+            "$ref": "#/definitions/model.Dict"
+          },
+          "type": "array"
+        },
+        "user_types": {
+          "items": {
+            "$ref": "#/definitions/model.Dict"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "model.UtilDataUserRet": {
+      "properties": {
+        "user_educations": {
+          "items": {
+            "$ref": "#/definitions/model.Dict"
+          },
+          "type": "array"
+        },
+        "user_genders": {
+          "items": {
+            "$ref": "#/definitions/model.Dict"
+          },
+          "type": "array"
+        },
+        "user_marriages": {
+          "items": {
+            "$ref": "#/definitions/model.Dict"
+          },
+          "type": "array"
+        },
+        "user_types": {
+          "items": {
+            "$ref": "#/definitions/model.Dict"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "host": "82.157.33.9",
+  "info": {
+    "contact": {},
+    "title": "社心平台测试服",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/admin/admins": {
+      "get": {
+        "operationId": "AdminList",
+        "parameters": [
+          {
+            "description": "创建时间范围",
+            "in": "query",
+            "name": "created_at",
+            "type": "string"
+          },
+          {
+            "description": "机构id",
+            "in": "query",
+            "name": "organization_id",
+            "type": "string"
+          },
+          {
+            "description": "页码",
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "description": "分页大小",
+            "in": "query",
+            "name": "page_size",
+            "type": "integer"
+          },
+          {
+            "description": "成员角色",
+            "in": "query",
+            "name": "role",
+            "type": "string"
+          },
+          {
+            "description": "手机号、姓名",
+            "in": "query",
+            "name": "search",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "_",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/model.Response"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/model.AdminListRet"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          }
+        },
+        "summary": "成员分页列表",
+        "tags": ["管理端-成员管理"],
+        "x-swagger-router-controller": "psp"
+      },
+      "post": {
+        "operationId": "AdminCreate",
+        "parameters": [
+          {
+            "description": "_",
+            "in": "body",
+            "name": "_",
+            "schema": {
+              "$ref": "#/definitions/model.AdminCreateArg"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "_",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/model.Response"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/model.AdminCreateRet"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          }
+        },
+        "summary": "成员创建",
+        "tags": ["管理端-成员管理"],
+        "x-swagger-router-controller": "psp"
+      }
+    },
+    "/admin/admins/all": {
+      "get": {
+        "operationId": "AdminAll",
+        "responses": {
+          "200": {
+            "description": "_",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/model.Response"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "$ref": "#/definitions/model.Dict"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          }
+        },
+        "summary": "成员全部数据",
+        "tags": ["管理端-成员管理"],
+        "x-swagger-router-controller": "psp"
+      }
+    },
+    "/admin/admins/{id}": {
+      "get": {
+        "operationId": "AdminInfo",
+        "parameters": [
+          {
+            "description": "成员id",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "_",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/model.Response"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/model.AdminInfo"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          }
+        },
+        "summary": "成员信息",
+        "tags": ["管理端-成员管理"],
+        "x-swagger-router-controller": "psp"
+      },
+      "put": {
+        "operationId": "AdminUpdate",
+        "parameters": [
+          {
+            "description": "成员id",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "_",
+            "in": "body",
+            "name": "_",
+            "schema": {
+              "$ref": "#/definitions/model.AdminUpdateArg"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "_",
+            "schema": {
+              "$ref": "#/definitions/model.Response"
+            }
+          }
+        },
+        "summary": "成员编辑",
+        "tags": ["管理端-成员管理"],
+        "x-swagger-router-controller": "psp"
+      }
+    },
+    "/admin/admins/{id}/permissions": {
+      "patch": {
+        "operationId": "AdminSetPermissions",
+        "parameters": [
+          {
+            "description": "成员id",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "_",
+            "in": "body",
+            "name": "_",
+            "schema": {
+              "$ref": "#/definitions/model.AdminSetPermissionsArg"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "_",
+            "schema": {
+              "$ref": "#/definitions/model.Response"
+            }
+          }
+        },
+        "summary": "成员权限设置",
+        "tags": ["管理端-成员管理"],
+        "x-swagger-router-controller": "psp"
+      }
+    },
+    "/admin/admins/{id}/reset": {
+      "patch": {
+        "operationId": "AdminReset",
+        "parameters": [
+          {
+            "description": "成员id",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "_",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/model.Response"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/model.AdminResetRet"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          }
+        },
+        "summary": "成员重置密码",
+        "tags": ["管理端-成员管理"],
+        "x-swagger-router-controller": "psp"
+      }
+    },
+    "/admin/admins/{id}/toggle": {
+      "patch": {
+        "operationId": "AdminToggle",
+        "parameters": [
+          {
+            "description": "成员id",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "_",
+            "in": "body",
+            "name": "_",
+            "schema": {
+              "$ref": "#/definitions/model.AdminToggleArg"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "_",
+            "schema": {
+              "$ref": "#/definitions/model.Response"
+            }
+          }
+        },
+        "summary": "启用/禁用成员",
+        "tags": ["管理端-成员管理"],
+        "x-swagger-router-controller": "psp"
+      }
+    },
+    "/admin/evaluations": {
+      "get": {
+        "operationId": "EvaluationList",
+        "parameters": [
+          {
+            "description": "创建时间范围",
+            "in": "query",
+            "name": "created_at",
+            "type": "string"
+          },
+          {
+            "description": "测评名称",
+            "in": "query",
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "description": "机构id",
+            "in": "query",
+            "name": "organization_id",
+            "type": "string"
+          },
+          {
+            "description": "页码",
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "description": "分页大小",
+            "in": "query",
+            "name": "page_size",
+            "type": "integer"
+          },
+          {
+            "description": "类别",
+            "in": "query",
+            "name": "user_type",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "_",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/model.Response"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/model.EvaluationListRet"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          }
+        },
+        "summary": "测评分页列表",
+        "tags": ["管理端-测评管理"],
+        "x-swagger-router-controller": "psp"
+      },
+      "post": {
+        "operationId": "EvaluationCreate",
+        "parameters": [
+          {
+            "description": "_",
+            "in": "body",
+            "name": "_",
+            "schema": {
+              "$ref": "#/definitions/model.EvaluationCreateArg"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "_",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/model.Response"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/model.EvaluationCreateRet"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          }
+        },
+        "summary": "测评创建",
+        "tags": ["管理端-测评管理"],
+        "x-swagger-router-controller": "psp"
+      }
+    },
+    "/admin/evaluations/all": {
+      "get": {
+        "operationId": "EvaluationAll",
+        "responses": {
+          "200": {
+            "description": "_",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/model.Response"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "$ref": "#/definitions/model.Dict"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          }
+        },
+        "summary": "测评全部数据",
+        "tags": ["管理端-测评管理"],
+        "x-swagger-router-controller": "psp"
+      }
+    },
+    "/admin/evaluations/reports": {
+      "get": {
+        "operationId": "EvaluationReportList",
+        "parameters": [
+          {
+            "description": "测评时间范围",
+            "in": "query",
+            "name": "created_at",
+            "type": "string"
+          },
+          {
+            "description": "测评id",
+            "in": "query",
+            "name": "evaluation_id",
+            "type": "string"
+          },
+          {
+            "description": "健康等级",
+            "in": "query",
+            "name": "health_level",
+            "type": "string"
+          },
+          {
+            "description": "机构id",
+            "in": "query",
+            "name": "organization_id",
+            "type": "string"
+          },
+          {
+            "description": "页码",
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "description": "分页大小",
+            "in": "query",
+            "name": "page_size",
+            "type": "integer"
+          },
+          {
+            "description": "量表id",
+            "in": "query",
+            "name": "scale_id",
+            "type": "string"
+          },
+          {
+            "description": "姓名、手机号",
+            "in": "query",
+            "name": "search",
+            "type": "string"
+          },
+          {
+            "description": "预警等级",
+            "in": "query",
+            "name": "warning_level",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "_",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/model.Response"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/model.EvaluationReportListRet"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          }
+        },
+        "summary": "测评报告分页列表",
+        "tags": ["管理端-测评报告管理"],
+        "x-swagger-router-controller": "psp"
+      }
+    },
+    "/admin/evaluations/reports/export": {
+      "get": {
+        "operationId": "EvaluationReportExport",
+        "parameters": [
+          {
+            "description": "测评时间范围",
+            "in": "query",
+            "name": "created_at",
+            "type": "string"
+          },
+          {
+            "description": "测评id",
+            "in": "query",
+            "name": "evaluation_id",
+            "type": "string"
+          },
+          {
+            "description": "健康等级",
+            "in": "query",
+            "name": "health_level",
+            "type": "string"
+          },
+          {
+            "description": "机构id",
+            "in": "query",
+            "name": "organization_id",
+            "type": "string"
+          },
+          {
+            "description": "量表id",
+            "in": "query",
+            "name": "scale_id",
+            "type": "string"
+          },
+          {
+            "description": "姓名、手机号",
+            "in": "query",
+            "name": "search",
+            "type": "string"
+          },
+          {
+            "description": "预警等级",
+            "in": "query",
+            "name": "warning_level",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "_",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/model.Response"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/model.EvaluationReportExportRet"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          }
+        },
+        "summary": "测评报告导出",
+        "tags": ["管理端-测评报告管理"],
+        "x-swagger-router-controller": "psp"
+      }
+    },
+    "/admin/evaluations/reports/{id}/data": {
+      "get": {
+        "operationId": "EvaluationReportData",
+        "parameters": [
+          {
+            "description": "报告id",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "_",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/model.Response"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/model.EvaluationReportData"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          }
+        },
+        "summary": "查看测评报告数据",
+        "tags": ["管理端-测评报告管理"],
+        "x-swagger-router-controller": "psp"
+      }
+    },
+    "/admin/evaluations/reports/{id}/examine": {
+      "patch": {
+        "operationId": "EvaluationReportExamine",
+        "parameters": [
+          {
+            "description": "报告id",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "_",
+            "schema": {
+              "$ref": "#/definitions/model.Response"
+            }
+          }
+        },
+        "summary": "测评报告审核",
+        "tags": ["管理端-测评报告管理"],
+        "x-swagger-router-controller": "psp"
+      }
+    },
+    "/admin/evaluations/reports/{id}/send": {
+      "patch": {
+        "operationId": "EvaluationReportSend",
+        "parameters": [
+          {
+            "description": "报告id",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "_",
+            "schema": {
+              "$ref": "#/definitions/model.Response"
+            }
+          }
+        },
+        "summary": "测评报告发送",
+        "tags": ["管理端-测评报告管理"],
+        "x-swagger-router-controller": "psp"
+      }
+    },
+    "/admin/evaluations/{id}": {
+      "put": {
+        "operationId": "EvaluationUpdate",
+        "parameters": [
+          {
+            "description": "测评id",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "_",
+            "in": "body",
+            "name": "_",
+            "schema": {
+              "$ref": "#/definitions/model.EvaluationUpdateArg"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "_",
+            "schema": {
+              "$ref": "#/definitions/model.Response"
+            }
+          }
+        },
+        "summary": "测评更新",
+        "tags": ["管理端-测评管理"],
+        "x-swagger-router-controller": "psp"
+      }
+    },
+    "/admin/evaluations/{id}/data": {
+      "get": {
+        "operationId": "EvaluationData",
+        "parameters": [
+          {
+            "description": "测评id",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "_",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/model.Response"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/model.EvaluationData"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          }
+        },
+        "summary": "团测分析",
+        "tags": ["管理端-测评管理"],
+        "x-swagger-router-controller": "psp"
+      }
+    },
+    "/admin/login": {
+      "delete": {
+        "operationId": "Logout",
+        "responses": {
+          "200": {
+            "description": "_",
+            "schema": {
+              "$ref": "#/definitions/model.Response"
+            }
+          }
+        },
+        "summary": "账号登出",
+        "tags": ["管理端-账号管理"],
+        "x-swagger-router-controller": "psp"
+      },
+      "get": {
+        "operationId": "LogInfo",
+        "responses": {
+          "200": {
+            "description": "_",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/model.Response"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/model.AdminInfo"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          }
+        },
+        "summary": "获取当前登录账号信息",
+        "tags": ["管理端-账号管理"],
+        "x-swagger-router-controller": "psp"
+      },
+      "post": {
+        "operationId": "Login",
+        "parameters": [
+          {
+            "description": "_",
+            "in": "body",
+            "name": "_",
+            "schema": {
+              "$ref": "#/definitions/model.AdminLoginArg"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "_",
+            "schema": {
+              "$ref": "#/definitions/model.Response"
+            }
+          }
+        },
+        "summary": "账号登入",
+        "tags": ["管理端-账号管理"],
+        "x-swagger-router-controller": "psp"
+      }
+    },
+    "/admin/organizations": {
+      "post": {
+        "operationId": "OrganizationCreate",
+        "parameters": [
+          {
+            "description": "_",
+            "in": "body",
+            "name": "_",
+            "schema": {
+              "$ref": "#/definitions/model.OrganizationCreateArg"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "_",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/model.Response"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/model.OrganizationCreateRet"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          }
+        },
+        "summary": "机构创建",
+        "tags": ["管理端-机构管理"],
+        "x-swagger-router-controller": "psp"
+      }
+    },
+    "/admin/organizations/all": {
+      "get": {
+        "operationId": "OrganizationAll",
+        "responses": {
+          "200": {
+            "description": "_",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/model.Response"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "$ref": "#/definitions/model.OrganizationAllInfo"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          }
+        },
+        "summary": "机构树形列表",
+        "tags": ["管理端-机构管理"],
+        "x-swagger-router-controller": "psp"
+      }
+    },
+    "/admin/organizations/{id}": {
+      "get": {
+        "operationId": "OrganizationInfo",
+        "parameters": [
+          {
+            "description": "机构id",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "_",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/model.Response"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/model.OrganizationInfo"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          }
+        },
+        "summary": "机构详情",
+        "tags": ["管理端-机构管理"],
+        "x-swagger-router-controller": "psp"
+      },
+      "put": {
+        "operationId": "OrganizationUpdate",
+        "parameters": [
+          {
+            "description": "机构id",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "_",
+            "in": "body",
+            "name": "_",
+            "schema": {
+              "$ref": "#/definitions/model.OrganizationUpdateArg"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "_",
+            "schema": {
+              "$ref": "#/definitions/model.Response"
+            }
+          }
+        },
+        "summary": "机构编辑",
+        "tags": ["管理端-机构管理"],
+        "x-swagger-router-controller": "psp"
+      }
+    },
+    "/admin/organizations/{id}/move": {
+      "patch": {
+        "operationId": "OrganizationMove",
+        "parameters": [
+          {
+            "description": "机构id",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "_",
+            "in": "body",
+            "name": "_",
+            "schema": {
+              "$ref": "#/definitions/model.OrganizationMoveArg"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "_",
+            "schema": {
+              "$ref": "#/definitions/model.Response"
+            }
+          }
+        },
+        "summary": "机构移动",
+        "tags": ["管理端-机构管理"],
+        "x-swagger-router-controller": "psp"
+      }
+    },
+    "/admin/organizations/{id}/permissions": {
+      "get": {
+        "operationId": "OrganizationPermissions",
+        "parameters": [
+          {
+            "description": "机构id",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "_",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/model.Response"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "$ref": "#/definitions/model.AdminPermission"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          }
+        },
+        "summary": "获取机构成员权限表",
+        "tags": ["管理端-机构管理"],
+        "x-swagger-router-controller": "psp"
+      }
+    },
+    "/admin/organizations/{id}/toggle": {
+      "patch": {
+        "operationId": "OrganizationToggle",
+        "parameters": [
+          {
+            "description": "机构id",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "_",
+            "in": "body",
+            "name": "_",
+            "schema": {
+              "$ref": "#/definitions/model.OrganizationToggleArg"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "_",
+            "schema": {
+              "$ref": "#/definitions/model.Response"
+            }
+          }
+        },
+        "summary": "启用/禁用机构",
+        "tags": ["管理端-机构管理"],
+        "x-swagger-router-controller": "psp"
+      }
+    },
+    "/admin/scales": {
+      "get": {
+        "operationId": "ScaleList",
+        "parameters": [
+          {
+            "description": "创建时间范围",
+            "in": "query",
+            "name": "created_at",
+            "type": "string"
+          },
+          {
+            "description": "量表名称",
+            "in": "query",
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "description": "页码",
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "description": "分页大小",
+            "in": "query",
+            "name": "page_size",
+            "type": "integer"
+          },
+          {
+            "description": "量表分类",
+            "in": "query",
+            "name": "type",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "_",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/model.Response"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/model.ScaleListRet"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          }
+        },
+        "summary": "量表分页列表",
+        "tags": ["管理端-量表管理"],
+        "x-swagger-router-controller": "psp"
+      }
+    },
+    "/admin/scales/all": {
+      "get": {
+        "operationId": "ScaleAll",
+        "responses": {
+          "200": {
+            "description": "_",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/model.Response"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "$ref": "#/definitions/model.Dict"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          }
+        },
+        "summary": "量表全部数据",
+        "tags": ["管理端-量表管理"],
+        "x-swagger-router-controller": "psp"
+      }
+    },
+    "/admin/scales/import": {
+      "post": {
+        "operationId": "ScaleImport",
+        "parameters": [
+          {
+            "description": "_",
+            "in": "body",
+            "name": "_",
+            "schema": {
+              "$ref": "#/definitions/model.ScaleImportArg"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "_",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/model.Response"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/model.ScaleImportRet"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          }
+        },
+        "summary": "通过excel导入量表",
+        "tags": ["管理端-量表管理"],
+        "x-swagger-router-controller": "psp"
+      }
+    },
+    "/admin/scales/preview": {
+      "get": {
+        "operationId": "ScalePreview",
+        "parameters": [
+          {
+            "description": "_",
+            "in": "body",
+            "name": "_",
+            "schema": {
+              "$ref": "#/definitions/model.ScaleImportArg"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "_",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/model.Response"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/model.ScaleInst"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          }
+        },
+        "summary": "量表预览",
+        "tags": ["管理端-量表管理"],
+        "x-swagger-router-controller": "psp"
+      }
+    },
+    "/admin/scales/{id}": {
+      "get": {
+        "operationId": "ScaleInfo",
+        "parameters": [
+          {
+            "description": "量表id",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "_",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/model.Response"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/model.ScaleInst"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          }
+        },
+        "summary": "量表详情",
+        "tags": ["管理端-量表管理"],
+        "x-swagger-router-controller": "psp"
+      }
+    },
+    "/admin/scales/{id}/toggle": {
+      "patch": {
+        "operationId": "ScaleToggle",
+        "parameters": [
+          {
+            "description": "量表id",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "_",
+            "in": "body",
+            "name": "_",
+            "schema": {
+              "$ref": "#/definitions/model.ScaleToggleArg"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "_",
+            "schema": {
+              "$ref": "#/definitions/model.Response"
+            }
+          }
+        },
+        "summary": "启用/禁用量表",
+        "tags": ["管理端-量表管理"],
+        "x-swagger-router-controller": "psp"
+      }
+    },
+    "/admin/systems/logs": {
+      "get": {
+        "operationId": "SystemLog",
+        "parameters": [
+          {
+            "description": "操作行为",
+            "in": "query",
+            "name": "action",
+            "type": "string"
+          },
+          {
+            "description": "操作时间范围",
+            "in": "query",
+            "name": "created_at",
+            "type": "string"
+          },
+          {
+            "description": "操作类型",
+            "in": "query",
+            "name": "module",
+            "type": "string"
+          },
+          {
+            "description": "管理员姓名",
+            "in": "query",
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "description": "机构id",
+            "in": "query",
+            "name": "organization_id",
+            "type": "string"
+          },
+          {
+            "description": "页码",
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "description": "分页大小",
+            "in": "query",
+            "name": "page_size",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "_",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/model.Response"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/model.AdminLogListRet"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          }
+        },
+        "summary": "操作日志",
+        "tags": ["管理端-系统设置"],
+        "x-swagger-router-controller": "psp"
+      }
+    },
+    "/admin/systems/logs/export": {
+      "get": {
+        "operationId": "SystemLogExport",
+        "parameters": [
+          {
+            "description": "操作行为",
+            "in": "query",
+            "name": "action",
+            "type": "string"
+          },
+          {
+            "description": "操作时间范围",
+            "in": "query",
+            "name": "created_at",
+            "type": "string"
+          },
+          {
+            "description": "操作类型",
+            "in": "query",
+            "name": "module",
+            "type": "string"
+          },
+          {
+            "description": "管理员姓名",
+            "in": "query",
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "description": "机构id",
+            "in": "query",
+            "name": "organization_id",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "_",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/model.Response"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/model.AdminLogExportRet"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          }
+        },
+        "summary": "操作日志导出",
+        "tags": ["管理端-系统设置"],
+        "x-swagger-router-controller": "psp"
+      }
+    },
+    "/admin/systems/screen/data": {
+      "get": {
+        "operationId": "SystemScreenData",
+        "responses": {
+          "200": {
+            "description": "_",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/model.Response"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/model.SystemScreenData"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          }
+        },
+        "summary": "数据大屏",
+        "tags": ["管理端-系统设置"],
+        "x-swagger-router-controller": "psp"
+      }
+    },
+    "/admin/users": {
+      "get": {
+        "operationId": "UserList",
+        "parameters": [
+          {
+            "description": "年龄范围",
+            "in": "query",
+            "name": "age",
+            "type": "string"
+          },
+          {
+            "description": "性别",
+            "in": "query",
+            "name": "gender",
+            "type": "string"
+          },
+          {
+            "description": "机构id",
+            "in": "query",
+            "name": "organization_id",
+            "type": "string"
+          },
+          {
+            "description": "页码",
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "description": "分页大小",
+            "in": "query",
+            "name": "page_size",
+            "type": "integer"
+          },
+          {
+            "description": "手机号、姓名",
+            "in": "query",
+            "name": "search",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "_",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/model.Response"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/model.UserListRet"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          }
+        },
+        "summary": "用户分页列表",
+        "tags": ["管理端-用户管理"],
+        "x-swagger-router-controller": "psp"
+      }
+    },
+    "/admin/users/sheets": {
+      "get": {
+        "operationId": "UserSheetList",
+        "parameters": [
+          {
+            "description": "上传时间范围",
+            "in": "query",
+            "name": "created_at",
+            "type": "string"
+          },
+          {
+            "description": "信息表名称",
+            "in": "query",
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "description": "机构id",
+            "in": "query",
+            "name": "organization_id",
+            "type": "string"
+          },
+          {
+            "description": "页码",
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "description": "分页大小",
+            "in": "query",
+            "name": "page_size",
+            "type": "integer"
+          },
+          {
+            "description": "类别",
+            "in": "query",
+            "name": "type",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "_",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/model.Response"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/model.UserSheetListRet"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          }
+        },
+        "summary": "信息表分页列表",
+        "tags": ["管理端-用户信息表管理"],
+        "x-swagger-router-controller": "psp"
+      },
+      "post": {
+        "operationId": "UserSheetCreate",
+        "parameters": [
+          {
+            "description": "_",
+            "in": "body",
+            "name": "_",
+            "schema": {
+              "$ref": "#/definitions/model.UserSheetCreateArg"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "_",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/model.Response"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/model.UserSheetCreateRet"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          }
+        },
+        "summary": "信息表创建",
+        "tags": ["管理端-用户信息表管理"],
+        "x-swagger-router-controller": "psp"
+      }
+    },
+    "/admin/users/sheets/all": {
+      "get": {
+        "operationId": "UserSheetAll",
+        "responses": {
+          "200": {
+            "description": "_",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/model.Response"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "$ref": "#/definitions/model.Dict"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          }
+        },
+        "summary": "信息表全部数据",
+        "tags": ["管理端-用户信息表管理"],
+        "x-swagger-router-controller": "psp"
+      }
+    },
+    "/admin/users/sheets/{id}": {
+      "put": {
+        "operationId": "UserSheetUpdate",
+        "parameters": [
+          {
+            "description": "信息表id",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "_",
+            "in": "body",
+            "name": "_",
+            "schema": {
+              "$ref": "#/definitions/model.UserSheetUpdateArg"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "_",
+            "schema": {
+              "$ref": "#/definitions/model.Response"
+            }
+          }
+        },
+        "summary": "信息表更新",
+        "tags": ["管理端-用户信息表管理"],
+        "x-swagger-router-controller": "psp"
+      }
+    },
+    "/admin/users/sheets/{id}/toggle": {
+      "patch": {
+        "operationId": "UserSheetToggle",
+        "parameters": [
+          {
+            "description": "信息表id",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "_",
+            "in": "body",
+            "name": "_",
+            "schema": {
+              "$ref": "#/definitions/model.UserSheetToggleArg"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "_",
+            "schema": {
+              "$ref": "#/definitions/model.Response"
+            }
+          }
+        },
+        "summary": "启用/禁用信息表",
+        "tags": ["管理端-用户信息表管理"],
+        "x-swagger-router-controller": "psp"
+      }
+    },
+    "/admin/users/{id}/toggle": {
+      "patch": {
+        "operationId": "UserToggle",
+        "parameters": [
+          {
+            "description": "用户id",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "_",
+            "in": "body",
+            "name": "_",
+            "schema": {
+              "$ref": "#/definitions/model.UserToggleArg"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "_",
+            "schema": {
+              "$ref": "#/definitions/model.Response"
+            }
+          }
+        },
+        "summary": "启用/禁用用户",
+        "tags": ["管理端-用户管理"],
+        "x-swagger-router-controller": "psp"
+      }
+    },
+    "/admin/utils/areas": {
+      "get": {
+        "operationId": "UtilArea",
+        "responses": {
+          "200": {
+            "description": "_",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/model.Response"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "$ref": "#/definitions/area.Area"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          }
+        },
+        "summary": "获取地区数据",
+        "tags": ["管理端-通用"],
+        "x-swagger-router-controller": "psp"
+      }
+    },
+    "/admin/utils/data": {
+      "get": {
+        "operationId": "UtilData",
+        "responses": {
+          "200": {
+            "description": "_",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/model.Response"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/model.UtilDataAdminRet"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          }
+        },
+        "summary": "获取字典数据",
+        "tags": ["管理端-通用"],
+        "x-swagger-router-controller": "psp"
+      }
+    },
+    "/admin/utils/uploads": {
+      "post": {
+        "consumes": ["multipart/form-data"],
+        "operationId": "UtilUpload",
+        "parameters": [
+          {
+            "description": "文件类型",
+            "enum": ["excel"],
+            "in": "formData",
+            "name": "type",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "文件内容",
+            "in": "formData",
+            "name": "file",
+            "required": true,
+            "type": "file"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "_",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/model.Response"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/model.UploadRet"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          }
+        },
+        "summary": "上传文件",
+        "tags": ["管理端-通用"],
+        "x-swagger-router-controller": "psp"
+      }
+    },
+    "/user/evaluations/reports": {
+      "get": {
+        "operationId": "uEvaluationReportList",
+        "parameters": [
+          {
+            "description": "页码",
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "description": "分页大小",
+            "in": "query",
+            "name": "page_size",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "_",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/model.Response"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/model.EvaluationReportUserListRet"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          }
+        },
+        "summary": "测评报告分页列表",
+        "tags": ["用户端-测评管理"],
+        "x-swagger-router-controller": "psp"
+      }
+    },
+    "/user/evaluations/reports/{id}": {
+      "get": {
+        "operationId": "uEvaluationReportData",
+        "parameters": [
+          {
+            "description": "测评报告id",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "_",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/model.Response"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/model.EvaluationReportData"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          }
+        },
+        "summary": "查看测评报告数据",
+        "tags": ["用户端-测评管理"],
+        "x-swagger-router-controller": "psp"
+      }
+    },
+    "/user/evaluations/{id}": {
+      "get": {
+        "operationId": "uEvaluationInfo",
+        "parameters": [
+          {
+            "description": "测评任务id",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "_",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/model.Response"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/model.EvaluationInfo"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          }
+        },
+        "summary": "获取测评数据",
+        "tags": ["用户端-测评管理"],
+        "x-swagger-router-controller": "psp"
+      }
+    },
+    "/user/evaluations/{id}/reports": {
+      "post": {
+        "operationId": "uEvaluationReport",
+        "parameters": [
+          {
+            "description": "测评任务id",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "_",
+            "in": "body",
+            "name": "_",
+            "schema": {
+              "$ref": "#/definitions/model.EvaluationReportCreateArg"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "_",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/model.Response"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/model.EvaluationReportCreateRet"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          }
+        },
+        "summary": "提交测评报告",
+        "tags": ["用户端-测评管理"],
+        "x-swagger-router-controller": "psp"
+      }
+    },
+    "/user/login": {
+      "post": {
+        "operationId": "uLogin",
+        "parameters": [
+          {
+            "description": "_",
+            "in": "body",
+            "name": "_",
+            "schema": {
+              "$ref": "#/definitions/model.UserLoginArg"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "_",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/model.Response"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/model.UserLoginRet"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          }
+        },
+        "summary": "账号登入",
+        "tags": ["用户端-账号管理"],
+        "x-swagger-router-controller": "psp"
+      }
+    },
+    "/user/login/verify": {
+      "post": {
+        "operationId": "uLoginVerify",
+        "parameters": [
+          {
+            "description": "_",
+            "in": "body",
+            "name": "_",
+            "schema": {
+              "$ref": "#/definitions/model.UserVerifyArg"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "_",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/model.Response"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/model.UserVerifyRet"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          }
+        },
+        "summary": "发送验证短信",
+        "tags": ["用户端-账号管理"],
+        "x-swagger-router-controller": "psp"
+      }
+    },
+    "/user/profile": {
+      "get": {
+        "operationId": "uProfileInfo",
+        "responses": {
+          "200": {
+            "description": "_",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/model.Response"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/model.UserInfo"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          }
+        },
+        "summary": "获取资料",
+        "tags": ["用户端-资料管理"],
+        "x-swagger-router-controller": "psp"
+      },
+      "put": {
+        "operationId": "uProfileUpdate",
+        "parameters": [
+          {
+            "description": "_",
+            "in": "body",
+            "name": "_",
+            "schema": {
+              "$ref": "#/definitions/model.UserUpdateArg"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "_",
+            "schema": {
+              "$ref": "#/definitions/model.Response"
+            }
+          }
+        },
+        "summary": "更新资料",
+        "tags": ["用户端-资料管理"],
+        "x-swagger-router-controller": "psp"
+      }
+    },
+    "/user/utils/data": {
+      "get": {
+        "operationId": "uUtilData",
+        "responses": {
+          "200": {
+            "description": "_",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/model.Response"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/model.UtilDataUserRet"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          }
+        },
+        "summary": "获取字典数据",
+        "tags": ["用户端-通用"],
+        "x-swagger-router-controller": "psp"
+      }
+    }
+  },
+  "swagger": "2.0"
+}
