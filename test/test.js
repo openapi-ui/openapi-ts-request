@@ -86,6 +86,12 @@ const gen = async () => {
     serversPath: './apis/display-enum-label',
   });
 
+  await openAPI.generateService({
+    schemaPath: `${__dirname}/example-files/openapi.json`,
+    serversPath: './apis/filter-tags',
+    allowedTags: ['pet'],
+  });
+
   // check 文件生成
   const fileControllerStr = fs.readFileSync(
     path.join(__dirname, 'apis/file/fileController.ts'),
