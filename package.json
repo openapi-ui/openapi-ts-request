@@ -1,7 +1,7 @@
 {
   "name": "openapi-ts-request",
   "version": "0.1.0",
-  "description": "Swagger2/OpenAPI3 to TypeScript and Request Client",
+  "description": "Swagger2/OpenAPI3 to TypeScript, Request Client, Display Label",
   "packageManager": "pnpm@9.4.0",
   "repository": {
     "type": "git",

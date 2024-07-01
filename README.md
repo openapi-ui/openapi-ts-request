@@ -4,12 +4,12 @@
 [![npm (scoped)](https://img.shields.io/npm/v/openapi-ts-request)](https://www.npmjs.com/package/openapi-ts-request)
 ![GitHub tag](https://img.shields.io/github/v/tag/openapi-ui/openapi-ts-request?include_prereleases)
 
-根据 [Swagger2/OpenAPI3](https://swagger.io/blog/news/whats-new-in-openapi-3-0/) 文档生成 ts 类型、request client 请求代码。
+根据 [Swagger2/OpenAPI3](https://swagger.io/blog/news/whats-new-in-openapi-3-0/) 文档生成 ts 类型、request client 请求代码、枚举和 type 字段翻译。
 
 ## Features
 
 * supports Swagger2.0/OpenAPI 3.0,3.1 specifications
-* generate TypeScript Interfaces, Reuquest clients, Display Enum Babel
+* generate TypeScript Interfaces, Reuquest clients, Display Babel
 * supports Custom Request Function, Fetch、Axios、Uniapp-Request、Node.js、XHR client available
 * supports JSON specifications
 
