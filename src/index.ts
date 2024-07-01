@@ -171,7 +171,7 @@ export async function generateService({
       schemaPath,
       serversPath: './src/apis',
       requestImportStatement,
-      requestOptionsType: '{[key: string]: any}',
+      requestOptionsType: '{[key: string]: unknown}',
       namespace: 'API',
       nullable: false,
       isCamelCase: true,

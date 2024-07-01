@@ -4,13 +4,14 @@
 [![npm (scoped)](https://img.shields.io/npm/v/openapi-ts-request)](https://www.npmjs.com/package/openapi-ts-request)
 ![GitHub tag](https://img.shields.io/github/v/tag/openapi-ui/openapi-ts-request?include_prereleases)
 
-根据 [Swagger2/OpenAPI3](https://swagger.io/blog/news/whats-new-in-openapi-3-0/) 文档生成 ts 类型、request client 请求代码、枚举和 type 字段翻译。
+根据 [Swagger2/OpenAPI3](https://swagger.io/blog/news/whats-new-in-openapi-3-0/) 文档生成 ts 类型、request client 请求代码、request mock 服务、枚举和 type 字段翻译
 
 ## Features
 
 * supports Swagger2.0/OpenAPI 3.0,3.1 specifications
-* generate TypeScript Interfaces, Reuquest clients, Display Babel
+* generate TypeScript Interfaces, Reuquest clients, Request Mock Service, Enum, Display Field Babel
 * supports Custom Request Function, Fetch、Axios、Uniapp-Request、Node.js、XHR client available
+* supports filter specifications by tags
 * supports JSON specifications
 
 ## Usage
@@ -104,9 +105,9 @@ npm run openapi
 | serversPath  | 否 | 生成的文件夹的路径 | string | './src/apis' |
 | requestLibPath  | 否 | 自定义请求方法路径 | string | - |
 | allowedTags  | 否 | 生成指定 tags 下面的 api | string[] | - |
-| requestOptionsType  | 否 | 自定义请求方法 options 参数类型 | string | '{ [key: string]: any }' |
+| requestOptionsType  | 否 | 自定义请求方法 options 参数类型 | string | '{ [key: string]: unknown }' |
 | requestImportStatement  | 否 | 自定义请求方法表达式，例如：'@/request' | string | - |
-| apiPrefix  | 否 | api 的前缀，例如："'api'" | string | - |
+| apiPrefix  | 否 | api 的前缀，例如：'api'(动态变量), 指定字符串("'api'") | string | - |
 | dataFields | 否 | 定义 response 中数据字段类型 | string[] | - |
 | mockFolder  | 否 | mock目录 | string | './mocks' |
 | nullable | 否 | 使用null代替可选 | boolean | false |
@@ -117,7 +118,7 @@ npm run openapi
 
 | 属性           | 类型 | 说明               |
 | -------------- | ---- | ------------------ |
-| afterOpenApiDataInited | (openAPIData: OpenAPIObject) => OpenAPIObject  | - |
+| afterOpenApiDataInited | (openAPIData: OpenAPIObject) => OpenAPIObject  | 自定义OpenAPI数据 |
 | customFunctionName | (data: APIDataType) => string   | 自定义请求方法函数名称 |
 | customTypeName | (data: APIDataType) => string | 自定义类型名称 |
 | customClassName | (tagName: string) => string  | 自定义类名 |

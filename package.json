@@ -1,7 +1,7 @@
 {
   "name": "openapi-ts-request",
   "version": "0.1.0",
-  "description": "Swagger2/OpenAPI3 to TypeScript, Request Client, Display Label",
+  "description": "Swagger2/OpenAPI3 to TypeScript, Request Client, Request Mock Service, Enum, Display Field Label",
   "packageManager": "pnpm@9.4.0",
   "repository": {
     "type": "git",

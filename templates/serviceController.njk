@@ -98,7 +98,7 @@ export async function {{ api.functionName }}(
   {% if api.body %}
   Object.keys(body).forEach(ele => {
     {% if genType === "ts" %}
-    const item = (body as any)[ele];
+    const item = (body as { [key: string]: any })[ele];
     {% else %}
     const item = body[ele];
     {% endif %}

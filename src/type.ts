@@ -65,7 +65,7 @@ export type ParameterObject = Modify<
 
 export type ResponsesObject = OpenAPIV3.ResponsesObject;
 
-export type ResponseObject = OpenAPIV3.ResponseObject & { example?: any };
+export type ResponseObject = OpenAPIV3.ResponseObject & { example?: unknown };
 
 export type RequestBodyObject = OpenAPIV3.RequestBodyObject;
 

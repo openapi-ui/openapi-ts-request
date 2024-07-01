@@ -116,7 +116,7 @@ export function getDefaultType(
   schemas?: ComponentsObject['schemas']
 ): string {
   if (isUndefined(schemaObject) || isNull(schemaObject)) {
-    return 'any';
+    return 'unknown';
   }
 
   if (!isObject(schemaObject)) {
@@ -168,7 +168,7 @@ export function getDefaultType(
 
     if (Array.isArray(items)) {
       const arrayItemType = items
-        .map((subType: Dictionary<any>) =>
+        .map((subType: Dictionary<unknown>) =>
           getDefaultType((subType.schema || subType) as SchemaObject, namespace)
         )
         .toString();
@@ -227,7 +227,7 @@ export function getDefaultType(
 
   if (schemaObject.type === 'object' || schemaObject.properties) {
     if (!keys(schemaObject.properties).length) {
-      return 'Record<string, any>';
+      return 'Record<string, unknown>';
     }
 
     return `{ ${keys(schemaObject.properties)
@@ -265,7 +265,7 @@ export function getDefaultType(
       .join('')}}`;
   }
 
-  return 'any';
+  return 'unknown';
 }
 
 export function getDefaultFileTag(

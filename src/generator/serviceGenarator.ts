@@ -285,7 +285,7 @@ export default class ServiceGenerator {
               method,
               path: pathKey,
             }),
-            type: 'Record<string, any>',
+            type: 'Record<string, unknown>',
             props: [props],
             isEnum: false,
           });
@@ -308,7 +308,7 @@ export default class ServiceGenerator {
               : (result.type as string);
         }
 
-        return 'Record<string, any>';
+        return 'Record<string, unknown>';
       };
 
       // 解析 props 属性中的枚举
@@ -365,7 +365,7 @@ export default class ServiceGenerator {
               !api.path.includes('${')
           )
           .map((api) => {
-            const newApi = api as APIDataType & Dictionary<any>;
+            const newApi = api as APIDataType & Dictionary<unknown>;
 
             try {
               const params =
@@ -383,7 +383,7 @@ export default class ServiceGenerator {
                 formData = true;
               }
 
-              let functionName = this.getFuncationName(newApi);
+              let functionName = this.getFunctionName(newApi);
 
               if (functionName && tmpFunctionRD[functionName]) {
                 functionName = `${functionName}_${(tmpFunctionRD[functionName] += 1)}`;
@@ -535,7 +535,7 @@ export default class ServiceGenerator {
   private genFileFromTemplate(
     fileName: string,
     type: ITypescriptFileType,
-    params: Record<string, any>
+    params: Record<string, unknown>
   ): boolean {
     try {
       const template = this.getTemplate(type);
@@ -562,7 +562,7 @@ export default class ServiceGenerator {
     );
   }
 
-  private getFuncationName(data: APIDataType) {
+  private getFunctionName(data: APIDataType) {
     // 获取路径相同部分
     const pathBasePrefix = getBasePrefix(keys(this.openAPIData.paths));
 
@@ -596,7 +596,7 @@ export default class ServiceGenerator {
   private getTypeName(data: APIDataType) {
     const namespace = this.config.namespace ? `${this.config.namespace}.` : '';
     const typeName =
-      this.config?.hook?.customTypeName?.(data) || this.getFuncationName(data);
+      this.config?.hook?.customTypeName?.(data) || this.getFunctionName(data);
 
     return resolveTypeName(`${namespace}${typeName ?? data.operationId}Params`);
   }
@@ -616,7 +616,7 @@ export default class ServiceGenerator {
 
     let mediaType = keys(reqContent)[0];
     const schema: SchemaObject =
-      (reqContent[mediaType].schema as SchemaObject) || DEFAULT_SCHEMA;
+      (reqContent[mediaType]?.schema as SchemaObject) || DEFAULT_SCHEMA;
 
     if (mediaType === '*/*') {
       mediaType = '';
@@ -724,7 +724,7 @@ export default class ServiceGenerator {
       );
     const defaultResponse = {
       mediaType: '*/*',
-      type: 'any',
+      type: 'unknown',
     };
 
     if (!response) {
@@ -877,8 +877,8 @@ export default class ServiceGenerator {
       };
     }
 
-    // 这里需要解析出具体属性，但由于 parser 层还不确定，所以暂时先返回 any[]
-    return { type: 'any[]' };
+    // 这里需要解析出具体属性，但由于 parser 层还不确定，所以暂时先返回 unknown[]
+    return { type: 'unknown[]' };
   }
 
   private resolveProperties(schemaObject: SchemaObject) {

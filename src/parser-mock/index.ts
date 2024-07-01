@@ -156,10 +156,10 @@ export default class OpenAPIGeneratorMockJs {
     propsName?: string[],
     schemaSet: Set<string> = new Set()
   ):
-    | Record<string, any>
+    | Record<string, unknown>
     | string
     | null
-    | (Record<string, any> | string | null)[] => {
+    | (Record<string, unknown> | string | null)[] => {
     const schemaRef = isReferenceObject(schema) ? schema.$ref : null;
 
     if (schemaRef) {
@@ -217,7 +217,7 @@ export default class OpenAPIGeneratorMockJs {
 
     if (type === 'object') {
       const props = objectify(properties);
-      const obj: Record<string, any> = {};
+      const obj: Record<string, unknown> = {};
 
       for (const name in props) {
         obj[name] = this.sampleFromSchema(
@@ -254,7 +254,7 @@ export default class OpenAPIGeneratorMockJs {
 
       return new Array(parseInt((Math.random() * 20).toFixed(0), 10)).fill(
         item
-      ) as (Record<string, any> | string | null)[];
+      ) as (Record<string, unknown> | string | null)[];
     }
 
     if (type === 'union') {

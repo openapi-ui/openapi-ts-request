@@ -20,7 +20,7 @@ export const DEFAULT_SCHEMA: SchemaObject = {
   properties: { id: { type: 'number' } },
 };
 
-export const DEFAULT_PATH_PARAM: ParameterObject & Dictionary<any> = {
+export const DEFAULT_PATH_PARAM: ParameterObject & Dictionary<unknown> = {
   in: 'path',
   name: null,
   schema: {
