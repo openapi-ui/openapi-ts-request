@@ -99,7 +99,7 @@ const gen = async () => {
   );
   assert(fileControllerStr.indexOf('!(item instanceof File)') > 0);
   assert(fileControllerStr.indexOf(`'multipart/form-data'`) > 0);
-  assert(fileControllerStr.indexOf('Content-Type') < 0);
+  assert(fileControllerStr.indexOf('Content-Type') > 0);
 };
 
 gen();
