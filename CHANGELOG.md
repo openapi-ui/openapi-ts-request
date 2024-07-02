@@ -1,5 +1,11 @@
 # openapi-ts-request
 
+## 0.1.3
+
+### Patch Changes
+
+- [`2917b2a`](https://github.com/openapi-ui/openapi-ts-request/commit/2917b2aba7a3be9298464c39c9d02ee6991294c8) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - ci: fix unsetting npm registry to force ci to fail
+
 ## 0.1.2
 
 ### Patch Changes
