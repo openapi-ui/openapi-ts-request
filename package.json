@@ -10,7 +10,7 @@
   "license": "MIT",
   "author": "rookie-luochao",
   "main": "dist/index.js",
-  "types": "index.d.ts",
+  "types": "dist/index.d.ts",
   "bin": {
     "openapi-ts-request": "dist/cli.js"
   },
@@ -23,7 +23,7 @@
     "start": "tsc -w",
     "build": "tsc",
     "changeset": "changeset",
-    "prepublishOnly": "npm run build && np --no-cleanup --yolo --no-publish --any-branch",
+    "prepublish:test": "npm run build && np --no-cleanup --yolo --no-publish --any-branch",
     "lint": "eslint ./src --report-unused-disable-directives --max-warnings=0",
     "lint:fix": "eslint ./src --report-unused-disable-directives --max-warnings=0 --fix",
     "test": "rm -rf ./test/apis/ ./test/mocks && npm run build && cd ./test && node ./test.js && cd ..",
