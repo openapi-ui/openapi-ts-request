@@ -1,5 +1,11 @@
 # openapi-ts-request
 
+## 0.1.2
+
+### Patch Changes
+
+- [`a684e48`](https://github.com/openapi-ui/openapi-ts-request/commit/a684e4803af84370939560c5a068b647839817da) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - fix: fix auto prepublish, fix error types entry
+
 ## 0.1.1
 
 ### Patch Changes
