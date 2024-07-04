@@ -53,6 +53,10 @@ export type GenerateServiceProps = {
         functionName: string;
       }) => string);
   /**
+   * 是否生成 type 对应的label, 默认: false
+   */
+  isDisplayTypeLabel?: boolean;
+  /**
    * response中数据字段
    * example: ['result', 'res']
    */
@@ -175,6 +179,7 @@ export async function generateService({
       namespace: 'API',
       nullable: false,
       isCamelCase: true,
+      isDisplayTypeLabel: false,
       allowedTags: allowedTags
         ? map(allowedTags, (item) => item.toLowerCase())
         : null,

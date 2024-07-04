@@ -1,0 +1,42 @@
+/* eslint-disable */
+// @ts-ignore
+import * as {{ namespace }} from './{{ interfaceFileName }}';
+
+{% for type in list -%}
+  {%- if type.props.length %}
+    export function display{{ type.typeName }}(field: keyof {{ namespace }}.{{ type.typeName }}) {
+      return (
+        {%- for prop in type.props %}
+        {%- if prop.length > 1 %}
+          {
+        {%- endif %}
+        {%- if prop.length == 1 %}
+          {%- if not prop[0].$ref or prop[0].name %}
+          {
+          {%- endif %}
+        {%- endif %}
+          {%- for p in prop %}
+            {%- if p["$ref"] and not p.name %}
+              display{{ p.type | safe }}(field as keyof {{ namespace }}.{{ p.type }})
+            {%- else %}
+              {{ p.name }}: '{{ p.desc if p.desc else p.name }}',
+            {%- endif %}   
+          {%- endfor %}
+        {%- if prop.length > 1 %}
+          }[field]
+        {%- endif %}
+        {%- if prop.length == 1 %}
+          {%- if not prop[0].$ref or prop[0].name %}
+          }[field]
+          {%- endif %}
+        {%- endif %}
+        {%- if prop.length == 0 %}
+          {}
+        {%- endif %}
+        {{ '' if loop.last === true else ' || '  }}
+      {%- endfor %}
+    )
+  }
+  {%- endif %}
+
+{% endfor -%}

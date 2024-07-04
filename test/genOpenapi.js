@@ -2,17 +2,17 @@ const { generateService } = require('../dist/index');
 
 generateService({
   schemaPath: `${__dirname}/example-files/openapi.json`,
-  serversPath: './apis2/pet',
+  serversPath: './apis/pet',
 });
 
 generateService({
   schemaPath: `${__dirname}/example-files/openapi-display-enum-label.json`,
-  serversPath: './apis2/all',
+  serversPath: './apis/all',
 });
 
 generateService({
   schemaPath: `${__dirname}/example-files/openapi-display-enum-label.json`,
-  serversPath: './apis2/app',
+  serversPath: './apis/app',
   apiPrefix: "'/api'",
   allowTags: ["app"] 
 });

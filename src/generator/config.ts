@@ -8,11 +8,14 @@ export const interfaceFileName = 'types';
 
 export const displayEnumLabelFileName = 'displayEnumLabel';
 
+export const displayTypeLabelFileName = 'displayTypeLabel';
+
 export enum TypescriptFileType {
   interface = 'interface',
   serviceController = 'serviceController',
   serviceIndex = 'serviceIndex',
   displayEnumLabel = 'displayEnumLabel',
+  displayTypeLabel = 'displayTypeLabel',
 }
 
 export const DEFAULT_SCHEMA: SchemaObject = {
@@ -62,3 +65,6 @@ export const numberEnum = [
   'int32',
   'int64',
 ];
+
+// 匹配换行符的正则
+export const lineBreakReg = /[\r\n]+/g;

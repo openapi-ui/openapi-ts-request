@@ -43,7 +43,9 @@ import {
   DEFAULT_SCHEMA,
   TypescriptFileType,
   displayEnumLabelFileName,
+  displayTypeLabelFileName,
   interfaceFileName,
+  lineBreakReg,
   methods,
   numberEnum,
   parametersIn,
@@ -183,6 +185,19 @@ export default class ServiceGenerator {
       }
     );
 
+    // 生成 type 翻译
+    if (this.config.isDisplayTypeLabel) {
+      this.genFileFromTemplate(
+        `${displayTypeLabelFileName}.ts`,
+        TypescriptFileType.displayTypeLabel,
+        {
+          list: filter(interfaceTPConfigs, (item) => !item.isEnum),
+          namespace: this.config.namespace,
+          interfaceFileName: interfaceFileName,
+        }
+      );
+    }
+
     const prettierError = [];
 
     // 生成 service controller 文件
@@ -262,7 +277,7 @@ export default class ServiceGenerator {
         operationObject.parameters?.forEach((parameter: ParameterObject) => {
           props.push({
             name: parameter.name,
-            desc: parameter.description ?? '',
+            desc: (parameter.description ?? '').replace(lineBreakReg, ''),
             required: parameter.required || false,
             type: this.getType(parameter.schema),
           });
@@ -272,7 +287,7 @@ export default class ServiceGenerator {
         pathItem.parameters?.forEach((parameter: ParameterObject) => {
           props.push({
             name: parameter.name,
-            desc: parameter.description ?? '',
+            desc: (parameter.description ?? '').replace(lineBreakReg, ''),
             required: parameter.required,
             type: this.getType(parameter.schema),
           });
@@ -479,7 +494,7 @@ export default class ServiceGenerator {
                 // 如果 functionName 和 summary 相同，则不显示 summary
                 desc:
                   functionName === newApi.summary
-                    ? newApi.description
+                    ? (newApi.description || '').replace(lineBreakReg, '')
                     : [
                         newApi.summary,
                         newApi.description,
@@ -489,7 +504,8 @@ export default class ServiceGenerator {
                           : '',
                       ]
                         .filter((s) => s)
-                        .join(' '),
+                        .join(' ')
+                        .replace(lineBreakReg, ''),
                 hasHeader: !!params?.header || !!body?.mediaType,
                 params: finalParams,
                 hasParams: Boolean(keys(finalParams).length),
@@ -547,7 +563,7 @@ export default class ServiceGenerator {
       return writeFile(
         this.config.serversPath,
         fileName,
-        nunjucks.renderString(template, { ddisableTypeCheck: false, ...params })
+        nunjucks.renderString(template, { disableTypeCheck: false, ...params })
       );
     } catch (error) {
       console.error('[GenSDK] file gen fail:', fileName, 'type:', type);
@@ -944,7 +960,8 @@ export default class ServiceGenerator {
         type: this.getType(schema),
         desc: [schema.title, schema.description]
           .filter((item) => item)
-          .join(' '),
+          .join(' ')
+          .replace(lineBreakReg, ''),
         // 如果没有 required 信息，默认全部是非必填
         required: requiredPropKeys
           ? requiredPropKeys.some((key) => key === propKey)
