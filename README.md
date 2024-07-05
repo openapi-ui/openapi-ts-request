@@ -9,7 +9,7 @@
 ## Features
 
 * supports Swagger2.0/OpenAPI 3.0,3.1 specifications
-* generate TypeScript Interfaces, Reuquest clients, Request Mock Service, Enum, Display Field Babel
+* generate TypeScript Interfaces, Reuquest clients, Request Mock Service, Enum, Display Type Field Label
 * supports Custom Request Function, Fetch、Axios、Uniapp-Request、Node.js、XHR client available
 * supports filter specifications by tags
 * supports JSON specifications
@@ -108,6 +108,7 @@ npm run openapi
 | requestOptionsType  | 否 | 自定义请求方法 options 参数类型 | string | '{ [key: string]: unknown }' |
 | requestImportStatement  | 否 | 自定义请求方法表达式，例如：'@/request' | string | - |
 | apiPrefix  | 否 | api 的前缀，例如：'api'(动态变量), 指定字符串("'api'") | string | - |
+| isDisplayTypeLabel | 否 | 是否生成 type 对应的label | boolean | false |
 | dataFields | 否 | 定义 response 中数据字段类型 | string[] | - |
 | mockFolder  | 否 | mock目录 | string | './mocks' |
 | nullable | 否 | 使用null代替可选 | boolean | false |
