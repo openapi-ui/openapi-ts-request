@@ -1,5 +1,11 @@
 # openapi-ts-request
 
+## 0.2.0
+
+### Minor Changes
+
+- [`8ee8143`](https://github.com/openapi-ui/openapi-ts-request/commit/8ee8143cbdc07c95a30ab2f6a6b6486e3659600e) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - feat: add display type label
+
 ## 0.1.3
 
 ### Patch Changes
