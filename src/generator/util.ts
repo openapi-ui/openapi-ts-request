@@ -286,7 +286,11 @@ function findDuplicateTypeNames(arr: string[]) {
   return duplicates;
 }
 
-export function handleDuplicateTypeNames(interfaceTPConfigs: ITypeItem[]) {
+export function handleDuplicateTypeNames(
+  interfaceTPConfigs: Array<
+    Pick<ITypeItem, 'typeName' | 'displayLabelFuncName'>
+  >
+) {
   const duplicateTypeNames = findDuplicateTypeNames(
     map(interfaceTPConfigs, (item) => item.typeName)
   );

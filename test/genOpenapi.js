@@ -1,4 +1,4 @@
-const { generateService } = require('../dist/index');
+const { generateService, patchSchema } = require('../dist/index');
 
 generateService({
   schemaPath: `${__dirname}/example-files/openapi.json`,
@@ -8,11 +8,12 @@ generateService({
 generateService({
   schemaPath: `${__dirname}/example-files/openapi-display-enum-label.json`,
   serversPath: './apis/all',
+  isGenJsonSchemas: true,
 });
 
 generateService({
   schemaPath: `${__dirname}/example-files/openapi-display-enum-label.json`,
   serversPath: './apis/app',
   apiPrefix: "'/api'",
-  allowTags: ["app"] 
+  allowedTags: ["app"]
 });

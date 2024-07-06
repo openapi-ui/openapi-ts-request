@@ -10,12 +10,15 @@ export const displayEnumLabelFileName = 'displayEnumLabel';
 
 export const displayTypeLabelFileName = 'displayTypeLabel';
 
+export const schemaFileName = 'schema';
+
 export enum TypescriptFileType {
   interface = 'interface',
   serviceController = 'serviceController',
   serviceIndex = 'serviceIndex',
   displayEnumLabel = 'displayEnumLabel',
   displayTypeLabel = 'displayTypeLabel',
+  schema = 'schema',
 }
 
 export const DEFAULT_SCHEMA: SchemaObject = {

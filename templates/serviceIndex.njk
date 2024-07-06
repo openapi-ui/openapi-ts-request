@@ -1,11 +1,13 @@
 /* eslint-disable */
 // @ts-ignore
 import * as {{ namespace }} from './{{ interfaceFileName }}';
+import * as schemas from './{{ schemaFileName }}';
 {% for api in list -%}
 import * as {{ api.controllerName }} from './{{ api.fileName }}';
 {% endfor -%}
 
 export default {
+  schemas,
   {{ namespace }},
   {% for api in list -%}
   {{ api.controllerName }},

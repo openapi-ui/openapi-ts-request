@@ -4,15 +4,15 @@
 [![npm (scoped)](https://img.shields.io/npm/v/openapi-ts-request)](https://www.npmjs.com/package/openapi-ts-request)
 ![GitHub tag](https://img.shields.io/github/v/tag/openapi-ui/openapi-ts-request?include_prereleases)
 
-根据 [Swagger2/OpenAPI3](https://swagger.io/blog/news/whats-new-in-openapi-3-0/) 文档生成 ts 类型、request client 请求代码、request mock 服务、枚举和 type 字段翻译
+根据 [Swagger2/OpenAPI3](https://swagger.io/blog/news/whats-new-in-openapi-3-0/) 文档生成 ts 类型, request client 请求代码, request mock 服务, 枚举, type 字段翻译, JSON Schemas
 
 ## Features
 
-* supports Swagger2.0/OpenAPI 3.0,3.1 specifications
-* generate TypeScript Interfaces, Reuquest clients, Request Mock Service, Enum, Display Type Field Label
-* supports Custom Request Function, Fetch、Axios、Uniapp-Request、Node.js、XHR client available
-* supports filter specifications by tags
-* supports JSON specifications
+* support Swagger2.0/OpenAPI 3.0,3.1 specification
+* generate TypeScript interface, reuquest client, request mock service, enum, type field label, JSON Schemas
+* support custom request function, Fetch、Axios、Uniapp-Request、Node.js、XHR client available
+* support filter specification by tags
+* support JSON specification
 
 ## Usage
 
@@ -109,6 +109,7 @@ npm run openapi
 | requestImportStatement  | 否 | 自定义请求方法表达式，例如：'@/request' | string | - |
 | apiPrefix  | 否 | api 的前缀，例如：'api'(动态变量), 指定字符串("'api'") | string | - |
 | isDisplayTypeLabel | 否 | 是否生成 type 对应的label | boolean | false |
+| isGenJsonSchemas | 否 | 是否生成 JSON Schemas | boolean | false |
 | dataFields | 否 | 定义 response 中数据字段类型 | string[] | - |
 | mockFolder  | 否 | mock目录 | string | './mocks' |
 | nullable | 否 | 使用null代替可选 | boolean | false |
@@ -126,6 +127,15 @@ npm run openapi
 | customType | (<br>schemaObject: SchemaObject \| ReferenceObject,<br>namespace: string,<br>originGetType:(schemaObject: SchemaObject \| ReferenceObject, namespace: string) => string,<br>) => string  | 自定义获取类型 <br> *返回非字符串将使用默认方法获取type* |
 | customFileNames |  (<br>operationObject: OperationObject,<br>apiPath: string,<br>apiMethod: string,<br>) => string[]   | 自定义生成文件名，可返回多个，表示生成多个文件. <br> *返回为空，则使用默认的获取方法获取* |
 
+## JSON Schemas
+
+- 默认生成 [components.schemas](https://spec.openapis.org/oas/latest.html#components-object) 下面的 JSON Schemas, [paths](https://spec.openapis.org/oas/latest.html#paths-object) 对应的 JSON Schemas 目前需自行解析
+- 提供一个解析 schema 的函数用于将 `$ref`, `$allOf` 的引用填充到 `当前schema`
+
+```ts
+export declare function patchSchema<T extends object>(schema: ISchemaObject, schemas: ComponentsObject["schemas"]): T;
+```
+
 ## Mock
 
 目前使用 [mockjs](http://mockjs.com) 生成 mock 数据，mocks 文件启动需要借助 [@umijs/server](https://umijs.org/docs/guides/mock)，后面会寻找其他方案以达到更好的 mock 体验
@@ -134,16 +144,4 @@ npm run openapi
 
 - [openapi2typescript](https://github.com/chenshuai2144/openapi2typescript)
 
-ps：由于 openapi2typescript 仓库作者不怎么维护这个工具，不会主动增加功能，有些激进的pr也不再合并，为了更大的自主性，也为了方便自己更好的维护此工具，所以基于此仓库重构代码并添加了很多功能（后续还会加一些对部分场景有用的功能），并附上了注释方便大家感兴趣的一起参与（都是为开源做一点贡献，应该不会被诟病吧😭😭😭），例如：
-* 支持 tags 筛选api（对 apifox 工具管理接口非常有用）
-* 支持枚举和枚举翻译
-* 改善 interface 对枚举的引用方式，对 ast 提示更友好
-* 改写 type 文件组织方式，引用 type 的提示更友好
-* 解决 type 重名问题
-* 支持配置文件方式使用，避免强制依赖 ts-node
-* 支持自定义 prettier 配置，将作用于生成后的代码
-* 替换 openapi 规范定义包：openapi3-ts => openapi-types
-* 添加 eslint、tslint 规则，优化代码
-* 添加 husky、lint-staged、commitlint 等等工程化工具
-* 优化对外提供的参数
-* 优化 npm 包依赖
+ps：由于 openapi2typescript 仓库作者不怎么维护这个工具，不会主动增加功能，有些激进的pr也不再合并，为了更大的自主性，也为了方便自己更好的维护此工具，所以基于此仓库重构代码并添加了很多功能，感谢原作者！

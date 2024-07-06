@@ -104,6 +104,13 @@ const gen = async () => {
     allowedTags: ['pet'],
   });
 
+  // 测试生成 JSON Schemas
+  await openAPI.generateService({
+    schemaPath: `${__dirname}/example-files/openapi-display-enum-label.json`,
+    serversPath: './apis/schemas',
+    isGenJsonSchemas: true,
+  });
+
   // check 文件生成
   const fileControllerStr = fs.readFileSync(
     path.join(__dirname, 'apis/file/fileController.ts'),

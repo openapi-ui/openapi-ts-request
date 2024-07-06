@@ -1,0 +1,8 @@
+{%- if list.length > 0 %}
+  {% for type in list -%}
+  export const {{ type.typeName }} = {{ type.type }}
+
+  {% endfor -%}
+{%- else %}
+  export default {}
+{%- endif %}

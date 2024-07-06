@@ -40,3 +40,8 @@ export type ICustomParameterObject = ParameterObject & {
   isObject: boolean;
   type: string;
 };
+
+export interface ISchemaItem {
+  typeName: string;
+  type: string;
+}

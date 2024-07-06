@@ -50,15 +50,18 @@ import {
   numberEnum,
   parametersIn,
   parametersInsEnum,
+  schemaFileName,
   serviceEntryFileName,
 } from './config';
 import { writeFile } from './file';
+import { patchSchema } from './patchSchema';
 import {
   APIDataType,
   ControllerType,
   ICustomParameterObject,
   ICustomSchemaObject,
   IPropObject,
+  ISchemaItem,
   ITypeItem,
   ITypescriptFileType,
   TagAPIDataType,
@@ -88,6 +91,7 @@ export default class ServiceGenerator {
   protected finalPath: string;
   protected config: GenerateServiceProps;
   protected openAPIData: OpenAPIObject;
+  protected schemaList: ISchemaItem[] = [];
 
   constructor(config: GenerateServiceProps, openAPIData: OpenAPIObject) {
     this.finalPath = '';
@@ -229,8 +233,22 @@ export default class ServiceGenerator {
         list: this.classNameList,
         namespace: this.config.namespace,
         interfaceFileName: interfaceFileName,
+        schemaFileName: schemaFileName,
       }
     );
+
+    if (this.config.isGenJsonSchemas) {
+      // 处理重复的 schemaName
+      handleDuplicateTypeNames(this.schemaList);
+      // 生成 schema 文件
+      this.genFileFromTemplate(
+        `${schemaFileName}.ts`,
+        TypescriptFileType.schema,
+        {
+          list: this.schemaList,
+        }
+      );
+    }
 
     // 打印日志
     log('✅ 成功生成 api 文件');
@@ -345,6 +363,7 @@ export default class ServiceGenerator {
         });
       }
 
+      // 判断哪些 schema 需要添加进 type, schemas 渲染数组
       if (
         isEmpty(this.config.allowedTags) ||
         (schema as ICustomSchemaObject).isAllowed
@@ -362,6 +381,18 @@ export default class ServiceGenerator {
             : '',
           enumLabelType: isEnum ? (result.enumLabelType as string) : '',
         });
+
+        if (this.config.isGenJsonSchemas) {
+          this.schemaList.push({
+            typeName: `$${resolveTypeName(schemaKey)}`,
+            type: JSON.stringify(
+              patchSchema<SchemaObject>(
+                schema,
+                this.openAPIData.components?.schemas
+              )
+            ),
+          });
+        }
       }
     });
 

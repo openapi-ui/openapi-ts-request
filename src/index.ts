@@ -12,6 +12,8 @@ import {
 } from './type';
 import { getImportStatement, getOpenAPIConfig } from './util';
 
+export * from './generator/patchSchema';
+
 export type GenerateServiceProps = {
   /**
    * Swagger 2.0 或 OpenAPI 3.0 的地址
@@ -56,6 +58,10 @@ export type GenerateServiceProps = {
    * 是否生成 type 对应的label, 默认: false
    */
   isDisplayTypeLabel?: boolean;
+  /**
+   * 是否生成 JSON Schemas, 默认: false
+   */
+  isGenJsonSchemas?: boolean;
   /**
    * response中数据字段
    * example: ['result', 'res']
@@ -180,6 +186,7 @@ export async function generateService({
       nullable: false,
       isCamelCase: true,
       isDisplayTypeLabel: false,
+      isGenJsonSchemas: false,
       allowedTags: allowedTags
         ? map(allowedTags, (item) => item.toLowerCase())
         : null,
