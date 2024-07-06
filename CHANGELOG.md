@@ -1,5 +1,11 @@
 # openapi-ts-request
 
+## 0.3.0
+
+### Minor Changes
+
+- [`91452d7`](https://github.com/openapi-ui/openapi-ts-request/commit/91452d76cd8e2d3f7b0e81de7973e9c001028d6d) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - feat: support gen JSON Schemas
+
 ## 0.2.0
 
 ### Minor Changes
