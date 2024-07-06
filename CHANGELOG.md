@@ -37,3 +37,9 @@
 - [`4b4863e`](https://github.com/openapi-ui/openapi-ts-request/commit/4b4863e4b11855bf981a0d4ebbae11e1c8712615) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - ci: fix changeset version fail
 
 - [`1740013`](https://github.com/openapi-ui/openapi-ts-request/commit/17400130d6d52b978391859aae114b0545747e43) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - perf any type => unknown type
+
+## 0.1.0
+
+### Minor Changes
+
+- [`be0c3b8`](https://github.com/openapi-ui/openapi-ts-request/commit/be0c3b87d34318dcba36a69da5466e09b54afeb3) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - feat: init
