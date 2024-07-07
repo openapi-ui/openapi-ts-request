@@ -1,5 +1,11 @@
 # openapi-ts-request
 
+## 0.3.1
+
+### Patch Changes
+
+- [`98ef7b3`](https://github.com/openapi-ui/openapi-ts-request/commit/98ef7b3c666fdcdd4d9dc39c132eb2f3d364c371) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - fix: fix serviceIndex import
+
 ## 0.3.0
 
 ### Minor Changes
