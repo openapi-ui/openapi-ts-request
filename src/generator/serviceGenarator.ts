@@ -234,6 +234,7 @@ export default class ServiceGenerator {
         namespace: this.config.namespace,
         interfaceFileName: interfaceFileName,
         schemaFileName: schemaFileName,
+        isGenJsonSchemas: this.config.isGenJsonSchemas,
       }
     );
 
