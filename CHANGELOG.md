@@ -1,5 +1,11 @@
 # openapi-ts-request
 
+## 0.3.2
+
+### Patch Changes
+
+- [`30ddb72`](https://github.com/openapi-ui/openapi-ts-request/commit/30ddb728b5b4eeae363d70a55f23f22b98c71359) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - fix: fix allowTags repeat mark
+
 ## 0.3.1
 
 ### Patch Changes
