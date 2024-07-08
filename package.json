@@ -32,6 +32,7 @@
   },
   "dependencies": {
     "@prettier/sync": "^0.5.2",
+    "@trivago/prettier-plugin-sort-imports": "^4.3.0",
     "axios": "^1.7.2",
     "chalk": "^4.1.2",
     "cosmiconfig": "^9.0.0",
@@ -52,7 +53,6 @@
     "@changesets/cli": "^2.27.6",
     "@commitlint/cli": "^19.2.1",
     "@commitlint/config-conventional": "^19.2.2",
-    "@trivago/prettier-plugin-sort-imports": "^4.3.0",
     "@types/lodash": "^4.17.5",
     "@types/memoizee": "^0.4.11",
     "@types/mockjs": "^1.0.10",
