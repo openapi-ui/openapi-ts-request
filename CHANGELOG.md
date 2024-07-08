@@ -1,5 +1,11 @@
 # openapi-ts-request
 
+## 0.3.3
+
+### Patch Changes
+
+- [#16](https://github.com/openapi-ui/openapi-ts-request/pull/16) [`e48cb2b`](https://github.com/openapi-ui/openapi-ts-request/commit/e48cb2b1a4550cefa71469d589491576e34069d6) Thanks [@zhao-coder123](https://github.com/zhao-coder123)! - fix: fix prettier format error
+
 ## 0.3.2
 
 ### Patch Changes
