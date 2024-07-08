@@ -404,7 +404,7 @@ export function markAllowSchema(
   schemaStr: string,
   schemas: ComponentsObject['schemas']
 ) {
-  const refs = schemaStr.match(/#\/components\/schemas\/([A-Za-z0-9._-]+)/g);
+  const refs = schemaStr?.match(/#\/components\/schemas\/([A-Za-z0-9._-]+)/g);
 
   forEach(refs, (ref) => {
     const refPaths = ref.split('/');
@@ -412,11 +412,10 @@ export function markAllowSchema(
       refPaths[refPaths.length - 1]
     ] as ICustomSchemaObject;
 
-    if (schema) {
+    if (!schema?.isAllowed) {
       schema.isAllowed = true;
+      markAllowSchema(JSON.stringify(schema), schemas);
     }
-
-    markAllowSchema(JSON.stringify(schema), schemas);
   });
 }
 
