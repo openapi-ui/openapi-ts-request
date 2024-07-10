@@ -1,5 +1,11 @@
 # openapi-ts-request
 
+## 0.3.4
+
+### Patch Changes
+
+- [`788eb6b`](https://github.com/openapi-ui/openapi-ts-request/commit/788eb6bea6335f35342b0051cbf420d739f0b9b7) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - docs: add English readme
+
 ## 0.3.3
 
 ### Patch Changes
