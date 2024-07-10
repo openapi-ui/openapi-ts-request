@@ -1,20 +1,22 @@
-## Introduce
+## 介绍
 
 [![GitHub Repo stars](https://img.shields.io/github/stars/openapi-ui/openapi-ts-request?style=social)](https://github.com/openapi-ui/openapi-ts-request)
 [![npm (scoped)](https://img.shields.io/npm/v/openapi-ts-request)](https://www.npmjs.com/package/openapi-ts-request)
 ![GitHub tag](https://img.shields.io/github/v/tag/openapi-ui/openapi-ts-request?include_prereleases)
 
-根据 [Swagger2/OpenAPI3](https://swagger.io/blog/news/whats-new-in-openapi-3-0/) 文档生成 ts 类型, request client 请求代码, request mock 服务, 枚举, type 字段翻译, JSON Schemas
+<a href="https://github.com/openapi-ui/openapi-ts-request/blob/master/README-en_US.md">English</a> | 简体中文
 
-## Features
+根据 [Swagger2/OpenAPI3](https://swagger.io/blog/news/whats-new-in-openapi-3-0/) 文档生成 TS 类型, 客户端请求函数, 模拟请求响应服务, 枚举, 类型字段翻译, JSON Schemas
 
-* support Swagger2.0/OpenAPI 3.0,3.1 specification
-* generate TypeScript interface, reuquest client, request mock service, enum, type field label, JSON Schemas
-* support custom request function, Fetch、Axios、Uniapp-Request、Node.js、XHR client available
-* support filter specification by tags
-* support JSON specification
+## 功能
 
-## Usage
+* 支持 Swagger2.0/OpenAPI 3.0,3.1 定义
+* 生成 TS 类型, 请求客户端, 请求模拟服务, 枚举, 类型字段翻译, JSON Schemas
+* 支持自定义请求工具函数, 支持 Fetch、Axios、UniApp-Request、Node.js、XHR 客户端
+* 支持通过 tags 过滤生成结果
+* 支持 JSON 定义文件
+
+## 使用
 
 ```bash
 npm i openapi-ts-request --save-dev
@@ -33,7 +35,7 @@ export default {
 }
 ```
 
-如果项目有多个生成需求，支持传入数组配置
+支持传入数组配置进行生成
 
 ```ts
 export default [
@@ -48,9 +50,9 @@ export default [
 ]
 ```
 
-在 ```package.json``` 的 ```script``` 中添加 api: ```"openapi": "openapi-ts-request",```
+在 ```package.json``` 的 ```script``` 中添加命令: ```"openapi": "openapi-ts-request",```
 
-生成 api
+生成结果：
 
 ```bash
 npm run openapi
@@ -69,9 +71,9 @@ generateService({
 })
 ```
 
-在 ```package.json``` 的 ```script``` 中添加 script: ```"openapi": "node xxx/xxx/openapi-ts-request.config.js"```
+在 ```package.json``` 的 ```script``` 中添加命令: ```"openapi": "node xxx/xxx/openapi-ts-request.config.js"```
 
-生成 api
+生成结果：
 
 ```bash
 npm run openapi
@@ -90,47 +92,47 @@ generateService({
 })
 ```
 
-在 ```package.json``` 的 ```script``` 中添加 api: ```"openapi": "ts-node xxx/xxx/openapi-ts-request.config.ts",```
+在 ```package.json``` 的 ```script``` 中添加命令: ```"openapi": "ts-node xxx/xxx/openapi-ts-request.config.ts",```
 
-生成 api
+生成结果：
+
 ```bash
 npm run openapi
 ```
 
-## Parameter
+## 参数
 
-|  属性   | 必填  | 备注 | 类型 | 默认值 |
-|  ----  | ----  |  ----  |  ----  | - |
-| schemaPath  | 是 | Swagger 2.0 或 OpenAPI 3.0 的地址 | string | - |
-| serversPath  | 否 | 生成的文件夹的路径 | string | './src/apis' |
-| requestLibPath  | 否 | 自定义请求方法路径 | string | - |
-| allowedTags  | 否 | 生成指定 tags 下面的 api | string[] | - |
-| requestOptionsType  | 否 | 自定义请求方法 options 参数类型 | string | '{ [key: string]: unknown }' |
-| requestImportStatement  | 否 | 自定义请求方法表达式，例如：'@/request' | string | - |
-| apiPrefix  | 否 | api 的前缀，例如：'api'(动态变量), 指定字符串("'api'") | string | - |
-| isDisplayTypeLabel | 否 | 是否生成 type 对应的label | boolean | false |
-| isGenJsonSchemas | 否 | 是否生成 JSON Schemas | boolean | false |
-| dataFields | 否 | 定义 response 中数据字段类型 | string[] | - |
-| mockFolder  | 否 | mock目录 | string | './mocks' |
-| nullable | 否 | 使用null代替可选 | boolean | false |
-| isCamelCase | 否 | 小驼峰命名文件和请求函数 | boolean | true |
-| hook | 否 | 自定义 hook | [Custom Hook](#Custom-Hook) | - |
+| 属性                    | 必填  |   类型    | 默认值        | 说明  |
+| ---------------------- | ----- | -------- | ------------          | ------ |
+| schemaPath             | 是    | string   | -            | Swagger2/OpenAPI3 地址 |
+| serversPath            | 否    | string   | './src/apis' | 生成结果的文件夹路径 |
+| requestLibPath         | 否    | string   | -            | 自定义请求方法路径，例如：'@/request', 'node-fetch' | 
+| allowedTags            | 否    | string[] | -            | 根据指定的 tags 生成结果 |
+| requestOptionsType     | 否    | string   | '{ [key: string]: unknown }' | 自定义请求方法 options 参数类型 | 
+| requestImportStatement | 否    | string   | -            | 自定义请求方法表达式，例如："const request = require('@/request')" | 
+| apiPrefix              | 否    | string   | -            | api path的前缀，例如：'api'(动态变量), "'api'"(字符串) | 
+| isDisplayTypeLabel     | 否    | boolean  | false        | 是否生成 type 对应的label | 
+| isGenJsonSchemas       | 否    | boolean  | false        | 是否生成 JSON Schemas | 
+| mockFolder             | 否    | string   | './mocks'    | mock文件路径 | 
+| nullable               | 否    | boolean  | false        | 使用 null 代替可选 | 
+| isCamelCase            | 否    | boolean  | true         | 小驼峰命名文件和请求函数 | 
+| hook                   | 否    | [Custom Hook](#Custom-Hook) | - | 自定义 hook |
 
-## Custom Hook
+## 自定义 Hook
 
-| 属性           | 类型 | 说明               |
-| -------------- | ---- | ------------------ |
-| afterOpenApiDataInited | (openAPIData: OpenAPIObject) => OpenAPIObject  | 自定义OpenAPI数据 |
-| customFunctionName | (data: APIDataType) => string   | 自定义请求方法函数名称 |
-| customTypeName | (data: APIDataType) => string | 自定义类型名称 |
-| customClassName | (tagName: string) => string  | 自定义类名 |
-| customType | (<br>schemaObject: SchemaObject \| ReferenceObject,<br>namespace: string,<br>originGetType:(schemaObject: SchemaObject \| ReferenceObject, namespace: string) => string,<br>) => string  | 自定义获取类型 <br> *返回非字符串将使用默认方法获取type* |
-| customFileNames |  (<br>operationObject: OperationObject,<br>apiPath: string,<br>apiMethod: string,<br>) => string[]   | 自定义生成文件名，可返回多个，表示生成多个文件. <br> *返回为空，则使用默认的获取方法获取* |
+| 属性                    | 类型 | 说明                |
+| ---------------------- | ---- | ------------------ |
+| afterOpenApiDataInited | (openAPIData: OpenAPIObject) => OpenAPIObject  | 自定义 OpenAPI 数据 |
+| customFunctionName     | (data: APIDataType) => string   | 自定义请求方法函数名称 |
+| customTypeName         | (data: APIDataType) => string | 自定义类型名称 |
+| customClassName        | (tagName: string) => string  | 自定义标签名 |
+| customType             | (<br>schemaObject: SchemaObject \| ReferenceObject,<br>namespace: string,<br>originGetType:(schemaObject: SchemaObject \| ReferenceObject, namespace: string) => string,<br>) => string  | 自定义类型 <br> *返回非字符串将使用默认方法获取type* |
+| customFileNames        |  (<br>operationObject: OperationObject,<br>apiPath: string,<br>apiMethod: string,<br>) => string[]   | 自定义生成的请求客户端文件名称，可以返回多个文件名称的数组(表示生成多个文件). <br> *返回为空，则使用默认的方法获取* |
 
 ## JSON Schemas
 
-- 默认生成 [components.schemas](https://spec.openapis.org/oas/latest.html#components-object) 下面的 JSON Schemas, [paths](https://spec.openapis.org/oas/latest.html#paths-object) 对应的 JSON Schemas 目前需自行解析
-- 提供一个解析 schema 的函数用于将 `$ref`, `$allOf` 的引用填充到 `当前schema`
+- 默认生成 [components.schemas](https://spec.openapis.org/oas/latest.html#components-object) 下面的 JSON Schemas，[paths](https://spec.openapis.org/oas/latest.html#paths-object) 对应的 JSON Schemas 目前需自行解析
+- 提供一个解析 schema 的函数，用于将 `$ref`，`$allOf` 的引用填充到 `当前schema`
 
 ```ts
 export declare function patchSchema<T extends object>(schema: ISchemaObject, schemas: ComponentsObject["schemas"]): T;
@@ -140,7 +142,24 @@ export declare function patchSchema<T extends object>(schema: ISchemaObject, sch
 
 目前使用 [mockjs](http://mockjs.com) 生成 mock 数据，mocks 文件启动需要借助 [@umijs/server](https://umijs.org/docs/guides/mock)，后面会寻找其他方案以达到更好的 mock 体验
 
-## Thanks
+## 贡献
+
+### 环境要求
+
+* node 18+
+* pnpm 9+
+
+### 提交 Pull Request
+
+1. 熟悉 [Pull Request]("https://help.github.com/articles/using-pull-requests") 规范
+2. fork 此仓库
+3. 开一个新分支修改代码：`git checkout -b my-branch main`
+4. 确保你的代码可以通过所有测试用例(新增功能需要添加新的功能测试用例)：`pnpm test`
+5. 创建 changeset 文件通过命令：`pnpm changeset`
+6. 使用 commit 提交你的修改(需遵循 commitlint 规范)
+7. 发起 Pull Request
+
+## 感谢
 
 - [openapi2typescript](https://github.com/chenshuai2144/openapi2typescript)
 

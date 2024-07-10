@@ -16,7 +16,7 @@ export * from './generator/patchSchema';
 
 export type GenerateServiceProps = {
   /**
-   * Swagger 2.0 或 OpenAPI 3.0 的地址
+   * Swagger2/OpenAPI3 地址
    */
   schemaPath: string;
   /**
@@ -64,7 +64,7 @@ export type GenerateServiceProps = {
   isGenJsonSchemas?: boolean;
   /**
    * response中数据字段
-   * example: ['result', 'res']
+   * for example: ['result']
    */
   dataFields?: string[];
   /**
@@ -101,7 +101,7 @@ export type GenerateServiceProps = {
     customOptionsDefaultValue?: (
       data: OperationObject
     ) => Record<string, any> | undefined;
-    /** 自定义类名 */
+    /** 自定义 tag 名称 */
     customClassName?: (tagName: string) => string;
     /**
      * 自定义获取type hook
@@ -125,14 +125,14 @@ export type GenerateServiceProps = {
       originGetType: (schemaObject: SchemaObject, namespace: string) => string;
     }) => string;
     /**
-     * 自定义生成文件名，可返回多个，表示生成多个文件
-     * 返回为空，则使用默认的获取方法获取
+     * 自定义生成文件名，可返回多个，表示生成多个文件;
+     * 返回为空，则使用默认的获取方法获取;
      * @example  使用operationId生成文件名
-     * function customFileNames(operationObject,apiPath){
-     *   const operationId=operationObject.operationId;
+     * function customFileNames(operationObject, apiPath){
+     *   const operationId = operationObject.operationId;
      *   if (!operationId) {
      *      console.warn('[Warning] no operationId', apiPath);
-     *      return;
+     *      return null;
      *    }
      *    const res = operationId.split('_');
      *    if (res.length > 1) {
@@ -146,7 +146,7 @@ export type GenerateServiceProps = {
      *      if (controllerName) {
      *        return [controllerName];
      *      }
-     *      return;
+     *      return null;
      *    }
      * }
      */
@@ -154,7 +154,7 @@ export type GenerateServiceProps = {
       operationObject: OperationObject,
       apiPath: string,
       apiMethod: string
-    ) => string[];
+    ) => string[] | null;
   };
 };
 
