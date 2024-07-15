@@ -2,7 +2,7 @@
 import chalk from 'chalk';
 import { cosmiconfigSync } from 'cosmiconfig';
 
-import { GenerateServiceProps, generateService } from './index';
+import { GenerateServiceProps, generateService } from '../index';
 
 const explorerSync = cosmiconfigSync('openapi-ts-request');
 const config = explorerSync.search()?.config as

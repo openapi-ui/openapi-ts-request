@@ -12,7 +12,7 @@ export const prettierFile = (content: string): [string, boolean] => {
     result = format(content, {
       ...defaultPrettierOptions,
       parser: 'typescript',
-      importOrderSeparation: false,
+      plugins: [],
     });
   } catch (error) {
     hasError = true;

@@ -12,6 +12,7 @@
 
 * 支持 Swagger2.0/OpenAPI 3.0,3.1 定义
 * 生成 TS 类型, 请求客户端, 请求模拟服务, 枚举, 类型字段翻译, JSON Schemas
+* 支持通过 npx、CLI、Nodejs 的方式使用
 * 支持自定义请求工具函数, 支持 Fetch、Axios、UniApp-Request、Node.js、XHR 客户端
 * 支持通过 tags 过滤生成结果
 * 支持 JSON 定义文件
@@ -98,6 +99,50 @@ generateService({
 
 ```bash
 npm run openapi
+```
+
+### NPX
+
+```
+npx openapi-ts-request openapi -i ./openapi.json -o ./apis
+```
+
+### CLI
+
+```
+npm i openapi-ts-request -g
+```
+
+```
+$ openapi --help
+
+  Usage: openapi [options]
+
+  Options:
+    -V, --version                      output the version number
+    -i, --input <string>               OpenAPI specification, can be a path, url (required)
+    -o, --output <string>              Output directory (required)
+    --requestLibPath <string>          custom request lib path, for example: "@/request", "node-fetch"
+    --allowedTags <string[]>           Generate results from allowed tags
+    --requestOptionsType <string>      Custom request method options parameter type (default: "{ [key:
+                                      string]: unknown }")
+    --requestImportStatement <string>  custom request import statement, for example: "const request =
+                                      require(`@/request`)"
+    --apiPrefix <string>               Custom the prefix of the api path, for example: "api"(variable),
+                                      `"api"`(string)
+    --isDisplayTypeLabel <boolean>     Generate label matching type field (default: false) (default: false)
+    --isGenJsonSchemas <boolean>       Generate JSON Schemas (default: false) (default: false)
+    --mockFolder <string>              Mock file path, (default: "./mocks")
+    --nullable <boolean>               null instead of optional (default: false) (default: false)
+    --isCamelCase <boolean>            CamelCase naming of controller files and request client (default: true)
+                                      (default: true)
+    -h, --help                         display help for command
+```
+
+生成结果：
+
+```bash
+openapi --i ./spec.json --o ./apis
 ```
 
 ## 参数

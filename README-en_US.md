@@ -12,6 +12,7 @@ Generate TS interfaces, request client, request mock service, enum, type field l
 
 * support Swagger2.0/OpenAPI 3.0,3.1 specification
 * generate TypeScript interface, reuquest client, request mock service, enum, type field label, JSON Schemas
+* support work with npx, CLI, Nodejs
 * support custom request function, Fetch、Axios、UniApp-request、Node.js、XHR client available
 * support filter generate result by tags
 * support JSON specification
@@ -100,6 +101,50 @@ generate result:
 npm run openapi
 ```
 
+### NPX
+
+```
+npx openapi-ts-request openapi -i ./openapi.json -o ./apis
+```
+
+### CLI
+
+```
+npm i openapi-ts-request -g
+```
+
+```
+$ openapi --help
+
+  Usage: openapi [options]
+
+  Options:
+    -V, --version                      output the version number
+    -i, --input <string>               OpenAPI specification, can be a path, url (required)
+    -o, --output <string>              Output directory (required)
+    --requestLibPath <string>          custom request lib path, for example: "@/request", "node-fetch"
+    --allowedTags <string[]>           Generate results from allowed tags
+    --requestOptionsType <string>      Custom request method options parameter type (default: "{ [key:
+                                      string]: unknown }")
+    --requestImportStatement <string>  custom request import statement, for example: "const request =
+                                      require(`@/request`)"
+    --apiPrefix <string>               Custom the prefix of the api path, for example: "api"(variable),
+                                      `"api"`(string)
+    --isDisplayTypeLabel <boolean>     Generate label matching type field (default: false) (default: false)
+    --isGenJsonSchemas <boolean>       Generate JSON Schemas (default: false) (default: false)
+    --mockFolder <string>              Mock file path, (default: "./mocks")
+    --nullable <boolean>               null instead of optional (default: false) (default: false)
+    --isCamelCase <boolean>            CamelCase naming of controller files and request client (default: true)
+                                      (default: true)
+    -h, --help                         display help for command
+```
+
+generate result: 
+
+```bash
+openapi -i ./spec.json -o ./apis
+```
+
 ## Parameter
 
 | props                  | required | type     | default      | remark | 
@@ -110,7 +155,7 @@ npm run openapi
 | allowedTags            | no       | string[] | -            | generate results from allowed tags | 
 | requestOptionsType     | no       | string   | '{ [key: string]: unknown }' | custom request method options parameter type | 
 | requestImportStatement | no       | string   | -            | custom request import statement, for example: "const request = require('@/request')" | 
-| apiPrefix              | no       | string   | -            | custom the prefix of the api path，例如：'api'(variable), "'api'"(string) | 
+| apiPrefix              | no       | string   | -            | custom the prefix of the api path, for example: 'api'(variable), "'api'"(string) | 
 | isDisplayTypeLabel     | no       | boolean  | false        | generate label matching type field | 
 | isGenJsonSchemas       | no       | boolean  | false        | generate JSON Schemas | 
 | mockFolder             | no       | string   | './mocks'    | mock file path | 

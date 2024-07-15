@@ -12,7 +12,8 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "bin": {
-    "openapi-ts-request": "dist/cli.js"
+    "openapi": "dist/bin/index.js",
+    "openapi-ts-request": "dist/bin/cli.js"
   },
   "files": [
     "dist",
@@ -35,6 +36,7 @@
     "@trivago/prettier-plugin-sort-imports": "^4.3.0",
     "axios": "^1.7.2",
     "chalk": "^4.1.2",
+    "commander": "^12.1.0",
     "cosmiconfig": "^9.0.0",
     "glob": "^10.4.2",
     "lodash": "^4.17.21",

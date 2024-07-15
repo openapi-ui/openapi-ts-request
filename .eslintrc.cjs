@@ -9,6 +9,7 @@ module.exports = {
     'dist',
     'node_modules',
     'test',
+    '.eslintrc.cjs',
     'commitlint.config.cjs',
     'lint-staged.config.cjs',
     'prettier.config.cjs',
