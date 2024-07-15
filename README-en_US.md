@@ -27,8 +27,8 @@ pnpm i openapi-ts-request -D
 
 ### CosmiConfig
 
-create ```openapi-ts-request.config.ts``` file in the project root directory
-> the config file also supports ***.openapi-ts-request.ts***, ***openapi-ts-request.config.cjs*** format, reference [cosmiconfig](https://github.com/cosmiconfig/cosmiconfig?tab=readme-ov-file#cosmiconfig)
+create ```openapi-ts.config.ts``` file in the project root directory
+> the config file also supports ***.openapi-ts.ts***, ***openapi-ts.config.cjs*** format, reference [cosmiconfig](https://github.com/cosmiconfig/cosmiconfig?tab=readme-ov-file#cosmiconfig)
 
 ```ts
 export default {
@@ -51,7 +51,7 @@ export default [
 ]
 ```
 
-add the command in ```script``` of ```package.json```: ```"openapi": "openapi-ts-request",```
+add the command in ```script``` of ```package.json```: ```"openapi": "openapi-ts",```
 
 generate result: 
 
@@ -61,7 +61,7 @@ npm run openapi
 
 ### JS
 
-create a new ```openapi-ts-request.config.js``` file in any directory ```xxx/xxx```
+create a new ```openapi-ts.config.js``` file in any directory ```xxx/xxx```
 
 ```ts
 const { generateService } = require('openapi-ts-request')
@@ -72,7 +72,7 @@ generateService({
 })
 ```
 
-add the command in ```script``` of ```package.json```: ```"openapi": "node xxx/xxx/openapi-ts-request.config.js"```
+add the command in ```script``` of ```package.json```: ```"openapi": "node xxx/xxx/openapi-ts.config.js"```
 
 generate result: 
 
@@ -82,7 +82,7 @@ npm run openapi
 
 ### TS
 
-create a new ```openapi-ts-request.config.ts``` file in any directory ```xxx/xxx```
+create a new ```openapi-ts.config.ts``` file in any directory ```xxx/xxx```
 
 ```ts
 const { generateService } = require('openapi-ts-request')
@@ -93,7 +93,7 @@ generateService({
 })
 ```
 
-add the command in ```script``` of ```package.json```: ```"openapi": "ts-node xxx/xxx/openapi-ts-request.config.ts",```
+add the command in ```script``` of ```package.json```: ```"openapi": "ts-node xxx/xxx/openapi-ts.config.ts",```
 
 generate result: 
 

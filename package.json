@@ -13,7 +13,7 @@
   "types": "dist/index.d.ts",
   "bin": {
     "openapi": "dist/bin/openapi.js",
-    "openapi-ts-request": "dist/bin/cli.js"
+    "openapi-ts": "dist/bin/cli.js"
   },
   "files": [
     "dist",
