@@ -12,7 +12,7 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "bin": {
-    "openapi": "dist/bin/index.js",
+    "openapi": "dist/bin/openapi.js",
     "openapi-ts-request": "dist/bin/cli.js"
   },
   "files": [
