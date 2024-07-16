@@ -1,5 +1,11 @@
 # openapi-ts-request
 
+## 0.4.4
+
+### Patch Changes
+
+- [`58ffc56`](https://github.com/openapi-ui/openapi-ts-request/commit/58ffc566418cbd8bb923bf8c85066a2d0857b08c) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - fix: fix npx --input url error
+
 ## 0.4.3
 
 ### Patch Changes
