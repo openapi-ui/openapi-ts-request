@@ -1,5 +1,11 @@
 # openapi-ts-request
 
+## 0.4.3
+
+### Patch Changes
+
+- [`da215fe`](https://github.com/openapi-ui/openapi-ts-request/commit/da215fe6339253f33047fd20a7c200d8a7b5cd7a) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - docs: update npx script
+
 ## 0.4.2
 
 ### Patch Changes
