@@ -1,10 +1,16 @@
 #!/usr/bin/env node
 import chalk from 'chalk';
 import { cosmiconfigSync } from 'cosmiconfig';
+import { TypeScriptLoader } from 'cosmiconfig-typescript-loader';
 
 import { GenerateServiceProps, generateService } from '../index';
 
-const explorerSync = cosmiconfigSync('openapi-ts-request');
+const explorerSync = cosmiconfigSync('openapi-ts-request', {
+  loaders: {
+    '.ts': TypeScriptLoader(),
+  },
+});
+
 const config = explorerSync.search()?.config as
   | GenerateServiceProps
   | GenerateServiceProps[];
