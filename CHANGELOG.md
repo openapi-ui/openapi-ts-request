@@ -1,5 +1,13 @@
 # openapi-ts-request
 
+## 0.4.5
+
+### Patch Changes
+
+- [`b7ab3c3`](https://github.com/openapi-ui/openapi-ts-request/commit/b7ab3c3fd98bf99133da60dc921522a00bfb766c) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - fix: fix module not found errors when .ts config includes import
+
+- [`01ca65e`](https://github.com/openapi-ui/openapi-ts-request/commit/01ca65ed32bfeed12c3b28722b7e1db0904fefef) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - docs: fix cosmiConfig usage
+
 ## 0.4.4
 
 ### Patch Changes
