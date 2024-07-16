@@ -106,11 +106,12 @@ npm run openapi
 ### NPX
 
 ```bash
-# npm
 npx --package=openapi-ts-request -- openapi -i ./openapi.json -o ./apis
+npx --package=openapi-ts-request -- openapi -i https://petstore3.swagger.io/api/v3/openapi.json -o ./apis
 
 # pnpm
-pnpm --package=openapi-ts-request dlx openapi -i ./openapi.json -o ./apis
+pnpm --package=openapi-ts-request@latest dlx openapi -i ./openapi.json -o ./apis
+pnpm --package=openapi-ts-request@latest dlx openapi -i https://petstore3.swagger.io/api/v3/openapi.json -o ./apis
 ```
 
 ### CLI

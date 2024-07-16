@@ -56,8 +56,13 @@ const params = program
   .opts();
 
 function getPath(path: string) {
-  const cwd = process.cwd();
-  return join(cwd, path);
+  const isUrl = path.startsWith('http');
+
+  if (isUrl) {
+    return path;
+  }
+
+  return join(process.cwd(), path);
 }
 
 async function run() {
