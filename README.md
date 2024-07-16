@@ -20,8 +20,10 @@
 ## 使用
 
 ```bash
+# npm
 npm i openapi-ts-request --save-dev
 
+# pnpm
 pnpm i openapi-ts-request -D
 ```
 
@@ -103,8 +105,12 @@ npm run openapi
 
 ### NPX
 
-```
-npx openapi-ts-request openapi -i ./openapi.json -o ./apis
+```bash
+# npm
+npx --package=openapi-ts-request -- openapi -i ./openapi.json -o ./apis
+
+# pnpm
+pnpm --package=openapi-ts-request dlx openapi -i ./openapi.json -o ./apis
 ```
 
 ### CLI
