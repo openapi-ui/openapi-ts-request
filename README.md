@@ -29,8 +29,8 @@ pnpm i openapi-ts-request -D
 
 ### CosmiConfig
 
-在项目根目录新建 ```openapi-ts.config.ts``` 
-> 配置文件还支持 ***.openapi-ts.ts***, ***openapi-ts.config.cjs*** 等格式，参考 [cosmiconfig](https://github.com/cosmiconfig/cosmiconfig?tab=readme-ov-file#cosmiconfig)
+在项目根目录新建 ```openapi-ts-request.config.ts``` 
+> 配置文件还支持 ***.openapi-ts-request.ts***, ***openapi-ts-request.config.cjs*** 等格式，参考 [cosmiconfig](https://github.com/cosmiconfig/cosmiconfig?tab=readme-ov-file#cosmiconfig)
 
 ```ts
 export default {
@@ -63,7 +63,7 @@ npm run openapi
 
 ### JS
 
-任意目录 ```xxx/xxx``` 新建 ```openapi-ts.config.js```
+任意目录 ```xxx/xxx``` 新建 ```openapi-ts-request.config.js```
 
 ```ts
 const { generateService } = require('openapi-ts-request')
@@ -74,7 +74,7 @@ generateService({
 })
 ```
 
-在 ```package.json``` 的 ```script``` 中添加命令: ```"openapi": "node xxx/xxx/openapi-ts.config.js"```
+在 ```package.json``` 的 ```script``` 中添加命令: ```"openapi": "node xxx/xxx/openapi-ts-request.config.js"```
 
 生成结果：
 
@@ -84,7 +84,7 @@ npm run openapi
 
 ### TS
 
-任意目录 ```xxx/xxx``` 新建 ```openapi-ts.config.ts```
+任意目录 ```xxx/xxx``` 新建 ```openapi-ts-request.config.ts```
 
 ```ts
 const { generateService } = require('openapi-ts-request')
@@ -95,7 +95,7 @@ generateService({
 })
 ```
 
-在 ```package.json``` 的 ```script``` 中添加命令: ```"openapi": "ts-node xxx/xxx/openapi-ts.config.ts",```
+在 ```package.json``` 的 ```script``` 中添加命令: ```"openapi": "ts-node xxx/xxx/openapi-ts-request.config.ts",```
 
 生成结果：
 
