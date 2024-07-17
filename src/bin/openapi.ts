@@ -13,43 +13,35 @@ const params = program
     '-i, --input <string>',
     'OpenAPI specification, can be a path, url (required)'
   )
-  .requiredOption('-o, --output <string>', 'Output directory (required)')
+  .requiredOption('-o, --output <string>', 'output directory (required)')
   .option(
     '--requestLibPath <string>',
     'custom request lib path, for example: "@/request", "node-fetch"'
   )
-  .option('--allowedTags <string[]>', 'Generate results from allowed tags')
+  .option('--allowedTags <string[]>', 'generate results from allowed tags')
   .option(
     '--requestOptionsType <string>',
-    'Custom request method options parameter type (default: "{ [key: string]: unknown }")'
+    'custom request method options parameter type (default: "{ [key: string]: unknown }")'
   )
   .option(
     '--requestImportStatement <string>',
-    'custom request import statement, for example: "const request = require(`@/request`)"'
+    `custom request import statement, for example: "const request = require('@/request')"`
   )
   .option(
     '--apiPrefix <string>',
-    'Custom the prefix of the api path, for example: "api"(variable), `"api"`(string)'
+    `custom the prefix of the api path, for example: "api"(variable), "'api'"(string)`
   )
   .option(
     '--isDisplayTypeLabel <boolean>',
-    'Generate label matching type field (default: false)',
+    'generate label matching type field',
     false
   )
-  .option(
-    '--isGenJsonSchemas <boolean>',
-    'Generate JSON Schemas (default: false)',
-    false
-  )
-  .option('--mockFolder <string>', 'Mock file path, (default: "./mocks")')
-  .option(
-    '--nullable <boolean>',
-    'null instead of optional (default: false)',
-    false
-  )
+  .option('--isGenJsonSchemas <boolean>', 'generate JSON Schemas', false)
+  .option('--mockFolder <string>', 'Mock file path (default: "./mocks")')
+  .option('--nullable <boolean>', 'null instead of optional', false)
   .option(
     '--isCamelCase <boolean>',
-    'CamelCase naming of controller files and request client (default: true)',
+    'camelCase naming of controller files and request client',
     true
   )
   .parse(process.argv)

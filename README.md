@@ -33,14 +33,18 @@ pnpm i openapi-ts-request -D
 > 配置文件还支持 ***.openapi-ts-request.ts***, ***openapi-ts-request.config.cjs*** 等格式，参考 [cosmiconfig](https://github.com/cosmiconfig/cosmiconfig?tab=readme-ov-file#cosmiconfig)
 
 ```ts
+import type { GenerateServiceProps } from 'openapi-ts-request'
+
 export default {
   schemaPath: 'http://petstore.swagger.io/v2/swagger.json',
-}
+} as GenerateServiceProps
 ```
 
 支持传入数组配置进行生成
 
 ```ts
+import type { GenerateServiceProps } from 'openapi-ts-request'
+
 export default [
   {
     schemaPath: 'http://app.swagger.io/v2/swagger.json',
@@ -50,7 +54,7 @@ export default [
     schemaPath: 'http://auth.swagger.io/v2/swagger.json',
     serversPath: './src/apis/auth',
   }
-]
+] as GenerateServiceProps[]
 ```
 
 在 ```package.json``` 的 ```script``` 中添加命令: ```"openapi": "openapi-ts",```
@@ -129,21 +133,20 @@ $ openapi --help
   Options:
     -V, --version                      output the version number
     -i, --input <string>               OpenAPI specification, can be a path, url (required)
-    -o, --output <string>              Output directory (required)
+    -o, --output <string>              output directory (required)
     --requestLibPath <string>          custom request lib path, for example: "@/request", "node-fetch"
-    --allowedTags <string[]>           Generate results from allowed tags
-    --requestOptionsType <string>      Custom request method options parameter type (default: "{ [key:
+    --allowedTags <string[]>           generate results from allowed tags
+    --requestOptionsType <string>      custom request method options parameter type (default: "{ [key:
                                       string]: unknown }")
     --requestImportStatement <string>  custom request import statement, for example: "const request =
-                                      require(`@/request`)"
-    --apiPrefix <string>               Custom the prefix of the api path, for example: "api"(variable),
-                                      `"api"`(string)
-    --isDisplayTypeLabel <boolean>     Generate label matching type field (default: false) (default: false)
-    --isGenJsonSchemas <boolean>       Generate JSON Schemas (default: false) (default: false)
-    --mockFolder <string>              Mock file path, (default: "./mocks")
-    --nullable <boolean>               null instead of optional (default: false) (default: false)
-    --isCamelCase <boolean>            CamelCase naming of controller files and request client (default: true)
-                                      (default: true)
+                                      require('@/request')"
+    --apiPrefix <string>               custom the prefix of the api path, for example: "api"(variable),
+                                      "'api'"(string)
+    --isDisplayTypeLabel <boolean>     generate label matching type field (default: false)
+    --isGenJsonSchemas <boolean>       generate JSON Schemas (default: false)
+    --mockFolder <string>              mock file path (default: "./mocks")
+    --nullable <boolean>               null instead of optional (default: false)
+    --isCamelCase <boolean>            camelCase naming of controller files and request client (default: true)
     -h, --help                         display help for command
 ```
 
