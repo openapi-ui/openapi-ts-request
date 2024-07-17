@@ -1,5 +1,11 @@
 # openapi-ts-request
 
+## 0.4.6
+
+### Patch Changes
+
+- [`f34d2fc`](https://github.com/openapi-ui/openapi-ts-request/commit/f34d2fc1430b26a7bd27d60ae84625e46acaefb5) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - perf: perf tip
+
 ## 0.4.5
 
 ### Patch Changes
