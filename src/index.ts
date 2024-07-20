@@ -35,6 +35,18 @@ export type GenerateServiceProps = {
    */
   allowedTags?: string[];
   /**
+   * 排除tags
+   */
+  excludeTags?: string[];
+  /**
+   * 只解析归属于 paths 集合的api
+   */
+  allowedPaths?: string[];
+  /**
+   * 排除paths
+   */
+  excludePaths?: string[];
+  /**
    * 自定义请求方法 options 参数类型
    */
   requestOptionsType?: string;

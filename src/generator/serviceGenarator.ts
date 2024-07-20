@@ -111,6 +111,18 @@ export default class ServiceGenerator {
 
     // 用 tag 分组 paths, { [tag]: [pathMap, pathMap] }
     keys(this.openAPIData.paths).forEach((pathKey) => {
+      // allowedUrl
+      if (
+        !isEmpty(this.config?.allowedPaths) &&
+        !includes(this.config?.allowedPaths, pathKey)
+      ) {
+        return;
+      }
+      // excludeUrl
+      if (includes(this.config?.excludePaths, pathKey)) {
+        return;
+      }
+
       const pathItem = this.openAPIData.paths[pathKey];
 
       forEach(methods, (method) => {
@@ -132,6 +144,10 @@ export default class ServiceGenerator {
             !isEmpty(this.config?.allowedTags) &&
             !includes(this.config.allowedTags, tag.toLowerCase())
           ) {
+            return;
+          }
+
+          if (includes(this.config.excludeTags, tag)) {
             return;
           }
 
