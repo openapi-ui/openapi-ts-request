@@ -179,15 +179,18 @@ export default class ServiceGenerator {
     );
 
     // 生成枚举翻译
-    this.genFileFromTemplate(
-      `${displayEnumLabelFileName}.ts`,
-      TypescriptFileType.displayEnumLabel,
-      {
-        list: filter(interfaceTPConfigs, (item) => item.isEnum),
-        namespace: this.config.namespace,
-        interfaceFileName: interfaceFileName,
-      }
-    );
+    const enums = filter(interfaceTPConfigs, (item) => item.isEnum);
+    if (!isEmpty(enums)) {
+      this.genFileFromTemplate(
+        `${displayEnumLabelFileName}.ts`,
+        TypescriptFileType.displayEnumLabel,
+        {
+          list: enums,
+          namespace: this.config.namespace,
+          interfaceFileName: interfaceFileName,
+        }
+      );
+    }
 
     // 生成 type 翻译
     if (this.config.isDisplayTypeLabel) {
