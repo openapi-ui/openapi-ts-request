@@ -1,5 +1,13 @@
 # openapi-ts-request
 
+## 0.4.7
+
+### Patch Changes
+
+- [`ace4a34`](https://github.com/openapi-ui/openapi-ts-request/commit/ace4a348d21fd9528b91e7d82efec10fab12af24) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - perf: perf displayEnumLabel when no enums
+
+- [`7de3b58`](https://github.com/openapi-ui/openapi-ts-request/commit/7de3b583060b2baf16b52a27296b7dbc2568a138) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - fix: fix schema is undefined when mark schema
+
 ## 0.4.6
 
 ### Patch Changes
