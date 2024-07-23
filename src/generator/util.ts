@@ -412,7 +412,7 @@ export function markAllowSchema(
       refPaths[refPaths.length - 1]
     ] as ICustomSchemaObject;
 
-    if (!schema?.isAllowed) {
+    if (schema && !schema.isAllowed) {
       schema.isAllowed = true;
       markAllowSchema(JSON.stringify(schema), schemas);
     }

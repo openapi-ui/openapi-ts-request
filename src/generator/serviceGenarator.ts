@@ -367,7 +367,7 @@ export default class ServiceGenerator {
       // 判断哪些 schema 需要添加进 type, schemas 渲染数组
       if (
         isEmpty(this.config.allowedTags) ||
-        (schema as ICustomSchemaObject).isAllowed
+        (schema as ICustomSchemaObject)?.isAllowed
       ) {
         const isEnum = result.isEnum as boolean;
         const typeName = resolveTypeName(schemaKey);
