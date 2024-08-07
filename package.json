@@ -39,7 +39,7 @@
     "commander": "^12.1.0",
     "cosmiconfig": "^9.0.0",
     "cosmiconfig-typescript-loader": "^5.0.0",
-    "glob": "^10.4.2",
+    "glob": "^11.0.0",
     "lodash": "^4.17.21",
     "memoizee": "^0.4.17",
     "mockjs": "^1.1.0",
