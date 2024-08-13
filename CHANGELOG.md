@@ -1,5 +1,15 @@
 # openapi-ts-request
 
+## 0.4.8
+
+### Patch Changes
+
+- [`94801b6`](https://github.com/openapi-ui/openapi-ts-request/commit/94801b68ca3048bd505b1b44cac8ba35c0d13d66) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - chore: update husky script
+
+- [`cdecb3f`](https://github.com/openapi-ui/openapi-ts-request/commit/cdecb3f48de524a5dd4c3e34ba5f23021aa0646c) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - docs: update readme
+
+- [`83721a1`](https://github.com/openapi-ui/openapi-ts-request/commit/83721a13c860c0b19f310e4dbe717c2d03347127) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - fix: fix apiPrefix match error
+
 ## 0.4.7
 
 ### Patch Changes
