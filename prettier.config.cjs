@@ -1,6 +1,7 @@
 module.exports = {
-  singleQuote: true,
   arrowParens: 'always',
+  singleQuote: true,
+  proseWrap: 'never',
   trailingComma: 'es5',
   importOrder: ['^@?\\w', '^@/(.*)$', '^[./]'],
   importOrderSeparation: true,
