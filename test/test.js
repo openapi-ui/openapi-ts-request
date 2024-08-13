@@ -111,6 +111,13 @@ const gen = async () => {
     isGenJsonSchemas: true,
   });
 
+  // 测试设置 path 前缀
+  await openAPI.generateService({
+    schemaPath: `${__dirname}/example-files/swagger.json`,
+    serversPath: './apis/api-prefix',
+    apiPrefix: '"/pet"'
+  });
+
   // check 文件生成
   const fileControllerStr = fs.readFileSync(
     path.join(__dirname, 'apis/file/fileController.ts'),

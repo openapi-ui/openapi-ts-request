@@ -500,10 +500,11 @@ export default class ServiceGenerator {
                   prefix.startsWith('`')
                 ) {
                   const finalPrefix = prefix.slice(1, prefix.length - 1);
+                  const firstPath = formattedPath.split('/')[1];
 
                   if (
-                    formattedPath.startsWith(finalPrefix) ||
-                    formattedPath.startsWith(`/${finalPrefix}`)
+                    firstPath === finalPrefix ||
+                    `/${firstPath}` === finalPrefix
                   ) {
                     return formattedPath;
                   }
