@@ -41,7 +41,7 @@ export async function {{ api.functionName }}(
     {% if prop.schema.description -%}
     /** {{ prop.schema.description }} */
     {% endif -%}
-    {{ prop.key }}{{ "?" if not prop.schema.required }}: {{ prop.schema.type }},
+    '{{ prop.key }}'{{ "?" if not prop.schema.required }}: {{ prop.schema.type }},
     {%- endfor %}
   }
   {%- else -%}
