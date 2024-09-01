@@ -1,5 +1,11 @@
 # openapi-ts-request
 
+## 0.4.10
+
+### Patch Changes
+
+- [`f4a2370`](https://github.com/openapi-ui/openapi-ts-request/commit/f4a2370ce3e9e09c723c2b8938acaff87ce8ac79) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - fix: fix bug #51
+
 ## 0.4.9
 
 ### Patch Changes
