@@ -941,8 +941,14 @@ export default class ServiceGenerator {
 
   private resolveEnumObject(schemaObject: SchemaObject) {
     const enumArray = schemaObject.enum;
-    const enumStr = `{${map(enumArray, (value) => `${value}="${value}"`).join(',')}}`;
+    let enumStr = '';
     let enumLabelTypeStr = '';
+
+    if (!numberEnum.includes(schemaObject.type)) {
+      enumStr = `{${map(enumArray, (value) => `${value}="${value}"`).join(',')}}`;
+    } else {
+      enumStr = `{${map(enumArray, (value) => `NUMBER_${value}=${value}`).join(',')}}`;
+    }
 
     // 翻译枚举
     if (schemaObject['x-enum-varnames'] && schemaObject['x-enum-comments']) {
@@ -952,7 +958,11 @@ export default class ServiceGenerator {
         return `${value}:"${schemaObject['x-enum-comments'][enumKey]}"`;
       }).join(',')}}`;
     } else {
-      enumLabelTypeStr = `{${map(enumArray, (value) => `${value}:"${value}"`).join(',')}}`;
+      if (!numberEnum.includes(schemaObject.type)) {
+        enumLabelTypeStr = `{${map(enumArray, (value) => `${value}:"${value}"`).join(',')}}`;
+      } else {
+        enumLabelTypeStr = `{${map(enumArray, (value) => `NUMBER_${value}:${value}`).join(',')}}`;
+      }
     }
 
     return {
