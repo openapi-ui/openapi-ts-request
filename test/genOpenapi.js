@@ -1,4 +1,4 @@
-const { generateService, patchSchema } = require('../dist/index');
+const { generateService } = require('../dist/index');
 
 generateService({
   schemaPath: `${__dirname}/example-files/openapi.json`,

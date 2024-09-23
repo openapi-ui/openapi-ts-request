@@ -315,13 +315,15 @@ export default class ServiceGenerator {
           });
         });
 
-        if (props.length > 0) {
+        const typeName = this.getTypeName({
+          ...operationObject,
+          method,
+          path: pathKey,
+        });
+
+        if (props.length > 0 && typeName) {
           lastTypes.push({
-            typeName: this.getTypeName({
-              ...operationObject,
-              method,
-              path: pathKey,
-            }),
+            typeName,
             type: 'Record<string, unknown>',
             props: [props],
             isEnum: false,
@@ -375,16 +377,18 @@ export default class ServiceGenerator {
         const isEnum = result.isEnum as boolean;
         const typeName = resolveTypeName(schemaKey);
 
-        lastTypes.push({
-          typeName,
-          type: getDefinesType(),
-          props: (result.props || []) as IPropObject[][],
-          isEnum,
-          displayLabelFuncName: isEnum
-            ? camelCase(`display-${typeName}-Enum`)
-            : '',
-          enumLabelType: isEnum ? (result.enumLabelType as string) : '',
-        });
+        if (typeName) {
+          lastTypes.push({
+            typeName,
+            type: getDefinesType(),
+            props: (result.props || []) as IPropObject[][],
+            isEnum,
+            displayLabelFuncName: isEnum
+              ? camelCase(`display-${typeName}-Enum`)
+              : '',
+            enumLabelType: isEnum ? (result.enumLabelType as string) : '',
+          });
+        }
 
         if (this.config.isGenJsonSchemas) {
           this.schemaList.push({
@@ -836,7 +840,7 @@ export default class ServiceGenerator {
           .filter((p) => p.in === source)
           .map((p) => {
             const isDirectObject =
-              ((p.schema as SchemaObject)?.type ||
+              ((p.schema as SchemaObject)?.type === 'object' ||
                 (p as unknown as SchemaObject).type) === 'object';
             const refList = (
               (p.schema as ReferenceObject)?.$ref ||
@@ -849,7 +853,8 @@ export default class ServiceGenerator {
                 ([k]) => k === ref
               ) || [];
             const isRefObject =
-              (deRefObj[1] as SchemaObject)?.type === 'object';
+              (deRefObj[1] as SchemaObject)?.type === 'object' &&
+              !isEmpty((deRefObj[1] as SchemaObject)?.properties);
 
             return {
               ...p,
