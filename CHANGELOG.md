@@ -1,5 +1,13 @@
 # openapi-ts-request
 
+## 0.4.11
+
+### Patch Changes
+
+- [`ee82d00`](https://github.com/openapi-ui/openapi-ts-request/commit/ee82d00aed28e1db3111edb29527c0833d999120) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - fix: fix query field complexType definition
+
+- [`cf8ef92`](https://github.com/openapi-ui/openapi-ts-request/commit/cf8ef925bc5d6cd3c68694922d0c800bda4dcbea) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - docs: add introduction for adapting to uniapp
+
 ## 0.4.10
 
 ### Patch Changes
