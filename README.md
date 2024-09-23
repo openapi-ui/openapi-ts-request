@@ -11,7 +11,7 @@
 - 支持 Swagger2.0/OpenAPI 3.0,3.1 定义
 - 生成 TS 类型, 请求客户端, 请求模拟服务, 枚举, 类型字段翻译, JSON Schemas
 - 支持通过 npx、CLI、Nodejs 的方式使用
-- 支持自定义请求工具函数, 支持 Fetch、Axios、UniApp-Request、Node.js、XHR 客户端
+- 支持自定义请求工具函数, 支持 Fetch、Axios、[UniApp-Request](https://github.com/openapi-ui/openapi-ts-request/issues/46)、Node.js、XHR 客户端
 - 支持通过 tags 过滤生成结果
 - 支持 JSON 定义文件
 
@@ -199,6 +199,10 @@ export declare function patchSchema<T extends object>(
 ## Mock
 
 目前使用 [mockjs](http://mockjs.com) 生成 mock 数据，mocks 文件启动需要借助 [@umijs/server](https://umijs.org/docs/guides/mock)，后面会寻找其他方案以达到更好的 mock 体验
+
+## 适配uniapp
+
+适配 uniapp 推荐采用自定义 request 函数的方式，你也可以使用 `@uni-helper/axios-adapter` 适配器，详情见 [issue#46](https://github.com/openapi-ui/openapi-ts-request/issues/46)
 
 ## 贡献
 

@@ -11,7 +11,7 @@ Generate TS interfaces, request client, request mock service, enum, type field l
 - support Swagger2.0/OpenAPI 3.0,3.1 specification
 - generate TypeScript interface, reuquest client, request mock service, enum, type field label, JSON Schemas
 - support work with npx, CLI, Nodejs
-- support custom request function, Fetch、Axios、UniApp-request、Node.js、XHR client available
+- support custom request function, Fetch、Axios、[UniApp-request](https://github.com/openapi-ui/openapi-ts-request/issues/46)、Node.js、XHR client available
 - support filter generate result by tags
 - support JSON specification
 
@@ -199,6 +199,10 @@ export declare function patchSchema<T extends object>(
 ## Mock
 
 currently using [mockjs](http://mockjs.com) to generate mock data, the mocks file startup needs to rely on [@umijs/server](https://umijs.org/docs/guides/mock), we will look for other solutions later to achieve a better mock experience
+
+## Adapt to uniapp
+
+it is recommended to use a custom request function to adapt to uniapp. you can also use the `@uni-helper/axios-adapter` adapter. for details, see [issue#46](https://github.com/openapi-ui/openapi-ts-request/issues/46)
 
 ## Contribute
 
