@@ -1,7 +1,10 @@
 import axios from 'axios';
 import http from 'http';
 import https from 'https';
-import { OpenAPI, OpenAPIV2 } from 'openapi-types';
+import * as yaml from 'js-yaml';
+import { isObject } from 'lodash';
+import { readFileSync } from 'node:fs';
+import { OpenAPI, OpenAPIV2, OpenAPIV3 } from 'openapi-types';
 import converter from 'swagger2openapi';
 
 import log from './log';
@@ -44,17 +47,23 @@ async function getSchema(schemaPath: string) {
     delete require.cache[schemaPath];
   }
 
-  const schema = (await require(schemaPath)) as OpenAPI.Document;
+  let schema: string | OpenAPI.Document = '';
+
+  try {
+    schema = (await require(schemaPath)) as OpenAPI.Document;
+  } catch {
+    try {
+      schema = readFileSync(schemaPath, 'utf8');
+    } catch (error) {
+      console.error('Error reading schema file:', error);
+    }
+  }
 
   return schema;
 }
 
 function converterSwaggerToOpenApi(swagger: OpenAPI.Document) {
-  if (!(swagger as OpenAPIV2.Document).swagger) {
-    return swagger;
-  }
-
-  return new Promise((resolve, reject) => {
+  return new Promise<OpenAPIV3.Document>((resolve, reject) => {
     const convertOptions = {
       patch: true,
       warnOnly: true,
@@ -83,10 +92,46 @@ export const getOpenAPIConfig = async (schemaPath: string) => {
   const schema = await getSchema(schemaPath);
 
   if (!schema) {
-    return null;
+    return;
   }
 
-  const openAPI = await converterSwaggerToOpenApi(schema);
+  const openAPI = await parseSwaggerOrOpenapi(schema);
 
   return openAPI;
 };
+
+export async function parseSwaggerOrOpenapi(
+  content: string | OpenAPI.Document
+) {
+  let openapi = {} as OpenAPI.Document;
+
+  if (isObject(content)) {
+    openapi = content;
+
+    // if is swagger2.0 json, covert swagger2.0 to openapi3.0
+    if ((openapi as OpenAPIV2.Document).swagger) {
+      openapi = await converterSwaggerToOpenApi(openapi);
+    }
+  } else {
+    if (isJSONString(content)) {
+      openapi = JSON.parse(content) as OpenAPI.Document;
+    } else {
+      openapi = yaml.load(content) as OpenAPI.Document;
+    }
+
+    if ((openapi as OpenAPIV2.Document).swagger) {
+      openapi = await converterSwaggerToOpenApi(openapi);
+    }
+  }
+
+  return openapi;
+}
+
+function isJSONString(str: string) {
+  try {
+    JSON.parse(str);
+    return true;
+  } catch (error) {
+    return false;
+  }
+}

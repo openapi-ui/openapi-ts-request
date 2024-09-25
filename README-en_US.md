@@ -13,7 +13,7 @@ Generate TS interfaces, request client, request mock service, enum, type field l
 - support work with npx, CLI, Nodejs
 - support custom request function, Fetch、Axios、[UniApp-request](https://github.com/openapi-ui/openapi-ts-request/issues/46)、Node.js、XHR client available
 - support filter generate result by tags
-- support JSON specification
+- support JSON/YAML specification
 
 ## Usage
 

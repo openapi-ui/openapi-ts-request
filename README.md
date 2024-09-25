@@ -13,7 +13,7 @@
 - 支持通过 npx、CLI、Nodejs 的方式使用
 - 支持自定义请求工具函数, 支持 Fetch、Axios、[UniApp-Request](https://github.com/openapi-ui/openapi-ts-request/issues/46)、Node.js、XHR 客户端
 - 支持通过 tags 过滤生成结果
-- 支持 JSON 定义文件
+- 支持 JSON/YAML 定义文件
 
 ## 使用
 

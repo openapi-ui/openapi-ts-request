@@ -118,6 +118,12 @@ const gen = async () => {
     apiPrefix: '"/pet"'
   });
 
+  // 测试解析 swagger.yaml/openapi.yaml
+  await openAPI.generateService({
+    schemaPath: `${__dirname}/example-files/swagger.yaml`,
+    serversPath: './apis/yaml'
+  });
+
   // check 文件生成
   const fileControllerStr = fs.readFileSync(
     path.join(__dirname, 'apis/file/fileController.ts'),

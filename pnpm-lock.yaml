@@ -32,6 +32,9 @@ importers:
       glob:
         specifier: ^10.4.2
         version: 10.4.2
+      js-yaml:
+        specifier: ^4.1.0
+        version: 4.1.0
       lodash:
         specifier: ^4.17.21
         version: 4.17.21
@@ -75,6 +78,9 @@ importers:
       '@commitlint/config-conventional':
         specifier: ^19.2.2
         version: 19.2.2
+      '@types/js-yaml':
+        specifier: ^4.0.9
+        version: 4.0.9
       '@types/lodash':
         specifier: ^4.17.5
         version: 4.17.7
@@ -451,6 +457,9 @@ packages:
 
   '@types/http-cache-semantics@4.0.4':
     resolution: {integrity: sha512-1m0bIFVc7eJWyve9S0RnuRgcQqF/Xd5QsUZAZeQFr1Q3/p9JWoQQEqmVy+DPTNpGXwhgIetAoYF8JSc33q29QA==}
+
+  '@types/js-yaml@4.0.9':
+    resolution: {integrity: sha512-k4MGaQl5TGo/iipqb2UDG2UwjXziSWkh0uysQelTlJpX1qGlpUZYm8PnO4DxG1qBomtJUdYJ6qR6xdIah10JLg==}
 
   '@types/lodash@4.17.7':
     resolution: {integrity: sha512-8wTvZawATi/lsmNu10/j2hk1KEP0IvjubqPE3cu1Xz7xfXXt5oCq3SNUz4fMIP4XGF9Ky+Ue2tBA3hcS7LSBlA==}
@@ -3204,6 +3213,8 @@ snapshots:
       '@types/node': 20.14.10
 
   '@types/http-cache-semantics@4.0.4': {}
+
+  '@types/js-yaml@4.0.9': {}
 
   '@types/lodash@4.17.7': {}
 
