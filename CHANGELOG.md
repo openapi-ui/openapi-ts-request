@@ -1,5 +1,11 @@
 # openapi-ts-request
 
+## 0.5.0
+
+### Minor Changes
+
+- [`3f89463`](https://github.com/openapi-ui/openapi-ts-request/commit/3f89463ba83421e690454051d528a50825460932) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - feat: support parse swagger.yml/openapi.yml
+
 ## 0.4.11
 
 ### Patch Changes
