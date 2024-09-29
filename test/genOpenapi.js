@@ -1,7 +1,7 @@
 const { generateService } = require('../dist/index');
 
 generateService({
-  schemaPath: 'http://10.0.0.53:7410/v2/api-docs?group=HealthCenter_API',
+  schemaPath: `${__dirname}/example-files/openapi-chinese-tag.json`,
   serversPath: './apis/chinese-tag',
   isTranslateToEnglishTag: true
 });
