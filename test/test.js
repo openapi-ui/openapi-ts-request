@@ -124,6 +124,13 @@ const gen = async () => {
     serversPath: './apis/yaml'
   });
 
+  // 测试将中文 tag 名称翻译成英文 tag 名称
+  await openAPI.generateService({
+    schemaPath: `${__dirname}/example-files/openapi-chinese-tag.json`,
+    serversPath: './apis/chinese-tag',
+    isTranslateToEnglishTag: true
+  });
+
   // check 文件生成
   const fileControllerStr = fs.readFileSync(
     path.join(__dirname, 'apis/file/fileController.ts'),

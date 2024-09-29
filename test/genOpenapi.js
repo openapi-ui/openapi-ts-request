@@ -1,19 +1,7 @@
 const { generateService } = require('../dist/index');
 
 generateService({
-  schemaPath: `${__dirname}/example-files/openapi.json`,
-  serversPath: './apis/pet',
-});
-
-generateService({
-  schemaPath: `${__dirname}/example-files/openapi-display-enum-label.json`,
-  serversPath: './apis/all',
-  isGenJsonSchemas: true,
-});
-
-generateService({
-  schemaPath: `${__dirname}/example-files/openapi-display-enum-label.json`,
-  serversPath: './apis/app',
-  apiPrefix: "'/api'",
-  allowedTags: ["app"]
+  schemaPath: 'http://10.0.0.53:7410/v2/api-docs?group=HealthCenter_API',
+  serversPath: './apis/chinese-tag',
+  isTranslateToEnglishTag: true
 });

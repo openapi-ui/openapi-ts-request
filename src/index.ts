@@ -10,7 +10,11 @@ import {
   ReferenceObject,
   SchemaObject,
 } from './type';
-import { getImportStatement, getOpenAPIConfig } from './util';
+import {
+  getImportStatement,
+  getOpenAPIConfig,
+  translateChineseModuleNodeToEnglish,
+} from './util';
 
 export * from './generator/patchSchema';
 
@@ -75,6 +79,10 @@ export type GenerateServiceProps = {
    * 默认为false，true时使用null代替可选值
    */
   nullable?: boolean;
+  /**
+   * 是否将中文 tag 名称翻译成英文 tag 名称
+   */
+  isTranslateToEnglishTag?: boolean;
   /**
    * 模板文件、请求函数采用小驼峰命名
    */
@@ -163,6 +171,7 @@ export async function generateService({
   schemaPath,
   mockFolder,
   allowedTags,
+  isTranslateToEnglishTag,
   ...rest
 }: GenerateServiceProps) {
   if (!schemaPath) {
@@ -173,6 +182,10 @@ export async function generateService({
 
   if (isEmpty(openAPI)) {
     return;
+  }
+
+  if (isTranslateToEnglishTag) {
+    await translateChineseModuleNodeToEnglish(openAPI);
   }
 
   const requestImportStatement = getImportStatement(requestLibPath);

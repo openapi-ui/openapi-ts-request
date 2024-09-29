@@ -1,13 +1,15 @@
 import axios from 'axios';
+import { translate } from 'bing-translate-api';
 import http from 'http';
 import https from 'https';
 import * as yaml from 'js-yaml';
-import { isObject } from 'lodash';
+import { camelCase, forEach, isObject, keys, map, uniq } from 'lodash';
 import { readFileSync } from 'node:fs';
 import { OpenAPI, OpenAPIV2, OpenAPIV3 } from 'openapi-types';
 import converter from 'swagger2openapi';
 
 import log from './log';
+import { OpenAPIObject, OperationObject } from './type';
 
 export const getImportStatement = (requestLibPath: string) => {
   if (requestLibPath) {
@@ -134,4 +136,59 @@ function isJSONString(str: string) {
   } catch (error) {
     return false;
   }
+}
+
+export async function translateChineseModuleNodeToEnglish(
+  openAPI: OpenAPIObject
+) {
+  return new Promise((resolve, reject) => {
+    const translateMap: Record<string, string> = {};
+    const operations = [] as OperationObject[];
+    let tags: string[] = [];
+
+    forEach(keys(openAPI.paths), (path) => {
+      const pathItemObject = openAPI.paths[path];
+      forEach(keys(pathItemObject), (method: string) => {
+        if (pathItemObject[method]) {
+          const operation = pathItemObject[method] as OperationObject;
+          operations.push(operation);
+          tags = tags.concat(operation.tags);
+        }
+      });
+    });
+
+    void Promise.all(
+      map(uniq(tags), (tagName) => {
+        return new Promise((resolve) => {
+          void translate(tagName, null, 'en')
+            .then((translateRes) => {
+              const text = camelCase(translateRes?.translation);
+              if (text) {
+                translateMap[tagName] = text;
+                resolve(text);
+              }
+            })
+            .catch(() => {
+              resolve(tagName);
+            });
+        });
+      })
+    )
+      .then(() => {
+        map(operations, (operation) => {
+          const tagName = operation.tags?.[0];
+
+          if (tagName && /[\u3220-\uFA29]/.test(tagName)) {
+            operation.tags = [
+              translateMap[tagName],
+              ...operation.tags.slice(1),
+            ];
+          }
+        });
+        resolve(true);
+      })
+      .catch(() => {
+        reject(false);
+      });
+  });
 }

@@ -14,6 +14,7 @@ Generate TS interfaces, request client, request mock service, enum, type field l
 - support custom request function, Fetch、Axios、[UniApp-request](https://github.com/openapi-ui/openapi-ts-request/issues/46)、Node.js、XHR client available
 - support filter generate result by tags
 - support JSON/YAML specification
+- support translate chinese tag name to english tag name
 
 ## Usage
 
@@ -133,7 +134,7 @@ $ openapi --help
     -V, --version                      output the version number
     -i, --input <string>               OpenAPI specification, can be a path, url (required)
     -o, --output <string>              output directory (required)
-    --requestLibPath <string>          custom request lib path, for example: "@/request", "node-fetch"
+    --requestLibPath <string>          custom request lib path, for example: "@/request", "node-fetch", default is "axios"
     --allowedTags <string[]>           generate results from allowed tags
     --requestOptionsType <string>      custom request method options parameter type (default: "{ [key:
                                       string]: unknown }")
@@ -143,8 +144,9 @@ $ openapi --help
                                       "'api'"(string)
     --isDisplayTypeLabel <boolean>     generate label matching type field (default: false)
     --isGenJsonSchemas <boolean>       generate JSON Schemas (default: false)
-    --mockFolder <string>              mock file path (default: "./mocks")
+    --mockFolder <string>              mock file path
     --nullable <boolean>               null instead of optional (default: false)
+    --isTranslateToEnglishTag <boolean>translate chinese tag name to english tag name (default: false)
     --isCamelCase <boolean>            camelCase naming of controller files and request client (default: true)
     -h, --help                         display help for command
 ```
@@ -161,7 +163,7 @@ openapi -i ./spec.json -o ./apis
 | --- | --- | --- | --- | --- |
 | schemaPath | yes | string | - | Swagger2/OpenAPI3 URL |
 | serversPath | no | string | './src/apis' | the folder path for the generated results |
-| requestLibPath | no | string | - | custom request lib path, for example: '@/request', 'node-fetch' |
+| requestLibPath | no | string | 'axios' | custom request lib path, for example: '@/request', 'node-fetch' |
 | allowedTags | no | string[] | - | generate results from allowed tags |
 | requestOptionsType | no | string | '{ [key: string]: unknown }' | custom request method options parameter type |
 | requestImportStatement | no | string | - | custom request import statement, for example: "const request = require('@/request')" |
@@ -170,6 +172,7 @@ openapi -i ./spec.json -o ./apis
 | isGenJsonSchemas | no | boolean | false | generate JSON Schemas |
 | mockFolder | no | string | './mocks' | mock file path |
 | nullable | no | boolean | false | null instead of optional |
+| isTranslateToEnglishTag | no | boolean | false | translate chinese tag name to english tag name |
 | isCamelCase | no | boolean | true | camelCase naming of controller files and request client |
 | hook | no | [Custom Hook](#Custom-Hook) | - | custom hook |
 
