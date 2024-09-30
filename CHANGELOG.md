@@ -1,5 +1,15 @@
 # openapi-ts-request
 
+## 0.6.0
+
+### Minor Changes
+
+- [`44eb25b`](https://github.com/openapi-ui/openapi-ts-request/commit/44eb25bd6e4be8cd6ff7a945b5bade81ad665251) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - feat: support translate chinese tag name to english tag name
+
+### Patch Changes
+
+- [`62e0ce2`](https://github.com/openapi-ui/openapi-ts-request/commit/62e0ce23029451941984ca4bda23d2802228c6e5) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - chore: update dependencies
+
 ## 0.5.0
 
 ### Minor Changes
