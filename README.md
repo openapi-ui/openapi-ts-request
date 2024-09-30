@@ -227,5 +227,3 @@ export declare function patchSchema<T extends object>(
 ## 感谢
 
 - [openapi2typescript](https://github.com/chenshuai2144/openapi2typescript)
-
-ps：由于 openapi2typescript 仓库作者不怎么维护这个工具，不会主动增加功能，有些激进的pr也不再合并，为了更大的自主性，也为了方便自己更好的维护此工具，所以基于此仓库重构代码并添加了很多功能，感谢原作者！
