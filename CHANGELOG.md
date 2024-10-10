@@ -1,5 +1,11 @@
 # openapi-ts-request
 
+## 0.7.0
+
+### Minor Changes
+
+- [`a3aa314`](https://github.com/openapi-ui/openapi-ts-request/commit/a3aa31483b36049c2032a5f64b636e633c23fd93) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - feat: support docs authorization
+
 ## 0.6.0
 
 ### Minor Changes
