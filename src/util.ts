@@ -23,7 +23,7 @@ export const getImportStatement = (requestLibPath: string) => {
   return `import request from 'axios';`;
 };
 
-async function getSchema(schemaPath: string) {
+async function getSchema(schemaPath: string, authorization?: string) {
   if (schemaPath.startsWith('http')) {
     const isHttps = schemaPath.startsWith('https:');
     const protocol = isHttps ? https : http;
@@ -34,7 +34,10 @@ async function getSchema(schemaPath: string) {
       });
       const config = isHttps ? { httpsAgent: agent } : { httpAgent: agent };
       const json = await axios
-        .get(schemaPath, config)
+        .get(schemaPath, {
+          ...config,
+          headers: { authorization },
+        })
         .then((res) => res.data as OpenAPI.Document);
 
       return json;
@@ -90,8 +93,11 @@ function converterSwaggerToOpenApi(swagger: OpenAPI.Document) {
   });
 }
 
-export const getOpenAPIConfig = async (schemaPath: string) => {
-  const schema = await getSchema(schemaPath);
+export const getOpenAPIConfig = async (
+  schemaPath: string,
+  authorization?: string
+) => {
+  const schema = await getSchema(schemaPath, authorization);
 
   if (!schema) {
     return;

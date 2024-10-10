@@ -38,6 +38,7 @@ const params = program
   )
   .option('--isGenJsonSchemas <boolean>', 'generate JSON Schemas', false)
   .option('--mockFolder <string>', 'mock file path')
+  .option('--authorization <string>', 'docs authorization')
   .option('--nullable <boolean>', 'null instead of optional', false)
   .option(
     '--isTranslateToEnglishTag <boolean>',
@@ -78,6 +79,7 @@ async function run() {
         JSON.parse(params.isDisplayTypeLabel as string) === true,
       isGenJsonSchemas: JSON.parse(params.isGenJsonSchemas as string) === true,
       mockFolder: params.mockFolder as string,
+      authorization: params.authorization as string,
       nullable: JSON.parse(params.nullable as string) === true,
       isTranslateToEnglishTag:
         JSON.parse(params.isTranslateToEnglishTag as string) === true,

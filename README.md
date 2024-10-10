@@ -135,7 +135,7 @@ $ openapi --help
     -i, --input <string>               OpenAPI specification, can be a path, url (required)
     -o, --output <string>              output directory (required)
     --requestLibPath <string>          custom request lib path, for example: "@/request", "node-fetch", default is "axios"
-    --allowedTags <string[]>           generate results from allowed tags
+    --allowedTags <string[]>           generate code from allowed tags
     --requestOptionsType <string>      custom request method options parameter type (default: "{ [key:
                                       string]: unknown }")
     --requestImportStatement <string>  custom request import statement, for example: "const request =
@@ -145,6 +145,7 @@ $ openapi --help
     --isDisplayTypeLabel <boolean>     generate label matching type field (default: false)
     --isGenJsonSchemas <boolean>       generate JSON Schemas (default: false)
     --mockFolder <string>              mock file path
+    --authorization <string>           docs authorization
     --nullable <boolean>               null instead of optional (default: false)
     --isTranslateToEnglishTag <boolean>translate chinese tag name to english tag name (default: false)
     --isCamelCase <boolean>            camelCase naming of controller files and request client (default: true)
@@ -164,13 +165,14 @@ openapi --i ./spec.json --o ./apis
 | schemaPath | 是 | string | - | Swagger2/OpenAPI3 地址 |
 | serversPath | 否 | string | './src/apis' | 生成结果的文件夹路径 |
 | requestLibPath | 否 | string | 'axios' | 自定义请求方法路径，例如：'@/request'、'node-fetch' |
-| allowedTags | 否 | string[] | - | 根据指定的 tags 生成结果 |
+| allowedTags | 否 | string[] | - | 根据指定的 tags 生成代码 |
 | requestOptionsType | 否 | string | '{ [key: string]: unknown }' | 自定义请求方法 options 参数类型 |
 | requestImportStatement | 否 | string | - | 自定义请求方法表达式，例如："const request = require('@/request')" |
 | apiPrefix | 否 | string | - | api path的前缀，例如：'api'(动态变量), "'api'"(字符串) |
 | isDisplayTypeLabel | 否 | boolean | false | 是否生成 type 对应的label |
 | isGenJsonSchemas | 否 | boolean | false | 是否生成 JSON Schemas |
 | mockFolder | 否 | string | './mocks' | mock文件路径 |
+| authorization | 否 | string | - | 文档权限凭证 |
 | nullable | 否 | boolean | false | 使用 null 代替可选 |
 | isTranslateToEnglishTag | 否 | boolean | false | 将中文 tag 名称翻译成英文 tag 名称 |
 | isCamelCase | 否 | boolean | true | 小驼峰命名文件和请求函数 |

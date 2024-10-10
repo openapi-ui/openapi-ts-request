@@ -76,6 +76,10 @@ export type GenerateServiceProps = {
    */
   mockFolder?: string;
   /**
+   * 文档权限凭证
+   */
+  authorization?: string;
+  /**
    * 默认为false，true时使用null代替可选值
    */
   nullable?: boolean;
@@ -171,6 +175,7 @@ export async function generateService({
   schemaPath,
   mockFolder,
   allowedTags,
+  authorization,
   isTranslateToEnglishTag,
   ...rest
 }: GenerateServiceProps) {
@@ -178,7 +183,10 @@ export async function generateService({
     return;
   }
 
-  const openAPI = (await getOpenAPIConfig(schemaPath)) as OpenAPIObject;
+  const openAPI = (await getOpenAPIConfig(
+    schemaPath,
+    authorization
+  )) as OpenAPIObject;
 
   if (isEmpty(openAPI)) {
     return;

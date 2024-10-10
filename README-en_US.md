@@ -135,7 +135,7 @@ $ openapi --help
     -i, --input <string>               OpenAPI specification, can be a path, url (required)
     -o, --output <string>              output directory (required)
     --requestLibPath <string>          custom request lib path, for example: "@/request", "node-fetch", default is "axios"
-    --allowedTags <string[]>           generate results from allowed tags
+    --allowedTags <string[]>           generate code from allowed tags
     --requestOptionsType <string>      custom request method options parameter type (default: "{ [key:
                                       string]: unknown }")
     --requestImportStatement <string>  custom request import statement, for example: "const request =
@@ -145,6 +145,7 @@ $ openapi --help
     --isDisplayTypeLabel <boolean>     generate label matching type field (default: false)
     --isGenJsonSchemas <boolean>       generate JSON Schemas (default: false)
     --mockFolder <string>              mock file path
+    --authorization <string>           docs authorization
     --nullable <boolean>               null instead of optional (default: false)
     --isTranslateToEnglishTag <boolean>translate chinese tag name to english tag name (default: false)
     --isCamelCase <boolean>            camelCase naming of controller files and request client (default: true)
@@ -164,13 +165,14 @@ openapi -i ./spec.json -o ./apis
 | schemaPath | yes | string | - | Swagger2/OpenAPI3 URL |
 | serversPath | no | string | './src/apis' | the folder path for the generated results |
 | requestLibPath | no | string | 'axios' | custom request lib path, for example: '@/request', 'node-fetch' |
-| allowedTags | no | string[] | - | generate results from allowed tags |
+| allowedTags | no | string[] | - | generate code from allowed tags |
 | requestOptionsType | no | string | '{ [key: string]: unknown }' | custom request method options parameter type |
 | requestImportStatement | no | string | - | custom request import statement, for example: "const request = require('@/request')" |
 | apiPrefix | no | string | - | custom the prefix of the api path, for example: 'api'(variable), "'api'"(string) |
 | isDisplayTypeLabel | no | boolean | false | generate label matching type field |
 | isGenJsonSchemas | no | boolean | false | generate JSON Schemas |
 | mockFolder | no | string | './mocks' | mock file path |
+| authorization | 否 | string | - | docs authorization |
 | nullable | no | boolean | false | null instead of optional |
 | isTranslateToEnglishTag | no | boolean | false | translate chinese tag name to english tag name |
 | isCamelCase | no | boolean | true | camelCase naming of controller files and request client |
