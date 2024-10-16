@@ -1,5 +1,11 @@
 # openapi-ts-request
 
+## 0.8.0
+
+### Minor Changes
+
+- [`11d4e53`](https://github.com/openapi-ui/openapi-ts-request/commit/11d4e531163ec6ebcea02c9f8b4c888ee6a3db60) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - feat: adjust entry export
+
 ## 0.7.0
 
 ### Minor Changes
