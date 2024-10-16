@@ -9,6 +9,8 @@ const gen = async () => {
   await openAPI.generateService({
     schemaPath: `${__dirname}/example-files/openapi-empty.json`,
     serversPath: './apis/empty',
+    isDisplayTypeLabel: true,
+    isGenJsonSchemas: true,
   });
 
   // 测试 swagger => openapi, schema 循环引用

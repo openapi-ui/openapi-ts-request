@@ -192,13 +192,17 @@ export default class ServiceGenerator {
       );
     }
 
+    const displayTypeLabels = filter(
+      interfaceTPConfigs,
+      (item) => !item.isEnum
+    );
     // 生成 type 翻译
-    if (this.config.isDisplayTypeLabel) {
+    if (this.config.isDisplayTypeLabel && !isEmpty(displayTypeLabels)) {
       this.genFileFromTemplate(
         `${displayTypeLabelFileName}.ts`,
         TypescriptFileType.displayTypeLabel,
         {
-          list: filter(interfaceTPConfigs, (item) => !item.isEnum),
+          list: displayTypeLabels,
           namespace: this.config.namespace,
           interfaceFileName: interfaceFileName,
         }
@@ -228,20 +232,7 @@ export default class ServiceGenerator {
       log('🚥 格式化失败，请检查 service controller 文件内可能存在的语法错误');
     }
 
-    // 生成 service index 文件
-    this.genFileFromTemplate(
-      `${serviceEntryFileName}.ts`,
-      TypescriptFileType.serviceIndex,
-      {
-        list: this.classNameList,
-        namespace: this.config.namespace,
-        interfaceFileName: interfaceFileName,
-        schemaFileName: schemaFileName,
-        isGenJsonSchemas: this.config.isGenJsonSchemas,
-      }
-    );
-
-    if (this.config.isGenJsonSchemas) {
+    if (this.config.isGenJsonSchemas && !isEmpty(this.schemaList)) {
       // 处理重复的 schemaName
       handleDuplicateTypeNames(this.schemaList);
       // 生成 schema 文件
@@ -253,6 +244,25 @@ export default class ServiceGenerator {
         }
       );
     }
+
+    // 生成 service index 文件
+    this.genFileFromTemplate(
+      `${serviceEntryFileName}.ts`,
+      TypescriptFileType.serviceIndex,
+      {
+        list: this.classNameList,
+        namespace: this.config.namespace,
+        interfaceFileName: interfaceFileName,
+        isGenJsonSchemas:
+          this.config.isGenJsonSchemas && !isEmpty(this.schemaList),
+        schemaFileName: schemaFileName,
+        isDisplayEnumLabel: !isEmpty(enums),
+        displayEnumLabelFileName: displayEnumLabelFileName,
+        isDisplayTypeLabel:
+          this.config.isDisplayTypeLabel && !isEmpty(displayTypeLabels),
+        displayTypeLabelFileName: displayTypeLabelFileName,
+      }
+    );
 
     // 打印日志
     log('✅ 成功生成 api 文件');
