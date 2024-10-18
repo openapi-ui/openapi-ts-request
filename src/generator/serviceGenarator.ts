@@ -17,6 +17,7 @@ import {
   upperFirst,
 } from 'lodash';
 import nunjucks from 'nunjucks';
+import { OpenAPIV3 } from 'openapi-types';
 import { join } from 'path';
 import { sync as rimrafSync } from 'rimraf';
 
@@ -81,6 +82,7 @@ import {
   markAllowSchema,
   replaceDot,
   resolveFunctionName,
+  resolveRefs,
   resolveTypeName,
   stripDot,
 } from './util';
@@ -1040,10 +1042,17 @@ export default class ServiceGenerator {
     const refPaths = refObject.$ref.split('/');
 
     if (refPaths[0] === '#') {
-      const schema =
-        this.openAPIData.components?.schemas?.[refPaths[refPaths.length - 1]];
+      const schema = resolveRefs(this.openAPIData, refPaths.slice(1)) as
+        | OpenAPIV3.ReferenceObject
+        | OpenAPIV3.SchemaObject;
 
       if (!schema) {
+        console.log(
+          refPaths,
+          resolveRefs(this.openAPIData, refPaths.slice(1), true),
+          true
+        );
+
         throw new Error(`[GenSDK] Data Error! Notfoud: ${refObject.$ref}`);
       }
 
