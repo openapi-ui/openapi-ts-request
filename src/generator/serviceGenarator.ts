@@ -1047,12 +1047,6 @@ export default class ServiceGenerator {
         | OpenAPIV3.SchemaObject;
 
       if (!schema) {
-        console.log(
-          refPaths,
-          resolveRefs(this.openAPIData, refPaths.slice(1), true),
-          true
-        );
-
         throw new Error(`[GenSDK] Data Error! Notfoud: ${refObject.$ref}`);
       }
 
