@@ -1,5 +1,11 @@
 # openapi-ts-request
 
+## 0.8.1
+
+### Patch Changes
+
+- [`91bb707`](https://github.com/openapi-ui/openapi-ts-request/commit/91bb7071e47198c0341871e4c6ef17b72360f5ef) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - fix: fix apifox $ref includes encode character
+
 ## 0.8.0
 
 ### Minor Changes
