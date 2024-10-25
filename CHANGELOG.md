@@ -1,5 +1,11 @@
 # openapi-ts-request
 
+## 0.8.2
+
+### Patch Changes
+
+- [`f8ee256`](https://github.com/openapi-ui/openapi-ts-request/commit/f8ee2562e3e7733c11657edcd2387bb86435ffe5) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - perf: perf entry export
+
 ## 0.8.1
 
 ### Patch Changes
