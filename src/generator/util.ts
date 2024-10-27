@@ -409,7 +409,7 @@ export function markAllowSchema(
   schemaStr: string,
   schemas: ComponentsObject['schemas']
 ) {
-  const refs = schemaStr?.match(/#\/components\/schemas\/([A-Za-z0-9._-]+)/g);
+  const refs = schemaStr?.match(/#\/components\/schemas\/([\w%«».-]+)/g);
 
   forEach(refs, (ref) => {
     const schema = schemas?.[getLastRefName(ref)] as ICustomSchemaObject;
