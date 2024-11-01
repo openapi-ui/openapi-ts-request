@@ -1,7 +1,7 @@
 /* eslint-disable */
 // @ts-ignore
-{{ requestImportStatement }}
 import * as {{ namespace }} from './{{ interfaceFileName }}';
+{{ requestImportStatement }}
 
 {% for api in list -%}
 /** {{ api.desc if api.desc else '此处后端没有提供注释' }} {{api.method | upper}} {{ api.pathInComment | safe }} */
