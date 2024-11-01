@@ -1,5 +1,11 @@
 # openapi-ts-request
 
+## 0.8.4
+
+### Patch Changes
+
+- [`5c1e70d`](https://github.com/openapi-ui/openapi-ts-request/commit/5c1e70d9b293b30fa667974436ef6d3af2481230) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - perf: perf serviceController template import sort
+
 ## 0.8.3
 
 ### Patch Changes
