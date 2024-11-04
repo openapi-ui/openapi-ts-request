@@ -17,7 +17,6 @@ import {
   upperFirst,
 } from 'lodash';
 import nunjucks from 'nunjucks';
-import { OpenAPIV3 } from 'openapi-types';
 import { join } from 'path';
 import { sync as rimrafSync } from 'rimraf';
 
@@ -464,10 +463,13 @@ export default class ServiceGenerator {
               );
 
               // 为 path 中的 params 添加 alias
-              const escapedPathParams = map(params.path, (item, index) => ({
-                ...item,
-                alias: `param${index}`,
-              }));
+              const escapedPathParams = map(
+                params.path,
+                (item, index: number) => ({
+                  ...item,
+                  alias: `param${index}`,
+                })
+              );
 
               if (escapedPathParams.length) {
                 escapedPathParams.forEach((param) => {
@@ -1036,13 +1038,13 @@ export default class ServiceGenerator {
       return refObject;
     }
 
-    // 测试了很多用例，很少有用例走到这里
     const refPaths = refObject.$ref.split('/');
 
     if (refPaths[0] === '#') {
-      const schema = resolveRefs(this.openAPIData, refPaths.slice(1)) as
-        | OpenAPIV3.ReferenceObject
-        | OpenAPIV3.SchemaObject;
+      const schema = resolveRefs(
+        this.openAPIData,
+        refPaths.slice(1)
+      ) as ISchemaObject;
 
       if (!schema) {
         throw new Error(`[GenSDK] Data Error! Notfoud: ${refObject.$ref}`);

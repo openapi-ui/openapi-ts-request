@@ -462,8 +462,11 @@ export function isBinaryArraySchemaObject(
 export function resolveRefs(obj: OpenAPIObject, fields: string[]) {
   return fields.reduce((acc: unknown, field) => {
     if (!acc) return;
-    const s = acc[field] as NonArraySchemaObject;
+
+    const s = acc[decodeURIComponent(field)] as NonArraySchemaObject;
+
     if (!s) return;
+
     return s;
   }, obj);
 }

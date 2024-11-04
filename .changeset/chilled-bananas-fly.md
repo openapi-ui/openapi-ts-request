@@ -2,4 +2,4 @@
 'openapi-ts-request': minor
 ---
 
-Support for 'components' non-schemas fields
+feat: support for 'components' non-schemas fields
