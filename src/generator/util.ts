@@ -22,6 +22,7 @@ import {
   ComponentsObject,
   ISchemaObject,
   NonArraySchemaObject,
+  OpenAPIObject,
   OperationObject,
   ReferenceObject,
   SchemaObject,
@@ -456,4 +457,13 @@ export function isBinaryArraySchemaObject(
     ((schema.items as NonArraySchemaObject)?.format === 'binary' ||
       (schema.items as NonArraySchemaObject)?.format === 'base64')
   );
+}
+
+export function resolveRefs(obj: OpenAPIObject, fields: string[]) {
+  return fields.reduce((acc: unknown, field) => {
+    if (!acc) return;
+    const s = acc[field] as NonArraySchemaObject;
+    if (!s) return;
+    return s;
+  }, obj);
 }
