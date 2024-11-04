@@ -1,5 +1,11 @@
 # openapi-ts-request
 
+## 0.9.0
+
+### Minor Changes
+
+- [#89](https://github.com/openapi-ui/openapi-ts-request/pull/89) [`80c575a`](https://github.com/openapi-ui/openapi-ts-request/commit/80c575a5b5578e3ff32deae2347e28259f3e1adf) Thanks [@lezzhao](https://github.com/lezzhao)! - feat: support for 'components' non-schemas fields
+
 ## 0.8.4
 
 ### Patch Changes
