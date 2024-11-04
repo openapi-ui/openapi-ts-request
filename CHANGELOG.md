@@ -1,5 +1,29 @@
 # openapi-ts-request
 
+## 0.8.4
+
+### Patch Changes
+
+- [`5c1e70d`](https://github.com/openapi-ui/openapi-ts-request/commit/5c1e70d9b293b30fa667974436ef6d3af2481230) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - perf: perf serviceController template import sort
+
+## 0.8.3
+
+### Patch Changes
+
+- [`430c164`](https://github.com/openapi-ui/openapi-ts-request/commit/430c1648fa0cb1737ed83f762bff434678488c50) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - fix: fix $ref includes encode character causing allowedTags function error
+
+## 0.8.2
+
+### Patch Changes
+
+- [`f8ee256`](https://github.com/openapi-ui/openapi-ts-request/commit/f8ee2562e3e7733c11657edcd2387bb86435ffe5) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - perf: perf entry export
+
+## 0.8.1
+
+### Patch Changes
+
+- [`91bb707`](https://github.com/openapi-ui/openapi-ts-request/commit/91bb7071e47198c0341871e4c6ef17b72360f5ef) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - fix: fix apifox $ref includes encode character
+
 ## 0.8.0
 
 ### Minor Changes

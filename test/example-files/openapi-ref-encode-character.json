@@ -1,0 +1,2892 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "机构管理端",
+    "description": "",
+    "version": "1.0.0"
+  },
+  "tags": [
+    {
+      "name": "用户"
+    },
+    {
+      "name": "菜单"
+    },
+    {
+      "name": "授权"
+    },
+    {
+      "name": "权限"
+    },
+    {
+      "name": "机构"
+    },
+    {
+      "name": "角色"
+    }
+  ],
+  "paths": {
+    "/user/updatePassword": {
+      "post": {
+        "summary": "修改密码",
+        "deprecated": false,
+        "description": "",
+        "tags": ["用户"],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdatePasswordDTO",
+                "description": ""
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseResult%C2%ABOperationRes%C2%BB",
+                  "description": "com.open.base.databind.response.ResponseResult<com.open.biz.manage.pojo.res.OperationRes>"
+                },
+                "examples": {
+                  "1": {
+                    "summary": "成功示例",
+                    "value": {
+                      "code": "",
+                      "msg": "",
+                      "data": {
+                        "res": false
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/user/queryCurrentLoginCache": {
+      "get": {
+        "summary": "获取用户登录信息",
+        "deprecated": false,
+        "description": "",
+        "tags": ["用户"],
+        "parameters": [
+          {
+            "name": "token",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseResult%C2%ABUserStaffCache%C2%BB",
+                  "description": ""
+                },
+                "examples": {
+                  "1": {
+                    "summary": "成功示例",
+                    "value": {
+                      "code": "",
+                      "msg": "",
+                      "data": {
+                        "orgCode": "",
+                        "orgID": "",
+                        "orgUserID": "",
+                        "userStaffID": "",
+                        "userName": "",
+                        "phone": "",
+                        "status": 0,
+                        "orgList": [
+                          {
+                            "orgCode": "",
+                            "orgID": "",
+                            "orgName": ""
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/menu/queryMenuPage": {
+      "post": {
+        "summary": "查询菜单列表",
+        "deprecated": false,
+        "description": "",
+        "tags": ["菜单"],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MenuPageQueryRequest",
+                "description": ""
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseResult%C2%ABPage%C2%ABMenuDto%C2%BB%C2%BB",
+                  "description": "菜单分页列表结果"
+                },
+                "examples": {
+                  "1": {
+                    "summary": "成功示例",
+                    "value": {
+                      "code": "",
+                      "msg": "",
+                      "data": {
+                        "records": [
+                          {
+                            "id": "",
+                            "addTime": "",
+                            "orgId": "",
+                            "orgCode": "",
+                            "parentId": "",
+                            "title": "",
+                            "name": "",
+                            "path": "",
+                            "component": "",
+                            "icon": "",
+                            "link": "",
+                            "hideFlag": "",
+                            "activeMenu": "",
+                            "fullFlag": "",
+                            "affixFlag": "",
+                            "keepAliveFlag": "",
+                            "sort": 0,
+                            "menuTypeCd": "",
+                            "permissions": "",
+                            "showed": 0,
+                            "childMenus": [
+                              {
+                                "id": "",
+                                "addTime": "",
+                                "orgId": "",
+                                "orgCode": "",
+                                "parentId": "",
+                                "title": "",
+                                "name": "",
+                                "path": "",
+                                "component": "",
+                                "icon": "",
+                                "link": "",
+                                "hideFlag": "",
+                                "activeMenu": "",
+                                "fullFlag": "",
+                                "affixFlag": "",
+                                "keepAliveFlag": "",
+                                "sort": 0,
+                                "menuTypeCd": "",
+                                "permissions": "",
+                                "showed": 0,
+                                "childMenus": []
+                              }
+                            ]
+                          }
+                        ],
+                        "total": 0,
+                        "size": 0,
+                        "current": 0,
+                        "orders": [
+                          {
+                            "column": "",
+                            "asc": false
+                          }
+                        ],
+                        "optimizeCountSql": false,
+                        "isSearchCount": false,
+                        "hitCount": false,
+                        "countId": "",
+                        "maxLimit": 0
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/menu/addMenu": {
+      "post": {
+        "summary": "添加菜单",
+        "deprecated": false,
+        "description": "",
+        "tags": ["菜单"],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MenuDto",
+                "description": "菜单表"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseResult%C2%ABOperationRes%C2%BB",
+                  "description": "com.open.base.databind.response.ResponseResult<com.open.biz.manage.pojo.res.OperationRes>"
+                },
+                "examples": {
+                  "1": {
+                    "summary": "成功示例",
+                    "value": {
+                      "code": "",
+                      "msg": "",
+                      "data": {
+                        "res": false
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/menu/updateMenu": {
+      "post": {
+        "summary": "编辑菜单",
+        "deprecated": false,
+        "description": "",
+        "tags": ["菜单"],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MenuDto",
+                "description": "菜单表"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseResult%C2%ABOperationRes%C2%BB",
+                  "description": "com.open.base.databind.response.ResponseResult<com.open.biz.manage.pojo.res.OperationRes>"
+                },
+                "examples": {
+                  "1": {
+                    "summary": "成功示例",
+                    "value": {
+                      "code": "",
+                      "msg": "",
+                      "data": {
+                        "res": false
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/menu/deleteMenu": {
+      "get": {
+        "summary": "删除菜单",
+        "deprecated": false,
+        "description": "",
+        "tags": ["菜单"],
+        "parameters": [
+          {
+            "name": "menuId",
+            "in": "query",
+            "description": "菜单ID",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseResult%C2%ABOperationRes%C2%BB",
+                  "description": "com.open.base.databind.response.ResponseResult<com.open.biz.manage.pojo.res.OperationRes>"
+                },
+                "examples": {
+                  "1": {
+                    "summary": "成功示例",
+                    "value": {
+                      "code": "",
+                      "msg": "",
+                      "data": {
+                        "res": false
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/auth/orgLogin": {
+      "post": {
+        "summary": "用户登录-密码",
+        "deprecated": false,
+        "description": "",
+        "tags": ["授权"],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OrgLoginReq",
+                "description": ""
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseResult%C2%ABOrgLoginRes%C2%BB",
+                  "description": ""
+                },
+                "examples": {
+                  "1": {
+                    "summary": "成功示例",
+                    "value": {
+                      "code": "",
+                      "msg": "",
+                      "data": {
+                        "token": "",
+                        "login_fail_time": 0,
+                        "loginFirst": false
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/auth/orgLoginByCode": {
+      "post": {
+        "summary": "用户登录-短信验证码",
+        "deprecated": false,
+        "description": "",
+        "tags": ["授权"],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OrgLoginByCodeReq",
+                "description": ""
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseResult%C2%ABOrgLoginRes%C2%BB",
+                  "description": ""
+                },
+                "examples": {
+                  "1": {
+                    "summary": "成功示例",
+                    "value": {
+                      "code": "",
+                      "msg": "",
+                      "data": {
+                        "token": "",
+                        "login_fail_time": 0,
+                        "loginFirst": false
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/auth/createVerCode": {
+      "get": {
+        "summary": "生成验证码图片",
+        "deprecated": false,
+        "description": "",
+        "tags": ["授权"],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseResult%C2%ABCreateVerCodeRes%C2%BB",
+                  "description": ""
+                },
+                "examples": {
+                  "1": {
+                    "summary": "成功示例",
+                    "value": {
+                      "code": "",
+                      "msg": "",
+                      "data": {
+                        "captcha": "",
+                        "captchaID": ""
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/auth/sendCode": {
+      "get": {
+        "summary": "发送验证码接口",
+        "deprecated": false,
+        "description": "",
+        "tags": ["授权"],
+        "parameters": [
+          {
+            "name": "phone",
+            "in": "query",
+            "description": "手机号码",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseResult%C2%ABOperationRes%C2%BB",
+                  "description": "com.open.base.databind.response.ResponseResult<com.open.biz.manage.pojo.res.OperationRes>"
+                },
+                "examples": {
+                  "1": {
+                    "summary": "成功示例",
+                    "value": {
+                      "code": "",
+                      "msg": "",
+                      "data": {
+                        "res": false
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/permission/queryStaffMenuTree": {
+      "get": {
+        "summary": "获取用户菜单",
+        "deprecated": false,
+        "description": "",
+        "tags": ["权限"],
+        "parameters": [
+          {
+            "name": "token",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseResult%C2%ABList%C2%ABMenuDto%C2%BB%C2%BB",
+                  "description": ""
+                },
+                "examples": {
+                  "1": {
+                    "summary": "成功示例",
+                    "value": {
+                      "code": "",
+                      "msg": "",
+                      "data": [
+                        {
+                          "id": "",
+                          "addTime": "",
+                          "orgId": "",
+                          "orgCode": "",
+                          "parentId": "",
+                          "title": "",
+                          "name": "",
+                          "path": "",
+                          "component": "",
+                          "icon": "",
+                          "link": "",
+                          "hideFlag": "",
+                          "activeMenu": "",
+                          "fullFlag": "",
+                          "affixFlag": "",
+                          "keepAliveFlag": "",
+                          "sort": 0,
+                          "menuTypeCd": "",
+                          "permissions": "",
+                          "showed": 0,
+                          "childMenus": [
+                            {
+                              "id": "",
+                              "addTime": "",
+                              "orgId": "",
+                              "orgCode": "",
+                              "parentId": "",
+                              "title": "",
+                              "name": "",
+                              "path": "",
+                              "component": "",
+                              "icon": "",
+                              "link": "",
+                              "hideFlag": "",
+                              "activeMenu": "",
+                              "fullFlag": "",
+                              "affixFlag": "",
+                              "keepAliveFlag": "",
+                              "sort": 0,
+                              "menuTypeCd": "",
+                              "permissions": "",
+                              "showed": 0,
+                              "childMenus": []
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/permission/queryOrgMenuTree": {
+      "get": {
+        "summary": "获机构菜单",
+        "deprecated": false,
+        "description": "",
+        "tags": ["权限"],
+        "parameters": [
+          {
+            "name": "orgCode",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseResult%C2%ABList%C2%ABMenuDto%C2%BB%C2%BB",
+                  "description": ""
+                },
+                "examples": {
+                  "1": {
+                    "summary": "成功示例",
+                    "value": {
+                      "code": "",
+                      "msg": "",
+                      "data": [
+                        {
+                          "id": "",
+                          "addTime": "",
+                          "orgId": "",
+                          "orgCode": "",
+                          "parentId": "",
+                          "title": "",
+                          "name": "",
+                          "path": "",
+                          "component": "",
+                          "icon": "",
+                          "link": "",
+                          "hideFlag": "",
+                          "activeMenu": "",
+                          "fullFlag": "",
+                          "affixFlag": "",
+                          "keepAliveFlag": "",
+                          "sort": 0,
+                          "menuTypeCd": "",
+                          "permissions": "",
+                          "showed": 0,
+                          "childMenus": [
+                            {
+                              "id": "",
+                              "addTime": "",
+                              "orgId": "",
+                              "orgCode": "",
+                              "parentId": "",
+                              "title": "",
+                              "name": "",
+                              "path": "",
+                              "component": "",
+                              "icon": "",
+                              "link": "",
+                              "hideFlag": "",
+                              "activeMenu": "",
+                              "fullFlag": "",
+                              "affixFlag": "",
+                              "keepAliveFlag": "",
+                              "sort": 0,
+                              "menuTypeCd": "",
+                              "permissions": "",
+                              "showed": 0,
+                              "childMenus": []
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/permission/queryBusinessMenuTree": {
+      "get": {
+        "summary": "获业务菜单",
+        "deprecated": false,
+        "description": "",
+        "tags": ["权限"],
+        "parameters": [
+          {
+            "name": "orgBusiness",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "orgCode",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "0",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseResult%C2%ABList%C2%ABMenuDto%C2%BB%C2%BB",
+                  "description": ""
+                },
+                "examples": {
+                  "1": {
+                    "summary": "成功示例",
+                    "value": {
+                      "code": "",
+                      "msg": "",
+                      "data": [
+                        {
+                          "id": "",
+                          "addTime": "",
+                          "orgId": "",
+                          "orgCode": "",
+                          "parentId": "",
+                          "title": "",
+                          "name": "",
+                          "path": "",
+                          "component": "",
+                          "icon": "",
+                          "link": "",
+                          "hideFlag": "",
+                          "activeMenu": "",
+                          "fullFlag": "",
+                          "affixFlag": "",
+                          "keepAliveFlag": "",
+                          "sort": 0,
+                          "menuTypeCd": "",
+                          "permissions": "",
+                          "showed": 0,
+                          "childMenus": [
+                            {
+                              "id": "",
+                              "addTime": "",
+                              "orgId": "",
+                              "orgCode": "",
+                              "parentId": "",
+                              "title": "",
+                              "name": "",
+                              "path": "",
+                              "component": "",
+                              "icon": "",
+                              "link": "",
+                              "hideFlag": "",
+                              "activeMenu": "",
+                              "fullFlag": "",
+                              "affixFlag": "",
+                              "keepAliveFlag": "",
+                              "sort": 0,
+                              "menuTypeCd": "",
+                              "permissions": "",
+                              "showed": 0,
+                              "childMenus": []
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/permission/updateBusinessMenuTree": {
+      "post": {
+        "summary": "修改业务菜单",
+        "deprecated": false,
+        "description": "",
+        "tags": ["权限"],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateBusinessMenuRequest",
+                "description": ""
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseResult%C2%ABOperationRes%C2%BB",
+                  "description": "com.open.base.databind.response.ResponseResult<com.open.biz.manage.pojo.res.OperationRes>"
+                },
+                "examples": {
+                  "1": {
+                    "summary": "成功示例",
+                    "value": {
+                      "code": "",
+                      "msg": "",
+                      "data": {
+                        "res": false
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/permission/queryAllMenuTree": {
+      "get": {
+        "summary": "获平台所有菜单",
+        "deprecated": false,
+        "description": "",
+        "tags": ["权限"],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseResult%C2%ABList%C2%ABMenuDto%C2%BB%C2%BB",
+                  "description": ""
+                },
+                "examples": {
+                  "1": {
+                    "summary": "成功示例",
+                    "value": {
+                      "code": "",
+                      "msg": "",
+                      "data": [
+                        {
+                          "id": "",
+                          "addTime": "",
+                          "orgId": "",
+                          "orgCode": "",
+                          "parentId": "",
+                          "title": "",
+                          "name": "",
+                          "path": "",
+                          "component": "",
+                          "icon": "",
+                          "link": "",
+                          "hideFlag": "",
+                          "activeMenu": "",
+                          "fullFlag": "",
+                          "affixFlag": "",
+                          "keepAliveFlag": "",
+                          "sort": 0,
+                          "menuTypeCd": "",
+                          "permissions": "",
+                          "showed": 0,
+                          "childMenus": [
+                            {
+                              "id": "",
+                              "addTime": "",
+                              "orgId": "",
+                              "orgCode": "",
+                              "parentId": "",
+                              "title": "",
+                              "name": "",
+                              "path": "",
+                              "component": "",
+                              "icon": "",
+                              "link": "",
+                              "hideFlag": "",
+                              "activeMenu": "",
+                              "fullFlag": "",
+                              "affixFlag": "",
+                              "keepAliveFlag": "",
+                              "sort": 0,
+                              "menuTypeCd": "",
+                              "permissions": "",
+                              "showed": 0,
+                              "childMenus": []
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/user/queryUserPage": {
+      "post": {
+        "summary": "查询员工列表",
+        "deprecated": false,
+        "description": "",
+        "tags": ["用户"],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserPageQueryRequest",
+                "description": ""
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseResult%C2%ABPage%C2%ABUserDTO%C2%BB%C2%BB",
+                  "description": "员工分页列表结果"
+                },
+                "examples": {
+                  "1": {
+                    "summary": "成功示例",
+                    "value": {
+                      "code": "",
+                      "msg": "",
+                      "data": {
+                        "records": [
+                          {
+                            "id": "",
+                            "userName": "",
+                            "phone": "",
+                            "password": "",
+                            "status": 0,
+                            "remark": "",
+                            "roleID": "",
+                            "roleName": "",
+                            "orgCode": "",
+                            "startAddTime": "",
+                            "endAddTime": "",
+                            "addTime": ""
+                          }
+                        ],
+                        "total": 0,
+                        "size": 0,
+                        "current": 0,
+                        "orders": [
+                          {
+                            "column": "",
+                            "asc": false
+                          }
+                        ],
+                        "optimizeCountSql": false,
+                        "isSearchCount": false,
+                        "hitCount": false,
+                        "countId": "",
+                        "maxLimit": 0
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/org/queryOrgPage": {
+      "post": {
+        "summary": "查询机构列表",
+        "deprecated": false,
+        "description": "",
+        "tags": ["机构"],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OrgPageQueryRequest",
+                "description": ""
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseResult%C2%ABPage%C2%ABOrgDTO%C2%BB%C2%BB",
+                  "description": "机构分页列表结果"
+                },
+                "examples": {
+                  "1": {
+                    "summary": "成功示例",
+                    "value": {
+                      "code": "",
+                      "msg": "",
+                      "data": {
+                        "records": [
+                          {
+                            "id": "",
+                            "orgName": "",
+                            "orgCode": "",
+                            "orgType": "",
+                            "orgBusiness": "",
+                            "adminName": "",
+                            "adminPhone": "",
+                            "logoPhotoUrl": "",
+                            "complaintPhone": "",
+                            "auditStatus": "",
+                            "auditMsg": "",
+                            "provinceCode": "",
+                            "province": "",
+                            "cityCode": "",
+                            "city": "",
+                            "areaCode": "",
+                            "area": "",
+                            "address": "",
+                            "licensePhotoUrl": "",
+                            "licenseCode": "",
+                            "practicePhotoUrl": "",
+                            "practiceCode": "",
+                            "orgBusinessExt": {},
+                            "parentId": "",
+                            "hospitalId": "",
+                            "status": 0,
+                            "addTime": "",
+                            "startAddTime": "",
+                            "endAddTime": "",
+                            "parentOrgCode": ""
+                          }
+                        ],
+                        "total": 0,
+                        "size": 0,
+                        "current": 0,
+                        "orders": [
+                          {
+                            "column": "",
+                            "asc": false
+                          }
+                        ],
+                        "optimizeCountSql": false,
+                        "isSearchCount": false,
+                        "hitCount": false,
+                        "countId": "",
+                        "maxLimit": 0
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/org/addOrg": {
+      "post": {
+        "summary": "添加机构",
+        "deprecated": false,
+        "description": "",
+        "tags": ["机构"],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OrgDTO",
+                "description": "机构DTO\n<p>\n用于在服务层和控制层之间传递字典数据\n</p>\n<p>\n使用Lombok简化代码\n</p>"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseResult%C2%ABOperationRes%C2%BB",
+                  "description": "com.open.base.databind.response.ResponseResult<com.open.biz.manage.pojo.res.OperationRes>"
+                },
+                "examples": {
+                  "1": {
+                    "summary": "成功示例",
+                    "value": {
+                      "code": "",
+                      "msg": "",
+                      "data": {
+                        "res": false
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/org/updateOrg": {
+      "post": {
+        "summary": "更新机构",
+        "deprecated": false,
+        "description": "",
+        "tags": ["机构"],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OrgDTO",
+                "description": "机构DTO\n<p>\n用于在服务层和控制层之间传递字典数据\n</p>\n<p>\n使用Lombok简化代码\n</p>"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseResult%C2%ABOperationRes%C2%BB",
+                  "description": "com.open.base.databind.response.ResponseResult<com.open.biz.manage.pojo.res.OperationRes>"
+                },
+                "examples": {
+                  "1": {
+                    "summary": "成功示例",
+                    "value": {
+                      "code": "",
+                      "msg": "",
+                      "data": {
+                        "res": false
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/org/deleteOrg": {
+      "get": {
+        "summary": "删除机构",
+        "deprecated": false,
+        "description": "",
+        "tags": ["机构"],
+        "parameters": [
+          {
+            "name": "orgID",
+            "in": "query",
+            "description": "机构ID",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseResult%C2%ABOperationRes%C2%BB",
+                  "description": "com.open.base.databind.response.ResponseResult<com.open.biz.manage.pojo.res.OperationRes>"
+                },
+                "examples": {
+                  "1": {
+                    "summary": "成功示例",
+                    "value": {
+                      "code": "",
+                      "msg": "",
+                      "data": {
+                        "res": false
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/role/queryRolePage": {
+      "post": {
+        "summary": "查询角色列表",
+        "deprecated": false,
+        "description": "",
+        "tags": ["角色"],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RolePageQueryRequest",
+                "description": ""
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseResult%C2%ABPage%C2%ABRoleDTO%C2%BB%C2%BB",
+                  "description": "角色分页列表结果"
+                },
+                "examples": {
+                  "1": {
+                    "summary": "成功示例",
+                    "value": {
+                      "code": "",
+                      "msg": "",
+                      "data": {
+                        "records": [
+                          {
+                            "id": "",
+                            "roleName": "",
+                            "orgId": "",
+                            "orgCode": "",
+                            "roleRemark": "",
+                            "sort": 0,
+                            "addTime": "",
+                            "menus": [
+                              {
+                                "id": "",
+                                "addTime": "",
+                                "orgId": "",
+                                "orgCode": "",
+                                "parentId": "",
+                                "title": "",
+                                "name": "",
+                                "path": "",
+                                "component": "",
+                                "icon": "",
+                                "link": "",
+                                "hideFlag": "",
+                                "activeMenu": "",
+                                "fullFlag": "",
+                                "affixFlag": "",
+                                "keepAliveFlag": "",
+                                "sort": 0,
+                                "menuTypeCd": "",
+                                "permissions": "",
+                                "showed": 0,
+                                "childMenus": [
+                                  {
+                                    "id": "",
+                                    "addTime": "",
+                                    "orgId": "",
+                                    "orgCode": "",
+                                    "parentId": "",
+                                    "title": "",
+                                    "name": "",
+                                    "path": "",
+                                    "component": "",
+                                    "icon": "",
+                                    "link": "",
+                                    "hideFlag": "",
+                                    "activeMenu": "",
+                                    "fullFlag": "",
+                                    "affixFlag": "",
+                                    "keepAliveFlag": "",
+                                    "sort": 0,
+                                    "menuTypeCd": "",
+                                    "permissions": "",
+                                    "showed": 0,
+                                    "childMenus": []
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ],
+                        "total": 0,
+                        "size": 0,
+                        "current": 0,
+                        "orders": [
+                          {
+                            "column": "",
+                            "asc": false
+                          }
+                        ],
+                        "optimizeCountSql": false,
+                        "isSearchCount": false,
+                        "hitCount": false,
+                        "countId": "",
+                        "maxLimit": 0
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/role/getRoleByID": {
+      "get": {
+        "summary": "根据id查询角色",
+        "deprecated": false,
+        "description": "",
+        "tags": ["角色"],
+        "parameters": [
+          {
+            "name": "roleID",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseResult%C2%ABRoleDTO%C2%BB",
+                  "description": "角色"
+                },
+                "examples": {
+                  "1": {
+                    "summary": "成功示例",
+                    "value": {
+                      "code": "",
+                      "msg": "",
+                      "data": {
+                        "id": "",
+                        "roleName": "",
+                        "orgId": "",
+                        "orgCode": "",
+                        "roleRemark": "",
+                        "sort": 0,
+                        "addTime": "",
+                        "menus": [
+                          {
+                            "id": "",
+                            "addTime": "",
+                            "orgId": "",
+                            "orgCode": "",
+                            "parentId": "",
+                            "title": "",
+                            "name": "",
+                            "path": "",
+                            "component": "",
+                            "icon": "",
+                            "link": "",
+                            "hideFlag": "",
+                            "activeMenu": "",
+                            "fullFlag": "",
+                            "affixFlag": "",
+                            "keepAliveFlag": "",
+                            "sort": 0,
+                            "menuTypeCd": "",
+                            "permissions": "",
+                            "showed": 0,
+                            "childMenus": [
+                              {
+                                "id": "",
+                                "addTime": "",
+                                "orgId": "",
+                                "orgCode": "",
+                                "parentId": "",
+                                "title": "",
+                                "name": "",
+                                "path": "",
+                                "component": "",
+                                "icon": "",
+                                "link": "",
+                                "hideFlag": "",
+                                "activeMenu": "",
+                                "fullFlag": "",
+                                "affixFlag": "",
+                                "keepAliveFlag": "",
+                                "sort": 0,
+                                "menuTypeCd": "",
+                                "permissions": "",
+                                "showed": 0,
+                                "childMenus": []
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/role/getRoleListByOrgCode": {
+      "get": {
+        "summary": "根据机构查询角色",
+        "deprecated": false,
+        "description": "",
+        "tags": ["角色"],
+        "parameters": [
+          {
+            "name": "orgCode",
+            "in": "query",
+            "description": "机构",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseResult%C2%ABList%C2%ABRoleDTO%C2%BB%C2%BB",
+                  "description": "角色列表"
+                },
+                "examples": {
+                  "1": {
+                    "summary": "成功示例",
+                    "value": {
+                      "code": "",
+                      "msg": "",
+                      "data": [
+                        {
+                          "id": "",
+                          "roleName": "",
+                          "orgId": "",
+                          "orgCode": "",
+                          "roleRemark": "",
+                          "sort": 0,
+                          "addTime": "",
+                          "menus": [
+                            {
+                              "id": "",
+                              "addTime": "",
+                              "orgId": "",
+                              "orgCode": "",
+                              "parentId": "",
+                              "title": "",
+                              "name": "",
+                              "path": "",
+                              "component": "",
+                              "icon": "",
+                              "link": "",
+                              "hideFlag": "",
+                              "activeMenu": "",
+                              "fullFlag": "",
+                              "affixFlag": "",
+                              "keepAliveFlag": "",
+                              "sort": 0,
+                              "menuTypeCd": "",
+                              "permissions": "",
+                              "showed": 0,
+                              "childMenus": [
+                                {
+                                  "id": "",
+                                  "addTime": "",
+                                  "orgId": "",
+                                  "orgCode": "",
+                                  "parentId": "",
+                                  "title": "",
+                                  "name": "",
+                                  "path": "",
+                                  "component": "",
+                                  "icon": "",
+                                  "link": "",
+                                  "hideFlag": "",
+                                  "activeMenu": "",
+                                  "fullFlag": "",
+                                  "affixFlag": "",
+                                  "keepAliveFlag": "",
+                                  "sort": 0,
+                                  "menuTypeCd": "",
+                                  "permissions": "",
+                                  "showed": 0,
+                                  "childMenus": []
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/role/addRole": {
+      "post": {
+        "summary": "添加角色",
+        "deprecated": false,
+        "description": "",
+        "tags": ["角色"],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RoleDTO",
+                "description": "角色DTO\n<p>\n用于在服务层和控制层之间传递字典数据\n</p>\n<p>\n使用Lombok简化代码\n</p>"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseResult%C2%ABOperationRes%C2%BB",
+                  "description": "com.open.base.databind.response.ResponseResult<com.open.biz.manage.pojo.res.OperationRes>"
+                },
+                "examples": {
+                  "1": {
+                    "summary": "成功示例",
+                    "value": {
+                      "code": "",
+                      "msg": "",
+                      "data": {
+                        "res": false
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/role/updateRole": {
+      "post": {
+        "summary": "更新角色",
+        "deprecated": false,
+        "description": "",
+        "tags": ["角色"],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RoleDTO",
+                "description": "角色DTO\n<p>\n用于在服务层和控制层之间传递字典数据\n</p>\n<p>\n使用Lombok简化代码\n</p>"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseResult%C2%ABOperationRes%C2%BB",
+                  "description": "com.open.base.databind.response.ResponseResult<com.open.biz.manage.pojo.res.OperationRes>"
+                },
+                "examples": {
+                  "1": {
+                    "summary": "成功示例",
+                    "value": {
+                      "code": "",
+                      "msg": "",
+                      "data": {
+                        "res": false
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/role/deleteRole": {
+      "get": {
+        "summary": "删除角色",
+        "deprecated": false,
+        "description": "",
+        "tags": ["角色"],
+        "parameters": [
+          {
+            "name": "roleId",
+            "in": "query",
+            "description": "角色ID",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseResult%C2%ABOperationRes%C2%BB",
+                  "description": "com.open.base.databind.response.ResponseResult<com.open.biz.manage.pojo.res.OperationRes>"
+                },
+                "examples": {
+                  "1": {
+                    "summary": "成功示例",
+                    "value": {
+                      "code": "",
+                      "msg": "",
+                      "data": {
+                        "res": false
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "UserPageQueryRequest": {
+        "type": "object",
+        "properties": {
+          "userName": {
+            "type": "string",
+            "description": "员工姓名"
+          },
+          "phone": {
+            "type": "string",
+            "description": "联系电话"
+          },
+          "status": {
+            "type": "integer",
+            "description": "状态"
+          },
+          "startAddTime": {
+            "type": "string",
+            "description": "起始创建时间"
+          },
+          "endAddTime": {
+            "type": "string",
+            "description": "结束创建时间"
+          },
+          "roleID": {
+            "type": "string",
+            "description": "角色ID"
+          },
+          "roleName": {
+            "type": "string",
+            "description": "角色名称"
+          },
+          "orgCode": {
+            "type": "string",
+            "description": "机构code"
+          },
+          "pageIndex": {
+            "type": "integer",
+            "description": "当前页码",
+            "default": "1"
+          },
+          "pageSize": {
+            "type": "integer",
+            "description": "每页显示的记录数",
+            "default": "10"
+          }
+        }
+      },
+      "ResponseResult«Page«UserDTO»»": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "msg": {
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/Page%C2%ABUserDTO%C2%BB",
+            "description": "com.baomidou.mybatisplus.extension.plugins.pagination.Page<com.open.biz.manage.pojo.dto.UserDTO>"
+          }
+        }
+      },
+      "Page«UserDTO»": {
+        "type": "object",
+        "properties": {
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UserDTO",
+              "description": "用户"
+            }
+          },
+          "total": {
+            "type": "integer"
+          },
+          "size": {
+            "type": "integer"
+          },
+          "current": {
+            "type": "integer"
+          },
+          "orders": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OrderItem",
+              "description": "com.baomidou.mybatisplus.core.metadata.OrderItem"
+            }
+          },
+          "optimizeCountSql": {
+            "type": "boolean"
+          },
+          "isSearchCount": {
+            "type": "boolean"
+          },
+          "hitCount": {
+            "type": "boolean"
+          },
+          "countId": {
+            "type": "string"
+          },
+          "maxLimit": {
+            "type": "integer"
+          }
+        }
+      },
+      "UserDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "主键"
+          },
+          "userName": {
+            "type": "string",
+            "description": "用户名称"
+          },
+          "phone": {
+            "type": "string",
+            "description": "患者ID"
+          },
+          "password": {
+            "type": "string",
+            "description": "密码"
+          },
+          "status": {
+            "type": "integer",
+            "description": "状态"
+          },
+          "remark": {
+            "type": "string",
+            "description": "备注"
+          },
+          "roleID": {
+            "type": "string",
+            "description": "角色ID"
+          },
+          "roleName": {
+            "type": "string",
+            "description": "角色名称"
+          },
+          "orgCode": {
+            "type": "string",
+            "description": "机构code"
+          },
+          "startAddTime": {
+            "type": "string",
+            "description": "起始创建时间"
+          },
+          "endAddTime": {
+            "type": "string",
+            "description": "结束创建时间"
+          },
+          "addTime": {
+            "type": "string",
+            "description": "创建时间"
+          }
+        }
+      },
+      "ResponseResult«List«MenuDto»»": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "msg": {
+            "type": "string"
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MenuDto",
+              "description": "菜单表"
+            }
+          }
+        }
+      },
+      "UpdateBusinessMenuRequest": {
+        "type": "object",
+        "properties": {
+          "orgBusiness": {
+            "type": "string",
+            "description": "业务类型"
+          },
+          "orgCode": {
+            "type": "string",
+            "description": "机构code"
+          },
+          "menus": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MenuDto",
+              "description": "菜单表"
+            },
+            "description": "菜单列表"
+          }
+        },
+        "required": ["orgCode", "menus"]
+      },
+      "ResponseResult«RoleDTO»": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "msg": {
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/RoleDTO",
+            "description": "角色DTO\n<p>\n用于在服务层和控制层之间传递字典数据\n</p>\n<p>\n使用Lombok简化代码\n</p>"
+          }
+        }
+      },
+      "ResponseResult«Page«RoleDTO»»": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "msg": {
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/Page%C2%ABRoleDTO%C2%BB",
+            "description": "com.baomidou.mybatisplus.extension.plugins.pagination.Page<com.open.api.manage.api.dto.RoleDTO>"
+          }
+        }
+      },
+      "Page«RoleDTO»": {
+        "type": "object",
+        "properties": {
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RoleDTO",
+              "description": "角色DTO\n<p>\n用于在服务层和控制层之间传递字典数据\n</p>\n<p>\n使用Lombok简化代码\n</p>"
+            }
+          },
+          "total": {
+            "type": "integer"
+          },
+          "size": {
+            "type": "integer"
+          },
+          "current": {
+            "type": "integer"
+          },
+          "orders": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OrderItem",
+              "description": "com.baomidou.mybatisplus.core.metadata.OrderItem"
+            }
+          },
+          "optimizeCountSql": {
+            "type": "boolean"
+          },
+          "isSearchCount": {
+            "type": "boolean"
+          },
+          "hitCount": {
+            "type": "boolean"
+          },
+          "countId": {
+            "type": "string"
+          },
+          "maxLimit": {
+            "type": "integer"
+          }
+        }
+      },
+      "OrgPageQueryRequest": {
+        "type": "object",
+        "properties": {
+          "orgName": {
+            "type": "string",
+            "description": "机构名称"
+          },
+          "orgType": {
+            "type": "string",
+            "description": "机构类型 platform平台 hospital医院 business业务端"
+          },
+          "status": {
+            "type": "integer",
+            "description": "机构状态(0:禁用/1:启用)"
+          },
+          "auditStatus": {
+            "type": "string",
+            "description": "审核状态 wait(待审核);pass(审核通过);refuse(审核拒绝)"
+          },
+          "startAddTime": {
+            "type": "string",
+            "description": "起始创建时间"
+          },
+          "endAddTime": {
+            "type": "string",
+            "description": "结束创建时间"
+          },
+          "pageIndex": {
+            "type": "integer",
+            "description": "当前页码",
+            "default": "1"
+          },
+          "pageSize": {
+            "type": "integer",
+            "description": "每页显示的记录数",
+            "default": "10"
+          }
+        }
+      },
+      "ResponseResult«Page«OrgDTO»»": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "msg": {
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/Page%C2%ABOrgDTO%C2%BB",
+            "description": "com.baomidou.mybatisplus.extension.plugins.pagination.Page<com.open.api.manage.api.dto.OrgDTO>"
+          }
+        }
+      },
+      "Page«OrgDTO»": {
+        "type": "object",
+        "properties": {
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OrgDTO",
+              "description": "机构DTO\n<p>\n用于在服务层和控制层之间传递字典数据\n</p>\n<p>\n使用Lombok简化代码\n</p>"
+            }
+          },
+          "total": {
+            "type": "integer"
+          },
+          "size": {
+            "type": "integer"
+          },
+          "current": {
+            "type": "integer"
+          },
+          "orders": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OrderItem",
+              "description": "com.baomidou.mybatisplus.core.metadata.OrderItem"
+            }
+          },
+          "optimizeCountSql": {
+            "type": "boolean"
+          },
+          "isSearchCount": {
+            "type": "boolean"
+          },
+          "hitCount": {
+            "type": "boolean"
+          },
+          "countId": {
+            "type": "string"
+          },
+          "maxLimit": {
+            "type": "integer"
+          }
+        }
+      },
+      "OrgDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "id"
+          },
+          "orgName": {
+            "type": "string",
+            "description": "机构名称"
+          },
+          "orgCode": {
+            "type": "string",
+            "description": "机构Code"
+          },
+          "orgType": {
+            "type": "string",
+            "description": "机构类型 platform平台 hospital医院 business业务端"
+          },
+          "orgBusiness": {
+            "type": "string",
+            "description": "可用的业务 逗号分隔 ih(互联网医院);cloud(云门诊Cloud Outpatient Service);OP(线下药店Offline Pharmacy);convenient(便民门诊);sup(供应商)"
+          },
+          "adminName": {
+            "type": "string",
+            "description": "管理员名称"
+          },
+          "adminPhone": {
+            "type": "string",
+            "description": "管理员电话"
+          },
+          "logoPhotoUrl": {
+            "type": "string",
+            "description": "机构LOGO图片"
+          },
+          "complaintPhone": {
+            "type": "string",
+            "description": "投诉电话"
+          },
+          "auditStatus": {
+            "type": "string",
+            "description": "审核状态 wait(待审核);pass(审核通过);refuse(审核拒绝)"
+          },
+          "auditMsg": {
+            "type": "string",
+            "description": "审核消息(拒绝原因等)"
+          },
+          "provinceCode": {
+            "type": "string",
+            "description": "省编码"
+          },
+          "province": {
+            "type": "string",
+            "description": "省份"
+          },
+          "cityCode": {
+            "type": "string",
+            "description": "市编码"
+          },
+          "city": {
+            "type": "string",
+            "description": "市"
+          },
+          "areaCode": {
+            "type": "string",
+            "description": "区编码"
+          },
+          "area": {
+            "type": "string",
+            "description": "区"
+          },
+          "address": {
+            "type": "string",
+            "description": "详细地址"
+          },
+          "licensePhotoUrl": {
+            "type": "string",
+            "description": "营业执照"
+          },
+          "licenseCode": {
+            "type": "string",
+            "description": "营业执照统一社会信用代码"
+          },
+          "practicePhotoUrl": {
+            "type": "string",
+            "description": "执业许可证"
+          },
+          "practiceCode": {
+            "type": "string",
+            "description": "医疗机构执业许可证登记号"
+          },
+          "orgBusinessExt": {
+            "$ref": "#/components/schemas/Object",
+            "description": "机构业务扩展字段。对应业务的到期时间、服务类目、类目的资质"
+          },
+          "parentId": {
+            "type": "string",
+            "description": "上级机构id"
+          },
+          "hospitalId": {
+            "type": "string",
+            "description": "实体医院id"
+          },
+          "status": {
+            "type": "integer",
+            "description": "状态(0:禁用/1:启用)"
+          },
+          "addTime": {
+            "type": "string",
+            "description": "创建时间"
+          },
+          "startAddTime": {
+            "type": "string",
+            "description": "起始创建时间"
+          },
+          "endAddTime": {
+            "type": "string",
+            "description": "结束创建时间"
+          },
+          "parentOrgCode": {
+            "type": "string",
+            "description": "父级机构Code"
+          }
+        }
+      },
+      "Object": {
+        "type": "object",
+        "properties": {}
+      },
+      "ResponseResult«Page«MenuDto»»": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "msg": {
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/Page%C2%ABMenuDto%C2%BB",
+            "description": "com.baomidou.mybatisplus.extension.plugins.pagination.Page<com.open.api.manage.api.dto.MenuDto>"
+          }
+        }
+      },
+      "Page«MenuDto»": {
+        "type": "object",
+        "properties": {
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MenuDto",
+              "description": "菜单表"
+            }
+          },
+          "total": {
+            "type": "integer"
+          },
+          "size": {
+            "type": "integer"
+          },
+          "current": {
+            "type": "integer"
+          },
+          "orders": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OrderItem",
+              "description": "com.baomidou.mybatisplus.core.metadata.OrderItem"
+            }
+          },
+          "optimizeCountSql": {
+            "type": "boolean"
+          },
+          "isSearchCount": {
+            "type": "boolean"
+          },
+          "hitCount": {
+            "type": "boolean"
+          },
+          "countId": {
+            "type": "string"
+          },
+          "maxLimit": {
+            "type": "integer"
+          }
+        }
+      },
+      "OrderItem": {
+        "type": "object",
+        "properties": {
+          "column": {
+            "type": "string"
+          },
+          "asc": {
+            "type": "boolean"
+          }
+        }
+      },
+      "ResponseResult«OperationRes»": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "msg": {
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/OperationRes",
+            "description": "登录返回"
+          }
+        }
+      },
+      "OperationRes": {
+        "type": "object",
+        "properties": {
+          "res": {
+            "type": "boolean",
+            "description": "操作结果 true 成功 false 失败"
+          }
+        }
+      },
+      "ResponseResult«List«RoleDTO»»": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "msg": {
+            "type": "string"
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RoleDTO",
+              "description": "角色DTO\n<p>\n用于在服务层和控制层之间传递字典数据\n</p>\n<p>\n使用Lombok简化代码\n</p>"
+            }
+          }
+        }
+      },
+      "RoleDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "id"
+          },
+          "roleName": {
+            "type": "string",
+            "description": "角色名称"
+          },
+          "orgId": {
+            "type": "string",
+            "description": "机构id"
+          },
+          "orgCode": {
+            "type": "string",
+            "description": "机构Code"
+          },
+          "roleRemark": {
+            "type": "string",
+            "description": "角色说明"
+          },
+          "sort": {
+            "type": "integer",
+            "description": "排序"
+          },
+          "addTime": {
+            "type": "string",
+            "description": "添加时间"
+          },
+          "menus": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MenuDto",
+              "description": "菜单表"
+            },
+            "description": "菜单列表"
+          }
+        }
+      },
+      "RolePageQueryRequest": {
+        "type": "object",
+        "properties": {
+          "orgCode": {
+            "type": "string",
+            "description": "机构Code"
+          },
+          "roleName": {
+            "type": "string",
+            "description": "角色名称"
+          },
+          "pageIndex": {
+            "type": "integer",
+            "description": "当前页码",
+            "default": "1"
+          },
+          "pageSize": {
+            "type": "integer",
+            "description": "每页显示的记录数",
+            "default": "10"
+          }
+        }
+      },
+      "ResponseResult«IPage«RoleDTO»»": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "msg": {
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/IPage%C2%ABRoleDTO%C2%BB",
+            "description": "com.baomidou.mybatisplus.core.metadata.IPage<com.open.api.manage.api.dto.RoleDTO>"
+          }
+        }
+      },
+      "IPage«RoleDTO»": {
+        "type": "object",
+        "properties": {}
+      },
+      "MenuDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "主键"
+          },
+          "addTime": {
+            "type": "string",
+            "description": "添加时间"
+          },
+          "orgId": {
+            "type": "string",
+            "description": "机构id"
+          },
+          "orgCode": {
+            "type": "string",
+            "description": "机构Code"
+          },
+          "parentId": {
+            "type": "string",
+            "description": "上级菜单id"
+          },
+          "title": {
+            "type": "string",
+            "description": "标题"
+          },
+          "name": {
+            "type": "string",
+            "description": "前端路由名称"
+          },
+          "path": {
+            "type": "string",
+            "description": "前端路由路径"
+          },
+          "component": {
+            "type": "string",
+            "description": "前端组件名称"
+          },
+          "icon": {
+            "type": "string",
+            "description": "前端路由图标"
+          },
+          "link": {
+            "type": "string",
+            "description": "前端外链地址"
+          },
+          "hideFlag": {
+            "type": "string",
+            "description": "前端是否隐藏菜单"
+          },
+          "activeMenu": {
+            "type": "string",
+            "description": "前端需要高亮的菜单 菜单的path"
+          },
+          "fullFlag": {
+            "type": "string",
+            "description": "前端是否全屏"
+          },
+          "affixFlag": {
+            "type": "string",
+            "description": "前端是否固定在标签页中"
+          },
+          "keepAliveFlag": {
+            "type": "string",
+            "description": "前端路由是否需要缓存"
+          },
+          "sort": {
+            "type": "integer",
+            "description": "排序"
+          },
+          "menuTypeCd": {
+            "type": "string",
+            "description": "菜单类型"
+          },
+          "permissions": {
+            "type": "string",
+            "description": "按钮权限"
+          },
+          "showed": {
+            "type": "integer",
+            "description": "是否勾选标识(0:未勾选 / 1:已勾选)"
+          },
+          "childMenus": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MenuDto",
+              "description": "菜单表"
+            },
+            "description": "子菜单列表"
+          }
+        }
+      },
+      "ResponseResult«Boolean»": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "msg": {
+            "type": "string"
+          },
+          "data": {
+            "type": "boolean"
+          }
+        }
+      },
+      "MenuPageQueryRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "菜单名称"
+          },
+          "pageIndex": {
+            "type": "integer",
+            "description": "当前页码",
+            "default": "1"
+          },
+          "pageSize": {
+            "type": "integer",
+            "description": "每页显示的记录数",
+            "default": "10"
+          }
+        }
+      },
+      "ResponseResult«IPage«MenuDto»»": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "msg": {
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/IPage%C2%ABMenuDto%C2%BB",
+            "description": "com.baomidou.mybatisplus.core.metadata.IPage<com.open.api.manage.api.dto.MenuDto>"
+          }
+        }
+      },
+      "IPage«MenuDto»": {
+        "type": "object",
+        "properties": {}
+      },
+      "ResponseResult«List«MenuRes»»": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "msg": {
+            "type": "string"
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MenuRes",
+              "description": "菜单"
+            }
+          }
+        }
+      },
+      "MenuRes": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "id"
+          },
+          "orgId": {
+            "type": "string",
+            "description": "机构id"
+          },
+          "orgCode": {
+            "type": "string",
+            "description": "机构Code"
+          },
+          "parentId": {
+            "type": "string",
+            "description": "上级菜单id"
+          },
+          "title": {
+            "type": "string",
+            "description": "标题"
+          },
+          "name": {
+            "type": "string",
+            "description": "前端路由名称"
+          },
+          "path": {
+            "type": "string",
+            "description": "前端路由路径"
+          },
+          "component": {
+            "type": "string",
+            "description": "前端组件名称"
+          },
+          "icon": {
+            "type": "string",
+            "description": "前端路由图标"
+          },
+          "link": {
+            "type": "string",
+            "description": "前端外链地址"
+          },
+          "hideFlag": {
+            "type": "string",
+            "description": "前端是否隐藏菜单"
+          },
+          "activeMenu": {
+            "type": "string",
+            "description": "前端需要高亮的菜单 菜单的path"
+          },
+          "fullFlag": {
+            "type": "string",
+            "description": "前端是否全屏"
+          },
+          "affixFlag": {
+            "type": "string",
+            "description": "前端是否固定在标签页中"
+          },
+          "keepAliveFlag": {
+            "type": "string",
+            "description": "前端路由是否需要缓存"
+          },
+          "sort": {
+            "type": "integer",
+            "description": "排序"
+          },
+          "menuTypeCd": {
+            "type": "string",
+            "description": "菜单类型"
+          },
+          "permissions": {
+            "type": "string",
+            "description": "按钮权限"
+          },
+          "deleted": {
+            "type": "integer",
+            "description": "删除标识(0:未删除 / 1:已删除)"
+          },
+          "showed": {
+            "type": "integer",
+            "description": "是否勾选标识(0:未勾选 / 1:已勾选)"
+          },
+          "childMenus": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MenuRes",
+              "description": "菜单"
+            },
+            "description": "子菜单列表"
+          }
+        }
+      },
+      "ResponseResult«UserStaffCache»": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "msg": {
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/UserStaffCache",
+            "description": "com.open.biz.manage.pojo.cache.UserStaffCache"
+          }
+        }
+      },
+      "UserStaffCache": {
+        "type": "object",
+        "properties": {
+          "orgCode": {
+            "type": "string",
+            "description": "机构编码"
+          },
+          "orgID": {
+            "type": "string",
+            "description": "机构编码"
+          },
+          "orgUserID": {
+            "type": "string",
+            "description": "机构用户ID"
+          },
+          "userStaffID": {
+            "type": "string",
+            "description": "用户ID"
+          },
+          "userName": {
+            "type": "string",
+            "description": "用户名称"
+          },
+          "phone": {
+            "type": "string",
+            "description": "手机号"
+          },
+          "status": {
+            "type": "integer",
+            "description": "状态"
+          },
+          "orgList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OrgCache",
+              "description": "com.open.biz.manage.pojo.cache.OrgCache"
+            },
+            "description": "账号包含机构列表"
+          }
+        }
+      },
+      "OrgCache": {
+        "type": "object",
+        "properties": {
+          "orgCode": {
+            "type": "string",
+            "description": "机构编码"
+          },
+          "orgID": {
+            "type": "string",
+            "description": "机构编码"
+          },
+          "orgName": {
+            "type": "string",
+            "description": "机构用户ID"
+          }
+        }
+      },
+      "UpdatePasswordDTO": {
+        "type": "object",
+        "properties": {
+          "phone": {
+            "type": "string"
+          },
+          "oldPassword": {
+            "type": "string"
+          },
+          "newPassword": {
+            "type": "string"
+          }
+        },
+        "required": ["phone", "oldPassword"]
+      },
+      "ResponseResult«Void»": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "msg": {
+            "type": "string"
+          },
+          "data": {
+            "type": "null"
+          }
+        }
+      },
+      "ResponseResult«String»": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "msg": {
+            "type": "string"
+          },
+          "data": {
+            "type": "string"
+          }
+        }
+      },
+      "ResponseResult«CreateVerCodeRes»": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "msg": {
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/CreateVerCodeRes",
+            "description": "登录返回"
+          }
+        }
+      },
+      "CreateVerCodeRes": {
+        "type": "object",
+        "properties": {
+          "captcha": {
+            "type": "string",
+            "description": "验证码图片"
+          },
+          "captchaID": {
+            "type": "string",
+            "description": "验证码id"
+          }
+        }
+      },
+      "OrgLoginByCodeReq": {
+        "type": "object",
+        "properties": {
+          "phone": {
+            "type": "string",
+            "description": "登录账户"
+          },
+          "verCodeSms": {
+            "type": "string",
+            "description": "短信验证码"
+          }
+        },
+        "required": ["phone", "verCodeSms"]
+      },
+      "OrgLoginReq": {
+        "type": "object",
+        "properties": {
+          "phone": {
+            "type": "string",
+            "description": "登录账户"
+          },
+          "password": {
+            "type": "string",
+            "description": "登录密码"
+          },
+          "verCode": {
+            "type": "string",
+            "description": "验证码"
+          },
+          "captchaID": {
+            "type": "string",
+            "description": "验证码id"
+          },
+          "verCodeSms": {
+            "type": "string",
+            "description": "短信验证码"
+          }
+        },
+        "required": ["phone", "password"]
+      },
+      "ResponseResult«OrgLoginRes»": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "msg": {
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/OrgLoginRes",
+            "description": "登录返回"
+          }
+        }
+      },
+      "OrgLoginRes": {
+        "type": "object",
+        "properties": {
+          "token": {
+            "type": "string",
+            "description": "token"
+          },
+          "login_fail_time": {
+            "type": "integer",
+            "description": "登录失败次数"
+          },
+          "loginFirst": {
+            "type": "boolean",
+            "description": "是否首次登录 true 是 false 不是"
+          }
+        }
+      }
+    },
+    "securitySchemes": {}
+  },
+  "servers": []
+}

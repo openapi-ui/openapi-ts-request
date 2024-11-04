@@ -106,9 +106,15 @@ function getRefName(refObject: ReferenceObject | string) {
     return refObject;
   }
 
-  const refPaths = refObject.$ref.split('/');
+  return resolveTypeName(getLastRefName(refObject.$ref));
+}
 
-  return resolveTypeName(refPaths[refPaths.length - 1]);
+export function getLastRefName(refPath: string = '') {
+  const refPaths = refPath.split('/');
+
+  return refPaths.length > 0
+    ? decodeURIComponent(refPaths[refPaths.length - 1])
+    : '';
 }
 
 export function getDefaultType(
@@ -212,8 +218,7 @@ export function getDefaultType(
     const allofList = schemaObject.allOf.map((item) => {
       if (isReferenceObject(item)) {
         // 不使用 getRefName 函数处理，无法通过 schemas[schemaKey] 获取到schema
-        const refPaths = item.$ref.split('/');
-        const schemaKey = refPaths[refPaths.length - 1];
+        const schemaKey = getLastRefName(item.$ref);
 
         if ((schemas?.[schemaKey] as SchemaObject)?.enum) {
           return `I${getDefaultType(item, namespace)}`;
@@ -405,13 +410,10 @@ export function markAllowSchema(
   schemaStr: string,
   schemas: ComponentsObject['schemas']
 ) {
-  const refs = schemaStr?.match(/#\/components\/schemas\/([A-Za-z0-9._-]+)/g);
+  const refs = schemaStr?.match(/#\/components\/schemas\/([\w%«».-]+)/g);
 
   forEach(refs, (ref) => {
-    const refPaths = ref.split('/');
-    const schema = schemas?.[
-      refPaths[refPaths.length - 1]
-    ] as ICustomSchemaObject;
+    const schema = schemas?.[getLastRefName(ref)] as ICustomSchemaObject;
 
     if (schema && !schema.isAllowed) {
       schema.isAllowed = true;

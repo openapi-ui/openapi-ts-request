@@ -133,11 +133,17 @@ const gen = async () => {
     isTranslateToEnglishTag: true
   });
 
-
-  // 测试将中文 tag 名称翻译成英文 tag 名称
+  // 测试支持 components 非 schemas 的字段
   await openAPI.generateService({
     schemaPath: `${__dirname}/example-files/swagger-components-response.json`,
     serversPath: './apis/components-response',
+  });
+
+  // 测试 $ref 引用中包含 encode 编码字符
+  await openAPI.generateService({
+    schemaPath: `${__dirname}/example-files/openapi-ref-encode-character.json`,
+    serversPath: './apis/ref-encode-character',
+    allowedTags: ["角色"]
   });
 
   // check 文件生成

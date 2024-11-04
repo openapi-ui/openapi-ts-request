@@ -73,6 +73,7 @@ import {
   getDefaultFileTag,
   getDefaultType,
   getFinalFileName,
+  getLastRefName,
   handleDuplicateTypeNames,
   isArraySchemaObject,
   isBinaryArraySchemaObject,
@@ -813,8 +814,7 @@ export default class ServiceGenerator {
       DEFAULT_SCHEMA) as SchemaObject;
 
     if (isReferenceObject(schema)) {
-      const refPaths = schema.$ref.split('/');
-      const refName = refPaths[refPaths.length - 1];
+      const refName = getLastRefName(schema.$ref);
       const childrenSchema = components.schemas[refName];
 
       if (isNonArraySchemaObject(childrenSchema) && this.config.dataFields) {
@@ -854,15 +854,13 @@ export default class ServiceGenerator {
             const isDirectObject =
               ((p.schema as SchemaObject)?.type === 'object' ||
                 (p as unknown as SchemaObject).type) === 'object';
-            const refList = (
+            const refName = getLastRefName(
               (p.schema as ReferenceObject)?.$ref ||
-              (p as unknown as ReferenceObject).$ref ||
-              ''
-            ).split('/');
-            const ref = refList[refList.length - 1];
+                (p as unknown as ReferenceObject).$ref
+            );
             const deRefObj =
               entries(this.openAPIData.components?.schemas).find(
-                ([k]) => k === ref
+                ([k]) => k === refName
               ) || [];
             const isRefObject =
               (deRefObj[1] as SchemaObject)?.type === 'object' &&
@@ -939,10 +937,10 @@ export default class ServiceGenerator {
 
   private resolveArray(schemaObject: ArraySchemaObject) {
     if (isReferenceObject(schemaObject.items)) {
-      const refPaths = schemaObject.items.$ref.split('/');
+      const refName = getLastRefName(schemaObject.items.$ref);
 
       return {
-        type: `${refPaths[refPaths.length - 1]}[]`,
+        type: `${refName}[]`,
       };
     }
 
