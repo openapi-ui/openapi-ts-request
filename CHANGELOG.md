@@ -1,5 +1,11 @@
 # openapi-ts-request
 
+## 0.10.0
+
+### Minor Changes
+
+- [`b0f3e41`](https://github.com/openapi-ui/openapi-ts-request/commit/b0f3e416ee25398f242b2bac07cdca4f73e69bf4) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - feat: support x-apifox enumDescriptions
+
 ## 0.9.0
 
 ### Minor Changes
