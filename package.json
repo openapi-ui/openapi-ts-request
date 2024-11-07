@@ -3,6 +3,10 @@
   "version": "0.9.0",
   "description": "Swagger2/OpenAPI3 to TypeScript, request client, request mock service, enum, type field label, JSON Schemas",
   "packageManager": "pnpm@9.11.0",
+  "engines": {
+    "node": ">=18.0.0",
+    "pnpm": ">=9"
+  },
   "repository": {
     "type": "git",
     "url": "git+git@github.com:openapi-ui/openapi-ts-request.git"
