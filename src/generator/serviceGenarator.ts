@@ -974,6 +974,12 @@ export default class ServiceGenerator {
 
         return `${value}:"${schemaObject['x-enum-comments'][enumKey]}"`;
       }).join(',')}}`;
+    } else if (schemaObject?.['x-apifox']?.['enumDescriptions']) {
+      enumLabelTypeStr = `{${map(enumArray, (value: string) => {
+        const enumLabel = schemaObject['x-apifox']['enumDescriptions'][value];
+
+        return `${value}:"${enumLabel}"`;
+      }).join(',')}}`;
     } else {
       if (!numberEnum.includes(schemaObject.type)) {
         enumLabelTypeStr = `{${map(enumArray, (value) => `${value}:"${value}"`).join(',')}}`;

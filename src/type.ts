@@ -16,6 +16,9 @@ type ICustomBaseSchemaObject = {
   'x-enum-comments'?: {
     [name: string]: string;
   };
+  'x-apifox'?: {
+    enumDescriptions: Record<string, string>;
+  };
 };
 
 export type ArraySchemaObject = Modify<
