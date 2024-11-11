@@ -6,6 +6,8 @@ English | <a href="https://github.com/openapi-ui/openapi-ts-request/blob/master/
 
 Generate TS interfaces, request client, request mock service, enum, type field label, JSON Schemas based on [Swagger2/OpenAPI3](https://swagger.io/blog/news/whats-new-in-openapi-3-0/) specification
 
+文档：[use docs](https://github.com/openapi-ui/openapi-ts-request/issues/100)
+
 ## Features
 
 - support Swagger2.0/OpenAPI 3.0,3.1 specification
@@ -207,7 +209,7 @@ currently using [mockjs](http://mockjs.com) to generate mock data, the mocks fil
 
 ## Adapt to uniapp
 
-it is recommended to use a custom request function to adapt to uniapp. you can also use the `@uni-helper/axios-adapter` adapter. for details, see [issue#46](https://github.com/openapi-ui/openapi-ts-request/issues/46)
+it is recommended to use a custom request function to adapt to uniapp. you can also use the `@uni-helper/axios-adapter` adapter. for details, see [【use docs 2.2】](https://github.com/openapi-ui/openapi-ts-request/issues/100)
 
 ## Contribute
 

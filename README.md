@@ -6,6 +6,8 @@
 
 根据 [Swagger2/OpenAPI3](https://swagger.io/blog/news/whats-new-in-openapi-3-0/) 文档生成 TS 类型, 客户端请求函数, 模拟请求响应服务, 枚举, 类型字段翻译, JSON Schemas
 
+文档：[使用手册](https://github.com/openapi-ui/openapi-ts-request/issues/100)
+
 ## 功能
 
 - 支持 Swagger2.0/OpenAPI 3.0,3.1 定义
@@ -207,7 +209,7 @@ export declare function patchSchema<T extends object>(
 
 ## 适配uniapp
 
-适配 uniapp 推荐采用自定义 request 函数的方式，你也可以使用 `@uni-helper/axios-adapter` 适配器，详情见 [issue#46](https://github.com/openapi-ui/openapi-ts-request/issues/46)
+适配 uniapp 推荐采用自定义 request 函数的方式，你也可以使用 `@uni-helper/axios-adapter` 适配器，详情见 [【使用手册 2.2】](https://github.com/openapi-ui/openapi-ts-request/issues/100)
 
 ## 贡献
 
