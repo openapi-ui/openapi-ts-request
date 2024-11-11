@@ -73,6 +73,7 @@ import {
   getDefaultType,
   getFinalFileName,
   getLastRefName,
+  getRefName,
   handleDuplicateTypeNames,
   isArraySchemaObject,
   isBinaryArraySchemaObject,
@@ -940,7 +941,7 @@ export default class ServiceGenerator {
 
   private resolveArray(schemaObject: ArraySchemaObject) {
     if (isReferenceObject(schemaObject.items)) {
-      const refName = getLastRefName(schemaObject.items.$ref);
+      const refName = getRefName(schemaObject.items);
 
       return {
         type: `${refName}[]`,

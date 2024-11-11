@@ -101,7 +101,7 @@ export function resolveTypeName(typeName: string) {
   return pinyin.convertToPinyin(noBlankName, '', true);
 }
 
-function getRefName(refObject: ReferenceObject | string) {
+export function getRefName(refObject: ReferenceObject | string) {
   if (!isReferenceObject(refObject)) {
     return refObject;
   }
