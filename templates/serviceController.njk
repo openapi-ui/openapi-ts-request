@@ -4,7 +4,7 @@ import * as {{ namespace }} from './{{ interfaceFileName }}';
 {{ requestImportStatement }}
 
 {% for api in list -%}
-/** {{ api.desc if api.desc else '此处后端没有提供注释' }} {{api.method | upper}} {{ api.pathInComment | safe }} */
+/** {{ api.desc if api.desc else '此处后端没有提供注释' }} {{ api.method | upper }} {{ api.pathInComment | safe }}{{ ' ' if api.apifoxRunLink else '' }}{{ api.apifoxRunLink | safe }} */
 export async function {{ api.functionName }}(
 {%- if api.params and api.hasParams %}
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)

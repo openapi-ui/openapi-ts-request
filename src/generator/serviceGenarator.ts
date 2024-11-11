@@ -79,7 +79,7 @@ import {
   isNonArraySchemaObject,
   isReferenceObject,
   isSchemaObject,
-  markAllowSchema,
+  markAllowedSchema,
   replaceDot,
   resolveFunctionName,
   resolveRefs,
@@ -297,7 +297,7 @@ export default class ServiceGenerator {
               )
             )
           ) {
-            markAllowSchema(JSON.stringify(pathItem), schemas);
+            markAllowedSchema(JSON.stringify(pathItem), schemas);
           } else {
             return;
           }
@@ -543,6 +543,7 @@ export default class ServiceGenerator {
                 typeName: this.getTypeName(newApi),
                 path: getPrefixPath(),
                 pathInComment: formattedPath.replace(/\*/g, '&#42;'),
+                apifoxRunLink: newApi?.['x-run-in-apifox'],
                 hasPathVariables: formattedPath.includes('{'),
                 hasApiPrefix: !!this.config.apiPrefix,
                 method: newApi.method,

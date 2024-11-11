@@ -143,7 +143,13 @@ const gen = async () => {
   await openAPI.generateService({
     schemaPath: `${__dirname}/example-files/openapi-ref-encode-character.json`,
     serversPath: './apis/ref-encode-character',
-    allowedTags: ["角色"]
+    allowedTags: ["商品基础管理"]
+  });
+
+  // 测试支持 apifox x-run-in-apifox
+  await openAPI.generateService({
+    schemaPath: `${__dirname}/example-files/openapi-ref-encode-character.json`,
+    serversPath: './apis/x-run-in-apifox'
   });
 
   // check 文件生成

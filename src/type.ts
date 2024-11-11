@@ -53,7 +53,7 @@ export type OperationObject = Modify<
   {
     parameters?: (ReferenceObject | ParameterObject)[];
   }
->;
+> & { 'x-run-in-apifox'?: string };
 
 export type ComponentsObject = OpenAPIV3.ComponentsObject;
 

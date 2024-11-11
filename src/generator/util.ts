@@ -406,7 +406,7 @@ export function resolveFunctionName(functionName: string, methodName: string) {
 }
 
 // 标记引用的 $ref 对应的schema
-export function markAllowSchema(
+export function markAllowedSchema(
   schemaStr: string,
   schemas: ComponentsObject['schemas']
 ) {
@@ -417,7 +417,7 @@ export function markAllowSchema(
 
     if (schema && !schema.isAllowed) {
       schema.isAllowed = true;
-      markAllowSchema(JSON.stringify(schema), schemas);
+      markAllowedSchema(JSON.stringify(schema), schemas);
     }
   });
 }
