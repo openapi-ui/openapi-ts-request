@@ -1,5 +1,17 @@
 # openapi-ts-request
 
+## 0.11.0
+
+### Minor Changes
+
+- [`899e8ad`](https://github.com/openapi-ui/openapi-ts-request/commit/899e8adf5cb9033acb21a0426c0ea6278b746998) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - feat: support apifox x-run-in-apifox
+
+### Patch Changes
+
+- [`fc29191`](https://github.com/openapi-ui/openapi-ts-request/commit/fc29191ddcf6a2779326ca5feef583a511be23bb) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - docs: update readme
+
+- [`b93d87a`](https://github.com/openapi-ui/openapi-ts-request/commit/b93d87ad2283b8bea8553b8c68049ead6368bce4) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - fix: fix parse schema items error
+
 ## 0.10.0
 
 ### Minor Changes
