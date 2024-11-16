@@ -1,7 +1,6 @@
 const { generateService } = require('../dist/index');
 
 generateService({
-  schemaPath: `${__dirname}/example-files/openapi-ref-encode-character.json`,
-  serversPath: './apis/ref-encode-character',
-  isTranslateToEnglishTag: true
+  schemaPath: `${__dirname}/example-files/openapi-schemas-enum-array.json`,
+  serversPath: './apis/schemas-enum-array',
 });

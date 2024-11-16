@@ -152,6 +152,12 @@ const gen = async () => {
     serversPath: './apis/x-run-in-apifox'
   });
 
+  // 测试 schemas 包含枚举数组
+  await openAPI.generateService({
+    schemaPath: `${__dirname}/example-files/openapi-schemas-enum-array.json`,
+    serversPath: './apis/schemas-enum-array'
+  });
+
   // check 文件生成
   const fileControllerStr = fs.readFileSync(
     path.join(__dirname, 'apis/file/fileController.ts'),

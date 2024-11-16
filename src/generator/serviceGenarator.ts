@@ -328,7 +328,7 @@ export default class ServiceGenerator {
           });
         });
 
-        const typeName = this.getTypeName({
+        const typeName = this.getFunctionParamsTypeName({
           ...operationObject,
           method,
           path: pathKey,
@@ -350,6 +350,7 @@ export default class ServiceGenerator {
       const result = this.resolveObject(schema) as Dictionary<
         string | boolean | IPropObject[][]
       >;
+      console.log('result: ', result);
 
       const getDefinesType = (): string => {
         if (result?.type) {
@@ -541,7 +542,7 @@ export default class ServiceGenerator {
                 functionName: this.config.isCamelCase
                   ? camelCase(functionName)
                   : functionName,
-                typeName: this.getTypeName(newApi),
+                typeName: this.getFunctionParamsTypeName(newApi),
                 path: getPrefixPath(),
                 pathInComment: formattedPath.replace(/\*/g, '&#42;'),
                 apifoxRunLink: newApi?.['x-run-in-apifox'],
@@ -666,7 +667,7 @@ export default class ServiceGenerator {
     return getDefaultType(schemaObject, namespace, schemas);
   }
 
-  private getTypeName(data: APIDataType) {
+  private getFunctionParamsTypeName(data: APIDataType) {
     const namespace = this.config.namespace ? `${this.config.namespace}.` : '';
     const typeName =
       this.config?.hook?.customTypeName?.(data) || this.getFunctionName(data);
@@ -945,6 +946,10 @@ export default class ServiceGenerator {
 
       return {
         type: `${refName}[]`,
+      };
+    } else if (schemaObject.items?.enum) {
+      return {
+        type: this.getType(schemaObject, this.config.namespace),
       };
     }
 
