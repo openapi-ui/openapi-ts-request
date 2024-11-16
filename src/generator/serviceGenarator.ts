@@ -350,7 +350,6 @@ export default class ServiceGenerator {
       const result = this.resolveObject(schema) as Dictionary<
         string | boolean | IPropObject[][]
       >;
-      console.log('result: ', result);
 
       const getDefinesType = (): string => {
         if (result?.type) {
