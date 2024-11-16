@@ -1,5 +1,11 @@
 # openapi-ts-request
 
+## 0.11.1
+
+### Patch Changes
+
+- [`135c407`](https://github.com/openapi-ui/openapi-ts-request/commit/135c4075c4989c7365dd2adff4fdbd9d95456488) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - perf: support schemas array[enum]
+
 ## 0.11.0
 
 ### Minor Changes
