@@ -183,7 +183,7 @@ export default class ServiceGenerator {
 
     // 生成枚举翻译
     const enums = filter(interfaceTPConfigs, (item) => item.isEnum);
-    if (!isEmpty(enums)) {
+    if (!this.config.isOnlyGenTypeScriptType && !isEmpty(enums)) {
       this.genFileFromTemplate(
         `${displayEnumLabelFileName}.ts`,
         TypescriptFileType.displayEnumLabel,
@@ -200,7 +200,11 @@ export default class ServiceGenerator {
       (item) => !item.isEnum
     );
     // 生成 type 翻译
-    if (this.config.isDisplayTypeLabel && !isEmpty(displayTypeLabels)) {
+    if (
+      !this.config.isOnlyGenTypeScriptType &&
+      this.config.isDisplayTypeLabel &&
+      !isEmpty(displayTypeLabels)
+    ) {
       this.genFileFromTemplate(
         `${displayTypeLabelFileName}.ts`,
         TypescriptFileType.displayTypeLabel,
@@ -212,30 +216,38 @@ export default class ServiceGenerator {
       );
     }
 
-    const prettierError = [];
+    if (!this.config.isOnlyGenTypeScriptType) {
+      const prettierError = [];
 
-    // 生成 service controller 文件
-    this.getServiceTPConfigs().forEach((tp) => {
-      const hasError = this.genFileFromTemplate(
-        getFinalFileName(`${tp.className}.ts`),
-        TypescriptFileType.serviceController,
-        {
-          namespace: this.config.namespace,
-          requestOptionsType: this.config.requestOptionsType,
-          requestImportStatement: this.config.requestImportStatement,
-          interfaceFileName: interfaceFileName,
-          ...tp,
-        }
-      );
+      // 生成 service controller 文件
+      this.getServiceTPConfigs().forEach((tp) => {
+        const hasError = this.genFileFromTemplate(
+          getFinalFileName(`${tp.className}.ts`),
+          TypescriptFileType.serviceController,
+          {
+            namespace: this.config.namespace,
+            requestOptionsType: this.config.requestOptionsType,
+            requestImportStatement: this.config.requestImportStatement,
+            interfaceFileName: interfaceFileName,
+            ...tp,
+          }
+        );
 
-      prettierError.push(hasError);
-    });
+        prettierError.push(hasError);
+      });
 
-    if (prettierError.includes(true)) {
-      log('🚥 格式化失败，请检查 service controller 文件内可能存在的语法错误');
+      if (prettierError.includes(true)) {
+        log(
+          '🚥 格式化失败，请检查 service controller 文件内可能存在的语法错误'
+        );
+      }
     }
 
-    if (this.config.isGenJsonSchemas && !isEmpty(this.schemaList)) {
+    if (
+      !this.config.isOnlyGenTypeScriptType &&
+      this.config.isGenJsonSchemas &&
+      !isEmpty(this.schemaList)
+    ) {
       // 处理重复的 schemaName
       handleDuplicateTypeNames(this.schemaList);
       // 生成 schema 文件
@@ -257,12 +269,17 @@ export default class ServiceGenerator {
         namespace: this.config.namespace,
         interfaceFileName: interfaceFileName,
         isGenJsonSchemas:
-          this.config.isGenJsonSchemas && !isEmpty(this.schemaList),
+          !this.config.isOnlyGenTypeScriptType &&
+          this.config.isGenJsonSchemas &&
+          !isEmpty(this.schemaList),
         schemaFileName: schemaFileName,
-        isDisplayEnumLabel: !isEmpty(enums),
+        isDisplayEnumLabel:
+          !this.config.isOnlyGenTypeScriptType && !isEmpty(enums),
         displayEnumLabelFileName: displayEnumLabelFileName,
         isDisplayTypeLabel:
-          this.config.isDisplayTypeLabel && !isEmpty(displayTypeLabels),
+          !this.config.isOnlyGenTypeScriptType &&
+          this.config.isDisplayTypeLabel &&
+          !isEmpty(displayTypeLabels),
         displayTypeLabelFileName: displayTypeLabelFileName,
       }
     );

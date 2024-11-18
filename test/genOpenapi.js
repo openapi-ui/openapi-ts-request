@@ -1,6 +1,7 @@
 const { generateService } = require('../dist/index');
 
 generateService({
-  schemaPath: `${__dirname}/example-files/openapi-schemas-enum-array.json`,
-  serversPath: './apis/schemas-enum-array',
+  schemaPath: `${__dirname}/example-files/openapi.json`,
+  serversPath: './apis/only-generate-typescript-type',
+  isOnlyGenTypeScriptType: true,
 });

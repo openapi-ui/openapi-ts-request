@@ -158,6 +158,15 @@ const gen = async () => {
     serversPath: './apis/schemas-enum-array'
   });
 
+  // 测试 只生成 typescript 类型，不生成请求函数
+  await openAPI.generateService({
+    schemaPath: `${__dirname}/example-files/openapi.json`,
+    serversPath: './apis/only-generate-typescript-type',
+    isOnlyGenTypeScriptType: true,
+    isDisplayTypeLabel: true,
+    isGenJsonSchemas: true,
+  });
+
   // check 文件生成
   const fileControllerStr = fs.readFileSync(
     path.join(__dirname, 'apis/file/fileController.ts'),

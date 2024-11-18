@@ -46,6 +46,11 @@ const params = program
     false
   )
   .option(
+    '--isOnlyGenTypeScriptType <boolean>',
+    'only generate typescript type',
+    false
+  )
+  .option(
     '--isCamelCase <boolean>',
     'camelCase naming of controller files and request client',
     true
@@ -83,6 +88,8 @@ async function run() {
       nullable: JSON.parse(params.nullable as string) === true,
       isTranslateToEnglishTag:
         JSON.parse(params.isTranslateToEnglishTag as string) === true,
+      isOnlyGenTypeScriptType:
+        JSON.parse(params.isOnlyGenTypeScriptType as string) === true,
       isCamelCase: JSON.parse(params.isCamelCase as string) === true,
     });
     process.exit(0);

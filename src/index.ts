@@ -88,6 +88,10 @@ export type GenerateServiceProps = {
    */
   isTranslateToEnglishTag?: boolean;
   /**
+   * 仅仅生成类型，不生成请求函数
+   */
+  isOnlyGenTypeScriptType?: boolean;
+  /**
    * 模板文件、请求函数采用小驼峰命名
    */
   isCamelCase?: boolean;
@@ -208,6 +212,7 @@ export async function generateService({
       isCamelCase: true,
       isDisplayTypeLabel: false,
       isGenJsonSchemas: false,
+      isOnlyGenTypeScriptType: false,
       allowedTags: allowedTags
         ? map(allowedTags, (item) => item.toLowerCase())
         : null,
