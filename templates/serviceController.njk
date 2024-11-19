@@ -35,19 +35,23 @@ export async function {{ api.functionName }}(
 {%- if api.body -%}
   body
   {%- if genType === "ts" -%}
-
-  : {% if api.body.propertiesList %}{
+  :
+  {% if api.body.propertiesList.length > 0 %}{
     {%- for prop in api.body.propertiesList %}
     {% if prop.schema.description -%}
     /** {{ prop.schema.description }} */
     {% endif -%}
-    '{{ prop.key }}'{{ "?" if not prop.schema.required }}: {{ prop.schema.type }},
+    {{ prop.key }}{{ "?" if not prop.schema.required }}: {{ prop.schema.type }},
     {%- endfor %}
   }
   {%- else -%}
-  {{ api.body.type }}
+      {%- if api.body.type === "object" -%}
+        unknown
+      {%- else -%}
+        {{ api.body.type }}
+      {%- endif -%}
   {%- endif -%}
-  
+
   {%- endif -%}
   {{ "," if api.file }}
 {%- endif %}
@@ -122,7 +126,7 @@ export async function {{ api.functionName }}(
   {% endif -%}
 
 
-  
+
   {% if api.hasPathVariables or api.hasApiPrefix -%}
   return request{{ ("<" + api.response.type + ">") | safe if genType === "ts" }}(`{{ api.path | safe }}`, {
   {% else -%}

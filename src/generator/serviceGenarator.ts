@@ -29,6 +29,7 @@ import {
   OperationObject,
   ParameterObject,
   PathItemObject,
+  PriorityRule,
   ReferenceObject,
   RequestBodyObject,
   ResponseObject,
@@ -97,6 +98,25 @@ export default class ServiceGenerator {
   protected schemaList: ISchemaItem[] = [];
 
   constructor(config: GenerateServiceProps, openAPIData: OpenAPIObject) {
+    const allowedTags = this.config?.allowedTags;
+    const excludeTags = this.config?.excludeTags;
+    const allowedPaths = this.config?.allowedPaths;
+    const excludePaths = this.config?.excludePaths;
+    const priorityRule = this.config.priorityRule;
+
+    // 判断两个数组有交集,提示报错
+    if (
+      !isEmpty(allowedTags) &&
+      !isEmpty(excludeTags) &&
+      priorityRule === PriorityRule.exceptions
+    ) {
+      const intersectionArray = intersection(allowedTags, excludeTags);
+      if (intersectionArray.length > 0) {
+        console.log('🚥 有交集的 tag: ', intersectionArray);
+        return;
+      }
+    }
+
     this.finalPath = '';
     this.config = {
       templatesFolder: join(__dirname, '../../', 'templates'),
@@ -114,6 +134,17 @@ export default class ServiceGenerator {
 
     // 用 tag 分组 paths, { [tag]: [pathMap, pathMap] }
     keys(this.openAPIData.paths).forEach((pathKey) => {
+      if (priorityRule === PriorityRule.allow) {
+        if (!isEmpty(allowedPaths) && !includes(allowedPaths, pathKey)) {
+          return;
+        }
+      }
+      if (priorityRule === PriorityRule.exclude) {
+        if (!isEmpty(excludePaths) && includes(excludePaths, pathKey)) {
+          return;
+        }
+      }
+
       const pathItem = this.openAPIData.paths[pathKey];
 
       forEach(methods, (method) => {
@@ -130,12 +161,23 @@ export default class ServiceGenerator {
         }
 
         tags.forEach((tag) => {
-          // 筛选出 tags 关联的paths
-          if (
-            !isEmpty(this.config?.allowedTags) &&
-            !includes(this.config.allowedTags, tag.toLowerCase())
-          ) {
-            return;
+          if (priorityRule === PriorityRule.allow) {
+            // 筛选出 tags 关联的paths
+            if (
+              !isEmpty(allowedTags) &&
+              !includes(allowedTags, tag.toLowerCase())
+            ) {
+              return;
+            }
+          }
+
+          if (priorityRule === PriorityRule.exclude) {
+            if (
+              !isEmpty(excludeTags) &&
+              includes(excludeTags, tag.toLowerCase())
+            ) {
+              return;
+            }
           }
 
           const tagKey = this.config.isCamelCase

@@ -7,6 +7,7 @@ import {
   ComponentsObject,
   OpenAPIObject,
   OperationObject,
+  PriorityRule,
   ReferenceObject,
   SchemaObject,
 } from './type';
@@ -38,6 +39,22 @@ export type GenerateServiceProps = {
    * 只解析归属于 tags 集合的api 和 schema
    */
   allowedTags?: string[];
+  /**
+   * 不解析归属于 tags 集合的api 和 schema
+   */
+  excludeTags?: string[];
+  /**
+   * 只解析归属于 paths 集合的api
+   */
+  allowedPaths?: string[];
+  /**
+   * 排除解析归属于 paths 集合的api
+   */
+  excludePaths?: string[];
+  /**
+   * 优先规则
+   */
+  priorityRule: PriorityRule;
   /**
    * 自定义请求方法 options 参数类型
    */
@@ -175,6 +192,7 @@ export async function generateService({
   schemaPath,
   mockFolder,
   allowedTags,
+  excludeTags,
   authorization,
   isTranslateToEnglishTag,
   ...rest
@@ -211,6 +229,10 @@ export async function generateService({
       allowedTags: allowedTags
         ? map(allowedTags, (item) => item.toLowerCase())
         : null,
+      excludeTags: excludeTags
+        ? map(excludeTags, (item) => item.toLowerCase())
+        : null,
+      priorityRule: PriorityRule.allow,
       ...rest,
     },
     openAPI

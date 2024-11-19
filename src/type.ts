@@ -105,4 +105,10 @@ export enum SchemaObjectType {
   file = 'file',
 }
 
+export enum PriorityRule {
+  allow = 'allow',
+  exclude = 'exclude',
+  exceptions = 'exceptions',
+}
+
 export type ISchemaObjectType = keyof typeof SchemaObjectType;
