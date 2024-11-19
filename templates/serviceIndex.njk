@@ -1,19 +1,15 @@
 /* eslint-disable */
 // @ts-ignore
-import * as {{ namespace }} from './{{ interfaceFileName }}';
+export * from './{{ interfaceFileName }}';
+{%- if isDisplayEnumLabel %}
+export * from './{{ displayEnumLabelFileName }}';
+{%- endif %}
+{%- if isDisplayTypeLabel %}
+export * from './{{ displayTypeLabelFileName }}';
+{%- endif %}
 {%- if isGenJsonSchemas %}
-import * as schemas from './{{ schemaFileName }}';
+export * from './{{ schemaFileName }}';
 {%- endif %}
 {% for api in list -%}
-import * as {{ api.controllerName }} from './{{ api.fileName }}';
+export * from './{{ api.fileName }}';
 {% endfor -%}
-
-export default {
-  {%- if isGenJsonSchemas %}
-  schemas,
-  {%- endif %}
-  {{ namespace }},
-  {% for api in list -%}
-  {{ api.controllerName }},
-  {% endfor -%}
-}

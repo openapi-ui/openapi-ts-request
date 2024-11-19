@@ -63,8 +63,6 @@ export const numberEnum = [
   'double',
   'number',
   'int',
-  'float',
-  'double',
   'int32',
   'int64',
 ];

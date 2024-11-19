@@ -22,6 +22,7 @@ import {
   ComponentsObject,
   ISchemaObject,
   NonArraySchemaObject,
+  OpenAPIObject,
   OperationObject,
   ReferenceObject,
   SchemaObject,
@@ -100,14 +101,20 @@ export function resolveTypeName(typeName: string) {
   return pinyin.convertToPinyin(noBlankName, '', true);
 }
 
-function getRefName(refObject: ReferenceObject | string) {
+export function getRefName(refObject: ReferenceObject | string) {
   if (!isReferenceObject(refObject)) {
     return refObject;
   }
 
-  const refPaths = refObject.$ref.split('/');
+  return resolveTypeName(getLastRefName(refObject.$ref));
+}
 
-  return resolveTypeName(refPaths[refPaths.length - 1]);
+export function getLastRefName(refPath: string = '') {
+  const refPaths = refPath.split('/');
+
+  return refPaths.length > 0
+    ? decodeURIComponent(refPaths[refPaths.length - 1])
+    : '';
 }
 
 export function getDefaultType(
@@ -211,8 +218,7 @@ export function getDefaultType(
     const allofList = schemaObject.allOf.map((item) => {
       if (isReferenceObject(item)) {
         // 不使用 getRefName 函数处理，无法通过 schemas[schemaKey] 获取到schema
-        const refPaths = item.$ref.split('/');
-        const schemaKey = refPaths[refPaths.length - 1];
+        const schemaKey = getLastRefName(item.$ref);
 
         if ((schemas?.[schemaKey] as SchemaObject)?.enum) {
           return `I${getDefaultType(item, namespace)}`;
@@ -400,21 +406,18 @@ export function resolveFunctionName(functionName: string, methodName: string) {
 }
 
 // 标记引用的 $ref 对应的schema
-export function markAllowSchema(
+export function markAllowedSchema(
   schemaStr: string,
   schemas: ComponentsObject['schemas']
 ) {
-  const refs = schemaStr?.match(/#\/components\/schemas\/([A-Za-z0-9._-]+)/g);
+  const refs = schemaStr?.match(/#\/components\/schemas\/([\w%«».-]+)/g);
 
   forEach(refs, (ref) => {
-    const refPaths = ref.split('/');
-    const schema = schemas?.[
-      refPaths[refPaths.length - 1]
-    ] as ICustomSchemaObject;
+    const schema = schemas?.[getLastRefName(ref)] as ICustomSchemaObject;
 
-    if (!schema?.isAllowed) {
+    if (schema && !schema.isAllowed) {
       schema.isAllowed = true;
-      markAllowSchema(JSON.stringify(schema), schemas);
+      markAllowedSchema(JSON.stringify(schema), schemas);
     }
   });
 }
@@ -454,4 +457,16 @@ export function isBinaryArraySchemaObject(
     ((schema.items as NonArraySchemaObject)?.format === 'binary' ||
       (schema.items as NonArraySchemaObject)?.format === 'base64')
   );
+}
+
+export function resolveRefs(obj: OpenAPIObject, fields: string[]) {
+  return fields.reduce((acc: unknown, field) => {
+    if (!acc) return;
+
+    const s = acc[decodeURIComponent(field)] as NonArraySchemaObject;
+
+    if (!s) return;
+
+    return s;
+  }, obj);
 }

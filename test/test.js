@@ -9,6 +9,8 @@ const gen = async () => {
   await openAPI.generateService({
     schemaPath: `${__dirname}/example-files/openapi-empty.json`,
     serversPath: './apis/empty',
+    isDisplayTypeLabel: true,
+    isGenJsonSchemas: true,
   });
 
   // 测试 swagger => openapi, schema 循环引用
@@ -109,6 +111,51 @@ const gen = async () => {
     schemaPath: `${__dirname}/example-files/openapi-display-enum-label.json`,
     serversPath: './apis/schemas',
     isGenJsonSchemas: true,
+  });
+
+  // 测试设置 path 前缀
+  await openAPI.generateService({
+    schemaPath: `${__dirname}/example-files/swagger.json`,
+    serversPath: './apis/api-prefix',
+    apiPrefix: '"/pet"'
+  });
+
+  // 测试解析 swagger.yaml/openapi.yaml
+  await openAPI.generateService({
+    schemaPath: `${__dirname}/example-files/swagger.yaml`,
+    serversPath: './apis/yaml'
+  });
+
+  // 测试将中文 tag 名称翻译成英文 tag 名称
+  await openAPI.generateService({
+    schemaPath: `${__dirname}/example-files/openapi-chinese-tag.json`,
+    serversPath: './apis/chinese-tag',
+    isTranslateToEnglishTag: true
+  });
+
+  // 测试支持 components 非 schemas 的字段
+  await openAPI.generateService({
+    schemaPath: `${__dirname}/example-files/swagger-components-response.json`,
+    serversPath: './apis/components-response',
+  });
+
+  // 测试 $ref 引用中包含 encode 编码字符
+  await openAPI.generateService({
+    schemaPath: `${__dirname}/example-files/openapi-ref-encode-character.json`,
+    serversPath: './apis/ref-encode-character',
+    allowedTags: ["商品基础管理"]
+  });
+
+  // 测试支持 apifox x-run-in-apifox
+  await openAPI.generateService({
+    schemaPath: `${__dirname}/example-files/openapi-ref-encode-character.json`,
+    serversPath: './apis/x-run-in-apifox'
+  });
+
+  // 测试 schemas 包含枚举数组
+  await openAPI.generateService({
+    schemaPath: `${__dirname}/example-files/openapi-schemas-enum-array.json`,
+    serversPath: './apis/schemas-enum-array'
   });
 
   // check 文件生成

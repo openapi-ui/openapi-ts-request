@@ -1,5 +1,125 @@
 # openapi-ts-request
 
+## 0.11.1
+
+### Patch Changes
+
+- [`135c407`](https://github.com/openapi-ui/openapi-ts-request/commit/135c4075c4989c7365dd2adff4fdbd9d95456488) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - perf: support schemas array[enum]
+
+## 0.11.0
+
+### Minor Changes
+
+- [`899e8ad`](https://github.com/openapi-ui/openapi-ts-request/commit/899e8adf5cb9033acb21a0426c0ea6278b746998) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - feat: support apifox x-run-in-apifox
+
+### Patch Changes
+
+- [`fc29191`](https://github.com/openapi-ui/openapi-ts-request/commit/fc29191ddcf6a2779326ca5feef583a511be23bb) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - docs: update readme
+
+- [`b93d87a`](https://github.com/openapi-ui/openapi-ts-request/commit/b93d87ad2283b8bea8553b8c68049ead6368bce4) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - fix: fix parse schema items error
+
+## 0.10.0
+
+### Minor Changes
+
+- [`b0f3e41`](https://github.com/openapi-ui/openapi-ts-request/commit/b0f3e416ee25398f242b2bac07cdca4f73e69bf4) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - feat: support x-apifox enumDescriptions
+
+## 0.9.0
+
+### Minor Changes
+
+- [#89](https://github.com/openapi-ui/openapi-ts-request/pull/89) [`80c575a`](https://github.com/openapi-ui/openapi-ts-request/commit/80c575a5b5578e3ff32deae2347e28259f3e1adf) Thanks [@lezzhao](https://github.com/lezzhao)! - feat: support for 'components' non-schemas fields
+
+## 0.8.4
+
+### Patch Changes
+
+- [`5c1e70d`](https://github.com/openapi-ui/openapi-ts-request/commit/5c1e70d9b293b30fa667974436ef6d3af2481230) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - perf: perf serviceController template import sort
+
+## 0.8.3
+
+### Patch Changes
+
+- [`430c164`](https://github.com/openapi-ui/openapi-ts-request/commit/430c1648fa0cb1737ed83f762bff434678488c50) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - fix: fix $ref includes encode character causing allowedTags function error
+
+## 0.8.2
+
+### Patch Changes
+
+- [`f8ee256`](https://github.com/openapi-ui/openapi-ts-request/commit/f8ee2562e3e7733c11657edcd2387bb86435ffe5) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - perf: perf entry export
+
+## 0.8.1
+
+### Patch Changes
+
+- [`91bb707`](https://github.com/openapi-ui/openapi-ts-request/commit/91bb7071e47198c0341871e4c6ef17b72360f5ef) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - fix: fix apifox $ref includes encode character
+
+## 0.8.0
+
+### Minor Changes
+
+- [`11d4e53`](https://github.com/openapi-ui/openapi-ts-request/commit/11d4e531163ec6ebcea02c9f8b4c888ee6a3db60) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - feat: adjust entry export
+
+## 0.7.0
+
+### Minor Changes
+
+- [`a3aa314`](https://github.com/openapi-ui/openapi-ts-request/commit/a3aa31483b36049c2032a5f64b636e633c23fd93) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - feat: support docs authorization
+
+## 0.6.0
+
+### Minor Changes
+
+- [`44eb25b`](https://github.com/openapi-ui/openapi-ts-request/commit/44eb25bd6e4be8cd6ff7a945b5bade81ad665251) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - feat: support translate chinese tag name to english tag name
+
+### Patch Changes
+
+- [`62e0ce2`](https://github.com/openapi-ui/openapi-ts-request/commit/62e0ce23029451941984ca4bda23d2802228c6e5) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - chore: update dependencies
+
+## 0.5.0
+
+### Minor Changes
+
+- [`3f89463`](https://github.com/openapi-ui/openapi-ts-request/commit/3f89463ba83421e690454051d528a50825460932) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - feat: support parse swagger.yml/openapi.yml
+
+## 0.4.11
+
+### Patch Changes
+
+- [`ee82d00`](https://github.com/openapi-ui/openapi-ts-request/commit/ee82d00aed28e1db3111edb29527c0833d999120) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - fix: fix query field complexType definition
+
+- [`cf8ef92`](https://github.com/openapi-ui/openapi-ts-request/commit/cf8ef925bc5d6cd3c68694922d0c800bda4dcbea) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - docs: add introduction for adapting to uniapp
+
+## 0.4.10
+
+### Patch Changes
+
+- [`f4a2370`](https://github.com/openapi-ui/openapi-ts-request/commit/f4a2370ce3e9e09c723c2b8938acaff87ce8ac79) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - fix: fix bug #51
+
+## 0.4.9
+
+### Patch Changes
+
+- [`3bc210d`](https://github.com/openapi-ui/openapi-ts-request/commit/3bc210d2154b0e597343a86f1e47f965d8312920) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - fix: fix bug #49
+
+## 0.4.8
+
+### Patch Changes
+
+- [`94801b6`](https://github.com/openapi-ui/openapi-ts-request/commit/94801b68ca3048bd505b1b44cac8ba35c0d13d66) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - chore: update husky script
+
+- [`cdecb3f`](https://github.com/openapi-ui/openapi-ts-request/commit/cdecb3f48de524a5dd4c3e34ba5f23021aa0646c) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - docs: update readme
+
+- [`83721a1`](https://github.com/openapi-ui/openapi-ts-request/commit/83721a13c860c0b19f310e4dbe717c2d03347127) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - fix: fix apiPrefix match error
+
+## 0.4.7
+
+### Patch Changes
+
+- [`ace4a34`](https://github.com/openapi-ui/openapi-ts-request/commit/ace4a348d21fd9528b91e7d82efec10fab12af24) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - perf: perf displayEnumLabel when no enums
+
+- [`7de3b58`](https://github.com/openapi-ui/openapi-ts-request/commit/7de3b583060b2baf16b52a27296b7dbc2568a138) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - fix: fix schema is undefined when mark schema
+
 ## 0.4.6
 
 ### Patch Changes

@@ -16,6 +16,9 @@ type ICustomBaseSchemaObject = {
   'x-enum-comments'?: {
     [name: string]: string;
   };
+  'x-apifox'?: {
+    enumDescriptions: Record<string, string>;
+  };
 };
 
 export type ArraySchemaObject = Modify<
@@ -50,7 +53,7 @@ export type OperationObject = Modify<
   {
     parameters?: (ReferenceObject | ParameterObject)[];
   }
->;
+> & { 'x-run-in-apifox'?: string };
 
 export type ComponentsObject = OpenAPIV3.ComponentsObject;
 
@@ -100,6 +103,12 @@ export enum SchemaObjectType {
   null = 'null',
   union = 'union',
   file = 'file',
+}
+
+export enum PriorityRule {
+  allow = 'allow',
+  exclude = 'exclude',
+  exceptions = 'exceptions',
 }
 
 export type ISchemaObjectType = keyof typeof SchemaObjectType;

@@ -1,21 +1,22 @@
 ## Introduce
 
-[![GitHub Repo stars](https://img.shields.io/github/stars/openapi-ui/openapi-ts-request?style=social)](https://github.com/openapi-ui/openapi-ts-request)
-[![npm (scoped)](https://img.shields.io/npm/v/openapi-ts-request)](https://www.npmjs.com/package/openapi-ts-request)
-![GitHub tag](https://img.shields.io/github/v/tag/openapi-ui/openapi-ts-request?include_prereleases)
+[![GitHub Repo stars](https://img.shields.io/github/stars/openapi-ui/openapi-ts-request?style=social)](https://github.com/openapi-ui/openapi-ts-request) [![npm (scoped)](https://img.shields.io/npm/v/openapi-ts-request)](https://www.npmjs.com/package/openapi-ts-request) ![GitHub tag](https://img.shields.io/github/v/tag/openapi-ui/openapi-ts-request?include_prereleases)
 
-English | <a href="https://github.com/openapi-ui/openapi-ts-request/blob/master/README.md">简体中文</a> 
+English | <a href="https://github.com/openapi-ui/openapi-ts-request/blob/master/README.md">简体中文</a>
 
 Generate TS interfaces, request client, request mock service, enum, type field label, JSON Schemas based on [Swagger2/OpenAPI3](https://swagger.io/blog/news/whats-new-in-openapi-3-0/) specification
 
+文档：[use docs](https://github.com/openapi-ui/openapi-ts-request/issues/100)
+
 ## Features
 
-* support Swagger2.0/OpenAPI 3.0,3.1 specification
-* generate TypeScript interface, reuquest client, request mock service, enum, type field label, JSON Schemas
-* support work with npx, CLI, Nodejs
-* support custom request function, Fetch、Axios、UniApp-request、Node.js、XHR client available
-* support filter generate result by tags
-* support JSON specification
+- support Swagger2.0/OpenAPI 3.0,3.1 specification
+- generate TypeScript interface, reuquest client, request mock service, enum, type field label, JSON Schemas
+- support work with npx, CLI, Nodejs
+- support custom request function, Fetch、Axios、[UniApp-request](https://github.com/openapi-ui/openapi-ts-request/issues/46)、Node.js、XHR client available
+- support filter generate result by tags
+- support JSON/YAML specification
+- support translate chinese tag name to english tag name
 
 ## Usage
 
@@ -29,21 +30,22 @@ pnpm i openapi-ts-request -D
 
 ### CosmiConfig
 
-create ```openapi-ts-request.config.ts``` file in the project root directory
-> the config file also supports ***.openapi-ts-request.ts***, ***openapi-ts-request.config.cjs*** format, reference [cosmiconfig](https://github.com/cosmiconfig/cosmiconfig?tab=readme-ov-file#cosmiconfig)
+create `openapi-ts-request.config.ts` file in the project root directory
+
+> the config file also supports **_.openapi-ts-request.ts_**, **_openapi-ts-request.config.cjs_** format, reference [cosmiconfig](https://github.com/cosmiconfig/cosmiconfig?tab=readme-ov-file#cosmiconfig)
 
 ```ts
-import type { GenerateServiceProps } from 'openapi-ts-request'
+import type { GenerateServiceProps } from 'openapi-ts-request';
 
 export default {
   schemaPath: 'http://petstore.swagger.io/v2/swagger.json',
-} as GenerateServiceProps
+} as GenerateServiceProps;
 ```
 
 support passing in array config for generate
 
 ```ts
-import type { GenerateServiceProps } from 'openapi-ts-request'
+import type { GenerateServiceProps } from 'openapi-ts-request';
 
 export default [
   {
@@ -53,13 +55,13 @@ export default [
   {
     schemaPath: 'http://auth.swagger.io/v2/swagger.json',
     serversPath: './src/apis/auth',
-  }
-] as GenerateServiceProps[]
+  },
+] as GenerateServiceProps[];
 ```
 
-add the command in ```script``` of ```package.json```: ```"openapi": "openapi-ts",```
+add the command in `script` of `package.json`: `"openapi": "openapi-ts",`
 
-generate result: 
+generate result:
 
 ```bash
 npm run openapi
@@ -67,20 +69,20 @@ npm run openapi
 
 ### JS
 
-create a new ```openapi-ts-request.config.js``` file in any directory ```xxx/xxx```
+create a new `openapi-ts-request.config.js` file in any directory `xxx/xxx`
 
 ```ts
-const { generateService } = require('openapi-ts-request')
+const { generateService } = require('openapi-ts-request');
 
 generateService({
   schemaPath: 'http://petstore.swagger.io/v2/swagger.json',
   serversPath: './apis',
-})
+});
 ```
 
-add the command in ```script``` of ```package.json```: ```"openapi": "node xxx/xxx/openapi-ts-request.config.js"```
+add the command in `script` of `package.json`: `"openapi": "node xxx/xxx/openapi-ts-request.config.js"`
 
-generate result: 
+generate result:
 
 ```bash
 npm run openapi
@@ -88,20 +90,20 @@ npm run openapi
 
 ### TS
 
-create a new ```openapi-ts-request.config.ts``` file in any directory ```xxx/xxx```
+create a new `openapi-ts-request.config.ts` file in any directory `xxx/xxx`
 
 ```ts
-const { generateService } = require('openapi-ts-request')
+const { generateService } = require('openapi-ts-request');
 
 generateService({
   schemaPath: 'http://petstore.swagger.io/v2/swagger.json',
   serversPath: './apis',
-})
+});
 ```
 
-add the command in ```script``` of ```package.json```: ```"openapi": "ts-node xxx/xxx/openapi-ts-request.config.ts",```
+add the command in `script` of `package.json`: `"openapi": "ts-node xxx/xxx/openapi-ts-request.config.ts",`
 
-generate result: 
+generate result:
 
 ```bash
 npm run openapi
@@ -134,8 +136,8 @@ $ openapi --help
     -V, --version                      output the version number
     -i, --input <string>               OpenAPI specification, can be a path, url (required)
     -o, --output <string>              output directory (required)
-    --requestLibPath <string>          custom request lib path, for example: "@/request", "node-fetch"
-    --allowedTags <string[]>           generate results from allowed tags
+    --requestLibPath <string>          custom request lib path, for example: "@/request", "node-fetch", default is "axios"
+    --allowedTags <string[]>           generate code from allowed tags
     --requestOptionsType <string>      custom request method options parameter type (default: "{ [key:
                                       string]: unknown }")
     --requestImportStatement <string>  custom request import statement, for example: "const request =
@@ -144,13 +146,15 @@ $ openapi --help
                                       "'api'"(string)
     --isDisplayTypeLabel <boolean>     generate label matching type field (default: false)
     --isGenJsonSchemas <boolean>       generate JSON Schemas (default: false)
-    --mockFolder <string>              mock file path (default: "./mocks")
+    --mockFolder <string>              mock file path
+    --authorization <string>           docs authorization
     --nullable <boolean>               null instead of optional (default: false)
+    --isTranslateToEnglishTag <boolean>translate chinese tag name to english tag name (default: false)
     --isCamelCase <boolean>            camelCase naming of controller files and request client (default: true)
     -h, --help                         display help for command
 ```
 
-generate result: 
+generate result:
 
 ```bash
 openapi -i ./spec.json -o ./apis
@@ -158,32 +162,34 @@ openapi -i ./spec.json -o ./apis
 
 ## Parameter
 
-| props                  | required | type     | default      | remark | 
-| ---------------------- | -------- | -------- | ------------ | ------- |
-| schemaPath             | yes      | string   | -            | Swagger2/OpenAPI3 URL | 
-| serversPath            | no       | string   | './src/apis' | the folder path for the generated results | 
-| requestLibPath         | no       | string   | -            | custom request lib path, for example: '@/request', 'node-fetch' | 
-| allowedTags            | no       | string[] | -            | generate results from allowed tags | 
-| requestOptionsType     | no       | string   | '{ [key: string]: unknown }' | custom request method options parameter type | 
-| requestImportStatement | no       | string   | -            | custom request import statement, for example: "const request = require('@/request')" | 
-| apiPrefix              | no       | string   | -            | custom the prefix of the api path, for example: 'api'(variable), "'api'"(string) | 
-| isDisplayTypeLabel     | no       | boolean  | false        | generate label matching type field | 
-| isGenJsonSchemas       | no       | boolean  | false        | generate JSON Schemas | 
-| mockFolder             | no       | string   | './mocks'    | mock file path | 
-| nullable               | no       | boolean  | false        | null instead of optional | 
-| isCamelCase            | no       | boolean  | true         | camelCase naming of controller files and request client | 
-| hook                   | no       | [Custom Hook](#Custom-Hook) | - | custom hook | 
+| props | required | type | default | remark |
+| --- | --- | --- | --- | --- |
+| schemaPath | yes | string | - | Swagger2/OpenAPI3 URL |
+| serversPath | no | string | './src/apis' | the folder path for the generated results |
+| requestLibPath | no | string | 'axios' | custom request lib path, for example: '@/request', 'node-fetch' |
+| allowedTags | no | string[] | - | generate code from allowed tags |
+| requestOptionsType | no | string | '{ [key: string]: unknown }' | custom request method options parameter type |
+| requestImportStatement | no | string | - | custom request import statement, for example: "const request = require('@/request')" |
+| apiPrefix | no | string | - | custom the prefix of the api path, for example: 'api'(variable), "'api'"(string) |
+| isDisplayTypeLabel | no | boolean | false | generate label matching type field |
+| isGenJsonSchemas | no | boolean | false | generate JSON Schemas |
+| mockFolder | no | string | './mocks' | mock file path |
+| authorization | 否 | string | - | docs authorization |
+| nullable | no | boolean | false | null instead of optional |
+| isTranslateToEnglishTag | no | boolean | false | translate chinese tag name to english tag name |
+| isCamelCase | no | boolean | true | camelCase naming of controller files and request client |
+| hook | no | [Custom Hook](#Custom-Hook) | - | custom hook |
 
 ## Custom Hook
 
-| props                  | type | remark            |
-| ---------------------- | ---- | ----------------- |
-| afterOpenApiDataInited | (openAPIData: OpenAPIObject) => OpenAPIObject  | custom OpenAPI data |
-| customFunctionName     | (data: APIDataType) => string   | custom request client function name |
-| customTypeName         | (data: APIDataType) => string | custom type name |
-| customClassName        | (tagName: string) => string  | custom tag name |
-| customType             | (<br>schemaObject: SchemaObject \| ReferenceObject,<br>namespace: string,<br>originGetType:(schemaObject: SchemaObject \| ReferenceObject, namespace: string) => string,<br>) => string  | custom type <br> *returning a non-string will use the default method to get the type* |
-| customFileNames        |  (<br>operationObject: OperationObject,<br>apiPath: string,<br>apiMethod: string,<br>) => string[] | custom generate request client controller file name, can return multiple: generate multiple files. <br> *if the return value is empty, the default getFileNames is used* |
+| props | type | remark |
+| --- | --- | --- |
+| afterOpenApiDataInited | (openAPIData: OpenAPIObject) => OpenAPIObject | custom OpenAPI data |
+| customFunctionName | (data: APIDataType) => string | custom request client function name |
+| customTypeName | (data: APIDataType) => string | custom type name |
+| customClassName | (tagName: string) => string | custom tag name |
+| customType | (<br>schemaObject: SchemaObject \| ReferenceObject,<br>namespace: string,<br>originGetType:(schemaObject: SchemaObject \| ReferenceObject, namespace: string) => string,<br>) => string | custom type <br> _returning a non-string will use the default method to get the type_ |
+| customFileNames | (<br>operationObject: OperationObject,<br>apiPath: string,<br>apiMethod: string,<br>) => string[] | custom generate request client controller file name, can return multiple: generate multiple files. <br> _if the return value is empty, the default getFileNames is used_ |
 
 ## JSON Schemas
 
@@ -191,19 +197,26 @@ openapi -i ./spec.json -o ./apis
 - provide a schema parsing function to fill the references of `$ref` and `$allOf` into `current schema`
 
 ```ts
-export declare function patchSchema<T extends object>(schema: ISchemaObject, schemas: ComponentsObject["schemas"]): T;
+export declare function patchSchema<T extends object>(
+  schema: ISchemaObject,
+  schemas: ComponentsObject['schemas']
+): T;
 ```
 
 ## Mock
 
 currently using [mockjs](http://mockjs.com) to generate mock data, the mocks file startup needs to rely on [@umijs/server](https://umijs.org/docs/guides/mock), we will look for other solutions later to achieve a better mock experience
 
+## Adapt to uniapp
+
+it is recommended to use a custom request function to adapt to uniapp. you can also use the `@uni-helper/axios-adapter` adapter. for details, see [【use docs 2.2】](https://github.com/openapi-ui/openapi-ts-request/issues/100)
+
 ## Contribute
 
 ### Development Environment
 
-* node 18+
-* pnpm 9+
+- node 18+
+- pnpm 9+
 
 ### Submit Pull Request
 

@@ -29,6 +29,7 @@ import {
   OperationObject,
   ParameterObject,
   PathItemObject,
+  PriorityRule,
   ReferenceObject,
   RequestBodyObject,
   ResponseObject,
@@ -72,15 +73,18 @@ import {
   getDefaultFileTag,
   getDefaultType,
   getFinalFileName,
+  getLastRefName,
+  getRefName,
   handleDuplicateTypeNames,
   isArraySchemaObject,
   isBinaryArraySchemaObject,
   isNonArraySchemaObject,
   isReferenceObject,
   isSchemaObject,
-  markAllowSchema,
+  markAllowedSchema,
   replaceDot,
   resolveFunctionName,
+  resolveRefs,
   resolveTypeName,
   stripDot,
 } from './util';
@@ -94,6 +98,25 @@ export default class ServiceGenerator {
   protected schemaList: ISchemaItem[] = [];
 
   constructor(config: GenerateServiceProps, openAPIData: OpenAPIObject) {
+    const allowedTags = this.config?.allowedTags;
+    const excludeTags = this.config?.excludeTags;
+    const allowedPaths = this.config?.allowedPaths;
+    const excludePaths = this.config?.excludePaths;
+    const priorityRule = this.config.priorityRule;
+
+    // 判断两个数组有交集,提示报错
+    if (
+      !isEmpty(allowedTags) &&
+      !isEmpty(excludeTags) &&
+      priorityRule === PriorityRule.exceptions
+    ) {
+      const intersectionArray = intersection(allowedTags, excludeTags);
+      if (intersectionArray.length > 0) {
+        console.log('🚥 有交集的 tag: ', intersectionArray);
+        return;
+      }
+    }
+
     this.finalPath = '';
     this.config = {
       templatesFolder: join(__dirname, '../../', 'templates'),
@@ -111,16 +134,15 @@ export default class ServiceGenerator {
 
     // 用 tag 分组 paths, { [tag]: [pathMap, pathMap] }
     keys(this.openAPIData.paths).forEach((pathKey) => {
-      // allowedUrl
-      if (
-        !isEmpty(this.config?.allowedPaths) &&
-        !includes(this.config?.allowedPaths, pathKey)
-      ) {
-        return;
+      if (priorityRule === PriorityRule.allow) {
+        if (!isEmpty(allowedPaths) && !includes(allowedPaths, pathKey)) {
+          return;
+        }
       }
-      // excludeUrl
-      if (includes(this.config?.excludePaths, pathKey)) {
-        return;
+      if (priorityRule === PriorityRule.exclude) {
+        if (!isEmpty(excludePaths) && includes(excludePaths, pathKey)) {
+          return;
+        }
       }
 
       const pathItem = this.openAPIData.paths[pathKey];
@@ -139,16 +161,23 @@ export default class ServiceGenerator {
         }
 
         tags.forEach((tag) => {
-          // 筛选出 tags 关联的paths
-          if (
-            !isEmpty(this.config?.allowedTags) &&
-            !includes(this.config.allowedTags, tag.toLowerCase())
-          ) {
-            return;
+          if (priorityRule === PriorityRule.allow) {
+            // 筛选出 tags 关联的paths
+            if (
+              !isEmpty(allowedTags) &&
+              !includes(allowedTags, tag.toLowerCase())
+            ) {
+              return;
+            }
           }
 
-          if (includes(this.config.excludeTags, tag)) {
-            return;
+          if (priorityRule === PriorityRule.exclude) {
+            if (
+              !isEmpty(excludeTags) &&
+              includes(excludeTags, tag.toLowerCase())
+            ) {
+              return;
+            }
           }
 
           const tagKey = this.config.isCamelCase
@@ -195,23 +224,30 @@ export default class ServiceGenerator {
     );
 
     // 生成枚举翻译
-    this.genFileFromTemplate(
-      `${displayEnumLabelFileName}.ts`,
-      TypescriptFileType.displayEnumLabel,
-      {
-        list: filter(interfaceTPConfigs, (item) => item.isEnum),
-        namespace: this.config.namespace,
-        interfaceFileName: interfaceFileName,
-      }
-    );
+    const enums = filter(interfaceTPConfigs, (item) => item.isEnum);
+    if (!isEmpty(enums)) {
+      this.genFileFromTemplate(
+        `${displayEnumLabelFileName}.ts`,
+        TypescriptFileType.displayEnumLabel,
+        {
+          list: enums,
+          namespace: this.config.namespace,
+          interfaceFileName: interfaceFileName,
+        }
+      );
+    }
 
+    const displayTypeLabels = filter(
+      interfaceTPConfigs,
+      (item) => !item.isEnum
+    );
     // 生成 type 翻译
-    if (this.config.isDisplayTypeLabel) {
+    if (this.config.isDisplayTypeLabel && !isEmpty(displayTypeLabels)) {
       this.genFileFromTemplate(
         `${displayTypeLabelFileName}.ts`,
         TypescriptFileType.displayTypeLabel,
         {
-          list: filter(interfaceTPConfigs, (item) => !item.isEnum),
+          list: displayTypeLabels,
           namespace: this.config.namespace,
           interfaceFileName: interfaceFileName,
         }
@@ -241,20 +277,7 @@ export default class ServiceGenerator {
       log('🚥 格式化失败，请检查 service controller 文件内可能存在的语法错误');
     }
 
-    // 生成 service index 文件
-    this.genFileFromTemplate(
-      `${serviceEntryFileName}.ts`,
-      TypescriptFileType.serviceIndex,
-      {
-        list: this.classNameList,
-        namespace: this.config.namespace,
-        interfaceFileName: interfaceFileName,
-        schemaFileName: schemaFileName,
-        isGenJsonSchemas: this.config.isGenJsonSchemas,
-      }
-    );
-
-    if (this.config.isGenJsonSchemas) {
+    if (this.config.isGenJsonSchemas && !isEmpty(this.schemaList)) {
       // 处理重复的 schemaName
       handleDuplicateTypeNames(this.schemaList);
       // 生成 schema 文件
@@ -266,6 +289,25 @@ export default class ServiceGenerator {
         }
       );
     }
+
+    // 生成 service index 文件
+    this.genFileFromTemplate(
+      `${serviceEntryFileName}.ts`,
+      TypescriptFileType.serviceIndex,
+      {
+        list: this.classNameList,
+        namespace: this.config.namespace,
+        interfaceFileName: interfaceFileName,
+        isGenJsonSchemas:
+          this.config.isGenJsonSchemas && !isEmpty(this.schemaList),
+        schemaFileName: schemaFileName,
+        isDisplayEnumLabel: !isEmpty(enums),
+        displayEnumLabelFileName: displayEnumLabelFileName,
+        isDisplayTypeLabel:
+          this.config.isDisplayTypeLabel && !isEmpty(displayTypeLabels),
+        displayTypeLabelFileName: displayTypeLabelFileName,
+      }
+    );
 
     // 打印日志
     log('✅ 成功生成 api 文件');
@@ -298,7 +340,7 @@ export default class ServiceGenerator {
               )
             )
           ) {
-            markAllowSchema(JSON.stringify(pathItem), schemas);
+            markAllowedSchema(JSON.stringify(pathItem), schemas);
           } else {
             return;
           }
@@ -328,13 +370,15 @@ export default class ServiceGenerator {
           });
         });
 
-        if (props.length > 0) {
+        const typeName = this.getFunctionParamsTypeName({
+          ...operationObject,
+          method,
+          path: pathKey,
+        });
+
+        if (props.length > 0 && typeName) {
           lastTypes.push({
-            typeName: this.getTypeName({
-              ...operationObject,
-              method,
-              path: pathKey,
-            }),
+            typeName,
             type: 'Record<string, unknown>',
             props: [props],
             isEnum: false,
@@ -383,21 +427,23 @@ export default class ServiceGenerator {
       // 判断哪些 schema 需要添加进 type, schemas 渲染数组
       if (
         isEmpty(this.config.allowedTags) ||
-        (schema as ICustomSchemaObject).isAllowed
+        (schema as ICustomSchemaObject)?.isAllowed
       ) {
         const isEnum = result.isEnum as boolean;
         const typeName = resolveTypeName(schemaKey);
 
-        lastTypes.push({
-          typeName,
-          type: getDefinesType(),
-          props: (result.props || []) as IPropObject[][],
-          isEnum,
-          displayLabelFuncName: isEnum
-            ? camelCase(`display-${typeName}-Enum`)
-            : '',
-          enumLabelType: isEnum ? (result.enumLabelType as string) : '',
-        });
+        if (typeName) {
+          lastTypes.push({
+            typeName,
+            type: getDefinesType(),
+            props: (result.props || []) as IPropObject[][],
+            isEnum,
+            displayLabelFuncName: isEnum
+              ? camelCase(`display-${typeName}-Enum`)
+              : '',
+            enumLabelType: isEnum ? (result.enumLabelType as string) : '',
+          });
+        }
 
         if (this.config.isGenJsonSchemas) {
           this.schemaList.push({
@@ -460,10 +506,13 @@ export default class ServiceGenerator {
               );
 
               // 为 path 中的 params 添加 alias
-              const escapedPathParams = map(params.path, (item, index) => ({
-                ...item,
-                alias: `param${index}`,
-              }));
+              const escapedPathParams = map(
+                params.path,
+                (item, index: number) => ({
+                  ...item,
+                  alias: `param${index}`,
+                })
+              );
 
               if (escapedPathParams.length) {
                 escapedPathParams.forEach((param) => {
@@ -513,10 +562,11 @@ export default class ServiceGenerator {
                   prefix.startsWith('`')
                 ) {
                   const finalPrefix = prefix.slice(1, prefix.length - 1);
+                  const firstPath = formattedPath.split('/')[1];
 
                   if (
-                    formattedPath.startsWith(finalPrefix) ||
-                    formattedPath.startsWith(`/${finalPrefix}`)
+                    firstPath === finalPrefix ||
+                    `/${firstPath}` === finalPrefix
                   ) {
                     return formattedPath;
                   }
@@ -533,9 +583,10 @@ export default class ServiceGenerator {
                 functionName: this.config.isCamelCase
                   ? camelCase(functionName)
                   : functionName,
-                typeName: this.getTypeName(newApi),
+                typeName: this.getFunctionParamsTypeName(newApi),
                 path: getPrefixPath(),
                 pathInComment: formattedPath.replace(/\*/g, '&#42;'),
+                apifoxRunLink: newApi?.['x-run-in-apifox'],
                 hasPathVariables: formattedPath.includes('{'),
                 hasApiPrefix: !!this.config.apiPrefix,
                 method: newApi.method,
@@ -657,7 +708,7 @@ export default class ServiceGenerator {
     return getDefaultType(schemaObject, namespace, schemas);
   }
 
-  private getTypeName(data: APIDataType) {
+  private getFunctionParamsTypeName(data: APIDataType) {
     const namespace = this.config.namespace ? `${this.config.namespace}.` : '';
     const typeName =
       this.config?.hook?.customTypeName?.(data) || this.getFunctionName(data);
@@ -809,8 +860,7 @@ export default class ServiceGenerator {
       DEFAULT_SCHEMA) as SchemaObject;
 
     if (isReferenceObject(schema)) {
-      const refPaths = schema.$ref.split('/');
-      const refName = refPaths[refPaths.length - 1];
+      const refName = getLastRefName(schema.$ref);
       const childrenSchema = components.schemas[refName];
 
       if (isNonArraySchemaObject(childrenSchema) && this.config.dataFields) {
@@ -848,20 +898,19 @@ export default class ServiceGenerator {
           .filter((p) => p.in === source)
           .map((p) => {
             const isDirectObject =
-              ((p.schema as SchemaObject)?.type ||
+              ((p.schema as SchemaObject)?.type === 'object' ||
                 (p as unknown as SchemaObject).type) === 'object';
-            const refList = (
+            const refName = getLastRefName(
               (p.schema as ReferenceObject)?.$ref ||
-              (p as unknown as ReferenceObject).$ref ||
-              ''
-            ).split('/');
-            const ref = refList[refList.length - 1];
+                (p as unknown as ReferenceObject).$ref
+            );
             const deRefObj =
               entries(this.openAPIData.components?.schemas).find(
-                ([k]) => k === ref
+                ([k]) => k === refName
               ) || [];
             const isRefObject =
-              (deRefObj[1] as SchemaObject)?.type === 'object';
+              (deRefObj[1] as SchemaObject)?.type === 'object' &&
+              !isEmpty((deRefObj[1] as SchemaObject)?.properties);
 
             return {
               ...p,
@@ -934,10 +983,14 @@ export default class ServiceGenerator {
 
   private resolveArray(schemaObject: ArraySchemaObject) {
     if (isReferenceObject(schemaObject.items)) {
-      const refPaths = schemaObject.items.$ref.split('/');
+      const refName = getRefName(schemaObject.items);
 
       return {
-        type: `${refPaths[refPaths.length - 1]}[]`,
+        type: `${refName}[]`,
+      };
+    } else if (schemaObject.items?.enum) {
+      return {
+        type: this.getType(schemaObject, this.config.namespace),
       };
     }
 
@@ -953,8 +1006,14 @@ export default class ServiceGenerator {
 
   private resolveEnumObject(schemaObject: SchemaObject) {
     const enumArray = schemaObject.enum;
-    const enumStr = `{${map(enumArray, (value) => `${value}="${value}"`).join(',')}}`;
+    let enumStr = '';
     let enumLabelTypeStr = '';
+
+    if (!numberEnum.includes(schemaObject.type)) {
+      enumStr = `{${map(enumArray, (value) => `${value}="${value}"`).join(',')}}`;
+    } else {
+      enumStr = `{${map(enumArray, (value) => `NUMBER_${value}=${value}`).join(',')}}`;
+    }
 
     // 翻译枚举
     if (schemaObject['x-enum-varnames'] && schemaObject['x-enum-comments']) {
@@ -963,8 +1022,18 @@ export default class ServiceGenerator {
 
         return `${value}:"${schemaObject['x-enum-comments'][enumKey]}"`;
       }).join(',')}}`;
+    } else if (schemaObject?.['x-apifox']?.['enumDescriptions']) {
+      enumLabelTypeStr = `{${map(enumArray, (value: string) => {
+        const enumLabel = schemaObject['x-apifox']['enumDescriptions'][value];
+
+        return `${value}:"${enumLabel}"`;
+      }).join(',')}}`;
     } else {
-      enumLabelTypeStr = `{${map(enumArray, (value) => `${value}:"${value}"`).join(',')}}`;
+      if (!numberEnum.includes(schemaObject.type)) {
+        enumLabelTypeStr = `{${map(enumArray, (value) => `${value}:"${value}"`).join(',')}}`;
+      } else {
+        enumLabelTypeStr = `{${map(enumArray, (value) => `NUMBER_${value}:${value}`).join(',')}}`;
+      }
     }
 
     return {
@@ -1023,12 +1092,13 @@ export default class ServiceGenerator {
       return refObject;
     }
 
-    // 测试了很多用例，很少有用例走到这里
     const refPaths = refObject.$ref.split('/');
 
     if (refPaths[0] === '#') {
-      const schema =
-        this.openAPIData.components?.schemas?.[refPaths[refPaths.length - 1]];
+      const schema = resolveRefs(
+        this.openAPIData,
+        refPaths.slice(1)
+      ) as ISchemaObject;
 
       if (!schema) {
         throw new Error(`[GenSDK] Data Error! Notfoud: ${refObject.$ref}`);

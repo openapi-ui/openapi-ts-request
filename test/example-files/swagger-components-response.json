@@ -1,0 +1,51 @@
+{
+  "consumes": ["application/json", "text/plain"],
+  "produces": ["application/json", "text/html"],
+  "swagger": "2.0",
+  "basePath": "/api/v1",
+  "paths": {
+    "/activity/{id}": {
+      "get": {
+        "produces": ["application/json"],
+        "tags": ["activity"],
+        "summary": "获取活动详情",
+        "operationId": "detailActivity",
+        "parameters": [
+          {
+            "type": "integer",
+            "description": "活动id",
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/ActivityResp"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "ActivityList": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "responses": {
+    "ActivityResp": {
+      "description": "",
+      "schema": {
+        "$ref": "#/definitions/ActivityList"
+      }
+    }
+  }
+}

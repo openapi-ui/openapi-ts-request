@@ -7,10 +7,15 @@ import {
   ComponentsObject,
   OpenAPIObject,
   OperationObject,
+  PriorityRule,
   ReferenceObject,
   SchemaObject,
 } from './type';
-import { getImportStatement, getOpenAPIConfig } from './util';
+import {
+  getImportStatement,
+  getOpenAPIConfig,
+  translateChineseModuleNodeToEnglish,
+} from './util';
 
 export * from './generator/patchSchema';
 
@@ -35,7 +40,7 @@ export type GenerateServiceProps = {
    */
   allowedTags?: string[];
   /**
-   * 排除tags
+   * 不解析归属于 tags 集合的api 和 schema
    */
   excludeTags?: string[];
   /**
@@ -43,9 +48,13 @@ export type GenerateServiceProps = {
    */
   allowedPaths?: string[];
   /**
-   * 排除paths
+   * 排除解析归属于 paths 集合的api
    */
   excludePaths?: string[];
+  /**
+   * 优先规则
+   */
+  priorityRule: PriorityRule;
   /**
    * 自定义请求方法 options 参数类型
    */
@@ -84,9 +93,17 @@ export type GenerateServiceProps = {
    */
   mockFolder?: string;
   /**
+   * 文档权限凭证
+   */
+  authorization?: string;
+  /**
    * 默认为false，true时使用null代替可选值
    */
   nullable?: boolean;
+  /**
+   * 是否将中文 tag 名称翻译成英文 tag 名称
+   */
+  isTranslateToEnglishTag?: boolean;
   /**
    * 模板文件、请求函数采用小驼峰命名
    */
@@ -175,16 +192,26 @@ export async function generateService({
   schemaPath,
   mockFolder,
   allowedTags,
+  excludeTags,
+  authorization,
+  isTranslateToEnglishTag,
   ...rest
 }: GenerateServiceProps) {
   if (!schemaPath) {
     return;
   }
 
-  const openAPI = (await getOpenAPIConfig(schemaPath)) as OpenAPIObject;
+  const openAPI = (await getOpenAPIConfig(
+    schemaPath,
+    authorization
+  )) as OpenAPIObject;
 
   if (isEmpty(openAPI)) {
     return;
+  }
+
+  if (isTranslateToEnglishTag) {
+    await translateChineseModuleNodeToEnglish(openAPI);
   }
 
   const requestImportStatement = getImportStatement(requestLibPath);
@@ -202,6 +229,10 @@ export async function generateService({
       allowedTags: allowedTags
         ? map(allowedTags, (item) => item.toLowerCase())
         : null,
+      excludeTags: excludeTags
+        ? map(excludeTags, (item) => item.toLowerCase())
+        : null,
+      priorityRule: PriorityRule.allow,
       ...rest,
     },
     openAPI

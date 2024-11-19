@@ -16,7 +16,7 @@ const params = program
   .requiredOption('-o, --output <string>', 'output directory (required)')
   .option(
     '--requestLibPath <string>',
-    'custom request lib path, for example: "@/request", "node-fetch"'
+    'custom request lib path, for example: "@/request", "node-fetch", default is "axios"'
   )
   .option('--allowedTags <string[]>', 'generate results from allowed tags')
   .option(
@@ -37,8 +37,14 @@ const params = program
     false
   )
   .option('--isGenJsonSchemas <boolean>', 'generate JSON Schemas', false)
-  .option('--mockFolder <string>', 'Mock file path (default: "./mocks")')
+  .option('--mockFolder <string>', 'mock file path')
+  .option('--authorization <string>', 'docs authorization')
   .option('--nullable <boolean>', 'null instead of optional', false)
+  .option(
+    '--isTranslateToEnglishTag <boolean>',
+    'translate chinese tag name to english tag name',
+    false
+  )
   .option(
     '--isCamelCase <boolean>',
     'camelCase naming of controller files and request client',
@@ -73,7 +79,10 @@ async function run() {
         JSON.parse(params.isDisplayTypeLabel as string) === true,
       isGenJsonSchemas: JSON.parse(params.isGenJsonSchemas as string) === true,
       mockFolder: params.mockFolder as string,
+      authorization: params.authorization as string,
       nullable: JSON.parse(params.nullable as string) === true,
+      isTranslateToEnglishTag:
+        JSON.parse(params.isTranslateToEnglishTag as string) === true,
       isCamelCase: JSON.parse(params.isCamelCase as string) === true,
     });
     process.exit(0);
