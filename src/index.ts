@@ -55,7 +55,7 @@ export type GenerateServiceProps = {
    */
   ignoreTagsEmpty?: boolean;
   /**
-   * 在allowed/both模式下，是否允许allowedPaths和excludePaths为空的,默认true允许为空
+   * 在allowed模式下，是否允许allowedPaths和excludePaths为空的,默认true允许为空
    */
   ignorePathsEmpty?: boolean;
   /**

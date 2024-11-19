@@ -108,7 +108,6 @@ export enum SchemaObjectType {
 export enum PriorityRule {
   allowed = 'allowed',
   exclude = 'exclude',
-  both = 'both',
 }
 
 export type ISchemaObjectType = keyof typeof SchemaObjectType;

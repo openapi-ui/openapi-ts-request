@@ -156,42 +156,6 @@ export default class ServiceGenerator {
             continue;
           }
           break;
-        case PriorityRule.both: {
-          if (
-            !this.config.ignoreTagsEmpty &&
-            (isEmpty(allowedTags) || isEmpty(excludeTags))
-          ) {
-            throw new Error(
-              'priorityRule is both, but allowedTags or excludeTags is empty'
-            );
-          }
-          if (!this.config.ignorePathsEmpty) {
-            if (isEmpty(allowedPaths) || isEmpty(excludePaths)) {
-              throw new Error(
-                'priorityRule is both, but allowedPaths or excludePaths is empty'
-              );
-            }
-
-            if (
-              !includes(allowedPaths, pathKey) ||
-              includes(excludePaths, pathKey)
-            ) {
-              continue;
-            }
-          }
-          // if (isEmpty(allowedTags) || isEmpty(excludeTags) || isEmpty(allowedPaths) || isEmpty(excludePaths)) {
-          //   throw new Error('priorityRule is both, but allowedTags or excludeTags or allowedPaths or excludePaths is empty');
-          // }
-          // 判断两个数组有交集,提示报错
-          const intersectionArray = intersection(allowedTags, excludeTags);
-          if (intersectionArray.length > 0) {
-            console.warn(
-              `🚥 allowedTags 和 excludeTags 有交集的 tag: ${intersectionArray.join(', ')}`
-            );
-          }
-
-          break;
-        }
         default:
           throw new Error(
             'priorityRule must be "allowed" or "exclude" or "both"'
@@ -220,18 +184,12 @@ export default class ServiceGenerator {
             !includes(allowedTags, tagLowerCase)
           ) {
             return;
-          } else if (
+          }
+          if (
             priorityRule === PriorityRule.exclude &&
             includes(excludeTags, tagLowerCase)
           ) {
             return;
-          } else if (priorityRule === PriorityRule.both) {
-            if (
-              !includes(allowedTags, tagLowerCase) ||
-              includes(excludeTags, tagLowerCase)
-            ) {
-              return;
-            }
           }
 
           const tagKey = this.config.isCamelCase
