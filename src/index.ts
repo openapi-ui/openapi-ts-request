@@ -7,7 +7,6 @@ import {
   ComponentsObject,
   OpenAPIObject,
   OperationObject,
-  PriorityRule,
   ReferenceObject,
   SchemaObject,
 } from './type';
@@ -36,25 +35,37 @@ export type GenerateServiceProps = {
    */
   requestLibPath?: string;
   /**
+   * 开启日志
+   */
+  enableLogging?: boolean;
+  /**
+   * 优先规则, allow(只允许allowed列表) | exclude(不判断allowed列表，只排除exclude列表,) | both(先判断allowed，再判断exclude)
+   */
+  priorityRule?: string;
+  /**
    * 只解析归属于 tags 集合的api 和 schema
    */
   allowedTags?: string[];
-  /**
-   * 不解析归属于 tags 集合的api 和 schema
-   */
-  excludeTags?: string[];
   /**
    * 只解析归属于 paths 集合的api
    */
   allowedPaths?: string[];
   /**
+   * 在allowed模式下，是否允许allowedTags和excludeTags为空的, 默认false不允许为空
+   */
+  ignoreTagsEmpty?: boolean;
+  /**
+   * 在allowed/both模式下，是否允许allowedPaths和excludePaths为空的,默认true允许为空
+   */
+  ignorePathsEmpty?: boolean;
+  /**
+   * 不解析归属于 tags 集合的api 和 schema
+   */
+  excludeTags?: string[];
+  /**
    * 排除解析归属于 paths 集合的api
    */
   excludePaths?: string[];
-  /**
-   * 优先规则
-   */
-  priorityRule: PriorityRule;
   /**
    * 自定义请求方法 options 参数类型
    */
@@ -237,7 +248,10 @@ export async function generateService({
       excludeTags: excludeTags
         ? map(excludeTags, (item) => item.toLowerCase())
         : null,
-      priorityRule: PriorityRule.allow,
+      enableLogging: false,
+      priorityRule: 'exclude',
+      ignoreTagsEmpty: false,
+      ignorePathsEmpty: true,
       ...rest,
     },
     openAPI

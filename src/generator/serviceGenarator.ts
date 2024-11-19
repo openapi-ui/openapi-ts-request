@@ -98,30 +98,26 @@ export default class ServiceGenerator {
   protected schemaList: ISchemaItem[] = [];
 
   constructor(config: GenerateServiceProps, openAPIData: OpenAPIObject) {
-    const allowedTags = this.config?.allowedTags;
-    const excludeTags = this.config?.excludeTags;
-    const allowedPaths = this.config?.allowedPaths;
-    const excludePaths = this.config?.excludePaths;
-    const priorityRule = this.config.priorityRule;
-
-    // 判断两个数组有交集,提示报错
-    if (
-      !isEmpty(allowedTags) &&
-      !isEmpty(excludeTags) &&
-      priorityRule === PriorityRule.exceptions
-    ) {
-      const intersectionArray = intersection(allowedTags, excludeTags);
-      if (intersectionArray.length > 0) {
-        console.log('🚥 有交集的 tag: ', intersectionArray);
-        return;
-      }
-    }
-
+    // 默认值
     this.finalPath = '';
     this.config = {
       templatesFolder: join(__dirname, '../../', 'templates'),
       ...config,
     };
+
+    const allowedTags = this.config?.allowedTags;
+    const excludeTags = this.config?.excludeTags;
+    const allowedPaths = this.config?.allowedPaths;
+    const excludePaths = this.config?.excludePaths;
+    const priorityRule: PriorityRule =
+      PriorityRule[config.priorityRule as keyof typeof PriorityRule];
+
+    this.log(`allowedTags: ${allowedTags ? allowedTags.join(', ') : ''}`);
+    this.log(`excludeTags: ${excludeTags ? excludeTags.join(', ') : ''}`);
+    this.log(`allowedPaths: ${allowedPaths ? allowedPaths.join(', ') : ''}`);
+    this.log(`excludePaths: ${excludePaths ? excludePaths.join(', ') : ''}`);
+    this.log(`priorityRule: ${priorityRule}`);
+
     const hookCustomFileNames =
       this.config.hook?.customFileNames || getDefaultFileTag;
 
@@ -133,16 +129,73 @@ export default class ServiceGenerator {
     }
 
     // 用 tag 分组 paths, { [tag]: [pathMap, pathMap] }
-    keys(this.openAPIData.paths).forEach((pathKey) => {
-      if (priorityRule === PriorityRule.allow) {
-        if (!isEmpty(allowedPaths) && !includes(allowedPaths, pathKey)) {
-          return;
+    for (const pathKey in this.openAPIData.paths) {
+      switch (priorityRule) {
+        // allowed模式
+        case PriorityRule.allowed:
+          if (!this.config.ignoreTagsEmpty && isEmpty(allowedTags)) {
+            throw new Error(
+              'priorityRule is allowed, but allowedTags is empty'
+            );
+          }
+
+          if (!this.config.ignorePathsEmpty) {
+            if (isEmpty(allowedPaths)) {
+              throw new Error(
+                'priorityRule is allowed, but allowedPaths is empty'
+              );
+            }
+            if (!includes(allowedPaths, pathKey)) {
+              continue;
+            }
+          }
+
+          break;
+        case PriorityRule.exclude:
+          if (includes(excludePaths, pathKey)) {
+            continue;
+          }
+          break;
+        case PriorityRule.both: {
+          if (
+            !this.config.ignoreTagsEmpty &&
+            (isEmpty(allowedTags) || isEmpty(excludeTags))
+          ) {
+            throw new Error(
+              'priorityRule is both, but allowedTags or excludeTags is empty'
+            );
+          }
+          if (!this.config.ignorePathsEmpty) {
+            if (isEmpty(allowedPaths) || isEmpty(excludePaths)) {
+              throw new Error(
+                'priorityRule is both, but allowedPaths or excludePaths is empty'
+              );
+            }
+
+            if (
+              !includes(allowedPaths, pathKey) ||
+              includes(excludePaths, pathKey)
+            ) {
+              continue;
+            }
+          }
+          // if (isEmpty(allowedTags) || isEmpty(excludeTags) || isEmpty(allowedPaths) || isEmpty(excludePaths)) {
+          //   throw new Error('priorityRule is both, but allowedTags or excludeTags or allowedPaths or excludePaths is empty');
+          // }
+          // 判断两个数组有交集,提示报错
+          const intersectionArray = intersection(allowedTags, excludeTags);
+          if (intersectionArray.length > 0) {
+            console.warn(
+              `🚥 allowedTags 和 excludeTags 有交集的 tag: ${intersectionArray.join(', ')}`
+            );
+          }
+
+          break;
         }
-      }
-      if (priorityRule === PriorityRule.exclude) {
-        if (!isEmpty(excludePaths) && includes(excludePaths, pathKey)) {
-          return;
-        }
+        default:
+          throw new Error(
+            'priorityRule must be "allowed" or "exclude" or "both"'
+          );
       }
 
       const pathItem = this.openAPIData.paths[pathKey];
@@ -161,20 +214,21 @@ export default class ServiceGenerator {
         }
 
         tags.forEach((tag) => {
-          if (priorityRule === PriorityRule.allow) {
-            // 筛选出 tags 关联的paths
+          const tagLowerCase = tag.toLowerCase();
+          if (
+            priorityRule === PriorityRule.allowed &&
+            !includes(allowedTags, tagLowerCase)
+          ) {
+            return;
+          } else if (
+            priorityRule === PriorityRule.exclude &&
+            includes(excludeTags, tagLowerCase)
+          ) {
+            return;
+          } else if (priorityRule === PriorityRule.both) {
             if (
-              !isEmpty(allowedTags) &&
-              !includes(allowedTags, tag.toLowerCase())
-            ) {
-              return;
-            }
-          }
-
-          if (priorityRule === PriorityRule.exclude) {
-            if (
-              !isEmpty(excludeTags) &&
-              includes(excludeTags, tag.toLowerCase())
+              !includes(allowedTags, tagLowerCase) ||
+              includes(excludeTags, tagLowerCase)
             ) {
               return;
             }
@@ -195,7 +249,13 @@ export default class ServiceGenerator {
           });
         });
       });
-    });
+    }
+  }
+
+  public log(message: any) {
+    if (this.config.enableLogging) {
+      console.log(message);
+    }
   }
 
   public genFile() {
