@@ -1,5 +1,11 @@
 # openapi-ts-request
 
+## 0.12.0
+
+### Minor Changes
+
+- [`cb2dd36`](https://github.com/openapi-ui/openapi-ts-request/commit/cb2dd366db46724f0a59ff9394c08c1d4503a4c5) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - feat: support only generate typescript type
+
 ## 0.11.1
 
 ### Patch Changes

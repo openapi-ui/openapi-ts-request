@@ -150,6 +150,7 @@ $ openapi --help
     --authorization <string>           docs authorization
     --nullable <boolean>               null instead of optional (default: false)
     --isTranslateToEnglishTag <boolean>translate chinese tag name to english tag name (default: false)
+    --isOnlyGenTypeScriptType <boolean>only generate typescript type (default: false)
     --isCamelCase <boolean>            camelCase naming of controller files and request client (default: true)
     -h, --help                         display help for command
 ```
@@ -177,6 +178,7 @@ openapi --i ./spec.json --o ./apis
 | authorization | 否 | string | - | 文档权限凭证 |
 | nullable | 否 | boolean | false | 使用 null 代替可选 |
 | isTranslateToEnglishTag | 否 | boolean | false | 将中文 tag 名称翻译成英文 tag 名称 |
+| isOnlyGenTypeScriptType | 否 | boolean | false | 仅生成 typescript 类型 |
 | isCamelCase | 否 | boolean | true | 小驼峰命名文件和请求函数 |
 | hook | 否 | [Custom Hook](#Custom-Hook) | - | 自定义 hook |
 
