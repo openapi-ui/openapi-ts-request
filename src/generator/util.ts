@@ -1,6 +1,7 @@
 import {
   Dictionary,
   countBy,
+  every,
   filter,
   forEach,
   isArray,
@@ -8,6 +9,7 @@ import {
   isEmpty,
   isNull,
   isObject,
+  isString,
   isUndefined,
   keys,
   map,
@@ -469,4 +471,8 @@ export function resolveRefs(obj: OpenAPIObject, fields: string[]) {
 
     return s;
   }, obj);
+}
+
+export function isAllNumeric(arr) {
+  return every(arr, (item) => isString(item) && /^[0-9]+$/.test(item));
 }
