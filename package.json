@@ -47,6 +47,7 @@
     "js-yaml": "^4.1.0",
     "lodash": "^4.17.21",
     "memoizee": "^0.4.17",
+    "minimatch": "^10.0.1",
     "mockjs": "^1.1.0",
     "nunjucks": "^3.2.4",
     "prettier": "^3.3.2",

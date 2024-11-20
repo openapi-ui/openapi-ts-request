@@ -1,0 +1,550 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "标题",
+    "description": "我的API文档",
+    "contact": {},
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://springdoc.org"
+    },
+    "version": "v1"
+  },
+  "externalDocs": {
+    "description": "外部文档",
+    "url": "https://springshop.wiki.github.org/docs"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8903",
+      "description": "Generated server url"
+    }
+  ],
+  "tags": [
+    {
+      "name": "user-x",
+      "description": "APIs for demo purposes"
+    },
+    {
+      "name": "user-y",
+      "description": "APIs for demo purposes"
+    },
+    {
+      "name": "user-z",
+      "description": "APIs for demo purposes"
+    },
+    {
+      "name": "sys-b",
+      "description": "APIs for demo purposes"
+    },
+    {
+      "name": "sys-c",
+      "description": "APIs for demo purposes"
+    },
+    {
+      "name": "sys-a",
+      "description": "APIs for demo purposes"
+    }
+  ],
+  "paths": {
+    "/user-z/z1": {
+      "get": {
+        "tags": ["user-z"],
+        "summary": "f1",
+        "description": "ffff",
+        "operationId": "f",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user-z/z1/zz1": {
+      "get": {
+        "tags": ["user-z"],
+        "summary": "z1/zz1",
+        "operationId": "i",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user-z/z1/zz1/zzz1": {
+      "get": {
+        "tags": ["user-z"],
+        "summary": "z1/zz1/zzz1",
+        "operationId": "j",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user-z/z1/zz1/zzz1/zzzz1": {
+      "get": {
+        "tags": ["user-z"],
+        "summary": "z1/zz1/zzz1/zzzz1",
+        "operationId": "k",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user-z/z1/zz1/zzz1/zzzz1/zzzzz1": {
+      "get": {
+        "tags": ["user-z"],
+        "summary": "z1/zz1/zzz1/zzzz1/zzzzz1",
+        "operationId": "l",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user-y/y1": {
+      "get": {
+        "tags": ["user-y"],
+        "summary": "y1",
+        "operationId": "e",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user-y/y1/yy1": {
+      "get": {
+        "tags": ["user-y"],
+        "summary": "y1/yy1",
+        "operationId": "h",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user-y/y1/yy1/yyy1": {
+      "get": {
+        "tags": ["user-y"],
+        "summary": "y1/yy1/yyy1",
+        "operationId": "i_1",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user-y/y1/yy1/yyy1/yyyy1": {
+      "get": {
+        "tags": ["user-y"],
+        "summary": "y1/yy1/yyy1/yyyy1",
+        "operationId": "j_1",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user-y/y1/yy1/yyy1/yyyy1/yyyyy1": {
+      "get": {
+        "tags": ["user-y"],
+        "summary": "y1/yy1/yyy1/yyyy1/yyyyy1",
+        "operationId": "k_1",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user-x/x1": {
+      "get": {
+        "tags": ["user-x"],
+        "summary": "x1",
+        "operationId": "d",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user-x/x1/xx1": {
+      "get": {
+        "tags": ["user-x"],
+        "summary": "x1/xx1",
+        "operationId": "g",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user-x/x1/xx1/xxx1": {
+      "get": {
+        "tags": ["user-x"],
+        "summary": "x1/xx1/xxx1",
+        "operationId": "h_1",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user-x/x1/xx1/xxx1/xxxx1": {
+      "get": {
+        "tags": ["user-x"],
+        "summary": "x1/xx1/xxx1/xxxx1",
+        "operationId": "i_2",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sys-c/c1": {
+      "get": {
+        "tags": ["sys-c"],
+        "summary": "c1",
+        "operationId": "c",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sys-c/c1/cc1": {
+      "get": {
+        "tags": ["sys-c"],
+        "summary": "c1/cc1",
+        "operationId": "f_1",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sys-c/c1/cc1/ccc1": {
+      "get": {
+        "tags": ["sys-c"],
+        "summary": "c1/cc1/ccc1",
+        "operationId": "g_1",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sys-c/c1/cc1/ccc1/cccc1": {
+      "get": {
+        "tags": ["sys-c"],
+        "summary": "c1/cc1/ccc1/cccc1",
+        "operationId": "h_2",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sys-b/b1": {
+      "get": {
+        "tags": ["sys-b"],
+        "summary": "b1",
+        "operationId": "b",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sys-b/b1/bb1": {
+      "get": {
+        "tags": ["sys-b"],
+        "summary": "b1/bb1",
+        "operationId": "e_1",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sys-b/b1/bb1/bbb1": {
+      "get": {
+        "tags": ["sys-b"],
+        "summary": "b1/bb1/bbb1",
+        "operationId": "f_2",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sys-b/b1/bb1/bbb1/bbbb1": {
+      "get": {
+        "tags": ["sys-b"],
+        "summary": "b1/bb1/bbb1/bbbb1",
+        "operationId": "g_2",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sys-a/a1": {
+      "get": {
+        "tags": ["sys-a"],
+        "summary": "a1",
+        "operationId": "a",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sys-a/a1/aa1": {
+      "get": {
+        "tags": ["sys-a"],
+        "summary": "a1/aa1",
+        "operationId": "b_1",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sys-a/a1/aa1/aaa1": {
+      "get": {
+        "tags": ["sys-a"],
+        "summary": "a1/a1/aa1",
+        "operationId": "d_1",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sys-a/a1/aa1/aaa1/aaaa1": {
+      "get": {
+        "tags": ["sys-a"],
+        "summary": "a1/a1/aa1/aaa1",
+        "operationId": "e_2",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {},
+  "x-openapi": {
+    "x-markdownFiles": []
+  }
+}

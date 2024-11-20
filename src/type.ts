@@ -108,15 +108,14 @@ export enum SchemaObjectType {
 export enum PriorityRule {
   allowed = 'allowed',
   exclude = 'exclude',
-  both = 'both',
   include = 'include',
 }
 
 export type GenerateRegExp = {
-  allowedTags: RegExp[];
-  excludeTags: RegExp[];
-  allowedPaths: RegExp[];
-  excludePaths: RegExp[];
+  allowedTags: (string | RegExp)[];
+  excludeTags: (string | RegExp)[];
+  allowedPaths: (string | RegExp)[];
+  excludePaths: (string | RegExp)[];
 };
 
 export type ISchemaObjectType = keyof typeof SchemaObjectType;

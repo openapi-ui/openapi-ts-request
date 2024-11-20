@@ -15,6 +15,7 @@ import {
   map,
   upperFirst,
 } from 'lodash';
+import { minimatch } from 'minimatch';
 import nunjucks from 'nunjucks';
 import { join } from 'path';
 import { sync as rimrafSync } from 'rimraf';
@@ -24,7 +25,6 @@ import log from '../log';
 import {
   ArraySchemaObject,
   ContentObject,
-  GenerateRegExp,
   ISchemaObject,
   OpenAPIObject,
   OperationObject,
@@ -104,9 +104,13 @@ export default class ServiceGenerator {
       templatesFolder: join(__dirname, '../../', 'templates'),
       ...config,
     };
-    // 生成正则
-    const { allowedPaths, allowedTags, excludePaths, excludeTags } =
-      this.generateRegex();
+    this.generateInfoLog();
+
+    const allowedPaths = this.config?.allowedPaths || [];
+    const allowedTags = this.config?.allowedTags || [];
+    const excludePaths = this.config?.excludePaths || [];
+    const excludeTags = this.config?.excludeTags || [];
+
     const priorityRule: PriorityRule =
       PriorityRule[config.priorityRule as keyof typeof PriorityRule];
 
@@ -122,23 +126,29 @@ export default class ServiceGenerator {
 
     // 用 tag 分组 paths, { [tag]: [pathMap, pathMap] }
     for (const pathKey in this.openAPIData.paths) {
+      // 这里判断paths
       switch (priorityRule) {
-        // allowed模式
         case PriorityRule.allowed: {
-          const inAllowedPaths =
+          if (
             !isEmpty(allowedPaths) &&
-            allowedPaths.some((path) => !path.test(pathKey));
-          if (inAllowedPaths) {
+            !allowedPaths.some((pathRule) =>
+              typeof pathRule === 'string'
+                ? minimatch(pathKey, pathRule)
+                : pathRule.test(pathKey)
+            )
+          ) {
             continue;
           }
           break;
         }
         case PriorityRule.exclude: {
-          // excludePaths not empty && in excludePaths
-          const inExcludePaths =
-            !isEmpty(excludePaths) &&
-            excludePaths.some((path) => path.test(pathKey));
-          if (inExcludePaths) {
+          if (
+            excludePaths.some((pathRule) =>
+              typeof pathRule === 'string'
+                ? minimatch(pathKey, pathRule)
+                : pathRule.test(pathKey)
+            )
+          ) {
             continue;
           }
           break;
@@ -146,30 +156,27 @@ export default class ServiceGenerator {
         case PriorityRule.include: {
           const inAllowedPaths =
             !isEmpty(allowedPaths) &&
-            allowedPaths.some((path) => !path.test(pathKey));
+            !allowedPaths.some((path) =>
+              typeof path === 'string'
+                ? minimatch(pathKey, path)
+                : path.test(pathKey)
+            );
           const inExcludePaths =
             !isEmpty(excludePaths) &&
-            excludePaths.some((path) => path.test(pathKey));
+            excludePaths.some((path) =>
+              typeof path === 'string'
+                ? minimatch(pathKey, path)
+                : path.test(pathKey)
+            );
+
           if (inAllowedPaths || inExcludePaths) {
-            continue;
-          }
-          break;
-        }
-        case PriorityRule.both: {
-          const inAllowedPaths =
-            !isEmpty(allowedPaths) &&
-            allowedPaths.some((path) => !path.test(pathKey));
-          const inExcludePaths =
-            !isEmpty(excludePaths) &&
-            excludePaths.some((path) => path.test(pathKey));
-          if (inAllowedPaths && inExcludePaths) {
             continue;
           }
           break;
         }
         default:
           throw new Error(
-            'priorityRule must be "allowed" or "exclude" or "both" or "include"'
+            'priorityRule must be "allowed" or "exclude" or "include"'
           );
       }
 
@@ -188,46 +195,47 @@ export default class ServiceGenerator {
           tags = getDefaultFileTag(operationObject, pathKey);
         }
 
+        // 这里判断tags
         tags.forEach((tag) => {
           const tagLowerCase = tag.toLowerCase();
-          if (priorityRule === PriorityRule.allowed) {
-            const inAllowedTags =
-              !isEmpty(allowedTags) &&
-              allowedTags.some((path) => !path.test(tagLowerCase));
-            if (inAllowedTags) {
-              return;
-            }
+          if (
+            priorityRule === PriorityRule.allowed &&
+            !allowedTags.some((tagRule) =>
+              typeof tagRule === 'string'
+                ? minimatch(tagLowerCase, tagRule)
+                : tagRule.test(tagLowerCase)
+            )
+          ) {
+            return;
           }
 
-          if (priorityRule === PriorityRule.exclude) {
-            const inExcludeTags =
-              !isEmpty(excludeTags) &&
-              excludeTags.some((path) => path.test(tagLowerCase));
-            if (inExcludeTags) {
-              return;
-            }
+          if (
+            priorityRule === PriorityRule.exclude &&
+            excludeTags.some((tagRule) =>
+              typeof tagRule === 'string'
+                ? minimatch(tagLowerCase, tagRule)
+                : tagRule.test(tagLowerCase)
+            )
+          ) {
+            return;
           }
 
           if (priorityRule === PriorityRule.include) {
             const inAllowedTags =
               !isEmpty(allowedTags) &&
-              allowedTags.some((path) => !path.test(tagLowerCase));
+              !allowedTags.some((tagRule) =>
+                typeof tagRule === 'string'
+                  ? minimatch(tagLowerCase, tagRule)
+                  : tagRule.test(tagLowerCase)
+              );
             const inExcludeTags =
               !isEmpty(excludeTags) &&
-              excludeTags.some((path) => path.test(tagLowerCase));
+              excludeTags.some((tagRule) =>
+                typeof tagRule === 'string'
+                  ? minimatch(tagLowerCase, tagRule)
+                  : tagRule.test(tagLowerCase)
+              );
             if (inAllowedTags || inExcludeTags) {
-              return;
-            }
-          }
-
-          if (priorityRule === PriorityRule.both) {
-            const inAllowedTags =
-              !isEmpty(allowedTags) &&
-              allowedTags.some((path) => !path.test(tagLowerCase));
-            const inExcludeTags =
-              !isEmpty(excludeTags) &&
-              excludeTags.some((path) => path.test(tagLowerCase));
-            if (inAllowedTags && inExcludeTags) {
               return;
             }
           }
@@ -1190,75 +1198,23 @@ export default class ServiceGenerator {
     return refObject as T;
   }
 
-  private generateRegex(): GenerateRegExp {
-    const gen: GenerateRegExp = {
-      allowedTags: [],
-      excludeTags: [],
-      allowedPaths: [],
-      excludePaths: [],
-    };
+  private generateInfoLog(): void {
     this.log(`priorityRule: ${this.config?.priorityRule}`);
 
     if (this.config?.allowedTags) {
       this.log(`allowedTags: ${this.config?.allowedTags.join(', ')}`);
-      this.config?.allowedTags.forEach((tag) => {
-        if (tag.includes('*')) {
-          gen.allowedTags.push(
-            new RegExp(
-              `^${tag.replace('**', '.*').replace('*', '[^/]*')}(?=$|\n)`
-            )
-          );
-        } else {
-          gen.allowedTags.push(new RegExp(`^${tag}(?=$|\n)`));
-        }
-      });
     }
 
     if (this.config?.excludeTags) {
       this.log(`excludeTags: ${this.config?.excludeTags.join(', ')}`);
-      this.config?.excludeTags.map((tag) => {
-        if (tag.includes('*')) {
-          gen.excludeTags.push(
-            new RegExp(
-              `^${tag.replace('**', '.*').replace('*', '[^/]*')}(?=$|\n)`
-            )
-          );
-        } else {
-          gen.excludeTags.push(new RegExp(`^${tag}(?=$|\n)`));
-        }
-      });
     }
 
     if (this.config?.allowedPaths) {
       this.log(`allowedPaths: ${this.config?.allowedPaths.join(', ')}`);
-      this.config?.allowedPaths.map((path) => {
-        if (path.includes('*')) {
-          gen.allowedPaths.push(
-            new RegExp(
-              `^${path.replace('**', '.*').replace('*', '[^/]*')}(?=$|\n)`
-            )
-          );
-        } else {
-          gen.allowedPaths.push(new RegExp(`^${path}(?=$|\n)`));
-        }
-      });
     }
 
     if (this.config?.excludePaths) {
       this.log(`excludePaths: ${this.config?.excludePaths.join(', ')}`);
-      this.config?.excludePaths.map((path) => {
-        if (path.includes('*')) {
-          gen.excludePaths.push(
-            new RegExp(
-              `^${path.replace('**', '.*').replace('*', '[^/]*')}(?=$|\n)`
-            )
-          );
-        } else {
-          gen.excludePaths.push(new RegExp(`^${path}(?=$|\n)`));
-        }
-      });
     }
-
-    return gen;
   }
 }
