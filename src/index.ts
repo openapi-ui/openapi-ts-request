@@ -51,14 +51,6 @@ export type GenerateServiceProps = {
    */
   allowedPaths?: string[];
   /**
-   * 在allowed模式下，是否允许allowedTags和excludeTags为空的, 默认false不允许为空
-   */
-  ignoreTagsEmpty?: boolean;
-  /**
-   * 在allowed模式下，是否允许allowedPaths和excludePaths为空的,默认true允许为空
-   */
-  ignorePathsEmpty?: boolean;
-  /**
    * 不解析归属于 tags 集合的api 和 schema
    */
   excludeTags?: string[];
@@ -250,8 +242,6 @@ export async function generateService({
         : null,
       enableLogging: false,
       priorityRule: 'exclude',
-      ignoreTagsEmpty: false,
-      ignorePathsEmpty: true,
       ...rest,
     },
     openAPI
