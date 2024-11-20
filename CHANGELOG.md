@@ -1,5 +1,11 @@
 # openapi-ts-request
 
+## 0.12.1
+
+### Patch Changes
+
+- [`46f42bd`](https://github.com/openapi-ui/openapi-ts-request/commit/46f42bd2ec4fc5fff2683af66abc74db81ceebe9) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - perf: perf parse number enum
+
 ## 0.12.0
 
 ### Minor Changes
