@@ -124,51 +124,52 @@ export default class ServiceGenerator {
     for (const pathKey in this.openAPIData.paths) {
       switch (priorityRule) {
         // allowed模式
-        case PriorityRule.allowed:
-          if (isEmpty(allowedPaths)) {
-            this.log(
-              'priorityRule is allowed, but allowedTags or allowedPaths is empty'
-            );
-          }
-          // allowedPaths not empty && not in allowedPaths
-          if (
+        case PriorityRule.allowed: {
+          const inAllowedPaths =
             !isEmpty(allowedPaths) &&
-            allowedPaths.some((path) => !path.test(pathKey))
-          ) {
+            allowedPaths.some((path) => !path.test(pathKey));
+          if (inAllowedPaths) {
             continue;
           }
           break;
-        case PriorityRule.exclude:
+        }
+        case PriorityRule.exclude: {
           // excludePaths not empty && in excludePaths
-          if (
+          const inExcludePaths =
             !isEmpty(excludePaths) &&
-            excludePaths.some((path) => path.test(pathKey))
-          ) {
+            excludePaths.some((path) => path.test(pathKey));
+          if (inExcludePaths) {
             continue;
           }
           break;
-        case PriorityRule.both:
-          if (!isEmpty(allowedPaths) || isEmpty(excludePaths)) {
-            this.log(
-              'priorityRule is both, but allowedPaths or excludePaths is empty'
-            );
-          }
-          if (
+        }
+        case PriorityRule.include: {
+          const inAllowedPaths =
             !isEmpty(allowedPaths) &&
-            allowedPaths.some((path) => !path.test(pathKey))
-          ) {
-            continue;
-          }
-          if (
+            allowedPaths.some((path) => !path.test(pathKey));
+          const inExcludePaths =
             !isEmpty(excludePaths) &&
-            excludePaths.some((path) => path.test(pathKey))
-          ) {
+            excludePaths.some((path) => path.test(pathKey));
+          if (inAllowedPaths || inExcludePaths) {
             continue;
           }
           break;
+        }
+        case PriorityRule.both: {
+          const inAllowedPaths =
+            !isEmpty(allowedPaths) &&
+            allowedPaths.some((path) => !path.test(pathKey));
+          const inExcludePaths =
+            !isEmpty(excludePaths) &&
+            excludePaths.some((path) => path.test(pathKey));
+          if (inAllowedPaths && inExcludePaths) {
+            continue;
+          }
+          break;
+        }
         default:
           throw new Error(
-            'priorityRule must be "allowed" or "exclude" or "both"'
+            'priorityRule must be "allowed" or "exclude" or "both" or "include"'
           );
       }
 
@@ -189,33 +190,44 @@ export default class ServiceGenerator {
 
         tags.forEach((tag) => {
           const tagLowerCase = tag.toLowerCase();
-          if (
-            priorityRule === PriorityRule.allowed &&
-            !isEmpty(allowedTags) &&
-            allowedTags.some((path) => !path.test(tagLowerCase))
-          ) {
-            return;
+          if (priorityRule === PriorityRule.allowed) {
+            const inAllowedTags =
+              !isEmpty(allowedTags) &&
+              allowedTags.some((path) => !path.test(tagLowerCase));
+            if (inAllowedTags) {
+              return;
+            }
           }
 
-          if (
-            priorityRule === PriorityRule.exclude &&
-            !isEmpty(excludeTags) &&
-            excludeTags.some((path) => path.test(tagLowerCase))
-          ) {
-            return;
+          if (priorityRule === PriorityRule.exclude) {
+            const inExcludeTags =
+              !isEmpty(excludeTags) &&
+              excludeTags.some((path) => path.test(tagLowerCase));
+            if (inExcludeTags) {
+              return;
+            }
+          }
+
+          if (priorityRule === PriorityRule.include) {
+            const inAllowedTags =
+              !isEmpty(allowedTags) &&
+              allowedTags.some((path) => !path.test(tagLowerCase));
+            const inExcludeTags =
+              !isEmpty(excludeTags) &&
+              excludeTags.some((path) => path.test(tagLowerCase));
+            if (inAllowedTags || inExcludeTags) {
+              return;
+            }
           }
 
           if (priorityRule === PriorityRule.both) {
-            if (
+            const inAllowedTags =
               !isEmpty(allowedTags) &&
-              allowedTags.some((path) => !path.test(tagLowerCase))
-            ) {
-              return;
-            }
-            if (
+              allowedTags.some((path) => !path.test(tagLowerCase));
+            const inExcludeTags =
               !isEmpty(excludeTags) &&
-              excludeTags.some((path) => path.test(tagLowerCase))
-            ) {
+              excludeTags.some((path) => path.test(tagLowerCase));
+            if (inAllowedTags && inExcludeTags) {
               return;
             }
           }
