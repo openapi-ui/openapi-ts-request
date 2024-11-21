@@ -35,21 +35,17 @@ export async function {{ api.functionName }}(
 {%- if api.body -%}
   body
   {%- if genType === "ts" -%}
-  :
-  {% if api.body.propertiesList.length > 0 %}{
+
+  : {% if api.body.propertiesList %}{
     {%- for prop in api.body.propertiesList %}
     {% if prop.schema.description -%}
     /** {{ prop.schema.description }} */
     {% endif -%}
-    {{ prop.key }}{{ "?" if not prop.schema.required }}: {{ prop.schema.type }},
+    '{{ prop.key }}'{{ "?" if not prop.schema.required }}: {{ prop.schema.type }},
     {%- endfor %}
   }
   {%- else -%}
-      {%- if api.body.type === "object" -%}
-        unknown
-      {%- else -%}
-        {{ api.body.type }}
-      {%- endif -%}
+  {{ api.body.type }}
   {%- endif -%}
 
   {%- endif -%}
