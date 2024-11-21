@@ -137,7 +137,12 @@ $ openapi --help
     -i, --input <string>               OpenAPI specification, can be a path, url (required)
     -o, --output <string>              output directory (required)
     --requestLibPath <string>          custom request lib path, for example: "@/request", "node-fetch", default is "axios"
-    --includeTags <string[]>           generate code from include tags
+    --enableLogging <boolean>          open the log
+    --priorityRule <string>            priority rule, include/exclude/both
+    --includeTags <string|RegExp>[]    generate code from include tags
+    --includePaths <string|RegExp>[]   generate code from include paths
+    --excludeTags <string|RegExp>[]    generate code from exclude tags
+    --excludePaths <string|RegExp>[]   generate code from exclude paths
     --requestOptionsType <string>      custom request method options parameter type (default: "{ [key:
                                       string]: unknown }")
     --requestImportStatement <string>  custom request import statement, for example: "const request =
