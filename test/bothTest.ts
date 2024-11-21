@@ -18,31 +18,15 @@ import { generateService } from '../src/index';
 /**
  * 结果 []
  */
-const includeTest1 = async () =>
+const bothTest1 = async () =>
   await generateService({
     schemaPath: `${__dirname}/example-files/openapi-priority-rule.json`,
-    serversPath: './apis/include/test1',
+    serversPath: './apis/both/test1',
     requestLibPath: '../request',
     enableLogging: true, // 开启日志
-    priorityRule: 'include',
+    priorityRule: 'both',
     includeTags: [],
     includePaths: [],
-    excludeTags: [],
-    excludePaths: [],
-  });
-
-/**
- * 结果 []
- */
-const includeTest2 = async () =>
-  await generateService({
-    schemaPath: `${__dirname}/example-files/openapi-priority-rule.json`,
-    serversPath: './apis/include/test2',
-    requestLibPath: '../request',
-    enableLogging: true, // 开启日志
-    priorityRule: 'include',
-    includeTags: [],
-    includePaths: ['/sys-a/**', '/sys-b/**', '/sys-c/**'],
     excludeTags: [],
     excludePaths: [],
   });
@@ -50,13 +34,13 @@ const includeTest2 = async () =>
 /**
  * 结果 [*]
  */
-const includeTest3 = async () =>
+const bothTest2 = async () =>
   await generateService({
     schemaPath: `${__dirname}/example-files/openapi-priority-rule.json`,
-    serversPath: './apis/include/test3',
+    serversPath: './apis/both/test2',
     requestLibPath: '../request',
     enableLogging: true, // 开启日志
-    priorityRule: 'include',
+    priorityRule: 'both',
     includeTags: ['*'],
     includePaths: [],
     excludeTags: [],
@@ -64,56 +48,55 @@ const includeTest3 = async () =>
   });
 
 /**
- * 结果 ['/sys-a/**','/sys-b/**','/sys-c/**']
+ * 结果 ['/sys-a/a1']
  */
-const includeTest4 = async () =>
+const bothTest3 = async () =>
   await generateService({
     schemaPath: `${__dirname}/example-files/openapi-priority-rule.json`,
-    serversPath: './apis/include/test4',
+    serversPath: './apis/both/test3',
     requestLibPath: '../request',
     enableLogging: true, // 开启日志
-    priorityRule: 'include',
+    priorityRule: 'both',
     includeTags: ['*'],
-    includePaths: ['/sys-a/**', '/sys-b/**', '/sys-c/**'],
+    includePaths: ['/sys-a/**'],
     excludeTags: [],
-    excludePaths: [],
+    excludePaths: ['/sys-a/a1/**'],
   });
 
 /**
- * 结果 ['/sys-a/a1/aa1/aaa1','/sys-a/a1/aa1/aaa1/aaaa1']
+ * 结果 ['/user-z/z1']
  */
-const includeTest5 = async () =>
+const bothTest4 = async () =>
   await generateService({
     schemaPath: `${__dirname}/example-files/openapi-priority-rule.json`,
-    serversPath: './apis/include/test5',
+    serversPath: './apis/both/test4',
     requestLibPath: '../request',
     enableLogging: true, // 开启日志
-    priorityRule: 'include',
-    includeTags: ['sys-a'],
-    includePaths: ['/sys-a/a1/aa1/**'],
-    excludeTags: [],
-    excludePaths: [],
+    priorityRule: 'both',
+    includeTags: ['*'],
+    includePaths: ['/sys-a/**', '/user-z/**'],
+    excludeTags: ['sys-a'],
+    excludePaths: ['/user-z/z1/**'],
   });
 
 /**
- * 结果 ['/sys-a/**','/user-z/**']
+ * 结果 ['/user-z/z1', '/user-z/z1/zz1']
  */
-const includeTest6 = async () =>
+const bothTest5 = async () =>
   await generateService({
     schemaPath: `${__dirname}/example-files/openapi-priority-rule.json`,
-    serversPath: './apis/include/test6',
+    serversPath: './apis/both/test5',
     requestLibPath: '../request',
     enableLogging: true, // 开启日志
-    priorityRule: 'include',
-    includeTags: ['sys-a', 'user-z'],
-    includePaths: ['/**'],
-    excludeTags: [],
-    excludePaths: [],
+    priorityRule: 'both',
+    includeTags: ['*'],
+    includePaths: [],
+    excludeTags: ['sys-b', 'sys-c', 'user-x', 'user-y'],
+    excludePaths: ['/sys-a/**', '/user-z/z1/zz1/**'],
   });
 
-includeTest1();
-includeTest2();
-includeTest3();
-includeTest4();
-includeTest5();
-includeTest6();
+bothTest1();
+bothTest2();
+bothTest3();
+bothTest4();
+bothTest5();

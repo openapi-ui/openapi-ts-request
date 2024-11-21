@@ -1,7 +1,7 @@
 # 配置项
 
-- `allowedTags` 允许的tags
-- `allowedPaths` 允许的paths
+- `includeTags` 允许的tags
+- `includePaths` 允许的paths
 - `excludeTags` 排除的tags
 - `excludePaths` 排除的paths
 
@@ -21,7 +21,7 @@
 
 三种模式
 
-1. allowed
+1. include
 2. exclude
 3. both
 
@@ -39,21 +39,21 @@ AllPath: [
     /a/a1,/a/a2,/a/a3,/a/a4,    /b/b1,/b/b2,/b/b3,/b/b4,    ....]
 ```
 
-# Allowed 模式
+# Include 模式
 
 ```
 // 在白名单则生成
-if(include(allowedList)){
+if(include(includeList)){
     // 生成代码
 }
 ```
 
-| allowedTag | allowedPaths | excludeTag | excludePaths | 结果 | 备注 |
+| includeTag | includePaths | excludeTag | excludePaths | 结果 | 备注 |
 | --- | --- | --- | --- | --- | --- |
-| [] | [] | [] | [] | [] = allowedTag | allowedtag为空，跳过所有步骤 |
-| [] | ['/sys-a/\**','/sys-b/\**','/sys-c/\**'] | [] | [] | [] = allowedTag | allowedtag为空，跳过所有步骤 |
-| ['*'] | [] | [] | [] | ['*'] = allowedTag |  |
-| ['*'] | ['/sys-a/\**','/sys-b/\**','/sys-c/\**'] | [] | [] | ['/sys-a/\**','/sys-b/\**','/sys-c/\**'] = allowedPaths |  |
+| [] | [] | [] | [] | [] = includeTag | includetag为空，跳过所有步骤 |
+| [] | ['/sys-a/\**','/sys-b/\**','/sys-c/\**'] | [] | [] | [] = includeTag | includetag为空，跳过所有步骤 |
+| ['*'] | [] | [] | [] | ['*'] = includeTag |  |
+| ['*'] | ['/sys-a/\**','/sys-b/\**','/sys-c/\**'] | [] | [] | ['/sys-a/\**','/sys-b/\**','/sys-c/\**'] = includePaths |  |
 | ['sys-a'] | ['/sys-a/a1/aa1/\**'] | [] | [] | ['/sys-a/a1/aa1/aaa1','/sys-a/a1/aa1/aaa1/aaaa1'] | 通配符规则 |
 | ['sys-a','user-z'] | ['/**'] | [] | [] | ['/sys-a/\**','/user-z/\**'] |  |
 |  |  |  |  |  |  |
@@ -68,7 +68,7 @@ if(!include(excludeList)){
 }
 ```
 
-| allowedTag | allowedPaths | excludeTag | excludePaths | 结果 | 备注 |
+| includeTag | includePaths | excludeTag | excludePaths | 结果 | 备注 |
 | --- | --- | --- | --- | --- | --- |
 | [] | [] | [] | [] | ['*'] | 没有排除项，生成所有 |
 | [] | [] | ['sys-a,'user-z'] | [] | ['/sys-b/\**', '/sys-c/\**', '/user-x/\**', '/user-y/\**'] | 全集与excludeTag的差集 |
@@ -76,7 +76,7 @@ if(!include(excludeList)){
 | [] | [] | ['*'] | [] | [] | 排除了所有，是空集 |
 | [] | [] | ['sys-a','user-z'] | ['/sys-b/\**','/user-y/\**'] | ['/sys-c/\**', '/user-x/\**'] | 先排除tag，然后排除path |
 
-# Include模式
+# Both模式
 
 如果tag是直接描述
 
@@ -88,12 +88,12 @@ if(!include(excludeList)){
 
 ```
 // 在白名单且不在黑名单则生成
-if(include(allowedList) && !include(excludeList)){
+if(include(includeList) && !include(excludeList)){
     // 生成代码
 }
 ```
 
-| allowedTag(为空会生成空数组) | allowedPaths | excludeTag | excludePaths | 结果 | 备注 |
+| includeTag(为空会生成空数组) | includePaths | excludeTag | excludePaths | 结果 | 备注 |
 | --- | --- | --- | --- | --- | --- |
 | [] | [] | [] | [] | [] |  |
 | ['*'] | [] | [] | [] | ['*'] |  |
