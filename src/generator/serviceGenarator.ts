@@ -298,7 +298,7 @@ export default class ServiceGenerator {
 
   public log(message: any) {
     if (this.config.enableLogging) {
-      console.log(message);
+      log(message);
     }
   }
 
