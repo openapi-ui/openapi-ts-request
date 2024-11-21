@@ -236,15 +236,13 @@ export async function generateService({
       isGenJsonSchemas: false,
       isOnlyGenTypeScriptType: false,
       allowedTags: allowedTags
-        ? map(
-            allowedTags,
-            (item) => typeof item === 'string' && item.toLowerCase()
+        ? map(allowedTags, (item) =>
+            typeof item === 'string' ? item.toLowerCase() : item
           )
         : [],
       excludeTags: excludeTags
-        ? map(
-            excludeTags,
-            (item) => typeof item === 'string' && item.toLowerCase()
+        ? map(excludeTags, (item) =>
+            typeof item === 'string' ? item.toLowerCase() : item
           )
         : null,
       enableLogging: false,

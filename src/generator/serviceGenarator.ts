@@ -114,6 +114,13 @@ export default class ServiceGenerator {
     const priorityRule: PriorityRule =
       PriorityRule[config.priorityRule as keyof typeof PriorityRule];
 
+    if (
+      priorityRule === PriorityRule.allowed &&
+      isEmpty(this.config?.allowedTags) &&
+      isEmpty(this.config?.allowedPaths)
+    ) {
+      this.log('priorityRule allowed need allowedTags or allowedPaths');
+    }
     const hookCustomFileNames =
       this.config.hook?.customFileNames || getDefaultFileTag;
 
@@ -129,6 +136,12 @@ export default class ServiceGenerator {
       // 这里判断paths
       switch (priorityRule) {
         case PriorityRule.allowed: {
+          // allowedPaths and allowedTags is empty 没有任何allowed配置,直接跳过这个数组的所有元素
+          if (isEmpty(allowedTags) && isEmpty(allowedPaths)) {
+            this.log('priorityRule allowed need allowedTags or allowedPaths');
+            continue;
+          }
+
           if (
             !isEmpty(allowedPaths) &&
             !allowedPaths.some((pathRule) =>
@@ -154,6 +167,12 @@ export default class ServiceGenerator {
           break;
         }
         case PriorityRule.include: {
+          // allowedPaths is empty 没有配置,直接跳过
+          if (isEmpty(allowedTags) && isEmpty(allowedPaths)) {
+            this.log('priorityRule include need allowedTags or allowedPaths');
+            continue;
+          }
+
           const inAllowedPaths =
             !isEmpty(allowedPaths) &&
             !allowedPaths.some((path) =>
@@ -198,29 +217,48 @@ export default class ServiceGenerator {
         // 这里判断tags
         tags.forEach((tag) => {
           const tagLowerCase = tag.toLowerCase();
-          if (
-            priorityRule === PriorityRule.allowed &&
-            !allowedTags.some((tagRule) =>
-              typeof tagRule === 'string'
-                ? minimatch(tagLowerCase, tagRule)
-                : tagRule.test(tagLowerCase)
-            )
-          ) {
-            return;
+
+          if (priorityRule === PriorityRule.allowed) {
+            // allowedTags 为空, 不会匹配任何path,故跳过; allowedTags 和 allowedPaths 同时为空则没意义,故跳过;
+            if (
+              isEmpty(allowedTags) ||
+              (isEmpty(allowedTags) && isEmpty(allowedPaths))
+            ) {
+              this.log('priorityRule include need allowedTags or allowedPaths');
+              return;
+            }
+
+            if (
+              !isEmpty(allowedTags) &&
+              !allowedTags.some((tagRule) =>
+                typeof tagRule === 'string'
+                  ? minimatch(tagLowerCase, tagRule)
+                  : tagRule.test(tagLowerCase)
+              )
+            ) {
+              return;
+            }
           }
 
-          if (
-            priorityRule === PriorityRule.exclude &&
-            excludeTags.some((tagRule) =>
-              typeof tagRule === 'string'
-                ? minimatch(tagLowerCase, tagRule)
-                : tagRule.test(tagLowerCase)
-            )
-          ) {
-            return;
+          if (priorityRule === PriorityRule.exclude) {
+            if (
+              excludeTags.some((tagRule) =>
+                typeof tagRule === 'string'
+                  ? minimatch(tagLowerCase, tagRule)
+                  : tagRule.test(tagLowerCase)
+              )
+            ) {
+              return;
+            }
           }
 
           if (priorityRule === PriorityRule.include) {
+            // allowedTags is empty 没有配置,直接跳过
+            if (isEmpty(allowedTags)) {
+              this.log('priorityRule include need allowedTags or allowedPaths');
+              return;
+            }
+
             const inAllowedTags =
               !isEmpty(allowedTags) &&
               !allowedTags.some((tagRule) =>
