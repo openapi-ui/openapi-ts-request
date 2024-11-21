@@ -66,7 +66,7 @@
     "@types/lodash": "^4.17.5",
     "@types/memoizee": "^0.4.11",
     "@types/mockjs": "^1.0.10",
-    "@types/node": "^20.14.6",
+    "@types/node": "^22.9.1",
     "@types/nunjucks": "^3.2.6",
     "@types/reserved-words": "^0.1.4",
     "@types/swagger2openapi": "^7.0.4",
