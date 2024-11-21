@@ -168,7 +168,12 @@ openapi --i ./spec.json --o ./apis
 | schemaPath | 是 | string | - | Swagger2/OpenAPI3 地址 |
 | serversPath | 否 | string | './src/apis' | 生成结果的文件夹路径 |
 | requestLibPath | 否 | string | 'axios' | 自定义请求方法路径，例如：'@/request'、'node-fetch' |
-| allowedTags | 否 | string[] | - | 根据指定的 tags 生成代码 |
+| enableLogging | 否 | boolean | false | 是否开启日志 |
+| priorityRule | 否 | string | 'exclude' | 模式规则，可选allowed/exclude/include |
+| allowedTags | 否 | (string\|RegExp)[] | - | 根据指定的 tags 生成代码 |
+| allowedPaths | 否 | (string\|RegExp)[] | - | 根据指定的 paths 生成代码 |
+| excludeTags | 否 | (string\|RegExp)[] | - | 根据指定的 tags 不生成代码 |
+| excludePaths | 否 | (string\|RegExp)[] | - | 根据指定的 paths 不生成代码 |
 | requestOptionsType | 否 | string | '{ [key: string]: unknown }' | 自定义请求方法 options 参数类型 |
 | requestImportStatement | 否 | string | - | 自定义请求方法表达式，例如："const request = require('@/request')" |
 | apiPrefix | 否 | string | - | api path的前缀，例如：'api'(动态变量), "'api'"(字符串) |

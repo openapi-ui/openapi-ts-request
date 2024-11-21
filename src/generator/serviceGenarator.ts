@@ -6,7 +6,6 @@ import {
   entries,
   filter,
   forEach,
-  includes,
   intersection,
   isArray,
   isEmpty,
@@ -16,6 +15,7 @@ import {
   map,
   upperFirst,
 } from 'lodash';
+import { minimatch } from 'minimatch';
 import nunjucks from 'nunjucks';
 import { join } from 'path';
 import { sync as rimrafSync } from 'rimraf';
@@ -26,9 +26,11 @@ import {
   ArraySchemaObject,
   ContentObject,
   ISchemaObject,
+  OpenAPIObject,
   OperationObject,
   ParameterObject,
   PathItemObject,
+  PriorityRule,
   ReferenceObject,
   RequestBodyObject,
   ResponseObject,
@@ -37,7 +39,6 @@ import {
   SchemaObjectFormat,
   SchemaObjectType,
 } from '../type';
-import { OpenAPIObject } from '../type';
 import {
   DEFAULT_PATH_PARAM,
   DEFAULT_SCHEMA,
@@ -98,11 +99,29 @@ export default class ServiceGenerator {
   protected schemaList: ISchemaItem[] = [];
 
   constructor(config: GenerateServiceProps, openAPIData: OpenAPIObject) {
+    // 默认值
     this.finalPath = '';
     this.config = {
       templatesFolder: join(__dirname, '../../', 'templates'),
       ...config,
     };
+    this.generateInfoLog();
+
+    const allowedPaths = this.config?.allowedPaths || [];
+    const allowedTags = this.config?.allowedTags || [];
+    const excludePaths = this.config?.excludePaths || [];
+    const excludeTags = this.config?.excludeTags || [];
+
+    const priorityRule: PriorityRule =
+      PriorityRule[config.priorityRule as keyof typeof PriorityRule];
+
+    if (
+      priorityRule === PriorityRule.allowed &&
+      isEmpty(this.config?.allowedTags) &&
+      isEmpty(this.config?.allowedPaths)
+    ) {
+      this.log('priorityRule allowed need allowedTags or allowedPaths');
+    }
     const hookCustomFileNames =
       this.config.hook?.customFileNames || getDefaultFileTag;
 
@@ -114,7 +133,73 @@ export default class ServiceGenerator {
     }
 
     // 用 tag 分组 paths, { [tag]: [pathMap, pathMap] }
-    keys(this.openAPIData.paths).forEach((pathKey) => {
+    for (const pathKey in this.openAPIData.paths) {
+      // 这里判断paths
+      switch (priorityRule) {
+        case PriorityRule.allowed: {
+          // allowedPaths and allowedTags is empty 没有任何allowed配置,直接跳过这个数组的所有元素
+          if (isEmpty(allowedTags) && isEmpty(allowedPaths)) {
+            this.log('priorityRule allowed need allowedTags or allowedPaths');
+            continue;
+          }
+
+          if (
+            !isEmpty(allowedPaths) &&
+            !allowedPaths.some((pathRule) =>
+              typeof pathRule === 'string'
+                ? minimatch(pathKey, pathRule)
+                : pathRule.test(pathKey)
+            )
+          ) {
+            continue;
+          }
+          break;
+        }
+        case PriorityRule.exclude: {
+          if (
+            excludePaths.some((pathRule) =>
+              typeof pathRule === 'string'
+                ? minimatch(pathKey, pathRule)
+                : pathRule.test(pathKey)
+            )
+          ) {
+            continue;
+          }
+          break;
+        }
+        case PriorityRule.include: {
+          // allowedPaths is empty 没有配置,直接跳过
+          if (isEmpty(allowedTags) && isEmpty(allowedPaths)) {
+            this.log('priorityRule include need allowedTags or allowedPaths');
+            continue;
+          }
+
+          const inAllowedPaths =
+            !isEmpty(allowedPaths) &&
+            !allowedPaths.some((path) =>
+              typeof path === 'string'
+                ? minimatch(pathKey, path)
+                : path.test(pathKey)
+            );
+          const inExcludePaths =
+            !isEmpty(excludePaths) &&
+            excludePaths.some((path) =>
+              typeof path === 'string'
+                ? minimatch(pathKey, path)
+                : path.test(pathKey)
+            );
+
+          if (inAllowedPaths || inExcludePaths) {
+            continue;
+          }
+          break;
+        }
+        default:
+          throw new Error(
+            'priorityRule must be "allowed" or "exclude" or "include"'
+          );
+      }
+
       const pathItem = this.openAPIData.paths[pathKey];
 
       forEach(methods, (method) => {
@@ -130,13 +215,68 @@ export default class ServiceGenerator {
           tags = getDefaultFileTag(operationObject, pathKey);
         }
 
+        // 这里判断tags
         tags.forEach((tag) => {
-          // 筛选出 tags 关联的paths
-          if (
-            !isEmpty(this.config?.allowedTags) &&
-            !includes(this.config.allowedTags, tag.toLowerCase())
-          ) {
-            return;
+          const tagLowerCase = tag.toLowerCase();
+
+          if (priorityRule === PriorityRule.allowed) {
+            // allowedTags 为空, 不会匹配任何path,故跳过; allowedTags 和 allowedPaths 同时为空则没意义,故跳过;
+            if (
+              isEmpty(allowedTags) ||
+              (isEmpty(allowedTags) && isEmpty(allowedPaths))
+            ) {
+              this.log('priorityRule include need allowedTags or allowedPaths');
+              return;
+            }
+
+            if (
+              !isEmpty(allowedTags) &&
+              !allowedTags.some((tagRule) =>
+                typeof tagRule === 'string'
+                  ? minimatch(tagLowerCase, tagRule)
+                  : tagRule.test(tagLowerCase)
+              )
+            ) {
+              return;
+            }
+          }
+
+          if (priorityRule === PriorityRule.exclude) {
+            if (
+              excludeTags.some((tagRule) =>
+                typeof tagRule === 'string'
+                  ? minimatch(tagLowerCase, tagRule)
+                  : tagRule.test(tagLowerCase)
+              )
+            ) {
+              return;
+            }
+          }
+
+          if (priorityRule === PriorityRule.include) {
+            // allowedTags is empty 没有配置,直接跳过
+            if (isEmpty(allowedTags)) {
+              this.log('priorityRule include need allowedTags or allowedPaths');
+              return;
+            }
+
+            const inAllowedTags =
+              !isEmpty(allowedTags) &&
+              !allowedTags.some((tagRule) =>
+                typeof tagRule === 'string'
+                  ? minimatch(tagLowerCase, tagRule)
+                  : tagRule.test(tagLowerCase)
+              );
+            const inExcludeTags =
+              !isEmpty(excludeTags) &&
+              excludeTags.some((tagRule) =>
+                typeof tagRule === 'string'
+                  ? minimatch(tagLowerCase, tagRule)
+                  : tagRule.test(tagLowerCase)
+              );
+            if (inAllowedTags || inExcludeTags) {
+              return;
+            }
           }
 
           const tagKey = this.config.isCamelCase
@@ -154,7 +294,13 @@ export default class ServiceGenerator {
           });
         });
       });
-    });
+    }
+  }
+
+  public log(message: any) {
+    if (this.config.enableLogging) {
+      log(message);
+    }
   }
 
   public genFile() {
@@ -1089,5 +1235,25 @@ export default class ServiceGenerator {
     }
 
     return refObject as T;
+  }
+
+  private generateInfoLog(): void {
+    this.log(`priorityRule: ${this.config?.priorityRule}`);
+
+    if (this.config?.allowedTags) {
+      this.log(`allowedTags: ${this.config?.allowedTags.join(', ')}`);
+    }
+
+    if (this.config?.excludeTags) {
+      this.log(`excludeTags: ${this.config?.excludeTags.join(', ')}`);
+    }
+
+    if (this.config?.allowedPaths) {
+      this.log(`allowedPaths: ${this.config?.allowedPaths.join(', ')}`);
+    }
+
+    if (this.config?.excludePaths) {
+      this.log(`excludePaths: ${this.config?.excludePaths.join(', ')}`);
+    }
   }
 }

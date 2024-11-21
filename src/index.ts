@@ -35,9 +35,30 @@ export type GenerateServiceProps = {
    */
   requestLibPath?: string;
   /**
+   * 开启日志
+   */
+  enableLogging?: boolean;
+  /**
+  /**
+   * 优先规则, allowed(只允许allowed列表) | exclude(只排除exclude列表) | include(允许allowed列表，排除exclude列表)
+   */
+  priorityRule?: string;
+  /**
    * 只解析归属于 tags 集合的api 和 schema
    */
-  allowedTags?: string[];
+  allowedTags?: (string | RegExp)[];
+  /**
+   * 只解析归属于 paths 集合的api
+   */
+  allowedPaths?: (string | RegExp)[];
+  /**
+   * 不解析归属于 tags 集合的api 和 schema
+   */
+  excludeTags?: (string | RegExp)[];
+  /**
+   * 排除解析归属于 paths 集合的api
+   */
+  excludePaths?: (string | RegExp)[];
   /**
    * 自定义请求方法 options 参数类型
    */
@@ -179,6 +200,7 @@ export async function generateService({
   schemaPath,
   mockFolder,
   allowedTags,
+  excludeTags,
   authorization,
   isTranslateToEnglishTag,
   ...rest
@@ -214,8 +236,17 @@ export async function generateService({
       isGenJsonSchemas: false,
       isOnlyGenTypeScriptType: false,
       allowedTags: allowedTags
-        ? map(allowedTags, (item) => item.toLowerCase())
+        ? map(allowedTags, (item) =>
+            typeof item === 'string' ? item.toLowerCase() : item
+          )
+        : [],
+      excludeTags: excludeTags
+        ? map(excludeTags, (item) =>
+            typeof item === 'string' ? item.toLowerCase() : item
+          )
         : null,
+      enableLogging: false,
+      priorityRule: 'allowed',
       ...rest,
     },
     openAPI

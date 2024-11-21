@@ -105,4 +105,17 @@ export enum SchemaObjectType {
   file = 'file',
 }
 
+export enum PriorityRule {
+  allowed = 'allowed',
+  exclude = 'exclude',
+  include = 'include',
+}
+
+export type GenerateRegExp = {
+  allowedTags: (string | RegExp)[];
+  excludeTags: (string | RegExp)[];
+  allowedPaths: (string | RegExp)[];
+  excludePaths: (string | RegExp)[];
+};
+
 export type ISchemaObjectType = keyof typeof SchemaObjectType;
