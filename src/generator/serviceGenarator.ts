@@ -107,8 +107,8 @@ export default class ServiceGenerator {
     };
     this.generateInfoLog();
 
-    const allowedPaths = this.config?.allowedPaths || [];
-    const allowedTags = this.config?.allowedTags || [];
+    const includePaths = this.config?.includePaths || [];
+    const includeTags = this.config?.includeTags || [];
     const excludePaths = this.config?.excludePaths || [];
     const excludeTags = this.config?.excludeTags || [];
 
@@ -116,11 +116,11 @@ export default class ServiceGenerator {
       PriorityRule[config.priorityRule as keyof typeof PriorityRule];
 
     if (
-      priorityRule === PriorityRule.allowed &&
-      isEmpty(this.config?.allowedTags) &&
-      isEmpty(this.config?.allowedPaths)
+      priorityRule === PriorityRule.include &&
+      isEmpty(this.config?.includeTags) &&
+      isEmpty(this.config?.includePaths)
     ) {
-      this.log('priorityRule allowed need allowedTags or allowedPaths');
+      this.log('priorityRule include need includeTags or includePaths');
     }
     const hookCustomFileNames =
       this.config.hook?.customFileNames || getDefaultFileTag;
@@ -136,16 +136,16 @@ export default class ServiceGenerator {
     for (const pathKey in this.openAPIData.paths) {
       // 这里判断paths
       switch (priorityRule) {
-        case PriorityRule.allowed: {
-          // allowedPaths and allowedTags is empty 没有任何allowed配置,直接跳过这个数组的所有元素
-          if (isEmpty(allowedTags) && isEmpty(allowedPaths)) {
-            this.log('priorityRule allowed need allowedTags or allowedPaths');
+        case PriorityRule.include: {
+          // includePaths and includeTags is empty 没有任何include配置,直接跳过这个数组的所有元素
+          if (isEmpty(includeTags) && isEmpty(includePaths)) {
+            this.log('priorityRule include need includeTags or includePaths');
             continue;
           }
 
           if (
-            !isEmpty(allowedPaths) &&
-            !allowedPaths.some((pathRule) =>
+            !isEmpty(includePaths) &&
+            !includePaths.some((pathRule) =>
               typeof pathRule === 'string'
                 ? minimatch(pathKey, pathRule)
                 : pathRule.test(pathKey)
@@ -167,16 +167,16 @@ export default class ServiceGenerator {
           }
           break;
         }
-        case PriorityRule.include: {
-          // allowedPaths is empty 没有配置,直接跳过
-          if (isEmpty(allowedTags) && isEmpty(allowedPaths)) {
-            this.log('priorityRule include need allowedTags or allowedPaths');
+        case PriorityRule.both: {
+          // includePaths is empty 没有配置,直接跳过
+          if (isEmpty(includeTags) && isEmpty(includePaths)) {
+            this.log('priorityRule include need includeTags or includePaths');
             continue;
           }
 
-          const inAllowedPaths =
-            !isEmpty(allowedPaths) &&
-            !allowedPaths.some((path) =>
+          const inincludePaths =
+            !isEmpty(includePaths) &&
+            !includePaths.some((path) =>
               typeof path === 'string'
                 ? minimatch(pathKey, path)
                 : path.test(pathKey)
@@ -189,14 +189,14 @@ export default class ServiceGenerator {
                 : path.test(pathKey)
             );
 
-          if (inAllowedPaths || inExcludePaths) {
+          if (inincludePaths || inExcludePaths) {
             continue;
           }
           break;
         }
         default:
           throw new Error(
-            'priorityRule must be "allowed" or "exclude" or "include"'
+            'priorityRule must be "include" or "exclude" or "include"'
           );
       }
 
@@ -219,19 +219,19 @@ export default class ServiceGenerator {
         tags.forEach((tag) => {
           const tagLowerCase = tag.toLowerCase();
 
-          if (priorityRule === PriorityRule.allowed) {
-            // allowedTags 为空, 不会匹配任何path,故跳过; allowedTags 和 allowedPaths 同时为空则没意义,故跳过;
+          if (priorityRule === PriorityRule.include) {
+            // includeTags 为空, 不会匹配任何path,故跳过; includeTags 和 includePaths 同时为空则没意义,故跳过;
             if (
-              isEmpty(allowedTags) ||
-              (isEmpty(allowedTags) && isEmpty(allowedPaths))
+              isEmpty(includeTags) ||
+              (isEmpty(includeTags) && isEmpty(includePaths))
             ) {
-              this.log('priorityRule include need allowedTags or allowedPaths');
+              this.log('priorityRule include need includeTags or includePaths');
               return;
             }
 
             if (
-              !isEmpty(allowedTags) &&
-              !allowedTags.some((tagRule) =>
+              !isEmpty(includeTags) &&
+              !includeTags.some((tagRule) =>
                 typeof tagRule === 'string'
                   ? minimatch(tagLowerCase, tagRule)
                   : tagRule.test(tagLowerCase)
@@ -253,16 +253,16 @@ export default class ServiceGenerator {
             }
           }
 
-          if (priorityRule === PriorityRule.include) {
-            // allowedTags is empty 没有配置,直接跳过
-            if (isEmpty(allowedTags)) {
-              this.log('priorityRule include need allowedTags or allowedPaths');
+          if (priorityRule === PriorityRule.both) {
+            // includeTags is empty 没有配置,直接跳过
+            if (isEmpty(includeTags)) {
+              this.log('priorityRule include need includeTags or includePaths');
               return;
             }
 
-            const inAllowedTags =
-              !isEmpty(allowedTags) &&
-              !allowedTags.some((tagRule) =>
+            const inincludeTags =
+              !isEmpty(includeTags) &&
+              !includeTags.some((tagRule) =>
                 typeof tagRule === 'string'
                   ? minimatch(tagLowerCase, tagRule)
                   : tagRule.test(tagLowerCase)
@@ -274,7 +274,7 @@ export default class ServiceGenerator {
                   ? minimatch(tagLowerCase, tagRule)
                   : tagRule.test(tagLowerCase)
               );
-            if (inAllowedTags || inExcludeTags) {
+            if (inincludeTags || inExcludeTags) {
               return;
             }
           }
@@ -451,13 +451,13 @@ export default class ServiceGenerator {
 
         // 筛选出 pathItem 包含的 $ref 对应的schema
         if (
-          !isEmpty(this.config?.allowedTags) &&
+          !isEmpty(this.config?.includeTags) &&
           !isEmpty(operationObject.tags)
         ) {
           if (
             !isEmpty(
               intersection(
-                this.config.allowedTags,
+                this.config.includeTags,
                 map(operationObject.tags, (tag) => tag.toLowerCase())
               )
             )
@@ -548,7 +548,7 @@ export default class ServiceGenerator {
 
       // 判断哪些 schema 需要添加进 type, schemas 渲染数组
       if (
-        isEmpty(this.config.allowedTags) ||
+        isEmpty(this.config.includeTags) ||
         (schema as ICustomSchemaObject)?.isAllowed
       ) {
         const isEnum = result.isEnum as boolean;
@@ -1240,16 +1240,16 @@ export default class ServiceGenerator {
   private generateInfoLog(): void {
     this.log(`priorityRule: ${this.config?.priorityRule}`);
 
-    if (this.config?.allowedTags) {
-      this.log(`allowedTags: ${this.config?.allowedTags.join(', ')}`);
+    if (this.config?.includeTags) {
+      this.log(`includeTags: ${this.config?.includeTags.join(', ')}`);
     }
 
     if (this.config?.excludeTags) {
       this.log(`excludeTags: ${this.config?.excludeTags.join(', ')}`);
     }
 
-    if (this.config?.allowedPaths) {
-      this.log(`allowedPaths: ${this.config?.allowedPaths.join(', ')}`);
+    if (this.config?.includePaths) {
+      this.log(`includePaths: ${this.config?.includePaths.join(', ')}`);
     }
 
     if (this.config?.excludePaths) {

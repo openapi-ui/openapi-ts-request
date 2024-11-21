@@ -20,13 +20,13 @@ import { generateService } from '../src/index';
  */
 const excludeTest1 = async () =>
   await generateService({
-    schemaPath: `${__dirname}/example-files/zq.json`,
-    serversPath: './apis/excludeTest1',
+    schemaPath: `${__dirname}/example-files/openapi-priority-rule.json`,
+    serversPath: './apis/exclude/test1',
     requestLibPath: '../request',
     enableLogging: true, // 开启日志
     priorityRule: 'exclude',
-    allowedTags: [],
-    allowedPaths: [],
+    includeTags: [],
+    includePaths: [],
     excludeTags: [],
     excludePaths: [],
   });
@@ -36,13 +36,13 @@ const excludeTest1 = async () =>
  */
 const excludeTest2 = async () =>
   await generateService({
-    schemaPath: `${__dirname}/example-files/zq.json`,
-    serversPath: './apis/excludeTest2',
+    schemaPath: `${__dirname}/example-files/openapi-priority-rule.json`,
+    serversPath: './apis/exclude/test2',
     requestLibPath: '../request',
     enableLogging: true, // 开启日志
     priorityRule: 'exclude',
-    allowedTags: [],
-    allowedPaths: [],
+    includeTags: [],
+    includePaths: [],
     excludeTags: ['sys-a', 'user-z'],
     excludePaths: [],
   });
@@ -52,13 +52,13 @@ const excludeTest2 = async () =>
  */
 const excludeTest3 = async () =>
   await generateService({
-    schemaPath: `${__dirname}/example-files/zq.json`,
-    serversPath: './apis/excludeTest3',
+    schemaPath: `${__dirname}/example-files/openapi-priority-rule.json`,
+    serversPath: './apis/exclude/test3',
     requestLibPath: '../request',
     enableLogging: true, // 开启日志
     priorityRule: 'exclude',
-    allowedTags: [],
-    allowedPaths: [],
+    includeTags: [],
+    includePaths: [],
     excludeTags: [],
     excludePaths: ['/sys-a/**', '/user-z/**'],
   });
@@ -68,13 +68,13 @@ const excludeTest3 = async () =>
  */
 const excludeTest4 = async () =>
   await generateService({
-    schemaPath: `${__dirname}/example-files/zq.json`,
-    serversPath: './apis/excludeTest4',
+    schemaPath: `${__dirname}/example-files/openapi-priority-rule.json`,
+    serversPath: './apis/exclude/test4',
     requestLibPath: '../request',
     enableLogging: true, // 开启日志
     priorityRule: 'exclude',
-    allowedTags: [],
-    allowedPaths: [],
+    includeTags: [],
+    includePaths: [],
     excludeTags: ['*'],
     excludePaths: [],
   });
@@ -84,13 +84,13 @@ const excludeTest4 = async () =>
  */
 const excludeTest5 = async () =>
   await generateService({
-    schemaPath: `${__dirname}/example-files/zq.json`,
-    serversPath: './apis/excludeTest5',
+    schemaPath: `${__dirname}/example-files/openapi-priority-rule.json`,
+    serversPath: './apis/exclude/test5',
     requestLibPath: '../request',
     enableLogging: true, // 开启日志
     priorityRule: 'exclude',
-    allowedTags: [],
-    allowedPaths: [],
+    includeTags: [],
+    includePaths: [],
     excludeTags: ['sys-a', 'user-z'],
     excludePaths: ['/sys-b/**', '/user-y/**'],
   });

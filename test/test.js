@@ -11,18 +11,21 @@ const gen = async () => {
     serversPath: './apis/empty',
     isDisplayTypeLabel: true,
     isGenJsonSchemas: true,
+    includeTags: ["*"],
   });
 
   // 测试 swagger => openapi, schema 循环引用
   await openAPI.generateService({
     schemaPath: `${__dirname}/example-files/swagger-get-method-params-convert-obj.json`,
     serversPath: './apis/convert-obj',
+    includeTags: ["*"],
   });
 
   // 测试空的 schema 引用
   await openAPI.generateService({
     schemaPath: `${__dirname}/example-files/openapi-schema-contain-blank-symbol.json`,
     serversPath: './apis/blank-symbol',
+    includeTags: ["*"],
   });
 
   // 自定义 hook
@@ -30,6 +33,7 @@ const gen = async () => {
     requestLibPath: "import request from '@/request';",
     schemaPath: `${__dirname}/example-files/openapi-custom-hook.json`,
     serversPath: './apis/custom',
+    includeTags: ["*"],
     hook: {
       // 自定义类名
       customClassName: (tagName) => {
@@ -63,6 +67,7 @@ const gen = async () => {
     serversPath: './apis/support-null',
     nullable: true,
     mockFolder: './mocks',
+    includeTags: ["*"],
   });
 
   // 正常命名文件和请求函数
@@ -70,6 +75,7 @@ const gen = async () => {
     schemaPath: `${__dirname}/example-files/openapi-camelcase.json`,
     serversPath: './apis/name/normal',
     isCamelCase: false,
+    includeTags: ["*"],
   });
 
   // 小驼峰命名文件和请求函数
@@ -77,6 +83,7 @@ const gen = async () => {
     schemaPath: `${__dirname}/example-files/openapi-camelcase.json`,
     serversPath: './apis/name/camelcase',
     isCamelCase: true,
+    includeTags: ["*"],
   });
 
   // 测试处理 allof 结构, 生成复杂 type 翻译
@@ -84,12 +91,14 @@ const gen = async () => {
     schemaPath: `${__dirname}/example-files/openapi-test-allof-api.json`,
     serversPath: './apis/allof',
     isDisplayTypeLabel: true,
+    includeTags: ["*"],
   });
 
   // 文件上传
   await openAPI.generateService({
     schemaPath: `${__dirname}/example-files/swagger-file-convert.json`,
     serversPath: './apis/file',
+    includeTags: ["*"],
   });
 
   // 生成枚举翻译, 生成 type 翻译
@@ -97,13 +106,15 @@ const gen = async () => {
     schemaPath: `${__dirname}/example-files/openapi-display-enum-label.json`,
     serversPath: './apis/display-enum-label',
     isDisplayTypeLabel: true,
+    includeTags: ["*"],
   });
 
   // 测试筛选出指定 tags 对应的api
   await openAPI.generateService({
     schemaPath: `${__dirname}/example-files/openapi.json`,
     serversPath: './apis/filter-tags',
-    allowedTags: ['pet'],
+    includeTags: ['pet'],
+    includeTags: ["*"],
   });
 
   // 测试生成 JSON Schemas
@@ -111,51 +122,59 @@ const gen = async () => {
     schemaPath: `${__dirname}/example-files/openapi-display-enum-label.json`,
     serversPath: './apis/schemas',
     isGenJsonSchemas: true,
+    includeTags: ["*"],
   });
 
   // 测试设置 path 前缀
   await openAPI.generateService({
     schemaPath: `${__dirname}/example-files/swagger.json`,
     serversPath: './apis/api-prefix',
-    apiPrefix: '"/pet"'
+    apiPrefix: '"/pet"',
+    includeTags: ["*"],
   });
 
   // 测试解析 swagger.yaml/openapi.yaml
   await openAPI.generateService({
     schemaPath: `${__dirname}/example-files/swagger.yaml`,
-    serversPath: './apis/yaml'
+    serversPath: './apis/yaml',
+    includeTags: ["*"],
   });
 
   // 测试将中文 tag 名称翻译成英文 tag 名称
   await openAPI.generateService({
     schemaPath: `${__dirname}/example-files/openapi-chinese-tag.json`,
     serversPath: './apis/chinese-tag',
-    isTranslateToEnglishTag: true
+    isTranslateToEnglishTag: true,
+    includeTags: ["*"],
   });
 
   // 测试支持 components 非 schemas 的字段
   await openAPI.generateService({
     schemaPath: `${__dirname}/example-files/swagger-components-response.json`,
     serversPath: './apis/components-response',
+    includeTags: ["*"],
   });
 
   // 测试 $ref 引用中包含 encode 编码字符
   await openAPI.generateService({
     schemaPath: `${__dirname}/example-files/openapi-ref-encode-character.json`,
     serversPath: './apis/ref-encode-character',
-    allowedTags: ["商品基础管理"]
+    includeTags: ["商品基础管理"],
+    includeTags: ["*"],
   });
 
   // 测试支持 apifox x-run-in-apifox
   await openAPI.generateService({
     schemaPath: `${__dirname}/example-files/openapi-ref-encode-character.json`,
-    serversPath: './apis/x-run-in-apifox'
+    serversPath: './apis/x-run-in-apifox',
+    includeTags: ["*"],
   });
 
   // 测试 schemas 包含枚举数组
   await openAPI.generateService({
     schemaPath: `${__dirname}/example-files/openapi-schemas-enum-array.json`,
-    serversPath: './apis/schemas-enum-array'
+    serversPath: './apis/schemas-enum-array',
+    includeTags: ["*"],
   });
 
   // 测试 只生成 typescript 类型，不生成请求函数
@@ -165,6 +184,7 @@ const gen = async () => {
     isOnlyGenTypeScriptType: true,
     isDisplayTypeLabel: true,
     isGenJsonSchemas: true,
+    includeTags: ["*"],
   });
 
   // check 文件生成

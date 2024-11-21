@@ -18,7 +18,7 @@ const params = program
     '--requestLibPath <string>',
     'custom request lib path, for example: "@/request", "node-fetch", default is "axios"'
   )
-  .option('--allowedTags <string[]>', 'generate results from allowed tags')
+  .option('--includeTags <string[]>', 'generate results from include tags')
   .option(
     '--requestOptionsType <string>',
     'custom request method options parameter type (default: "{ [key: string]: unknown }")'
@@ -77,7 +77,7 @@ async function run() {
       schemaPath: input,
       serversPath: output,
       requestLibPath: params.requestLibPath as string,
-      allowedTags: params.allowedTags as string[],
+      includeTags: params.includeTags as string[],
       requestOptionsType: params.requestOptionsType as string,
       apiPrefix: params.apiPrefix as string,
       isDisplayTypeLabel:

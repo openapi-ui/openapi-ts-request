@@ -52,7 +52,7 @@
 
 ### Patch Changes
 
-- [`430c164`](https://github.com/openapi-ui/openapi-ts-request/commit/430c1648fa0cb1737ed83f762bff434678488c50) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - fix: fix $ref includes encode character causing allowedTags function error
+- [`430c164`](https://github.com/openapi-ui/openapi-ts-request/commit/430c1648fa0cb1737ed83f762bff434678488c50) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - fix: fix $ref includes encode character causing includeTags function error
 
 ## 0.8.2
 

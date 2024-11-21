@@ -137,7 +137,7 @@ $ openapi --help
     -i, --input <string>               OpenAPI specification, can be a path, url (required)
     -o, --output <string>              output directory (required)
     --requestLibPath <string>          custom request lib path, for example: "@/request", "node-fetch", default is "axios"
-    --allowedTags <string[]>           generate code from allowed tags
+    --includeTags <string[]>           generate code from include tags
     --requestOptionsType <string>      custom request method options parameter type (default: "{ [key:
                                       string]: unknown }")
     --requestImportStatement <string>  custom request import statement, for example: "const request =
@@ -169,9 +169,9 @@ openapi --i ./spec.json --o ./apis
 | serversPath | 否 | string | './src/apis' | 生成结果的文件夹路径 |
 | requestLibPath | 否 | string | 'axios' | 自定义请求方法路径，例如：'@/request'、'node-fetch' |
 | enableLogging | 否 | boolean | false | 是否开启日志 |
-| priorityRule | 否 | string | 'exclude' | 模式规则，可选allowed/exclude/include |
-| allowedTags | 否 | (string\|RegExp)[] | - | 根据指定的 tags 生成代码 |
-| allowedPaths | 否 | (string\|RegExp)[] | - | 根据指定的 paths 生成代码 |
+| priorityRule | 否 | string | 'include' | 模式规则，可选include/exclude/both |
+| includeTags | 否 | (string\|RegExp)[] | - | 根据指定的 tags 生成代码, priorityRule=include则必填 |
+| includePaths | 否 | (string\|RegExp)[] | - | 根据指定的 paths 生成代码 |
 | excludeTags | 否 | (string\|RegExp)[] | - | 根据指定的 tags 不生成代码 |
 | excludePaths | 否 | (string\|RegExp)[] | - | 根据指定的 paths 不生成代码 |
 | requestOptionsType | 否 | string | '{ [key: string]: unknown }' | 自定义请求方法 options 参数类型 |
