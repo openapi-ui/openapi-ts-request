@@ -47,7 +47,7 @@ export async function {{ api.functionName }}(
   {%- else -%}
   {{ api.body.type }}
   {%- endif -%}
-
+  
   {%- endif -%}
   {{ "," if api.file }}
 {%- endif %}
@@ -122,7 +122,7 @@ export async function {{ api.functionName }}(
   {% endif -%}
 
 
-
+  
   {% if api.hasPathVariables or api.hasApiPrefix -%}
   return request{{ ("<" + api.response.type + ">") | safe if genType === "ts" }}(`{{ api.path | safe }}`, {
   {% else -%}
