@@ -174,7 +174,7 @@ export default class ServiceGenerator {
             continue;
           }
 
-          const inincludePaths =
+          const inIncludePaths =
             !isEmpty(includePaths) &&
             !includePaths.some((path) =>
               typeof path === 'string'
@@ -189,7 +189,7 @@ export default class ServiceGenerator {
                 : path.test(pathKey)
             );
 
-          if (inincludePaths || inExcludePaths) {
+          if (inIncludePaths || inExcludePaths) {
             continue;
           }
           break;
