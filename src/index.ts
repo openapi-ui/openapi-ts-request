@@ -246,7 +246,7 @@ export async function generateService({
           )
         : null,
       enableLogging: false,
-      priorityRule: 'exclude',
+      priorityRule: 'allowed',
       ...rest,
     },
     openAPI
