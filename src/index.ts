@@ -7,6 +7,7 @@ import {
   ComponentsObject,
   OpenAPIObject,
   OperationObject,
+  PriorityRule,
   ReferenceObject,
   SchemaObject,
 } from './type';
@@ -223,6 +224,16 @@ export async function generateService({
   }
 
   const requestImportStatement = getImportStatement(requestLibPath);
+
+  const priorityRule: PriorityRule =
+    rest.priorityRule === undefined
+      ? PriorityRule.include
+      : PriorityRule[rest.priorityRule as keyof typeof PriorityRule];
+
+  if (priorityRule === PriorityRule.include && includeTags === undefined) {
+    includeTags = [/.*/g];
+  }
+
   const serviceGenerator = new ServiceGenerator(
     {
       schemaPath,

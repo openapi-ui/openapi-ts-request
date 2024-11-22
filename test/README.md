@@ -52,8 +52,8 @@ if(include(includeList)){
 | --- | --- | --- | --- | --- | --- |
 | [] | [] | [] | [] | [] = includeTag | includetag为空，跳过所有步骤 |
 | [] | ['/sys-a/\**','/sys-b/\**','/sys-c/\**'] | [] | [] | [] = includeTag | includetag为空，跳过所有步骤 |
-| ['*'] | [] | [] | [] | ['*'] = includeTag |  |
-| ['*'] | ['/sys-a/\**','/sys-b/\**','/sys-c/\**'] | [] | [] | ['/sys-a/\**','/sys-b/\**','/sys-c/\**'] = includePaths |  |
+| [/.*/g] | [] | [] | [] | [/.*/g] = includeTag |  |
+| [/.*/g] | ['/sys-a/\**','/sys-b/\**','/sys-c/\**'] | [] | [] | ['/sys-a/\**','/sys-b/\**','/sys-c/\**'] = includePaths |  |
 | ['sys-a'] | ['/sys-a/a1/aa1/\**'] | [] | [] | ['/sys-a/a1/aa1/aaa1','/sys-a/a1/aa1/aaa1/aaaa1'] | 通配符规则 |
 | ['sys-a','user-z'] | ['/**'] | [] | [] | ['/sys-a/\**','/user-z/\**'] |  |
 |  |  |  |  |  |  |
@@ -70,10 +70,10 @@ if(!include(excludeList)){
 
 | includeTag | includePaths | excludeTag | excludePaths | 结果 | 备注 |
 | --- | --- | --- | --- | --- | --- |
-| [] | [] | [] | [] | ['*'] | 没有排除项，生成所有 |
+| [] | [] | [] | [] | [/.*/g] | 没有排除项，生成所有 |
 | [] | [] | ['sys-a,'user-z'] | [] | ['/sys-b/\**', '/sys-c/\**', '/user-x/\**', '/user-y/\**'] | 全集与excludeTag的差集 |
 | [] | [] | [] | ['/sys-a/\**','/user-z/\**'] | ['/sys-b/\**', '/sys-c/\**', '/user-x/\**', '/user-y/\**'] | 全集与excludeTag的差集 |
-| [] | [] | ['*'] | [] | [] | 排除了所有，是空集 |
+| [] | [] | [/.*/g] | [] | [] | 排除了所有，是空集 |
 | [] | [] | ['sys-a','user-z'] | ['/sys-b/\**','/user-y/\**'] | ['/sys-c/\**', '/user-x/\**'] | 先排除tag，然后排除path |
 
 # Both模式
@@ -96,7 +96,7 @@ if(include(includeList) && !include(excludeList)){
 | includeTag(为空会生成空数组) | includePaths | excludeTag | excludePaths | 结果 | 备注 |
 | --- | --- | --- | --- | --- | --- |
 | [] | [] | [] | [] | [] |  |
-| ['*'] | [] | [] | [] | ['*'] |  |
-| ['*'] | ['/sys-a/**'] | [] | ['/sys-a/a1/**'] | ['/sys-a/a1'] |  |
-| ['*'] | ['/sys-a/**','/user-z/\**'] | [] | [/sys-c/\*,/user-z/*] | ['/user-z/z1'] |  |
-| ['*'] | [] | ['sys-b','sys-c','user-x','user-y'] | ['/sys-a/**', '/user-z/z1/zz1/\**'] | ['/user-z/z1', '/user-z/z1/zz1'] |  |
+| [/.*/g] | [] | [] | [] | [/.*/g] |  |
+| [/.*/g] | ['/sys-a/**'] | [] | ['/sys-a/a1/**'] | ['/sys-a/a1'] |  |
+| [/.*/g] | ['/sys-a/**','/user-z/\**'] | [] | [/sys-c/\*,/user-z/*] | ['/user-z/z1'] |  |
+| [/.*/g] | [] | ['sys-b','sys-c','user-x','user-y'] | ['/sys-a/**', '/user-z/z1/zz1/\**'] | ['/user-z/z1', '/user-z/z1/zz1'] |  |
