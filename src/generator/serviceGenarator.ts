@@ -6,7 +6,6 @@ import {
   entries,
   filter,
   forEach,
-  intersection,
   isArray,
   isEmpty,
   isFunction,
@@ -107,19 +106,20 @@ export default class ServiceGenerator {
     };
     this.generateInfoLog();
 
-    const includePaths = this.config?.includePaths || [];
     const includeTags = this.config?.includeTags || [];
-    const excludePaths = this.config?.excludePaths || [];
+    const includePaths = this.config?.includePaths || [];
     const excludeTags = this.config?.excludeTags || [];
+    const excludePaths = this.config?.excludePaths || [];
 
     const priorityRule: PriorityRule =
       PriorityRule[config.priorityRule as keyof typeof PriorityRule];
 
     if (
-      priorityRule === PriorityRule.include &&
-      isEmpty(this.config?.includeTags) &&
-      isEmpty(this.config?.includePaths)
+      priorityRule === PriorityRule.both &&
+      isEmpty(includeTags) &&
+      isEmpty(includePaths)
     ) {
+      // 没意义,可以直接跳过
       this.log('priorityRule include need includeTags or includePaths');
     }
     const hookCustomFileNames =
@@ -145,24 +145,14 @@ export default class ServiceGenerator {
 
           if (
             !isEmpty(includePaths) &&
-            !includePaths.some((pathRule) =>
-              typeof pathRule === 'string'
-                ? minimatch(pathKey, pathRule)
-                : pathRule.test(pathKey)
-            )
+            !this.validateRegexp(pathKey, includePaths)
           ) {
             continue;
           }
           break;
         }
         case PriorityRule.exclude: {
-          if (
-            excludePaths.some((pathRule) =>
-              typeof pathRule === 'string'
-                ? minimatch(pathKey, pathRule)
-                : pathRule.test(pathKey)
-            )
-          ) {
+          if (this.validateRegexp(pathKey, excludePaths)) {
             continue;
           }
           break;
@@ -170,24 +160,15 @@ export default class ServiceGenerator {
         case PriorityRule.both: {
           // includePaths is empty 没有配置,直接跳过
           if (isEmpty(includeTags) && isEmpty(includePaths)) {
-            this.log('priorityRule include need includeTags or includePaths');
             continue;
           }
 
           const inIncludePaths =
             !isEmpty(includePaths) &&
-            !includePaths.some((path) =>
-              typeof path === 'string'
-                ? minimatch(pathKey, path)
-                : path.test(pathKey)
-            );
+            !this.validateRegexp(pathKey, includePaths);
           const inExcludePaths =
             !isEmpty(excludePaths) &&
-            excludePaths.some((path) =>
-              typeof path === 'string'
-                ? minimatch(pathKey, path)
-                : path.test(pathKey)
-            );
+            this.validateRegexp(pathKey, excludePaths);
 
           if (inIncludePaths || inExcludePaths) {
             continue;
@@ -231,24 +212,14 @@ export default class ServiceGenerator {
 
             if (
               !isEmpty(includeTags) &&
-              !includeTags.some((tagRule) =>
-                typeof tagRule === 'string'
-                  ? minimatch(tagLowerCase, tagRule)
-                  : tagRule.test(tagLowerCase)
-              )
+              !this.validateRegexp(tagLowerCase, includeTags)
             ) {
               return;
             }
           }
 
           if (priorityRule === PriorityRule.exclude) {
-            if (
-              excludeTags.some((tagRule) =>
-                typeof tagRule === 'string'
-                  ? minimatch(tagLowerCase, tagRule)
-                  : tagRule.test(tagLowerCase)
-              )
-            ) {
+            if (this.validateRegexp(tagLowerCase, excludeTags)) {
               return;
             }
           }
@@ -260,21 +231,14 @@ export default class ServiceGenerator {
               return;
             }
 
-            const inincludeTags =
+            const inIncludeTags =
               !isEmpty(includeTags) &&
-              !includeTags.some((tagRule) =>
-                typeof tagRule === 'string'
-                  ? minimatch(tagLowerCase, tagRule)
-                  : tagRule.test(tagLowerCase)
-              );
+              !this.validateRegexp(tagLowerCase, includeTags);
             const inExcludeTags =
               !isEmpty(excludeTags) &&
-              excludeTags.some((tagRule) =>
-                typeof tagRule === 'string'
-                  ? minimatch(tagLowerCase, tagRule)
-                  : tagRule.test(tagLowerCase)
-              );
-            if (inincludeTags || inExcludeTags) {
+              this.validateRegexp(tagLowerCase, excludeTags);
+
+            if (inIncludeTags || inExcludeTags) {
               return;
             }
           }
@@ -439,33 +403,30 @@ export default class ServiceGenerator {
     const schemas = this.openAPIData.components?.schemas;
     const lastTypes: Array<ITypeItem> = [];
 
+    const includeTags = this.config?.includeTags || [];
+    const includePaths = this.config?.includePaths || [];
+
     // 强行替换掉请求参数params的类型，生成方法对应的 xxxxParams 类型
     keys(this.openAPIData.paths).forEach((pathKey) => {
       const pathItem = this.openAPIData.paths[pathKey] as PathItemObject;
       forEach(methods, (method) => {
         const operationObject = pathItem[method] as OperationObject;
 
-        if (!operationObject) {
+        if (
+          !operationObject ||
+          isEmpty(includeTags) ||
+          (isEmpty(includeTags) && isEmpty(includePaths)) ||
+          isEmpty(operationObject.tags)
+        ) {
           return;
         }
-
         // 筛选出 pathItem 包含的 $ref 对应的schema
-        if (
-          !isEmpty(this.config?.includeTags) &&
-          !isEmpty(operationObject.tags)
-        ) {
-          if (
-            !isEmpty(
-              intersection(
-                this.config.includeTags,
-                map(operationObject.tags, (tag) => tag.toLowerCase())
-              )
-            )
-          ) {
-            markAllowedSchema(JSON.stringify(pathItem), schemas);
-          } else {
-            return;
-          }
+        const flag = this.validateRegexp(
+          map(operationObject.tags, (tag) => tag.toLowerCase()),
+          includeTags
+        );
+        if (flag) {
+          markAllowedSchema(JSON.stringify(pathItem), schemas);
         }
 
         operationObject.parameters = operationObject.parameters?.filter(
@@ -1255,5 +1216,42 @@ export default class ServiceGenerator {
     if (this.config?.excludePaths) {
       this.log(`excludePaths: ${this.config?.excludePaths.join(', ')}`);
     }
+  }
+
+  /**
+   * 校验规则
+   * @param regexp 正则数组
+   * @param data 数据
+   */
+  private validateRegexp(
+    data: string | string[],
+    regexp: (string | RegExp)[]
+  ): boolean {
+    // 确保 data 是数组
+    const dataArray = Array.isArray(data) ? data : [data];
+    this.log(`"Data Array:", ${dataArray.join(',')}`);
+    this.log(`"Regexp Array:", ${regexp.join(',')}`);
+
+    return dataArray.some((item) => {
+      const result = regexp.some((reg) => this.matches(item, reg));
+      this.log(`"Item:", ${item}, "Matches:", ${result}`);
+      return result;
+    });
+  }
+
+  /**
+   *
+   * @param item 数组数据
+   * @param reg 规则
+   */
+  // 提取匹配逻辑到单独的函数
+  private matches(item: string, reg: string | RegExp): boolean {
+    if (typeof reg === 'string') {
+      return minimatch(item, reg);
+    } else if (reg instanceof RegExp) {
+      reg.lastIndex = 0; // 重置正则表达式的 lastIndex 属性
+      return reg.test(item);
+    }
+    return false; // 对于其他类型，返回 false
   }
 }

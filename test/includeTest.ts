@@ -16,7 +16,7 @@
 import { generateService } from '../src/index';
 
 /**
- * 结果 []
+ * 结果 [*]
  */
 const includeTest1 = async () =>
   await generateService({
@@ -24,11 +24,6 @@ const includeTest1 = async () =>
     serversPath: './apis/include/test1',
     requestLibPath: '../request',
     enableLogging: true, // 开启日志
-    priorityRule: 'include',
-    includeTags: [],
-    includePaths: [],
-    excludeTags: [],
-    excludePaths: [],
   });
 
 /**
@@ -43,12 +38,10 @@ const includeTest2 = async () =>
     priorityRule: 'include',
     includeTags: [],
     includePaths: ['/sys-a/**', '/sys-b/**', '/sys-c/**'],
-    excludeTags: [],
-    excludePaths: [],
   });
 
 /**
- * 结果 [*]
+ * 结果 ['/sys-a/**','/sys-b/**','/sys-c/**']
  */
 const includeTest3 = async () =>
   await generateService({
@@ -57,10 +50,8 @@ const includeTest3 = async () =>
     requestLibPath: '../request',
     enableLogging: true, // 开启日志
     priorityRule: 'include',
-    includeTags: ['*'],
+    includeTags: [/.*/g],
     includePaths: [],
-    excludeTags: [],
-    excludePaths: [],
   });
 
 /**
@@ -73,10 +64,8 @@ const includeTest4 = async () =>
     requestLibPath: '../request',
     enableLogging: true, // 开启日志
     priorityRule: 'include',
-    includeTags: ['*'],
+    includeTags: [/.*/g],
     includePaths: ['/sys-a/**', '/sys-b/**', '/sys-c/**'],
-    excludeTags: [],
-    excludePaths: [],
   });
 
 /**

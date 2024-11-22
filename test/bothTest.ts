@@ -41,7 +41,7 @@ const bothTest2 = async () =>
     requestLibPath: '../request',
     enableLogging: true, // 开启日志
     priorityRule: 'both',
-    includeTags: ['*'],
+    includeTags: [/.*/g],
     includePaths: [],
     excludeTags: [],
     excludePaths: [],
@@ -57,7 +57,7 @@ const bothTest3 = async () =>
     requestLibPath: '../request',
     enableLogging: true, // 开启日志
     priorityRule: 'both',
-    includeTags: ['*'],
+    includeTags: [/.*/g],
     includePaths: ['/sys-a/**'],
     excludeTags: [],
     excludePaths: ['/sys-a/a1/**'],
@@ -73,7 +73,7 @@ const bothTest4 = async () =>
     requestLibPath: '../request',
     enableLogging: true, // 开启日志
     priorityRule: 'both',
-    includeTags: ['*'],
+    includeTags: [/.*/g],
     includePaths: ['/sys-a/**', '/user-z/**'],
     excludeTags: ['sys-a'],
     excludePaths: ['/user-z/z1/**'],
@@ -89,7 +89,7 @@ const bothTest5 = async () =>
     requestLibPath: '../request',
     enableLogging: true, // 开启日志
     priorityRule: 'both',
-    includeTags: ['*'],
+    includeTags: [/.*/g],
     includePaths: [],
     excludeTags: ['sys-b', 'sys-c', 'user-x', 'user-y'],
     excludePaths: ['/sys-a/**', '/user-z/z1/zz1/**'],

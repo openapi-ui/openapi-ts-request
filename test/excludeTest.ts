@@ -75,7 +75,7 @@ const excludeTest4 = async () =>
     priorityRule: 'exclude',
     includeTags: [],
     includePaths: [],
-    excludeTags: ['*'],
+    excludeTags: [/.*/g],
     excludePaths: [],
   });
 
