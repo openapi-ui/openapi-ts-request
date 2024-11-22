@@ -40,17 +40,17 @@ export type GenerateServiceProps = {
   enableLogging?: boolean;
   /**
   /**
-   * 优先规则, allowed(只允许allowed列表) | exclude(只排除exclude列表) | include(允许allowed列表，排除exclude列表)
+   * 优先规则, include(只允许include列表) | exclude(只排除exclude列表) | include(允许include列表，排除exclude列表)
    */
   priorityRule?: string;
   /**
    * 只解析归属于 tags 集合的api 和 schema
    */
-  allowedTags?: (string | RegExp)[];
+  includeTags?: (string | RegExp)[];
   /**
    * 只解析归属于 paths 集合的api
    */
-  allowedPaths?: (string | RegExp)[];
+  includePaths?: (string | RegExp)[];
   /**
    * 不解析归属于 tags 集合的api 和 schema
    */
@@ -199,7 +199,7 @@ export async function generateService({
   requestLibPath,
   schemaPath,
   mockFolder,
-  allowedTags,
+  includeTags,
   excludeTags,
   authorization,
   isTranslateToEnglishTag,
@@ -235,8 +235,8 @@ export async function generateService({
       isDisplayTypeLabel: false,
       isGenJsonSchemas: false,
       isOnlyGenTypeScriptType: false,
-      allowedTags: allowedTags
-        ? map(allowedTags, (item) =>
+      includeTags: includeTags
+        ? map(includeTags, (item) =>
             typeof item === 'string' ? item.toLowerCase() : item
           )
         : [],
@@ -246,7 +246,7 @@ export async function generateService({
           )
         : null,
       enableLogging: false,
-      priorityRule: 'allowed',
+      priorityRule: 'include',
       ...rest,
     },
     openAPI
