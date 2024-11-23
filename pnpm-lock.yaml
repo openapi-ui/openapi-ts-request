@@ -30,8 +30,8 @@ importers:
         specifier: ^9.0.0
         version: 9.0.0(typescript@5.6.3)
       cosmiconfig-typescript-loader:
-        specifier: ^5.0.0
-        version: 5.0.0(@types/node@20.16.9)(cosmiconfig@9.0.0(typescript@5.6.3))(typescript@5.6.3)
+        specifier: ^6.0.0
+        version: 6.0.0(@types/node@20.16.9)(cosmiconfig@9.0.0(typescript@5.6.3))(typescript@5.6.3)
       glob:
         specifier: ^11.0.0
         version: 11.0.0
@@ -720,6 +720,14 @@ packages:
       cosmiconfig: '>=8.2'
       typescript: '>=4'
 
+  cosmiconfig-typescript-loader@6.0.0:
+    resolution: {integrity: sha512-Pi86SNGpc99r5jRNv94gbFO0rE/eSWwcpMGeLDbhNaPqZBCHtoouNVPqOE4p0/mFeNE9Us/S6qQknntn26uX9Q==}
+    engines: {node: '>=v18'}
+    peerDependencies:
+      '@types/node': '*'
+      cosmiconfig: '>=9'
+      typescript: '>=5'
+
   cosmiconfig@9.0.0:
     resolution: {integrity: sha512-itvL5h8RETACmOTFc4UfIyB2RfEHi71Ax6E/PivVxq9NseKbOWpeyHEOIbmAw1rs8Ak0VursQNww7lf7YtUwzg==}
     engines: {node: '>=14'}
@@ -1180,6 +1188,10 @@ packages:
 
   jiti@1.21.6:
     resolution: {integrity: sha512-2yTgeWTWzMWkHu6Jp9NKgePDaYHbntiwvYuuJLbbN9vl7DC9DvXKOB2BC3ZZ92D3cvV/aflH0osDfwpHepQ53w==}
+    hasBin: true
+
+  jiti@2.4.0:
+    resolution: {integrity: sha512-H5UpaUI+aHOqZXlYOaFP/8AzKsg+guWu+Pr3Y8i7+Y3zr1aXAvCvTAQ1RxSc6oVD8R8c7brgNtTVP91E7upH/g==}
     hasBin: true
 
   js-tokens@4.0.0:
@@ -2708,6 +2720,13 @@ snapshots:
       jiti: 1.21.6
       typescript: 5.6.3
 
+  cosmiconfig-typescript-loader@6.0.0(@types/node@20.16.9)(cosmiconfig@9.0.0(typescript@5.6.3))(typescript@5.6.3):
+    dependencies:
+      '@types/node': 20.16.9
+      cosmiconfig: 9.0.0(typescript@5.6.3)
+      jiti: 2.4.0
+      typescript: 5.6.3
+
   cosmiconfig@9.0.0(typescript@5.6.3):
     dependencies:
       env-paths: 2.2.1
@@ -3182,6 +3201,8 @@ snapshots:
   javascript-natural-sort@0.7.1: {}
 
   jiti@1.21.6: {}
+
+  jiti@2.4.0: {}
 
   js-tokens@4.0.0: {}
 
