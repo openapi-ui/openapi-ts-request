@@ -4,13 +4,13 @@
 
 <a href="https://github.com/openapi-ui/openapi-ts-request/blob/master/README-en_US.md">English</a> | 简体中文
 
-根据 [Swagger2/OpenAPI3](https://swagger.io/blog/news/whats-new-in-openapi-3-0/) 文档生成 TS 类型, 客户端请求函数, 模拟请求响应服务, 枚举, 类型字段翻译, JSON Schemas
+根据 [Swagger2/OpenAPI3/Apifox](https://swagger.io/blog/news/whats-new-in-openapi-3-0/) 文档生成 TS 类型, 客户端请求函数, 模拟请求响应服务, 枚举, 类型字段翻译, JSON Schemas
 
 文档：[使用手册](https://github.com/openapi-ui/openapi-ts-request/issues/100)
 
 ## 功能
 
-- 支持 Swagger2.0/OpenAPI 3.0,3.1 定义
+- 支持 Swagger2.0/OpenAPI/Apifox 3.0,3.1 定义
 - 生成 TS 类型, 请求客户端, 请求模拟服务, 枚举, 类型字段翻译, JSON Schemas
 - 支持通过 npx、CLI、Nodejs 的方式使用
 - 支持自定义请求工具函数, 支持 Fetch、Axios、[UniApp-Request](https://github.com/openapi-ui/openapi-ts-request/issues/46)、Node.js、XHR 客户端
@@ -136,13 +136,13 @@ $ openapi --help
     -V, --version                      output the version number
     -i, --input <string>               OpenAPI specification, can be a path, url (required)
     -o, --output <string>              output directory (required)
-    --requestLibPath <string>          custom request lib path, for example: "@/request", "node-fetch", default is "axios"
-    --enableLogging <boolean>          open the log
-    --priorityRule <string>            priority rule, include/exclude/both
-    --includeTags <string|RegExp>[]    generate code from include tags
-    --includePaths <string|RegExp>[]   generate code from include paths
-    --excludeTags <string|RegExp>[]    generate code from exclude tags
-    --excludePaths <string|RegExp>[]   generate code from exclude paths
+    --requestLibPath <string>          custom request lib path, for example: "@/request", "node-fetch" (default: "axios")
+    --enableLogging <boolean>          open the log (default: false)
+    --priorityRule <string>            priority rule, include/exclude/both (default: "include")
+    --includeTags <(string|RegExp)[]>  generate code from include tags
+    --includePaths <(string|RegExp)[]> generate code from include paths
+    --excludeTags <(string|RegExp)[]>  generate code from exclude tags
+    --excludePaths <(string|RegExp)[]> generate code from exclude paths
     --requestOptionsType <string>      custom request method options parameter type (default: "{ [key:
                                       string]: unknown }")
     --requestImportStatement <string>  custom request import statement, for example: "const request =
@@ -151,7 +151,7 @@ $ openapi --help
                                       "'api'"(string)
     --isDisplayTypeLabel <boolean>     generate label matching type field (default: false)
     --isGenJsonSchemas <boolean>       generate JSON Schemas (default: false)
-    --mockFolder <string>              mock file path
+    --mockFolder <string>              mock file path, for example: './mocks'
     --authorization <string>           docs authorization
     --nullable <boolean>               null instead of optional (default: false)
     --isTranslateToEnglishTag <boolean>translate chinese tag name to english tag name (default: false)
@@ -184,7 +184,7 @@ openapi --i ./spec.json --o ./apis
 | apiPrefix | 否 | string | - | api path的前缀，例如：'api'(动态变量), "'api'"(字符串) |
 | isDisplayTypeLabel | 否 | boolean | false | 是否生成 type 对应的label |
 | isGenJsonSchemas | 否 | boolean | false | 是否生成 JSON Schemas |
-| mockFolder | 否 | string | './mocks' | mock文件路径 |
+| mockFolder | 否 | string | - | mock文件路径，例如：'./mocks' |
 | authorization | 否 | string | - | 文档权限凭证 |
 | nullable | 否 | boolean | false | 使用 null 代替可选 |
 | isTranslateToEnglishTag | 否 | boolean | false | 将中文 tag 名称翻译成英文 tag 名称 |

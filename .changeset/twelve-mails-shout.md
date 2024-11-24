@@ -1,5 +1,5 @@
 ---
-'openapi-ts-request': patch
+'openapi-ts-request': minor
 ---
 
-support priorityRule
+feat: support priorityRule

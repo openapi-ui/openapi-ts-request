@@ -45,19 +45,19 @@ export type GenerateServiceProps = {
    */
   priorityRule?: string;
   /**
-   * 只解析归属于 tags 集合的api 和 schema
+   * 只解析归属于 tags 集合的 api 和 schema
    */
   includeTags?: (string | RegExp)[];
   /**
-   * 只解析归属于 paths 集合的api
+   * 只解析归属于 paths 集合的 api
    */
   includePaths?: (string | RegExp)[];
   /**
-   * 不解析归属于 tags 集合的api 和 schema
+   * 不解析归属于 tags 集合的 api 和 schema
    */
   excludeTags?: (string | RegExp)[];
   /**
-   * 排除解析归属于 paths 集合的api
+   * 不解析归属于 paths 集合的 api
    */
   excludePaths?: (string | RegExp)[];
   /**
@@ -204,6 +204,7 @@ export async function generateService({
   excludeTags,
   authorization,
   isTranslateToEnglishTag,
+  priorityRule = PriorityRule.include,
   ...rest
 }: GenerateServiceProps) {
   if (!schemaPath) {
@@ -225,20 +226,25 @@ export async function generateService({
 
   const requestImportStatement = getImportStatement(requestLibPath);
 
-  const priorityRule: PriorityRule =
-    rest.priorityRule === undefined
-      ? PriorityRule.include
-      : PriorityRule[rest.priorityRule as keyof typeof PriorityRule];
-
-  if (priorityRule === PriorityRule.include && includeTags === undefined) {
-    includeTags = [/.*/g];
-  }
-
   const serviceGenerator = new ServiceGenerator(
     {
       schemaPath,
       serversPath: './src/apis',
       requestImportStatement,
+      enableLogging: false,
+      priorityRule,
+      includeTags: includeTags
+        ? map(includeTags, (item) =>
+            typeof item === 'string' ? item.toLowerCase() : item
+          )
+        : (priorityRule as keyof typeof PriorityRule) === PriorityRule.include
+          ? [/.*/g]
+          : null,
+      excludeTags: excludeTags
+        ? map(excludeTags, (item) =>
+            typeof item === 'string' ? item.toLowerCase() : item
+          )
+        : null,
       requestOptionsType: '{[key: string]: unknown}',
       namespace: 'API',
       nullable: false,
@@ -246,18 +252,6 @@ export async function generateService({
       isDisplayTypeLabel: false,
       isGenJsonSchemas: false,
       isOnlyGenTypeScriptType: false,
-      includeTags: includeTags
-        ? map(includeTags, (item) =>
-            typeof item === 'string' ? item.toLowerCase() : item
-          )
-        : [],
-      excludeTags: excludeTags
-        ? map(excludeTags, (item) =>
-            typeof item === 'string' ? item.toLowerCase() : item
-          )
-        : null,
-      enableLogging: false,
-      priorityRule: 'include',
       ...rest,
     },
     openAPI

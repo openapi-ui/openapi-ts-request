@@ -16,9 +16,29 @@ const params = program
   .requiredOption('-o, --output <string>', 'output directory (required)')
   .option(
     '--requestLibPath <string>',
-    'custom request lib path, for example: "@/request", "node-fetch", default is "axios"'
+    'custom request lib path, for example: "@/request", "node-fetch" (default: "axios")'
   )
-  .option('--includeTags <string[]>', 'generate results from include tags')
+  .option('--enableLogging <boolean>', 'open the log', false)
+  .option(
+    '--priorityRule <string>',
+    'priority rule, include/exclude/both (default: "include")'
+  )
+  .option(
+    '--includeTags <(string|RegExp)[]>',
+    'generate code from include tags'
+  )
+  .option(
+    '--includePaths <(string|RegExp)[]>',
+    'generate code from include paths'
+  )
+  .option(
+    '--excludeTags <(string|RegExp)[]>',
+    'generate code from exclude tags'
+  )
+  .option(
+    '--excludePaths <(string|RegExp)[]>',
+    'generate code from exclude paths'
+  )
   .option(
     '--requestOptionsType <string>',
     'custom request method options parameter type (default: "{ [key: string]: unknown }")'
@@ -77,7 +97,12 @@ async function run() {
       schemaPath: input,
       serversPath: output,
       requestLibPath: params.requestLibPath as string,
+      enableLogging: JSON.parse(params.enableLogging as string) === true,
+      priorityRule: params.priorityRule as string,
       includeTags: params.includeTags as string[],
+      includePaths: params.includePaths as string[],
+      excludeTags: params.excludeTags as string[],
+      excludePaths: params.excludePaths as string[],
       requestOptionsType: params.requestOptionsType as string,
       apiPrefix: params.apiPrefix as string,
       isDisplayTypeLabel:

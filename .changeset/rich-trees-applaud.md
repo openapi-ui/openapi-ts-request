@@ -1,5 +1,5 @@
 ---
-'openapi-ts-request': minor
+'openapi-ts-request': patch
 ---
 
-rename allowedPath and allowedTags
+chore: rename allowedTags => includeTags, allowedPaths => includePaths

@@ -410,16 +410,23 @@ export function resolveFunctionName(functionName: string, methodName: string) {
 // 标记引用的 $ref 对应的schema
 export function markAllowedSchema(
   schemaStr: string,
-  schemas: ComponentsObject['schemas']
+  openAPIData: OpenAPIObject
 ) {
-  const refs = schemaStr?.match(/#\/components\/schemas\/([\w%«».-]+)/g);
+  const refs = map(schemaStr?.match(/"#\/components\/[^"]+"/g), (item) =>
+    item.slice(1, -1)
+  );
 
   forEach(refs, (ref) => {
-    const schema = schemas?.[getLastRefName(ref)] as ICustomSchemaObject;
+    // const schema = schemas?.[getLastRefName(ref)] as ICustomSchemaObject;
+    const refPaths = ref.split('/');
+    const schema = resolveRefs(
+      openAPIData,
+      refPaths.slice(1)
+    ) as ICustomSchemaObject;
 
     if (schema && !schema.isAllowed) {
       schema.isAllowed = true;
-      markAllowedSchema(JSON.stringify(schema), schemas);
+      markAllowedSchema(JSON.stringify(schema), openAPIData);
     }
   });
 }

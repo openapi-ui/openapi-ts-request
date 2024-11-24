@@ -4,13 +4,13 @@
 
 English | <a href="https://github.com/openapi-ui/openapi-ts-request/blob/master/README.md">简体中文</a>
 
-Generate TS interfaces, request client, request mock service, enum, type field label, JSON Schemas based on [Swagger2/OpenAPI3](https://swagger.io/blog/news/whats-new-in-openapi-3-0/) specification
+Generate TS interfaces, request client, request mock service, enum, type field label, JSON Schemas based on [Swagger2/OpenAPI3/Apifox](https://swagger.io/blog/news/whats-new-in-openapi-3-0/) specification
 
 文档：[use docs](https://github.com/openapi-ui/openapi-ts-request/issues/100)
 
 ## Features
 
-- support Swagger2.0/OpenAPI 3.0,3.1 specification
+- support Swagger2.0/OpenAPI/Apifox 3.0,3.1 specification
 - generate TypeScript interface, reuquest client, request mock service, enum, type field label, JSON Schemas
 - support work with npx, CLI, Nodejs
 - support custom request function, Fetch、Axios、[UniApp-request](https://github.com/openapi-ui/openapi-ts-request/issues/46)、Node.js、XHR client available
@@ -136,13 +136,13 @@ $ openapi --help
     -V, --version                      output the version number
     -i, --input <string>               OpenAPI specification, can be a path, url (required)
     -o, --output <string>              output directory (required)
-    --requestLibPath <string>          custom request lib path, for example: "@/request", "node-fetch", default is "axios"
-    --enableLogging <boolean>          open the log
-    --priorityRule <string>            priority rule, include/exclude/both
-    --includeTags <string|RegExp>[]    generate code from include tags
-    --includePaths <string|RegExp>[]   generate code from include paths
-    --excludeTags <string|RegExp>[]    generate code from exclude tags
-    --excludePaths <string|RegExp>[]   generate code from exclude paths
+    --requestLibPath <string>          custom request lib path, for example: "@/request", "node-fetch" (default: "axios")
+    --enableLogging <boolean>          open the log (default: false)
+    --priorityRule <string>            priority rule, include/exclude/both (default: "include")
+    --includeTags <<string|RegExp>[]>  generate code from include tags
+    --includePaths <<string|RegExp>[]> generate code from include paths
+    --excludeTags <<string|RegExp>[]>  generate code from exclude tags
+    --excludePaths <<string|RegExp>[]> generate code from exclude paths
     --requestOptionsType <string>      custom request method options parameter type (default: "{ [key:
                                       string]: unknown }")
     --requestImportStatement <string>  custom request import statement, for example: "const request =
@@ -151,7 +151,7 @@ $ openapi --help
                                       "'api'"(string)
     --isDisplayTypeLabel <boolean>     generate label matching type field (default: false)
     --isGenJsonSchemas <boolean>       generate JSON Schemas (default: false)
-    --mockFolder <string>              mock file path
+    --mockFolder <string>              mock file path, for example: './mocks'
     --authorization <string>           docs authorization
     --nullable <boolean>               null instead of optional (default: false)
     --isTranslateToEnglishTag <boolean>translate chinese tag name to english tag name (default: false)
@@ -184,7 +184,7 @@ openapi -i ./spec.json -o ./apis
 | apiPrefix | no | string | - | custom the prefix of the api path, for example: 'api'(variable), "'api'"(string) |
 | isDisplayTypeLabel | no | boolean | false | generate label matching type field |
 | isGenJsonSchemas | no | boolean | false | generate JSON Schemas |
-| mockFolder | no | string | './mocks' | mock file path |
+| mockFolder | no | string | - | mock file path, for example: './mocks' |
 | authorization | 否 | string | - | docs authorization |
 | nullable | no | boolean | false | null instead of optional |
 | isTranslateToEnglishTag | no | boolean | false | translate chinese tag name to english tag name |

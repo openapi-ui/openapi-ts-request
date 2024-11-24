@@ -98,7 +98,6 @@ export default class ServiceGenerator {
   protected schemaList: ISchemaItem[] = [];
 
   constructor(config: GenerateServiceProps, openAPIData: OpenAPIObject) {
-    // 默认值
     this.finalPath = '';
     this.config = {
       templatesFolder: join(__dirname, '../../', 'templates'),
@@ -113,15 +112,6 @@ export default class ServiceGenerator {
 
     const priorityRule: PriorityRule =
       PriorityRule[config.priorityRule as keyof typeof PriorityRule];
-
-    if (
-      priorityRule === PriorityRule.both &&
-      isEmpty(includeTags) &&
-      isEmpty(includePaths)
-    ) {
-      // 没意义,可以直接跳过
-      this.log('priorityRule include need includeTags or includePaths');
-    }
     const hookCustomFileNames =
       this.config.hook?.customFileNames || getDefaultFileTag;
 
@@ -133,14 +123,14 @@ export default class ServiceGenerator {
     }
 
     // 用 tag 分组 paths, { [tag]: [pathMap, pathMap] }
-    for (const pathKey in this.openAPIData.paths) {
+    outerLoop: for (const pathKey in this.openAPIData.paths) {
       // 这里判断paths
       switch (priorityRule) {
         case PriorityRule.include: {
-          // includePaths and includeTags is empty 没有任何include配置,直接跳过这个数组的所有元素
+          // includePaths and includeTags is empty,直接跳过
           if (isEmpty(includeTags) && isEmpty(includePaths)) {
             this.log('priorityRule include need includeTags or includePaths');
-            continue;
+            break outerLoop;
           }
 
           if (
@@ -158,19 +148,20 @@ export default class ServiceGenerator {
           break;
         }
         case PriorityRule.both: {
-          // includePaths is empty 没有配置,直接跳过
+          // includePaths and includeTags is empty，直接跳过
           if (isEmpty(includeTags) && isEmpty(includePaths)) {
-            continue;
+            this.log('priorityRule both need includeTags or includePaths');
+            break outerLoop;
           }
 
-          const inIncludePaths =
+          const outIncludePaths =
             !isEmpty(includePaths) &&
             !this.validateRegexp(pathKey, includePaths);
           const inExcludePaths =
             !isEmpty(excludePaths) &&
             this.validateRegexp(pathKey, excludePaths);
 
-          if (inIncludePaths || inExcludePaths) {
+          if (outIncludePaths || inExcludePaths) {
             continue;
           }
           break;
@@ -190,30 +181,20 @@ export default class ServiceGenerator {
           return;
         }
 
-        let tags = hookCustomFileNames(operationObject, pathKey, method);
-
-        if (!tags) {
-          tags = getDefaultFileTag(operationObject, pathKey);
-        }
+        const tags = hookCustomFileNames(operationObject, pathKey, method);
 
         // 这里判断tags
         tags.forEach((tag) => {
           const tagLowerCase = tag.toLowerCase();
 
           if (priorityRule === PriorityRule.include) {
-            // includeTags 为空, 不会匹配任何path,故跳过; includeTags 和 includePaths 同时为空则没意义,故跳过;
-            if (
-              isEmpty(includeTags) ||
-              (isEmpty(includeTags) && isEmpty(includePaths))
-            ) {
+            // includeTags 为空，不会匹配任何path，故跳过;
+            if (isEmpty(includeTags)) {
               this.log('priorityRule include need includeTags or includePaths');
               return;
             }
 
-            if (
-              !isEmpty(includeTags) &&
-              !this.validateRegexp(tagLowerCase, includeTags)
-            ) {
+            if (!this.validateRegexp(tagLowerCase, includeTags)) {
               return;
             }
           }
@@ -227,18 +208,18 @@ export default class ServiceGenerator {
           if (priorityRule === PriorityRule.both) {
             // includeTags is empty 没有配置,直接跳过
             if (isEmpty(includeTags)) {
-              this.log('priorityRule include need includeTags or includePaths');
+              this.log('priorityRule both need includeTags or includePaths');
               return;
             }
 
-            const inIncludeTags =
+            const outIncludeTags =
               !isEmpty(includeTags) &&
               !this.validateRegexp(tagLowerCase, includeTags);
             const inExcludeTags =
               !isEmpty(excludeTags) &&
               this.validateRegexp(tagLowerCase, excludeTags);
 
-            if (inIncludeTags || inExcludeTags) {
+            if (outIncludeTags || inExcludeTags) {
               return;
             }
           }
@@ -258,12 +239,6 @@ export default class ServiceGenerator {
           });
         });
       });
-    }
-  }
-
-  public log(message: any) {
-    if (this.config.enableLogging) {
-      log(message);
     }
   }
 
@@ -402,32 +377,38 @@ export default class ServiceGenerator {
   private getInterfaceTPConfigs() {
     const schemas = this.openAPIData.components?.schemas;
     const lastTypes: Array<ITypeItem> = [];
-
     const includeTags = this.config?.includeTags || [];
-    const includePaths = this.config?.includePaths || [];
 
     // 强行替换掉请求参数params的类型，生成方法对应的 xxxxParams 类型
     keys(this.openAPIData.paths).forEach((pathKey) => {
       const pathItem = this.openAPIData.paths[pathKey] as PathItemObject;
+
       forEach(methods, (method) => {
         const operationObject = pathItem[method] as OperationObject;
+        const hookCustomFileNames =
+          this.config.hook?.customFileNames || getDefaultFileTag;
 
-        if (
-          !operationObject ||
-          isEmpty(includeTags) ||
-          (isEmpty(includeTags) && isEmpty(includePaths)) ||
-          isEmpty(operationObject.tags)
-        ) {
+        if (!operationObject) {
           return;
         }
-        // 筛选出 pathItem 包含的 $ref 对应的schema
+
+        const tags = hookCustomFileNames(operationObject, pathKey, method);
+
+        if (isEmpty(includeTags) || isEmpty(tags)) {
+          return;
+        }
+
         const flag = this.validateRegexp(
-          map(operationObject.tags, (tag) => tag.toLowerCase()),
+          map(tags, (tag) => tag.toLowerCase()),
           includeTags
         );
-        if (flag) {
-          markAllowedSchema(JSON.stringify(pathItem), schemas);
+
+        if (!flag) {
+          return;
         }
+
+        // 筛选出 pathItem 包含的 $ref 对应的schema
+        markAllowedSchema(JSON.stringify(pathItem), this.openAPIData);
 
         operationObject.parameters = operationObject.parameters?.filter(
           (item: ParameterObject) => item?.in !== `${parametersInsEnum.header}`
@@ -1196,6 +1177,12 @@ export default class ServiceGenerator {
     }
 
     return refObject as T;
+  }
+
+  public log(message: string) {
+    if (this.config.enableLogging) {
+      log(message);
+    }
   }
 
   private generateInfoLog(): void {

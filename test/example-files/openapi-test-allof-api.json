@@ -63,7 +63,37 @@
     "version": "1.0.0"
   },
   "openapi": "3.0.1",
-  "paths": {},
+  "paths": {
+    "/batch": {
+      "get": {
+        "tags": ["log"],
+        "summary": "Finds log by errorMessage",
+        "description": "Finds log by errorMessage",
+        "operationId": "findLogByErrorMessage",
+        "parameters": [
+          {
+            "name": "errorMessage",
+            "in": "query",
+            "description": "log to filter by errorMessage",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BatchList"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        }
+      }
+    }
+  },
   "servers": [
     {
       "url": "http://localhost:1234/"
