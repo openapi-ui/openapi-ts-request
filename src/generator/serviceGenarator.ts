@@ -112,8 +112,6 @@ export default class ServiceGenerator {
 
     const priorityRule: PriorityRule =
       PriorityRule[config.priorityRule as keyof typeof PriorityRule];
-    const hookCustomFileNames =
-      this.config.hook?.customFileNames || getDefaultFileTag;
 
     if (this.config.hook?.afterOpenApiDataInited) {
       this.openAPIData =
@@ -127,7 +125,7 @@ export default class ServiceGenerator {
       // 这里判断paths
       switch (priorityRule) {
         case PriorityRule.include: {
-          // includePaths and includeTags is empty,直接跳过
+          // includePaths and includeTags is empty, 直接跳过
           if (isEmpty(includeTags) && isEmpty(includePaths)) {
             this.log('priorityRule include need includeTags or includePaths');
             break outerLoop;
@@ -181,6 +179,8 @@ export default class ServiceGenerator {
           return;
         }
 
+        const hookCustomFileNames =
+          this.config.hook?.customFileNames || getDefaultFileTag;
         const tags = hookCustomFileNames(operationObject, pathKey, method);
 
         // 这里判断tags
@@ -188,7 +188,7 @@ export default class ServiceGenerator {
           const tagLowerCase = tag.toLowerCase();
 
           if (priorityRule === PriorityRule.include) {
-            // includeTags 为空，不会匹配任何path，故跳过;
+            // includeTags 为空，不会匹配任何path，故跳过
             if (isEmpty(includeTags)) {
               this.log('priorityRule include need includeTags or includePaths');
               return;
@@ -206,7 +206,7 @@ export default class ServiceGenerator {
           }
 
           if (priorityRule === PriorityRule.both) {
-            // includeTags is empty 没有配置,直接跳过
+            // includeTags is empty 没有配置, 直接跳过
             if (isEmpty(includeTags)) {
               this.log('priorityRule both need includeTags or includePaths');
               return;

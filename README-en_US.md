@@ -139,10 +139,10 @@ $ openapi --help
     --requestLibPath <string>          custom request lib path, for example: "@/request", "node-fetch" (default: "axios")
     --enableLogging <boolean>          open the log (default: false)
     --priorityRule <string>            priority rule, include/exclude/both (default: "include")
-    --includeTags <<string|RegExp>[]>  generate code from include tags
-    --includePaths <<string|RegExp>[]> generate code from include paths
-    --excludeTags <<string|RegExp>[]>  generate code from exclude tags
-    --excludePaths <<string|RegExp>[]> generate code from exclude paths
+    --includeTags <(string|RegExp)[]>  generate code from include tags
+    --includePaths <(string|RegExp)[]> generate code from include paths
+    --excludeTags <(string|RegExp)[]>  generate code from exclude tags
+    --excludePaths <(string|RegExp)[]> generate code from exclude paths
     --requestOptionsType <string>      custom request method options parameter type (default: "{ [key:
                                       string]: unknown }")
     --requestImportStatement <string>  custom request import statement, for example: "const request =
@@ -185,7 +185,7 @@ openapi -i ./spec.json -o ./apis
 | isDisplayTypeLabel | no | boolean | false | generate label matching type field |
 | isGenJsonSchemas | no | boolean | false | generate JSON Schemas |
 | mockFolder | no | string | - | mock file path, for example: './mocks' |
-| authorization | 否 | string | - | docs authorization |
+| authorization | no | string | - | docs authorization |
 | nullable | no | boolean | false | null instead of optional |
 | isTranslateToEnglishTag | no | boolean | false | translate chinese tag name to english tag name |
 | isOnlyGenTypeScriptType | no | boolean | false | only generate typescript type |

@@ -67,7 +67,7 @@ if(include(includeList)){
 
 Exclude 模式只接收 excludeTags,excludePaths 参数，不接收 includeTags,includePaths 参数
 
-如果 excludeTags 和 excludePaths excludeTags 是对 excludePaths 的筛选结果再进行筛选
+如果 excludeTags 和 excludePaths 同时存在，excludeTags 是对 excludePaths 的筛选结果再进行筛选
 
 ```
 // 不在黑名单则生成

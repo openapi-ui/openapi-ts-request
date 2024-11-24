@@ -41,7 +41,7 @@ export type GenerateServiceProps = {
   enableLogging?: boolean;
   /**
   /**
-   * 优先规则, include(只允许include列表) | exclude(只排除exclude列表) | include(允许include列表，排除exclude列表)
+   * 优先规则, include(只允许include列表) | exclude(只排除exclude列表) | both(允许include列表，排除exclude列表)
    */
   priorityRule?: string;
   /**
