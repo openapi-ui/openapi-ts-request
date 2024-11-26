@@ -1,5 +1,19 @@
 # openapi-ts-request
 
+## 0.13.0
+
+### Minor Changes
+
+- [#111](https://github.com/openapi-ui/openapi-ts-request/pull/111) [`09c2731`](https://github.com/openapi-ui/openapi-ts-request/commit/09c273106ad082a0c42dfaf2c6f974b4adb5501c) Thanks [@remember-5](https://github.com/remember-5)! - feat: support priorityRule
+
+### Patch Changes
+
+- [#114](https://github.com/openapi-ui/openapi-ts-request/pull/114) [`9755877`](https://github.com/openapi-ui/openapi-ts-request/commit/9755877d7115600f6f91d8643d97ccde0f2cc9f5) Thanks [@remember-5](https://github.com/remember-5)! - fix: generate type file loss
+
+- [#113](https://github.com/openapi-ui/openapi-ts-request/pull/113) [`2c70f78`](https://github.com/openapi-ui/openapi-ts-request/commit/2c70f78eb51f544f1106a72d3fb6eb5d228ecd41) Thanks [@remember-5](https://github.com/remember-5)! - chore: rename allowedTags => includeTags, allowedPaths => includePaths
+
+- [`4ea7857`](https://github.com/openapi-ui/openapi-ts-request/commit/4ea7857247da937c5b5783ebe5f211af9dae65c4) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - perf: perf priorityRule feature code
+
 ## 0.12.1
 
 ### Patch Changes
