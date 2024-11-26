@@ -394,7 +394,7 @@ export default class ServiceGenerator {
 
         const tags = hookCustomFileNames(operationObject, pathKey, method);
 
-        if (isEmpty(includeTags) || isEmpty(tags)) {
+        if (isEmpty(includeTags) || (!isEmpty(includeTags) && isEmpty(tags))) {
           return;
         }
 
@@ -453,6 +453,12 @@ export default class ServiceGenerator {
 
     keys(schemas).forEach((schemaKey) => {
       const schema = schemas[schemaKey] as ISchemaObject;
+
+      // 判断哪些 schema 需要添加进 type, schemas 渲染数组
+      if (!(schema as ICustomSchemaObject)?.isAllowed) {
+        return;
+      }
+
       const result = this.resolveObject(schema) as Dictionary<
         string | boolean | IPropObject[][]
       >;
@@ -488,38 +494,32 @@ export default class ServiceGenerator {
         });
       }
 
-      // 判断哪些 schema 需要添加进 type, schemas 渲染数组
-      if (
-        isEmpty(this.config.includeTags) ||
-        (schema as ICustomSchemaObject)?.isAllowed
-      ) {
-        const isEnum = result.isEnum as boolean;
-        const typeName = resolveTypeName(schemaKey);
+      const isEnum = result.isEnum as boolean;
+      const typeName = resolveTypeName(schemaKey);
 
-        if (typeName) {
-          lastTypes.push({
-            typeName,
-            type: getDefinesType(),
-            props: (result.props || []) as IPropObject[][],
-            isEnum,
-            displayLabelFuncName: isEnum
-              ? camelCase(`display-${typeName}-Enum`)
-              : '',
-            enumLabelType: isEnum ? (result.enumLabelType as string) : '',
-          });
-        }
+      if (typeName) {
+        lastTypes.push({
+          typeName,
+          type: getDefinesType(),
+          props: (result.props || []) as IPropObject[][],
+          isEnum,
+          displayLabelFuncName: isEnum
+            ? camelCase(`display-${typeName}-Enum`)
+            : '',
+          enumLabelType: isEnum ? (result.enumLabelType as string) : '',
+        });
+      }
 
-        if (this.config.isGenJsonSchemas) {
-          this.schemaList.push({
-            typeName: `$${resolveTypeName(schemaKey)}`,
-            type: JSON.stringify(
-              patchSchema<SchemaObject>(
-                schema,
-                this.openAPIData.components?.schemas
-              )
-            ),
-          });
-        }
+      if (this.config.isGenJsonSchemas) {
+        this.schemaList.push({
+          typeName: `$${resolveTypeName(schemaKey)}`,
+          type: JSON.stringify(
+            patchSchema<SchemaObject>(
+              schema,
+              this.openAPIData.components?.schemas
+            )
+          ),
+        });
       }
     });
 
