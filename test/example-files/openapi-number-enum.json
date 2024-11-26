@@ -1,0 +1,222 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "API Docs",
+    "description": "API Docs",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/": {
+      "get": {
+        "summary": "Hello World",
+        "operationId": "home",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "title": "Response Home"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/city/{city}": {
+      "get": {
+        "summary": "Getcity",
+        "operationId": "city_list",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "City"
+            },
+            "name": "city",
+            "in": "path"
+          },
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Query String"
+            },
+            "name": "query_string",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CityGetRes"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Putcity",
+        "operationId": "put_city",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/Poi2CategoryEnum"
+            },
+            "name": "city",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CityPutRes"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "CityGetRes": {
+        "properties": {
+          "city": {
+            "type": "string",
+            "title": "City"
+          },
+          "query_string": {
+            "type": "string",
+            "title": "Query String"
+          }
+        },
+        "type": "object",
+        "required": ["city"],
+        "title": "CityGetRes"
+      },
+      "CityPutRes": {
+        "properties": {
+          "city": {
+            "$ref": "#/components/schemas/Poi2CategoryEnum"
+          }
+        },
+        "type": "object",
+        "required": ["city"],
+        "title": "CityPutRes"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "Poi2CategoryEnum": {
+        "type": "string",
+        "enum": [
+          "010700",
+          "010800",
+          "010900",
+          "010901",
+          "011000",
+          "011100",
+          "011101",
+          "011102",
+          "011103",
+          "130500",
+          "130501",
+          "130502",
+          "130503",
+          "150210",
+          "150300",
+          "150301",
+          "150302",
+          "150304",
+          "150305",
+          "150306",
+          "151000",
+          "151001",
+          "151002",
+          "151003",
+          "180200",
+          "180201",
+          "180202",
+          "180203",
+          "180300",
+          "180301",
+          "180302"
+        ],
+        "title": "Poi2CategoryEnum",
+        "description": "poi2分类"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          }
+        },
+        "type": "object",
+        "required": ["loc", "msg", "type"],
+        "title": "ValidationError"
+      }
+    }
+  }
+}

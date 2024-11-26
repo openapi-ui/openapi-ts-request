@@ -13,6 +13,18 @@ const gen = async () => {
     isGenJsonSchemas: true,
   });
 
+  // 测试 tags 为 undefined
+  await openAPI.generateService({
+    schemaPath: `${__dirname}/example-files/openapi-tags-undefined.json`,
+    serversPath: './apis/tags-undefined',
+  });
+
+  // 测试 tags 为[]
+  await openAPI.generateService({
+    schemaPath: `${__dirname}/example-files/openapi-tags-empty.json`,
+    serversPath: './apis/tags-empty',
+  });
+
   // 测试 swagger => openapi, schema 循环引用
   await openAPI.generateService({
     schemaPath: `${__dirname}/example-files/swagger-get-method-params-convert-obj.json`,
@@ -165,6 +177,12 @@ const gen = async () => {
     isOnlyGenTypeScriptType: true,
     isDisplayTypeLabel: true,
     isGenJsonSchemas: true,
+  });
+
+  // 测试 number类型 枚举
+  await openAPI.generateService({
+    schemaPath: `${__dirname}/example-files/openapi-number-enum.json`,
+    serversPath: './apis/number-enum',
   });
 
   // check 文件生成
