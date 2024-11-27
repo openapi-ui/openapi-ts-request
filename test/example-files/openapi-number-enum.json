@@ -153,6 +153,7 @@
       "Poi2CategoryEnum": {
         "type": "string",
         "enum": [
+          "-1",
           "010700",
           "010800",
           "010900",
