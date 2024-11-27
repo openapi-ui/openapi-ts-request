@@ -1074,7 +1074,7 @@ export default class ServiceGenerator {
     let enumLabelTypeStr = '';
 
     if (numberEnum.includes(schemaObject.type) || isAllNumeric(enumArray)) {
-      enumStr = `{${map(enumArray, (value) => `NUMBER_${value}=${Number(value)}`).join(',')}}`;
+      enumStr = `{${map(enumArray, (value) => `"NUMBER_${value}"=${Number(value)}`).join(',')}}`;
     } else {
       enumStr = `{${map(enumArray, (value) => `${value}="${value}"`).join(',')}}`;
     }
