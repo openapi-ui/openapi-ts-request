@@ -1,5 +1,11 @@
 # openapi-ts-request
 
+## 0.13.1
+
+### Patch Changes
+
+- [#123](https://github.com/openapi-ui/openapi-ts-request/pull/123) [`c80a6aa`](https://github.com/openapi-ui/openapi-ts-request/commit/c80a6aab2fac1ae14fc363a2b9e133170ec3189a) Thanks [@lezzhao](https://github.com/lezzhao)! - fix: fix generate number type enum error #117
+
 ## 0.13.0
 
 ### Minor Changes
