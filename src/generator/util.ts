@@ -481,5 +481,5 @@ export function resolveRefs(obj: OpenAPIObject, fields: string[]) {
 }
 
 export function isAllNumeric(arr) {
-  return every(arr, (item) => isString(item) && /^[0-9]+$/.test(item));
+  return every(arr, (item) => isString(item) && /^-?[0-9]+$/.test(item));
 }
