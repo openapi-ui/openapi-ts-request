@@ -485,11 +485,6 @@ export function isAllNumeric(arr) {
   return every(arr, (item) => isString(item) && /^-?[0-9]+$/.test(item));
 }
 
-// 检查数组每一项是否都是字符串
-export function isAllString(arr) {
-  return every(arr, (item) => isString(item));
-}
-
 // 检查数组每一项是否都是数字
 export function isAllNumber(arr) {
   return every(arr, (item) => isNumber(item));
