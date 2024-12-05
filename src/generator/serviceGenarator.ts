@@ -185,6 +185,10 @@ export default class ServiceGenerator {
 
         // 这里判断tags
         tags.forEach((tag) => {
+          if (!tag) {
+            return;
+          }
+
           const tagLowerCase = tag.toLowerCase();
 
           if (priorityRule === PriorityRule.include) {
