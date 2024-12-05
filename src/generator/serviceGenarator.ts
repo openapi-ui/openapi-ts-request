@@ -75,6 +75,7 @@ import {
   getLastRefName,
   getRefName,
   handleDuplicateTypeNames,
+  isAllNumber,
   isAllNumeric,
   isArraySchemaObject,
   isBinaryArraySchemaObject,
@@ -185,6 +186,10 @@ export default class ServiceGenerator {
 
         // 这里判断tags
         tags.forEach((tag) => {
+          if (!tag) {
+            return;
+          }
+
           const tagLowerCase = tag.toLowerCase();
 
           if (priorityRule === PriorityRule.include) {
@@ -1073,8 +1078,10 @@ export default class ServiceGenerator {
     let enumStr = '';
     let enumLabelTypeStr = '';
 
-    if (numberEnum.includes(schemaObject.type) || isAllNumeric(enumArray)) {
+    if (numberEnum.includes(schemaObject.type) || isAllNumber(enumArray)) {
       enumStr = `{${map(enumArray, (value) => `"NUMBER_${value}"=${Number(value)}`).join(',')}}`;
+    } else if (isAllNumeric(enumArray)) {
+      enumStr = `{${map(enumArray, (value) => `"STRING_NUMBER_${value}"="${value}"`).join(',')}}`;
     } else {
       enumStr = `{${map(enumArray, (value) => `${value}="${value}"`).join(',')}}`;
     }
@@ -1093,8 +1100,10 @@ export default class ServiceGenerator {
         return `${value}:"${enumLabel}"`;
       }).join(',')}}`;
     } else {
-      if (numberEnum.includes(schemaObject.type) || isAllNumeric(enumArray)) {
+      if (numberEnum.includes(schemaObject.type) || isAllNumber(enumArray)) {
         enumLabelTypeStr = `{${map(enumArray, (value) => `"NUMBER_${value}":${Number(value)}`).join(',')}}`;
+      } else if (isAllNumeric(enumArray)) {
+        enumLabelTypeStr = `{${map(enumArray, (value) => `"STRING_NUMBER_${value}":"${value}"`).join(',')}}`;
       } else {
         enumLabelTypeStr = `{${map(enumArray, (value) => `${value}:"${value}"`).join(',')}}`;
       }
