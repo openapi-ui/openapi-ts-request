@@ -75,7 +75,8 @@ import {
   getLastRefName,
   getRefName,
   handleDuplicateTypeNames,
-  isAllNumeric,
+  isAllNumber,
+  isAllString,
   isArraySchemaObject,
   isBinaryArraySchemaObject,
   isNonArraySchemaObject,
@@ -1073,8 +1074,10 @@ export default class ServiceGenerator {
     let enumStr = '';
     let enumLabelTypeStr = '';
 
-    if (numberEnum.includes(schemaObject.type) || isAllNumeric(enumArray)) {
+    if (numberEnum.includes(schemaObject.type) || isAllNumber(enumArray)) {
       enumStr = `{${map(enumArray, (value) => `"NUMBER_${value}"=${Number(value)}`).join(',')}}`;
+    } else if (isAllString(enumArray)) {
+      enumStr = `{${map(enumArray, (value) => `"STRING_${value}"="${value}"`).join(',')}}`;
     } else {
       enumStr = `{${map(enumArray, (value) => `${value}="${value}"`).join(',')}}`;
     }
@@ -1093,8 +1096,10 @@ export default class ServiceGenerator {
         return `${value}:"${enumLabel}"`;
       }).join(',')}}`;
     } else {
-      if (numberEnum.includes(schemaObject.type) || isAllNumeric(enumArray)) {
+      if (numberEnum.includes(schemaObject.type) || isAllNumber(enumArray)) {
         enumLabelTypeStr = `{${map(enumArray, (value) => `"NUMBER_${value}":${Number(value)}`).join(',')}}`;
+      } else if (isAllString(enumArray)) {
+        enumLabelTypeStr = `{${map(enumArray, (value) => `"STRING_${value}":"${value}"`).join(',')}}`;
       } else {
         enumLabelTypeStr = `{${map(enumArray, (value) => `${value}:"${value}"`).join(',')}}`;
       }
