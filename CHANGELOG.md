@@ -1,5 +1,11 @@
 # openapi-ts-request
 
+## 0.13.3
+
+### Patch Changes
+
+- [#137](https://github.com/openapi-ui/openapi-ts-request/pull/137) [`1c1cce9`](https://github.com/openapi-ui/openapi-ts-request/commit/1c1cce9c0361ef31e1677db0b685743af6250973) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - perf: perf parse apifox x-apifox-enum
+
 ## 0.13.2
 
 ### Patch Changes
