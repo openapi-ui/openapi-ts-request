@@ -185,6 +185,12 @@ const gen = async () => {
     serversPath: './apis/number-enum',
   });
 
+  // 测试支持 apifox x-apifox-enum
+  await openAPI.generateService({
+    schemaPath: `${__dirname}/example-files/openapi-apifox-enum-label.json`,
+    serversPath: './apis/apifox-enum-label',
+  });
+
   // check 文件生成
   const fileControllerStr = fs.readFileSync(
     path.join(__dirname, 'apis/file/fileController.ts'),

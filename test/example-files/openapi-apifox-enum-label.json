@@ -1,0 +1,882 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "机构管理端",
+    "description": "",
+    "version": "1.0.0"
+  },
+  "tags": [
+    {
+      "name": "订单管理"
+    }
+  ],
+  "paths": {
+    "/org/inquiryOrder/page": {
+      "post": {
+        "summary": "问诊订单列表",
+        "deprecated": false,
+        "description": "",
+        "tags": ["订单管理"],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InquiryPageReq",
+                "description": ""
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseResultIPageInquiryPageRes"
+                },
+                "examples": {
+                  "1": {
+                    "summary": "成功示例",
+                    "value": {
+                      "code": "",
+                      "msg": "",
+                      "data": {
+                        "records": [
+                          {
+                            "id": "",
+                            "orderNo": "",
+                            "orgId": "",
+                            "orgName": "",
+                            "internetHospitalId": "",
+                            "internetHospitalName": "",
+                            "addTime": "",
+                            "patientName": "",
+                            "patientPhone": "",
+                            "inquiryTypeName": "",
+                            "inquiryWayName": "",
+                            "inquiryTypeDisplay": "",
+                            "inquiryStatusName": "",
+                            "payAmount": 0,
+                            "payStatusName": "",
+                            "doctorId": "",
+                            "doctorName": ""
+                          }
+                        ],
+                        "total": 0,
+                        "size": 0,
+                        "current": 0,
+                        "orders": [
+                          {
+                            "column": "",
+                            "asc": false
+                          }
+                        ],
+                        "optimizeCountSql": false,
+                        "isSearchCount": false,
+                        "hitCount": false,
+                        "countId": "",
+                        "maxLimit": 0,
+                        "searchCount": false,
+                        "pages": 0,
+                        "ascs": [""],
+                        "asc": [""],
+                        "descs": [""],
+                        "desc": [""]
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {},
+            "x-apifox-name": "成功"
+          }
+        },
+        "security": [],
+        "x-apifox-folder": "订单管理",
+        "x-apifox-status": "released",
+        "x-run-in-apifox": "https://apifox.com/web/project/5327748/apis/api-229742579-run"
+      }
+    },
+    "/org/inquiryOrder/detail": {
+      "get": {
+        "summary": "问诊订单详情",
+        "deprecated": false,
+        "description": "",
+        "tags": ["订单管理"],
+        "parameters": [
+          {
+            "name": "inquiryOrderId",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseResultInquiryOrderDetailRes"
+                },
+                "examples": {
+                  "1": {
+                    "summary": "成功示例",
+                    "value": {
+                      "code": "",
+                      "msg": "",
+                      "data": {
+                        "id": "",
+                        "orderNo": "",
+                        "patientName": "",
+                        "patientSex": 0,
+                        "patientAge": 0,
+                        "patientPhone": "",
+                        "patientIdCard": "",
+                        "orgId": "",
+                        "orgName": "",
+                        "internetHospitalId": "",
+                        "internetHospitalName": "",
+                        "inquiryType": "",
+                        "inquiryTypeName": "",
+                        "inquiryWayName": "",
+                        "inquiryTypeDisplay": "",
+                        "inquiryStatusName": "",
+                        "payAmount": 0,
+                        "payStatusName": "",
+                        "addTime": "",
+                        "doctorId": "",
+                        "userId": "",
+                        "groupImId": "",
+                        "doctorName": "",
+                        "doctorPhone": "",
+                        "doctorSectionCode": "",
+                        "doctorSectionName": "",
+                        "inquiryChatMessageDTO": {
+                          "inquiryOrderId": "",
+                          "rspMsgItems": [
+                            {
+                              "From_Account": "",
+                              "IsPlaceMsg": 0,
+                              "MsgBody": {},
+                              "IsSystemMsg": 0,
+                              "MsgPriority": 0,
+                              "MsgRandom": 0,
+                              "MsgKey": "",
+                              "MsgSeq": 0,
+                              "MsgTimeStamp": 0
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {},
+            "x-apifox-name": "成功"
+          }
+        },
+        "security": [],
+        "x-apifox-folder": "订单管理",
+        "x-apifox-status": "released",
+        "x-run-in-apifox": "https://apifox.com/web/project/5327748/apis/api-230226778-run"
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ImVideoRecordDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "主键"
+          },
+          "bizId": {
+            "type": "string",
+            "description": "业务id"
+          },
+          "roomId": {
+            "type": "string",
+            "description": "房间号"
+          },
+          "userId": {
+            "type": "string",
+            "description": "用户ID"
+          },
+          "duration": {
+            "type": "string",
+            "description": "时长"
+          },
+          "videoUrl": {
+            "type": "string",
+            "description": "录像地址"
+          },
+          "callBackParams": {
+            "type": "string",
+            "description": "回调参数"
+          },
+          "startTime": {
+            "type": "string",
+            "description": "开始时间",
+            "x-apifox-mock": "@datetime"
+          },
+          "endTime": {
+            "type": "string",
+            "description": "结束时间",
+            "x-apifox-mock": "@datetime"
+          },
+          "addTime": {
+            "type": "string",
+            "description": "添加时间",
+            "x-apifox-mock": "@datetime"
+          },
+          "modifyTime": {
+            "type": "string",
+            "description": "更新时间",
+            "x-apifox-mock": "@datetime"
+          }
+        },
+        "x-apifox-orders": [
+          "id",
+          "bizId",
+          "roomId",
+          "userId",
+          "duration",
+          "videoUrl",
+          "callBackParams",
+          "startTime",
+          "endTime",
+          "addTime",
+          "modifyTime"
+        ],
+        "x-apifox-ignore-properties": [],
+        "x-apifox-folder": ""
+      },
+      "Object": {
+        "type": "object",
+        "properties": {},
+        "x-apifox-orders": [],
+        "x-apifox-ignore-properties": [],
+        "x-apifox-folder": ""
+      },
+      "RspMsgItem": {
+        "type": "object",
+        "properties": {
+          "From_Account": {
+            "type": "string",
+            "description": "消息的发送者"
+          },
+          "IsPlaceMsg": {
+            "type": "integer",
+            "description": "是否是空洞消息，当消息被删除或者消息过期后，MsgBody 为空，该字段为1，撤回的消息，该字段为2"
+          },
+          "MsgBody": {
+            "$ref": "#/components/schemas/Object",
+            "description": "消息内容，详情请参见 消息内容 MsgBody 说明\nisSystemMsg == 1 消息类型 Object\nisSystemMsg == 0 消息类型 Array"
+          },
+          "IsSystemMsg": {
+            "type": "integer",
+            "description": "字段为 1 时表示系统消息"
+          },
+          "MsgPriority": {
+            "type": "integer",
+            "description": "消息的优先级，用于消息去重，有客户端发消息时填写，如果没有填，服务端会自动生成，\n1表示 High 优先级消息，2表示 Normal 优先级消息，3表示 Low 优先级消息，4表示 Lowest 优先级消息"
+          },
+          "MsgRandom": {
+            "type": "integer",
+            "description": "消息随机数，用于标记该条消息，数据范围 [0,4294967295]"
+          },
+          "MsgKey": {
+            "type": "string",
+            "description": "标识该条消息，可用于 撤回公众号消息"
+          },
+          "MsgSeq": {
+            "type": "integer",
+            "description": "消息序列号，用于标记该条消息，值越小发送的越早，数据范围 [0,4294967295]"
+          },
+          "MsgTimeStamp": {
+            "type": "integer",
+            "description": "消息被发送的时间戳，server 的时间"
+          }
+        },
+        "x-apifox-orders": [
+          "From_Account",
+          "IsPlaceMsg",
+          "MsgBody",
+          "IsSystemMsg",
+          "MsgPriority",
+          "MsgRandom",
+          "MsgKey",
+          "MsgSeq",
+          "MsgTimeStamp"
+        ],
+        "x-apifox-ignore-properties": [],
+        "x-apifox-folder": ""
+      },
+      "InquiryPageReq": {
+        "type": "object",
+        "properties": {
+          "pageIndex": {
+            "type": "integer",
+            "description": "当前页码",
+            "default": 1
+          },
+          "pageSize": {
+            "type": "integer",
+            "description": "每页显示的记录数",
+            "default": 100
+          },
+          "internetHospitalId": {
+            "type": "string",
+            "description": "网院id"
+          },
+          "channelId": {
+            "type": "string",
+            "description": "机构id"
+          },
+          "orderNo": {
+            "type": "string",
+            "description": "订单编号"
+          },
+          "patientName": {
+            "type": "string",
+            "description": "患者名称"
+          },
+          "doctorName": {
+            "type": "string",
+            "description": "医生姓名"
+          },
+          "channelName": {
+            "type": "string",
+            "description": "订单来源"
+          },
+          "orderType": {
+            "type": "string",
+            "description": "订单类型"
+          },
+          "inquiryStatus": {
+            "type": "string",
+            "description": "问诊状态(INIT:未开始/ WAIT_DISPATCH:待派单/WAIT_DIAGNOSIS:待接诊/DOCTOR_CANCELED:医生取消/PATIENT_CANCELED:患者取消/TIME_OUT_CANCELED:超时取消/TIME_OUT_WITHDRAWAL:超时未接诊/DEALING_DIAGNOSIS:问诊中/WITHDRAWAL:已退诊/ENDED:已结束)"
+          },
+          "payStatus": {
+            "type": "string",
+            "description": "支付状态(NO_PAID/无需支付/UNPAID/待支付/PAID/已支付/CANCEL_PAYMENT/已取消/TIME_OUT_CANCEL/超时未支付取消/REFUNDED/已退款"
+          },
+          "createTimeStart": {
+            "type": "string",
+            "description": "创建时间起始"
+          },
+          "createTimeEnd": {
+            "type": "string",
+            "description": "创建时间结束"
+          },
+          "businessService": {
+            "type": "string",
+            "description": "业务服务",
+            "enum": [
+              "EXPERT_CONSULTATION_TEXT",
+              "EXPERT_CONSULTATION_VIDEO",
+              "HEALTH_CONSULTATION_TEXT",
+              "HEALTH_CONSULTATION_VIDEO",
+              "SPECIALIZED_CONSULTATION_TEXT",
+              "SPECIALIZED_CONSULTATION_VIDEO"
+            ],
+            "x-apifox-enum": [
+              {
+                "value": "EXPERT_CONSULTATION_TEXT",
+                "name": "EXPERT_CONSULTATION_TEXT",
+                "description": "专家问诊-图文"
+              },
+              {
+                "value": "EXPERT_CONSULTATION_VIDEO",
+                "name": "EXPERT_CONSULTATION_VIDEO",
+                "description": "专家问诊-视频"
+              },
+              {
+                "value": "HEALTH_CONSULTATION_TEXT",
+                "name": "HEALTH_CONSULTATION_TEXT",
+                "description": "健康咨询-图文"
+              },
+              {
+                "value": "HEALTH_CONSULTATION_VIDEO",
+                "name": "HEALTH_CONSULTATION_VIDEO",
+                "description": "健康咨询-视频"
+              },
+              {
+                "value": "SPECIALIZED_CONSULTATION_TEXT",
+                "name": "SPECIALIZED_CONSULTATION_TEXT",
+                "description": "专科问诊-图文"
+              },
+              {
+                "value": "SPECIALIZED_CONSULTATION_VIDEO",
+                "name": "SPECIALIZED_CONSULTATION_VIDEO",
+                "description": "专科问诊-视频"
+              }
+            ]
+          }
+        },
+        "x-apifox-orders": [
+          "pageIndex",
+          "pageSize",
+          "internetHospitalId",
+          "channelId",
+          "orderNo",
+          "patientName",
+          "doctorName",
+          "channelName",
+          "orderType",
+          "inquiryStatus",
+          "payStatus",
+          "createTimeStart",
+          "createTimeEnd",
+          "businessService"
+        ],
+        "required": ["channelId"],
+        "x-apifox-ignore-properties": [],
+        "x-apifox-folder": ""
+      },
+      "InquiryChatMessageDTO": {
+        "type": "object",
+        "properties": {
+          "inquiryOrderId": {
+            "type": "string",
+            "description": "问诊id"
+          },
+          "rspMsgItems": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RspMsgItem",
+              "description": ""
+            },
+            "description": "im消息"
+          }
+        },
+        "x-apifox-orders": ["inquiryOrderId", "rspMsgItems"],
+        "x-apifox-ignore-properties": [],
+        "x-apifox-folder": ""
+      },
+      "ResponseResultIPageInquiryPageRes": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": ""
+          },
+          "msg": {
+            "type": "string",
+            "description": ""
+          },
+          "data": {
+            "$ref": "#/components/schemas/IPageInquiryPageRes",
+            "description": ""
+          }
+        },
+        "x-apifox-orders": ["code", "msg", "data"],
+        "x-apifox-ignore-properties": [],
+        "x-apifox-folder": ""
+      },
+      "IPageInquiryPageRes": {
+        "type": "object",
+        "properties": {
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InquiryPageRes",
+              "description": "com.open.biz.manage.pojo.res.InquiryPageRes"
+            },
+            "description": ""
+          },
+          "total": {
+            "type": "integer",
+            "description": ""
+          },
+          "size": {
+            "type": "integer",
+            "description": ""
+          },
+          "current": {
+            "type": "integer",
+            "description": ""
+          },
+          "orders": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OrderItem",
+              "description": "com.baomidou.mybatisplus.core.metadata.OrderItem"
+            },
+            "description": ""
+          },
+          "optimizeCountSql": {
+            "type": "boolean",
+            "description": ""
+          },
+          "isSearchCount": {
+            "type": "boolean",
+            "description": ""
+          },
+          "hitCount": {
+            "type": "boolean",
+            "description": ""
+          },
+          "countId": {
+            "type": "string",
+            "description": ""
+          },
+          "maxLimit": {
+            "type": "integer",
+            "description": ""
+          },
+          "searchCount": {
+            "type": "boolean"
+          },
+          "pages": {
+            "type": "integer",
+            "description": "当前分页总页数"
+          },
+          "ascs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": ""
+          },
+          "asc": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": ""
+          },
+          "descs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": ""
+          },
+          "desc": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": ""
+          }
+        },
+        "x-apifox-orders": [
+          "records",
+          "total",
+          "size",
+          "current",
+          "orders",
+          "optimizeCountSql",
+          "isSearchCount",
+          "hitCount",
+          "countId",
+          "maxLimit",
+          "searchCount",
+          "pages",
+          "ascs",
+          "asc",
+          "descs",
+          "desc"
+        ],
+        "x-apifox-ignore-properties": [],
+        "x-apifox-folder": ""
+      },
+      "OrderItem": {
+        "type": "object",
+        "properties": {
+          "column": {
+            "type": "string",
+            "description": ""
+          },
+          "asc": {
+            "type": "boolean",
+            "description": ""
+          }
+        },
+        "x-apifox-orders": ["column", "asc"],
+        "x-apifox-ignore-properties": [],
+        "x-apifox-folder": ""
+      },
+      "InquiryPageRes": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": ""
+          },
+          "orderNo": {
+            "type": "string",
+            "description": "订单编号"
+          },
+          "orgId": {
+            "type": "string",
+            "description": "机构id"
+          },
+          "orgName": {
+            "type": "string",
+            "description": "机构名"
+          },
+          "internetHospitalId": {
+            "type": "string",
+            "description": "网院id"
+          },
+          "internetHospitalName": {
+            "type": "string",
+            "description": "网院名称"
+          },
+          "addTime": {
+            "type": "string",
+            "description": "创建时间"
+          },
+          "patientName": {
+            "type": "string",
+            "description": "患者名称"
+          },
+          "patientPhone": {
+            "type": "string",
+            "description": "患者联系方式"
+          },
+          "inquiryTypeName": {
+            "type": "string",
+            "description": "订单类型名称"
+          },
+          "inquiryWayName": {
+            "type": "string",
+            "description": "问诊方式名称"
+          },
+          "inquiryTypeDisplay": {
+            "type": "string",
+            "description": "订单类型显示名称:订单类型-问诊方式"
+          },
+          "inquiryStatusName": {
+            "type": "string",
+            "description": "订单状态名称"
+          },
+          "payAmount": {
+            "type": "number",
+            "description": "支付金额"
+          },
+          "payStatusName": {
+            "type": "string",
+            "description": "支付状态名称"
+          },
+          "doctorId": {
+            "type": "string",
+            "description": "医生id"
+          },
+          "doctorName": {
+            "type": "string",
+            "description": "医生姓名"
+          }
+        },
+        "x-apifox-orders": [
+          "id",
+          "orderNo",
+          "orgId",
+          "orgName",
+          "internetHospitalId",
+          "internetHospitalName",
+          "addTime",
+          "patientName",
+          "patientPhone",
+          "inquiryTypeName",
+          "inquiryWayName",
+          "inquiryTypeDisplay",
+          "inquiryStatusName",
+          "payAmount",
+          "payStatusName",
+          "doctorId",
+          "doctorName"
+        ],
+        "x-apifox-ignore-properties": [],
+        "x-apifox-folder": ""
+      },
+      "InquiryOrderDetailRes": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": ""
+          },
+          "orderNo": {
+            "type": "string",
+            "description": "订单编号"
+          },
+          "patientName": {
+            "type": "string",
+            "description": "患者名称"
+          },
+          "patientSex": {
+            "type": "integer",
+            "description": "性别1 男 2女 0未知"
+          },
+          "patientAge": {
+            "type": "integer",
+            "description": "年龄"
+          },
+          "patientPhone": {
+            "type": "string",
+            "description": "患者手机号"
+          },
+          "patientIdCard": {
+            "type": "string",
+            "description": "患者身份证号"
+          },
+          "orgId": {
+            "type": "string",
+            "description": "机构id"
+          },
+          "orgName": {
+            "type": "string",
+            "description": "机构名"
+          },
+          "internetHospitalId": {
+            "type": "string",
+            "description": "网院id"
+          },
+          "internetHospitalName": {
+            "type": "string",
+            "description": "网院名称"
+          },
+          "inquiryType": {
+            "type": "string",
+            "description": "订单类型"
+          },
+          "inquiryTypeName": {
+            "type": "string",
+            "description": "订单类型名称"
+          },
+          "inquiryWayName": {
+            "type": "string",
+            "description": "问诊方式名称"
+          },
+          "inquiryTypeDisplay": {
+            "type": "string",
+            "description": "订单类型显示"
+          },
+          "inquiryStatusName": {
+            "type": "string",
+            "description": "订单状态名称"
+          },
+          "payAmount": {
+            "type": "number",
+            "description": "支付金额"
+          },
+          "payStatusName": {
+            "type": "string",
+            "description": "支付状态名称"
+          },
+          "addTime": {
+            "type": "string",
+            "description": "创建时间"
+          },
+          "doctorId": {
+            "type": "string",
+            "description": "医生id"
+          },
+          "userId": {
+            "type": "string",
+            "description": "用户id"
+          },
+          "groupImId": {
+            "type": "string",
+            "description": "群聊id"
+          },
+          "doctorName": {
+            "type": "string",
+            "description": "医生姓名"
+          },
+          "doctorPhone": {
+            "type": "string",
+            "description": "医生登录账号"
+          },
+          "doctorSectionCode": {
+            "type": "string",
+            "description": "科室code"
+          },
+          "doctorSectionName": {
+            "type": "string",
+            "description": "科室名称"
+          },
+          "inquiryChatMessageDTO": {
+            "$ref": "#/components/schemas/InquiryChatMessageDTO",
+            "description": "问诊记录"
+          },
+          "imVideoRecordDTOs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ImVideoRecordDTO",
+              "description": "腾讯视频记录表"
+            },
+            "description": "视频记录"
+          }
+        },
+        "x-apifox-orders": [
+          "id",
+          "orderNo",
+          "patientName",
+          "patientSex",
+          "patientAge",
+          "patientPhone",
+          "patientIdCard",
+          "orgId",
+          "orgName",
+          "internetHospitalId",
+          "internetHospitalName",
+          "inquiryType",
+          "inquiryTypeName",
+          "inquiryWayName",
+          "inquiryTypeDisplay",
+          "inquiryStatusName",
+          "payAmount",
+          "payStatusName",
+          "addTime",
+          "doctorId",
+          "userId",
+          "groupImId",
+          "doctorName",
+          "doctorPhone",
+          "doctorSectionCode",
+          "doctorSectionName",
+          "inquiryChatMessageDTO",
+          "imVideoRecordDTOs"
+        ],
+        "x-apifox-ignore-properties": [],
+        "x-apifox-folder": ""
+      },
+      "ResponseResultInquiryOrderDetailRes": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": ""
+          },
+          "msg": {
+            "type": "string",
+            "description": ""
+          },
+          "data": {
+            "$ref": "#/components/schemas/InquiryOrderDetailRes",
+            "description": ""
+          }
+        },
+        "x-apifox-orders": ["code", "msg", "data"],
+        "x-apifox-ignore-properties": [],
+        "x-apifox-folder": ""
+      }
+    },
+    "securitySchemes": {}
+  },
+  "servers": []
+}
