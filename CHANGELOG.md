@@ -1,5 +1,13 @@
 # openapi-ts-request
 
+## 0.13.3
+
+### Patch Changes
+
+- [#130](https://github.com/openapi-ui/openapi-ts-request/pull/130) [`c5cf7b5`](https://github.com/openapi-ui/openapi-ts-request/commit/c5cf7b53713b91a56c50992697035868dd79db54) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - perf: compatible default tags is empty
+
+- [#130](https://github.com/openapi-ui/openapi-ts-request/pull/130) [`ae0a902`](https://github.com/openapi-ui/openapi-ts-request/commit/ae0a902a15ccf7f96d4f214db954e82f6f64f9ef) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - perf: perf string_number enum
+
 ## 0.13.2
 
 ### Patch Changes
