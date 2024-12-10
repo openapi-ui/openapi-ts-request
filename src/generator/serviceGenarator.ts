@@ -5,6 +5,7 @@ import {
   camelCase,
   entries,
   filter,
+  find,
   forEach,
   isArray,
   isEmpty,
@@ -1096,6 +1097,15 @@ export default class ServiceGenerator {
     } else if (schemaObject?.['x-apifox']?.['enumDescriptions']) {
       enumLabelTypeStr = `{${map(enumArray, (value: string) => {
         const enumLabel = schemaObject['x-apifox']['enumDescriptions'][value];
+
+        return `${value}:"${enumLabel}"`;
+      }).join(',')}}`;
+    } else if (schemaObject?.['x-apifox-enum']) {
+      enumLabelTypeStr = `{${map(enumArray, (value: string) => {
+        const enumLabel = find(
+          schemaObject['x-apifox-enum'],
+          (item) => item.value === value
+        )?.description;
 
         return `${value}:"${enumLabel}"`;
       }).join(',')}}`;

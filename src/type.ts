@@ -19,6 +19,11 @@ type ICustomBaseSchemaObject = {
   'x-apifox'?: {
     enumDescriptions: Record<string, string>;
   };
+  'x-apifox-enum'?: {
+    value: string;
+    name: string;
+    description: string;
+  }[];
 };
 
 export type ArraySchemaObject = Modify<
