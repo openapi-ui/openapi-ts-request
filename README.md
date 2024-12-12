@@ -4,7 +4,14 @@
 
 <a href="https://github.com/openapi-ui/openapi-ts-request/blob/master/README-en_US.md">English</a> | 简体中文
 
-根据 [Swagger2/OpenAPI3/Apifox](https://swagger.io/blog/news/whats-new-in-openapi-3-0/) 文档生成 TS 类型, 客户端请求函数, 模拟请求响应服务, 枚举, 类型字段翻译, JSON Schemas
+根据 [Swagger2/OpenAPI3/Apifox](https://swagger.io/blog/news/whats-new-in-openapi-3-0/) 文档生成:
+
+- TS 类型
+- 客户端请求函数
+- 模拟请求响应服务
+- 枚举
+- 类型字段翻译
+- JSON Schemas
 
 文档：[使用手册](https://github.com/openapi-ui/openapi-ts-request/issues/100)
 
@@ -38,6 +45,8 @@ pnpm i openapi-ts-request -D
 import type { GenerateServiceProps } from 'openapi-ts-request';
 
 export default {
+  // schemaPath: './openapi.json', // 本地openapi文件
+  // serversPath: './src/apis', // 接口存放路径
   schemaPath: 'http://petstore.swagger.io/v2/swagger.json',
 } as GenerateServiceProps;
 ```
@@ -61,10 +70,45 @@ export default [
 
 在 `package.json` 的 `script` 中添加命令: `"openapi": "openapi-ts",`
 
-生成结果：
+运行：
 
 ```bash
 npm run openapi
+```
+
+生成的接口：
+
+```bash
+src/apis/index.ts #接口入口文件
+src/apis/types.ts #类型定义文件
+src/apis/pet.ts #接口文件
+```
+
+```typescript
+// src/apis/pet.ts
+
+/* eslint-disable */
+// @ts-ignore
+import request from 'axios';
+
+import * as API from './types';
+
+/** Update an existing pet PUT /pet */
+export async function updatePet(
+  body: API.Pet,
+  options?: { [key: string]: unknown }
+) {
+  return request<unknown>(`/pet`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    data: body,
+    ...(options || {}),
+  });
+}
+
+// ... 其他接口
 ```
 
 ### JS
