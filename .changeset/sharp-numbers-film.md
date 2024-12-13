@@ -2,4 +2,4 @@
 'openapi-ts-request': patch
 ---
 
-docs:update readme
+docs: update readme

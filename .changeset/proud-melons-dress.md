@@ -2,4 +2,4 @@
 'openapi-ts-request': patch
 ---
 
-enrich readme files
+docs: enrich readme files
