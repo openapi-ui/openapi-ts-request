@@ -126,7 +126,7 @@ generateService({
 
 在 `package.json` 的 `script` 中添加命令: `"openapi": "node xxx/xxx/openapi-ts-request.config.js"`
 
-生成结果：
+运行：
 
 ```bash
 npm run openapi
@@ -147,7 +147,7 @@ generateService({
 
 在 `package.json` 的 `script` 中添加命令: `"openapi": "ts-node xxx/xxx/openapi-ts-request.config.ts",`
 
-生成结果：
+运行：
 
 ```bash
 npm run openapi
@@ -204,7 +204,7 @@ $ openapi --help
     -h, --help                         display help for command
 ```
 
-生成结果：
+运行：
 
 ```bash
 openapi --i ./spec.json --o ./apis
@@ -215,7 +215,7 @@ openapi --i ./spec.json --o ./apis
 | 属性 | 必填 | 类型 | 默认值 | 说明 |
 | --- | --- | --- | --- | --- |
 | schemaPath | 是 | string | - | Swagger2/OpenAPI3 地址 |
-| serversPath | 否 | string | './src/apis' | 生成结果的文件夹路径 |
+| serversPath | 否 | string | './src/apis' | 运行结果文件夹路径 |
 | requestLibPath | 否 | string | 'axios' | 自定义请求方法路径，例如：'@/request'、'node-fetch' |
 | enableLogging | 否 | boolean | false | 是否开启日志 |
 | priorityRule | 否 | string | 'include' | 模式规则，可选include/exclude/both |

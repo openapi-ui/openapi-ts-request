@@ -76,7 +76,7 @@ run:
 npm run openapi
 ```
 
-generate result:
+run:
 
 ```bash
 src/apis/index.ts #interface entry file
@@ -126,7 +126,7 @@ generateService({
 
 add the command in `script` of `package.json`: `"openapi": "node xxx/xxx/openapi-ts-request.config.js"`
 
-generate result:
+run:
 
 ```bash
 npm run openapi
@@ -147,7 +147,7 @@ generateService({
 
 add the command in `script` of `package.json`: `"openapi": "ts-node xxx/xxx/openapi-ts-request.config.ts",`
 
-generate result:
+run:
 
 ```bash
 npm run openapi
@@ -204,7 +204,7 @@ $ openapi --help
     -h, --help                         display help for command
 ```
 
-generate result:
+run:
 
 ```bash
 openapi -i ./spec.json -o ./apis
@@ -215,7 +215,7 @@ openapi -i ./spec.json -o ./apis
 | props | required | type | default | remark |
 | --- | --- | --- | --- | --- |
 | schemaPath | yes | string | - | Swagger2/OpenAPI3 URL |
-| serversPath | no | string | './src/apis' | the folder path for the generated results |
+| serversPath | no | string | './src/apis' | the folder path for the run results |
 | requestLibPath | no | string | 'axios' | custom request lib path, for example: '@/request', 'node-fetch' |
 | enableLogging | no | boolean | false | open the log |
 | priorityRule | no | string | 'include' | priority rule, include/exclude/both |
