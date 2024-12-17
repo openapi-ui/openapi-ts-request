@@ -4,9 +4,16 @@
 
 English | <a href="https://github.com/openapi-ui/openapi-ts-request/blob/master/README.md">简体中文</a>
 
-Generate TS interfaces, request client, request mock service, enum, type field label, JSON Schemas based on [Swagger2/OpenAPI3/Apifox](https://swagger.io/blog/news/whats-new-in-openapi-3-0/) specification
+based on [Swagger2/OpenAPI3/Apifox](https://swagger.io/blog/news/whats-new-in-openapi-3-0/) specification Generate
 
-文档：[use docs](https://github.com/openapi-ui/openapi-ts-request/issues/100)
+- TS interfaces
+- request client
+- request mock service
+- enum and enum translation
+- type field label
+- JSON Schemas
+
+docs：[use docs](https://github.com/openapi-ui/openapi-ts-request/issues/100)
 
 ## Features
 
@@ -38,6 +45,8 @@ create `openapi-ts-request.config.ts` file in the project root directory
 import type { GenerateServiceProps } from 'openapi-ts-request';
 
 export default {
+  // schemaPath: './openapi.json', // local openapi file
+  // serversPath: './src/apis', // interface storage path
   schemaPath: 'http://petstore.swagger.io/v2/swagger.json',
 } as GenerateServiceProps;
 ```
@@ -61,10 +70,45 @@ export default [
 
 add the command in `script` of `package.json`: `"openapi": "openapi-ts",`
 
-generate result:
+run:
 
 ```bash
 npm run openapi
+```
+
+run:
+
+```bash
+src/apis/index.ts #interface entry file
+src/apis/types.ts #type definition file
+src/apis/app #app interface
+```
+
+```typescript
+// src/apis/pet.ts
+
+/* eslint-disable */
+// @ts-ignore
+import request from 'axios';
+
+import * as API from './types';
+
+/** Update an existing pet PUT /pet */
+export async function updatePet(
+  body: API.Pet,
+  options?: { [key: string]: unknown }
+) {
+  return request<unknown>(`/pet`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    data: body,
+    ...(options || {}),
+  });
+}
+
+// ... more interfaces
 ```
 
 ### JS
@@ -82,7 +126,7 @@ generateService({
 
 add the command in `script` of `package.json`: `"openapi": "node xxx/xxx/openapi-ts-request.config.js"`
 
-generate result:
+run:
 
 ```bash
 npm run openapi
@@ -103,7 +147,7 @@ generateService({
 
 add the command in `script` of `package.json`: `"openapi": "ts-node xxx/xxx/openapi-ts-request.config.ts",`
 
-generate result:
+run:
 
 ```bash
 npm run openapi
@@ -160,7 +204,7 @@ $ openapi --help
     -h, --help                         display help for command
 ```
 
-generate result:
+run:
 
 ```bash
 openapi -i ./spec.json -o ./apis
@@ -171,7 +215,7 @@ openapi -i ./spec.json -o ./apis
 | props | required | type | default | remark |
 | --- | --- | --- | --- | --- |
 | schemaPath | yes | string | - | Swagger2/OpenAPI3 URL |
-| serversPath | no | string | './src/apis' | the folder path for the generated results |
+| serversPath | no | string | './src/apis' | the folder path for the run results |
 | requestLibPath | no | string | 'axios' | custom request lib path, for example: '@/request', 'node-fetch' |
 | enableLogging | no | boolean | false | open the log |
 | priorityRule | no | string | 'include' | priority rule, include/exclude/both |
