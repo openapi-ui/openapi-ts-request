@@ -1,5 +1,13 @@
 # openapi-ts-request
 
+## 0.13.4
+
+### Patch Changes
+
+- [#141](https://github.com/openapi-ui/openapi-ts-request/pull/141) [`9bfad84`](https://github.com/openapi-ui/openapi-ts-request/commit/9bfad841514251b3db04b5efbf4a0489b6de8cd8) Thanks [@a876691666](https://github.com/a876691666)! - docs: enrich readme files
+
+- [#142](https://github.com/openapi-ui/openapi-ts-request/pull/142) [`7ce604c`](https://github.com/openapi-ui/openapi-ts-request/commit/7ce604c23d0f1a97ded8dd7bc8c7c7cd981fa220) Thanks [@Soramii](https://github.com/Soramii)! - docs: update readme
+
 ## 0.13.3
 
 ### Patch Changes
