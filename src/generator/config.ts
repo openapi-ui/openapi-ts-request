@@ -12,6 +12,8 @@ export const displayTypeLabelFileName = 'displayTypeLabel';
 
 export const schemaFileName = 'schema';
 
+export const reactQueryFileName = 'reactquery';
+
 export enum TypescriptFileType {
   interface = 'interface',
   serviceController = 'serviceController',
@@ -19,6 +21,7 @@ export enum TypescriptFileType {
   displayEnumLabel = 'displayEnumLabel',
   displayTypeLabel = 'displayTypeLabel',
   schema = 'schema',
+  reactQuery = 'reactQuery',
 }
 
 export const DEFAULT_SCHEMA: SchemaObject = {

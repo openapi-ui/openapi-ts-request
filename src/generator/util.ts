@@ -489,3 +489,7 @@ export function isAllNumeric(arr) {
 export function isAllNumber(arr) {
   return every(arr, (item) => isNumber(item));
 }
+
+export function capitalizeFirstLetter(str: string) {
+  return str.replace(/^[a-z]/, (match) => match.toUpperCase());
+}

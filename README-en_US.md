@@ -7,9 +7,10 @@ English | <a href="https://github.com/openapi-ui/openapi-ts-request/blob/master/
 based on [Swagger2/OpenAPI3/Apifox](https://swagger.io/blog/news/whats-new-in-openapi-3-0/) specification Generate
 
 - TS interfaces
-- request client
+- request client(support any client)
 - request mock service
 - enum and enum translation
+- react-query
 - type field label
 - JSON Schemas
 
@@ -18,9 +19,9 @@ docs：[use docs](https://github.com/openapi-ui/openapi-ts-request/issues/100)
 ## Features
 
 - support Swagger2.0/OpenAPI/Apifox 3.0,3.1 specification
-- generate TypeScript interface, reuquest client, request mock service, enum, type field label, JSON Schemas
+- generate TypeScript interface, reuquest client(support any client), request mock service, enum and enum translation, react-query, type field label, JSON Schemas
 - support work with npx, CLI, Nodejs
-- support custom request function, Fetch、Axios、[UniApp-request](https://github.com/openapi-ui/openapi-ts-request/issues/46)、Node.js、XHR client available
+- support custom request function, Fetch、Axios、[UniApp-request](https://github.com/openapi-ui/openapi-ts-request/issues/46)、Taro-Request、Node.js、XHR client available
 - support filter generate result by tags
 - support JSON/YAML specification
 - support translate chinese tag name to english tag name
@@ -187,12 +188,10 @@ $ openapi --help
     --includePaths <(string|RegExp)[]> generate code from include paths
     --excludeTags <(string|RegExp)[]>  generate code from exclude tags
     --excludePaths <(string|RegExp)[]> generate code from exclude paths
-    --requestOptionsType <string>      custom request method options parameter type (default: "{ [key:
-                                      string]: unknown }")
-    --requestImportStatement <string>  custom request import statement, for example: "const request =
-                                      require('@/request')"
-    --apiPrefix <string>               custom the prefix of the api path, for example: "api"(variable),
-                                      "'api'"(string)
+    --requestOptionsType <string>      custom request method options parameter type (default: "{ [key: string]: unknown }")
+    --requestImportStatement <string>  custom request import statement, for example: "const request = require('@/request')"
+    --apiPrefix <string>               custom the prefix of the api path, for example: "api"(variable), "'api'"(string)
+    --isDisplayTypeLabel <boolean>     generate react-query (default: false)
     --isDisplayTypeLabel <boolean>     generate label matching type field (default: false)
     --isGenJsonSchemas <boolean>       generate JSON Schemas (default: false)
     --mockFolder <string>              mock file path, for example: './mocks'
@@ -226,6 +225,7 @@ openapi -i ./spec.json -o ./apis
 | requestOptionsType | no | string | '{ [key: string]: unknown }' | custom request method options parameter type |
 | requestImportStatement | no | string | - | custom request import statement, for example: "const request = require('@/request')" |
 | apiPrefix | no | string | - | custom the prefix of the api path, for example: 'api'(variable), "'api'"(string) |
+| isGenReactQuery | no | boolean | false | generate react-query |
 | isDisplayTypeLabel | no | boolean | false | generate label matching type field |
 | isGenJsonSchemas | no | boolean | false | generate JSON Schemas |
 | mockFolder | no | string | - | mock file path, for example: './mocks' |

@@ -51,6 +51,7 @@ import {
   numberEnum,
   parametersIn,
   parametersInsEnum,
+  reactQueryFileName,
   schemaFileName,
   serviceEntryFileName,
 } from './config';
@@ -68,6 +69,7 @@ import {
   TagAPIDataType,
 } from './type';
 import {
+  capitalizeFirstLetter,
   genDefaultFunctionName,
   getBasePrefix,
   getDefaultFileTag,
@@ -259,6 +261,8 @@ export default class ServiceGenerator {
       log(`🚥 api 生成失败: ${error}`);
     }
 
+    const isOnlyGenTypeScriptType = this.config.isOnlyGenTypeScriptType;
+
     // 处理重复的 typeName
     const interfaceTPConfigs = this.getInterfaceTPConfigs();
     handleDuplicateTypeNames(interfaceTPConfigs);
@@ -275,7 +279,7 @@ export default class ServiceGenerator {
 
     // 生成枚举翻译
     const enums = filter(interfaceTPConfigs, (item) => item.isEnum);
-    if (!this.config.isOnlyGenTypeScriptType && !isEmpty(enums)) {
+    if (!isOnlyGenTypeScriptType && !isEmpty(enums)) {
       this.genFileFromTemplate(
         `${displayEnumLabelFileName}.ts`,
         TypescriptFileType.displayEnumLabel,
@@ -293,7 +297,7 @@ export default class ServiceGenerator {
     );
     // 生成 type 翻译
     if (
-      !this.config.isOnlyGenTypeScriptType &&
+      !isOnlyGenTypeScriptType &&
       this.config.isDisplayTypeLabel &&
       !isEmpty(displayTypeLabels)
     ) {
@@ -308,7 +312,7 @@ export default class ServiceGenerator {
       );
     }
 
-    if (!this.config.isOnlyGenTypeScriptType) {
+    if (!isOnlyGenTypeScriptType) {
       const prettierError = [];
 
       // 生成 service controller 文件
@@ -326,6 +330,20 @@ export default class ServiceGenerator {
         );
 
         prettierError.push(hasError);
+
+        if (this.config.isGenReactQuery) {
+          this.genFileFromTemplate(
+            getFinalFileName(`${tp.className}.${reactQueryFileName}.ts`),
+            TypescriptFileType.reactQuery,
+            {
+              namespace: this.config.namespace,
+              requestOptionsType: this.config.requestOptionsType,
+              requestImportStatement: this.config.requestImportStatement,
+              interfaceFileName: interfaceFileName,
+              ...tp,
+            }
+          );
+        }
       });
 
       if (prettierError.includes(true)) {
@@ -336,7 +354,7 @@ export default class ServiceGenerator {
     }
 
     if (
-      !this.config.isOnlyGenTypeScriptType &&
+      !isOnlyGenTypeScriptType &&
       this.config.isGenJsonSchemas &&
       !isEmpty(this.schemaList)
     ) {
@@ -361,15 +379,14 @@ export default class ServiceGenerator {
         namespace: this.config.namespace,
         interfaceFileName: interfaceFileName,
         isGenJsonSchemas:
-          !this.config.isOnlyGenTypeScriptType &&
+          !isOnlyGenTypeScriptType &&
           this.config.isGenJsonSchemas &&
           !isEmpty(this.schemaList),
         schemaFileName: schemaFileName,
-        isDisplayEnumLabel:
-          !this.config.isOnlyGenTypeScriptType && !isEmpty(enums),
+        isDisplayEnumLabel: !isOnlyGenTypeScriptType && !isEmpty(enums),
         displayEnumLabelFileName: displayEnumLabelFileName,
         isDisplayTypeLabel:
-          !this.config.isOnlyGenTypeScriptType &&
+          !isOnlyGenTypeScriptType &&
           this.config.isDisplayTypeLabel &&
           !isEmpty(displayTypeLabels),
         displayTypeLabelFileName: displayTypeLabelFileName,
@@ -725,9 +742,11 @@ export default class ServiceGenerator {
     try {
       const template = this.getTemplate(type);
       // 设置输出不转义
-      nunjucks.configure({
+      const env = nunjucks.configure({
         autoescape: false,
       });
+
+      env.addFilter('capitalizeFirst', capitalizeFirstLetter);
 
       return writeFile(
         this.config.serversPath,

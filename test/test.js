@@ -102,6 +102,7 @@ const gen = async () => {
   await openAPI.generateService({
     schemaPath: `${__dirname}/example-files/swagger-file-convert.json`,
     serversPath: './apis/file',
+    isGenReactQuery: true,
   });
 
   // 生成枚举翻译, 生成 type 翻译
@@ -189,6 +190,13 @@ const gen = async () => {
   await openAPI.generateService({
     schemaPath: `${__dirname}/example-files/openapi-apifox-enum-label.json`,
     serversPath: './apis/apifox-enum-label',
+  });
+
+  // 测试生成 react-query
+  await openAPI.generateService({
+    schemaPath: `${__dirname}/example-files/openapi-display-enum-label.json`,
+    serversPath: './apis/react-query',
+    isGenReactQuery: true,
   });
 
   // check 文件生成

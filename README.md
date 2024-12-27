@@ -7,9 +7,10 @@
 根据 [Swagger2/OpenAPI3/Apifox](https://swagger.io/blog/news/whats-new-in-openapi-3-0/) 文档生成:
 
 - TS 类型
-- 客户端请求函数
+- 客户端请求函数(支持任意客户端)
 - 模拟请求响应服务
 - 枚举和枚举翻译
+- react-query
 - 类型字段翻译
 - JSON Schemas
 
@@ -18,9 +19,9 @@
 ## 功能
 
 - 支持 Swagger2.0/OpenAPI/Apifox 3.0,3.1 定义
-- 生成 TS 类型, 请求客户端, 请求模拟服务, 枚举, 类型字段翻译, JSON Schemas
+- 生成 TS 类型, 请求客户端(支持任意客户端), 请求模拟服务, 枚举和枚举翻译, react-query, 类型字段翻译, JSON Schemas
 - 支持通过 npx、CLI、Nodejs 的方式使用
-- 支持自定义请求工具函数, 支持 Fetch、Axios、[UniApp-Request](https://github.com/openapi-ui/openapi-ts-request/issues/46)、Node.js、XHR 客户端
+- 支持自定义请求工具函数, 支持 Fetch、Axios、[UniApp-Request](https://github.com/openapi-ui/openapi-ts-request/issues/46)、Taro-Request、Node.js、XHR 客户端
 - 支持通过 tags 过滤生成结果
 - 支持 JSON/YAML 定义文件
 - 支持将中文 tag 名称翻译为英文 tag 名称
@@ -187,12 +188,10 @@ $ openapi --help
     --includePaths <(string|RegExp)[]> generate code from include paths
     --excludeTags <(string|RegExp)[]>  generate code from exclude tags
     --excludePaths <(string|RegExp)[]> generate code from exclude paths
-    --requestOptionsType <string>      custom request method options parameter type (default: "{ [key:
-                                      string]: unknown }")
-    --requestImportStatement <string>  custom request import statement, for example: "const request =
-                                      require('@/request')"
-    --apiPrefix <string>               custom the prefix of the api path, for example: "api"(variable),
-                                      "'api'"(string)
+    --requestOptionsType <string>      custom request method options parameter type (default: "{ [key: string]: unknown }")
+    --requestImportStatement <string>  custom request import statement, for example: "const request = require('@/request')"
+    --apiPrefix <string>               custom the prefix of the api path, for example: "api"(variable), "'api'"(string)
+    --isGenReactQuery <boolean>        generate react-query (default: false)
     --isDisplayTypeLabel <boolean>     generate label matching type field (default: false)
     --isGenJsonSchemas <boolean>       generate JSON Schemas (default: false)
     --mockFolder <string>              mock file path, for example: './mocks'
@@ -226,6 +225,7 @@ openapi --i ./spec.json --o ./apis
 | requestOptionsType | 否 | string | '{ [key: string]: unknown }' | 自定义请求方法 options 参数类型 |
 | requestImportStatement | 否 | string | - | 自定义请求方法表达式，例如："const request = require('@/request')" |
 | apiPrefix | 否 | string | - | api path的前缀，例如：'api'(动态变量), "'api'"(字符串) |
+| isGenReactQuery | 否 | boolean | false | 是否生成 react-query |
 | isDisplayTypeLabel | 否 | boolean | false | 是否生成 type 对应的label |
 | isGenJsonSchemas | 否 | boolean | false | 是否生成 JSON Schemas |
 | mockFolder | 否 | string | - | mock文件路径，例如：'./mocks' |

@@ -81,6 +81,10 @@ export type GenerateServiceProps = {
         functionName: string;
       }) => string);
   /**
+   * 是否生成 react-query 配置
+   */
+  isGenReactQuery?: boolean;
+  /**
    * 是否生成 type 对应的label, 默认: false
    */
   isDisplayTypeLabel?: boolean;
@@ -247,11 +251,12 @@ export async function generateService({
         : null,
       requestOptionsType: '{[key: string]: unknown}',
       namespace: 'API',
-      nullable: false,
-      isCamelCase: true,
+      isGenReactQuery: false,
       isDisplayTypeLabel: false,
       isGenJsonSchemas: false,
+      nullable: false,
       isOnlyGenTypeScriptType: false,
+      isCamelCase: true,
       ...rest,
     },
     openAPI

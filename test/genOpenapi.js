@@ -1,7 +1,7 @@
 const { generateService } = require('../dist/index');
 
 generateService({
-  schemaPath: `${__dirname}/example-files/openapi-test-allof-api.json`,
-  serversPath: './apis/allof',
-  isDisplayTypeLabel: true,
+  schemaPath: `${__dirname}/example-files/openapi.json`,
+  serversPath: './apis/react-query',
+  isGenReactQuery: true,
 });
