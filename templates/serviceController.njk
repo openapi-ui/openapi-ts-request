@@ -1,168 +1,169 @@
 /* eslint-disable */
 // @ts-ignore
-import * as {{ namespace }} from './{{ interfaceFileName }}';
 {{ requestImportStatement }}
+import * as {{ namespace }} from './{{ interfaceFileName }}';
 
 {% for api in list -%}
-/** {{ api.desc if api.desc else '此处后端没有提供注释' }} {{ api.method | upper }} {{ api.pathInComment | safe }}{{ ' ' if api.apifoxRunLink else '' }}{{ api.apifoxRunLink | safe }} */
-export async function {{ api.functionName }}(
-{%- if api.params and api.hasParams %}
-  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params
-  {%- if genType === "ts" -%}
-  : {{namespace}}.{{api.typeName}}
-    {# header 入参 -#}
-    {% if api.params.header -%}
-    & { // header
-    {% for param in api.params.header -%}
-    {% if param.description -%}
-    /** {{ param.description }} */
-    {% endif -%}
-      '{{ param.name }}'
-      {{- "?" if not param.required }}
-      {{- (": " + param.type + ";") | safe }}
-    {% endfor -%}
-    }
-    {%- endif -%}
-  {%- endif -%}
-  {%- if api.hasParams -%}
-  {{ "," if api.body or api.file}}
-  {%- endif -%}
-{%- endif -%}
-
-
-
-{%- if api.body -%}
-  body
-  {%- if genType === "ts" -%}
-
-  : {% if api.body.propertiesList %}{
-    {%- for prop in api.body.propertiesList %}
-    {% if prop.schema.description -%}
-    /** {{ prop.schema.description }} */
-    {% endif -%}
-    '{{ prop.key }}'{{ "?" if not prop.schema.required }}: {{ prop.schema.type }},
-    {%- endfor %}
-  }
-  {%- else -%}
-  {{ api.body.type }}
-  {%- endif -%}
-  
-  {%- endif -%}
-  {{ "," if api.file }}
-{%- endif %}
-
-
-
-{%- if api.file -%}
-{%- for file in api.file -%}
-{{file.title | safe}}
-{%- if genType === "ts" -%}
-{{- "?" if not api.file.required -}}
-: File {{ "[]" if file.multiple }}
-{%- endif -%}
-{{"," if not loop.last }}
-{%- endfor -%}
-{%- endif -%}
-
-
-
-{{ "," if api.body or api.hasParams or api.file }}
-  options {{ ("?: " + requestOptionsType) if genType === "ts" }}
-) {
-  {% if api.params and api.params.path -%}
-  const { {% for param in api.params.path %}'{{ param.name }}': {{ param.alias }}, {% endfor %}
-  {% if api.params.path -%}
-  ...queryParams
-  {% endif -%}
-  } = params;
-  {% endif -%}
-
-
-
-  {% if api.hasFormData -%}
-  const formData = new FormData();
-
-  {% if api.file -%}
-  {% for file in api.file %}
-  if({{file.title | safe}}){
-  {% if file.multiple %}
-  {{file.title | safe}}.forEach(f => formData.append('{{file.title | safe}}', f || ''));
-  {% else %}
-  formData.append('{{file.title | safe}}', {{file.title | safe}})
-  {% endif %}
-  }
-  {% endfor %}
-  {%- endif -%}
-
-  {% if api.body %}
-  Object.keys(body).forEach(ele => {
-    {% if genType === "ts" %}
-    const item = (body as { [key: string]: any })[ele];
-    {% else %}
-    const item = body[ele];
-    {% endif %}
-    if (item !== undefined && item !== null) {
-      {% if genType === "ts" %}
-      if (typeof item === 'object' && !(item instanceof File)) {
-        if (item instanceof Array) {
-          item.forEach((f) => formData.append(ele, f || ''));
-        } else {
-          formData.append(ele, JSON.stringify(item));
-        }
-      } else {
-        formData.append(ele, item);
-      }
-      {% else %}
-      formData.append(ele, typeof item === 'object' ? JSON.stringify(item) : item);
-      {% endif %}
-    }
-  });
-  {% endif %}
-  {% endif -%}
-
-
-  
-  {% if api.hasPathVariables or api.hasApiPrefix -%}
-  return request{{ ("<" + api.response.type + ">") | safe if genType === "ts" }}(`{{ api.path | safe }}`, {
-  {% else -%}
-  return request{{ ("<" + api.response.type + ">") | safe if genType === "ts" }}('{{ api.path }}', {
-  {% endif -%}
-    method: '{{ api.method | upper }}',
-
-    {%- if api.hasHeader and api.body.mediaType %}
-    headers: {
-      {%- if api.body.mediaType %}
-      'Content-Type': '{{ api.body.mediaType | safe }}',
-      {%- endif %}
-    },
-    {%- endif %}
-
+  /** {{ api.desc if api.desc else '此处后端没有提供注释' }} {{ api.method | upper }} {{ api.pathInComment | safe }}{{ ' ' if api.apifoxRunLink else '' }}{{ api.apifoxRunLink }} */
+  export async function {{ api.functionName }}({
     {%- if api.params and api.hasParams %}
-    params: {
-      {%- for query in api.params.query %}
-        {% if query.schema.default -%}
-          // {{query.name | safe}} has a default value: {{ query.schema.default | safe }}
-          '{{query.name | safe}}': '{{query.schema.default | safe}}',
+      params
+      {%- if api.hasParams -%}
+        {{ "," if api.body or api.file }}
+      {%- endif -%}
+    {%- endif -%}
+    {%- if api.body -%}
+      body
+      {{ "," if api.file }}
+    {%- endif %}
+    {%- if api.file -%}
+      {%- for file in api.file -%}
+        {{ file.title | safe }}
+        {{ "," if not loop.last }}
+      {%- endfor -%}
+    {%- endif -%}
+    {{ "," if api.body or api.hasParams or api.file }}
+    options
+  }
+  {%- if genType === "ts" -%}
+    : {
+      {%- if api.params and api.hasParams %}
+        // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+        params: {{ namespace }}.{{ api.typeName }}
+        {# header 入参 -#}
+        {% if api.params.header -%}
+          & { // header
+          {% for param in api.params.header -%}
+            {% if param.description -%}
+              /** {{ param.description }} */
+            {% endif -%}
+            '{{ param.name }}'
+            {{- "?" if not param.required }}
+            {{- (": " + param.type + ";") | safe }}
+          {% endfor -%}
+          }
         {%- endif -%}
-      {%- endfor -%}
-      ...{{ 'queryParams' if api.params and api.params.path else 'params' }},
-      {%- for query in api.params.query %}
-        {%- if query.isComplexType %}
-          '{{query.name | safe}}': undefined,
-          ...{{ 'queryParams' if api.params and api.params.path else 'params' }}['{{query.name | safe}}'],
-        {%- endif %}
-      {%- endfor -%}
-    },
-    {%- endif %}
+        {%- if api.hasParams -%}
+          {{ ";" if api.body or api.file }}
+        {%- endif -%}
+      {%- endif -%}
 
-    {%- if api.hasFormData %}
-    data: formData,
-    {%- elseif api.body %}
-    data: body,
-    {%- endif %}
-    ...(options || {{api.options | dump}}),
-  });
-}
+      {%- if api.body -%}
+        body: 
+        {% if api.body.propertiesList %}
+          {
+          {%- for prop in api.body.propertiesList %}
+            {% if prop.schema.description -%}
+              /** {{ prop.schema.description }} */
+            {% endif -%}
+            '{{ prop.key }}'{{ "?" if not prop.schema.required }}: {{ prop.schema.type }},
+          {%- endfor %}
+          }
+        {%- else -%}
+          {{ api.body.type }}
+        {%- endif -%}
+        {{ ";" if api.file }}
+      {%- endif %}
+
+      {%- if api.file -%}
+        {%- for file in api.file -%}
+          {{ file.title | safe }}
+          {{- "?" if not api.file.required -}}
+          : File {{ "[]" if file.multiple }}
+          {{ ";" if not loop.last }}
+        {%- endfor -%}
+      {%- endif -%}
+      {{ ";" if api.body or api.hasParams or api.file }}
+      options?: {{ requestOptionsType }}
+    }
+  {%- endif -%}
+  ) 
+  {
+    {% if api.params and api.params.path %}
+      const { {% for param in api.params.path %}'{{ param.name }}': {{ param.alias }}, {% endfor %}
+      {% if api.params.path -%}
+        ...queryParams
+      {% endif -%}
+      } = params;
+    {% endif %}
+    {%- if api.hasFormData -%}
+      const formData = new FormData();
+
+      {% if api.file -%}
+        {% for file in api.file %}
+          if({{ file.title | safe }}) {
+          {% if file.multiple %}
+            {{ file.title | safe }}.forEach(f => formData.append('{{ file.title | safe }}', f || ''));
+          {% else %}
+            formData.append('{{ file.title | safe }}', {{ file.title | safe }})
+          {% endif %}
+          }
+        {% endfor %}
+      {%- endif -%}
+
+      {% if api.body %}
+        Object.keys(body).forEach(ele => {
+        {% if genType === "ts" %}
+          const item = (body as { [key: string]: any })[ele];
+        {% else %}
+          const item = body[ele];
+        {% endif %}
+          if (item !== undefined && item !== null) {
+            {% if genType === "ts" %}
+              if (typeof item === 'object' && !(item instanceof File)) {
+                if (item instanceof Array) {
+                  item.forEach((f) => formData.append(ele, f || ''));
+                } else {
+                  formData.append(ele, JSON.stringify(item));
+                }
+              } else {
+                formData.append(ele, item);
+              }
+            {% else %}
+              formData.append(ele, typeof item === 'object' ? JSON.stringify(item) : item);
+            {% endif %}
+          }
+        });
+      {% endif %}
+    {% endif -%}
+
+    {% if api.hasPathVariables or api.hasApiPrefix -%}
+      return request{{ ("<" + api.response.type + ">") | safe if genType === "ts" }}(`{{ api.path | safe }}`, {
+    {% else -%}
+      return request{{ ("<" + api.response.type + ">") | safe if genType === "ts" }}('{{ api.path }}', {
+    {% endif -%}
+      method: '{{ api.method | upper }}',
+      {%- if api.hasHeader and api.body.mediaType %}
+        headers: {
+          {%- if api.body.mediaType %}
+          'Content-Type': '{{ api.body.mediaType | safe }}',
+          {%- endif %}
+        },
+      {%- endif %}
+      {%- if api.params and api.hasParams %}
+        params: {
+          {%- for query in api.params.query %}
+            {% if query.schema.default -%}
+              // {{ query.name | safe }} has a default value: {{ query.schema.default | safe }}
+              '{{ query.name | safe }}': '{{query.schema.default | safe}}',
+            {%- endif -%}
+          {%- endfor -%}
+          ...{{ 'queryParams' if api.params and api.params.path else 'params' }},
+          {%- for query in api.params.query %}
+            {%- if query.isComplexType %}
+              '{{ query.name | safe }}': undefined,
+              ...{{ 'queryParams' if api.params and api.params.path else 'params' }}['{{ query.name | safe }}'],
+            {%- endif %}
+          {%- endfor -%}
+        },
+      {%- endif %}
+      {%- if api.hasFormData %}
+        data: formData,
+      {%- elseif api.body %}
+        data: body,
+      {%- endif %}
+      ...(options || {{ api.options | dump }}),
+    });
+  }
 
 {% endfor -%}
