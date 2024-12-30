@@ -224,7 +224,8 @@ export function getDefaultType(
         const schemaKey = getLastRefName(item.$ref);
 
         if ((schemas?.[schemaKey] as SchemaObject)?.enum) {
-          return `I${getDefaultType(item, namespace)}`;
+          // return `I${getDefaultType(item, namespace)}`;
+          return getDefaultType(item, namespace);
         }
       }
 

@@ -522,6 +522,7 @@ export default class ServiceGenerator {
             const enumObj = this.resolveEnumObject(
               item as unknown as SchemaObject
             );
+
             lastTypes.push({
               typeName: `${upperFirst(item.name)}Enum`,
               type: enumObj.type,
