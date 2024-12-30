@@ -154,6 +154,7 @@ export async function translateChineseModuleNodeToEnglish(
 
     forEach(keys(openAPI.paths), (path) => {
       const pathItemObject = openAPI.paths[path];
+
       forEach(keys(pathItemObject), (method: string) => {
         if (pathItemObject[method]) {
           const operation = pathItemObject[method] as OperationObject;
@@ -166,30 +167,32 @@ export async function translateChineseModuleNodeToEnglish(
     void Promise.all(
       map(uniq(tags), (tagName) => {
         return new Promise((resolve) => {
-          void translate(tagName, null, 'en')
-            .then((translateRes) => {
-              const text = camelCase(translateRes?.translation);
-              if (text) {
-                translateMap[tagName] = text;
-                resolve(text);
-              }
-            })
-            .catch(() => {
-              resolve(tagName);
-            });
+          if (tagName && /[\u3220-\uFA29]/.test(tagName)) {
+            void translate(tagName, null, 'en')
+              .then((translateRes) => {
+                const text = camelCase(translateRes?.translation);
+
+                if (text) {
+                  translateMap[tagName] = text;
+                  resolve(text);
+                }
+              })
+              .catch(() => {
+                resolve(tagName);
+              });
+          } else {
+            resolve(tagName);
+          }
         });
       })
     )
       .then(() => {
-        map(operations, (operation) => {
-          const tagName = operation.tags?.[0];
-
-          if (tagName && /[\u3220-\uFA29]/.test(tagName)) {
-            operation.tags = [
-              translateMap[tagName],
-              ...operation.tags.slice(1),
-            ];
-          }
+        forEach(operations, (operation) => {
+          forEach(operation.tags, (tagName, index) => {
+            if (translateMap[tagName]) {
+              operation.tags[index] = translateMap[tagName];
+            }
+          });
         });
         resolve(true);
       })
