@@ -199,6 +199,14 @@ const gen = async () => {
     isGenReactQuery: true,
   });
 
+  // 测试生成 JavaScript
+  await openAPI.generateService({
+    schemaPath: `${__dirname}/example-files/openapi-display-enum-label.json`,
+    serversPath: './apis/javascript',
+    isGenReactQuery: true,
+    isGenJavaScript: true,
+  });
+
   // check 文件生成
   const fileControllerStr = fs.readFileSync(
     path.join(__dirname, 'apis/file/fileController.ts'),

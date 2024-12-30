@@ -1,8 +1,8 @@
 {
   "name": "openapi-ts-request",
   "version": "0.13.4",
-  "description": "Swagger2/OpenAPI3 to TypeScript, request client, request mock service, enum, type field label, JSON Schemas",
-  "packageManager": "pnpm@9.11.0",
+  "description": "Swagger2/OpenAPI3/Apifox to TypeScript/JavaScript, request client(support any client), request mock service, enum and enum translation, react-query, type field label, JSON Schemas",
+  "packageManager": "pnpm@9.15.0",
   "engines": {
     "node": ">=18.0.0",
     "pnpm": ">=9"
@@ -82,13 +82,17 @@
   },
   "keywords": [
     "openapi",
-    "openapi3",
     "swagger",
-    "openapi to ts",
-    "openapi to request client",
-    "openapi to axios client",
-    "openapi to fetch client",
-    "openapi to uni request client",
-    "openapi to JSON Schemas"
+    "openapi-ts",
+    "swagger-ts",
+    "openapi-typescript",
+    "swagger-typescript",
+    "openapi-react-query",
+    "openapi-fetch",
+    "openapi-axios",
+    "openapi-uniapp",
+    "openapi-taro",
+    "openapi-node-fetch",
+    "openapi-JSON-Schemas"
   ]
 }

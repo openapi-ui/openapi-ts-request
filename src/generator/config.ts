@@ -72,3 +72,8 @@ export const numberEnum = [
 
 // 匹配换行符的正则
 export const lineBreakReg = /[\r\n]+/g;
+
+export enum LangType {
+  ts = 'ts',
+  js = 'js',
+}

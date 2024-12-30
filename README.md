@@ -6,7 +6,7 @@
 
 根据 [Swagger2/OpenAPI3/Apifox](https://swagger.io/blog/news/whats-new-in-openapi-3-0/) 文档生成:
 
-- TS 类型
+- TypeScript/JavaScript
 - 客户端请求函数(支持任意客户端)
 - 模拟请求响应服务
 - 枚举和枚举翻译
@@ -19,7 +19,7 @@
 ## 功能
 
 - 支持 Swagger2.0/OpenAPI/Apifox 3.0,3.1 定义
-- 生成 TS 类型, 请求客户端(支持任意客户端), 请求模拟服务, 枚举和枚举翻译, react-query, 类型字段翻译, JSON Schemas
+- 生成 TypeScript/JavaScript, 请求客户端(支持任意客户端), 请求模拟服务, 枚举和枚举翻译, react-query, 类型字段翻译, JSON Schemas
 - 支持通过 npx、CLI、Nodejs 的方式使用
 - 支持自定义请求工具函数, 支持 Fetch、Axios、[UniApp-Request](https://github.com/openapi-ui/openapi-ts-request/issues/46)、Taro-Request、Node.js、XHR 客户端
 - 支持通过 tags 过滤生成结果
@@ -95,10 +95,13 @@ import request from 'axios';
 import * as API from './types';
 
 /** Update an existing pet PUT /pet */
-export async function updatePet(
-  body: API.Pet,
-  options?: { [key: string]: unknown }
-) {
+export async function updatePet({
+  body,
+  options,
+}: {
+  body: API.Pet;
+  options?: { [key: string]: unknown };
+}) {
   return request<unknown>(`/pet`, {
     method: 'PUT',
     headers: {
@@ -178,29 +181,30 @@ $ openapi --help
   Usage: openapi [options]
 
   Options:
-    -V, --version                      output the version number
-    -i, --input <string>               OpenAPI specification, can be a path, url (required)
-    -o, --output <string>              output directory (required)
-    --requestLibPath <string>          custom request lib path, for example: "@/request", "node-fetch" (default: "axios")
-    --enableLogging <boolean>          open the log (default: false)
-    --priorityRule <string>            priority rule, include/exclude/both (default: "include")
-    --includeTags <(string|RegExp)[]>  generate code from include tags
-    --includePaths <(string|RegExp)[]> generate code from include paths
-    --excludeTags <(string|RegExp)[]>  generate code from exclude tags
-    --excludePaths <(string|RegExp)[]> generate code from exclude paths
-    --requestOptionsType <string>      custom request method options parameter type (default: "{ [key: string]: unknown }")
-    --requestImportStatement <string>  custom request import statement, for example: "const request = require('@/request')"
-    --apiPrefix <string>               custom the prefix of the api path, for example: "api"(variable), "'api'"(string)
-    --isGenReactQuery <boolean>        generate react-query (default: false)
-    --isDisplayTypeLabel <boolean>     generate label matching type field (default: false)
-    --isGenJsonSchemas <boolean>       generate JSON Schemas (default: false)
-    --mockFolder <string>              mock file path, for example: './mocks'
-    --authorization <string>           docs authorization
-    --nullable <boolean>               null instead of optional (default: false)
-    --isTranslateToEnglishTag <boolean>translate chinese tag name to english tag name (default: false)
-    --isOnlyGenTypeScriptType <boolean>only generate typescript type (default: false)
-    --isCamelCase <boolean>            camelCase naming of controller files and request client (default: true)
-    -h, --help                         display help for command
+    -V, --version                       output the version number
+    -i, --input <string>                OpenAPI specification, can be a path, url (required)
+    -o, --output <string>               output directory (required)
+    --requestLibPath <string>           custom request lib path, for example: "@/request", "node-fetch" (default: "axios")
+    --enableLogging <boolean>           open the log (default: false)
+    --priorityRule <string>             priority rule, include/exclude/both (default: "include")
+    --includeTags <(string|RegExp)[]>   generate code from include tags
+    --includePaths <(string|RegExp)[]>  generate code from include paths
+    --excludeTags <(string|RegExp)[]>   generate code from exclude tags
+    --excludePaths <(string|RegExp)[]>  generate code from exclude paths
+    --requestOptionsType <string>       custom request method options parameter type (default: "{ [key: string]: unknown }")
+    --requestImportStatement <string>   custom request import statement, for example: "const request = require('@/request')"
+    --apiPrefix <string>                custom the prefix of the api path, for example: "api"(variable), "'api'"(string)
+    --isGenReactQuery <boolean>         generate react-query (default: false)
+    --isGenJavaScript <boolean>         generate JavaScript (default: false)
+    --isDisplayTypeLabel <boolean>      generate label matching type field (default: false)
+    --isGenJsonSchemas <boolean>        generate JSON Schemas (default: false)
+    --mockFolder <string>               mock file path, for example: './mocks'
+    --authorization <string>            docs authorization
+    --nullable <boolean>                null instead of optional (default: false)
+    --isTranslateToEnglishTag <boolean> translate chinese tag name to english tag name (default: false)
+    --isOnlyGenTypeScriptType <boolean> only generate typescript type (default: false)
+    --isCamelCase <boolean>             camelCase naming of controller files and request client (default: true)
+    -h, --help                          display help for command
 ```
 
 运行：
@@ -226,6 +230,7 @@ openapi --i ./spec.json --o ./apis
 | requestImportStatement | 否 | string | - | 自定义请求方法表达式，例如："const request = require('@/request')" |
 | apiPrefix | 否 | string | - | api path的前缀，例如：'api'(动态变量), "'api'"(字符串) |
 | isGenReactQuery | 否 | boolean | false | 是否生成 react-query |
+| isGenJavaScript | 否 | boolean | false | 是否生成 JavaScript |
 | isDisplayTypeLabel | 否 | boolean | false | 是否生成 type 对应的label |
 | isGenJsonSchemas | 否 | boolean | false | 是否生成 JSON Schemas |
 | mockFolder | 否 | string | - | mock文件路径，例如：'./mocks' |

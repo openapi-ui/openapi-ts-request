@@ -42,6 +42,7 @@ import {
 import {
   DEFAULT_PATH_PARAM,
   DEFAULT_SCHEMA,
+  LangType,
   TypescriptFileType,
   displayEnumLabelFileName,
   displayTypeLabelFileName,
@@ -96,13 +97,11 @@ import {
 export default class ServiceGenerator {
   protected apiData: TagAPIDataType = {};
   protected classNameList: ControllerType[] = [];
-  protected finalPath: string;
   protected config: GenerateServiceProps;
   protected openAPIData: OpenAPIObject;
   protected schemaList: ISchemaItem[] = [];
 
   constructor(config: GenerateServiceProps, openAPIData: OpenAPIObject) {
-    this.finalPath = '';
     this.config = {
       templatesFolder: join(__dirname, '../../', 'templates'),
       ...config,
@@ -262,24 +261,27 @@ export default class ServiceGenerator {
     }
 
     const isOnlyGenTypeScriptType = this.config.isOnlyGenTypeScriptType;
+    const isGenJavaScript = this.config.isGenJavaScript;
 
     // 处理重复的 typeName
     const interfaceTPConfigs = this.getInterfaceTPConfigs();
     handleDuplicateTypeNames(interfaceTPConfigs);
 
     // 生成 ts 类型声明
-    this.genFileFromTemplate(
-      `${interfaceFileName}.ts`,
-      TypescriptFileType.interface,
-      {
-        nullable: this.config.nullable,
-        list: interfaceTPConfigs,
-      }
-    );
+    if (!isGenJavaScript) {
+      this.genFileFromTemplate(
+        `${interfaceFileName}.ts`,
+        TypescriptFileType.interface,
+        {
+          nullable: this.config.nullable,
+          list: interfaceTPConfigs,
+        }
+      );
+    }
 
     // 生成枚举翻译
     const enums = filter(interfaceTPConfigs, (item) => item.isEnum);
-    if (!isOnlyGenTypeScriptType && !isEmpty(enums)) {
+    if (!isGenJavaScript && !isOnlyGenTypeScriptType && !isEmpty(enums)) {
       this.genFileFromTemplate(
         `${displayEnumLabelFileName}.ts`,
         TypescriptFileType.displayEnumLabel,
@@ -297,6 +299,7 @@ export default class ServiceGenerator {
     );
     // 生成 type 翻译
     if (
+      !isGenJavaScript &&
       !isOnlyGenTypeScriptType &&
       this.config.isDisplayTypeLabel &&
       !isEmpty(displayTypeLabels)
@@ -318,7 +321,9 @@ export default class ServiceGenerator {
       // 生成 service controller 文件
       this.getServiceTPConfigs().forEach((tp) => {
         const hasError = this.genFileFromTemplate(
-          getFinalFileName(`${tp.className}.ts`),
+          isGenJavaScript
+            ? getFinalFileName(`${tp.className}.js`)
+            : getFinalFileName(`${tp.className}.ts`),
           TypescriptFileType.serviceController,
           {
             namespace: this.config.namespace,
@@ -333,7 +338,9 @@ export default class ServiceGenerator {
 
         if (this.config.isGenReactQuery) {
           this.genFileFromTemplate(
-            getFinalFileName(`${tp.className}.${reactQueryFileName}.ts`),
+            isGenJavaScript
+              ? getFinalFileName(`${tp.className}.${reactQueryFileName}.js`)
+              : getFinalFileName(`${tp.className}.${reactQueryFileName}.ts`),
             TypescriptFileType.reactQuery,
             {
               namespace: this.config.namespace,
@@ -362,7 +369,7 @@ export default class ServiceGenerator {
       handleDuplicateTypeNames(this.schemaList);
       // 生成 schema 文件
       this.genFileFromTemplate(
-        `${schemaFileName}.ts`,
+        isGenJavaScript ? `${schemaFileName}.js` : `${schemaFileName}.ts`,
         TypescriptFileType.schema,
         {
           list: this.schemaList,
@@ -372,12 +379,15 @@ export default class ServiceGenerator {
 
     // 生成 service index 文件
     this.genFileFromTemplate(
-      `${serviceEntryFileName}.ts`,
+      isGenJavaScript
+        ? `${serviceEntryFileName}.js`
+        : `${serviceEntryFileName}.ts`,
       TypescriptFileType.serviceIndex,
       {
         list: this.classNameList,
         namespace: this.config.namespace,
         interfaceFileName: interfaceFileName,
+        genType: isGenJavaScript ? LangType.js : LangType.ts,
         isGenJsonSchemas:
           !isOnlyGenTypeScriptType &&
           this.config.isGenJsonSchemas &&
@@ -385,6 +395,8 @@ export default class ServiceGenerator {
         schemaFileName: schemaFileName,
         isDisplayEnumLabel: !isOnlyGenTypeScriptType && !isEmpty(enums),
         displayEnumLabelFileName: displayEnumLabelFileName,
+        isGenReactQuery: this.config.isGenReactQuery,
+        reactQueryFileName: reactQueryFileName,
         isDisplayTypeLabel:
           !isOnlyGenTypeScriptType &&
           this.config.isDisplayTypeLabel &&
@@ -422,7 +434,12 @@ export default class ServiceGenerator {
         }
 
         const flag = this.validateRegexp(
-          map(tags, (tag) => tag.toLowerCase()),
+          filter(
+            map(tags, (tag) =>
+              tag?.toLowerCase ? tag.toLowerCase() : undefined
+            ),
+            (tag) => !!tag
+          ),
           includeTags
         );
 
@@ -725,7 +742,7 @@ export default class ServiceGenerator {
         }
 
         return {
-          genType: 'ts',
+          genType: this.config.isGenJavaScript ? LangType.js : LangType.ts,
           className,
           instanceName: `${fileName[0]?.toLowerCase()}${fileName.slice(1)}`,
           list: genParams,
@@ -1260,6 +1277,7 @@ export default class ServiceGenerator {
     return dataArray.some((item) => {
       const result = regexp.some((reg) => this.matches(item, reg));
       this.log(`"Item:", ${item}, "Matches:", ${result}`);
+
       return result;
     });
   }
@@ -1275,8 +1293,10 @@ export default class ServiceGenerator {
       return minimatch(item, reg);
     } else if (reg instanceof RegExp) {
       reg.lastIndex = 0; // 重置正则表达式的 lastIndex 属性
+
       return reg.test(item);
     }
+
     return false; // 对于其他类型，返回 false
   }
 }

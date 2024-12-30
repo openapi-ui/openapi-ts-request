@@ -1,15 +1,21 @@
-/* eslint-disable */
-// @ts-ignore
-export * from './{{ interfaceFileName }}';
-{%- if isDisplayEnumLabel %}
-export * from './{{ displayEnumLabelFileName }}';
-{%- endif %}
-{%- if isDisplayTypeLabel %}
-export * from './{{ displayTypeLabelFileName }}';
-{%- endif %}
+{% if genType === "ts" %}
+  /* eslint-disable */
+  // @ts-ignore
+  export * from './{{ interfaceFileName }}';
+  {%- if isDisplayEnumLabel %}
+    export * from './{{ displayEnumLabelFileName }}';
+  {% endif -%}
+  {%- if isDisplayTypeLabel %}
+    export * from './{{ displayTypeLabelFileName }}';
+  {% endif -%}
+{% endif %}
 {%- if isGenJsonSchemas %}
-export * from './{{ schemaFileName }}';
+  export * from './{{ schemaFileName }}';
 {%- endif %}
+
 {% for api in list -%}
-export * from './{{ api.fileName }}';
-{% endfor -%}
+  export * from './{{ api.fileName }}';
+  {%- if isGenReactQuery -%}
+    export * from './{{ api.fileName }}.{{ reactQueryFileName }}';
+  {%- endif -%}
+{%- endfor -%}

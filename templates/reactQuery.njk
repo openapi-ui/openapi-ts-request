@@ -1,10 +1,16 @@
-/* eslint-disable */
-// @ts-ignore
+{% if genType === "ts" %}
+  /* eslint-disable */
+  // @ts-ignore
+{% endif -%}
 import { queryOptions, useMutation } from '@tanstack/react-query';
-import type { DefaultError } from '@tanstack/react-query';
+{%- if genType === "ts" %}
+  import type { DefaultError } from '@tanstack/react-query';
+{% endif %}
 
 import * as apis from './{{ className }}';
-import * as {{ namespace }} from './{{ interfaceFileName }}';
+{%- if genType === "ts" %}
+  import * as {{ namespace }} from './{{ interfaceFileName }}';
+{% endif %}
 
 {% for api in list %}
   /** {{ api.desc if api.desc else '此处后端没有提供注释' }} {{ api.method | upper }} {{ api.pathInComment | safe }}{{ ' ' if api.apifoxRunLink else '' }}{{ api.apifoxRunLink }} */
@@ -65,7 +71,7 @@ import * as {{ namespace }} from './{{ interfaceFileName }}';
     ) {
       return queryOptions({
         queryFn: async ({ queryKey }) => {
-          return apis.{{ api.functionName }}(queryKey[1] as typeof options);
+          return apis.{{ api.functionName }}(queryKey[1]{{ " as typeof options" if genType === "ts" }});
         },
         queryKey: ['{{ api.functionName }}', options],
       });

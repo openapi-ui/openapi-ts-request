@@ -85,6 +85,10 @@ export type GenerateServiceProps = {
    */
   isGenReactQuery?: boolean;
   /**
+   * 是否生成 JavaScript, 不生成 TypeScript
+   */
+  isGenJavaScript?: boolean;
+  /**
    * 是否生成 type 对应的label, 默认: false
    */
   isDisplayTypeLabel?: boolean;
@@ -252,6 +256,7 @@ export async function generateService({
       requestOptionsType: '{[key: string]: unknown}',
       namespace: 'API',
       isGenReactQuery: false,
+      isGenJavaScript: false,
       isDisplayTypeLabel: false,
       isGenJsonSchemas: false,
       nullable: false,
