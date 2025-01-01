@@ -90,10 +90,18 @@ import * as apis from './{{ className }}';
       const response = useMutation({
         mutationFn: apis.{{ api.functionName }},
         onSuccess(data{{ (": " + api.response.type) | safe if genType === "ts" }}) {
-          onSuccess?.(data);
+          {% if genType === "ts" %}
+            onSuccess?.(data);
+          {% else %}
+            onSuccess && onSuccess(data);
+          {% endif %}
         },
         onError(error) {
-          onError?.(error);
+          {% if genType === "ts" %}
+            onError?.(error);
+          {% else %}
+            onError && onError(error);
+          {% endif %}
         }
       })
 
