@@ -1,0 +1,112 @@
+{% if genType === "ts" %}
+  /* eslint-disable */
+  // @ts-ignore
+{% endif -%}
+import { queryOptions, useMutation } from '@tanstack/react-query';
+{%- if genType === "ts" %}
+  import type { DefaultError } from '@tanstack/react-query';
+{% endif %}
+
+import * as apis from './{{ className }}';
+{%- if genType === "ts" %}
+  import * as {{ namespace }} from './{{ interfaceFileName }}';
+{% endif %}
+
+{% for api in list %}
+  /** {{ api.desc if api.desc else '此处后端没有提供注释' }} {{ api.method | upper }} {{ api.pathInComment | safe }}{{ ' ' if api.apifoxRunLink else '' }}{{ api.apifoxRunLink }} */
+  {%- if api.method | lower === "get" %}
+    export function {{ api.functionName }}QueryOptions(options
+    {%- if genType === "ts" -%}
+      : {
+      {%- if api.params and api.hasParams %}
+        // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+        params
+        : {{ namespace }}.{{ api.typeName }}
+        {# header 入参 -#}
+        {% if api.params.header -%}
+          & { // header
+          {% for param in api.params.header -%}
+            {% if param.description -%}
+              /** {{ param.description }} */
+            {% endif -%}
+            '{{ param.name }}'
+            {{- "?" if not param.required }}
+            {{- (": " + param.type + ";") | safe }}
+          {% endfor -%}
+          }
+        {%- endif -%}
+        {%- if api.hasParams -%}
+          {{ ";" if api.body or api.file}}
+        {%- endif -%}
+      {%- endif -%}
+
+      {%- if api.body -%}
+        body: 
+        {% if api.body.propertiesList %}{
+          {%- for prop in api.body.propertiesList %}
+            {% if prop.schema.description -%}
+            /** {{ prop.schema.description }} */
+            {% endif -%}
+            '{{ prop.key }}'{{ "?" if not prop.schema.required }}: {{ prop.schema.type }},
+          {%- endfor %}
+        }
+        {%- else -%}
+          {{ api.body.type }}
+        {%- endif -%}
+        {{ ";" if api.file }}
+      {%- endif %}
+
+      {%- if api.file -%}
+        {%- for file in api.file -%}
+          {{file.title | safe}}
+          {{- "?" if not api.file.required -}}
+          : File {{ "[]" if file.multiple }}
+          {{";" if not loop.last }}
+        {%- endfor -%}
+      {%- endif -%}
+        {{ ";" if api.body or api.hasParams or api.file }}
+        options?: {{ requestOptionsType }}
+      }
+    {%- endif -%}
+    ) {
+      return queryOptions({
+        queryFn: async ({ queryKey }) => {
+          return apis.{{ api.functionName }}(queryKey[1]{{ " as typeof options" if genType === "ts" }});
+        },
+        queryKey: ['{{ api.functionName }}', options],
+      });
+    }
+  {%- else %}
+    export function use{{ api.functionName | capitalizeFirst }}Mutation(options
+      {%- if genType === "ts" -%}
+        ?: {
+          onSuccess?: (value?: {{ api.response.type }}) => void;
+          onError?: (error?: DefaultError) => void;
+        }
+      {%- endif %}
+    ) {
+      const { onSuccess, onError } = options || {};
+
+      const response = useMutation({
+        mutationFn: apis.{{ api.functionName }},
+        onSuccess(data{{ (": " + api.response.type) | safe if genType === "ts" }}) {
+          {% if genType === "ts" %}
+            onSuccess?.(data);
+          {% else %}
+            onSuccess && onSuccess(data);
+          {% endif %}
+        },
+        onError(error) {
+          {% if genType === "ts" %}
+            onError?.(error);
+          {% else %}
+            onError && onError(error);
+          {% endif %}
+        }
+      })
+
+      return response;
+    }
+  {%- endif %}
+
+{% endfor %}

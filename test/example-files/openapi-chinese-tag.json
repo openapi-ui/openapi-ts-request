@@ -47,7 +47,7 @@
   "paths": {
     "/pet": {
       "put": {
-        "tags": ["宠物"],
+        "tags": ["宠物", "你好", "世界", "happy"],
         "summary": "Update an existing pet",
         "description": "Update an existing pet by Id",
         "operationId": "updatePet",

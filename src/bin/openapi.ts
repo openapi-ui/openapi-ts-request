@@ -51,6 +51,8 @@ const params = program
     '--apiPrefix <string>',
     `custom the prefix of the api path, for example: "api"(variable), "'api'"(string)`
   )
+  .option('--isGenReactQuery <boolean>', 'generate react-query', false)
+  .option('--isGenJavaScript <boolean>', 'generate JavaScript', false)
   .option(
     '--isDisplayTypeLabel <boolean>',
     'generate label matching type field',
@@ -105,6 +107,8 @@ async function run() {
       excludePaths: params.excludePaths as string[],
       requestOptionsType: params.requestOptionsType as string,
       apiPrefix: params.apiPrefix as string,
+      isGenReactQuery: JSON.parse(params.isGenReactQuery as string) === true,
+      isGenJavaScript: JSON.parse(params.isGenJavaScript as string) === true,
       isDisplayTypeLabel:
         JSON.parse(params.isDisplayTypeLabel as string) === true,
       isGenJsonSchemas: JSON.parse(params.isGenJsonSchemas as string) === true,

@@ -6,10 +6,11 @@ English | <a href="https://github.com/openapi-ui/openapi-ts-request/blob/master/
 
 based on [Swagger2/OpenAPI3/Apifox](https://swagger.io/blog/news/whats-new-in-openapi-3-0/) specification Generate
 
-- TS interfaces
-- request client
+- TypeScript/JavaScript
+- request client(support any client)
 - request mock service
 - enum and enum translation
+- react-query
 - type field label
 - JSON Schemas
 
@@ -18,9 +19,9 @@ docs：[use docs](https://github.com/openapi-ui/openapi-ts-request/issues/100)
 ## Features
 
 - support Swagger2.0/OpenAPI/Apifox 3.0,3.1 specification
-- generate TypeScript interface, reuquest client, request mock service, enum, type field label, JSON Schemas
+- generate TypeScript/JavaScript, reuquest client(support any client), request mock service, enum and enum translation, react-query, type field label, JSON Schemas
 - support work with npx, CLI, Nodejs
-- support custom request function, Fetch、Axios、[UniApp-request](https://github.com/openapi-ui/openapi-ts-request/issues/46)、Node.js、XHR client available
+- support custom request function, Fetch、Axios、[UniApp-request](https://github.com/openapi-ui/openapi-ts-request/issues/46)、Taro-Request、Node.js、XHR client available
 - support filter generate result by tags
 - support JSON/YAML specification
 - support translate chinese tag name to english tag name
@@ -94,10 +95,13 @@ import request from 'axios';
 import * as API from './types';
 
 /** Update an existing pet PUT /pet */
-export async function updatePet(
-  body: API.Pet,
-  options?: { [key: string]: unknown }
-) {
+export async function updatePet({
+  body,
+  options,
+}: {
+  body: API.Pet;
+  options?: { [key: string]: unknown };
+}) {
   return request<unknown>(`/pet`, {
     method: 'PUT',
     headers: {
@@ -177,31 +181,30 @@ $ openapi --help
   Usage: openapi [options]
 
   Options:
-    -V, --version                      output the version number
-    -i, --input <string>               OpenAPI specification, can be a path, url (required)
-    -o, --output <string>              output directory (required)
-    --requestLibPath <string>          custom request lib path, for example: "@/request", "node-fetch" (default: "axios")
-    --enableLogging <boolean>          open the log (default: false)
-    --priorityRule <string>            priority rule, include/exclude/both (default: "include")
-    --includeTags <(string|RegExp)[]>  generate code from include tags
-    --includePaths <(string|RegExp)[]> generate code from include paths
-    --excludeTags <(string|RegExp)[]>  generate code from exclude tags
-    --excludePaths <(string|RegExp)[]> generate code from exclude paths
-    --requestOptionsType <string>      custom request method options parameter type (default: "{ [key:
-                                      string]: unknown }")
-    --requestImportStatement <string>  custom request import statement, for example: "const request =
-                                      require('@/request')"
-    --apiPrefix <string>               custom the prefix of the api path, for example: "api"(variable),
-                                      "'api'"(string)
-    --isDisplayTypeLabel <boolean>     generate label matching type field (default: false)
-    --isGenJsonSchemas <boolean>       generate JSON Schemas (default: false)
-    --mockFolder <string>              mock file path, for example: './mocks'
-    --authorization <string>           docs authorization
-    --nullable <boolean>               null instead of optional (default: false)
-    --isTranslateToEnglishTag <boolean>translate chinese tag name to english tag name (default: false)
-    --isOnlyGenTypeScriptType <boolean>only generate typescript type (default: false)
-    --isCamelCase <boolean>            camelCase naming of controller files and request client (default: true)
-    -h, --help                         display help for command
+    -V, --version                       output the version number
+    -i, --input <string>                OpenAPI specification, can be a path, url (required)
+    -o, --output <string>               output directory (required)
+    --requestLibPath <string>           custom request lib path, for example: "@/request", "node-fetch" (default: "axios")
+    --enableLogging <boolean>           open the log (default: false)
+    --priorityRule <string>             priority rule, include/exclude/both (default: "include")
+    --includeTags <(string|RegExp)[]>   generate code from include tags
+    --includePaths <(string|RegExp)[]>  generate code from include paths
+    --excludeTags <(string|RegExp)[]>   generate code from exclude tags
+    --excludePaths <(string|RegExp)[]>  generate code from exclude paths
+    --requestOptionsType <string>       custom request method options parameter type (default: "{ [key: string]: unknown }")
+    --requestImportStatement <string>   custom request import statement, for example: "const request = require('@/request')"
+    --apiPrefix <string>                custom the prefix of the api path, for example: "api"(variable), "'api'"(string)
+    --isGenReactQuery <boolean>         generate react-query (default: false)
+    --isGenJavaScript <boolean>         generate JavaScript (default: false)
+    --isDisplayTypeLabel <boolean>      generate label matching type field (default: false)
+    --isGenJsonSchemas <boolean>        generate JSON Schemas (default: false)
+    --mockFolder <string>               mock file path, for example: './mocks'
+    --authorization <string>            docs authorization
+    --nullable <boolean>                null instead of optional (default: false)
+    --isTranslateToEnglishTag <boolean> translate chinese tag name to english tag name (default: false)
+    --isOnlyGenTypeScriptType <boolean> only generate typescript type (default: false)
+    --isCamelCase <boolean>             camelCase naming of controller files and request client (default: true)
+    -h, --help                          display help for command
 ```
 
 run:
@@ -226,6 +229,8 @@ openapi -i ./spec.json -o ./apis
 | requestOptionsType | no | string | '{ [key: string]: unknown }' | custom request method options parameter type |
 | requestImportStatement | no | string | - | custom request import statement, for example: "const request = require('@/request')" |
 | apiPrefix | no | string | - | custom the prefix of the api path, for example: 'api'(variable), "'api'"(string) |
+| isGenReactQuery | no | boolean | false | generate react-query |
+| isGenJavaScript | no | boolean | false | generate JavaScript |
 | isDisplayTypeLabel | no | boolean | false | generate label matching type field |
 | isGenJsonSchemas | no | boolean | false | generate JSON Schemas |
 | mockFolder | no | string | - | mock file path, for example: './mocks' |

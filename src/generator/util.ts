@@ -224,7 +224,8 @@ export function getDefaultType(
         const schemaKey = getLastRefName(item.$ref);
 
         if ((schemas?.[schemaKey] as SchemaObject)?.enum) {
-          return `I${getDefaultType(item, namespace)}`;
+          // return `I${getDefaultType(item, namespace)}`;
+          return getDefaultType(item, namespace);
         }
       }
 
@@ -488,4 +489,8 @@ export function isAllNumeric(arr) {
 // 检查数组每一项是否都是数字
 export function isAllNumber(arr) {
   return every(arr, (item) => isNumber(item));
+}
+
+export function capitalizeFirstLetter(str: string) {
+  return str.replace(/^[a-z]/, (match) => match.toUpperCase());
 }
