@@ -1,5 +1,21 @@
 # openapi-ts-request
 
+## 1.0.0
+
+### Major Changes
+
+- [#155](https://github.com/openapi-ui/openapi-ts-request/pull/155) [`a553cc1`](https://github.com/openapi-ui/openapi-ts-request/commit/a553cc1b1e66d92641711c68c309bf53c3f3243a) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - refactor: refactor client request params to adapt support react-query
+
+### Minor Changes
+
+- [#155](https://github.com/openapi-ui/openapi-ts-request/pull/155) [`015f573`](https://github.com/openapi-ui/openapi-ts-request/commit/015f5739b74c697fea0d71c2bde6d56eea3d627b) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - feat: support generate react-query
+
+- [#155](https://github.com/openapi-ui/openapi-ts-request/pull/155) [`8028361`](https://github.com/openapi-ui/openapi-ts-request/commit/8028361485c03735c76e0ead9a42b7a168c1aeb1) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - feat: support generate JavaScript
+
+### Patch Changes
+
+- [#155](https://github.com/openapi-ui/openapi-ts-request/pull/155) [`323e394`](https://github.com/openapi-ui/openapi-ts-request/commit/323e394350c1fd85f032985ad297da5f206ee6a6) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - perf: perf translate multiple Chinese tag into English tag
+
 ## 0.13.4
 
 ### Patch Changes
