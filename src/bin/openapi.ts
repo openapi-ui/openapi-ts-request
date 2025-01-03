@@ -1,9 +1,10 @@
 #!/usr/bin/env node
 import { program } from 'commander';
+import { pickBy } from 'lodash';
 import { join } from 'path';
 
 import * as pkg from '../../package.json';
-import { generateService } from '../index';
+import { GenerateServiceProps, generateService } from '../index';
 
 const params = program
   .name('openapi')
@@ -95,7 +96,7 @@ async function run() {
     const input = getPath(params.input as string);
     const output = getPath(params.output as string);
 
-    await generateService({
+    const options: GenerateServiceProps = {
       schemaPath: input,
       serversPath: output,
       requestLibPath: params.requestLibPath as string,
@@ -120,7 +121,14 @@ async function run() {
       isOnlyGenTypeScriptType:
         JSON.parse(params.isOnlyGenTypeScriptType as string) === true,
       isCamelCase: JSON.parse(params.isCamelCase as string) === true,
-    });
+    };
+
+    await generateService(
+      pickBy(
+        options,
+        (value) => value !== null && value !== undefined && value !== ''
+      ) as GenerateServiceProps
+    );
     process.exit(0);
   } catch (error) {
     console.error('this is error: ', error);
