@@ -1,5 +1,11 @@
 # openapi-ts-request
 
+## 1.0.1
+
+### Patch Changes
+
+- [#161](https://github.com/openapi-ui/openapi-ts-request/pull/161) [`5230b8d`](https://github.com/openapi-ui/openapi-ts-request/commit/5230b8dcd076099c80db160c48501f884026c17a) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - fix: fix npx default params lose
+
 ## 1.0.0
 
 ### Major Changes
