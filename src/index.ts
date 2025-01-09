@@ -202,6 +202,14 @@ export type GenerateServiceProps = {
       apiMethod: string
     ) => string[] | null;
   };
+  /**
+   * 请求超时时间
+   */
+  timeout?: number;
+  /**
+   * 唯一标识
+   */
+  uniqueKey?: string;
 };
 
 export async function generateService({
@@ -213,6 +221,7 @@ export async function generateService({
   authorization,
   isTranslateToEnglishTag,
   priorityRule = PriorityRule.include,
+  timeout = 60_000,
   ...rest
 }: GenerateServiceProps) {
   if (!schemaPath) {
@@ -221,7 +230,8 @@ export async function generateService({
 
   const openAPI = (await getOpenAPIConfig(
     schemaPath,
-    authorization
+    authorization,
+    timeout
   )) as OpenAPIObject;
 
   if (isEmpty(openAPI)) {
