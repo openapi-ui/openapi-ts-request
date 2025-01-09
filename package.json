@@ -42,7 +42,7 @@
     "chalk": "^4.1.2",
     "commander": "^12.1.0",
     "cosmiconfig": "^9.0.0",
-    "cosmiconfig-typescript-loader": "^5.0.0",
+    "cosmiconfig-typescript-loader": "^6.1.0",
     "glob": "^11.0.0",
     "js-yaml": "^4.1.0",
     "lodash": "^4.17.21",
