@@ -1,5 +1,11 @@
 # openapi-ts-request
 
+## 1.1.0
+
+### Minor Changes
+
+- [#167](https://github.com/openapi-ui/openapi-ts-request/pull/167) [`f2ae8da`](https://github.com/openapi-ui/openapi-ts-request/commit/f2ae8da962d99999a0fc5de7438cd8165eb31d76) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - feat: support vue-query
+
 ## 1.0.1
 
 ### Patch Changes
