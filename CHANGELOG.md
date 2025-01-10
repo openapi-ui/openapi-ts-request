@@ -1,5 +1,11 @@
 # openapi-ts-request
 
+## 1.1.1
+
+### Patch Changes
+
+- [#170](https://github.com/openapi-ui/openapi-ts-request/pull/170) [`2b55838`](https://github.com/openapi-ui/openapi-ts-request/commit/2b55838474ac3c24ba08a66ce1b7759a97fa313e) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - fix: fix cosmiconfig TypeScriptLoader
+
 ## 1.1.0
 
 ### Minor Changes
