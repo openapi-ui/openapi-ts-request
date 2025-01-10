@@ -1,13 +1,15 @@
 import { isEmpty, map } from 'lodash';
 
+import { PriorityRule, ReactQueryMode } from './config';
 import { mockGenerator } from './generator/mockGenarator';
 import ServiceGenerator from './generator/serviceGenarator';
 import { APIDataType } from './generator/type';
 import {
   ComponentsObject,
+  IPriorityRule,
+  IReactQueryMode,
   OpenAPIObject,
   OperationObject,
-  PriorityRule,
   ReferenceObject,
   SchemaObject,
 } from './type';
@@ -43,7 +45,7 @@ export type GenerateServiceProps = {
   /**
    * 优先规则, include(只允许include列表) | exclude(只排除exclude列表) | both(允许include列表，排除exclude列表)
    */
-  priorityRule?: string;
+  priorityRule?: IPriorityRule;
   /**
    * 只解析归属于 tags 集合的 api 和 schema
    */
@@ -84,6 +86,10 @@ export type GenerateServiceProps = {
    * 是否生成 react-query 配置
    */
   isGenReactQuery?: boolean;
+  /**
+   * reactQuery 模式
+   */
+  reactQueryMode?: IReactQueryMode;
   /**
    * 是否生成 JavaScript, 不生成 TypeScript
    */
@@ -213,6 +219,7 @@ export async function generateService({
   authorization,
   isTranslateToEnglishTag,
   priorityRule = PriorityRule.include,
+  reactQueryMode = ReactQueryMode.react,
   ...rest
 }: GenerateServiceProps) {
   if (!schemaPath) {
@@ -245,7 +252,7 @@ export async function generateService({
         ? map(includeTags, (item) =>
             typeof item === 'string' ? item.toLowerCase() : item
           )
-        : (priorityRule as keyof typeof PriorityRule) === PriorityRule.include
+        : priorityRule === PriorityRule.include
           ? [/.*/g]
           : null,
       excludeTags: excludeTags
@@ -256,6 +263,7 @@ export async function generateService({
       requestOptionsType: '{[key: string]: unknown}',
       namespace: 'API',
       isGenReactQuery: false,
+      reactQueryMode,
       isGenJavaScript: false,
       isDisplayTypeLabel: false,
       isGenJsonSchemas: false,

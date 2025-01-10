@@ -199,6 +199,14 @@ const gen = async () => {
     isGenReactQuery: true,
   });
 
+  // 测试生成 react-query 的 vue 模式
+  await openAPI.generateService({
+    schemaPath: `${__dirname}/example-files/openapi-display-enum-label.json`,
+    serversPath: './apis/react-query-vue',
+    isGenReactQuery: true,
+    reactQueryMode: 'vue',
+  });
+
   // 测试生成 JavaScript
   await openAPI.generateService({
     schemaPath: `${__dirname}/example-files/openapi-display-enum-label.json`,

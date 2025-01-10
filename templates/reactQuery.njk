@@ -2,9 +2,9 @@
   /* eslint-disable */
   // @ts-ignore
 {% endif -%}
-import { queryOptions, useMutation } from '@tanstack/react-query';
+import { queryOptions, useMutation } from '{{ reactQueryModePackageName }}';
 {%- if genType === "ts" %}
-  import type { DefaultError } from '@tanstack/react-query';
+  import type { DefaultError } from '{{ reactQueryModePackageName }}';
 {% endif %}
 
 import * as apis from './{{ className }}';
