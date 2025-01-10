@@ -10,7 +10,7 @@
 - 客户端请求函数(支持任意客户端)
 - 模拟请求响应服务
 - 枚举和枚举翻译
-- react-query
+- react-query/vue-query
 - 类型字段翻译
 - JSON Schemas
 
@@ -19,7 +19,7 @@
 ## 功能
 
 - 支持 Swagger2.0/OpenAPI/Apifox 3.0,3.1 定义
-- 生成 TypeScript/JavaScript, 请求客户端(支持任意客户端), 请求模拟服务, 枚举和枚举翻译, react-query, 类型字段翻译, JSON Schemas
+- 生成 TypeScript/JavaScript, 请求客户端(支持任意客户端), 请求模拟服务, 枚举和枚举翻译, react-query/vue-query, 类型字段翻译, JSON Schemas
 - 支持通过 npx、CLI、Nodejs 的方式使用
 - 支持自定义请求工具函数, 支持 Fetch、Axios、[UniApp-Request](https://github.com/openapi-ui/openapi-ts-request/issues/46)、Taro-Request、Node.js、XHR 客户端
 - 支持通过 tags 过滤生成结果
@@ -195,6 +195,7 @@ $ openapi --help
     --requestImportStatement <string>   custom request import statement, for example: "const request = require('@/request')"
     --apiPrefix <string>                custom the prefix of the api path, for example: "api"(variable), "'api'"(string)
     --isGenReactQuery <boolean>         generate react-query (default: false)
+    --reactQueryMode <string>           react-query mode, react/vue (default: "react")
     --isGenJavaScript <boolean>         generate JavaScript (default: false)
     --isDisplayTypeLabel <boolean>      generate label matching type field (default: false)
     --isGenJsonSchemas <boolean>        generate JSON Schemas (default: false)
@@ -230,6 +231,7 @@ openapi --i ./spec.json --o ./apis
 | requestImportStatement | 否 | string | - | 自定义请求方法表达式，例如："const request = require('@/request')" |
 | apiPrefix | 否 | string | - | api path的前缀，例如：'api'(动态变量), "'api'"(字符串) |
 | isGenReactQuery | 否 | boolean | false | 是否生成 react-query |
+| reactQueryMode | 否 | string | 'react' | react-query 模式，可选 react/vue |
 | isGenJavaScript | 否 | boolean | false | 是否生成 JavaScript |
 | isDisplayTypeLabel | 否 | boolean | false | 是否生成 type 对应的label |
 | isGenJsonSchemas | 否 | boolean | false | 是否生成 JSON Schemas |

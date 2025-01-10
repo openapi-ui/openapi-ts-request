@@ -20,6 +20,12 @@ import nunjucks from 'nunjucks';
 import { join } from 'path';
 import { sync as rimrafSync } from 'rimraf';
 
+import {
+  PriorityRule,
+  SchemaObjectFormat,
+  SchemaObjectType,
+  displayReactQueryMode,
+} from '../config';
 import type { GenerateServiceProps } from '../index';
 import log from '../log';
 import {
@@ -30,14 +36,11 @@ import {
   OperationObject,
   ParameterObject,
   PathItemObject,
-  PriorityRule,
   ReferenceObject,
   RequestBodyObject,
   ResponseObject,
   ResponsesObject,
   SchemaObject,
-  SchemaObjectFormat,
-  SchemaObjectType,
 } from '../type';
 import {
   DEFAULT_PATH_PARAM,
@@ -45,6 +48,7 @@ import {
   LangType,
   TypescriptFileType,
   displayEnumLabelFileName,
+  displayReactQueryFileName,
   displayTypeLabelFileName,
   interfaceFileName,
   lineBreakReg,
@@ -52,7 +56,6 @@ import {
   numberEnum,
   parametersIn,
   parametersInsEnum,
-  reactQueryFileName,
   schemaFileName,
   serviceEntryFileName,
 } from './config';
@@ -113,8 +116,7 @@ export default class ServiceGenerator {
     const excludeTags = this.config?.excludeTags || [];
     const excludePaths = this.config?.excludePaths || [];
 
-    const priorityRule: PriorityRule =
-      PriorityRule[config.priorityRule as keyof typeof PriorityRule];
+    const priorityRule: PriorityRule = PriorityRule[config.priorityRule];
 
     if (this.config.hook?.afterOpenApiDataInited) {
       this.openAPIData =
@@ -262,6 +264,8 @@ export default class ServiceGenerator {
 
     const isOnlyGenTypeScriptType = this.config.isOnlyGenTypeScriptType;
     const isGenJavaScript = this.config.isGenJavaScript;
+    const reactQueryMode = this.config.reactQueryMode;
+    const reactQueryFileName = displayReactQueryFileName(reactQueryMode);
 
     // 处理重复的 typeName
     const interfaceTPConfigs = this.getInterfaceTPConfigs();
@@ -347,6 +351,7 @@ export default class ServiceGenerator {
               requestOptionsType: this.config.requestOptionsType,
               requestImportStatement: this.config.requestImportStatement,
               interfaceFileName: interfaceFileName,
+              reactQueryModePackageName: displayReactQueryMode(reactQueryMode),
               ...tp,
             }
           );
@@ -396,7 +401,7 @@ export default class ServiceGenerator {
         isDisplayEnumLabel: !isOnlyGenTypeScriptType && !isEmpty(enums),
         displayEnumLabelFileName: displayEnumLabelFileName,
         isGenReactQuery: this.config.isGenReactQuery,
-        reactQueryFileName: reactQueryFileName,
+        reactQueryFileName,
         isDisplayTypeLabel:
           !isOnlyGenTypeScriptType &&
           this.config.isDisplayTypeLabel &&

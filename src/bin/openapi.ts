@@ -5,6 +5,7 @@ import { join } from 'path';
 
 import * as pkg from '../../package.json';
 import { GenerateServiceProps, generateService } from '../index';
+import { IPriorityRule } from '../type';
 
 const params = program
   .name('openapi')
@@ -53,6 +54,10 @@ const params = program
     `custom the prefix of the api path, for example: "api"(variable), "'api'"(string)`
   )
   .option('--isGenReactQuery <boolean>', 'generate react-query', false)
+  .option(
+    '--reactQueryMode <string>',
+    'react-query mode, react/vue (default: "react")'
+  )
   .option('--isGenJavaScript <boolean>', 'generate JavaScript', false)
   .option(
     '--isDisplayTypeLabel <boolean>',
@@ -101,7 +106,7 @@ async function run() {
       serversPath: output,
       requestLibPath: params.requestLibPath as string,
       enableLogging: JSON.parse(params.enableLogging as string) === true,
-      priorityRule: params.priorityRule as string,
+      priorityRule: params.priorityRule as IPriorityRule,
       includeTags: params.includeTags as string[],
       includePaths: params.includePaths as string[],
       excludeTags: params.excludeTags as string[],

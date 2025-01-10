@@ -1,5 +1,12 @@
 import { OpenAPIV3 } from 'openapi-types';
 
+import {
+  PriorityRule,
+  ReactQueryMode,
+  SchemaObjectFormat,
+  SchemaObjectType,
+} from './config';
+
 type Modify<T, R> = Omit<T, keyof R> & R;
 
 type ICustomBaseSchemaObject = {
@@ -81,40 +88,7 @@ export type ContentObject = {
   [media: string]: OpenAPIV3.MediaTypeObject;
 };
 
-export enum SchemaObjectFormat {
-  int32 = 'int32',
-  int64 = 'int64',
-  float = 'float',
-  double = 'double',
-  byte = 'byte',
-  binary = 'binary',
-  date = 'date',
-  dateTime = 'date-time',
-  password = 'password',
-  base64 = 'base64',
-}
-
 export type ISchemaObjectFormat = keyof typeof SchemaObjectFormat;
-
-export enum SchemaObjectType {
-  array = 'array',
-  stringArray = 'string[]',
-  boolean = 'boolean',
-  object = 'object',
-  number = 'number',
-  string = 'string',
-  integer = 'integer',
-  enum = 'enum',
-  null = 'null',
-  union = 'union',
-  file = 'file',
-}
-
-export enum PriorityRule {
-  include = 'include',
-  exclude = 'exclude',
-  both = 'both',
-}
 
 export type GenerateRegExp = {
   includeTags: (string | RegExp)[];
@@ -124,3 +98,7 @@ export type GenerateRegExp = {
 };
 
 export type ISchemaObjectType = keyof typeof SchemaObjectType;
+
+export type IReactQueryMode = keyof typeof ReactQueryMode;
+
+export type IPriorityRule = keyof typeof PriorityRule;

@@ -10,7 +10,7 @@ based on [Swagger2/OpenAPI3/Apifox](https://swagger.io/blog/news/whats-new-in-op
 - request client(support any client)
 - request mock service
 - enum and enum translation
-- react-query
+- react-query/vue-query
 - type field label
 - JSON Schemas
 
@@ -19,7 +19,7 @@ docs：[use docs](https://github.com/openapi-ui/openapi-ts-request/issues/100)
 ## Features
 
 - support Swagger2.0/OpenAPI/Apifox 3.0,3.1 specification
-- generate TypeScript/JavaScript, reuquest client(support any client), request mock service, enum and enum translation, react-query, type field label, JSON Schemas
+- generate TypeScript/JavaScript, reuquest client(support any client), request mock service, enum and enum translation, react-query/vue-query, type field label, JSON Schemas
 - support work with npx, CLI, Nodejs
 - support custom request function, Fetch、Axios、[UniApp-request](https://github.com/openapi-ui/openapi-ts-request/issues/46)、Taro-Request、Node.js、XHR client available
 - support filter generate result by tags
@@ -195,6 +195,7 @@ $ openapi --help
     --requestImportStatement <string>   custom request import statement, for example: "const request = require('@/request')"
     --apiPrefix <string>                custom the prefix of the api path, for example: "api"(variable), "'api'"(string)
     --isGenReactQuery <boolean>         generate react-query (default: false)
+    --reactQueryMode <string>           react-query mode, react/vue (default: "react")
     --isGenJavaScript <boolean>         generate JavaScript (default: false)
     --isDisplayTypeLabel <boolean>      generate label matching type field (default: false)
     --isGenJsonSchemas <boolean>        generate JSON Schemas (default: false)
@@ -230,6 +231,7 @@ openapi -i ./spec.json -o ./apis
 | requestImportStatement | no | string | - | custom request import statement, for example: "const request = require('@/request')" |
 | apiPrefix | no | string | - | custom the prefix of the api path, for example: 'api'(variable), "'api'"(string) |
 | isGenReactQuery | no | boolean | false | generate react-query |
+| reactQueryMode | no | string | 'react' | react-query mode, react/vue |
 | isGenJavaScript | no | boolean | false | generate JavaScript |
 | isDisplayTypeLabel | no | boolean | false | generate label matching type field |
 | isGenJsonSchemas | no | boolean | false | generate JSON Schemas |
