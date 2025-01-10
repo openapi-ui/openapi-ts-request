@@ -5,7 +5,7 @@ import { join } from 'path';
 
 import * as pkg from '../../package.json';
 import { GenerateServiceProps, generateService } from '../index';
-import { IPriorityRule } from '../type';
+import { IPriorityRule, IReactQueryMode } from '../type';
 
 const params = program
   .name('openapi')
@@ -114,6 +114,7 @@ async function run() {
       requestOptionsType: params.requestOptionsType as string,
       apiPrefix: params.apiPrefix as string,
       isGenReactQuery: JSON.parse(params.isGenReactQuery as string) === true,
+      reactQueryMode: params.reactQueryMode as IReactQueryMode,
       isGenJavaScript: JSON.parse(params.isGenJavaScript as string) === true,
       isDisplayTypeLabel:
         JSON.parse(params.isDisplayTypeLabel as string) === true,
