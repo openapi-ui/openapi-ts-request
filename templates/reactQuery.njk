@@ -5,7 +5,8 @@
 import { queryOptions, useMutation } from '{{ reactQueryModePackageName }}';
 {%- if genType === "ts" %}
   import type { DefaultError } from '{{ reactQueryModePackageName }}';
-{% endif %}
+{% endif -%}
+{{ requestImportStatement }}
 
 import * as apis from './{{ className }}';
 {%- if genType === "ts" %}
