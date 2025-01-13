@@ -1,5 +1,11 @@
 # openapi-ts-request
 
+## 1.1.2
+
+### Patch Changes
+
+- [#172](https://github.com/openapi-ui/openapi-ts-request/pull/172) [`5674dda`](https://github.com/openapi-ui/openapi-ts-request/commit/5674dda35d0ce0ceefd25bc7f5ba58e6c3f09020) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - fix: fix custom reactQuery queryOptions type
+
 ## 1.1.1
 
 ### Patch Changes
