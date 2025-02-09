@@ -87,7 +87,6 @@ src/apis/app #app interface
 
 ```typescript
 // src/apis/pet.ts
-
 /* eslint-disable */
 // @ts-ignore
 import request from 'axios';
@@ -251,7 +250,7 @@ openapi -i ./spec.json -o ./apis
 | customFunctionName | (data: APIDataType) => string | custom request client function name |
 | customTypeName | (data: APIDataType) => string | custom type name |
 | customClassName | (tagName: string) => string | custom tag name |
-| customType | (<br>schemaObject: SchemaObject \| ReferenceObject,<br>namespace: string,<br>originGetType:(schemaObject: SchemaObject \| ReferenceObject, namespace: string) => string,<br>) => string | custom type <br> _returning a non-string will use the default method to get the type_ |
+| customType | ({<br>schemaObject: SchemaObject \| ReferenceObject,<br>namespace: string,<br>originGetType:(schemaObject: SchemaObject \| ReferenceObject, namespace: string, schemas?: ComponentsObject['schemas']) => string,<br>schemas?: ComponentsObject['schemas'],<br>}) => string | custom type <br> _returning a non-string will use the default method to get the type_ |
 | customFileNames | (<br>operationObject: OperationObject,<br>apiPath: string,<br>apiMethod: string,<br>) => string[] | custom generate request client controller file name, can return multiple: generate multiple files. <br> _if the return value is empty, the default getFileNames is used_ |
 
 ## JSON Schemas

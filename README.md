@@ -87,7 +87,6 @@ src/apis/pet.ts #接口文件
 
 ```typescript
 // src/apis/pet.ts
-
 /* eslint-disable */
 // @ts-ignore
 import request from 'axios';
@@ -251,7 +250,7 @@ openapi --i ./spec.json --o ./apis
 | customFunctionName | (data: APIDataType) => string | 自定义请求方法函数名称 |
 | customTypeName | (data: APIDataType) => string | 自定义类型名称 |
 | customClassName | (tagName: string) => string | 自定义标签名 |
-| customType | (<br>schemaObject: SchemaObject \| ReferenceObject,<br>namespace: string,<br>originGetType:(schemaObject: SchemaObject \| ReferenceObject, namespace: string) => string,<br>) => string | 自定义类型 <br> _返回非字符串将使用默认方法获取type_ |
+| customType | ({<br>schemaObject: SchemaObject \| ReferenceObject,<br>namespace: string,<br>originGetType:(schemaObject: SchemaObject \| ReferenceObject, namespace: string, schemas?: ComponentsObject['schemas']) => string,<br>schemas?: ComponentsObject['schemas'],<br>}) => string | 自定义类型 <br> _返回非字符串将使用默认方法获取type_ |
 | customFileNames | (<br>operationObject: OperationObject,<br>apiPath: string,<br>apiMethod: string,<br>) => string[] | 自定义生成的请求客户端文件名称，可以返回多个文件名称的数组(表示生成多个文件). <br> _返回为空，则使用默认的方法获取_ |
 
 ## JSON Schemas
