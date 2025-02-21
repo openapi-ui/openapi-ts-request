@@ -89,7 +89,7 @@ importers:
         version: 5.66.8(react@19.0.0)
       '@tanstack/vue-query':
         specifier: ^5.62.16
-        version: 5.66.4(vue@3.5.13(typescript@5.7.3))
+        version: 5.66.9(vue@3.5.13(typescript@5.7.3))
       '@types/js-yaml':
         specifier: ^4.0.9
         version: 4.0.9
@@ -423,8 +423,8 @@ packages:
     peerDependencies:
       react: ^18 || ^19
 
-  '@tanstack/vue-query@5.66.4':
-    resolution: {integrity: sha512-N0ucQkacKNLQTnr+s6vRlmYgR0D/C6oNwk3tTnxKhiIaZjSnCyfv70MNfNYuOpH9zsp76c6J4igjwGnGWPnBAA==}
+  '@tanstack/vue-query@5.66.9':
+    resolution: {integrity: sha512-8FiyjOM/1PRn4tyGXacwmvi29sZZqoWjH/AdxqwYDDd2WL/mUkLwYDq4zK1ixY4Is71B8RbOqRweWiYOPOC3kg==}
     peerDependencies:
       '@vue/composition-api': ^1.1.2
       vue: ^2.6.0 || ^3.3.0
@@ -2472,7 +2472,7 @@ snapshots:
       '@tanstack/query-core': 5.66.4
       react: 19.0.0
 
-  '@tanstack/vue-query@5.66.4(vue@3.5.13(typescript@5.7.3))':
+  '@tanstack/vue-query@5.66.9(vue@3.5.13(typescript@5.7.3))':
     dependencies:
       '@tanstack/match-sorter-utils': 8.19.4
       '@tanstack/query-core': 5.66.4
