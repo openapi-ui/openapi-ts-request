@@ -10,10 +10,10 @@ importers:
     dependencies:
       '@prettier/sync':
         specifier: ^0.5.2
-        version: 0.5.2(prettier@3.5.1)
+        version: 0.5.2(prettier@3.5.2)
       '@trivago/prettier-plugin-sort-imports':
         specifier: ^5.2.1
-        version: 5.2.2(@vue/compiler-sfc@3.5.13)(prettier@3.5.1)
+        version: 5.2.2(@vue/compiler-sfc@3.5.13)(prettier@3.5.2)
       axios:
         specifier: ^1.7.2
         version: 1.7.9
@@ -55,7 +55,7 @@ importers:
         version: 3.2.4
       prettier:
         specifier: ^3.3.2
-        version: 3.5.1
+        version: 3.5.2
       reserved-words:
         specifier: ^0.1.2
         version: 0.1.2
@@ -1654,8 +1654,8 @@ packages:
     engines: {node: '>=10.13.0'}
     hasBin: true
 
-  prettier@3.5.1:
-    resolution: {integrity: sha512-hPpFQvHwL3Qv5AdRvBFMhnKo4tYxp0ReXiPn2bxkiohEX6mBeBwEpBSQTkD458RaaDKQMYSp4hX4UtfUTA5wDw==}
+  prettier@3.5.2:
+    resolution: {integrity: sha512-lc6npv5PH7hVqozBR7lkBNOGXV9vMwROAPlumdBkX0wTbbzPu/U1hk5yL8p2pt4Xoc+2mkT8t/sow2YrV/M5qg==}
     engines: {node: '>=14'}
     hasBin: true
 
@@ -2450,10 +2450,10 @@ snapshots:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.18.0
 
-  '@prettier/sync@0.5.2(prettier@3.5.1)':
+  '@prettier/sync@0.5.2(prettier@3.5.2)':
     dependencies:
       make-synchronized: 0.2.9
-      prettier: 3.5.1
+      prettier: 3.5.2
 
   '@sindresorhus/is@4.6.0': {}
 
@@ -2480,7 +2480,7 @@ snapshots:
       vue: 3.5.13(typescript@5.7.3)
       vue-demi: 0.14.10(vue@3.5.13(typescript@5.7.3))
 
-  '@trivago/prettier-plugin-sort-imports@5.2.2(@vue/compiler-sfc@3.5.13)(prettier@3.5.1)':
+  '@trivago/prettier-plugin-sort-imports@5.2.2(@vue/compiler-sfc@3.5.13)(prettier@3.5.2)':
     dependencies:
       '@babel/generator': 7.26.5
       '@babel/parser': 7.26.7
@@ -2488,7 +2488,7 @@ snapshots:
       '@babel/types': 7.26.7
       javascript-natural-sort: 0.7.1
       lodash: 4.17.21
-      prettier: 3.5.1
+      prettier: 3.5.2
     optionalDependencies:
       '@vue/compiler-sfc': 3.5.13
     transitivePeerDependencies:
@@ -3701,7 +3701,7 @@ snapshots:
 
   prettier@2.8.8: {}
 
-  prettier@3.5.1: {}
+  prettier@3.5.2: {}
 
   proxy-from-env@1.1.0: {}
 
