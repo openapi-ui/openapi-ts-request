@@ -1129,7 +1129,6 @@ export default class ServiceGenerator {
           const enumLabel = enumMap.get(Number(value));
           return `${enumLabel}=${Number(value)}`;
         }).join(',')}}`;
-        log('EnumDesc enumStr', enumStr);
       } else {
         enumStr = `{${map(enumArray, (value) => `"NUMBER_${value}"=${Number(value)}`).join(',')}}`;
       }

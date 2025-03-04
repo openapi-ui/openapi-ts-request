@@ -205,8 +205,6 @@ $ openapi --help
     --isOnlyGenTypeScriptType <boolean> only generate typescript type (default: false)
     --isCamelCase <boolean>             camelCase naming of controller files and request client (default: true)
     --isSupportParseEnumDesc <boolean>  parse enum description to generate enum label (default: false)
-    --includeDescEnums <(string|RegExp)[]>   generate code from include enums
-    --excludeDescEnums <(string|RegExp)[]>   generate code from exclude enums, if includeDescEnums is not empty, this value is invalid
     -h, --help                          display help for command
 ```
 

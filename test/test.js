@@ -191,7 +191,8 @@ const gen = async () => {
   // 测试 number类型 枚举，使用 desc 解析枚举
   await openAPI.generateService({
     schemaPath: `${__dirname}/example-files/openapi-desc-enum.json`,
-    serversPath: './apis/desc-enum',
+    serversPath: './apis/openapi-desc-enum',
+    isSupportParseEnumDesc: true,
   });
 
   // 测试支持 apifox x-apifox-enum
