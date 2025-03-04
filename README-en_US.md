@@ -87,7 +87,6 @@ src/apis/app #app interface
 
 ```typescript
 // src/apis/pet.ts
-
 /* eslint-disable */
 // @ts-ignore
 import request from 'axios';
@@ -205,6 +204,7 @@ $ openapi --help
     --isTranslateToEnglishTag <boolean> translate chinese tag name to english tag name (default: false)
     --isOnlyGenTypeScriptType <boolean> only generate typescript type (default: false)
     --isCamelCase <boolean>             camelCase naming of controller files and request client (default: true)
+    --isSupportParseEnumDesc <boolean>  parse enum description to generate enum label (default: false)
     -h, --help                          display help for command
 ```
 
@@ -241,6 +241,7 @@ openapi -i ./spec.json -o ./apis
 | isTranslateToEnglishTag | no | boolean | false | translate chinese tag name to english tag name |
 | isOnlyGenTypeScriptType | no | boolean | false | only generate typescript type |
 | isCamelCase | no | boolean | true | camelCase naming of controller files and request client |
+| isSupportParseEnumDesc | no | boolean | false | parse enum description to generate enum label, format example: `UserRole:User(Normal User)=0,Agent(Agent)=1,Admin(Administrator)=2` |
 | hook | no | [Custom Hook](#Custom-Hook) | - | custom hook |
 
 ## Custom Hook
@@ -251,7 +252,7 @@ openapi -i ./spec.json -o ./apis
 | customFunctionName | (data: APIDataType) => string | custom request client function name |
 | customTypeName | (data: APIDataType) => string | custom type name |
 | customClassName | (tagName: string) => string | custom tag name |
-| customType | (<br>schemaObject: SchemaObject \| ReferenceObject,<br>namespace: string,<br>originGetType:(schemaObject: SchemaObject \| ReferenceObject, namespace: string) => string,<br>) => string | custom type <br> _returning a non-string will use the default method to get the type_ |
+| customType | ({<br>schemaObject: SchemaObject \| ReferenceObject,<br>namespace: string,<br>originGetType:(schemaObject: SchemaObject \| ReferenceObject, namespace: string, schemas?: ComponentsObject['schemas']) => string,<br>schemas?: ComponentsObject['schemas'],<br>}) => string | custom type <br> _returning a non-string will use the default method to get the type_ |
 | customFileNames | (<br>operationObject: OperationObject,<br>apiPath: string,<br>apiMethod: string,<br>) => string[] | custom generate request client controller file name, can return multiple: generate multiple files. <br> _if the return value is empty, the default getFileNames is used_ |
 
 ## JSON Schemas

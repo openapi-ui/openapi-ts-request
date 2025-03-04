@@ -132,6 +132,10 @@ export type GenerateServiceProps = {
    */
   isCamelCase?: boolean;
   /**
+   * 是否使用 description 中的枚举定义
+   */
+  isSupportParseEnumDesc?: boolean;
+  /**
    * 命名空间名称，默认为API，不需要关注
    */
   namespace?: string;
@@ -159,7 +163,7 @@ export type GenerateServiceProps = {
      * 自定义获取type hook
      * 返回非字符串将使用默认方法获取type
      * @example set number to string
-     * function customType(schemaObject,namespace){
+     * function customType({ schemaObject, namespace }){
      *  if(schemaObject.type==='number' && !schemaObject.format){
      *    return 'BigDecimalString';
      *  }
@@ -168,13 +172,17 @@ export type GenerateServiceProps = {
     customType?: ({
       schemaObject,
       namespace,
-      schemas,
       originGetType,
+      schemas,
     }: {
       schemaObject: SchemaObject | ReferenceObject;
       namespace: string;
+      originGetType: (
+        schemaObject: SchemaObject,
+        namespace: string,
+        schemas?: ComponentsObject['schemas']
+      ) => string;
       schemas?: ComponentsObject['schemas'];
-      originGetType: (schemaObject: SchemaObject, namespace: string) => string;
     }) => string;
     /**
      * 自定义生成文件名，可返回多个，表示生成多个文件;
@@ -270,6 +278,7 @@ export async function generateService({
       nullable: false,
       isOnlyGenTypeScriptType: false,
       isCamelCase: true,
+      isSupportParseEnumDesc: false,
       ...rest,
     },
     openAPI

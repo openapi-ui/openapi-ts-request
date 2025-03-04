@@ -90,6 +90,7 @@ import {
   isReferenceObject,
   isSchemaObject,
   markAllowedSchema,
+  parseDescriptionEnum,
   replaceDot,
   resolveFunctionName,
   resolveRefs,
@@ -1122,7 +1123,15 @@ export default class ServiceGenerator {
     let enumLabelTypeStr = '';
 
     if (numberEnum.includes(schemaObject.type) || isAllNumber(enumArray)) {
-      enumStr = `{${map(enumArray, (value) => `"NUMBER_${value}"=${Number(value)}`).join(',')}}`;
+      if (this.config.isSupportParseEnumDesc && schemaObject.description) {
+        const enumMap = parseDescriptionEnum(schemaObject.description);
+        enumStr = `{${map(enumArray, (value) => {
+          const enumLabel = enumMap.get(Number(value));
+          return `${enumLabel}=${Number(value)}`;
+        }).join(',')}}`;
+      } else {
+        enumStr = `{${map(enumArray, (value) => `"NUMBER_${value}"=${Number(value)}`).join(',')}}`;
+      }
     } else if (isAllNumeric(enumArray)) {
       enumStr = `{${map(enumArray, (value) => `"STRING_NUMBER_${value}"="${value}"`).join(',')}}`;
     } else {
@@ -1153,9 +1162,17 @@ export default class ServiceGenerator {
       }).join(',')}}`;
     } else {
       if (numberEnum.includes(schemaObject.type) || isAllNumber(enumArray)) {
-        enumLabelTypeStr = `{${map(enumArray, (value) => `"NUMBER_${value}":${Number(value)}`).join(',')}}`;
+        if (this.config.isSupportParseEnumDesc && schemaObject.description) {
+          const enumMap = parseDescriptionEnum(schemaObject.description);
+          enumLabelTypeStr = `{${map(enumArray, (value) => {
+            const enumLabel = enumMap.get(Number(value));
+            return `${Number(value)}:"${enumLabel}"`;
+          }).join(',')}}`;
+        } else {
+          enumLabelTypeStr = `{${map(enumArray, (value) => `${Number(value)}:"NUMBER_${value}"`).join(',')}}`;
+        }
       } else if (isAllNumeric(enumArray)) {
-        enumLabelTypeStr = `{${map(enumArray, (value) => `"STRING_NUMBER_${value}":"${value}"`).join(',')}}`;
+        enumLabelTypeStr = `{${map(enumArray, (value) => `"${value}":"STRING_NUMBER_${value}"`).join(',')}}`;
       } else {
         enumLabelTypeStr = `{${map(enumArray, (value) => `${value}:"${value}"`).join(',')}}`;
       }

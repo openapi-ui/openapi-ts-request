@@ -61,7 +61,9 @@ const gen = async () => {
       // 自定义类型名
       customTypeName: (data) => {
         const { operationId } = data;
-        const funName = operationId ? operationId[0].toUpperCase() + operationId.substring(1) : '';
+        const funName = operationId
+          ? operationId[0].toUpperCase() + operationId.substring(1)
+          : '';
         const tag = data?.tags?.[0];
 
         return `${tag ? tag : ''}${funName}`;
@@ -156,7 +158,7 @@ const gen = async () => {
   await openAPI.generateService({
     schemaPath: `${__dirname}/example-files/openapi-ref-encode-character.json`,
     serversPath: './apis/ref-encode-character',
-    includeTags: ["商品基础管理"],
+    includeTags: ['商品基础管理'],
   });
 
   // 测试支持 apifox x-run-in-apifox
@@ -184,6 +186,13 @@ const gen = async () => {
   await openAPI.generateService({
     schemaPath: `${__dirname}/example-files/openapi-number-enum.json`,
     serversPath: './apis/number-enum',
+  });
+
+  // 测试 number类型 枚举，使用 desc 解析枚举
+  await openAPI.generateService({
+    schemaPath: `${__dirname}/example-files/openapi-desc-enum.json`,
+    serversPath: './apis/openapi-desc-enum',
+    isSupportParseEnumDesc: true,
   });
 
   // 测试支持 apifox x-apifox-enum
@@ -218,7 +227,7 @@ const gen = async () => {
   // check 文件生成
   const fileControllerStr = fs.readFileSync(
     path.join(__dirname, 'apis/file/fileController.ts'),
-    'utf8',
+    'utf8'
   );
   assert(fileControllerStr.indexOf('!(item instanceof File)') > 0);
   assert(fileControllerStr.indexOf(`'multipart/form-data'`) > 0);

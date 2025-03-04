@@ -83,6 +83,11 @@ const params = program
     'camelCase naming of controller files and request client',
     true
   )
+  .option(
+    '--isSupportParseEnumDesc <boolean>',
+    'parse enum description to generate enum label',
+    false
+  )
   .parse(process.argv)
   .opts();
 
@@ -127,6 +132,8 @@ async function run() {
       isOnlyGenTypeScriptType:
         JSON.parse(params.isOnlyGenTypeScriptType as string) === true,
       isCamelCase: JSON.parse(params.isCamelCase as string) === true,
+      isSupportParseEnumDesc:
+        JSON.parse(params.isSupportParseEnumDesc as string) === true,
     };
 
     await generateService(

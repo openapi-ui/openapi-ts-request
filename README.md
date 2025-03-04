@@ -87,7 +87,6 @@ src/apis/pet.ts #接口文件
 
 ```typescript
 // src/apis/pet.ts
-
 /* eslint-disable */
 // @ts-ignore
 import request from 'axios';
@@ -205,6 +204,7 @@ $ openapi --help
     --isTranslateToEnglishTag <boolean> translate chinese tag name to english tag name (default: false)
     --isOnlyGenTypeScriptType <boolean> only generate typescript type (default: false)
     --isCamelCase <boolean>             camelCase naming of controller files and request client (default: true)
+    --isSupportParseEnumDesc <boolean>  parse enum description to generate enum label (default: false)
     -h, --help                          display help for command
 ```
 
@@ -241,6 +241,7 @@ openapi --i ./spec.json --o ./apis
 | isTranslateToEnglishTag | 否 | boolean | false | 将中文 tag 名称翻译成英文 tag 名称 |
 | isOnlyGenTypeScriptType | 否 | boolean | false | 仅生成 typescript 类型 |
 | isCamelCase | 否 | boolean | true | 小驼峰命名文件和请求函数 |
+| isSupportParseEnumDesc | 否 | boolean | false | 解析枚举描述生成枚举标签，格式参考：`系统用户角色:User(普通用户)=0,Agent(经纪人)=1,Admin(管理员)=2` |
 | hook | 否 | [Custom Hook](#Custom-Hook) | - | 自定义 hook |
 
 ## 自定义 Hook
@@ -251,7 +252,7 @@ openapi --i ./spec.json --o ./apis
 | customFunctionName | (data: APIDataType) => string | 自定义请求方法函数名称 |
 | customTypeName | (data: APIDataType) => string | 自定义类型名称 |
 | customClassName | (tagName: string) => string | 自定义标签名 |
-| customType | (<br>schemaObject: SchemaObject \| ReferenceObject,<br>namespace: string,<br>originGetType:(schemaObject: SchemaObject \| ReferenceObject, namespace: string) => string,<br>) => string | 自定义类型 <br> _返回非字符串将使用默认方法获取type_ |
+| customType | ({<br>schemaObject: SchemaObject \| ReferenceObject,<br>namespace: string,<br>originGetType:(schemaObject: SchemaObject \| ReferenceObject, namespace: string, schemas?: ComponentsObject['schemas']) => string,<br>schemas?: ComponentsObject['schemas'],<br>}) => string | 自定义类型 <br> _返回非字符串将使用默认方法获取type_ |
 | customFileNames | (<br>operationObject: OperationObject,<br>apiPath: string,<br>apiMethod: string,<br>) => string[] | 自定义生成的请求客户端文件名称，可以返回多个文件名称的数组(表示生成多个文件). <br> _返回为空，则使用默认的方法获取_ |
 
 ## JSON Schemas
