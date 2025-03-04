@@ -1,0 +1,165 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "DeepSprite.House",
+    "description": "DeepSprite.House",
+    "version": "v9.0.2"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8010",
+      "description": ""
+    }
+  ],
+  "paths": {
+    "/api/sys/user/get-user-info": {
+      "get": {
+        "tags": ["user"],
+        "summary": "获取用户信息",
+        "operationId": "api-sys-user-get-user-info-get",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "query",
+            "description": "",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultOutputUserInfoOutput"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultOutputUserInfoOutput"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultOutputUserInfoOutput"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ResultOutputString": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "description": "是否成功标记"
+          },
+          "code": {
+            "type": "string",
+            "description": "编码",
+            "nullable": true
+          },
+          "msg": {
+            "type": "string",
+            "description": "消息",
+            "nullable": true
+          },
+          "data": {
+            "type": "string",
+            "description": "数据",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "结果输出"
+      },
+      "ResultOutputUserInfoOutput": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "description": "是否成功标记"
+          },
+          "code": {
+            "type": "string",
+            "description": "编码",
+            "nullable": true
+          },
+          "msg": {
+            "type": "string",
+            "description": "消息",
+            "nullable": true
+          },
+          "data": {
+            "$ref": "#/components/schemas/UserInfoOutput"
+          }
+        },
+        "additionalProperties": false,
+        "description": "结果输出"
+      },
+      "SortOrder": {
+        "enum": [0, 1],
+        "type": "integer",
+        "description": "排序方式:Asc=0,Desc=1",
+        "format": "int32"
+      },
+      "SysUserRole": {
+        "enum": [0, 1, 2],
+        "type": "integer",
+        "description": "系统用户角色:User(普通用户)=0,Agent(经纪人)=1,Admin(管理员)=2",
+        "format": "int32"
+      },
+      "UserInfoOutput": {
+        "type": "object",
+        "properties": {
+          "nickName": {
+            "type": "string",
+            "description": "昵称",
+            "nullable": true
+          },
+          "avatar": {
+            "type": "string",
+            "description": "头像",
+            "nullable": true
+          },
+          "phone": {
+            "type": "string",
+            "description": "手机号",
+            "nullable": true
+          },
+          "role": {
+            "$ref": "#/components/schemas/SysUserRole"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "securitySchemes": {
+      "Bearer": {
+        "type": "apiKey",
+        "description": "Value: Bearer {token}",
+        "name": "Authorization",
+        "in": "header"
+      }
+    }
+  },
+  "security": [
+    {
+      "Bearer": []
+    }
+  ],
+  "tags": [
+    {
+      "name": "user",
+      "description": "用户服务"
+    }
+  ]
+}
