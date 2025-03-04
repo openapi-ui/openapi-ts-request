@@ -1,5 +1,17 @@
 # openapi-ts-request
 
+## 1.2.0
+
+### Minor Changes
+
+- [#224](https://github.com/openapi-ui/openapi-ts-request/pull/224) [`8d35f62`](https://github.com/openapi-ui/openapi-ts-request/commit/8d35f62867997d23d0b1ac7771db3976d6179bae) Thanks [@sabernagato](https://github.com/sabernagato)! - parse enum description to generate enum label
+
+### Patch Changes
+
+- [#225](https://github.com/openapi-ui/openapi-ts-request/pull/225) [`08ba109`](https://github.com/openapi-ui/openapi-ts-request/commit/08ba109a2fb2285ee60cb2610517d6bd07b18f3f) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - perf: perf display number enum label
+
+- [#225](https://github.com/openapi-ui/openapi-ts-request/pull/225) [`39d2de9`](https://github.com/openapi-ui/openapi-ts-request/commit/39d2de9a6d277f202173d4eeeeda02e00db346c1) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - docs: fix customType hook api
+
 ## 1.1.2
 
 ### Patch Changes
