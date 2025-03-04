@@ -132,6 +132,10 @@ export type GenerateServiceProps = {
    */
   isCamelCase?: boolean;
   /**
+   * 是否使用 description 中的枚举定义
+   */
+  isSupportParseEnumDesc?: boolean;
+  /**
    * 命名空间名称，默认为API，不需要关注
    */
   namespace?: string;
@@ -274,6 +278,7 @@ export async function generateService({
       nullable: false,
       isOnlyGenTypeScriptType: false,
       isCamelCase: true,
+      isSupportParseEnumDesc: false,
       ...rest,
     },
     openAPI

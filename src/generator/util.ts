@@ -494,3 +494,58 @@ export function isAllNumber(arr) {
 export function capitalizeFirstLetter(str: string) {
   return str.replace(/^[a-z]/, (match) => match.toUpperCase());
 }
+
+// 解析 description 中的枚举翻译
+export const parseDescriptionEnum = (
+  description: string
+): Map<number, string> => {
+  const enumMap = new Map<number, string>();
+  if (!description) return enumMap;
+
+  // 首先处理可能的总体描述，例如 "系统用户角色:User=0,..."
+  let descToProcess = description;
+  const mainDescriptionMatch = description.match(/^([^:]+):(.*)/);
+  if (mainDescriptionMatch) {
+    // 如果有总体描述（如 "系统用户角色:"），只处理冒号后面的部分
+    descToProcess = mainDescriptionMatch[2];
+  }
+
+  // 匹配形如 "User(普通用户)=0" 或 "User=0" 的模式
+  const enumPattern = /([^():,=]+)(?:\(([^)]+)\))?=(\d+)/g;
+  let match: RegExpExecArray | null;
+
+  while ((match = enumPattern.exec(descToProcess)) !== null) {
+    const name = match[1] ? match[1].trim() : '';
+    const valueStr = match[3] ? match[3].trim() : '';
+
+    if (valueStr && !isNaN(Number(valueStr))) {
+      // 统一使用英文key（如User）
+      enumMap.set(Number(valueStr), name);
+    }
+  }
+
+  // 如果没有匹配到任何枚举，尝试使用简单的分割方法作为后备
+  if (enumMap.size === 0) {
+    const pairs = descToProcess.split(',');
+    pairs.forEach((pair) => {
+      const parts = pair.split('=');
+      if (parts.length === 2) {
+        let label = parts[0].trim();
+        const value = parts[1].trim();
+
+        // 处理可能带有括号的情况
+        const bracketMatch = label.match(/([^(]+)\(([^)]+)\)/);
+        if (bracketMatch) {
+          // 只使用括号前的英文key
+          label = bracketMatch[1].trim();
+        }
+
+        if (label && value && !isNaN(Number(value))) {
+          enumMap.set(Number(value), label);
+        }
+      }
+    });
+  }
+
+  return enumMap;
+};
