@@ -1,3 +1,5 @@
+<!-- TODO:需要修改文档, 添加参数, 添加apifox的配置支持 -->
+
 ## 介绍
 
 [![GitHub Repo stars](https://img.shields.io/github/stars/openapi-ui/openapi-ts-request?style=social)](https://github.com/openapi-ui/openapi-ts-request) [![npm (scoped)](https://img.shields.io/npm/v/openapi-ts-request)](https://www.npmjs.com/package/openapi-ts-request) ![GitHub tag](https://img.shields.io/github/v/tag/openapi-ui/openapi-ts-request?include_prereleases)
@@ -13,6 +15,7 @@
 - react-query/vue-query
 - 类型字段翻译
 - JSON Schemas
+- Apifox
 
 文档：[使用手册](https://github.com/openapi-ui/openapi-ts-request/issues/100)
 
@@ -25,6 +28,7 @@
 - 支持通过 tags 过滤生成结果
 - 支持 JSON/YAML 定义文件
 - 支持将中文 tag 名称翻译为英文 tag 名称
+- 支持直接配置`apifox`的`token`和`projectId`直接生成
 
 ## 使用
 
@@ -181,8 +185,10 @@ $ openapi --help
 
   Options:
     -V, --version                       output the version number
-    -i, --input <string>                OpenAPI specification, can be a path, url (required)
-    -o, --output <string>               output directory (required)
+    -i, --input <string>                OpenAPI specification, can be a path, url
+    -o, --output <string>               output directory
+    -cfn, --configFileName <string>     config file name
+    -cfp, --configFilePath <string>     config file path
     --requestLibPath <string>           custom request lib path, for example: "@/request", "node-fetch" (default: "axios")
     --enableLogging <boolean>           open the log (default: false)
     --priorityRule <string>             priority rule, include/exclude/both (default: "include")
@@ -243,6 +249,7 @@ openapi --i ./spec.json --o ./apis
 | isCamelCase | 否 | boolean | true | 小驼峰命名文件和请求函数 |
 | isSupportParseEnumDesc | 否 | boolean | false | 解析枚举描述生成枚举标签，格式参考：`系统用户角色:User(普通用户)=0,Agent(经纪人)=1,Admin(管理员)=2` |
 | hook | 否 | [Custom Hook](#Custom-Hook) | - | 自定义 hook |
+| apifoxConfig | 否 | [Apifox Config](#Apifox-Config) | - | apifox 配置 |
 
 ## 自定义 Hook
 
@@ -254,6 +261,17 @@ openapi --i ./spec.json --o ./apis
 | customClassName | (tagName: string) => string | 自定义标签名 |
 | customType | ({<br>schemaObject: SchemaObject \| ReferenceObject,<br>namespace: string,<br>originGetType:(schemaObject: SchemaObject \| ReferenceObject, namespace: string, schemas?: ComponentsObject['schemas']) => string,<br>schemas?: ComponentsObject['schemas'],<br>}) => string | 自定义类型 <br> _返回非字符串将使用默认方法获取type_ |
 | customFileNames | (<br>operationObject: OperationObject,<br>apiPath: string,<br>apiMethod: string,<br>) => string[] | 自定义生成的请求客户端文件名称，可以返回多个文件名称的数组(表示生成多个文件). <br> _返回为空，则使用默认的方法获取_ |
+
+## Apifox-Config
+
+| 属性 | 类型 | 说明 | 必填 |
+| --- | --- | --- | --- |
+| projectId | string | 项目id | true |
+| local | string | 语言(默认:zh-CN) | false |
+| apifoxVersion | string | 默认: 2024-03-28, [获取当前版本](https://api.apifox.com/v1/versions) | false |
+| includeTags | \* 或 string[] | 默认: \* | false |
+| excludeTags | string[] | 默认: [] | false |
+| apifoxToken | string | [获取](https://docs.apifox.com/doc-5723694) | true |
 
 ## JSON Schemas
 
@@ -274,6 +292,33 @@ export declare function patchSchema<T extends object>(
 ## 适配uniapp
 
 适配 uniapp 推荐采用自定义 request 函数的方式，你也可以使用 `@uni-helper/axios-adapter` 适配器，详情见 [【使用手册 2.2】](https://github.com/openapi-ui/openapi-ts-request/issues/100)
+
+## 旧版本升级注意事项
+
+- 当前命名规范修改
+- 当前版本已完成增量修改, 不会影响以前
+- 可以弃用`openapi-ts`命令, 直接使用`openapi`, 只不过默认文件名称从openapi-ts-request.config.ts改成了openapi.config.ts, 不过可以使用 `openapi -cfn open-ts-request`继续沿用以前的配置文件
+
+### 沿用旧版本命名规范配置如下
+
+```typescript
+import type { APIDataType } from 'openapi-ts-request/dist/generator/type';
+import {
+  genDefaultFunctionName,
+  resolveFunctionName,
+  stripDot,
+} from 'openapi-ts-request/dist/generator/util';
+
+export default {
+  hook: {
+    customFunctionName(data: APIDataType, prefix: string) {
+      if (data.operationId)
+        return resolveFunctionName(stripDot(data.operationId), data.method);
+      return data.method + genDefaultFunctionName(data.path, prefix);
+    },
+  },
+};
+```
 
 ## 贡献
 

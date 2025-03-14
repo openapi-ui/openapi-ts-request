@@ -3,7 +3,14 @@ import { translate } from 'bing-translate-api';
 import http from 'http';
 import https from 'https';
 import * as yaml from 'js-yaml';
-import { camelCase, forEach, isObject, keys, map, uniq } from 'lodash';
+import {
+  camelCase as _camelCase_,
+  forEach,
+  isObject,
+  keys,
+  map,
+  uniq,
+} from 'lodash';
 import { readFileSync } from 'node:fs';
 import { OpenAPI, OpenAPIV2, OpenAPIV3 } from 'openapi-types';
 import converter from 'swagger2openapi';
@@ -301,3 +308,21 @@ export async function translateChineseModuleNodeToEnglish(
       });
   });
 }
+
+/**
+ * Converts a string to camelCase format, with an option to capitalize the first letter.
+ * 将字符串转换为驼峰格式，并可以选择将首字母大写。
+ *
+ * @param {string} str - The string to convert.
+ * @param {string} str - 要转换的字符串。
+ *
+ * @param {boolean} [upper=false] - Whether to capitalize the first letter of the resulting string.
+ * @param {boolean} [upper=false] - 是否将结果字符串的首字母大写。
+ *
+ * @returns {string} The camelCase formatted string, optionally with a capitalized first letter.
+ * @returns {string} 返回驼峰格式的字符串，可选择首字母大写。
+ */
+export const camelCase = (str: string, upper: boolean = false) => {
+  const res = _camelCase_(str);
+  return upper ? res.charAt(0).toUpperCase() + res.slice(1) : res;
+};

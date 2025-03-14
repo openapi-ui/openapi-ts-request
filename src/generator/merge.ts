@@ -1,4 +1,5 @@
 import {
+  type ClassDeclarationStructure,
   type EnumDeclarationStructure,
   type FunctionDeclarationOverloadStructure,
   type FunctionDeclarationStructure,
@@ -47,6 +48,27 @@ export class Merger {
     }
     this.#mergeRule = mergeRule;
     this.#mergedFile = this.#project.createSourceFile('_merged_.ts');
+  }
+
+  #mergeClass(destFile: SourceFile) {
+    const classMap = new Map<string, ClassDeclarationStructure>();
+    this.#sourceFile.getClasses().forEach((c) => {
+      const cName = c.getName();
+      const cStructure = c.getStructure();
+      classMap.set(cName, cStructure);
+    });
+    destFile.getClasses().forEach((c) => {
+      const cName = c.getName();
+      if (classMap.has(cName)) {
+        if (this.#mergeRule === MergeRule.RIGHT) {
+          const cStructure = c.getStructure();
+          classMap.set(cName, cStructure);
+        }
+      } else {
+        const cStructure = c.getStructure();
+        classMap.set(cName, cStructure);
+      }
+    });
   }
 
   #mergeType(destFile: SourceFile) {
@@ -213,6 +235,7 @@ export class Merger {
     }
     this.#mergeImports(destFile);
     this.#mergeVariables(destFile);
+    this.#mergeClass(destFile);
     this.#mergeType(destFile);
     this.#mergeEnums(destFile);
     this.#mergeInterfaces(destFile);

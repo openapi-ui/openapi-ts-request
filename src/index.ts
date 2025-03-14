@@ -156,7 +156,7 @@ export type GenerateServiceProps = {
     /** change open api data after constructor */
     afterOpenApiDataInited?: (openAPIData: OpenAPIObject) => OpenAPIObject;
     /** 自定义函数名称 */
-    customFunctionName?: (data: APIDataType) => string;
+    customFunctionName?: (data: APIDataType, prefix?: string) => string;
     /** 自定义类型名称 */
     customTypeName?: (data: APIDataType) => string;
     /** 自定义 options 默认值 */

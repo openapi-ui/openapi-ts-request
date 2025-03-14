@@ -5,7 +5,6 @@ import { program } from 'commander';
 import { GenerateServiceProps, generateService } from '../index';
 import { readConfig } from '../readConfig';
 
-// TODO: 准备将这里的opts放到index中一起, 只需要openapi一个命令, 取消openapi-ts-request命令, 然后处理tsconfig处理
 program
   .option('-u, --unique-key <uniqueKey>', '唯一标识 uniqueKey')
   .option('-fn, --fileName <fileName>', '文件名 fileName')

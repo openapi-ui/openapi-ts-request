@@ -355,7 +355,6 @@ export function getBasePrefix(paths: string[]) {
   return `${res.join('/')}/`;
 }
 
-// TODO: 统一命名, 取消使用openapi的id
 // 将地址path路径转为大驼峰
 export function genDefaultFunctionName(path: string, pathBasePrefix: string) {
   // 首字母转大写

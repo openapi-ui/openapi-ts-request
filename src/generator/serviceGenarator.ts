@@ -1,7 +1,7 @@
 import { existsSync, readFileSync } from 'fs';
 import {
   Dictionary,
-  camelCase,
+  // camelCase,
   entries,
   filter,
   find,
@@ -40,6 +40,7 @@ import {
   ResponsesObject,
   SchemaObject,
 } from '../type';
+import { camelCase } from '../util';
 import {
   DEFAULT_PATH_PARAM,
   DEFAULT_SCHEMA,
@@ -92,10 +93,10 @@ import {
   markAllowedSchema,
   parseDescriptionEnum,
   replaceDot,
-  resolveFunctionName,
+  // resolveFunctionName,
   resolveRefs,
   resolveTypeName,
-  stripDot,
+  // stripDot,
 } from './util';
 
 export default class ServiceGenerator {
@@ -802,10 +803,15 @@ export default class ServiceGenerator {
     const pathBasePrefix = getBasePrefix(keys(this.openAPIData.paths));
 
     return this.config.hook && this.config.hook.customFunctionName
-      ? this.config.hook.customFunctionName(data)
-      : data.operationId
-        ? resolveFunctionName(stripDot(data.operationId), data.method)
-        : data.method + genDefaultFunctionName(data.path, pathBasePrefix);
+      ? this.config.hook.customFunctionName(data, pathBasePrefix)
+      : camelCase(
+          `${genDefaultFunctionName(data.path, pathBasePrefix)}-${data.method}`
+        );
+    // return this.config.hook && this.config.hook.customFunctionName
+    //   ? this.config.hook.customFunctionName(data)
+    //   : data.operationId
+    //     ? resolveFunctionName(stripDot(data.operationId), data.method)
+    //     : data.method + genDefaultFunctionName(data.path, pathBasePrefix);
   }
 
   private getType(schemaObject: ISchemaObject, namespace?: string) {
