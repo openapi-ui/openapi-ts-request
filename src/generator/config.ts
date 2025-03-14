@@ -1,6 +1,6 @@
 import { Dictionary } from 'lodash';
 
-import { ParameterObject, SchemaObject } from '../type';
+import { IReactQueryMode, ParameterObject, SchemaObject } from '../type';
 
 export const serviceEntryFileName = 'index';
 
@@ -12,7 +12,12 @@ export const displayTypeLabelFileName = 'displayTypeLabel';
 
 export const schemaFileName = 'schema';
 
-export const reactQueryFileName = 'reactquery';
+export const displayReactQueryFileName = (reactQueryMode: IReactQueryMode) => {
+  return {
+    react: 'reactquery',
+    vue: 'vuequery',
+  }[reactQueryMode];
+};
 
 export enum TypescriptFileType {
   interface = 'interface',

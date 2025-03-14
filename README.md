@@ -10,7 +10,7 @@
 - 客户端请求函数(支持任意客户端)
 - 模拟请求响应服务
 - 枚举和枚举翻译
-- react-query
+- react-query/vue-query
 - 类型字段翻译
 - JSON Schemas
 
@@ -19,7 +19,7 @@
 ## 功能
 
 - 支持 Swagger2.0/OpenAPI/Apifox 3.0,3.1 定义
-- 生成 TypeScript/JavaScript, 请求客户端(支持任意客户端), 请求模拟服务, 枚举和枚举翻译, react-query, 类型字段翻译, JSON Schemas
+- 生成 TypeScript/JavaScript, 请求客户端(支持任意客户端), 请求模拟服务, 枚举和枚举翻译, react-query/vue-query, 类型字段翻译, JSON Schemas
 - 支持通过 npx、CLI、Nodejs 的方式使用
 - 支持自定义请求工具函数, 支持 Fetch、Axios、[UniApp-Request](https://github.com/openapi-ui/openapi-ts-request/issues/46)、Taro-Request、Node.js、XHR 客户端
 - 支持通过 tags 过滤生成结果
@@ -87,7 +87,6 @@ src/apis/pet.ts #接口文件
 
 ```typescript
 // src/apis/pet.ts
-
 /* eslint-disable */
 // @ts-ignore
 import request from 'axios';
@@ -195,6 +194,7 @@ $ openapi --help
     --requestImportStatement <string>   custom request import statement, for example: "const request = require('@/request')"
     --apiPrefix <string>                custom the prefix of the api path, for example: "api"(variable), "'api'"(string)
     --isGenReactQuery <boolean>         generate react-query (default: false)
+    --reactQueryMode <string>           react-query mode, react/vue (default: "react")
     --isGenJavaScript <boolean>         generate JavaScript (default: false)
     --isDisplayTypeLabel <boolean>      generate label matching type field (default: false)
     --isGenJsonSchemas <boolean>        generate JSON Schemas (default: false)
@@ -204,6 +204,7 @@ $ openapi --help
     --isTranslateToEnglishTag <boolean> translate chinese tag name to english tag name (default: false)
     --isOnlyGenTypeScriptType <boolean> only generate typescript type (default: false)
     --isCamelCase <boolean>             camelCase naming of controller files and request client (default: true)
+    --isSupportParseEnumDesc <boolean>  parse enum description to generate enum label (default: false)
     -h, --help                          display help for command
 ```
 
@@ -230,6 +231,7 @@ openapi --i ./spec.json --o ./apis
 | requestImportStatement | 否 | string | - | 自定义请求方法表达式，例如："const request = require('@/request')" |
 | apiPrefix | 否 | string | - | api path的前缀，例如：'api'(动态变量), "'api'"(字符串) |
 | isGenReactQuery | 否 | boolean | false | 是否生成 react-query |
+| reactQueryMode | 否 | string | 'react' | react-query 模式，可选 react/vue |
 | isGenJavaScript | 否 | boolean | false | 是否生成 JavaScript |
 | isDisplayTypeLabel | 否 | boolean | false | 是否生成 type 对应的label |
 | isGenJsonSchemas | 否 | boolean | false | 是否生成 JSON Schemas |
@@ -239,6 +241,7 @@ openapi --i ./spec.json --o ./apis
 | isTranslateToEnglishTag | 否 | boolean | false | 将中文 tag 名称翻译成英文 tag 名称 |
 | isOnlyGenTypeScriptType | 否 | boolean | false | 仅生成 typescript 类型 |
 | isCamelCase | 否 | boolean | true | 小驼峰命名文件和请求函数 |
+| isSupportParseEnumDesc | 否 | boolean | false | 解析枚举描述生成枚举标签，格式参考：`系统用户角色:User(普通用户)=0,Agent(经纪人)=1,Admin(管理员)=2` |
 | hook | 否 | [Custom Hook](#Custom-Hook) | - | 自定义 hook |
 
 ## 自定义 Hook
@@ -249,7 +252,7 @@ openapi --i ./spec.json --o ./apis
 | customFunctionName | (data: APIDataType) => string | 自定义请求方法函数名称 |
 | customTypeName | (data: APIDataType) => string | 自定义类型名称 |
 | customClassName | (tagName: string) => string | 自定义标签名 |
-| customType | (<br>schemaObject: SchemaObject \| ReferenceObject,<br>namespace: string,<br>originGetType:(schemaObject: SchemaObject \| ReferenceObject, namespace: string) => string,<br>) => string | 自定义类型 <br> _返回非字符串将使用默认方法获取type_ |
+| customType | ({<br>schemaObject: SchemaObject \| ReferenceObject,<br>namespace: string,<br>originGetType:(schemaObject: SchemaObject \| ReferenceObject, namespace: string, schemas?: ComponentsObject['schemas']) => string,<br>schemas?: ComponentsObject['schemas'],<br>}) => string | 自定义类型 <br> _返回非字符串将使用默认方法获取type_ |
 | customFileNames | (<br>operationObject: OperationObject,<br>apiPath: string,<br>apiMethod: string,<br>) => string[] | 自定义生成的请求客户端文件名称，可以返回多个文件名称的数组(表示生成多个文件). <br> _返回为空，则使用默认的方法获取_ |
 
 ## JSON Schemas

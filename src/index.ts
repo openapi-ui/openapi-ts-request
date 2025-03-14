@@ -1,19 +1,23 @@
 import { isEmpty, map } from 'lodash';
 
+import { PriorityRule, ReactQueryMode } from './config';
 import { mockGenerator } from './generator/mockGenarator';
 import ServiceGenerator from './generator/serviceGenarator';
 import { APIDataType } from './generator/type';
 import {
   ComponentsObject,
+  type GetSchemaByApifoxProps,
+  IPriorityRule,
+  IReactQueryMode,
   OpenAPIObject,
   OperationObject,
-  PriorityRule,
   ReferenceObject,
   SchemaObject,
 } from './type';
 import {
   getImportStatement,
   getOpenAPIConfig,
+  getOpenAPIConfigByApifox,
   translateChineseModuleNodeToEnglish,
 } from './util';
 
@@ -43,7 +47,7 @@ export type GenerateServiceProps = {
   /**
    * 优先规则, include(只允许include列表) | exclude(只排除exclude列表) | both(允许include列表，排除exclude列表)
    */
-  priorityRule?: string;
+  priorityRule?: IPriorityRule;
   /**
    * 只解析归属于 tags 集合的 api 和 schema
    */
@@ -84,6 +88,10 @@ export type GenerateServiceProps = {
    * 是否生成 react-query 配置
    */
   isGenReactQuery?: boolean;
+  /**
+   * reactQuery 模式
+   */
+  reactQueryMode?: IReactQueryMode;
   /**
    * 是否生成 JavaScript, 不生成 TypeScript
    */
@@ -126,6 +134,10 @@ export type GenerateServiceProps = {
    */
   isCamelCase?: boolean;
   /**
+   * 是否使用 description 中的枚举定义
+   */
+  isSupportParseEnumDesc?: boolean;
+  /**
    * 命名空间名称，默认为API，不需要关注
    */
   namespace?: string;
@@ -133,6 +145,10 @@ export type GenerateServiceProps = {
    * 模板文件的文件路径，不需要关注
    */
   templatesFolder?: string;
+  /**
+   * apifox 配置
+   */
+  apifoxConfig?: GetSchemaByApifoxProps;
   /**
    * 自定义 hook
    */
@@ -153,7 +169,7 @@ export type GenerateServiceProps = {
      * 自定义获取type hook
      * 返回非字符串将使用默认方法获取type
      * @example set number to string
-     * function customType(schemaObject,namespace){
+     * function customType({ schemaObject, namespace }){
      *  if(schemaObject.type==='number' && !schemaObject.format){
      *    return 'BigDecimalString';
      *  }
@@ -162,13 +178,17 @@ export type GenerateServiceProps = {
     customType?: ({
       schemaObject,
       namespace,
-      schemas,
       originGetType,
+      schemas,
     }: {
       schemaObject: SchemaObject | ReferenceObject;
       namespace: string;
+      originGetType: (
+        schemaObject: SchemaObject,
+        namespace: string,
+        schemas?: ComponentsObject['schemas']
+      ) => string;
       schemas?: ComponentsObject['schemas'];
-      originGetType: (schemaObject: SchemaObject, namespace: string) => string;
     }) => string;
     /**
      * 自定义生成文件名，可返回多个，表示生成多个文件;
@@ -222,19 +242,26 @@ export async function generateService({
   isTranslateToEnglishTag,
   priorityRule = PriorityRule.include,
   timeout = 60_000,
+  reactQueryMode = ReactQueryMode.react,
+  apifoxConfig,
   ...rest
 }: GenerateServiceProps) {
-  if (!schemaPath) {
+  if (!schemaPath && !apifoxConfig) {
     return;
   }
+  let openAPI: OpenAPIObject | null = null;
+  if (apifoxConfig) {
+    openAPI = (await getOpenAPIConfigByApifox(apifoxConfig)) as OpenAPIObject;
+  }
+  if (schemaPath) {
+    openAPI = (await getOpenAPIConfig(
+      schemaPath,
+      authorization,
+      timeout
+    )) as OpenAPIObject;
+  }
 
-  const openAPI = (await getOpenAPIConfig(
-    schemaPath,
-    authorization,
-    timeout
-  )) as OpenAPIObject;
-
-  if (isEmpty(openAPI)) {
+  if (!openAPI || isEmpty(openAPI)) {
     return;
   }
 
@@ -255,7 +282,7 @@ export async function generateService({
         ? map(includeTags, (item) =>
             typeof item === 'string' ? item.toLowerCase() : item
           )
-        : (priorityRule as keyof typeof PriorityRule) === PriorityRule.include
+        : priorityRule === PriorityRule.include
           ? [/.*/g]
           : null,
       excludeTags: excludeTags
@@ -266,12 +293,14 @@ export async function generateService({
       requestOptionsType: '{[key: string]: unknown}',
       namespace: 'API',
       isGenReactQuery: false,
+      reactQueryMode,
       isGenJavaScript: false,
       isDisplayTypeLabel: false,
       isGenJsonSchemas: false,
       nullable: false,
       isOnlyGenTypeScriptType: false,
       isCamelCase: true,
+      isSupportParseEnumDesc: false,
       ...rest,
     },
     openAPI

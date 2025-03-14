@@ -1,5 +1,4 @@
-import { readFileSync } from 'fs';
-import { globSync } from 'glob';
+import { existsSync, readFileSync } from 'fs';
 import {
   Dictionary,
   camelCase,
@@ -18,8 +17,13 @@ import {
 import { minimatch } from 'minimatch';
 import nunjucks from 'nunjucks';
 import { join } from 'path';
-import { sync as rimrafSync } from 'rimraf';
 
+import {
+  PriorityRule,
+  SchemaObjectFormat,
+  SchemaObjectType,
+  displayReactQueryMode,
+} from '../config';
 import type { GenerateServiceProps } from '../index';
 import log from '../log';
 import {
@@ -30,14 +34,11 @@ import {
   OperationObject,
   ParameterObject,
   PathItemObject,
-  PriorityRule,
   ReferenceObject,
   RequestBodyObject,
   ResponseObject,
   ResponsesObject,
   SchemaObject,
-  SchemaObjectFormat,
-  SchemaObjectType,
 } from '../type';
 import {
   DEFAULT_PATH_PARAM,
@@ -45,6 +46,7 @@ import {
   LangType,
   TypescriptFileType,
   displayEnumLabelFileName,
+  displayReactQueryFileName,
   displayTypeLabelFileName,
   interfaceFileName,
   lineBreakReg,
@@ -52,11 +54,11 @@ import {
   numberEnum,
   parametersIn,
   parametersInsEnum,
-  reactQueryFileName,
   schemaFileName,
   serviceEntryFileName,
 } from './config';
 import { writeFile } from './file';
+import { Merger } from './merge';
 import { patchSchema } from './patchSchema';
 import {
   APIDataType,
@@ -67,6 +69,7 @@ import {
   ISchemaItem,
   ITypeItem,
   ITypescriptFileType,
+  type MergeOption,
   TagAPIDataType,
 } from './type';
 import {
@@ -87,6 +90,7 @@ import {
   isReferenceObject,
   isSchemaObject,
   markAllowedSchema,
+  parseDescriptionEnum,
   replaceDot,
   resolveFunctionName,
   resolveRefs,
@@ -113,8 +117,7 @@ export default class ServiceGenerator {
     const excludeTags = this.config?.excludeTags || [];
     const excludePaths = this.config?.excludePaths || [];
 
-    const priorityRule: PriorityRule =
-      PriorityRule[config.priorityRule as keyof typeof PriorityRule];
+    const priorityRule: PriorityRule = PriorityRule[config.priorityRule];
 
     if (this.config.hook?.afterOpenApiDataInited) {
       this.openAPIData =
@@ -250,18 +253,10 @@ export default class ServiceGenerator {
   }
 
   public genFile() {
-    try {
-      globSync(`${this.config.serversPath}/**/*`)
-        .filter((item) => !item.includes('_deperated'))
-        .forEach((item) => {
-          rimrafSync(item);
-        });
-    } catch (error) {
-      log(`🚥 api 生成失败: ${error}`);
-    }
-
     const isOnlyGenTypeScriptType = this.config.isOnlyGenTypeScriptType;
     const isGenJavaScript = this.config.isGenJavaScript;
+    const reactQueryMode = this.config.reactQueryMode;
+    const reactQueryFileName = displayReactQueryFileName(reactQueryMode);
 
     // 处理重复的 typeName
     const interfaceTPConfigs = this.getInterfaceTPConfigs();
@@ -347,6 +342,7 @@ export default class ServiceGenerator {
               requestOptionsType: this.config.requestOptionsType,
               requestImportStatement: this.config.requestImportStatement,
               interfaceFileName: interfaceFileName,
+              reactQueryModePackageName: displayReactQueryMode(reactQueryMode),
               ...tp,
             }
           );
@@ -396,7 +392,7 @@ export default class ServiceGenerator {
         isDisplayEnumLabel: !isOnlyGenTypeScriptType && !isEmpty(enums),
         displayEnumLabelFileName: displayEnumLabelFileName,
         isGenReactQuery: this.config.isGenReactQuery,
-        reactQueryFileName: reactQueryFileName,
+        reactQueryFileName,
         isDisplayTypeLabel:
           !isOnlyGenTypeScriptType &&
           this.config.isDisplayTypeLabel &&
@@ -406,7 +402,7 @@ export default class ServiceGenerator {
     );
 
     // 打印日志
-    log('✅ 成功生成 api 文件');
+    log('✅ 成功生成 api 文件目录-> ', this.config.serversPath);
   }
 
   private getInterfaceTPConfigs() {
@@ -765,11 +761,28 @@ export default class ServiceGenerator {
       });
 
       env.addFilter('capitalizeFirst', capitalizeFirstLetter);
-
+      const destPath = join(this.config.serversPath, fileName);
+      const destCode = nunjucks.renderString(template, {
+        disableTypeCheck: false,
+        ...params,
+      });
+      let mergerProps: MergeOption = {} as MergeOption;
+      if (existsSync(destPath)) {
+        mergerProps = {
+          srcPath: destPath,
+        };
+      } else {
+        mergerProps = {
+          source: '',
+        };
+      }
+      const merger = new Merger(mergerProps);
       return writeFile(
         this.config.serversPath,
         fileName,
-        nunjucks.renderString(template, { disableTypeCheck: false, ...params })
+        merger.merge({
+          source: destCode,
+        })
       );
     } catch (error) {
       console.error('[GenSDK] file gen fail:', fileName, 'type:', type);
@@ -1117,7 +1130,15 @@ export default class ServiceGenerator {
     let enumLabelTypeStr = '';
 
     if (numberEnum.includes(schemaObject.type) || isAllNumber(enumArray)) {
-      enumStr = `{${map(enumArray, (value) => `"NUMBER_${value}"=${Number(value)}`).join(',')}}`;
+      if (this.config.isSupportParseEnumDesc && schemaObject.description) {
+        const enumMap = parseDescriptionEnum(schemaObject.description);
+        enumStr = `{${map(enumArray, (value) => {
+          const enumLabel = enumMap.get(Number(value));
+          return `${enumLabel}=${Number(value)}`;
+        }).join(',')}}`;
+      } else {
+        enumStr = `{${map(enumArray, (value) => `"NUMBER_${value}"=${Number(value)}`).join(',')}}`;
+      }
     } else if (isAllNumeric(enumArray)) {
       enumStr = `{${map(enumArray, (value) => `"STRING_NUMBER_${value}"="${value}"`).join(',')}}`;
     } else {
@@ -1148,9 +1169,17 @@ export default class ServiceGenerator {
       }).join(',')}}`;
     } else {
       if (numberEnum.includes(schemaObject.type) || isAllNumber(enumArray)) {
-        enumLabelTypeStr = `{${map(enumArray, (value) => `"NUMBER_${value}":${Number(value)}`).join(',')}}`;
+        if (this.config.isSupportParseEnumDesc && schemaObject.description) {
+          const enumMap = parseDescriptionEnum(schemaObject.description);
+          enumLabelTypeStr = `{${map(enumArray, (value) => {
+            const enumLabel = enumMap.get(Number(value));
+            return `${Number(value)}:"${enumLabel}"`;
+          }).join(',')}}`;
+        } else {
+          enumLabelTypeStr = `{${map(enumArray, (value) => `${Number(value)}:"NUMBER_${value}"`).join(',')}}`;
+        }
       } else if (isAllNumeric(enumArray)) {
-        enumLabelTypeStr = `{${map(enumArray, (value) => `"STRING_NUMBER_${value}":"${value}"`).join(',')}}`;
+        enumLabelTypeStr = `{${map(enumArray, (value) => `"${value}":"STRING_NUMBER_${value}"`).join(',')}}`;
       } else {
         enumLabelTypeStr = `{${map(enumArray, (value) => `${value}:"${value}"`).join(',')}}`;
       }

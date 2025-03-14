@@ -8,8 +8,13 @@ import { readFileSync } from 'node:fs';
 import { OpenAPI, OpenAPIV2, OpenAPIV3 } from 'openapi-types';
 import converter from 'swagger2openapi';
 
-import log from './log';
-import { OpenAPIObject, OperationObject } from './type';
+import log, { logError } from './log';
+import {
+  type APIFoxBody,
+  type GetSchemaByApifoxProps,
+  OpenAPIObject,
+  OperationObject,
+} from './type';
 
 export const getImportStatement = (requestLibPath: string) => {
   if (requestLibPath) {
@@ -21,6 +26,85 @@ export const getImportStatement = (requestLibPath: string) => {
   }
 
   return `import { request } from 'axios';`;
+};
+
+const getApifoxIncludeTags = (tags?: (string | RegExp)[]): '*' | string[] => {
+  let _tags_: string | string[] = '*';
+  if (tags && Array.isArray(tags)) {
+    if (!tags.length) {
+      return '*';
+    }
+    _tags_ = [];
+    for (const tag of tags) {
+      if (typeof tag === 'string') {
+        if (tag === '*') {
+          _tags_ = '*';
+          break;
+        }
+      } else if (tag instanceof RegExp) {
+        _tags_ = '*';
+        break;
+        // TODO:后期添加支持判断字符串是否为正则
+      } else {
+        _tags_.push(tag);
+      }
+    }
+  } else if (tags) {
+    _tags_ = [tags as unknown as string];
+  }
+  return _tags_ as '*';
+};
+
+/**
+ * 通过 apifox 获取 openapi 文档
+ * @param params {object}
+ * @param params.projectId {string} 项目 id
+ * @param params.locale {string} 语言
+ * @param params.apifoxVersion {string} apifox 版本 目前固定为 2024-03-28 可通过 https://api.apifox.com/v1/versions 获取最新版本
+ * @returns
+ */
+const getSchemaByApifox = async ({
+  projectId,
+  locale = 'zh-CN',
+  apifoxVersion = '2024-03-28',
+  includeTags,
+  excludeTags = [],
+  apifoxToken,
+}: GetSchemaByApifoxProps): Promise<OpenAPI.Document | null> => {
+  try {
+    const body: APIFoxBody = {
+      scope: {
+        excludeTags,
+      },
+      options: {
+        includeApifoxExtensionProperties: false,
+        addFoldersToTags: false,
+      },
+      oasVersion: '3.0',
+      exportFormat: 'JSON',
+    };
+    const tags = getApifoxIncludeTags(includeTags);
+    if (tags === '*') {
+      body.scope.type = 'ALL';
+    } else {
+      body.scope.type = 'SELECTED_TAGS';
+      body.scope.includeTags = tags;
+    }
+    const res = await axios.post(
+      `https://api.apifox.com/v1/projects/${projectId}/export-openapi?locale=${locale}`,
+      {},
+      {
+        headers: {
+          'X-Apifox-Api-Version': apifoxVersion,
+          Authorization: `Bearer ${apifoxToken}`,
+        },
+      }
+    );
+    return res.data as OpenAPI.Document;
+  } catch (error) {
+    logError('fetch openapi error:', error);
+    return null;
+  }
 };
 
 async function getSchema(
@@ -97,6 +181,16 @@ function converterSwaggerToOpenApi(swagger: OpenAPI.Document) {
     );
   });
 }
+
+export const getOpenAPIConfigByApifox = async (
+  props: GetSchemaByApifoxProps
+) => {
+  const schema = await getSchemaByApifox(props);
+  if (!schema) {
+    return;
+  }
+  return await parseSwaggerOrOpenapi(schema);
+};
 
 export const getOpenAPIConfig = async (
   schemaPath: string,

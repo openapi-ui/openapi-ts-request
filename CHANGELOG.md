@@ -1,5 +1,57 @@
 # openapi-ts-request
 
+## 1.2.0
+
+### Minor Changes
+
+- [#224](https://github.com/openapi-ui/openapi-ts-request/pull/224) [`8d35f62`](https://github.com/openapi-ui/openapi-ts-request/commit/8d35f62867997d23d0b1ac7771db3976d6179bae) Thanks [@sabernagato](https://github.com/sabernagato)! - parse enum description to generate enum label
+
+### Patch Changes
+
+- [#225](https://github.com/openapi-ui/openapi-ts-request/pull/225) [`08ba109`](https://github.com/openapi-ui/openapi-ts-request/commit/08ba109a2fb2285ee60cb2610517d6bd07b18f3f) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - perf: perf display number enum label
+
+- [#225](https://github.com/openapi-ui/openapi-ts-request/pull/225) [`39d2de9`](https://github.com/openapi-ui/openapi-ts-request/commit/39d2de9a6d277f202173d4eeeeda02e00db346c1) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - docs: fix customType hook api
+
+## 1.1.2
+
+### Patch Changes
+
+- [#172](https://github.com/openapi-ui/openapi-ts-request/pull/172) [`5674dda`](https://github.com/openapi-ui/openapi-ts-request/commit/5674dda35d0ce0ceefd25bc7f5ba58e6c3f09020) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - fix: fix custom reactQuery queryOptions type
+
+## 1.1.1
+
+### Patch Changes
+
+- [#170](https://github.com/openapi-ui/openapi-ts-request/pull/170) [`2b55838`](https://github.com/openapi-ui/openapi-ts-request/commit/2b55838474ac3c24ba08a66ce1b7759a97fa313e) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - fix: fix cosmiconfig TypeScriptLoader
+
+## 1.1.0
+
+### Minor Changes
+
+- [#167](https://github.com/openapi-ui/openapi-ts-request/pull/167) [`f2ae8da`](https://github.com/openapi-ui/openapi-ts-request/commit/f2ae8da962d99999a0fc5de7438cd8165eb31d76) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - feat: support vue-query
+
+## 1.0.1
+
+### Patch Changes
+
+- [#161](https://github.com/openapi-ui/openapi-ts-request/pull/161) [`5230b8d`](https://github.com/openapi-ui/openapi-ts-request/commit/5230b8dcd076099c80db160c48501f884026c17a) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - fix: fix npx default params lose
+
+## 1.0.0
+
+### Major Changes
+
+- [#155](https://github.com/openapi-ui/openapi-ts-request/pull/155) [`a553cc1`](https://github.com/openapi-ui/openapi-ts-request/commit/a553cc1b1e66d92641711c68c309bf53c3f3243a) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - refactor: refactor client request params to adapt support react-query
+
+### Minor Changes
+
+- [#155](https://github.com/openapi-ui/openapi-ts-request/pull/155) [`015f573`](https://github.com/openapi-ui/openapi-ts-request/commit/015f5739b74c697fea0d71c2bde6d56eea3d627b) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - feat: support generate react-query
+
+- [#155](https://github.com/openapi-ui/openapi-ts-request/pull/155) [`8028361`](https://github.com/openapi-ui/openapi-ts-request/commit/8028361485c03735c76e0ead9a42b7a168c1aeb1) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - feat: support generate JavaScript
+
+### Patch Changes
+
+- [#155](https://github.com/openapi-ui/openapi-ts-request/pull/155) [`323e394`](https://github.com/openapi-ui/openapi-ts-request/commit/323e394350c1fd85f032985ad297da5f206ee6a6) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - perf: perf translate multiple Chinese tag into English tag
+
 ## 0.13.4
 
 ### Patch Changes

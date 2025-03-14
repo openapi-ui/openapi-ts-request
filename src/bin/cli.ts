@@ -1,35 +1,28 @@
 #!/usr/bin/env node
 import chalk from 'chalk';
 import { program } from 'commander';
-import { cosmiconfigSync } from 'cosmiconfig';
-import { TypeScriptLoader } from 'cosmiconfig-typescript-loader';
 
 import { GenerateServiceProps, generateService } from '../index';
+import { readConfig } from '../readConfig';
 
+// TODO: 准备将这里的opts放到index中一起, 只需要openapi一个命令, 取消openapi-ts-request命令, 然后处理tsconfig处理
 program
   .option('-u, --unique-key <uniqueKey>', '唯一标识 uniqueKey')
-  .option('-f, --file <filePath>', '文件路径 filePath');
+  .option('-fn, --fileName <fileName>', '文件名 fileName')
+  .option('-fp, --filePath <filePath>', '文件路径 filePath');
+
 program.parse();
 const options = program.opts();
 
-let filePath: string = options.file as string;
-if (!filePath) {
-  filePath = 'openapi-ts-request';
-}
-const explorerSync = cosmiconfigSync(
-  filePath.replace('.config', '').replace('.ts', ''),
-  {
-    loaders: {
-      '.ts': TypeScriptLoader(),
-    },
-  }
-);
-
-const config = explorerSync.search()?.config as
-  | GenerateServiceProps
-  | GenerateServiceProps[];
-
 async function run() {
+  const config = await readConfig<
+    GenerateServiceProps | GenerateServiceProps[]
+  >({
+    fallbackName: 'openapi-ts-request',
+    filePath: options.filePath as string,
+    fileName: options.fileName as undefined,
+  });
+
   try {
     const tasks = [];
     if (config) {
@@ -42,7 +35,6 @@ async function run() {
         );
       }
       for (const config of configs) {
-        // await generateService(config);
         tasks.push(generateService(config));
       }
       const results = await Promise.allSettled(tasks);

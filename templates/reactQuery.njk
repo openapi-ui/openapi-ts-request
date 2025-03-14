@@ -2,10 +2,11 @@
   /* eslint-disable */
   // @ts-ignore
 {% endif -%}
-import { queryOptions, useMutation } from '@tanstack/react-query';
+import { queryOptions, useMutation } from '{{ reactQueryModePackageName }}';
 {%- if genType === "ts" %}
-  import type { DefaultError } from '@tanstack/react-query';
-{% endif %}
+  import type { DefaultError } from '{{ reactQueryModePackageName }}';
+{% endif -%}
+{{ requestImportStatement }}
 
 import * as apis from './{{ className }}';
 {%- if genType === "ts" %}
@@ -90,10 +91,18 @@ import * as apis from './{{ className }}';
       const response = useMutation({
         mutationFn: apis.{{ api.functionName }},
         onSuccess(data{{ (": " + api.response.type) | safe if genType === "ts" }}) {
-          onSuccess?.(data);
+          {% if genType === "ts" %}
+            onSuccess?.(data);
+          {% else %}
+            onSuccess && onSuccess(data);
+          {% endif %}
         },
         onError(error) {
-          onError?.(error);
+          {% if genType === "ts" %}
+            onError?.(error);
+          {% else %}
+            onError && onError(error);
+          {% endif %}
         }
       })
 

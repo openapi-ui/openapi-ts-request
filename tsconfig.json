@@ -20,6 +20,7 @@
     "dist",
     "**/__tests__",
     "**/__test__",
-    "**/demo"
+    "**/demo",
+    "openapi-ts-request.config.ts"
   ]
 }

@@ -1,0 +1,226 @@
+import {
+  type EnumDeclarationStructure,
+  type FunctionDeclarationOverloadStructure,
+  type FunctionDeclarationStructure,
+  type ImportDeclarationStructure,
+  type InterfaceDeclarationStructure,
+  Project,
+  type SourceFile,
+  type TypeAliasDeclarationStructure,
+  type VariableStatementStructure,
+} from 'ts-morph';
+import * as ts from 'typescript';
+
+import { type MergeOption, MergeRule, type MergerOptions } from './type';
+
+export class Merger {
+  #project: Project;
+  #sourceFile: SourceFile;
+  #mergeRule: MergeRule;
+  #mergedFile: SourceFile;
+  #sourceCode: string;
+  #leadingCommentRanges: string[] = [];
+  constructor({
+    srcPath,
+    source,
+    mergeRule = MergeRule.RIGHT,
+    projectOptions = {},
+  }: MergerOptions) {
+    this.#project = new Project(projectOptions);
+    if (srcPath) {
+      this.#sourceFile = this.#project.addSourceFileAtPath(srcPath);
+      this.#sourceCode = this.#sourceFile.getFullText().trim();
+    } else if (source) {
+      this.#sourceCode = source.trim();
+      this.#sourceFile = this.#project.createSourceFile('_source_.ts', source);
+    }
+    try {
+      if (this.#sourceCode) {
+        this.#leadingCommentRanges = ts
+          .getLeadingCommentRanges(this.#sourceCode, 0)
+          .map((range) => {
+            return this.#sourceCode.slice(range.pos, range.end);
+          });
+      }
+    } catch (error) {
+      // console.log(error, '>>>');
+    }
+    this.#mergeRule = mergeRule;
+    this.#mergedFile = this.#project.createSourceFile('_merged_.ts');
+  }
+
+  #mergeType(destFile: SourceFile) {
+    const typeMap = new Map<string, TypeAliasDeclarationStructure>();
+    this.#sourceFile.getTypeAliases().forEach((t) => {
+      const tName = t.getName();
+      const tStructure = t.getStructure();
+      typeMap.set(tName, tStructure);
+    });
+    destFile.getTypeAliases().forEach((t) => {
+      const tName = t.getName();
+      if (typeMap.has(tName)) {
+        if (this.#mergeRule === MergeRule.RIGHT) {
+          const tStructure = t.getStructure();
+          typeMap.set(tName, tStructure);
+        }
+      } else {
+        const tStructure = t.getStructure();
+        typeMap.set(tName, tStructure);
+      }
+    });
+    Array.from(typeMap.values()).forEach((tStructure) => {
+      this.#mergedFile.addTypeAlias(tStructure);
+    });
+  }
+
+  #mergeEnums(destFile: SourceFile) {
+    const enumMap = new Map<string, EnumDeclarationStructure>();
+    this.#sourceFile.getEnums().forEach((e) => {
+      const eName = e.getName();
+      const eStructure = e.getStructure();
+      enumMap.set(eName, eStructure);
+    });
+    destFile.getEnums().forEach((e) => {
+      const eName = e.getName();
+      if (enumMap.has(eName)) {
+        if (this.#mergeRule === MergeRule.RIGHT) {
+          const eStructure = e.getStructure();
+          enumMap.set(eName, eStructure);
+        }
+      } else {
+        const eStructure = e.getStructure();
+        enumMap.set(eName, eStructure);
+      }
+    });
+    Array.from(enumMap.values()).forEach((eStructure) => {
+      this.#mergedFile.addEnum(eStructure);
+    });
+  }
+
+  #mergeInterfaces(destFile: SourceFile) {
+    const interfaceMap = new Map<string, InterfaceDeclarationStructure>();
+    this.#sourceFile.getInterfaces().forEach((i) => {
+      const iName = i.getName();
+      const iStructure = i.getStructure();
+      interfaceMap.set(iName, iStructure);
+    });
+    destFile.getInterfaces().forEach((i) => {
+      const iName = i.getName();
+      if (interfaceMap.has(iName)) {
+        if (this.#mergeRule === MergeRule.RIGHT) {
+          const iStructure = i.getStructure();
+          interfaceMap.set(iName, iStructure);
+        }
+      } else {
+        const iStructure = i.getStructure();
+        interfaceMap.set(iName, iStructure);
+      }
+    });
+    Array.from(interfaceMap.values()).forEach((iStructure) => {
+      this.#mergedFile.addInterface(iStructure);
+    });
+  }
+
+  #mergeFunctions(destFile: SourceFile) {
+    const functionMap = new Map<
+      string,
+      FunctionDeclarationStructure | FunctionDeclarationOverloadStructure
+    >();
+    this.#sourceFile.getFunctions().forEach((f) => {
+      const fName = f.getName();
+      const fStructure = f.getStructure();
+      functionMap.set(fName, fStructure);
+    });
+    destFile.getFunctions().forEach((f) => {
+      const fName = f.getName();
+      if (functionMap.has(fName)) {
+        if (this.#mergeRule === MergeRule.RIGHT) {
+          const fStructure = f.getStructure();
+          functionMap.set(fName, fStructure);
+        }
+      } else {
+        const fStructure = f.getStructure();
+        functionMap.set(fName, fStructure);
+      }
+    });
+    Array.from(functionMap.values()).forEach((fStructure) => {
+      this.#mergedFile.addFunction(fStructure as FunctionDeclarationStructure);
+    });
+  }
+
+  #mergeVariables(destFile: SourceFile) {
+    const variableSet = new Map<string, VariableStatementStructure>();
+    this.#sourceFile.getVariableStatements().forEach((v) => {
+      const vStructure = v.getStructure();
+      const vName = vStructure.declarations[0]?.name;
+      variableSet.set(vName, vStructure);
+    });
+    destFile.getVariableStatements().forEach((v) => {
+      const vStructure = v.getStructure();
+      const vName = vStructure.declarations[0]?.name;
+      if (variableSet.has(vName)) {
+        if (this.#mergeRule === MergeRule.RIGHT) {
+          variableSet.set(vName, vStructure);
+        }
+      } else {
+        const vStructure = v.getStructure();
+        variableSet.set(vName, vStructure);
+      }
+    });
+    Array.from(variableSet.values()).forEach((vStructure) => {
+      this.#mergedFile.addVariableStatement(vStructure);
+    });
+  }
+
+  #mergeImports(destFile: SourceFile) {
+    const importMap = new Map<string, ImportDeclarationStructure>();
+    this.#sourceFile.getImportDeclarations().forEach((i) => {
+      const iStructure = i.getStructure();
+      importMap.set(iStructure.moduleSpecifier, iStructure);
+    });
+    destFile.getImportDeclarations().forEach((i) => {
+      const iStructure = i.getStructure();
+      const iModuleSpecifier = iStructure.moduleSpecifier;
+      if (importMap.has(iModuleSpecifier)) {
+        if (this.#mergeRule === MergeRule.RIGHT) {
+          importMap.set(iModuleSpecifier, iStructure);
+        }
+      } else {
+        importMap.set(iModuleSpecifier, iStructure);
+      }
+    });
+    Array.from(importMap.values()).forEach((iStructure) => {
+      this.#mergedFile.addImportDeclaration(iStructure);
+    });
+  }
+
+  public merge({ srcPath, source }: MergeOption) {
+    let destFile: SourceFile;
+    if (srcPath) {
+      destFile = this.#project.addSourceFileAtPath(srcPath);
+    } else if (source) {
+      if (!source.trim()) {
+        return this.#sourceCode;
+      }
+      destFile = this.#project.createSourceFile('_dest_.ts', source);
+    }
+    if (!this.#sourceCode) {
+      return destFile.getFullText();
+    }
+    const destCode = destFile.getFullText().trim();
+    if (this.#sourceCode === destCode) {
+      return this.#sourceCode;
+    }
+    this.#mergeImports(destFile);
+    this.#mergeVariables(destFile);
+    this.#mergeType(destFile);
+    this.#mergeEnums(destFile);
+    this.#mergeInterfaces(destFile);
+    this.#mergeFunctions(destFile);
+    const leadingComment = this.#leadingCommentRanges.join('\n');
+    if (leadingComment) {
+      return `${leadingComment}\n${this.#mergedFile.getFullText()}`;
+    }
+    return this.#mergedFile.getFullText();
+  }
+}

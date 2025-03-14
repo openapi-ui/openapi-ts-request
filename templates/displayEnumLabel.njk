@@ -3,7 +3,7 @@
 import * as {{ namespace }} from './{{ interfaceFileName }}';
 
 {% for type in list -%}
-export function {{ type.displayLabelFuncName }}(field: {{ namespace }}.I{{ type.typeName }}) {
+export function {{ type.displayLabelFuncName }}(field: {{ namespace }}.{{ type.typeName }}) {
   return ({{ type.enumLabelType }})[field]
 }
 

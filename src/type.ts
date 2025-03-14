@@ -1,5 +1,20 @@
 import { OpenAPIV3 } from 'openapi-types';
 
+import {
+  PriorityRule,
+  ReactQueryMode,
+  SchemaObjectFormat,
+  SchemaObjectType,
+} from './config';
+
+export type MutuallyExclusive<T> = {
+  [K in keyof T]: { [P in K]: T[K] } & { [P in Exclude<keyof T, K>]?: never };
+}[keyof T];
+
+export type MutuallyExclusiveWithFallback<T, N> = {
+  [K in keyof T]: { [P in K]: T[K] } & { [P in Exclude<keyof T, K>]?: N };
+}[keyof T];
+
 type Modify<T, R> = Omit<T, keyof R> & R;
 
 type ICustomBaseSchemaObject = {
@@ -81,40 +96,7 @@ export type ContentObject = {
   [media: string]: OpenAPIV3.MediaTypeObject;
 };
 
-export enum SchemaObjectFormat {
-  int32 = 'int32',
-  int64 = 'int64',
-  float = 'float',
-  double = 'double',
-  byte = 'byte',
-  binary = 'binary',
-  date = 'date',
-  dateTime = 'date-time',
-  password = 'password',
-  base64 = 'base64',
-}
-
 export type ISchemaObjectFormat = keyof typeof SchemaObjectFormat;
-
-export enum SchemaObjectType {
-  array = 'array',
-  stringArray = 'string[]',
-  boolean = 'boolean',
-  object = 'object',
-  number = 'number',
-  string = 'string',
-  integer = 'integer',
-  enum = 'enum',
-  null = 'null',
-  union = 'union',
-  file = 'file',
-}
-
-export enum PriorityRule {
-  include = 'include',
-  exclude = 'exclude',
-  both = 'both',
-}
 
 export type GenerateRegExp = {
   includeTags: (string | RegExp)[];
@@ -124,3 +106,38 @@ export type GenerateRegExp = {
 };
 
 export type ISchemaObjectType = keyof typeof SchemaObjectType;
+
+export type IReactQueryMode = keyof typeof ReactQueryMode;
+
+export type IPriorityRule = keyof typeof PriorityRule;
+
+export type ReadConfigOptions = MutuallyExclusiveWithFallback<
+  {
+    fileName: string;
+    filePath: string;
+  },
+  undefined
+> & { fallbackName: string };
+
+export interface APIFoxBody {
+  scope: {
+    type?: 'ALL' | 'SELECTED_TAGS';
+    includeTags?: string[];
+    excludeTags?: string[];
+  };
+  options?: {
+    includeApifoxExtensionProperties: boolean;
+    addFoldersToTags: boolean;
+  };
+  oasVersion?: '2.0' | '3.0' | '3.1';
+  exportFormat?: 'JSON' | 'YAML';
+  environmentIds?: string[];
+}
+export interface GetSchemaByApifoxProps {
+  projectId: string;
+  locale?: string;
+  apifoxVersion?: string;
+  includeTags?: (string | RegExp)[];
+  excludeTags?: string[];
+  apifoxToken: string;
+}
