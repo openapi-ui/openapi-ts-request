@@ -14,6 +14,12 @@ import * as ts from 'typescript';
 
 import { type MergeOption, MergeRule, type MergerOptions } from './type';
 
+const sortMapByKey = <T = unknown>(map: Map<string, T>) => {
+  return Array.from(map.entries())
+    .sort((a, b) => a[0].localeCompare(b[0]))
+    .map(([k, v]) => ({ k, v }));
+};
+
 export class Merger {
   #project: Project;
   #sourceFile: SourceFile;
@@ -69,6 +75,9 @@ export class Merger {
         classMap.set(cName, cStructure);
       }
     });
+    sortMapByKey<ClassDeclarationStructure>(classMap).forEach(({ v }) => {
+      this.#mergedFile.addClass(v);
+    });
   }
 
   #mergeType(destFile: SourceFile) {
@@ -90,8 +99,9 @@ export class Merger {
         typeMap.set(tName, tStructure);
       }
     });
-    Array.from(typeMap.values()).forEach((tStructure) => {
-      this.#mergedFile.addTypeAlias(tStructure);
+
+    sortMapByKey<TypeAliasDeclarationStructure>(typeMap).forEach(({ v }) => {
+      this.#mergedFile.addTypeAlias(v);
     });
   }
 
@@ -114,8 +124,9 @@ export class Merger {
         enumMap.set(eName, eStructure);
       }
     });
-    Array.from(enumMap.values()).forEach((eStructure) => {
-      this.#mergedFile.addEnum(eStructure);
+
+    sortMapByKey<EnumDeclarationStructure>(enumMap).forEach(({ v }) => {
+      this.#mergedFile.addEnum(v);
     });
   }
 
@@ -138,9 +149,12 @@ export class Merger {
         interfaceMap.set(iName, iStructure);
       }
     });
-    Array.from(interfaceMap.values()).forEach((iStructure) => {
-      this.#mergedFile.addInterface(iStructure);
-    });
+
+    sortMapByKey<InterfaceDeclarationStructure>(interfaceMap).forEach(
+      ({ v }) => {
+        this.#mergedFile.addInterface(v);
+      }
+    );
   }
 
   #mergeFunctions(destFile: SourceFile) {
@@ -165,8 +179,11 @@ export class Merger {
         functionMap.set(fName, fStructure);
       }
     });
-    Array.from(functionMap.values()).forEach((fStructure) => {
-      this.#mergedFile.addFunction(fStructure as FunctionDeclarationStructure);
+
+    sortMapByKey<
+      FunctionDeclarationStructure | FunctionDeclarationOverloadStructure
+    >(functionMap).forEach(({ v }) => {
+      this.#mergedFile.addFunction(v as FunctionDeclarationStructure);
     });
   }
 
@@ -189,8 +206,8 @@ export class Merger {
         variableSet.set(vName, vStructure);
       }
     });
-    Array.from(variableSet.values()).forEach((vStructure) => {
-      this.#mergedFile.addVariableStatement(vStructure);
+    sortMapByKey<VariableStatementStructure>(variableSet).forEach(({ v }) => {
+      this.#mergedFile.addVariableStatement(v);
     });
   }
 
@@ -211,8 +228,9 @@ export class Merger {
         importMap.set(iModuleSpecifier, iStructure);
       }
     });
-    Array.from(importMap.values()).forEach((iStructure) => {
-      this.#mergedFile.addImportDeclaration(iStructure);
+
+    sortMapByKey<ImportDeclarationStructure>(importMap).forEach(({ v }) => {
+      this.#mergedFile.addImportDeclaration(v);
     });
   }
 

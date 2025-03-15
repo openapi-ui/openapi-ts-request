@@ -798,6 +798,7 @@ export default class ServiceGenerator {
     );
   }
 
+  // 生成方法名 functionName
   private getFunctionName(data: APIDataType) {
     // 获取路径相同部分
     const pathBasePrefix = getBasePrefix(keys(this.openAPIData.paths));
@@ -805,7 +806,7 @@ export default class ServiceGenerator {
     return this.config.hook && this.config.hook.customFunctionName
       ? this.config.hook.customFunctionName(data, pathBasePrefix)
       : camelCase(
-          `${genDefaultFunctionName(data.path, pathBasePrefix)}-${data.method}`
+          `${genDefaultFunctionName(data.path, pathBasePrefix)}-using-${data.method}`
         );
     // return this.config.hook && this.config.hook.customFunctionName
     //   ? this.config.hook.customFunctionName(data)

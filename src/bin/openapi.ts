@@ -110,7 +110,7 @@ function getPath(path: string) {
 
 async function run() {
   const cnf = await readConfig<GenerateServiceProps | GenerateServiceProps[]>({
-    fallbackName: 'openapi',
+    fallbackName: 'openapi-ts-request',
     filePath: params.configFilePath as string,
     fileName: params.configFileName as undefined,
   });
