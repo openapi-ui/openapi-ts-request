@@ -175,7 +175,7 @@ const genByTemp = ({
 };
 
 const genMockFiles = (mockFunction: string[]) => {
-  return prettierFile(` 
+  return prettierFile(`
 /* eslint-disable */
 // @ts-ignore
 import { Request, Response } from 'express';
@@ -254,7 +254,6 @@ export const mockGenerator = ({
         fs.mkdirSync(dirName);
       }
     }
-
     writeFile(
       mockFolder,
       `${file}.mock.ts`,

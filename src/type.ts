@@ -7,6 +7,14 @@ import {
   SchemaObjectType,
 } from './config';
 
+export type MutuallyExclusive<T> = {
+  [K in keyof T]: { [P in K]: T[K] } & { [P in Exclude<keyof T, K>]?: never };
+}[keyof T];
+
+export type MutuallyExclusiveWithFallback<T, N> = {
+  [K in keyof T]: { [P in K]: T[K] } & { [P in Exclude<keyof T, K>]?: N };
+}[keyof T];
+
 type Modify<T, R> = Omit<T, keyof R> & R;
 
 type ICustomBaseSchemaObject = {
@@ -102,3 +110,34 @@ export type ISchemaObjectType = keyof typeof SchemaObjectType;
 export type IReactQueryMode = keyof typeof ReactQueryMode;
 
 export type IPriorityRule = keyof typeof PriorityRule;
+
+export type ReadConfigOptions = MutuallyExclusiveWithFallback<
+  {
+    fileName: string;
+    filePath: string;
+  },
+  undefined
+> & { fallbackName: string };
+
+export interface APIFoxBody {
+  scope: {
+    type?: 'ALL' | 'SELECTED_TAGS';
+    includeTags?: string[];
+    excludeTags?: string[];
+  };
+  options?: {
+    includeApifoxExtensionProperties: boolean;
+    addFoldersToTags: boolean;
+  };
+  oasVersion?: '2.0' | '3.0' | '3.1';
+  exportFormat?: 'JSON' | 'YAML';
+  environmentIds?: string[];
+}
+export interface GetSchemaByApifoxProps {
+  projectId: string;
+  locale?: string;
+  apifoxVersion?: string;
+  includeTags?: (string | RegExp)[];
+  excludeTags?: string[];
+  apifoxToken: string;
+}

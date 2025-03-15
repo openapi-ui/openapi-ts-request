@@ -1,4 +1,11 @@
-import { OperationObject, ParameterObject, SchemaObject } from '../type';
+import type { ProjectOptions } from 'ts-morph';
+
+import {
+  type MutuallyExclusive,
+  OperationObject,
+  ParameterObject,
+  SchemaObject,
+} from '../type';
 import { TypescriptFileType } from './config';
 
 export type ITypescriptFileType = keyof typeof TypescriptFileType;
@@ -45,3 +52,20 @@ export interface ISchemaItem {
   typeName: string;
   type: string;
 }
+
+export enum MergeRule {
+  LEFT = 'left',
+  RIGHT = 'right',
+}
+
+export type MergeOption = MutuallyExclusive<{
+  source: string;
+  srcPath: string;
+}>;
+
+type MergerOptionProps = {
+  mergeRule: MergeRule;
+  projectOptions: ProjectOptions;
+};
+
+export type MergerOptions = MergeOption & Partial<MergerOptionProps>;

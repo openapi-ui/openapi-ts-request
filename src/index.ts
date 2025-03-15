@@ -6,6 +6,7 @@ import ServiceGenerator from './generator/serviceGenarator';
 import { APIDataType } from './generator/type';
 import {
   ComponentsObject,
+  type GetSchemaByApifoxProps,
   IPriorityRule,
   IReactQueryMode,
   OpenAPIObject,
@@ -16,6 +17,7 @@ import {
 import {
   getImportStatement,
   getOpenAPIConfig,
+  getOpenAPIConfigByApifox,
   translateChineseModuleNodeToEnglish,
 } from './util';
 
@@ -144,13 +146,17 @@ export type GenerateServiceProps = {
    */
   templatesFolder?: string;
   /**
+   * apifox 配置
+   */
+  apifoxConfig?: GetSchemaByApifoxProps;
+  /**
    * 自定义 hook
    */
   hook?: {
     /** change open api data after constructor */
     afterOpenApiDataInited?: (openAPIData: OpenAPIObject) => OpenAPIObject;
     /** 自定义函数名称 */
-    customFunctionName?: (data: APIDataType) => string;
+    customFunctionName?: (data: APIDataType, prefix?: string) => string;
     /** 自定义类型名称 */
     customTypeName?: (data: APIDataType) => string;
     /** 自定义 options 默认值 */
@@ -216,6 +222,14 @@ export type GenerateServiceProps = {
       apiMethod: string
     ) => string[] | null;
   };
+  /**
+   * 请求超时时间
+   */
+  timeout?: number;
+  /**
+   * 唯一标识
+   */
+  uniqueKey?: string;
 };
 
 export async function generateService({
@@ -227,19 +241,27 @@ export async function generateService({
   authorization,
   isTranslateToEnglishTag,
   priorityRule = PriorityRule.include,
+  timeout = 60_000,
   reactQueryMode = ReactQueryMode.react,
+  apifoxConfig,
   ...rest
 }: GenerateServiceProps) {
-  if (!schemaPath) {
+  if (!schemaPath && !apifoxConfig) {
     return;
   }
+  let openAPI: OpenAPIObject | null = null;
+  if (apifoxConfig) {
+    openAPI = (await getOpenAPIConfigByApifox(apifoxConfig)) as OpenAPIObject;
+  }
+  if (schemaPath) {
+    openAPI = (await getOpenAPIConfig(
+      schemaPath,
+      authorization,
+      timeout
+    )) as OpenAPIObject;
+  }
 
-  const openAPI = (await getOpenAPIConfig(
-    schemaPath,
-    authorization
-  )) as OpenAPIObject;
-
-  if (isEmpty(openAPI)) {
+  if (!openAPI || isEmpty(openAPI)) {
     return;
   }
 
