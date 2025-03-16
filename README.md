@@ -211,6 +211,7 @@ $ openapi --help
     --isOnlyGenTypeScriptType <boolean> only generate typescript type (default: false)
     --isCamelCase <boolean>             camelCase naming of controller files and request client (default: true)
     --isSupportParseEnumDesc <boolean>  parse enum description to generate enum label (default: false)
+    -f, --full                          full replacement
     -h, --help                          display help for command
 ```
 
@@ -250,6 +251,7 @@ openapi --i ./spec.json --o ./apis
 | isSupportParseEnumDesc | 否 | boolean | false | 解析枚举描述生成枚举标签，格式参考：`系统用户角色:User(普通用户)=0,Agent(经纪人)=1,Admin(管理员)=2` |
 | hook | 否 | [Custom Hook](#Custom-Hook) | - | 自定义 hook |
 | apifoxConfig | 否 | [Apifox Config](#Apifox-Config) | - | apifox 配置 |
+| full | 否 | boolean | false | 是否全量替换 |
 
 ## 自定义 Hook
 

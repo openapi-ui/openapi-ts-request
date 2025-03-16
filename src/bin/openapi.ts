@@ -95,6 +95,7 @@ const params = program
     false
   )
   .option('-u, --unique-key <uniqueKey>', 'unique key')
+  .option('-f, --full <boolean>', 'full replacement', false)
   .parse(process.argv)
   .opts();
 

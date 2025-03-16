@@ -1,4 +1,5 @@
 import { existsSync, readFileSync } from 'fs';
+import { globSync } from 'glob';
 import {
   Dictionary,
   // camelCase,
@@ -17,6 +18,7 @@ import {
 import { minimatch } from 'minimatch';
 import nunjucks from 'nunjucks';
 import { join } from 'path';
+import { rimrafSync } from 'rimraf';
 
 import {
   PriorityRule,
@@ -254,6 +256,17 @@ export default class ServiceGenerator {
   }
 
   public genFile() {
+    if (this.config.full) {
+      try {
+        globSync(`${this.config.serversPath}/**/*`)
+          .filter((item) => !item.includes('_deperated'))
+          .forEach((item) => {
+            rimrafSync(item);
+          });
+      } catch (error) {
+        log(`🚥 api 生成失败: ${error}`);
+      }
+    }
     const isOnlyGenTypeScriptType = this.config.isOnlyGenTypeScriptType;
     const isGenJavaScript = this.config.isGenJavaScript;
     const reactQueryMode = this.config.reactQueryMode;
@@ -776,6 +789,9 @@ export default class ServiceGenerator {
         mergerProps = {
           source: '',
         };
+      }
+      if (this.config.full) {
+        return writeFile(this.config.serversPath, fileName, destCode);
       }
       const merger = new Merger(mergerProps);
       return writeFile(

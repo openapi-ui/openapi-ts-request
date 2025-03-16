@@ -230,6 +230,10 @@ export type GenerateServiceProps = {
    * 唯一标识
    */
   uniqueKey?: string;
+  /**
+   * 是否全量替换
+   */
+  full?: boolean;
 };
 
 export async function generateService({
@@ -244,6 +248,7 @@ export async function generateService({
   timeout = 60_000,
   reactQueryMode = ReactQueryMode.react,
   apifoxConfig,
+  full,
   ...rest
 }: GenerateServiceProps) {
   if (!schemaPath && !apifoxConfig) {
@@ -301,6 +306,7 @@ export async function generateService({
       isOnlyGenTypeScriptType: false,
       isCamelCase: true,
       isSupportParseEnumDesc: false,
+      full,
       ...rest,
     },
     openAPI

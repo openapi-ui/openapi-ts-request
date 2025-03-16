@@ -209,6 +209,7 @@ $ openapi --help
     --isOnlyGenTypeScriptType <boolean> only generate typescript type (default: false)
     --isCamelCase <boolean>             camelCase naming of controller files and request client (default: true)
     --isSupportParseEnumDesc <boolean>  parse enum description to generate enum label (default: false)
+    -f, --full                          full replacement
     -h, --help                          display help for command
 ```
 
@@ -247,7 +248,8 @@ openapi -i ./spec.json -o ./apis
 | isCamelCase | no | boolean | true | camelCase naming of controller files and request client |
 | isSupportParseEnumDesc | no | boolean | false | parse enum description to generate enum label, format example: `UserRole:User(Normal User)=0,Agent(Agent)=1,Admin(Administrator)=2` |
 | hook | no | [Custom Hook](#Custom-Hook) | - | custom hook |
-| apifoxConfig | 否 | [Apifox Config](#Apifox-Config) | - | apifox configs |
+| apifoxConfig | no | [Apifox Config](#Apifox-Config) | - | apifox configs |
+| full | no | boolean | false | full replacement |
 
 ## Custom Hook
 
