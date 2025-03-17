@@ -3,13 +3,25 @@ import { translate } from 'bing-translate-api';
 import http from 'http';
 import https from 'https';
 import * as yaml from 'js-yaml';
-import { camelCase, forEach, isObject, keys, map, uniq } from 'lodash';
+import {
+  camelCase as _camelCase_,
+  forEach,
+  isObject,
+  keys,
+  map,
+  uniq,
+} from 'lodash';
 import { readFileSync } from 'node:fs';
 import { OpenAPI, OpenAPIV2, OpenAPIV3 } from 'openapi-types';
 import converter from 'swagger2openapi';
 
-import log from './log';
-import { OpenAPIObject, OperationObject } from './type';
+import log, { logError } from './log';
+import {
+  type APIFoxBody,
+  type GetSchemaByApifoxProps,
+  OpenAPIObject,
+  OperationObject,
+} from './type';
 
 export const getImportStatement = (requestLibPath: string) => {
   if (requestLibPath) {
@@ -23,7 +35,90 @@ export const getImportStatement = (requestLibPath: string) => {
   return `import { request } from 'axios';`;
 };
 
-async function getSchema(schemaPath: string, authorization?: string) {
+const getApifoxIncludeTags = (tags?: (string | RegExp)[]): '*' | string[] => {
+  let _tags_: string | string[] = '*';
+  if (tags && Array.isArray(tags)) {
+    if (!tags.length) {
+      return '*';
+    }
+    _tags_ = [];
+    for (const tag of tags) {
+      if (typeof tag === 'string') {
+        if (tag === '*') {
+          _tags_ = '*';
+          break;
+        }
+      } else if (tag instanceof RegExp) {
+        _tags_ = '*';
+        break;
+        // TODO:后期添加支持判断字符串是否为正则
+      } else {
+        _tags_.push(tag);
+      }
+    }
+  } else if (tags) {
+    _tags_ = [tags as unknown as string];
+  }
+  return _tags_ as '*';
+};
+
+/**
+ * 通过 apifox 获取 openapi 文档
+ * @param params {object}
+ * @param params.projectId {string} 项目 id
+ * @param params.locale {string} 语言
+ * @param params.apifoxVersion {string} apifox 版本 目前固定为 2024-03-28 可通过 https://api.apifox.com/v1/versions 获取最新版本
+ * @returns
+ */
+const getSchemaByApifox = async ({
+  projectId,
+  locale = 'zh-CN',
+  apifoxVersion = '2024-03-28',
+  includeTags,
+  excludeTags = [],
+  apifoxToken,
+}: GetSchemaByApifoxProps): Promise<OpenAPI.Document | null> => {
+  try {
+    const body: APIFoxBody = {
+      scope: {
+        excludeTags,
+      },
+      options: {
+        includeApifoxExtensionProperties: false,
+        addFoldersToTags: false,
+      },
+      oasVersion: '3.0',
+      exportFormat: 'JSON',
+    };
+    const tags = getApifoxIncludeTags(includeTags);
+    if (tags === '*') {
+      body.scope.type = 'ALL';
+    } else {
+      body.scope.type = 'SELECTED_TAGS';
+      body.scope.includeTags = tags;
+    }
+    const res = await axios.post(
+      `https://api.apifox.com/v1/projects/${projectId}/export-openapi?locale=${locale}`,
+      {},
+      {
+        headers: {
+          'X-Apifox-Api-Version': apifoxVersion,
+          Authorization: `Bearer ${apifoxToken}`,
+        },
+      }
+    );
+    return res.data as OpenAPI.Document;
+  } catch (error) {
+    logError('fetch openapi error:', error);
+    return null;
+  }
+};
+
+async function getSchema(
+  schemaPath: string,
+  authorization?: string,
+  timeout = 60_000
+) {
   if (schemaPath.startsWith('http')) {
     const isHttps = schemaPath.startsWith('https:');
     const protocol = isHttps ? https : http;
@@ -37,6 +132,7 @@ async function getSchema(schemaPath: string, authorization?: string) {
         .get(schemaPath, {
           ...config,
           headers: { authorization },
+          timeout,
         })
         .then((res) => res.data as OpenAPI.Document);
 
@@ -93,11 +189,22 @@ function converterSwaggerToOpenApi(swagger: OpenAPI.Document) {
   });
 }
 
+export const getOpenAPIConfigByApifox = async (
+  props: GetSchemaByApifoxProps
+) => {
+  const schema = await getSchemaByApifox(props);
+  if (!schema) {
+    return;
+  }
+  return await parseSwaggerOrOpenapi(schema);
+};
+
 export const getOpenAPIConfig = async (
   schemaPath: string,
-  authorization?: string
+  authorization?: string,
+  timeout = 60_000
 ) => {
-  const schema = await getSchema(schemaPath, authorization);
+  const schema = await getSchema(schemaPath, authorization, timeout);
 
   if (!schema) {
     return;
@@ -201,3 +308,21 @@ export async function translateChineseModuleNodeToEnglish(
       });
   });
 }
+
+/**
+ * Converts a string to camelCase format, with an option to capitalize the first letter.
+ * 将字符串转换为驼峰格式，并可以选择将首字母大写。
+ *
+ * @param {string} str - The string to convert.
+ * @param {string} str - 要转换的字符串。
+ *
+ * @param {boolean} [upper=false] - Whether to capitalize the first letter of the resulting string.
+ * @param {boolean} [upper=false] - 是否将结果字符串的首字母大写。
+ *
+ * @returns {string} The camelCase formatted string, optionally with a capitalized first letter.
+ * @returns {string} 返回驼峰格式的字符串，可选择首字母大写。
+ */
+export const camelCase = (str: string, upper: boolean = false) => {
+  const res = _camelCase_(str);
+  return upper ? res.charAt(0).toUpperCase() + res.slice(1) : res;
+};

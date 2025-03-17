@@ -5,17 +5,23 @@ import { join } from 'path';
 
 import * as pkg from '../../package.json';
 import { GenerateServiceProps, generateService } from '../index';
+import { logError } from '../log';
+import { readConfig } from '../readConfig';
 import { IPriorityRule, IReactQueryMode } from '../type';
 
 const params = program
   .name('openapi')
   .usage('[options]')
   .version(pkg.version)
-  .requiredOption(
-    '-i, --input <string>',
-    'OpenAPI specification, can be a path, url (required)'
-  )
-  .requiredOption('-o, --output <string>', 'output directory (required)')
+  // .requiredOption(
+  //   '-i, --input <string>',
+  //   'OpenAPI specification, can be a path, url (required)'
+  // )
+  // .requiredOption('-o, --output <string>', 'output directory (required)')
+  .option('-i, --input <string>', 'OpenAPI specification, can be a path, url')
+  .option('-o, --output <string>', 'output directory')
+  .option('-cfn, --configFileName <configFileName>', 'config file name')
+  .option('-cfp, --configFilePath <configFilePath>', 'config file path')
   .option(
     '--requestLibPath <string>',
     'custom request lib path, for example: "@/request", "node-fetch" (default: "axios")'
@@ -88,6 +94,8 @@ const params = program
     'parse enum description to generate enum label',
     false
   )
+  .option('-u, --unique-key <uniqueKey>', 'unique key')
+  .option('-f, --full <boolean>', 'full replacement', false)
   .parse(process.argv)
   .opts();
 
@@ -102,49 +110,88 @@ function getPath(path: string) {
 }
 
 async function run() {
+  const cnf = await readConfig<GenerateServiceProps | GenerateServiceProps[]>({
+    fallbackName: 'openapi-ts-request',
+    filePath: params.configFilePath as string,
+    fileName: params.configFileName as undefined,
+  });
   try {
-    const input = getPath(params.input as string);
-    const output = getPath(params.output as string);
+    if (cnf) {
+      const tasks = [];
+      let configs: GenerateServiceProps[] = Array.isArray(cnf) ? cnf : [cnf];
+      if (params.uniqueKey) {
+        configs = configs.filter(
+          (config) => config.uniqueKey === params.uniqueKey
+        );
+      }
+      for (const config of configs) {
+        tasks.push(generateService(config));
+      }
+      const results = await Promise.allSettled(tasks);
+      const errors: PromiseRejectedResult[] = results.filter(
+        (result) => result.status === 'rejected'
+      );
+      let errorMsg = '';
+      for (let i = 0; i < errors.length; i++) {
+        const error = errors[i];
+        const cnf = configs[i];
+        errorMsg += `${cnf.uniqueKey}${cnf.uniqueKey && ':'}${error.reason}\n`;
+      }
+      if (errorMsg) {
+        logError(errorMsg);
+        process.exit(1);
+      }
+    } else {
+      if (!params.input || !params.output) {
+        logError(
+          'Please provide either input/output options or a configuration file path and name.'
+        );
+        process.exit(1);
+      }
+      const input = getPath(params.input as string);
+      const output = getPath(params.output as string);
 
-    const options: GenerateServiceProps = {
-      schemaPath: input,
-      serversPath: output,
-      requestLibPath: params.requestLibPath as string,
-      enableLogging: JSON.parse(params.enableLogging as string) === true,
-      priorityRule: params.priorityRule as IPriorityRule,
-      includeTags: params.includeTags as string[],
-      includePaths: params.includePaths as string[],
-      excludeTags: params.excludeTags as string[],
-      excludePaths: params.excludePaths as string[],
-      requestOptionsType: params.requestOptionsType as string,
-      apiPrefix: params.apiPrefix as string,
-      isGenReactQuery: JSON.parse(params.isGenReactQuery as string) === true,
-      reactQueryMode: params.reactQueryMode as IReactQueryMode,
-      isGenJavaScript: JSON.parse(params.isGenJavaScript as string) === true,
-      isDisplayTypeLabel:
-        JSON.parse(params.isDisplayTypeLabel as string) === true,
-      isGenJsonSchemas: JSON.parse(params.isGenJsonSchemas as string) === true,
-      mockFolder: params.mockFolder as string,
-      authorization: params.authorization as string,
-      nullable: JSON.parse(params.nullable as string) === true,
-      isTranslateToEnglishTag:
-        JSON.parse(params.isTranslateToEnglishTag as string) === true,
-      isOnlyGenTypeScriptType:
-        JSON.parse(params.isOnlyGenTypeScriptType as string) === true,
-      isCamelCase: JSON.parse(params.isCamelCase as string) === true,
-      isSupportParseEnumDesc:
-        JSON.parse(params.isSupportParseEnumDesc as string) === true,
-    };
+      const options: GenerateServiceProps = {
+        schemaPath: input,
+        serversPath: output,
+        requestLibPath: params.requestLibPath as string,
+        enableLogging: JSON.parse(params.enableLogging as string) === true,
+        priorityRule: params.priorityRule as IPriorityRule,
+        includeTags: params.includeTags as string[],
+        includePaths: params.includePaths as string[],
+        excludeTags: params.excludeTags as string[],
+        excludePaths: params.excludePaths as string[],
+        requestOptionsType: params.requestOptionsType as string,
+        apiPrefix: params.apiPrefix as string,
+        isGenReactQuery: JSON.parse(params.isGenReactQuery as string) === true,
+        reactQueryMode: params.reactQueryMode as IReactQueryMode,
+        isGenJavaScript: JSON.parse(params.isGenJavaScript as string) === true,
+        isDisplayTypeLabel:
+          JSON.parse(params.isDisplayTypeLabel as string) === true,
+        isGenJsonSchemas:
+          JSON.parse(params.isGenJsonSchemas as string) === true,
+        mockFolder: params.mockFolder as string,
+        authorization: params.authorization as string,
+        nullable: JSON.parse(params.nullable as string) === true,
+        isTranslateToEnglishTag:
+          JSON.parse(params.isTranslateToEnglishTag as string) === true,
+        isOnlyGenTypeScriptType:
+          JSON.parse(params.isOnlyGenTypeScriptType as string) === true,
+        isCamelCase: JSON.parse(params.isCamelCase as string) === true,
+        isSupportParseEnumDesc:
+          JSON.parse(params.isSupportParseEnumDesc as string) === true,
+      };
 
-    await generateService(
-      pickBy(
-        options,
-        (value) => value !== null && value !== undefined && value !== ''
-      ) as GenerateServiceProps
-    );
-    process.exit(0);
+      await generateService(
+        pickBy(
+          options,
+          (value) => value !== null && value !== undefined && value !== ''
+        ) as GenerateServiceProps
+      );
+      process.exit(0);
+    }
   } catch (error) {
-    console.error('this is error: ', error);
+    logError(error);
     process.exit(1);
   }
 }
