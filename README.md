@@ -299,7 +299,7 @@ export declare function patchSchema<T extends object>(
 
 - 当前命名规范修改
 - 当前版本已完成增量修改, 不会影响以前
-- 可以弃用`openapi-ts`命令, 直接使用`openapi`, 只不过默认文件名称从openapi-ts-request.config.ts改成了openapi.config.ts, 不过可以使用 `openapi -cfn open-ts-request`继续沿用以前的配置文件
+- 可以弃用`openapi-ts`命令, 直接使用`openapi`
 
 ### 沿用旧版本命名规范配置如下
 

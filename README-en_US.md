@@ -297,7 +297,7 @@ it is recommended to use a custom request function to adapt to uniapp. you can a
 
 - Current naming convention changes
 - Incremental changes have been made to the current version and will not affect previous versions.
-- The `openapi-ts` command can be deprecated to use `openapi`, but the default file name is changed from openapi-ts-request.config.ts to openapi.config.ts, but this can be continued with `openapi -cfn open-ts-request`. The previous configuration file
+- The `openapi-ts` command can be deprecated to use `openapi`
 
 ### The configuration follows the naming convention of the old version as follows
 
