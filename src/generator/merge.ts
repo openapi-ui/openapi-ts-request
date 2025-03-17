@@ -1,6 +1,7 @@
 import {
   type ClassDeclarationStructure,
   type EnumDeclarationStructure,
+  type ExportDeclarationStructure,
   type FunctionDeclarationOverloadStructure,
   type FunctionDeclarationStructure,
   type ImportDeclarationStructure,
@@ -20,6 +21,7 @@ const sortMapByKey = <T = unknown>(map: Map<string, T>) => {
     .map(([k, v]) => ({ k, v }));
 };
 
+// TODO:需要处理export * from '...' 的情况
 export class Merger {
   #project: Project;
   #sourceFile: SourceFile;
@@ -54,6 +56,26 @@ export class Merger {
     }
     this.#mergeRule = mergeRule;
     this.#mergedFile = this.#project.createSourceFile('_merged_.ts');
+  }
+  #mergeExport(destFile: SourceFile) {
+    const exportMap = new Map<string, ExportDeclarationStructure>();
+    this.#sourceFile.getExportDeclarations()?.forEach((e) => {
+      if (e.isNamespaceExport()) {
+        const eStructure = e.getStructure();
+        exportMap.set(eStructure.moduleSpecifier, eStructure);
+      }
+    });
+    destFile.getExportDeclarations()?.forEach((e) => {
+      if (e.isNamespaceExport()) {
+        const eStructure = e.getStructure();
+        if (exportMap.has(eStructure.moduleSpecifier)) {
+          exportMap.set(eStructure.moduleSpecifier, eStructure);
+        }
+      }
+    });
+    sortMapByKey<ExportDeclarationStructure>(exportMap).forEach(({ v }) => {
+      this.#mergedFile.addExportDeclaration(v);
+    });
   }
 
   #mergeClass(destFile: SourceFile) {
@@ -258,6 +280,7 @@ export class Merger {
     this.#mergeEnums(destFile);
     this.#mergeInterfaces(destFile);
     this.#mergeFunctions(destFile);
+    this.#mergeExport(destFile);
     const leadingComment = this.#leadingCommentRanges.join('\n');
     if (leadingComment) {
       return `${leadingComment}\n${this.#mergedFile.getFullText()}`;

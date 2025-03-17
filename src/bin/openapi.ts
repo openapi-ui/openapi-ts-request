@@ -110,6 +110,50 @@ function getPath(path: string) {
 }
 
 async function run() {
+  // TODO: 如果同时提供了 input 和 output，则使用 input 和 output
+  if (params.input && params.output) {
+    const input = getPath(params.input as string);
+    const output = getPath(params.output as string);
+
+    const options: GenerateServiceProps = {
+      schemaPath: input,
+      serversPath: output,
+      requestLibPath: params.requestLibPath as string,
+      enableLogging: JSON.parse(params.enableLogging as string) === true,
+      priorityRule: params.priorityRule as IPriorityRule,
+      includeTags: params.includeTags as string[],
+      includePaths: params.includePaths as string[],
+      excludeTags: params.excludeTags as string[],
+      excludePaths: params.excludePaths as string[],
+      requestOptionsType: params.requestOptionsType as string,
+      apiPrefix: params.apiPrefix as string,
+      isGenReactQuery: JSON.parse(params.isGenReactQuery as string) === true,
+      reactQueryMode: params.reactQueryMode as IReactQueryMode,
+      isGenJavaScript: JSON.parse(params.isGenJavaScript as string) === true,
+      isDisplayTypeLabel:
+        JSON.parse(params.isDisplayTypeLabel as string) === true,
+      isGenJsonSchemas: JSON.parse(params.isGenJsonSchemas as string) === true,
+      mockFolder: params.mockFolder as string,
+      authorization: params.authorization as string,
+      nullable: JSON.parse(params.nullable as string) === true,
+      isTranslateToEnglishTag:
+        JSON.parse(params.isTranslateToEnglishTag as string) === true,
+      isOnlyGenTypeScriptType:
+        JSON.parse(params.isOnlyGenTypeScriptType as string) === true,
+      isCamelCase: JSON.parse(params.isCamelCase as string) === true,
+      isSupportParseEnumDesc:
+        JSON.parse(params.isSupportParseEnumDesc as string) === true,
+    };
+
+    await generateService(
+      pickBy(
+        options,
+        (value) => value !== null && value !== undefined && value !== ''
+      ) as GenerateServiceProps
+    );
+    process.exit(0);
+  }
+  // ----
   const cnf = await readConfig<GenerateServiceProps | GenerateServiceProps[]>({
     fallbackName: 'openapi-ts-request',
     filePath: params.configFilePath as string,
