@@ -1,6 +1,7 @@
 import {
   type ClassDeclarationStructure,
   type EnumDeclarationStructure,
+  type ExportDeclarationStructure,
   type FunctionDeclarationOverloadStructure,
   type FunctionDeclarationStructure,
   type ImportDeclarationStructure,
@@ -19,7 +20,6 @@ const sortMapByKey = <T = unknown>(map: Map<string, T>) => {
     .sort((a, b) => a[0].localeCompare(b[0]))
     .map(([k, v]) => ({ k, v }));
 };
-
 export class Merger {
   #project: Project;
   #sourceFile: SourceFile;
@@ -54,6 +54,30 @@ export class Merger {
     }
     this.#mergeRule = mergeRule;
     this.#mergedFile = this.#project.createSourceFile('_merged_.ts');
+  }
+
+  // TODO: 需要重构合并导出, 主要是export * from 'xxx' 和 export {a} from 'xxx' 的合并
+  #mergeExport(destFile: SourceFile) {
+    const exportMap = new Map<string, ExportDeclarationStructure>();
+    // const exportArray: ExportDeclarationStructure[] = [];
+    this.#sourceFile.getExportDeclarations()?.forEach((e) => {
+      const eStructure = e.getStructure();
+      const path = e.getModuleSpecifierValue();
+      if (path) {
+        exportMap.set(path, eStructure);
+      }
+    });
+
+    destFile.getExportDeclarations()?.forEach((e) => {
+      const eStructure = e.getStructure();
+      const path = e.getModuleSpecifierValue();
+      if (path) {
+        exportMap.set(path, eStructure);
+      }
+    });
+    sortMapByKey<ExportDeclarationStructure>(exportMap).forEach(({ v }) => {
+      this.#mergedFile.addExportDeclaration(v);
+    });
   }
 
   #mergeClass(destFile: SourceFile) {
@@ -258,6 +282,11 @@ export class Merger {
     this.#mergeEnums(destFile);
     this.#mergeInterfaces(destFile);
     this.#mergeFunctions(destFile);
+    this.#mergeExport(destFile);
+    // console.log(source, '>>>>');
+    // if (srcPath?.includes('index.ts')) {
+    //   console.log(source, '>>>>');
+    // }
     const leadingComment = this.#leadingCommentRanges.join('\n');
     if (leadingComment) {
       return `${leadingComment}\n${this.#mergedFile.getFullText()}`;

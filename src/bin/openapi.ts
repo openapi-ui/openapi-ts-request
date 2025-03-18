@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { program } from 'commander';
+import { type OptionValues, program } from 'commander';
 import { pickBy } from 'lodash';
 import { join } from 'path';
 
@@ -109,7 +109,52 @@ function getPath(path: string) {
   return join(process.cwd(), path);
 }
 
+const baseGenerate = (_params_: OptionValues): GenerateServiceProps => {
+  const input = getPath(_params_.input as string);
+  const output = getPath(_params_.output as string);
+  const options: GenerateServiceProps = {
+    schemaPath: input,
+    serversPath: output,
+    requestLibPath: _params_.requestLibPath as string,
+    enableLogging: JSON.parse(_params_.enableLogging as string) === true,
+    priorityRule: _params_.priorityRule as IPriorityRule,
+    includeTags: _params_.includeTags as string[],
+    includePaths: _params_.includePaths as string[],
+    excludeTags: _params_.excludeTags as string[],
+    excludePaths: _params_.excludePaths as string[],
+    requestOptionsType: _params_.requestOptionsType as string,
+    apiPrefix: _params_.apiPrefix as string,
+    isGenReactQuery: JSON.parse(_params_.isGenReactQuery as string) === true,
+    reactQueryMode: _params_.reactQueryMode as IReactQueryMode,
+    isGenJavaScript: JSON.parse(_params_.isGenJavaScript as string) === true,
+    isDisplayTypeLabel:
+      JSON.parse(_params_.isDisplayTypeLabel as string) === true,
+    isGenJsonSchemas: JSON.parse(_params_.isGenJsonSchemas as string) === true,
+    mockFolder: _params_.mockFolder as string,
+    authorization: _params_.authorization as string,
+    nullable: JSON.parse(_params_.nullable as string) === true,
+    isTranslateToEnglishTag:
+      JSON.parse(_params_.isTranslateToEnglishTag as string) === true,
+    isOnlyGenTypeScriptType:
+      JSON.parse(_params_.isOnlyGenTypeScriptType as string) === true,
+    isCamelCase: JSON.parse(_params_.isCamelCase as string) === true,
+    isSupportParseEnumDesc:
+      JSON.parse(_params_.isSupportParseEnumDesc as string) === true,
+  };
+  return options;
+};
+
 async function run() {
+  if (params.input && params.output) {
+    const options = baseGenerate(params);
+    await generateService(
+      pickBy(
+        options,
+        (value) => value !== null && value !== undefined && value !== ''
+      ) as GenerateServiceProps
+    );
+    process.exit(0);
+  }
   const cnf = await readConfig<GenerateServiceProps | GenerateServiceProps[]>({
     fallbackName: 'openapi-ts-request',
     filePath: params.configFilePath as string,
@@ -148,40 +193,7 @@ async function run() {
         );
         process.exit(1);
       }
-      const input = getPath(params.input as string);
-      const output = getPath(params.output as string);
-
-      const options: GenerateServiceProps = {
-        schemaPath: input,
-        serversPath: output,
-        requestLibPath: params.requestLibPath as string,
-        enableLogging: JSON.parse(params.enableLogging as string) === true,
-        priorityRule: params.priorityRule as IPriorityRule,
-        includeTags: params.includeTags as string[],
-        includePaths: params.includePaths as string[],
-        excludeTags: params.excludeTags as string[],
-        excludePaths: params.excludePaths as string[],
-        requestOptionsType: params.requestOptionsType as string,
-        apiPrefix: params.apiPrefix as string,
-        isGenReactQuery: JSON.parse(params.isGenReactQuery as string) === true,
-        reactQueryMode: params.reactQueryMode as IReactQueryMode,
-        isGenJavaScript: JSON.parse(params.isGenJavaScript as string) === true,
-        isDisplayTypeLabel:
-          JSON.parse(params.isDisplayTypeLabel as string) === true,
-        isGenJsonSchemas:
-          JSON.parse(params.isGenJsonSchemas as string) === true,
-        mockFolder: params.mockFolder as string,
-        authorization: params.authorization as string,
-        nullable: JSON.parse(params.nullable as string) === true,
-        isTranslateToEnglishTag:
-          JSON.parse(params.isTranslateToEnglishTag as string) === true,
-        isOnlyGenTypeScriptType:
-          JSON.parse(params.isOnlyGenTypeScriptType as string) === true,
-        isCamelCase: JSON.parse(params.isCamelCase as string) === true,
-        isSupportParseEnumDesc:
-          JSON.parse(params.isSupportParseEnumDesc as string) === true,
-      };
-
+      const options = baseGenerate(params);
       await generateService(
         pickBy(
           options,
