@@ -1,5 +1,15 @@
 # openapi-ts-request
 
+## 1.3.0
+
+### Minor Changes
+
+- [#153](https://github.com/openapi-ui/openapi-ts-request/pull/153) [`3a659f1`](https://github.com/openapi-ui/openapi-ts-request/commit/3a659f12d4932998a70efc8821b44e78ee74e95d) Thanks [@JsonLee12138](https://github.com/JsonLee12138)! - feat: 新增增量修改，方法命名规范，合并openapi-ts和openapi命令
+
+### Patch Changes
+
+- [#153](https://github.com/openapi-ui/openapi-ts-request/pull/153) [`3a659f1`](https://github.com/openapi-ui/openapi-ts-request/commit/3a659f12d4932998a70efc8821b44e78ee74e95d) Thanks [@JsonLee12138](https://github.com/JsonLee12138)! - feat: cli concurrency and timeout support and uniquekey filpath support
+
 ## 1.2.0
 
 ### Minor Changes
