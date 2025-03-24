@@ -13,6 +13,7 @@ based on [Swagger2/OpenAPI3/Apifox](https://swagger.io/blog/news/whats-new-in-op
 - react-query/vue-query
 - type field label
 - JSON Schemas
+- Apifox Config
 
 docs：[use docs](https://github.com/openapi-ui/openapi-ts-request/issues/100)
 
@@ -25,6 +26,7 @@ docs：[use docs](https://github.com/openapi-ui/openapi-ts-request/issues/100)
 - support filter generate result by tags
 - support JSON/YAML specification
 - support translate chinese tag name to english tag name
+- support direct configuration of `apifox` `token` and `projectId` direct generation
 
 ## Usage
 
@@ -181,9 +183,13 @@ $ openapi --help
 
   Options:
     -V, --version                       output the version number
-    -i, --input <string>                OpenAPI specification, can be a path, url (required)
-    -o, --output <string>               output directory (required)
+    -i, --input <string>                OpenAPI specification, can be a path, url
+    -o, --output <string>               output directory
+    -cfn, --configFileName <string>     config file name
+    -cfp, --configFilePath <string>     config file path
+    -u, --uniqueKey <string>            unique key
     --requestLibPath <string>           custom request lib path, for example: "@/request", "node-fetch" (default: "axios")
+    -f, --full <boolean>                full replacement (default: true)
     --enableLogging <boolean>           open the log (default: false)
     --priorityRule <string>             priority rule, include/exclude/both (default: "include")
     --includeTags <(string|RegExp)[]>   generate code from include tags
@@ -221,6 +227,7 @@ openapi -i ./spec.json -o ./apis
 | schemaPath | yes | string | - | Swagger2/OpenAPI3 URL |
 | serversPath | no | string | './src/apis' | the folder path for the run results |
 | requestLibPath | no | string | 'axios' | custom request lib path, for example: '@/request', 'node-fetch' |
+| full | no | boolean | true | full replacement |
 | enableLogging | no | boolean | false | open the log |
 | priorityRule | no | string | 'include' | priority rule, include/exclude/both |
 | includeTags | no | (string\|RegExp)[] | - | generate code from include tags, priorityRule=include required |
@@ -237,6 +244,7 @@ openapi -i ./spec.json -o ./apis
 | isGenJsonSchemas | no | boolean | false | generate JSON Schemas |
 | mockFolder | no | string | - | mock file path, for example: './mocks' |
 | authorization | no | string | - | docs authorization |
+| apifoxConfig | no | [Apifox Config](#Apifox-Config) | - | apifox configs |
 | nullable | no | boolean | false | null instead of optional |
 | isTranslateToEnglishTag | no | boolean | false | translate chinese tag name to english tag name |
 | isOnlyGenTypeScriptType | no | boolean | false | only generate typescript type |
@@ -254,6 +262,17 @@ openapi -i ./spec.json -o ./apis
 | customClassName | (tagName: string) => string | custom tag name |
 | customType | ({<br>schemaObject: SchemaObject \| ReferenceObject,<br>namespace: string,<br>originGetType:(schemaObject: SchemaObject \| ReferenceObject, namespace: string, schemas?: ComponentsObject['schemas']) => string,<br>schemas?: ComponentsObject['schemas'],<br>}) => string | custom type <br> _returning a non-string will use the default method to get the type_ |
 | customFileNames | (<br>operationObject: OperationObject,<br>apiPath: string,<br>apiMethod: string,<br>) => string[] | custom generate request client controller file name, can return multiple: generate multiple files. <br> _if the return value is empty, the default getFileNames is used_ |
+
+## Apifox-Config
+
+| attribute | type | description | required |
+| --- | --- | --- | --- |
+| projectId | string | project id | true |
+| local | string | language(default:zh-CN) | false |
+| apifoxVersion | string | default: 2024-03-28, [current apifox version](https://api.apifox.com/v1/versions) | false |
+| includeTags | \* or string[] | default: \* | false |
+| excludeTags | string[] | default: [] | false |
+| apifoxToken | string | [get](https://docs.apifox.com/doc-5723694) | true |
 
 ## JSON Schemas
 
@@ -274,6 +293,33 @@ currently using [mockjs](http://mockjs.com) to generate mock data, the mocks fil
 ## Adapt to uniapp
 
 it is recommended to use a custom request function to adapt to uniapp. you can also use the `@uni-helper/axios-adapter` adapter. for details, see [【use docs 2.2】](https://github.com/openapi-ui/openapi-ts-request/issues/100)
+
+## Notes on Upgrading Older Versions
+
+- Current naming convention changes
+- Incremental changes have been made to the current version and will not affect previous versions.
+- The `openapi-ts` command can be deprecated to use `openapi`
+
+### The configuration follows the naming convention of the old version as follows
+
+```typescript
+import type { APIDataType } from 'openapi-ts-request/dist/generator/type';
+import {
+  genDefaultFunctionName,
+  resolveFunctionName,
+  stripDot,
+} from 'openapi-ts-request/dist/generator/util';
+
+export default {
+  hook: {
+    customFunctionName(data: APIDataType, prefix: string) {
+      if (data.operationId)
+        return resolveFunctionName(stripDot(data.operationId), data.method);
+      return data.method + genDefaultFunctionName(data.path, prefix);
+    },
+  },
+};
+```
 
 ## Contribute
 

@@ -1,8 +1,8 @@
-import { readFileSync } from 'fs';
+import { existsSync, readFileSync } from 'fs';
 import { globSync } from 'glob';
 import {
   Dictionary,
-  camelCase,
+  // camelCase,
   entries,
   filter,
   find,
@@ -18,7 +18,7 @@ import {
 import { minimatch } from 'minimatch';
 import nunjucks from 'nunjucks';
 import { join } from 'path';
-import { sync as rimrafSync } from 'rimraf';
+import { rimrafSync } from 'rimraf';
 
 import {
   PriorityRule,
@@ -42,6 +42,7 @@ import {
   ResponsesObject,
   SchemaObject,
 } from '../type';
+import { camelCase } from '../util';
 import {
   DEFAULT_PATH_PARAM,
   DEFAULT_SCHEMA,
@@ -60,6 +61,7 @@ import {
   serviceEntryFileName,
 } from './config';
 import { writeFile } from './file';
+import { Merger } from './merge';
 import { patchSchema } from './patchSchema';
 import {
   APIDataType,
@@ -70,6 +72,7 @@ import {
   ISchemaItem,
   ITypeItem,
   ITypescriptFileType,
+  type MergeOption,
   TagAPIDataType,
 } from './type';
 import {
@@ -92,10 +95,10 @@ import {
   markAllowedSchema,
   parseDescriptionEnum,
   replaceDot,
-  resolveFunctionName,
+  // resolveFunctionName,
   resolveRefs,
   resolveTypeName,
-  stripDot,
+  // stripDot,
 } from './util';
 
 export default class ServiceGenerator {
@@ -253,16 +256,17 @@ export default class ServiceGenerator {
   }
 
   public genFile() {
-    try {
-      globSync(`${this.config.serversPath}/**/*`)
-        .filter((item) => !item.includes('_deperated'))
-        .forEach((item) => {
-          rimrafSync(item);
-        });
-    } catch (error) {
-      log(`🚥 api 生成失败: ${error}`);
+    if (this.config.full) {
+      try {
+        globSync(`${this.config.serversPath}/**/*`)
+          .filter((item) => !item.includes('_deperated'))
+          .forEach((item) => {
+            rimrafSync(item);
+          });
+      } catch (error) {
+        log(`🚥 api 生成失败: ${error}`);
+      }
     }
-
     const isOnlyGenTypeScriptType = this.config.isOnlyGenTypeScriptType;
     const isGenJavaScript = this.config.isGenJavaScript;
     const reactQueryMode = this.config.reactQueryMode;
@@ -412,7 +416,7 @@ export default class ServiceGenerator {
     );
 
     // 打印日志
-    log('✅ 成功生成 api 文件');
+    log('✅ 成功生成 api 文件目录-> ', this.config.serversPath);
   }
 
   private getInterfaceTPConfigs() {
@@ -771,11 +775,35 @@ export default class ServiceGenerator {
       });
 
       env.addFilter('capitalizeFirst', capitalizeFirstLetter);
+      const destPath = join(this.config.serversPath, fileName);
+      const destCode = nunjucks.renderString(template, {
+        disableTypeCheck: false,
+        ...params,
+      });
+      let mergerProps: MergeOption = {} as MergeOption;
+
+      if (existsSync(destPath)) {
+        mergerProps = {
+          srcPath: destPath,
+        };
+      } else {
+        mergerProps = {
+          source: '',
+        };
+      }
+
+      if (this.config.full) {
+        return writeFile(this.config.serversPath, fileName, destCode);
+      }
+
+      const merger = new Merger(mergerProps);
 
       return writeFile(
         this.config.serversPath,
         fileName,
-        nunjucks.renderString(template, { disableTypeCheck: false, ...params })
+        merger.merge({
+          source: destCode,
+        })
       );
     } catch (error) {
       console.error('[GenSDK] file gen fail:', fileName, 'type:', type);
@@ -790,15 +818,21 @@ export default class ServiceGenerator {
     );
   }
 
+  // 生成方法名 functionName
   private getFunctionName(data: APIDataType) {
     // 获取路径相同部分
     const pathBasePrefix = getBasePrefix(keys(this.openAPIData.paths));
 
     return this.config.hook && this.config.hook.customFunctionName
-      ? this.config.hook.customFunctionName(data)
-      : data.operationId
-        ? resolveFunctionName(stripDot(data.operationId), data.method)
-        : data.method + genDefaultFunctionName(data.path, pathBasePrefix);
+      ? this.config.hook.customFunctionName(data, pathBasePrefix)
+      : camelCase(
+          `${genDefaultFunctionName(data.path, pathBasePrefix)}-using-${data.method}`
+        );
+    // return this.config.hook && this.config.hook.customFunctionName
+    //   ? this.config.hook.customFunctionName(data)
+    //   : data.operationId
+    //     ? resolveFunctionName(stripDot(data.operationId), data.method)
+    //     : data.method + genDefaultFunctionName(data.path, pathBasePrefix);
   }
 
   private getType(schemaObject: ISchemaObject, namespace?: string) {

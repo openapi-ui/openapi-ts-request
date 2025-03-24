@@ -31,6 +31,7 @@
     "lint": "eslint ./src --report-unused-disable-directives --max-warnings=0",
     "lint:fix": "eslint ./src --report-unused-disable-directives --max-warnings=0 --fix",
     "test": "rm -rf ./test/apis/ ./test/mocks && npm run build && cd ./test && node ./test.js && cd ..",
+    "test:new": "npm run build && cd ./test && node ./test.js && cd ..",
     "test:windows": "rimraf ./test/apis/ ./test/mocks && npm run build && cd ./test && node ./test.js && cd ..",
     "prepare": "husky",
     "openapi-ts-request": "openapi-ts"
@@ -56,6 +57,7 @@
     "rimraf": "^6.0.1",
     "swagger2openapi": "^7.0.8",
     "tiny-pinyin": "^1.3.2",
+    "ts-morph": "^25.0.1",
     "tslib": "^2.6.3"
   },
   "devDependencies": {
@@ -80,7 +82,7 @@
     "lint-staged": "^15.3.0",
     "openapi-types": "^12.1.3",
     "ts-node": "^10.9.2",
-    "typescript": "5.7.3"
+    "typescript": "5.8.2"
   },
   "keywords": [
     "openapi",
