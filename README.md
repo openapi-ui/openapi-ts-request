@@ -15,7 +15,7 @@
 - react-query/vue-query
 - 类型字段翻译
 - JSON Schemas
-- Apifox
+- Apifox Config
 
 文档：[使用手册](https://github.com/openapi-ui/openapi-ts-request/issues/100)
 
@@ -189,7 +189,9 @@ $ openapi --help
     -o, --output <string>               output directory
     -cfn, --configFileName <string>     config file name
     -cfp, --configFilePath <string>     config file path
+    -u, --uniqueKey <string>            unique key
     --requestLibPath <string>           custom request lib path, for example: "@/request", "node-fetch" (default: "axios")
+    -f, --full <boolean>                full replacement (default: true)
     --enableLogging <boolean>           open the log (default: false)
     --priorityRule <string>             priority rule, include/exclude/both (default: "include")
     --includeTags <(string|RegExp)[]>   generate code from include tags
@@ -211,7 +213,6 @@ $ openapi --help
     --isOnlyGenTypeScriptType <boolean> only generate typescript type (default: false)
     --isCamelCase <boolean>             camelCase naming of controller files and request client (default: true)
     --isSupportParseEnumDesc <boolean>  parse enum description to generate enum label (default: false)
-    -f, --full                          full replacement
     -h, --help                          display help for command
 ```
 
@@ -228,6 +229,7 @@ openapi --i ./spec.json --o ./apis
 | schemaPath | 是 | string | - | Swagger2/OpenAPI3 地址 |
 | serversPath | 否 | string | './src/apis' | 运行结果文件夹路径 |
 | requestLibPath | 否 | string | 'axios' | 自定义请求方法路径，例如：'@/request'、'node-fetch' |
+| full | 否 | boolean | true | 是否全量替换 |
 | enableLogging | 否 | boolean | false | 是否开启日志 |
 | priorityRule | 否 | string | 'include' | 模式规则，可选include/exclude/both |
 | includeTags | 否 | (string\|RegExp)[] | - | 根据指定的 tags 生成代码, priorityRule=include则必填 |
@@ -244,14 +246,13 @@ openapi --i ./spec.json --o ./apis
 | isGenJsonSchemas | 否 | boolean | false | 是否生成 JSON Schemas |
 | mockFolder | 否 | string | - | mock文件路径，例如：'./mocks' |
 | authorization | 否 | string | - | 文档权限凭证 |
+| apifoxConfig | 否 | [Apifox Config](#Apifox-Config) | - | apifox 配置 |
 | nullable | 否 | boolean | false | 使用 null 代替可选 |
 | isTranslateToEnglishTag | 否 | boolean | false | 将中文 tag 名称翻译成英文 tag 名称 |
 | isOnlyGenTypeScriptType | 否 | boolean | false | 仅生成 typescript 类型 |
 | isCamelCase | 否 | boolean | true | 小驼峰命名文件和请求函数 |
 | isSupportParseEnumDesc | 否 | boolean | false | 解析枚举描述生成枚举标签，格式参考：`系统用户角色:User(普通用户)=0,Agent(经纪人)=1,Admin(管理员)=2` |
 | hook | 否 | [Custom Hook](#Custom-Hook) | - | 自定义 hook |
-| apifoxConfig | 否 | [Apifox Config](#Apifox-Config) | - | apifox 配置 |
-| full | 否 | boolean | false | 是否全量替换 |
 
 ## 自定义 Hook
 

@@ -13,7 +13,7 @@ based on [Swagger2/OpenAPI3/Apifox](https://swagger.io/blog/news/whats-new-in-op
 - react-query/vue-query
 - type field label
 - JSON Schemas
-- Apifox
+- Apifox Config
 
 docs：[use docs](https://github.com/openapi-ui/openapi-ts-request/issues/100)
 
@@ -26,7 +26,7 @@ docs：[use docs](https://github.com/openapi-ui/openapi-ts-request/issues/100)
 - support filter generate result by tags
 - support JSON/YAML specification
 - support translate chinese tag name to english tag name
-- Support direct configuration of `apifox` `token` and `projectId` direct generation
+- support direct configuration of `apifox` `token` and `projectId` direct generation
 
 ## Usage
 
@@ -187,7 +187,9 @@ $ openapi --help
     -o, --output <string>               output directory
     -cfn, --configFileName <string>     config file name
     -cfp, --configFilePath <string>     config file path
+    -u, --uniqueKey <string>            unique key
     --requestLibPath <string>           custom request lib path, for example: "@/request", "node-fetch" (default: "axios")
+    -f, --full <boolean>                full replacement (default: true)
     --enableLogging <boolean>           open the log (default: false)
     --priorityRule <string>             priority rule, include/exclude/both (default: "include")
     --includeTags <(string|RegExp)[]>   generate code from include tags
@@ -209,7 +211,6 @@ $ openapi --help
     --isOnlyGenTypeScriptType <boolean> only generate typescript type (default: false)
     --isCamelCase <boolean>             camelCase naming of controller files and request client (default: true)
     --isSupportParseEnumDesc <boolean>  parse enum description to generate enum label (default: false)
-    -f, --full                          full replacement
     -h, --help                          display help for command
 ```
 
@@ -226,6 +227,7 @@ openapi -i ./spec.json -o ./apis
 | schemaPath | yes | string | - | Swagger2/OpenAPI3 URL |
 | serversPath | no | string | './src/apis' | the folder path for the run results |
 | requestLibPath | no | string | 'axios' | custom request lib path, for example: '@/request', 'node-fetch' |
+| full | no | boolean | true | full replacement |
 | enableLogging | no | boolean | false | open the log |
 | priorityRule | no | string | 'include' | priority rule, include/exclude/both |
 | includeTags | no | (string\|RegExp)[] | - | generate code from include tags, priorityRule=include required |
@@ -242,14 +244,13 @@ openapi -i ./spec.json -o ./apis
 | isGenJsonSchemas | no | boolean | false | generate JSON Schemas |
 | mockFolder | no | string | - | mock file path, for example: './mocks' |
 | authorization | no | string | - | docs authorization |
+| apifoxConfig | no | [Apifox Config](#Apifox-Config) | - | apifox configs |
 | nullable | no | boolean | false | null instead of optional |
 | isTranslateToEnglishTag | no | boolean | false | translate chinese tag name to english tag name |
 | isOnlyGenTypeScriptType | no | boolean | false | only generate typescript type |
 | isCamelCase | no | boolean | true | camelCase naming of controller files and request client |
 | isSupportParseEnumDesc | no | boolean | false | parse enum description to generate enum label, format example: `UserRole:User(Normal User)=0,Agent(Agent)=1,Admin(Administrator)=2` |
 | hook | no | [Custom Hook](#Custom-Hook) | - | custom hook |
-| apifoxConfig | no | [Apifox Config](#Apifox-Config) | - | apifox configs |
-| full | no | boolean | false | full replacement |
 
 ## Custom Hook
 

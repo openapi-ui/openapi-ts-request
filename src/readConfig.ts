@@ -10,9 +10,11 @@ export const readConfig = async <T = unknown>({
 }: ReadConfigOptions): Promise<T | undefined> => {
   try {
     let _fileName_: string | undefined = fileName;
+
     if (!_fileName_ && !filePath) {
       _fileName_ = fallbackName;
     }
+
     const explorerSync = cosmiconfigSync(_fileName_ || fallbackName, {
       loaders: {
         '.ts': TypeScriptLoader(),

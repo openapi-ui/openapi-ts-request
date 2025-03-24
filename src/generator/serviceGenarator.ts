@@ -781,6 +781,7 @@ export default class ServiceGenerator {
         ...params,
       });
       let mergerProps: MergeOption = {} as MergeOption;
+
       if (existsSync(destPath)) {
         mergerProps = {
           srcPath: destPath,
@@ -790,10 +791,13 @@ export default class ServiceGenerator {
           source: '',
         };
       }
+
       if (this.config.full) {
         return writeFile(this.config.serversPath, fileName, destCode);
       }
+
       const merger = new Merger(mergerProps);
+
       return writeFile(
         this.config.serversPath,
         fileName,

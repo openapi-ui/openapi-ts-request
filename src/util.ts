@@ -41,6 +41,7 @@ const getApifoxIncludeTags = (tags?: (string | RegExp)[]): '*' | string[] => {
     if (!tags.length) {
       return '*';
     }
+
     _tags_ = [];
     for (const tag of tags) {
       if (typeof tag === 'string') {
@@ -59,6 +60,7 @@ const getApifoxIncludeTags = (tags?: (string | RegExp)[]): '*' | string[] => {
   } else if (tags) {
     _tags_ = [tags as unknown as string];
   }
+
   return _tags_ as '*';
 };
 
@@ -91,12 +93,14 @@ const getSchemaByApifox = async ({
       exportFormat: 'JSON',
     };
     const tags = getApifoxIncludeTags(includeTags);
+
     if (tags === '*') {
       body.scope.type = 'ALL';
     } else {
       body.scope.type = 'SELECTED_TAGS';
       body.scope.includeTags = tags;
     }
+
     const res = await axios.post(
       `https://api.apifox.com/v1/projects/${projectId}/export-openapi?locale=${locale}`,
       {},
@@ -107,6 +111,7 @@ const getSchemaByApifox = async ({
         },
       }
     );
+
     return res.data as OpenAPI.Document;
   } catch (error) {
     logError('fetch openapi error:', error);
@@ -117,7 +122,7 @@ const getSchemaByApifox = async ({
 async function getSchema(
   schemaPath: string,
   authorization?: string,
-  timeout = 60_000
+  timeout?: number
 ) {
   if (schemaPath.startsWith('http')) {
     const isHttps = schemaPath.startsWith('https:');
@@ -193,16 +198,18 @@ export const getOpenAPIConfigByApifox = async (
   props: GetSchemaByApifoxProps
 ) => {
   const schema = await getSchemaByApifox(props);
+
   if (!schema) {
     return;
   }
+
   return await parseSwaggerOrOpenapi(schema);
 };
 
 export const getOpenAPIConfig = async (
   schemaPath: string,
   authorization?: string,
-  timeout = 60_000
+  timeout?: number
 ) => {
   const schema = await getSchema(schemaPath, authorization, timeout);
 

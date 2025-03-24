@@ -13,19 +13,16 @@ const params = program
   .name('openapi')
   .usage('[options]')
   .version(pkg.version)
-  // .requiredOption(
-  //   '-i, --input <string>',
-  //   'OpenAPI specification, can be a path, url (required)'
-  // )
-  // .requiredOption('-o, --output <string>', 'output directory (required)')
   .option('-i, --input <string>', 'OpenAPI specification, can be a path, url')
   .option('-o, --output <string>', 'output directory')
-  .option('-cfn, --configFileName <configFileName>', 'config file name')
-  .option('-cfp, --configFilePath <configFilePath>', 'config file path')
+  .option('-cfn, --configFileName <string>', 'config file name')
+  .option('-cfp, --configFilePath <string>', 'config file path')
+  .option('-u, --uniqueKey <string>', 'unique key')
   .option(
     '--requestLibPath <string>',
     'custom request lib path, for example: "@/request", "node-fetch" (default: "axios")'
   )
+  .option('-f, --full <boolean>', 'full replacement', true)
   .option('--enableLogging <boolean>', 'open the log', false)
   .option(
     '--priorityRule <string>',
@@ -94,8 +91,6 @@ const params = program
     'parse enum description to generate enum label',
     false
   )
-  .option('-u, --unique-key <uniqueKey>', 'unique key')
-  .option('-f, --full <boolean>', 'full replacement', false)
   .parse(process.argv)
   .opts();
 
@@ -116,6 +111,7 @@ const baseGenerate = (_params_: OptionValues): GenerateServiceProps => {
     schemaPath: input,
     serversPath: output,
     requestLibPath: _params_.requestLibPath as string,
+    full: JSON.parse(_params_.full as string) === true,
     enableLogging: JSON.parse(_params_.enableLogging as string) === true,
     priorityRule: _params_.priorityRule as IPriorityRule,
     includeTags: _params_.includeTags as string[],
@@ -141,6 +137,7 @@ const baseGenerate = (_params_: OptionValues): GenerateServiceProps => {
     isSupportParseEnumDesc:
       JSON.parse(_params_.isSupportParseEnumDesc as string) === true,
   };
+
   return options;
 };
 
@@ -155,33 +152,40 @@ async function run() {
     );
     process.exit(0);
   }
+
   const cnf = await readConfig<GenerateServiceProps | GenerateServiceProps[]>({
     fallbackName: 'openapi-ts-request',
     filePath: params.configFilePath as string,
     fileName: params.configFileName as undefined,
   });
+
   try {
     if (cnf) {
       const tasks = [];
       let configs: GenerateServiceProps[] = Array.isArray(cnf) ? cnf : [cnf];
+
       if (params.uniqueKey) {
         configs = configs.filter(
           (config) => config.uniqueKey === params.uniqueKey
         );
       }
+
       for (const config of configs) {
         tasks.push(generateService(config));
       }
+
       const results = await Promise.allSettled(tasks);
       const errors: PromiseRejectedResult[] = results.filter(
         (result) => result.status === 'rejected'
       );
       let errorMsg = '';
+
       for (let i = 0; i < errors.length; i++) {
         const error = errors[i];
         const cnf = configs[i];
         errorMsg += `${cnf.uniqueKey}${cnf.uniqueKey && ':'}${error.reason}\n`;
       }
+
       if (errorMsg) {
         logError(errorMsg);
         process.exit(1);
@@ -193,6 +197,7 @@ async function run() {
         );
         process.exit(1);
       }
+
       const options = baseGenerate(params);
       await generateService(
         pickBy(

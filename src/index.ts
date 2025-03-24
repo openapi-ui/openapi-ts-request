@@ -40,6 +40,10 @@ export type GenerateServiceProps = {
    */
   requestLibPath?: string;
   /**
+   * 是否全量替换, 默认: true, 如果为false, 则进行增量替换
+   */
+  full?: boolean;
+  /**
    * 开启日志
    */
   enableLogging?: boolean;
@@ -118,6 +122,10 @@ export type GenerateServiceProps = {
    */
   authorization?: string;
   /**
+   * apifox 配置
+   */
+  apifoxConfig?: GetSchemaByApifoxProps;
+  /**
    * 默认为false，true时使用null代替可选值
    */
   nullable?: boolean;
@@ -146,9 +154,13 @@ export type GenerateServiceProps = {
    */
   templatesFolder?: string;
   /**
-   * apifox 配置
+   * 请求超时时间
    */
-  apifoxConfig?: GetSchemaByApifoxProps;
+  timeout?: number;
+  /**
+   * 多网关唯一标识
+   */
+  uniqueKey?: string;
   /**
    * 自定义 hook
    */
@@ -222,18 +234,6 @@ export type GenerateServiceProps = {
       apiMethod: string
     ) => string[] | null;
   };
-  /**
-   * 请求超时时间
-   */
-  timeout?: number;
-  /**
-   * 唯一标识
-   */
-  uniqueKey?: string;
-  /**
-   * 是否全量替换
-   */
-  full?: boolean;
 };
 
 export async function generateService({
@@ -248,16 +248,17 @@ export async function generateService({
   timeout = 60_000,
   reactQueryMode = ReactQueryMode.react,
   apifoxConfig,
-  full,
   ...rest
 }: GenerateServiceProps) {
   if (!schemaPath && !apifoxConfig) {
     return;
   }
+
   let openAPI: OpenAPIObject | null = null;
   if (apifoxConfig) {
     openAPI = (await getOpenAPIConfigByApifox(apifoxConfig)) as OpenAPIObject;
   }
+
   if (schemaPath) {
     openAPI = (await getOpenAPIConfig(
       schemaPath,
@@ -275,7 +276,6 @@ export async function generateService({
   }
 
   const requestImportStatement = getImportStatement(requestLibPath);
-
   const serviceGenerator = new ServiceGenerator(
     {
       schemaPath,
@@ -306,7 +306,7 @@ export async function generateService({
       isOnlyGenTypeScriptType: false,
       isCamelCase: true,
       isSupportParseEnumDesc: false,
-      full,
+      full: true,
       ...rest,
     },
     openAPI
