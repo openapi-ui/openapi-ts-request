@@ -101,7 +101,7 @@ importers:
         version: 4.17.16
       '@types/memoizee':
         specifier: ^0.4.11
-        version: 0.4.11
+        version: 0.4.12
       '@types/mockjs':
         specifier: ^1.0.10
         version: 1.0.10
@@ -487,8 +487,8 @@ packages:
   '@types/lodash@4.17.16':
     resolution: {integrity: sha512-HX7Em5NYQAXKW+1T+FiuG27NGwzJfCX3s1GjOa7ujxZa52kjJLOr4FUxT+giF6Tgxv1e+/czV/iTtBw27WTU9g==}
 
-  '@types/memoizee@0.4.11':
-    resolution: {integrity: sha512-2gyorIBZu8GoDr9pYjROkxWWcFtHCquF7TVbN2I+/OvgZhnIGQS0vX5KJz4lXNKb8XOSfxFOSG5OLru1ESqLUg==}
+  '@types/memoizee@0.4.12':
+    resolution: {integrity: sha512-EdtpwNYNhe3kZ+4TlXj/++pvBoU0KdrAICMzgI7vjWgu9sIvvUhu9XR8Ks4L6Wh3sxpZ22wkZR7yCLAqUjnZuQ==}
 
   '@types/mockjs@1.0.10':
     resolution: {integrity: sha512-SXgrhajHG7boLv6oU93CcmdDm0HYRiceuz6b+7z+/2lCJPTWDv0V5YiwFHT2ejE4bQqgSXQiVPQYPWv7LGsK1g==}
@@ -2604,7 +2604,7 @@ snapshots:
 
   '@types/lodash@4.17.16': {}
 
-  '@types/memoizee@0.4.11': {}
+  '@types/memoizee@0.4.12': {}
 
   '@types/mockjs@1.0.10': {}
 
