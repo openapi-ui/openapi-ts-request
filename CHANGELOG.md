@@ -1,5 +1,11 @@
 # openapi-ts-request
 
+## 1.3.1
+
+### Patch Changes
+
+- [#266](https://github.com/openapi-ui/openapi-ts-request/pull/266) [`1aed4e8`](https://github.com/openapi-ui/openapi-ts-request/commit/1aed4e8902eee4f43a3759fae212a52c63cdfd5a) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - feat: support extra apifox config
+
 ## 1.3.0
 
 ### Minor Changes
