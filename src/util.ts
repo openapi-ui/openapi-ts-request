@@ -79,6 +79,10 @@ const getSchemaByApifox = async ({
   includeTags,
   excludeTags = [],
   apifoxToken,
+  oasVersion = '3.0',
+  exportFormat = 'JSON',
+  includeApifoxExtensionProperties = false,
+  addFoldersToTags = false,
 }: GetSchemaByApifoxProps): Promise<OpenAPI.Document | null> => {
   try {
     const body: APIFoxBody = {
@@ -86,11 +90,11 @@ const getSchemaByApifox = async ({
         excludeTags,
       },
       options: {
-        includeApifoxExtensionProperties: false,
-        addFoldersToTags: false,
+        includeApifoxExtensionProperties,
+        addFoldersToTags,
       },
-      oasVersion: '3.0',
-      exportFormat: 'JSON',
+      oasVersion,
+      exportFormat,
     };
     const tags = getApifoxIncludeTags(includeTags);
 
@@ -103,7 +107,7 @@ const getSchemaByApifox = async ({
 
     const res = await axios.post(
       `https://api.apifox.com/v1/projects/${projectId}/export-openapi?locale=${locale}`,
-      {},
+      body,
       {
         headers: {
           'X-Apifox-Api-Version': apifoxVersion,
