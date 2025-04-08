@@ -120,24 +120,30 @@ export type ReadConfigOptions = MutuallyExclusiveWithFallback<
 > & { fallbackName: string };
 
 export interface APIFoxBody {
-  scope: {
+  scope?: {
     type?: 'ALL' | 'SELECTED_TAGS';
     includeTags?: string[];
     excludeTags?: string[];
   };
   options?: {
-    includeApifoxExtensionProperties: boolean;
-    addFoldersToTags: boolean;
+    includeApifoxExtensionProperties?: boolean;
+    addFoldersToTags?: boolean;
   };
   oasVersion?: '2.0' | '3.0' | '3.1';
   exportFormat?: 'JSON' | 'YAML';
   environmentIds?: string[];
 }
-export interface GetSchemaByApifoxProps {
+
+export interface GetSchemaByApifoxProps
+  extends Pick<APIFoxBody, 'oasVersion' | 'exportFormat'>,
+    Pick<
+      APIFoxBody['options'],
+      'includeApifoxExtensionProperties' | 'addFoldersToTags'
+    > {
   projectId: string;
+  apifoxToken: string;
   locale?: string;
   apifoxVersion?: string;
   includeTags?: (string | RegExp)[];
   excludeTags?: string[];
-  apifoxToken: string;
 }
