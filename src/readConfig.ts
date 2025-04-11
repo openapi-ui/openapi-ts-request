@@ -26,7 +26,6 @@ export const readConfig = async <T = unknown>({
     } else {
       return (await explorerSync.search()?.config) as T;
     }
-    // eslint-disable-next-line no-unused-vars
   } catch (error) {
     return undefined;
   }

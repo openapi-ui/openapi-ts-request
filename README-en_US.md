@@ -268,11 +268,15 @@ openapi -i ./spec.json -o ./apis
 | attribute | type | description | required |
 | --- | --- | --- | --- |
 | projectId | string | project id | true |
+| apifoxToken | string | [get](https://docs.apifox.com/doc-5723694) | true |
 | local | string | language(default:zh-CN) | false |
 | apifoxVersion | string | default: 2024-03-28, [current apifox version](https://api.apifox.com/v1/versions) | false |
 | includeTags | \* or string[] | default: \* | false |
 | excludeTags | string[] | default: [] | false |
-| apifoxToken | string | [get](https://docs.apifox.com/doc-5723694) | true |
+| oasVersion | string | specify the version of the OpenAPI specification used for export, can have values such as "2.0", "3.0" or "3.1" | '3.0' |
+| exportFormat | string | specify the format of the exported OpenAPI file, can have values such as 'JSON' or 'YAML' | 'JSON' |
+| includeApifoxExtensionProperties | boolean | specify whether to include the OpenAPI specification extension fields `x-apifox` | false |
+| addFoldersToTags | boolean | specify whether to include the directory name of the interface in the tag field | false |
 
 ## JSON Schemas
 

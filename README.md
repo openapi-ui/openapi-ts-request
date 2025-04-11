@@ -270,11 +270,15 @@ openapi --i ./spec.json --o ./apis
 | 属性 | 类型 | 说明 | 必填 |
 | --- | --- | --- | --- |
 | projectId | string | 项目id | true |
-| local | string | 语言(默认:zh-CN) | false |
+| apifoxToken | string | [获取](https://docs.apifox.com/doc-5723694) | true |
+| local | string | 语言(默认: zh-CN) | false |
 | apifoxVersion | string | 默认: 2024-03-28, [获取当前版本](https://api.apifox.com/v1/versions) | false |
 | includeTags | \* 或 string[] | 默认: \* | false |
 | excludeTags | string[] | 默认: [] | false |
-| apifoxToken | string | [获取](https://docs.apifox.com/doc-5723694) | true |
+| oasVersion | string | 指定用于导出的 OpenAPI 规范的版本，可以有值如 "2.0"、"3.0"、"3.1" | '3.0' |
+| exportFormat | string | 指定导出的 OpenAPI 文件的格式，可以有值如 'JSON' 或 'YAML' | 'JSON' |
+| includeApifoxExtensionProperties | boolean | 指定是否包含 Apifox 的 OpenAPI 规范扩展字段 `x-apifox` | false |
+| addFoldersToTags | boolean | 指定是否在标签字段中包含接口的目录名称 | false |
 
 ## JSON Schemas
 
