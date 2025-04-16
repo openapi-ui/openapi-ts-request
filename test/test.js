@@ -68,6 +68,23 @@ const gen = async () => {
 
         return `${tag ? tag : ''}${funName}`;
       },
+      // 自定义模板
+      customTemplates: {
+        serviceController: (api, ctx) => {
+          if (api.method.toUpperCase() === 'GET') {
+            return `
+export async function ${api.functionName}(${api.params && api.hasParams ? `params: ${ctx.namespace}.${api.typeName}` : ''}) {
+  return request.get('${api.path}', { params })
+}`
+          }
+          else {
+            return `
+export async function ${api.functionName}(${api.body ? `data: ${api.body.type}` : ''}) {
+  return request.post('${api.path}', data)
+}`
+          }
+        }
+      }
     },
   });
 

@@ -264,17 +264,22 @@ openapi --i ./spec.json --o ./apis
 | customClassName | (tagName: string) => string | 自定义标签名 |
 | customType | ({<br>schemaObject: SchemaObject \| ReferenceObject,<br>namespace: string,<br>originGetType:(schemaObject: SchemaObject \| ReferenceObject, namespace: string, schemas?: ComponentsObject['schemas']) => string,<br>schemas?: ComponentsObject['schemas'],<br>}) => string | 自定义类型 <br> _返回非字符串将使用默认方法获取type_ |
 | customFileNames | (<br>operationObject: OperationObject,<br>apiPath: string,<br>apiMethod: string,<br>) => string[] | 自定义生成的请求客户端文件名称，可以返回多个文件名称的数组(表示生成多个文件). <br> _返回为空，则使用默认的方法获取_ |
+| customTemplates | {<br>[TypescriptFileType.serviceController]?: <T, U>(item: T, context: U) => string;<br>} | 自定义模板，详情请看源码 |
 
 ## Apifox-Config
 
 | 属性 | 类型 | 说明 | 必填 |
 | --- | --- | --- | --- |
 | projectId | string | 项目id | true |
-| local | string | 语言(默认:zh-CN) | false |
+| apifoxToken | string | [获取](https://docs.apifox.com/doc-5723694) | true |
+| local | string | 语言(默认: zh-CN) | false |
 | apifoxVersion | string | 默认: 2024-03-28, [获取当前版本](https://api.apifox.com/v1/versions) | false |
 | includeTags | \* 或 string[] | 默认: \* | false |
 | excludeTags | string[] | 默认: [] | false |
-| apifoxToken | string | [获取](https://docs.apifox.com/doc-5723694) | true |
+| oasVersion | string | 指定用于导出的 OpenAPI 规范的版本，可以有值如 "2.0"、"3.0"、"3.1" | '3.0' |
+| exportFormat | string | 指定导出的 OpenAPI 文件的格式，可以有值如 'JSON' 或 'YAML' | 'JSON' |
+| includeApifoxExtensionProperties | boolean | 指定是否包含 Apifox 的 OpenAPI 规范扩展字段 `x-apifox` | false |
+| addFoldersToTags | boolean | 指定是否在标签字段中包含接口的目录名称 | false |
 
 ## JSON Schemas
 

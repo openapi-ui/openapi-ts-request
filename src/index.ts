@@ -1,6 +1,7 @@
 import { isEmpty, map } from 'lodash';
 
 import { PriorityRule, ReactQueryMode } from './config';
+import { TypescriptFileType } from './generator/config';
 import { mockGenerator } from './generator/mockGenarator';
 import ServiceGenerator from './generator/serviceGenarator';
 import { APIDataType } from './generator/type';
@@ -233,6 +234,18 @@ export type GenerateServiceProps = {
       apiPath: string,
       apiMethod: string
     ) => string[] | null;
+    /**
+     * 自定义模板
+     */
+    customTemplates?: {
+      /**
+       * 自定义 serviceController 模板
+       */
+      [TypescriptFileType.serviceController]?: <T, U>(
+        item: T,
+        context: U
+      ) => string;
+    };
   };
 };
 

@@ -69,3 +69,16 @@ type MergerOptionProps = {
 };
 
 export type MergerOptions = MergeOption & Partial<MergerOptionProps>;
+
+export type IServiceControllerPayload<T> = {
+  namespace: string;
+  requestOptionsType: string;
+  requestImportStatement: string;
+  interfaceFileName: string;
+  list:
+    | {
+        customTemplate: boolean;
+        data: string;
+      }[]
+    | T;
+};

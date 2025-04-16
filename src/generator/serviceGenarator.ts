@@ -70,6 +70,7 @@ import {
   ICustomSchemaObject,
   IPropObject,
   ISchemaItem,
+  IServiceControllerPayload,
   ITypeItem,
   ITypescriptFileType,
   type MergeOption,
@@ -329,18 +330,39 @@ export default class ServiceGenerator {
 
       // 生成 service controller 文件
       this.getServiceTPConfigs().forEach((tp) => {
+        const { list, ...restTp } = tp;
+        const payload: Omit<typeof tp, 'list'> &
+          IServiceControllerPayload<typeof list> = {
+          namespace: this.config.namespace,
+          requestOptionsType: this.config.requestOptionsType,
+          requestImportStatement: this.config.requestImportStatement,
+          interfaceFileName: interfaceFileName,
+          list,
+          ...restTp,
+        };
+        const hookCustomTemplateService =
+          this.config.hook?.customTemplates?.[
+            TypescriptFileType.serviceController
+          ];
+
+        if (hookCustomTemplateService) {
+          payload.list = list.map((item) => {
+            return {
+              customTemplate: true,
+              data: hookCustomTemplateService<typeof item, typeof payload>(
+                item,
+                payload
+              ),
+            };
+          });
+        }
+
         const hasError = this.genFileFromTemplate(
           isGenJavaScript
             ? getFinalFileName(`${tp.className}.js`)
             : getFinalFileName(`${tp.className}.ts`),
           TypescriptFileType.serviceController,
-          {
-            namespace: this.config.namespace,
-            requestOptionsType: this.config.requestOptionsType,
-            requestImportStatement: this.config.requestImportStatement,
-            interfaceFileName: interfaceFileName,
-            ...tp,
-          }
+          payload
         );
 
         prettierError.push(hasError);
