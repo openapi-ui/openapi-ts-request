@@ -1,5 +1,11 @@
 # openapi-ts-request
 
+## 1.3.2
+
+### Patch Changes
+
+- [#274](https://github.com/openapi-ui/openapi-ts-request/pull/274) [`e404129`](https://github.com/openapi-ui/openapi-ts-request/commit/e404129c7c932e2945bac1acf92baa00191f3cda) Thanks [@Autumnshi](https://github.com/Autumnshi)! - feat: support custom templates
+
 ## 1.3.1
 
 ### Patch Changes
