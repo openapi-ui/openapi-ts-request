@@ -241,7 +241,10 @@ export type GenerateServiceProps = {
       /**
        * 自定义 serviceController 模板
        */
-      [TypescriptFileType.serviceController]?: (item: any, ctx: any) => string;
+      [TypescriptFileType.serviceController]?: <T, U>(
+        item: T,
+        context: U
+      ) => string;
     };
   };
 };
