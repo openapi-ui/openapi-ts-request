@@ -111,7 +111,8 @@ export default class ServiceGenerator {
 
   constructor(config: GenerateServiceProps, openAPIData: OpenAPIObject) {
     this.config = {
-      templatesFolder: join(__dirname, '../../', 'templates'),
+      templatesFolder:
+        config.templatesFolder || join(__dirname, '../../', 'templates'),
       ...config,
     };
     this.generateInfoLog();
@@ -834,10 +835,18 @@ export default class ServiceGenerator {
   }
 
   private getTemplate(type: ITypescriptFileType): string {
-    return readFileSync(
-      join(this.config.templatesFolder, `${type}.njk`),
-      'utf8'
+    const customTemplatePath = join(this.config.templatesFolder, `${type}.njk`);
+    const defaultTemplatePath = join(
+      __dirname,
+      '../../',
+      'templates',
+      `${type}.njk`
     );
+
+    if (existsSync(customTemplatePath)) {
+      return readFileSync(customTemplatePath, 'utf8');
+    }
+    return readFileSync(defaultTemplatePath, 'utf8');
   }
 
   // 生成方法名 functionName

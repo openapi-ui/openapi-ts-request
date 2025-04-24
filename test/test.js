@@ -249,6 +249,29 @@ export async function ${api.functionName}(${api.body ? `data: ${api.body.type}` 
   assert(fileControllerStr.indexOf('!(item instanceof File)') > 0);
   assert(fileControllerStr.indexOf(`'multipart/form-data'`) > 0);
   assert(fileControllerStr.indexOf('Content-Type') > 0);
+
+  // 测试自定义模板文件夹
+  await openAPI.generateService({
+    schemaPath: `${__dirname}/example-files/openapi-empty.json`,
+    serversPath: './apis/custom-templates',
+    templatesFolder: path.join(__dirname, 'custom-templates'),
+    hook: {
+      customClassName: (tag) => 'TestController',
+    },
+  });
+
+  // Check that files were generated with custom templates
+  const customTemplateFiles = fs.readdirSync('./apis/custom-templates');
+  assert(customTemplateFiles.length > 0, 'Files should be generated with custom templates');
+
+  // Check that the custom template was used
+  const serviceControllerContent = fs.readFileSync(
+    path.join('./apis/custom-templates', 'TestController.ts'),
+    'utf8'
+  );
+  assert(serviceControllerContent.length > 0, 'TestController.ts file should be generated with custom template');
+  assert(serviceControllerContent.includes('export class'), 'File should contain an exported class');
+  assert(serviceControllerContent.includes('getInstance'), 'File should contain the getInstance method');
 };
 
 gen();

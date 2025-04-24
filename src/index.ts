@@ -49,7 +49,6 @@ export type GenerateServiceProps = {
    */
   enableLogging?: boolean;
   /**
-  /**
    * 优先规则, include(只允许include列表) | exclude(只排除exclude列表) | both(允许include列表，排除exclude列表)
    */
   priorityRule?: IPriorityRule;
@@ -151,7 +150,8 @@ export type GenerateServiceProps = {
    */
   namespace?: string;
   /**
-   * 模板文件的文件路径，不需要关注
+   * 模板文件夹路径
+   * 默认: join(__dirname, '../../', 'templates')
    */
   templatesFolder?: string;
   /**
