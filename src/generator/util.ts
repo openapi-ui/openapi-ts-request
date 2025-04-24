@@ -18,6 +18,7 @@ import {
 import ReservedDict from 'reserved-words';
 import pinyin from 'tiny-pinyin';
 
+import { SchemaObjectType } from '../config';
 import log from '../log';
 import {
   ArraySchemaObject,
@@ -454,8 +455,10 @@ export function isArraySchemaObject(
   schema: unknown
 ): schema is ArraySchemaObject {
   return (
-    ((schema as ArraySchemaObject)?.type === 'array' ||
-      (schema as ArraySchemaObject)?.type === 'stringArray') &&
+    ((schema as ArraySchemaObject)?.type === SchemaObjectType.array ||
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-expect-error
+      (schema as ArraySchemaObject)?.type === SchemaObjectType.stringArray) &&
     (schema as ArraySchemaObject)?.items !== undefined
   );
 }

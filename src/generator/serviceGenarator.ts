@@ -971,6 +971,7 @@ export default class ServiceGenerator {
   private resolveFileTP(obj: SchemaObject) {
     let ret = [] as Array<{ title: string; multiple: boolean }>;
     const resolved = this.resolveObject(obj) as ITypeItem;
+
     const props =
       (resolved.props?.length > 0 &&
         resolved.props[0].filter(
@@ -993,8 +994,9 @@ export default class ServiceGenerator {
       });
     }
 
-    if (resolved.type)
+    if (resolved.type) {
       ret = [...ret, ...this.resolveFileTP(resolved.type as SchemaObject)];
+    }
 
     return ret;
   }
