@@ -1,5 +1,11 @@
 # openapi-ts-request
 
+## 1.3.3
+
+### Patch Changes
+
+- [#291](https://github.com/openapi-ui/openapi-ts-request/pull/291) [`36032b8`](https://github.com/openapi-ui/openapi-ts-request/commit/36032b82cc1c3e5e286ed0b84692bbe1d7596095) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - fix: fix parse multiple file lose
+
 ## 1.3.2
 
 ### Patch Changes
