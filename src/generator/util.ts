@@ -293,11 +293,19 @@ export function getDefaultFileTag(
   operationObject: OperationObject,
   apiPath: string
 ): string[] {
-  return operationObject['x-swagger-router-controller']
-    ? [operationObject['x-swagger-router-controller'] as string]
-    : operationObject.tags || [operationObject.operationId] || [
-          apiPath.replace('/', '').split('/')[1],
-        ];
+  let lastTags: string[] = [];
+
+  if (operationObject['x-swagger-router-controller']) {
+    lastTags = [operationObject['x-swagger-router-controller'] as string];
+  } else if (!isEmpty(operationObject.tags)) {
+    lastTags = operationObject.tags;
+  } else if (operationObject.operationId) {
+    lastTags = [operationObject.operationId];
+  } else {
+    lastTags = [apiPath.replace('/', '').split('/')[1]];
+  }
+
+  return lastTags;
 }
 
 function findDuplicateTypeNames(arr: string[]) {
