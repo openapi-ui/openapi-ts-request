@@ -237,6 +237,16 @@ export function getDefaultType(
   }
 
   if (schemaObject.type === 'object' || schemaObject.properties) {
+    if (isObject(schemaObject.additionalProperties)) {
+      const type = getDefaultType(
+        schemaObject.additionalProperties,
+        namespace,
+        schemas
+      );
+
+      return `Record<string, ${type}>`;
+    }
+
     if (!keys(schemaObject.properties).length) {
       return 'Record<string, unknown>';
     }
