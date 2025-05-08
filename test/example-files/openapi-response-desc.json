@@ -1,0 +1,116 @@
+{
+  "openapi": "3.0.2",
+  "info": {
+    "title": "Swagger Petstore - OpenAPI 3.0",
+    "description": "This is a sample Pet Store Server based on the OpenAPI 3.0 specification.  You can find out more about\nSwagger at [http://swagger.io](http://swagger.io). In the third iteration of the pet store, we've switched to the design first approach!\nYou can now help us improve the API whether it's by making changes to the definition itself or to the code.\nThat way, with time, we can improve the API in general, and expose some of the new features in OAS3.\n\nSome useful links:\n- [The Pet Store repository](https://github.com/swagger-api/swagger-petstore)\n- [The source API definition for the Pet Store](https://github.com/swagger-api/swagger-petstore/blob/master/src/main/resources/openapi.yaml)",
+    "termsOfService": "http://swagger.io/terms/",
+    "contact": {
+      "email": "apiteam@swagger.io"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    },
+    "version": "1.0.19"
+  },
+  "externalDocs": {
+    "description": "Find out more about Swagger",
+    "url": "http://swagger.io"
+  },
+  "servers": [
+    {
+      "url": "/api/v3"
+    }
+  ],
+  "paths": {
+    "/cgi-bin/gettoken": {
+      "get": {
+        "summary": "获取access_token",
+        "deprecated": false,
+        "description": "> **为了安全考虑，开发者请勿将access_token返回给前端，需要开发者保存在后台，所有访问企业微信api的请求由后台发起**\n\n获取access_token是调用企业微信API接口的第一步，相当于创建了一个登录凭证，其它的业务API接口，都需要依赖于access_token来鉴权调用者身份。\n因此开发者，在使用业务接口前，要明确access_token的颁发来源，使用正确的access_token。\n\n\n**权限说明：**\n每个应用有独立的secret，获取到的access_token只能本应用使用，所以每个应用的access_token应该分开来获取。\n\n\n**注意事项：**\n开发者需要缓存access_token，用于后续接口的调用（注意：不能频繁调用gettoken接口，否则会受到频率拦截）。当access_token失效或过期时，需要重新获取。\n\naccess_token的有效期通过返回的expires_in来传达，正常情况下为7200秒（2小时），有效期内重复获取返回相同结果，过期后获取会返回新的access_token。\n由于企业微信每个应用的access_token是彼此独立的，所以进行缓存时需要区分应用来进行存储。\naccess_token至少保留512字节的存储空间。\n企业微信可能会出于运营需要，提前使access_token失效，开发者应实现access_token失效时重新获取的逻辑。",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "corpid",
+            "in": "query",
+            "description": "企业ID，获取方式参考：[术语说明-corpid](https://developer.work.weixin.qq.com/document/path/91039#14953/corpid)",
+            "required": true,
+            "example": "ID",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "corpsecret",
+            "in": "query",
+            "description": "应用的凭证密钥，获取方式参考：[术语说明-secret](https://developer.work.weixin.qq.com/document/path/91039#14953/secret)",
+            "required": true,
+            "example": "SECRET",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "errcode": {
+                      "type": "integer",
+                      "description": "出错返回码，为0表示成功，非0表示调用失败"
+                    },
+                    "errmsg": {
+                      "type": "string",
+                      "description": "返回码提示语"
+                    },
+                    "access_token": {
+                      "type": "string",
+                      "description": "获取到的凭证，最长为512字节"
+                    },
+                    "expires_in": {
+                      "type": "integer",
+                      "description": "凭证的有效时间（秒）"
+                    }
+                  },
+                  "required": [
+                    "errcode",
+                    "errmsg",
+                    "access_token",
+                    "expires_in"
+                  ],
+                  "x-apifox-orders": [
+                    "errcode",
+                    "errmsg",
+                    "access_token",
+                    "expires_in"
+                  ],
+                  "x-apifox-ignore-properties": []
+                },
+                "example": {
+                  "errcode": 0,
+                  "errmsg": "ok",
+                  "access_token": "accesstoken000001",
+                  "expires_in": 7200
+                }
+              }
+            },
+            "headers": {},
+            "x-apifox-name": "成功"
+          }
+        },
+        "security": [],
+        "x-apifox-sourceurl": "https://developer.work.weixin.qq.com/document/path/91039",
+        "x-apifox-folder": "企业内部开发/开发指南",
+        "x-apifox-status": "released",
+        "x-run-in-apifox": "https://app.apifox.com/web/project/6276513/apis/api-288122020-run"
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  }
+}

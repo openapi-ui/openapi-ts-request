@@ -254,6 +254,7 @@ export function getDefaultType(
     return `{ ${keys(schemaObject.properties)
       .map((key) => {
         let required = false;
+        const property = (schemaObject.properties?.[key] || {}) as SchemaObject;
 
         if (isBoolean(schemaObject.required) && schemaObject.required) {
           required = true;
@@ -266,20 +267,20 @@ export function getDefaultType(
           required = true;
         }
 
-        if (
-          'required' in (schemaObject.properties[key] || {}) &&
-          (schemaObject.properties[key] as SchemaObject)?.required
-        ) {
+        if (property.required) {
           required = true;
         }
+
         /**
          * 将类型属性变为字符串，兼容错误格式如：
          * 3d_tile(数字开头)等错误命名，
          * 在后面进行格式化的时候会将正确的字符串转换为正常形式，
          * 错误的继续保留字符串。
          * */
-        return `'${key}'${required ? '' : '?'}: ${getDefaultType(
-          schemaObject.properties?.[key],
+        return `
+        ${property.description ? `/** ${property.description} */` : ''}
+        '${key}'${required ? '' : '?'}: ${getDefaultType(
+          property,
           namespace
         )}; `;
       })
@@ -293,11 +294,19 @@ export function getDefaultFileTag(
   operationObject: OperationObject,
   apiPath: string
 ): string[] {
-  return operationObject['x-swagger-router-controller']
-    ? [operationObject['x-swagger-router-controller'] as string]
-    : operationObject.tags || [operationObject.operationId] || [
-          apiPath.replace('/', '').split('/')[1],
-        ];
+  let lastTags: string[] = [];
+
+  if (operationObject['x-swagger-router-controller']) {
+    lastTags = [operationObject['x-swagger-router-controller'] as string];
+  } else if (!isEmpty(operationObject.tags)) {
+    lastTags = operationObject.tags;
+  } else if (operationObject.operationId) {
+    lastTags = [operationObject.operationId];
+  } else {
+    lastTags = [apiPath.replace('/', '').split('/')[1]];
+  }
+
+  return lastTags;
 }
 
 function findDuplicateTypeNames(arr: string[]) {

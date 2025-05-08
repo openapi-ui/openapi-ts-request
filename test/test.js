@@ -241,6 +241,12 @@ export async function ${api.functionName}(${api.body ? `data: ${api.body.type}` 
     isGenJavaScript: true,
   });
 
+  // 测试生成 response type comments
+  await openAPI.generateService({
+    schemaPath: `${__dirname}/example-files/openapi-response-desc.json`,
+    serversPath: './apis/openapi-response-desc',
+  });
+
   // check 文件生成
   const fileControllerStr = fs.readFileSync(
     path.join(__dirname, 'apis/file/fileController.ts'),
