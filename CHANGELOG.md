@@ -1,5 +1,15 @@
 # openapi-ts-request
 
+## 1.4.0
+
+### Minor Changes
+
+- [#321](https://github.com/openapi-ui/openapi-ts-request/pull/321) [`c6a2894`](https://github.com/openapi-ui/openapi-ts-request/commit/c6a28942eba0c2729127d327f7356f66fe2f4397) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - feat: support response type comments
+
+### Patch Changes
+
+- [#321](https://github.com/openapi-ui/openapi-ts-request/pull/321) [`6822ae9`](https://github.com/openapi-ui/openapi-ts-request/commit/6822ae95f5c69b08a9274fe454d15b154c2bff4e) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - perf: perf empty tags behavior, related bug #300
+
 ## 1.3.4
 
 ### Patch Changes
