@@ -22,7 +22,6 @@ import { rimrafSync } from 'rimraf';
 
 import {
   PriorityRule,
-  SchemaObjectFormat,
   SchemaObjectType,
   displayReactQueryMode,
 } from '../config';
@@ -108,6 +107,7 @@ export default class ServiceGenerator {
   protected config: GenerateServiceProps;
   protected openAPIData: OpenAPIObject;
   protected schemaList: ISchemaItem[] = [];
+  protected interfaceTPConfigs: ITypeItem[] = [];
 
   constructor(config: GenerateServiceProps, openAPIData: OpenAPIObject) {
     this.config = {
@@ -273,58 +273,6 @@ export default class ServiceGenerator {
     const reactQueryMode = this.config.reactQueryMode;
     const reactQueryFileName = displayReactQueryFileName(reactQueryMode);
 
-    // 处理重复的 typeName
-    const interfaceTPConfigs = this.getInterfaceTPConfigs();
-    handleDuplicateTypeNames(interfaceTPConfigs);
-
-    // 生成 ts 类型声明
-    if (!isGenJavaScript) {
-      this.genFileFromTemplate(
-        `${interfaceFileName}.ts`,
-        TypescriptFileType.interface,
-        {
-          nullable: this.config.nullable,
-          list: interfaceTPConfigs,
-        }
-      );
-    }
-
-    // 生成枚举翻译
-    const enums = filter(interfaceTPConfigs, (item) => item.isEnum);
-    if (!isGenJavaScript && !isOnlyGenTypeScriptType && !isEmpty(enums)) {
-      this.genFileFromTemplate(
-        `${displayEnumLabelFileName}.ts`,
-        TypescriptFileType.displayEnumLabel,
-        {
-          list: enums,
-          namespace: this.config.namespace,
-          interfaceFileName: interfaceFileName,
-        }
-      );
-    }
-
-    const displayTypeLabels = filter(
-      interfaceTPConfigs,
-      (item) => !item.isEnum
-    );
-    // 生成 type 翻译
-    if (
-      !isGenJavaScript &&
-      !isOnlyGenTypeScriptType &&
-      this.config.isDisplayTypeLabel &&
-      !isEmpty(displayTypeLabels)
-    ) {
-      this.genFileFromTemplate(
-        `${displayTypeLabelFileName}.ts`,
-        TypescriptFileType.displayTypeLabel,
-        {
-          list: displayTypeLabels,
-          namespace: this.config.namespace,
-          interfaceFileName: interfaceFileName,
-        }
-      );
-    }
-
     if (!isOnlyGenTypeScriptType) {
       const prettierError = [];
 
@@ -392,6 +340,58 @@ export default class ServiceGenerator {
       }
     }
 
+    // 处理重复的 typeName
+    this.interfaceTPConfigs = this.getInterfaceTPConfigs();
+    handleDuplicateTypeNames(this.interfaceTPConfigs);
+
+    // 生成 ts 类型声明
+    if (!isGenJavaScript) {
+      this.genFileFromTemplate(
+        `${interfaceFileName}.ts`,
+        TypescriptFileType.interface,
+        {
+          nullable: this.config.nullable,
+          list: this.interfaceTPConfigs,
+        }
+      );
+    }
+
+    // 生成枚举翻译
+    const enums = filter(this.interfaceTPConfigs, (item) => item.isEnum);
+    if (!isGenJavaScript && !isOnlyGenTypeScriptType && !isEmpty(enums)) {
+      this.genFileFromTemplate(
+        `${displayEnumLabelFileName}.ts`,
+        TypescriptFileType.displayEnumLabel,
+        {
+          list: enums,
+          namespace: this.config.namespace,
+          interfaceFileName: interfaceFileName,
+        }
+      );
+    }
+
+    const displayTypeLabels = filter(
+      this.interfaceTPConfigs,
+      (item) => !item.isEnum
+    );
+    // 生成 type 翻译
+    if (
+      !isGenJavaScript &&
+      !isOnlyGenTypeScriptType &&
+      this.config.isDisplayTypeLabel &&
+      !isEmpty(displayTypeLabels)
+    ) {
+      this.genFileFromTemplate(
+        `${displayTypeLabelFileName}.ts`,
+        TypescriptFileType.displayTypeLabel,
+        {
+          list: displayTypeLabels,
+          namespace: this.config.namespace,
+          interfaceFileName: interfaceFileName,
+        }
+      );
+    }
+
     if (
       !isOnlyGenTypeScriptType &&
       this.config.isGenJsonSchemas &&
@@ -443,7 +443,7 @@ export default class ServiceGenerator {
 
   private getInterfaceTPConfigs() {
     const schemas = this.openAPIData.components?.schemas;
-    const lastTypes: Array<ITypeItem> = [];
+    const lastTypes: Array<ITypeItem> = this.interfaceTPConfigs;
     const includeTags = this.config?.includeTags || [];
 
     // 强行替换掉请求参数params的类型，生成方法对应的 xxxxParams 类型
@@ -635,6 +635,28 @@ export default class ServiceGenerator {
                 functionName = `${functionName}_${(tmpFunctionRD[functionName] += 1)}`;
               } else if (functionName) {
                 tmpFunctionRD[functionName] = 1;
+              }
+
+              if (body?.isAnonymous) {
+                const bodyName = upperFirst(`${functionName}Body`);
+                this.interfaceTPConfigs.push({
+                  typeName: bodyName,
+                  type: body?.type,
+                  isEnum: false,
+                  props: [],
+                });
+                body.type = `${this.config.namespace}.${bodyName}`;
+              }
+
+              if (response?.isAnonymous) {
+                const responseName = upperFirst(`${functionName}Response`);
+                this.interfaceTPConfigs.push({
+                  typeName: responseName,
+                  type: response?.type,
+                  isEnum: false,
+                  props: [],
+                });
+                response.type = `${this.config.namespace}.${responseName}`;
               }
 
               let formattedPath = newApi.path.replace(
@@ -909,49 +931,21 @@ export default class ServiceGenerator {
     // 如果 requestBody 有 required 属性，则正常展示；如果没有，默认非必填
     const required =
       typeof requestBody?.required === 'boolean' ? requestBody.required : false;
-
-    if (schema.type === 'object' && schema.properties) {
-      const propertiesList = keys(schema.properties)
-        .map((propertyKey) => {
-          const propertyObj = schema.properties[
-            propertyKey
-          ] as ArraySchemaObject;
-
-          if (
-            propertyObj &&
-            ![SchemaObjectFormat.binary, SchemaObjectFormat.base64].includes(
-              propertyObj.format as SchemaObjectFormat
-            ) &&
-            !isBinaryArraySchemaObject(propertyObj)
-          ) {
-            // 测试了很多用例，很少有用例走到这里
-            return {
-              key: propertyKey,
-              schema: {
-                ...(propertyObj as ArraySchemaObject),
-                type: this.getType(propertyObj, this.config.namespace),
-                required: schema.required?.includes(propertyKey) ?? false,
-              },
-            };
-          }
-
-          return null;
-        })
-        .filter((p) => p);
-
-      return {
-        mediaType,
-        ...schema,
-        required,
-        propertiesList,
-      };
-    }
-
-    return {
+    const bodySchema = {
       mediaType,
       required,
       type: this.getType(schema, this.config.namespace),
+      isAnonymous: false,
     };
+
+    // 具名 body 场景
+    if (isReferenceObject(schema)) {
+      bodySchema.type = `${this.config.namespace}.${bodySchema.type}`;
+    } else {
+      bodySchema.isAnonymous = true;
+    }
+
+    return bodySchema;
   }
 
   private getFileTP(requestBody: RequestBodyObject) {
@@ -1011,6 +1005,7 @@ export default class ServiceGenerator {
     const defaultResponse = {
       mediaType: '*/*',
       type: 'unknown',
+      isAnonymous: false,
     };
 
     if (!response) {
@@ -1029,6 +1024,11 @@ export default class ServiceGenerator {
 
     let schema = (resContent[mediaType].schema ||
       DEFAULT_SCHEMA) as SchemaObject;
+    const responseSchema = {
+      mediaType,
+      type: 'unknown',
+      isAnonymous: false,
+    };
 
     if (isReferenceObject(schema)) {
       const refName = getLastRefName(schema.$ref);
@@ -1041,6 +1041,10 @@ export default class ServiceGenerator {
           resContent[mediaType].schema ||
           DEFAULT_SCHEMA) as SchemaObject;
       }
+
+      responseSchema.type = `${this.config.namespace}.${this.getType(schema, this.config.namespace)}`;
+
+      return responseSchema;
     }
 
     if (isSchemaObject(schema)) {
@@ -1048,12 +1052,12 @@ export default class ServiceGenerator {
         schema.properties[fieldName]['required'] =
           schema.required?.includes(fieldName) ?? false;
       });
+      responseSchema.isAnonymous = true;
     }
 
-    return {
-      mediaType,
-      type: this.getType(schema, this.config.namespace),
-    };
+    responseSchema.type = this.getType(schema, this.config.namespace);
+
+    return responseSchema;
   }
 
   private getParamsTP(

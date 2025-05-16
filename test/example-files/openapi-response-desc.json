@@ -51,6 +51,34 @@
             }
           }
         ],
+        "requestBody": {
+          "description": "User data to update",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "example": "John Doe"
+                  },
+                  "email": {
+                    "type": "string",
+                    "format": "email",
+                    "example": "john@example.com"
+                  },
+                  "age": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "example": 30
+                  }
+                },
+                "required": ["name", "email"]
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "",

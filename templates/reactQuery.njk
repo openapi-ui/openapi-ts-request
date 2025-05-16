@@ -42,18 +42,7 @@ import * as apis from './{{ className }}';
       {%- endif -%}
 
       {%- if api.body -%}
-        body: 
-        {% if api.body.propertiesList %}{
-          {%- for prop in api.body.propertiesList %}
-            {% if prop.schema.description -%}
-            /** {{ prop.schema.description }} */
-            {% endif -%}
-            '{{ prop.key }}'{{ "?" if not prop.schema.required }}: {{ prop.schema.type }},
-          {%- endfor %}
-        }
-        {%- else -%}
-          {{ api.body.type }}
-        {%- endif -%}
+        body: {{ api.body.type }}
         {{ ";" if api.file }}
       {%- endif %}
 

@@ -135,7 +135,8 @@ export function getDefaultType(
   }
 
   if (isReferenceObject(schemaObject)) {
-    return [namespace, getRefName(schemaObject)].filter((s) => s).join('.');
+    return getRefName(schemaObject);
+    // return [namespace, getRefName(schemaObject)].filter((s) => s).join('.');
   }
 
   let type = schemaObject?.type;
@@ -278,8 +279,7 @@ export function getDefaultType(
          * 错误的继续保留字符串。
          * */
         return `
-        ${property.description ? `/** ${property.description} */` : ''}
-        '${key}'${required ? '' : '?'}: ${getDefaultType(
+        ${property.description ? `/** ${property.description} */\n` : ''}'${key}'${required ? '' : '?'}: ${getDefaultType(
           property,
           namespace
         )}; `;

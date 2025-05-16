@@ -247,6 +247,12 @@ export async function ${api.functionName}(${api.body ? `data: ${api.body.type}` 
     serversPath: './apis/openapi-response-desc',
   });
 
+  // 测试生成 匿名response => 具名response
+  await openAPI.generateService({
+    schemaPath: `${__dirname}/example-files/openapi-response-desc.json`,
+    serversPath: './apis/openapi-anonymous-response',
+  });
+
   // check 文件生成
   const fileControllerStr = fs.readFileSync(
     path.join(__dirname, 'apis/file/fileController.ts'),
