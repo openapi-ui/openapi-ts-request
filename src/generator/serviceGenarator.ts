@@ -1043,6 +1043,8 @@ export default class ServiceGenerator {
       }
 
       responseSchema.type = `${this.config.namespace}.${this.getType(schema, this.config.namespace)}`;
+
+      return responseSchema;
     }
 
     if (isSchemaObject(schema)) {
@@ -1051,8 +1053,9 @@ export default class ServiceGenerator {
           schema.required?.includes(fieldName) ?? false;
       });
       responseSchema.isAnonymous = true;
-      responseSchema.type = this.getType(schema, this.config.namespace);
     }
+
+    responseSchema.type = this.getType(schema, this.config.namespace);
 
     return responseSchema;
   }
