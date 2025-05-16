@@ -1,5 +1,11 @@
 # openapi-ts-request
 
+## 1.5.0
+
+### Minor Changes
+
+- [#332](https://github.com/openapi-ui/openapi-ts-request/pull/332) [`23a7c2a`](https://github.com/openapi-ui/openapi-ts-request/commit/23a7c2a7096c00074e19832c9fa96a97d04864e3) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - feat: anonymous body, response type generates named type
+
 ## 1.4.0
 
 ### Minor Changes
