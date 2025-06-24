@@ -445,6 +445,7 @@ export default class ServiceGenerator {
     const schemas = this.openAPIData.components?.schemas;
     const lastTypes: Array<ITypeItem> = this.interfaceTPConfigs;
     const includeTags = this.config?.includeTags || [];
+    const includePaths = this.config?.includePaths || [];
 
     // 强行替换掉请求参数params的类型，生成方法对应的 xxxxParams 类型
     keys(this.openAPIData.paths).forEach((pathKey) => {
@@ -461,7 +462,11 @@ export default class ServiceGenerator {
 
         const tags = hookCustomFileNames(operationObject, pathKey, method);
 
-        if (isEmpty(includeTags) || (!isEmpty(includeTags) && isEmpty(tags))) {
+        if (
+          isEmpty(includeTags) ||
+          (!isEmpty(includeTags) && isEmpty(tags)) ||
+          isEmpty(includePaths)
+        ) {
           return;
         }
 
@@ -475,7 +480,9 @@ export default class ServiceGenerator {
           includeTags
         );
 
-        if (!flag) {
+        const pathFlag = this.validateRegexp(pathKey, includePaths);
+
+        if (!flag || !pathFlag) {
           return;
         }
 
