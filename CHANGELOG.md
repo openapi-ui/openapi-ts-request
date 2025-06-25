@@ -1,5 +1,11 @@
 # openapi-ts-request
 
+## 1.5.1
+
+### Patch Changes
+
+- [#371](https://github.com/openapi-ui/openapi-ts-request/pull/371) [`3da8faf`](https://github.com/openapi-ui/openapi-ts-request/commit/3da8fafcc90809c8c6f3178ab67113b06d75d66f) Thanks [@eamd-wq](https://github.com/eamd-wq)! - fix: 修复配置includePaths时，没有按照includePaths进行type过滤，而是生成了全量的type
+
 ## 1.5.0
 
 ### Minor Changes
