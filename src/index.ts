@@ -300,7 +300,8 @@ export async function generateService({
         ? map(includeTags, (item) =>
             typeof item === 'string' ? item.toLowerCase() : item
           )
-        : priorityRule === PriorityRule.include
+        : priorityRule === PriorityRule.include ||
+            priorityRule === PriorityRule.both
           ? [/.*/g]
           : null,
       excludeTags: excludeTags
