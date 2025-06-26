@@ -1,0 +1,71 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Hello World API",
+    "version": "1.0.0",
+    "description": "A simple API that returns a student object."
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000",
+      "description": "Local server"
+    }
+  ],
+  "tags": [
+    {
+      "name": "student",
+      "description": "Everything about Student"
+    }
+  ],
+  "paths": {
+    "/hello": {
+      "get": {
+        "tags": ["student"],
+        "summary": "Returns a student object",
+        "responses": {
+          "200": {
+            "description": "A student object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Student"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Major": {
+        "type": "string",
+        "enum": ["COMPUTER SCIENCE", "MATHEMATICS", "PHYSICS", "LITERATURE"],
+        "example": "COMPUTER SCIENCE"
+      },
+      "Student": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "张三"
+          },
+          "age": {
+            "type": "integer",
+            "example": 20
+          },
+          "gender": {
+            "type": "string",
+            "enum": ["MALE", "FEMALE", "OTHER"],
+            "example": "MALE"
+          },
+          "major": {
+            "$ref": "#/components/schemas/Major"
+          }
+        },
+        "required": ["name", "age", "gender", "major"]
+      }
+    }
+  }
+}

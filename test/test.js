@@ -75,16 +75,15 @@ const gen = async () => {
             return `
 export async function ${api.functionName}(${api.params && api.hasParams ? `params: ${ctx.namespace}.${api.typeName}` : ''}) {
   return request.get('${api.path}', { params })
-}`
-          }
-          else {
+}`;
+          } else {
             return `
 export async function ${api.functionName}(${api.body ? `data: ${api.body.type}` : ''}) {
   return request.post('${api.path}', data)
-}`
+}`;
           }
-        }
-      }
+        },
+      },
     },
   });
 
@@ -136,6 +135,14 @@ export async function ${api.functionName}(${api.body ? `data: ${api.body.type}` 
     schemaPath: `${__dirname}/example-files/openapi.json`,
     serversPath: './apis/filter-tags',
     includeTags: ['pet'],
+  });
+
+  // 测试 "COMPUTER SCIENCE" 这一类的枚举值在生成的类型中不报错
+  await openAPI.generateService({
+    schemaPath: `${__dirname}/example-files/openapi-complex-enum-convert.json`,
+    serversPath: './apis/complex-enum-convert',
+    includePaths: [/.*/g],
+    includeTags: [/.*/g],
   });
 
   // 测试生成 JSON Schemas
