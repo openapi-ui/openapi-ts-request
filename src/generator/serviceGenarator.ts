@@ -1204,7 +1204,7 @@ export default class ServiceGenerator {
     } else if (isAllNumeric(enumArray)) {
       enumStr = `{${map(enumArray, (value) => `"STRING_NUMBER_${value}"="${value}"`).join(',')}}`;
     } else {
-      enumStr = `{${map(enumArray, (value) => `${value}="${value}"`).join(',')}}`;
+      enumStr = `{${map(enumArray, (value) => `"${value}"="${value}"`).join(',')}}`;
     }
 
     // 翻译枚举
@@ -1243,7 +1243,7 @@ export default class ServiceGenerator {
       } else if (isAllNumeric(enumArray)) {
         enumLabelTypeStr = `{${map(enumArray, (value) => `"${value}":"STRING_NUMBER_${value}"`).join(',')}}`;
       } else {
-        enumLabelTypeStr = `{${map(enumArray, (value) => `${value}:"${value}"`).join(',')}}`;
+        enumLabelTypeStr = `{${map(enumArray, (value) => `"${value}":"${value}"`).join(',')}}`;
       }
     }
 
