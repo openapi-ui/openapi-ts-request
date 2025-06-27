@@ -1,5 +1,13 @@
 # openapi-ts-request
 
+## 1.5.2
+
+### Patch Changes
+
+- [#376](https://github.com/openapi-ui/openapi-ts-request/pull/376) [`42ee4b9`](https://github.com/openapi-ui/openapi-ts-request/commit/42ee4b9de17e49c18aa78f316fc1359249501d91) Thanks [@AdoKevin](https://github.com/AdoKevin)! - priorityRule 为 both 和 include 的时候都设置includeTags, includePaths 的默认值为[/.*/g]
+
+- [#377](https://github.com/openapi-ui/openapi-ts-request/pull/377) [`27de009`](https://github.com/openapi-ui/openapi-ts-request/commit/27de009901996f1fd6947cccbd3788c74e2ebdfd) Thanks [@AdoKevin](https://github.com/AdoKevin)! - feat: 枚举类型支持空格
+
 ## 1.5.1
 
 ### Patch Changes
