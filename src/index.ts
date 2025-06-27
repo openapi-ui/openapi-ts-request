@@ -255,6 +255,8 @@ export async function generateService({
   mockFolder,
   includeTags,
   excludeTags,
+  includePaths,
+  excludePaths,
   authorization,
   isTranslateToEnglishTag,
   priorityRule = PriorityRule.include,
@@ -300,11 +302,25 @@ export async function generateService({
         ? map(includeTags, (item) =>
             typeof item === 'string' ? item.toLowerCase() : item
           )
-        : priorityRule === PriorityRule.include
+        : priorityRule === PriorityRule.include ||
+            priorityRule === PriorityRule.both
+          ? [/.*/g]
+          : null,
+      includePaths: includePaths
+        ? map(includePaths, (item) =>
+            typeof item === 'string' ? item.toLowerCase() : item
+          )
+        : priorityRule === PriorityRule.include ||
+            priorityRule === PriorityRule.both
           ? [/.*/g]
           : null,
       excludeTags: excludeTags
         ? map(excludeTags, (item) =>
+            typeof item === 'string' ? item.toLowerCase() : item
+          )
+        : null,
+      excludePaths: excludePaths
+        ? map(excludePaths, (item) =>
             typeof item === 'string' ? item.toLowerCase() : item
           )
         : null,
