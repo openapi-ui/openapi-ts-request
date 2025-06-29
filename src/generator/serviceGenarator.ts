@@ -359,11 +359,19 @@ export default class ServiceGenerator {
     // 生成枚举翻译
     const enums = filter(this.interfaceTPConfigs, (item) => item.isEnum);
     if (!isGenJavaScript && !isOnlyGenTypeScriptType && !isEmpty(enums)) {
+      const hookCustomTemplateService =
+        this.config.hook?.customTemplates?.[
+          TypescriptFileType.displayEnumLabel
+        ];
+
       this.genFileFromTemplate(
         `${displayEnumLabelFileName}.ts`,
         TypescriptFileType.displayEnumLabel,
         {
-          list: enums,
+          customTemplate: !!hookCustomTemplateService,
+          list: hookCustomTemplateService
+            ? hookCustomTemplateService(enums, this.config)
+            : enums,
           namespace: this.config.namespace,
           interfaceFileName: interfaceFileName,
         }
@@ -381,11 +389,19 @@ export default class ServiceGenerator {
       this.config.isDisplayTypeLabel &&
       !isEmpty(displayTypeLabels)
     ) {
+      const hookCustomTemplateService =
+        this.config.hook?.customTemplates?.[
+          TypescriptFileType.displayTypeLabel
+        ];
+
       this.genFileFromTemplate(
         `${displayTypeLabelFileName}.ts`,
         TypescriptFileType.displayTypeLabel,
         {
-          list: displayTypeLabels,
+          customTemplate: !!hookCustomTemplateService,
+          list: hookCustomTemplateService
+            ? hookCustomTemplateService(enums, this.config)
+            : enums,
           namespace: this.config.namespace,
           interfaceFileName: interfaceFileName,
         }
@@ -569,6 +585,7 @@ export default class ServiceGenerator {
               isEnum: enumObj.isEnum,
               displayLabelFuncName: camelCase(`display-${item.name}-Enum`),
               enumLabelType: enumObj.enumLabelType,
+              description: enumObj.description,
             });
           }
         });
@@ -1251,6 +1268,7 @@ export default class ServiceGenerator {
       isEnum: true,
       type: Array.isArray(enumArray) ? enumStr : 'string',
       enumLabelType: enumLabelTypeStr,
+      description: schemaObject.description,
     };
   }
 

@@ -2,9 +2,14 @@
 // @ts-ignore
 import * as {{ namespace }} from './{{ interfaceFileName }}';
 
+{% if customTemplate %}
+  {{ list }}
+{% else %}
+
 {% for type in list -%}
 export function {{ type.displayLabelFuncName }}(field: {{ namespace }}.{{ type.typeName }}) {
   return ({{ type.enumLabelType }})[field]
 }
 
 {% endfor -%}
+{%- endif %}

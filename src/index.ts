@@ -239,6 +239,21 @@ export type GenerateServiceProps = {
      */
     customTemplates?: {
       /**
+       * 自定义 displayTypeLabel 模板
+       */
+      [TypescriptFileType.displayTypeLabel]?: <T, U>(
+        types: T[],
+        config: U
+      ) => string;
+      /**
+       * 自定义 displayEnumLabel 模板
+       */
+      [TypescriptFileType.displayEnumLabel]?: <T, U>(
+        enums: T[],
+        config: U
+      ) => string;
+
+      /**
        * 自定义 serviceController 模板
        */
       [TypescriptFileType.serviceController]?: <T, U>(
