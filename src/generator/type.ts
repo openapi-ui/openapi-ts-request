@@ -39,6 +39,7 @@ export interface ITypeItem {
   isEnum: boolean;
   displayLabelFuncName?: string;
   enumLabelType?: string;
+  description?: string;
 }
 
 export type ICustomSchemaObject = SchemaObject & { isAllowed?: boolean };
