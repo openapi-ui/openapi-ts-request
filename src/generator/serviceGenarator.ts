@@ -1,7 +1,7 @@
 import { existsSync, readFileSync } from 'fs';
 import { globSync } from 'glob';
+import type { Dictionary } from 'lodash';
 import {
-  Dictionary,
   // camelCase,
   entries,
   filter,
@@ -27,7 +27,7 @@ import {
 } from '../config';
 import type { GenerateServiceProps } from '../index';
 import log from '../log';
-import {
+import type {
   ArraySchemaObject,
   ContentObject,
   ISchemaObject,
@@ -62,7 +62,7 @@ import {
 import { writeFile } from './file';
 import { Merger } from './merge';
 import { patchSchema } from './patchSchema';
-import {
+import type {
   APIDataType,
   ControllerType,
   ICustomParameterObject,
@@ -72,9 +72,9 @@ import {
   IServiceControllerPayload,
   ITypeItem,
   ITypescriptFileType,
-  type MergeOption,
   TagAPIDataType,
 } from './type';
+import { type MergeOption } from './type';
 import {
   capitalizeFirstLetter,
   genDefaultFunctionName,

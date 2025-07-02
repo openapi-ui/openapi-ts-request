@@ -1,13 +1,12 @@
 import { isEmpty, map } from 'lodash';
 
 import { PriorityRule, ReactQueryMode } from './config';
-import { TypescriptFileType } from './generator/config';
+import type { TypescriptFileType } from './generator/config';
 import { mockGenerator } from './generator/mockGenarator';
 import ServiceGenerator from './generator/serviceGenarator';
-import { APIDataType } from './generator/type';
-import {
+import type { APIDataType } from './generator/type';
+import type {
   ComponentsObject,
-  type GetSchemaByApifoxProps,
   IPriorityRule,
   IReactQueryMode,
   OpenAPIObject,
@@ -15,6 +14,7 @@ import {
   ReferenceObject,
   SchemaObject,
 } from './type';
+import { type GetSchemaByApifoxProps } from './type';
 import {
   getImportStatement,
   getOpenAPIConfig,

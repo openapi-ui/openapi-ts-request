@@ -1,5 +1,6 @@
 import fs from 'fs';
-import { Dictionary, forEach, includes, isUndefined, keys } from 'lodash';
+import type { Dictionary } from 'lodash';
+import { forEach, includes, isUndefined, keys } from 'lodash';
 import Mock from 'mockjs';
 import { dirname, join } from 'path';
 import pinyin from 'tiny-pinyin';
@@ -7,7 +8,7 @@ import pinyin from 'tiny-pinyin';
 import log from '../log';
 import OpenAPIParserMock from '../parser-mock/index';
 import { getRandomInt } from '../parser-mock/util';
-import {
+import type {
   OpenAPIObject,
   OperationObject,
   ParameterObject,
