@@ -338,7 +338,7 @@ export default {
 1. learn [Pull Request]("https://help.github.com/articles/using-pull-requests") specification
 2. fork this repository
 3. create a new branch to modify the code：`git checkout -b my-branch main`
-4. make sure your code passes all test cases (new functional test cases need to be added for new features)：`pnpm test`
+4. make sure your code passes all test cases (new functional test cases need to be added for new features)：`pnpm test:unit`
 5. create a changeset file using the command：`pnpm changeset`
 6. submit your changes using commit (must follow commitlint specification)
 7. submit Pull Request

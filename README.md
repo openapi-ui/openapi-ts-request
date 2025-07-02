@@ -340,7 +340,7 @@ export default {
 1. 熟悉 [Pull Request]("https://help.github.com/articles/using-pull-requests") 规范
 2. fork 此仓库
 3. 开一个新分支修改代码：`git checkout -b my-branch main`
-4. 确保你的代码可以通过所有测试用例(新增功能需要添加新的功能测试用例)：`pnpm test`
+4. 确保你的代码可以通过所有测试用例(新增功能需要添加新的功能测试用例)：`pnpm test:unit`
 5. 创建 changeset 文件通过命令：`pnpm changeset`
 6. 使用 commit 提交你的修改(需遵循 commitlint 规范)
 7. 发起 Pull Request
