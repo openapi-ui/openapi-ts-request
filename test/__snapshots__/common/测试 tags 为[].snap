@@ -1,0 +1,73 @@
+/* eslint-disable */
+// @ts-ignore
+import * as API from './types';
+
+export function displayStatusEnum(field: API.StatusEnum) {
+  return { available: 'available', pending: 'pending', sold: 'sold' }[field];
+}
+/* eslint-disable */
+// @ts-ignore
+import { request } from 'axios';
+
+import * as API from './types';
+
+/** Finds Pets by status Multiple status values can be provided with comma separated strings GET /pet/findByStatus */
+export async function petFindByStatusUsingGet({
+  params,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.petFindByStatusUsingGetParams;
+  options?: { [key: string]: unknown };
+}) {
+  return request<Pet[]>('/pet/findByStatus', {
+    method: 'GET',
+    params: {
+      // status has a default value: available
+      status: 'available',
+      ...params,
+    },
+    ...(options || {}),
+  });
+}
+/* eslint-disable */
+// @ts-ignore
+export * from './types';
+export * from './displayEnumLabel';
+
+export * from './findPetsByStatus';
+/* eslint-disable */
+// @ts-ignore
+
+export type Category = {
+  id?: number;
+  name?: string;
+};
+
+export type Pet = {
+  id?: number;
+  name: string;
+  category?: Category;
+  photoUrls: string[];
+  tags?: Tag[];
+  /** pet status in the store */
+  status?: 'available' | 'pending' | 'sold';
+};
+
+export type petFindByStatusUsingGetParams = {
+  /** Status values that need to be considered for filter */
+  status?: 'available' | 'pending' | 'sold';
+};
+
+export enum StatusEnum {
+  'available' = 'available',
+  'pending' = 'pending',
+  'sold' = 'sold',
+}
+
+export type IStatusEnum = keyof typeof StatusEnum;
+
+export type Tag = {
+  id?: number;
+  name?: string;
+};

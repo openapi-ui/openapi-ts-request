@@ -11,6 +11,7 @@ module.exports = {
     'test',
     '*.cjs',
     'openapi-ts-request.config.ts',
+    'vitest.config.ts',
   ],
   plugins: [],
   parserOptions: {

@@ -1,0 +1,40 @@
+/* eslint-disable */
+// @ts-ignore
+import { request } from 'axios';
+
+import * as API from './types';
+
+/** 获取活动详情 GET /activity/${param0} */
+export async function activityIdUsingGet({
+  params,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.activityIdUsingGetParams;
+  options?: { [key: string]: unknown };
+}) {
+  const { id: param0, ...queryParams } = params;
+
+  return request<API.ActivityList>(`/activity/${param0}`, {
+    method: 'GET',
+    params: { ...queryParams },
+    ...(options || {}),
+  });
+}
+/* eslint-disable */
+// @ts-ignore
+export * from './types';
+
+export * from './activity';
+/* eslint-disable */
+// @ts-ignore
+
+export type activityIdUsingGetParams = {
+  /** 活动id */
+  id: number;
+};
+
+export type ActivityList = {
+  id?: number;
+  name?: string;
+};

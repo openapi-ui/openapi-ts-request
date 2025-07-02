@@ -1,0 +1,369 @@
+/* eslint-disable */
+// @ts-ignore
+import request from '@/request';
+
+import * as API from './types';
+
+export async function checkImgCaptcha(data: API.CheckImgCaptchaReq) {
+  return request.post('/api/v1/captcha/img/check.json', data);
+}
+
+export async function getImageCaptcha(data: API.ImgCaptchaReq) {
+  return request.post('/api/v1/captcha/img/get.json', data);
+}
+/* eslint-disable */
+// @ts-ignore
+import request from '@/request';
+
+import * as API from './types';
+
+export async function accountLogin(data: API.AccountLoginReq) {
+  return request.post('/api/v1/user/account/login.json', data);
+}
+
+export async function loginIsNeedCaptcha(data: API.LoginIsNeedCaptchaReq) {
+  return request.post('/api/v1/user/account/loginIsNeedCaptcha.json', data);
+}
+
+export async function accountRegister(data: API.AccountRegisterReq) {
+  return request.post('/api/v1/user/account/register.json', data);
+}
+
+export async function editPassword(data: API.EditPasswordReq) {
+  return request.post('/api/v1/user/edit/pwd.json', data);
+}
+
+export async function forgotPassword(data: API.ApiReq) {
+  return request.post('/api/v1/user/forgot/pwd/sms.json', data);
+}
+/* eslint-disable */
+// @ts-ignore
+import * as API from './types';
+
+export function displayShowTypeEnum(field: API.ShowTypeEnum) {
+  return {
+    DIALOG: 'DIALOG',
+    ERROR: 'ERROR',
+    NOTIFICATION: 'NOTIFICATION',
+    PAGE: 'PAGE',
+    SLIENT: 'SLIENT',
+    SUCCESS: 'SUCCESS',
+    UNUSED_6: 'UNUSED_6',
+    UNUSED_7: 'UNUSED_7',
+    UNUSED_8: 'UNUSED_8',
+    WARN: 'WARN',
+  }[field];
+}
+
+export function displayShowTypeEnum2(field: API.ShowTypeEnum2) {
+  return {
+    DIALOG: 'DIALOG',
+    ERROR: 'ERROR',
+    NOTIFICATION: 'NOTIFICATION',
+    PAGE: 'PAGE',
+    SLIENT: 'SLIENT',
+    SUCCESS: 'SUCCESS',
+    UNUSED_6: 'UNUSED_6',
+    UNUSED_7: 'UNUSED_7',
+    UNUSED_8: 'UNUSED_8',
+    WARN: 'WARN',
+  }[field];
+}
+
+export function displayShowTypeEnum3(field: API.ShowTypeEnum3) {
+  return {
+    DIALOG: 'DIALOG',
+    ERROR: 'ERROR',
+    NOTIFICATION: 'NOTIFICATION',
+    PAGE: 'PAGE',
+    SLIENT: 'SLIENT',
+    SUCCESS: 'SUCCESS',
+    UNUSED_6: 'UNUSED_6',
+    UNUSED_7: 'UNUSED_7',
+    UNUSED_8: 'UNUSED_8',
+    WARN: 'WARN',
+  }[field];
+}
+
+export function displayShowTypeEnum4(field: API.ShowTypeEnum4) {
+  return {
+    DIALOG: 'DIALOG',
+    ERROR: 'ERROR',
+    NOTIFICATION: 'NOTIFICATION',
+    PAGE: 'PAGE',
+    SLIENT: 'SLIENT',
+    SUCCESS: 'SUCCESS',
+    UNUSED_6: 'UNUSED_6',
+    UNUSED_7: 'UNUSED_7',
+    UNUSED_8: 'UNUSED_8',
+    WARN: 'WARN',
+  }[field];
+}
+
+export function displayTypeEnum(field: API.TypeEnum) {
+  return {
+    EDIT_PASSWORD: 'EDIT_PASSWORD',
+    FORGOT_PASSWORD: 'FORGOT_PASSWORD',
+    LOGIN: 'LOGIN',
+    REGISTER: 'REGISTER',
+  }[field];
+}
+
+export function displayTypeEnum2(field: API.TypeEnum2) {
+  return {
+    EDIT_PASSWORD: 'EDIT_PASSWORD',
+    FORGOT_PASSWORD: 'FORGOT_PASSWORD',
+    LOGIN: 'LOGIN',
+    REGISTER: 'REGISTER',
+  }[field];
+}
+/* eslint-disable */
+// @ts-ignore
+export * from './types';
+export * from './displayEnumLabel';
+
+export * from './Captcha';
+export * from './UserAccount';
+/* eslint-disable */
+// @ts-ignore
+
+export type AccountLoginReq = {
+  /** 验证码 */
+  captcha?: string;
+  /** 验证码ID */
+  captchaId?: number;
+  /** 验证令牌 */
+  captchaToken?: string;
+  /** 密码(客户端使用 “墙]・▽・)ノ 嗨,美女+密码” 的MD5值提交，32位小写) */
+  password: string;
+  /** 用户名 */
+  username: string;
+};
+
+export type AccountRegisterReq = {
+  /** 验证码 */
+  captcha?: string;
+  /** 验证码ID */
+  captchaId: number;
+  /** 验证令牌 */
+  captchaToken?: string;
+  /** 密码(输入的密码，需要检测密码是否合法) */
+  password: string;
+  /** 用户名 */
+  username: string;
+};
+
+export type ApiReq = object;
+
+export type ApiResboolean = {
+  /** 状态码；大于零为处理成功的不同状态，小于零的状态则视为失败的情况 */
+  code: number;
+  /** 相应数据 */
+  data?: boolean;
+  /** 提示消息 */
+  msg: string;
+  /** 消息提示方式 */
+  showType:
+    | 'DIALOG'
+    | 'ERROR'
+    | 'NOTIFICATION'
+    | 'PAGE'
+    | 'SLIENT'
+    | 'SUCCESS'
+    | 'UNUSED_6'
+    | 'UNUSED_7'
+    | 'UNUSED_8'
+    | 'WARN';
+};
+
+export type ApiResCaptchaTokenVO = {
+  /** 状态码；大于零为处理成功的不同状态，小于零的状态则视为失败的情况 */
+  code: number;
+  /** 相应数据 */
+  data?: CaptchaTokenVO;
+  /** 提示消息 */
+  msg: string;
+  /** 消息提示方式 */
+  showType:
+    | 'DIALOG'
+    | 'ERROR'
+    | 'NOTIFICATION'
+    | 'PAGE'
+    | 'SLIENT'
+    | 'SUCCESS'
+    | 'UNUSED_6'
+    | 'UNUSED_7'
+    | 'UNUSED_8'
+    | 'WARN';
+};
+
+export type ApiResImgCaptchaDTO = {
+  /** 状态码；大于零为处理成功的不同状态，小于零的状态则视为失败的情况 */
+  code: number;
+  /** 相应数据 */
+  data?: ImgCaptchaDTO;
+  /** 提示消息 */
+  msg: string;
+  /** 消息提示方式 */
+  showType:
+    | 'DIALOG'
+    | 'ERROR'
+    | 'NOTIFICATION'
+    | 'PAGE'
+    | 'SLIENT'
+    | 'SUCCESS'
+    | 'UNUSED_6'
+    | 'UNUSED_7'
+    | 'UNUSED_8'
+    | 'WARN';
+};
+
+export type ApiResTokenDTO = {
+  /** 状态码；大于零为处理成功的不同状态，小于零的状态则视为失败的情况 */
+  code: number;
+  /** 相应数据 */
+  data?: TokenDTO;
+  /** 提示消息 */
+  msg: string;
+  /** 消息提示方式 */
+  showType:
+    | 'DIALOG'
+    | 'ERROR'
+    | 'NOTIFICATION'
+    | 'PAGE'
+    | 'SLIENT'
+    | 'SUCCESS'
+    | 'UNUSED_6'
+    | 'UNUSED_7'
+    | 'UNUSED_8'
+    | 'WARN';
+};
+
+export type CaptchaTokenVO = {
+  /** 验证令牌 */
+  token: string;
+};
+
+export type CheckImgCaptchaReq = {
+  /** 验证码 */
+  captcha: string;
+  /** 验证码ID */
+  id: number;
+  /** 验证码类型，1->注册，2->登录，3->忘记密码，4->修改密码 */
+  type: 'EDIT_PASSWORD' | 'FORGOT_PASSWORD' | 'LOGIN' | 'REGISTER';
+};
+
+export type EditPasswordReq = {
+  /** 新密码 */
+  newPassword: string;
+  /** 当前的密码 */
+  password: string;
+  /** 用户通行令牌 */
+  token: string;
+  /** 用户ID */
+  uid: number;
+};
+
+export type ImgCaptchaDTO = {
+  /** 验证码ID */
+  id: number;
+  /** 图片验证码URL */
+  url: string;
+};
+
+export type ImgCaptchaReq = {
+  /** 验证码类型 */
+  type: 'EDIT_PASSWORD' | 'FORGOT_PASSWORD' | 'LOGIN' | 'REGISTER';
+};
+
+export type LoginIsNeedCaptchaReq = {
+  /** 用户名 */
+  username: string;
+};
+
+export enum ShowTypeEnum {
+  'DIALOG' = 'DIALOG',
+  'ERROR' = 'ERROR',
+  'NOTIFICATION' = 'NOTIFICATION',
+  'PAGE' = 'PAGE',
+  'SLIENT' = 'SLIENT',
+  'SUCCESS' = 'SUCCESS',
+  'UNUSED_6' = 'UNUSED_6',
+  'UNUSED_7' = 'UNUSED_7',
+  'UNUSED_8' = 'UNUSED_8',
+  'WARN' = 'WARN',
+}
+
+export type IShowTypeEnum = keyof typeof ShowTypeEnum;
+
+export enum ShowTypeEnum2 {
+  'DIALOG' = 'DIALOG',
+  'ERROR' = 'ERROR',
+  'NOTIFICATION' = 'NOTIFICATION',
+  'PAGE' = 'PAGE',
+  'SLIENT' = 'SLIENT',
+  'SUCCESS' = 'SUCCESS',
+  'UNUSED_6' = 'UNUSED_6',
+  'UNUSED_7' = 'UNUSED_7',
+  'UNUSED_8' = 'UNUSED_8',
+  'WARN' = 'WARN',
+}
+
+export type IShowTypeEnum2 = keyof typeof ShowTypeEnum2;
+
+export enum ShowTypeEnum3 {
+  'DIALOG' = 'DIALOG',
+  'ERROR' = 'ERROR',
+  'NOTIFICATION' = 'NOTIFICATION',
+  'PAGE' = 'PAGE',
+  'SLIENT' = 'SLIENT',
+  'SUCCESS' = 'SUCCESS',
+  'UNUSED_6' = 'UNUSED_6',
+  'UNUSED_7' = 'UNUSED_7',
+  'UNUSED_8' = 'UNUSED_8',
+  'WARN' = 'WARN',
+}
+
+export type IShowTypeEnum3 = keyof typeof ShowTypeEnum3;
+
+export enum ShowTypeEnum4 {
+  'DIALOG' = 'DIALOG',
+  'ERROR' = 'ERROR',
+  'NOTIFICATION' = 'NOTIFICATION',
+  'PAGE' = 'PAGE',
+  'SLIENT' = 'SLIENT',
+  'SUCCESS' = 'SUCCESS',
+  'UNUSED_6' = 'UNUSED_6',
+  'UNUSED_7' = 'UNUSED_7',
+  'UNUSED_8' = 'UNUSED_8',
+  'WARN' = 'WARN',
+}
+
+export type IShowTypeEnum4 = keyof typeof ShowTypeEnum4;
+
+export type TokenDTO = {
+  /** 通行令牌 */
+  accessToken: string;
+  /** 刷新令牌 */
+  refreshToken: string;
+  /** 用户ID */
+  userId: number;
+};
+
+export enum TypeEnum {
+  'EDIT_PASSWORD' = 'EDIT_PASSWORD',
+  'FORGOT_PASSWORD' = 'FORGOT_PASSWORD',
+  'LOGIN' = 'LOGIN',
+  'REGISTER' = 'REGISTER',
+}
+
+export type ITypeEnum = keyof typeof TypeEnum;
+
+export enum TypeEnum2 {
+  'EDIT_PASSWORD' = 'EDIT_PASSWORD',
+  'FORGOT_PASSWORD' = 'FORGOT_PASSWORD',
+  'LOGIN' = 'LOGIN',
+  'REGISTER' = 'REGISTER',
+}
+
+export type ITypeEnum2 = keyof typeof TypeEnum2;

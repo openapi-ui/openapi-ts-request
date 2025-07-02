@@ -1,0 +1,188 @@
+/* eslint-disable */
+// @ts-ignore
+import { request } from 'axios';
+
+import * as API from './types';
+
+/** Getcity GET /city/${param0} */
+export async function cityCityUsingGet({
+  params,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.cityCityUsingGetParams;
+  options?: { [key: string]: unknown };
+}) {
+  const { city: param0, ...queryParams } = params;
+
+  return request<API.CityGetRes>(`/city/${param0}`, {
+    method: 'GET',
+    params: {
+      ...queryParams,
+    },
+    ...(options || {}),
+  });
+}
+/* eslint-disable */
+// @ts-ignore
+import * as API from './types';
+
+export function displayPoi2CategoryEnumEnum(field: API.Poi2CategoryEnum) {
+  return {
+    '-1': 'STRING_NUMBER_-1',
+    '-1000': 'STRING_NUMBER_-1000',
+    '010700': 'STRING_NUMBER_010700',
+    '010800': 'STRING_NUMBER_010800',
+    '010900': 'STRING_NUMBER_010900',
+    '010901': 'STRING_NUMBER_010901',
+    '011000': 'STRING_NUMBER_011000',
+    '011100': 'STRING_NUMBER_011100',
+    '011101': 'STRING_NUMBER_011101',
+    '011102': 'STRING_NUMBER_011102',
+    '011103': 'STRING_NUMBER_011103',
+    '130500': 'STRING_NUMBER_130500',
+    '130501': 'STRING_NUMBER_130501',
+    '130502': 'STRING_NUMBER_130502',
+    '130503': 'STRING_NUMBER_130503',
+    '150210': 'STRING_NUMBER_150210',
+    '150300': 'STRING_NUMBER_150300',
+    '150301': 'STRING_NUMBER_150301',
+    '150302': 'STRING_NUMBER_150302',
+    '150304': 'STRING_NUMBER_150304',
+    '150305': 'STRING_NUMBER_150305',
+    '150306': 'STRING_NUMBER_150306',
+    '151000': 'STRING_NUMBER_151000',
+    '151001': 'STRING_NUMBER_151001',
+    '151002': 'STRING_NUMBER_151002',
+    '151003': 'STRING_NUMBER_151003',
+    '180200': 'STRING_NUMBER_180200',
+    '180201': 'STRING_NUMBER_180201',
+    '180202': 'STRING_NUMBER_180202',
+    '180203': 'STRING_NUMBER_180203',
+    '180300': 'STRING_NUMBER_180300',
+    '180301': 'STRING_NUMBER_180301',
+    '180302': 'STRING_NUMBER_180302',
+  }[field];
+}
+/* eslint-disable */
+// @ts-ignore
+import { request } from 'axios';
+
+import * as API from './types';
+
+/** Hello World GET / */
+export async function usingGet({
+  options,
+}: {
+  options?: { [key: string]: unknown };
+}) {
+  return request<string>('/', {
+    method: 'GET',
+    ...(options || {}),
+  });
+}
+/* eslint-disable */
+// @ts-ignore
+export * from './types';
+export * from './displayEnumLabel';
+
+export * from './home';
+export * from './cityList';
+export * from './putCity';
+/* eslint-disable */
+// @ts-ignore
+import { request } from 'axios';
+
+import * as API from './types';
+
+/** Putcity PUT /city/${param0} */
+export async function cityCityUsingPut({
+  params,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.cityCityUsingPutParams;
+  options?: { [key: string]: unknown };
+}) {
+  const { city: param0, ...queryParams } = params;
+
+  return request<API.CityPutRes>(`/city/${param0}`, {
+    method: 'PUT',
+    params: { ...queryParams },
+    ...(options || {}),
+  });
+}
+/* eslint-disable */
+// @ts-ignore
+
+export type cityCityUsingGetParams = {
+  city: string;
+  query_string?: string;
+};
+
+export type cityCityUsingPutParams = {
+  city: Poi2CategoryEnum;
+};
+
+export type CityGetRes = {
+  /** City */
+  city: string;
+  /** Query String */
+  query_string?: string;
+};
+
+export type CityPutRes = {
+  city: Poi2CategoryEnum;
+};
+
+export type HTTPValidationError = {
+  /** Detail */
+  detail?: ValidationError[];
+};
+
+export enum Poi2CategoryEnum {
+  'STRING_NUMBER_-1' = '-1',
+  'STRING_NUMBER_-1000' = '-1000',
+  'STRING_NUMBER_010700' = '010700',
+  'STRING_NUMBER_010800' = '010800',
+  'STRING_NUMBER_010900' = '010900',
+  'STRING_NUMBER_010901' = '010901',
+  'STRING_NUMBER_011000' = '011000',
+  'STRING_NUMBER_011100' = '011100',
+  'STRING_NUMBER_011101' = '011101',
+  'STRING_NUMBER_011102' = '011102',
+  'STRING_NUMBER_011103' = '011103',
+  'STRING_NUMBER_130500' = '130500',
+  'STRING_NUMBER_130501' = '130501',
+  'STRING_NUMBER_130502' = '130502',
+  'STRING_NUMBER_130503' = '130503',
+  'STRING_NUMBER_150210' = '150210',
+  'STRING_NUMBER_150300' = '150300',
+  'STRING_NUMBER_150301' = '150301',
+  'STRING_NUMBER_150302' = '150302',
+  'STRING_NUMBER_150304' = '150304',
+  'STRING_NUMBER_150305' = '150305',
+  'STRING_NUMBER_150306' = '150306',
+  'STRING_NUMBER_151000' = '151000',
+  'STRING_NUMBER_151001' = '151001',
+  'STRING_NUMBER_151002' = '151002',
+  'STRING_NUMBER_151003' = '151003',
+  'STRING_NUMBER_180200' = '180200',
+  'STRING_NUMBER_180201' = '180201',
+  'STRING_NUMBER_180202' = '180202',
+  'STRING_NUMBER_180203' = '180203',
+  'STRING_NUMBER_180300' = '180300',
+  'STRING_NUMBER_180301' = '180301',
+  'STRING_NUMBER_180302' = '180302',
+}
+
+export type IPoi2CategoryEnum = keyof typeof Poi2CategoryEnum;
+
+export type ValidationError = {
+  /** Location */
+  loc: (string | number)[];
+  /** Message */
+  msg: string;
+  /** Error Type */
+  type: string;
+};
