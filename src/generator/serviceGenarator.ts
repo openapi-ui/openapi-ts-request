@@ -947,7 +947,7 @@ export default class ServiceGenerator {
 
     // 具名 body 场景
     if (isReferenceObject(schema)) {
-      bodySchema.type = `${this.config.namespace}.${bodySchema.type}`;
+      bodySchema.type = `${bodySchema.type}`;
     } else {
       bodySchema.isAnonymous = true;
     }
@@ -1049,7 +1049,7 @@ export default class ServiceGenerator {
           DEFAULT_SCHEMA) as SchemaObject;
       }
 
-      responseSchema.type = `${this.config.namespace}.${this.getType(schema, this.config.namespace)}`;
+      responseSchema.type = `${this.getType(schema, this.config.namespace)}`;
 
       return responseSchema;
     }

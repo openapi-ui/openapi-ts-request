@@ -12,7 +12,7 @@ export async function feignGoodsGetGoodsByIdsUsingPost({
   body: API.FeignGoodsGetGoodsByIdsUsingPostBody;
   options?: { [key: string]: unknown };
 }) {
-  return request<GoodsDTO[]>('/mall/feign/goods/getGoodsByIds', {
+  return request<API.GoodsDTO[]>('/mall/feign/goods/getGoodsByIds', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -30,7 +30,7 @@ export async function feignGoodsGetGoodsByNameUsingPost({
   body: API.GoodsQueryDTO;
   options?: { [key: string]: unknown };
 }) {
-  return request<GoodsDTO[]>('/mall/feign/goods/getGoodsByName', {
+  return request<API.GoodsDTO[]>('/mall/feign/goods/getGoodsByName', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

@@ -177,7 +177,7 @@ export async function petFindByStatusUsingGet({
   params: API.petFindByStatusUsingGetParams;
   options?: { [key: string]: unknown };
 }) {
-  return request<Pet[]>('/pet/findByStatus', {
+  return request<API.Pet[]>('/pet/findByStatus', {
     method: 'GET',
     params: {
       ...params,
@@ -195,7 +195,7 @@ export async function petFindByTagsUsingGet({
   params: API.petFindByTagsUsingGetParams;
   options?: { [key: string]: unknown };
 }) {
-  return request<Pet[]>('/pet/findByTags', {
+  return request<API.Pet[]>('/pet/findByTags', {
     method: 'GET',
     params: {
       ...params,
@@ -395,9 +395,9 @@ export type User = {
   userStatus?: number;
 };
 
-export type UserCreateWithArrayUsingPostBody = User[];
+export type UserCreateWithArrayUsingPostBody = API.User[];
 
-export type UserCreateWithListUsingPostBody = User[];
+export type UserCreateWithListUsingPostBody = API.User[];
 
 export type userLoginUsingGetParams = {
   /** The user name for login */

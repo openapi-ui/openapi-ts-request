@@ -161,7 +161,7 @@ export async function v1ApiAppAppIdHourlyMessagesUsingGet({
 }) {
   const { appID: param0, ...queryParams } = params;
 
-  return request<MessagesCountResp[]>(
+  return request<API.MessagesCountResp[]>(
     `/llmops/v1/api/app/${param0}/hourly-messages`,
     {
       method: 'GET',
@@ -184,7 +184,7 @@ export async function v1ApiAppAppIdHourlyTokenUsingGet({
 }) {
   const { appID: param0, ...queryParams } = params;
 
-  return request<MessagesTokenResp[]>(
+  return request<API.MessagesTokenResp[]>(
     `/llmops/v1/api/app/${param0}/hourly-token`,
     {
       method: 'GET',
@@ -230,7 +230,7 @@ export async function v1ApiAppAppIdLogsConversationIdMessagesUsingGet({
 }) {
   const { appID: param0, conversationID: param1, ...queryParams } = params;
 
-  return request<HistoryInfo[]>(
+  return request<API.HistoryInfo[]>(
     `/llmops/v1/api/app/${param0}/logs/${param1}/messages`,
     {
       method: 'GET',
@@ -251,13 +251,16 @@ export async function v1ApiAppAppIdMessagesUsingGet({
 }) {
   const { appID: param0, ...queryParams } = params;
 
-  return request<MessagesCountResp[]>(`/llmops/v1/api/app/${param0}/messages`, {
-    method: 'GET',
-    params: {
-      ...queryParams,
-    },
-    ...(options || {}),
-  });
+  return request<API.MessagesCountResp[]>(
+    `/llmops/v1/api/app/${param0}/messages`,
+    {
+      method: 'GET',
+      params: {
+        ...queryParams,
+      },
+      ...(options || {}),
+    }
+  );
 }
 
 /** ShareChat 创建分享path PUT /llmops/v1/api/app/${param0}/share */
@@ -294,13 +297,16 @@ export async function v1ApiAppAppIdTokenUsingGet({
 }) {
   const { appID: param0, ...queryParams } = params;
 
-  return request<MessagesTokenResp[]>(`/llmops/v1/api/app/${param0}/token`, {
-    method: 'GET',
-    params: {
-      ...queryParams,
-    },
-    ...(options || {}),
-  });
+  return request<API.MessagesTokenResp[]>(
+    `/llmops/v1/api/app/${param0}/token`,
+    {
+      method: 'GET',
+      params: {
+        ...queryParams,
+      },
+      ...(options || {}),
+    }
+  );
 }
 
 /** UpdateApp 更新 app PUT /llmops/v1/api/app/${param0}/update */
@@ -363,7 +369,7 @@ export async function v1ApiAppListUsingGet({
 }: {
   options?: { [key: string]: unknown };
 }) {
-  return request<AppResp[]>('/llmops/v1/api/app/list', {
+  return request<API.AppResp[]>('/llmops/v1/api/app/list', {
     method: 'GET',
     ...(options || {}),
   });
@@ -375,7 +381,7 @@ export async function v1ApiAppListPickUsingGet({
 }: {
   options?: { [key: string]: unknown };
 }) {
-  return request<App[]>('/llmops/v1/api/app/list-pick', {
+  return request<API.App[]>('/llmops/v1/api/app/list-pick', {
     method: 'GET',
     ...(options || {}),
   });
@@ -390,7 +396,7 @@ export async function v1ApiAppListPrivateUsingGet({
   params: API.v1ApiAppListPrivateUsingGetParams;
   options?: { [key: string]: unknown };
 }) {
-  return request<AppResp[]>('/llmops/v1/api/app/list-private', {
+  return request<API.AppResp[]>('/llmops/v1/api/app/list-private', {
     method: 'GET',
     params: {
       ...params,
@@ -408,7 +414,7 @@ export async function v1ApiAppListPublicUsingGet({
   params: API.v1ApiAppListPublicUsingGetParams;
   options?: { [key: string]: unknown };
 }) {
-  return request<AppResp[]>('/llmops/v1/api/app/list-public', {
+  return request<API.AppResp[]>('/llmops/v1/api/app/list-public', {
     method: 'GET',
     params: {
       ...params,
@@ -747,7 +753,7 @@ export async function v2ApiAppListUsingGet({
   params: API.v2ApiAppListUsingGetParams;
   options?: { [key: string]: unknown };
 }) {
-  return request<AppResp[]>('/llmops/v2/api/app/list', {
+  return request<API.AppResp[]>('/llmops/v2/api/app/list', {
     method: 'GET',
     params: {
       ...params,
@@ -791,7 +797,7 @@ export async function v1ApiAttentionAppListUsingGet({
   params: API.v1ApiAttentionAppListUsingGetParams;
   options?: { [key: string]: unknown };
 }) {
-  return request<AppResp[]>('/llmops/v1/api/attention/app/list', {
+  return request<API.AppResp[]>('/llmops/v1/api/attention/app/list', {
     method: 'GET',
     params: {
       ...params,
@@ -844,7 +850,7 @@ export async function v1ApiAttentionMessagesCountUsingPost({
   body: API.GetAttentionDataCountReq;
   options?: { [key: string]: unknown };
 }) {
-  return request<AttentionDataCountResp[]>(
+  return request<API.AttentionDataCountResp[]>(
     '/llmops/v1/api/attention/messages/count',
     {
       method: 'POST',
@@ -863,13 +869,16 @@ export async function v1ApiAttentionMessagesHistoryUsingGet({
   params: API.v1ApiAttentionMessagesHistoryUsingGetParams;
   options?: { [key: string]: unknown };
 }) {
-  return request<HistoryInfo[]>('/llmops/v1/api/attention/messages/history', {
-    method: 'GET',
-    params: {
-      ...params,
-    },
-    ...(options || {}),
-  });
+  return request<API.HistoryInfo[]>(
+    '/llmops/v1/api/attention/messages/history',
+    {
+      method: 'GET',
+      params: {
+        ...params,
+      },
+      ...(options || {}),
+    }
+  );
 }
 
 /** CreateAttentionUser 添加特别关注 POST /llmops/v1/api/attention/user */
@@ -1085,7 +1094,7 @@ export async function v1ApiConversationsUsingGet({
   params: API.v1ApiConversationsUsingGetParams;
   options?: { [key: string]: unknown };
 }) {
-  return request<ConversationMsg[]>('/llmops/v1/api/conversations', {
+  return request<API.ConversationMsg[]>('/llmops/v1/api/conversations', {
     method: 'GET',
     params: {
       ...params,
@@ -3322,7 +3331,7 @@ export async function v1ApiConversationsConversationIdHistoryUsingGet({
 }) {
   const { conversation_id: param0, ...queryParams } = params;
 
-  return request<HistoryInfo[]>(
+  return request<API.HistoryInfo[]>(
     `/llmops/v1/api/conversations/${param0}/history`,
     {
       method: 'GET',
@@ -3499,7 +3508,7 @@ export async function v1ApiAppAppIdRecommendedContextUsingGet({
 }) {
   const { appID: param0, ...queryParams } = params;
 
-  return request<AppRecommendedContext[]>(
+  return request<API.AppRecommendedContext[]>(
     `/llmops/v1/api/app/${param0}/recommended/context`,
     {
       method: 'GET',
@@ -4502,7 +4511,7 @@ export type v1ApiAppAppIdDatasetsUsingDeleteParams = {
   datasetID: string;
 };
 
-export type V1ApiAppAppIdDatasetsUsingPostBody = AppDatasets[];
+export type V1ApiAppAppIdDatasetsUsingPostBody = API.AppDatasets[];
 
 export type v1ApiAppAppIdDatasetsUsingPostParams = {
   /** 应用id */
@@ -4894,7 +4903,7 @@ export type v2ApiWorkspacesRecommendedMessageIdDetailsUsingGetParams = {
 };
 
 export type V2ApiWorkspacesWorkspaceIdAppAppIdDatasetsJoinUsingPostBody =
-  AppDatasets[];
+  API.AppDatasets[];
 
 export type v2ApiWorkspacesWorkspaceIdAppAppIdDatasetsJoinUsingPostParams = {
   /** 空间ID */
@@ -5604,7 +5613,7 @@ export async function v2ApiWorkspacesWorkspaceIdAppAppIdHourlyMessagesUsingGet({
 }) {
   const { workspaceID: param0, appID: param1, ...queryParams } = params;
 
-  return request<MessagesCountResp[]>(
+  return request<API.MessagesCountResp[]>(
     `/llmops/v2/api/workspaces/${param0}/app/${param1}/hourly-messages`,
     {
       method: 'GET',
@@ -5627,7 +5636,7 @@ export async function v2ApiWorkspacesWorkspaceIdAppAppIdHourlyTokenUsingGet({
 }) {
   const { workspaceID: param0, appID: param1, ...queryParams } = params;
 
-  return request<MessagesTokenResp[]>(
+  return request<API.MessagesTokenResp[]>(
     `/llmops/v2/api/workspaces/${param0}/app/${param1}/hourly-token`,
     {
       method: 'GET',
@@ -5650,7 +5659,7 @@ export async function v2ApiWorkspacesWorkspaceIdAppAppIdMessagesUsingGet({
 }) {
   const { workspaceID: param0, appID: param1, ...queryParams } = params;
 
-  return request<MessagesCountResp[]>(
+  return request<API.MessagesCountResp[]>(
     `/llmops/v2/api/workspaces/${param0}/app/${param1}/messages`,
     {
       method: 'GET',
@@ -5829,7 +5838,7 @@ export async function v2ApiWorkspacesWorkspaceIdAppAppIdTokenUsingGet({
 }) {
   const { appID: param0, workspaceID: param1, ...queryParams } = params;
 
-  return request<MessagesTokenResp[]>(
+  return request<API.MessagesTokenResp[]>(
     `/llmops/v2/api/workspaces/${param1}/app/${param0}/token`,
     {
       method: 'GET',

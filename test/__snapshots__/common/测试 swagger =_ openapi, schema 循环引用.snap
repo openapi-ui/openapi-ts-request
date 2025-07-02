@@ -19,8 +19,8 @@ export async function adminAdminsUsingGet({
   options?: { [key: string]: unknown };
 }) {
   return request<
-    Response & {
-      data?: AdminListRet;
+    API.Response & {
+      data?: API.AdminListRet;
     }
   >('/admin/admins', {
     method: 'GET',
@@ -40,8 +40,8 @@ export async function adminAdminsUsingPost({
   options?: { [key: string]: unknown };
 }) {
   return request<
-    Response & {
-      data?: AdminCreateRet;
+    API.Response & {
+      data?: API.AdminCreateRet;
     }
   >('/admin/admins', {
     method: 'POST',
@@ -65,8 +65,8 @@ export async function adminAdminsIdUsingGet({
   const { id: param0, ...queryParams } = params;
 
   return request<
-    Response & {
-      data?: AdminInfo;
+    API.Response & {
+      data?: API.AdminInfo;
     }
   >(`/admin/admins/${param0}`, {
     method: 'GET',
@@ -135,8 +135,8 @@ export async function adminAdminsIdResetUsingPatch({
   const { id: param0, ...queryParams } = params;
 
   return request<
-    Response & {
-      data?: AdminResetRet;
+    API.Response & {
+      data?: API.AdminResetRet;
     }
   >(`/admin/admins/${param0}/reset`, {
     method: 'PATCH',
@@ -176,8 +176,8 @@ export async function adminAdminsAllUsingGet({
   options?: { [key: string]: unknown };
 }) {
   return request<
-    Response & {
-      data?: Dict[];
+    API.Response & {
+      data?: API.Dict[];
     }
   >('/admin/admins/all', {
     method: 'GET',
@@ -195,8 +195,8 @@ export async function adminEvaluationsUsingGet({
   options?: { [key: string]: unknown };
 }) {
   return request<
-    Response & {
-      data?: EvaluationListRet;
+    API.Response & {
+      data?: API.EvaluationListRet;
     }
   >('/admin/evaluations', {
     method: 'GET',
@@ -216,8 +216,8 @@ export async function adminEvaluationsUsingPost({
   options?: { [key: string]: unknown };
 }) {
   return request<
-    Response & {
-      data?: EvaluationCreateRet;
+    API.Response & {
+      data?: API.EvaluationCreateRet;
     }
   >('/admin/evaluations', {
     method: 'POST',
@@ -265,8 +265,8 @@ export async function adminEvaluationsIdDataUsingGet({
   const { id: param0, ...queryParams } = params;
 
   return request<
-    Response & {
-      data?: EvaluationData;
+    API.Response & {
+      data?: API.EvaluationData;
     }
   >(`/admin/evaluations/${param0}/data`, {
     method: 'GET',
@@ -282,8 +282,8 @@ export async function adminEvaluationsAllUsingGet({
   options?: { [key: string]: unknown };
 }) {
   return request<
-    Response & {
-      data?: Dict[];
+    API.Response & {
+      data?: API.Dict[];
     }
   >('/admin/evaluations/all', {
     method: 'GET',
@@ -301,8 +301,8 @@ export async function adminEvaluationsReportsUsingGet({
   options?: { [key: string]: unknown };
 }) {
   return request<
-    Response & {
-      data?: EvaluationReportListRet;
+    API.Response & {
+      data?: API.EvaluationReportListRet;
     }
   >('/admin/evaluations/reports', {
     method: 'GET',
@@ -325,8 +325,8 @@ export async function adminEvaluationsReportsIdDataUsingGet({
   const { id: param0, ...queryParams } = params;
 
   return request<
-    Response & {
-      data?: EvaluationReportData;
+    API.Response & {
+      data?: API.EvaluationReportData;
     }
   >(`/admin/evaluations/reports/${param0}/data`, {
     method: 'GET',
@@ -381,8 +381,8 @@ export async function adminEvaluationsReportsOpenApiExportUsingGet({
   options?: { [key: string]: unknown };
 }) {
   return request<
-    Response & {
-      data?: EvaluationReportExportRet;
+    API.Response & {
+      data?: API.EvaluationReportExportRet;
     }
   >('/admin/evaluations/reports/export', {
     method: 'GET',
@@ -400,8 +400,8 @@ export async function adminLoginUsingGet({
   options?: { [key: string]: unknown };
 }) {
   return request<
-    Response & {
-      data?: AdminInfo;
+    API.Response & {
+      data?: API.AdminInfo;
     }
   >('/admin/login', {
     method: 'GET',
@@ -448,8 +448,8 @@ export async function adminOrganizationsUsingPost({
   options?: { [key: string]: unknown };
 }) {
   return request<
-    Response & {
-      data?: OrganizationCreateRet;
+    API.Response & {
+      data?: API.OrganizationCreateRet;
     }
   >('/admin/organizations', {
     method: 'POST',
@@ -473,8 +473,8 @@ export async function adminOrganizationsIdUsingGet({
   const { id: param0, ...queryParams } = params;
 
   return request<
-    Response & {
-      data?: OrganizationInfo;
+    API.Response & {
+      data?: API.OrganizationInfo;
     }
   >(`/admin/organizations/${param0}`, {
     method: 'GET',
@@ -543,8 +543,8 @@ export async function adminOrganizationsIdPermissionsUsingGet({
   const { id: param0, ...queryParams } = params;
 
   return request<
-    Response & {
-      data?: AdminPermission[];
+    API.Response & {
+      data?: API.AdminPermission[];
     }
   >(`/admin/organizations/${param0}/permissions`, {
     method: 'GET',
@@ -584,8 +584,8 @@ export async function adminOrganizationsAllUsingGet({
   options?: { [key: string]: unknown };
 }) {
   return request<
-    Response & {
-      data?: OrganizationAllInfo[];
+    API.Response & {
+      data?: API.OrganizationAllInfo[];
     }
   >('/admin/organizations/all', {
     method: 'GET',
@@ -603,8 +603,8 @@ export async function adminScalesUsingGet({
   options?: { [key: string]: unknown };
 }) {
   return request<
-    Response & {
-      data?: ScaleListRet;
+    API.Response & {
+      data?: API.ScaleListRet;
     }
   >('/admin/scales', {
     method: 'GET',
@@ -627,8 +627,8 @@ export async function adminScalesIdUsingGet({
   const { id: param0, ...queryParams } = params;
 
   return request<
-    Response & {
-      data?: ScaleInst;
+    API.Response & {
+      data?: API.ScaleInst;
     }
   >(`/admin/scales/${param0}`, {
     method: 'GET',
@@ -668,8 +668,8 @@ export async function adminScalesAllUsingGet({
   options?: { [key: string]: unknown };
 }) {
   return request<
-    Response & {
-      data?: Dict[];
+    API.Response & {
+      data?: API.Dict[];
     }
   >('/admin/scales/all', {
     method: 'GET',
@@ -686,8 +686,8 @@ export async function adminScalesOpenApiImportUsingPost({
   options?: { [key: string]: unknown };
 }) {
   return request<
-    Response & {
-      data?: ScaleImportRet;
+    API.Response & {
+      data?: API.ScaleImportRet;
     }
   >('/admin/scales/import', {
     method: 'POST',
@@ -708,8 +708,8 @@ export async function adminScalesPreviewUsingGet({
   options?: { [key: string]: unknown };
 }) {
   return request<
-    Response & {
-      data?: ScaleInst;
+    API.Response & {
+      data?: API.ScaleInst;
     }
   >('/admin/scales/preview', {
     method: 'GET',
@@ -731,8 +731,8 @@ export async function adminSystemsLogsUsingGet({
   options?: { [key: string]: unknown };
 }) {
   return request<
-    Response & {
-      data?: AdminLogListRet;
+    API.Response & {
+      data?: API.AdminLogListRet;
     }
   >('/admin/systems/logs', {
     method: 'GET',
@@ -753,8 +753,8 @@ export async function adminSystemsLogsOpenApiExportUsingGet({
   options?: { [key: string]: unknown };
 }) {
   return request<
-    Response & {
-      data?: AdminLogExportRet;
+    API.Response & {
+      data?: API.AdminLogExportRet;
     }
   >('/admin/systems/logs/export', {
     method: 'GET',
@@ -772,8 +772,8 @@ export async function adminSystemsScreenDataUsingGet({
   options?: { [key: string]: unknown };
 }) {
   return request<
-    Response & {
-      data?: SystemScreenData;
+    API.Response & {
+      data?: API.SystemScreenData;
     }
   >('/admin/systems/screen/data', {
     method: 'GET',
@@ -791,8 +791,8 @@ export async function adminUsersUsingGet({
   options?: { [key: string]: unknown };
 }) {
   return request<
-    Response & {
-      data?: UserListRet;
+    API.Response & {
+      data?: API.UserListRet;
     }
   >('/admin/users', {
     method: 'GET',
@@ -837,8 +837,8 @@ export async function adminUsersSheetsUsingGet({
   options?: { [key: string]: unknown };
 }) {
   return request<
-    Response & {
-      data?: UserSheetListRet;
+    API.Response & {
+      data?: API.UserSheetListRet;
     }
   >('/admin/users/sheets', {
     method: 'GET',
@@ -858,8 +858,8 @@ export async function adminUsersSheetsUsingPost({
   options?: { [key: string]: unknown };
 }) {
   return request<
-    Response & {
-      data?: UserSheetCreateRet;
+    API.Response & {
+      data?: API.UserSheetCreateRet;
     }
   >('/admin/users/sheets', {
     method: 'POST',
@@ -926,8 +926,8 @@ export async function adminUsersSheetsAllUsingGet({
   options?: { [key: string]: unknown };
 }) {
   return request<
-    Response & {
-      data?: Dict[];
+    API.Response & {
+      data?: API.Dict[];
     }
   >('/admin/users/sheets/all', {
     method: 'GET',
@@ -942,8 +942,8 @@ export async function adminUtilsAreasUsingGet({
   options?: { [key: string]: unknown };
 }) {
   return request<
-    Response & {
-      data?: Area[];
+    API.Response & {
+      data?: API.Area[];
     }
   >('/admin/utils/areas', {
     method: 'GET',
@@ -958,8 +958,8 @@ export async function adminUtilsDataUsingGet({
   options?: { [key: string]: unknown };
 }) {
   return request<
-    Response & {
-      data?: UtilDataAdminRet;
+    API.Response & {
+      data?: API.UtilDataAdminRet;
     }
   >('/admin/utils/data', {
     method: 'GET',
@@ -1000,8 +1000,8 @@ export async function adminUtilsUploadsUsingPost({
   });
 
   return request<
-    Response & {
-      data?: UploadRet;
+    API.Response & {
+      data?: API.UploadRet;
     }
   >('/admin/utils/uploads', {
     method: 'POST',
@@ -1025,8 +1025,8 @@ export async function userEvaluationsIdUsingGet({
   const { id: param0, ...queryParams } = params;
 
   return request<
-    Response & {
-      data?: EvaluationInfo;
+    API.Response & {
+      data?: API.EvaluationInfo;
     }
   >(`/user/evaluations/${param0}`, {
     method: 'GET',
@@ -1049,8 +1049,8 @@ export async function userEvaluationsIdReportsUsingPost({
   const { id: param0, ...queryParams } = params;
 
   return request<
-    Response & {
-      data?: EvaluationReportCreateRet;
+    API.Response & {
+      data?: API.EvaluationReportCreateRet;
     }
   >(`/user/evaluations/${param0}/reports`, {
     method: 'POST',
@@ -1073,8 +1073,8 @@ export async function userEvaluationsReportsUsingGet({
   options?: { [key: string]: unknown };
 }) {
   return request<
-    Response & {
-      data?: EvaluationReportUserListRet;
+    API.Response & {
+      data?: API.EvaluationReportUserListRet;
     }
   >('/user/evaluations/reports', {
     method: 'GET',
@@ -1097,8 +1097,8 @@ export async function userEvaluationsReportsIdUsingGet({
   const { id: param0, ...queryParams } = params;
 
   return request<
-    Response & {
-      data?: EvaluationReportData;
+    API.Response & {
+      data?: API.EvaluationReportData;
     }
   >(`/user/evaluations/reports/${param0}`, {
     method: 'GET',
@@ -1116,8 +1116,8 @@ export async function userLoginUsingPost({
   options?: { [key: string]: unknown };
 }) {
   return request<
-    Response & {
-      data?: UserLoginRet;
+    API.Response & {
+      data?: API.UserLoginRet;
     }
   >('/user/login', {
     method: 'POST',
@@ -1138,8 +1138,8 @@ export async function userLoginVerifyUsingPost({
   options?: { [key: string]: unknown };
 }) {
   return request<
-    Response & {
-      data?: UserVerifyRet;
+    API.Response & {
+      data?: API.UserVerifyRet;
     }
   >('/user/login/verify', {
     method: 'POST',
@@ -1158,8 +1158,8 @@ export async function userProfileUsingGet({
   options?: { [key: string]: unknown };
 }) {
   return request<
-    Response & {
-      data?: UserInfo;
+    API.Response & {
+      data?: API.UserInfo;
     }
   >('/user/profile', {
     method: 'GET',
@@ -1192,8 +1192,8 @@ export async function userUtilsDataUsingGet({
   options?: { [key: string]: unknown };
 }) {
   return request<
-    Response & {
-      data?: UtilDataUserRet;
+    API.Response & {
+      data?: API.UtilDataUserRet;
     }
   >('/user/utils/data', {
     method: 'GET',

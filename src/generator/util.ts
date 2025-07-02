@@ -135,8 +135,8 @@ export function getDefaultType(
   }
 
   if (isReferenceObject(schemaObject)) {
-    return getRefName(schemaObject);
-    // return [namespace, getRefName(schemaObject)].filter((s) => s).join('.');
+    // return getRefName(schemaObject);
+    return [namespace, getRefName(schemaObject)].filter((s) => s).join('.');
   }
 
   let type = schemaObject?.type;
