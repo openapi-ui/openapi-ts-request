@@ -401,7 +401,7 @@ export default class ServiceGenerator {
           customTemplate: !!hookCustomTemplateService,
           list: hookCustomTemplateService
             ? hookCustomTemplateService(enums, this.config)
-            : enums,
+            : displayTypeLabels,
           namespace: this.config.namespace,
           interfaceFileName: interfaceFileName,
         }
