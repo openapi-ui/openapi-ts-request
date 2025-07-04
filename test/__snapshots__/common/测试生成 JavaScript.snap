@@ -1,0 +1,3489 @@
+import { request } from 'axios';
+
+/** AddAppKey 为应用添加各种类型机器人appkey POST /llmops/v1/api/robot/${param0}/appkey */
+export async function v1ApiRobotWorkspaceIdAppkeyUsingPost({
+  params,
+  body,
+  options,
+}) {
+  const { workspaceID: param0, ...queryParams } = params;
+
+  return request(`/llmops/v1/api/robot/${param0}/appkey`, {
+    method: 'POST',
+    params: { ...queryParams },
+    data: body,
+    ...(options || {}),
+  });
+}
+import { queryOptions, useMutation } from '@tanstack/react-query';
+import { request } from 'axios';
+
+import * as apis from './addAppKey';
+
+/** AddAppKey 为应用添加各种类型机器人appkey POST /llmops/v1/api/robot/${param0}/appkey */
+export function useV1ApiRobotWorkspaceIdAppkeyUsingPostMutation(options) {
+  const { onSuccess, onError } = options || {};
+
+  const response = useMutation({
+    mutationFn: apis.v1ApiRobotWorkspaceIdAppkeyUsingPost,
+    onSuccess(data) {
+      onSuccess && onSuccess(data);
+    },
+    onError(error) {
+      onError && onError(error);
+    },
+  });
+
+  return response;
+}
+import { request } from 'axios';
+
+/** ListApiToken 获取app 的 token 列表 GET /llmops/v1/api/app/${param0}/api-token */
+export async function v1ApiAppAppIdApiTokenUsingGet({ params, options }) {
+  const { appID: param0, ...queryParams } = params;
+
+  return request(`/llmops/v1/api/app/${param0}/api-token`, {
+    method: 'GET',
+    params: {
+      ...queryParams,
+    },
+    ...(options || {}),
+  });
+}
+
+/** CreateApiToken 创建 app 的token POST /llmops/v1/api/app/${param0}/api-token */
+export async function v1ApiAppAppIdApiTokenUsingPost({ params, options }) {
+  const { appID: param0, ...queryParams } = params;
+
+  return request(`/llmops/v1/api/app/${param0}/api-token`, {
+    method: 'POST',
+    params: { ...queryParams },
+    ...(options || {}),
+  });
+}
+import { queryOptions, useMutation } from '@tanstack/react-query';
+import { request } from 'axios';
+
+import * as apis from './apiToken';
+
+/** ListApiToken 获取app 的 token 列表 GET /llmops/v1/api/app/${param0}/api-token */
+export function v1ApiAppAppIdApiTokenUsingGetQueryOptions(options) {
+  return queryOptions({
+    queryFn: async ({ queryKey }) => {
+      return apis.v1ApiAppAppIdApiTokenUsingGet(queryKey[1]);
+    },
+    queryKey: ['v1ApiAppAppIdApiTokenUsingGet', options],
+  });
+}
+
+/** CreateApiToken 创建 app 的token POST /llmops/v1/api/app/${param0}/api-token */
+export function useV1ApiAppAppIdApiTokenUsingPostMutation(options) {
+  const { onSuccess, onError } = options || {};
+
+  const response = useMutation({
+    mutationFn: apis.v1ApiAppAppIdApiTokenUsingPost,
+    onSuccess(data) {
+      onSuccess && onSuccess(data);
+    },
+    onError(error) {
+      onError && onError(error);
+    },
+  });
+
+  return response;
+}
+import { request } from 'axios';
+
+/** GetAppCostTokens 查询 app token消耗 POST /llmops/v1/api/${param0}/cost */
+export async function v1ApiAppIdCostUsingPost({ params, options }) {
+  const { appID: param0, ...queryParams } = params;
+
+  return request(`/llmops/v1/api/${param0}/cost`, {
+    method: 'POST',
+    params: {
+      ...queryParams,
+    },
+    ...(options || {}),
+  });
+}
+
+/** CreateApp 创建 app POST /llmops/v1/api/app */
+export async function v1ApiAppUsingPost({ body, options }) {
+  return request('/llmops/v1/api/app', {
+    method: 'POST',
+    data: body,
+    ...(options || {}),
+  });
+}
+
+/** DeleteApp 删除 app DELETE /llmops/v1/api/app/${param0}/delete */
+export async function v1ApiAppAppIdOpenApiDeleteUsingDelete({
+  params,
+  options,
+}) {
+  const { appID: param0, ...queryParams } = params;
+
+  return request(`/llmops/v1/api/app/${param0}/delete`, {
+    method: 'DELETE',
+    params: { ...queryParams },
+    ...(options || {}),
+  });
+}
+
+/** GetAppDetails 查询 app 详情 GET /llmops/v1/api/app/${param0}/details */
+export async function v1ApiAppAppIdDetailsUsingGet({ params, options }) {
+  const { appID: param0, ...queryParams } = params;
+
+  return request(`/llmops/v1/api/app/${param0}/details`, {
+    method: 'GET',
+    params: { ...queryParams },
+    ...(options || {}),
+  });
+}
+
+/** GetSumHourlyMessagesCount 每小时messages数 GET /llmops/v1/api/app/${param0}/hourly-messages */
+export async function v1ApiAppAppIdHourlyMessagesUsingGet({ params, options }) {
+  const { appID: param0, ...queryParams } = params;
+
+  return request(`/llmops/v1/api/app/${param0}/hourly-messages`, {
+    method: 'GET',
+    params: {
+      ...queryParams,
+    },
+    ...(options || {}),
+  });
+}
+
+/** GetSumHourlyToken 每小时token数 GET /llmops/v1/api/app/${param0}/hourly-token */
+export async function v1ApiAppAppIdHourlyTokenUsingGet({ params, options }) {
+  const { appID: param0, ...queryParams } = params;
+
+  return request(`/llmops/v1/api/app/${param0}/hourly-token`, {
+    method: 'GET',
+    params: {
+      ...queryParams,
+    },
+    ...(options || {}),
+  });
+}
+
+/** GetAppLogs 查询 app 日志与标注 GET /llmops/v1/api/app/${param0}/logs */
+export async function v1ApiAppAppIdLogsUsingGet({ params, options }) {
+  const { appID: param0, ...queryParams } = params;
+
+  return request(`/llmops/v1/api/app/${param0}/logs`, {
+    method: 'GET',
+    params: {
+      ...queryParams,
+    },
+    ...(options || {}),
+  });
+}
+
+/** GetLogsMessages 查询 app 日志与标注消息详情 GET /llmops/v1/api/app/${param0}/logs/${param1}/messages */
+export async function v1ApiAppAppIdLogsConversationIdMessagesUsingGet({
+  params,
+  options,
+}) {
+  const { appID: param0, conversationID: param1, ...queryParams } = params;
+
+  return request(`/llmops/v1/api/app/${param0}/logs/${param1}/messages`, {
+    method: 'GET',
+    params: { ...queryParams },
+    ...(options || {}),
+  });
+}
+
+/** GetSumDailyMessagesCount 每日messages数 GET /llmops/v1/api/app/${param0}/messages */
+export async function v1ApiAppAppIdMessagesUsingGet({ params, options }) {
+  const { appID: param0, ...queryParams } = params;
+
+  return request(`/llmops/v1/api/app/${param0}/messages`, {
+    method: 'GET',
+    params: {
+      ...queryParams,
+    },
+    ...(options || {}),
+  });
+}
+
+/** ShareChat 创建分享path PUT /llmops/v1/api/app/${param0}/share */
+export async function v1ApiAppAppIdShareUsingPut({ params, options }) {
+  const { appID: param0, ...queryParams } = params;
+
+  return request(`/llmops/v1/api/app/${param0}/share`, {
+    method: 'PUT',
+    params: {
+      ...queryParams,
+    },
+    ...(options || {}),
+  });
+}
+
+/** GetSumDailyToken 每日token GET /llmops/v1/api/app/${param0}/token */
+export async function v1ApiAppAppIdTokenUsingGet({ params, options }) {
+  const { appID: param0, ...queryParams } = params;
+
+  return request(`/llmops/v1/api/app/${param0}/token`, {
+    method: 'GET',
+    params: {
+      ...queryParams,
+    },
+    ...(options || {}),
+  });
+}
+
+/** UpdateApp 更新 app PUT /llmops/v1/api/app/${param0}/update */
+export async function v1ApiAppAppIdUpdateUsingPut({ params, body, options }) {
+  const { appID: param0, ...queryParams } = params;
+
+  return request(`/llmops/v1/api/app/${param0}/update`, {
+    method: 'PUT',
+    params: { ...queryParams },
+    data: body,
+    ...(options || {}),
+  });
+}
+
+/** ReleaseDiscover 发布到发现 PUT /llmops/v1/api/app/${param0}/update_status */
+export async function v1ApiAppAppIdUpdateStatusUsingPut({
+  params,
+  body,
+  options,
+}) {
+  const { appID: param0, ...queryParams } = params;
+
+  return request(`/llmops/v1/api/app/${param0}/update_status`, {
+    method: 'PUT',
+    params: { ...queryParams },
+    data: body,
+    ...(options || {}),
+  });
+}
+
+/** GetImagePreSignedUrl 获取上传预签名地址 GET /llmops/v1/api/app/image */
+export async function v1ApiAppImageUsingGet({ options }) {
+  return request('/llmops/v1/api/app/image', {
+    method: 'GET',
+    ...(options || {}),
+  });
+}
+
+/** ListApp 查询 app 列表 GET /llmops/v1/api/app/list */
+export async function v1ApiAppListUsingGet({ options }) {
+  return request('/llmops/v1/api/app/list', {
+    method: 'GET',
+    ...(options || {}),
+  });
+}
+
+/** ListAppPick 查询精选 app 列表 GET /llmops/v1/api/app/list-pick */
+export async function v1ApiAppListPickUsingGet({ options }) {
+  return request('/llmops/v1/api/app/list-pick', {
+    method: 'GET',
+    ...(options || {}),
+  });
+}
+
+/** ListAppByUser 查询用户关联的 app 列表 GET /llmops/v1/api/app/list-private */
+export async function v1ApiAppListPrivateUsingGet({ params, options }) {
+  return request('/llmops/v1/api/app/list-private', {
+    method: 'GET',
+    params: {
+      ...params,
+    },
+    ...(options || {}),
+  });
+}
+
+/** ListAppPublic 查询公共 app 列表 GET /llmops/v1/api/app/list-public */
+export async function v1ApiAppListPublicUsingGet({ params, options }) {
+  return request('/llmops/v1/api/app/list-public', {
+    method: 'GET',
+    params: {
+      ...params,
+    },
+    ...(options || {}),
+  });
+}
+import { queryOptions, useMutation } from '@tanstack/react-query';
+import { request } from 'axios';
+
+import * as apis from './app';
+
+/** GetAppCostTokens 查询 app token消耗 POST /llmops/v1/api/${param0}/cost */
+export function useV1ApiAppIdCostUsingPostMutation(options) {
+  const { onSuccess, onError } = options || {};
+
+  const response = useMutation({
+    mutationFn: apis.v1ApiAppIdCostUsingPost,
+    onSuccess(data) {
+      onSuccess && onSuccess(data);
+    },
+    onError(error) {
+      onError && onError(error);
+    },
+  });
+
+  return response;
+}
+
+/** CreateApp 创建 app POST /llmops/v1/api/app */
+export function useV1ApiAppUsingPostMutation(options) {
+  const { onSuccess, onError } = options || {};
+
+  const response = useMutation({
+    mutationFn: apis.v1ApiAppUsingPost,
+    onSuccess(data) {
+      onSuccess && onSuccess(data);
+    },
+    onError(error) {
+      onError && onError(error);
+    },
+  });
+
+  return response;
+}
+
+/** DeleteApp 删除 app DELETE /llmops/v1/api/app/${param0}/delete */
+export function useV1ApiAppAppIdOpenApiDeleteUsingDeleteMutation(options) {
+  const { onSuccess, onError } = options || {};
+
+  const response = useMutation({
+    mutationFn: apis.v1ApiAppAppIdOpenApiDeleteUsingDelete,
+    onSuccess(data) {
+      onSuccess && onSuccess(data);
+    },
+    onError(error) {
+      onError && onError(error);
+    },
+  });
+
+  return response;
+}
+
+/** GetAppDetails 查询 app 详情 GET /llmops/v1/api/app/${param0}/details */
+export function v1ApiAppAppIdDetailsUsingGetQueryOptions(options) {
+  return queryOptions({
+    queryFn: async ({ queryKey }) => {
+      return apis.v1ApiAppAppIdDetailsUsingGet(queryKey[1]);
+    },
+    queryKey: ['v1ApiAppAppIdDetailsUsingGet', options],
+  });
+}
+
+/** GetSumHourlyMessagesCount 每小时messages数 GET /llmops/v1/api/app/${param0}/hourly-messages */
+export function v1ApiAppAppIdHourlyMessagesUsingGetQueryOptions(options) {
+  return queryOptions({
+    queryFn: async ({ queryKey }) => {
+      return apis.v1ApiAppAppIdHourlyMessagesUsingGet(queryKey[1]);
+    },
+    queryKey: ['v1ApiAppAppIdHourlyMessagesUsingGet', options],
+  });
+}
+
+/** GetSumHourlyToken 每小时token数 GET /llmops/v1/api/app/${param0}/hourly-token */
+export function v1ApiAppAppIdHourlyTokenUsingGetQueryOptions(options) {
+  return queryOptions({
+    queryFn: async ({ queryKey }) => {
+      return apis.v1ApiAppAppIdHourlyTokenUsingGet(queryKey[1]);
+    },
+    queryKey: ['v1ApiAppAppIdHourlyTokenUsingGet', options],
+  });
+}
+
+/** GetAppLogs 查询 app 日志与标注 GET /llmops/v1/api/app/${param0}/logs */
+export function v1ApiAppAppIdLogsUsingGetQueryOptions(options) {
+  return queryOptions({
+    queryFn: async ({ queryKey }) => {
+      return apis.v1ApiAppAppIdLogsUsingGet(queryKey[1]);
+    },
+    queryKey: ['v1ApiAppAppIdLogsUsingGet', options],
+  });
+}
+
+/** GetLogsMessages 查询 app 日志与标注消息详情 GET /llmops/v1/api/app/${param0}/logs/${param1}/messages */
+export function v1ApiAppAppIdLogsConversationIdMessagesUsingGetQueryOptions(
+  options
+) {
+  return queryOptions({
+    queryFn: async ({ queryKey }) => {
+      return apis.v1ApiAppAppIdLogsConversationIdMessagesUsingGet(queryKey[1]);
+    },
+    queryKey: ['v1ApiAppAppIdLogsConversationIdMessagesUsingGet', options],
+  });
+}
+
+/** GetSumDailyMessagesCount 每日messages数 GET /llmops/v1/api/app/${param0}/messages */
+export function v1ApiAppAppIdMessagesUsingGetQueryOptions(options) {
+  return queryOptions({
+    queryFn: async ({ queryKey }) => {
+      return apis.v1ApiAppAppIdMessagesUsingGet(queryKey[1]);
+    },
+    queryKey: ['v1ApiAppAppIdMessagesUsingGet', options],
+  });
+}
+
+/** ShareChat 创建分享path PUT /llmops/v1/api/app/${param0}/share */
+export function useV1ApiAppAppIdShareUsingPutMutation(options) {
+  const { onSuccess, onError } = options || {};
+
+  const response = useMutation({
+    mutationFn: apis.v1ApiAppAppIdShareUsingPut,
+    onSuccess(data) {
+      onSuccess && onSuccess(data);
+    },
+    onError(error) {
+      onError && onError(error);
+    },
+  });
+
+  return response;
+}
+
+/** GetSumDailyToken 每日token GET /llmops/v1/api/app/${param0}/token */
+export function v1ApiAppAppIdTokenUsingGetQueryOptions(options) {
+  return queryOptions({
+    queryFn: async ({ queryKey }) => {
+      return apis.v1ApiAppAppIdTokenUsingGet(queryKey[1]);
+    },
+    queryKey: ['v1ApiAppAppIdTokenUsingGet', options],
+  });
+}
+
+/** UpdateApp 更新 app PUT /llmops/v1/api/app/${param0}/update */
+export function useV1ApiAppAppIdUpdateUsingPutMutation(options) {
+  const { onSuccess, onError } = options || {};
+
+  const response = useMutation({
+    mutationFn: apis.v1ApiAppAppIdUpdateUsingPut,
+    onSuccess(data) {
+      onSuccess && onSuccess(data);
+    },
+    onError(error) {
+      onError && onError(error);
+    },
+  });
+
+  return response;
+}
+
+/** ReleaseDiscover 发布到发现 PUT /llmops/v1/api/app/${param0}/update_status */
+export function useV1ApiAppAppIdUpdateStatusUsingPutMutation(options) {
+  const { onSuccess, onError } = options || {};
+
+  const response = useMutation({
+    mutationFn: apis.v1ApiAppAppIdUpdateStatusUsingPut,
+    onSuccess(data) {
+      onSuccess && onSuccess(data);
+    },
+    onError(error) {
+      onError && onError(error);
+    },
+  });
+
+  return response;
+}
+
+/** GetImagePreSignedUrl 获取上传预签名地址 GET /llmops/v1/api/app/image */
+export function v1ApiAppImageUsingGetQueryOptions(options) {
+  return queryOptions({
+    queryFn: async ({ queryKey }) => {
+      return apis.v1ApiAppImageUsingGet(queryKey[1]);
+    },
+    queryKey: ['v1ApiAppImageUsingGet', options],
+  });
+}
+
+/** ListApp 查询 app 列表 GET /llmops/v1/api/app/list */
+export function v1ApiAppListUsingGetQueryOptions(options) {
+  return queryOptions({
+    queryFn: async ({ queryKey }) => {
+      return apis.v1ApiAppListUsingGet(queryKey[1]);
+    },
+    queryKey: ['v1ApiAppListUsingGet', options],
+  });
+}
+
+/** ListAppPick 查询精选 app 列表 GET /llmops/v1/api/app/list-pick */
+export function v1ApiAppListPickUsingGetQueryOptions(options) {
+  return queryOptions({
+    queryFn: async ({ queryKey }) => {
+      return apis.v1ApiAppListPickUsingGet(queryKey[1]);
+    },
+    queryKey: ['v1ApiAppListPickUsingGet', options],
+  });
+}
+
+/** ListAppByUser 查询用户关联的 app 列表 GET /llmops/v1/api/app/list-private */
+export function v1ApiAppListPrivateUsingGetQueryOptions(options) {
+  return queryOptions({
+    queryFn: async ({ queryKey }) => {
+      return apis.v1ApiAppListPrivateUsingGet(queryKey[1]);
+    },
+    queryKey: ['v1ApiAppListPrivateUsingGet', options],
+  });
+}
+
+/** ListAppPublic 查询公共 app 列表 GET /llmops/v1/api/app/list-public */
+export function v1ApiAppListPublicUsingGetQueryOptions(options) {
+  return queryOptions({
+    queryFn: async ({ queryKey }) => {
+      return apis.v1ApiAppListPublicUsingGet(queryKey[1]);
+    },
+    queryKey: ['v1ApiAppListPublicUsingGet', options],
+  });
+}
+import { request } from 'axios';
+
+/** GetAppDatasetConfigsList 查询应用知识库查询配置 GET /llmops/v1/api/app/${param0}/dataset-configs */
+export async function v1ApiAppAppIdDatasetConfigsUsingGet({ params, options }) {
+  const { appID: param0, ...queryParams } = params;
+
+  return request(`/llmops/v1/api/app/${param0}/dataset-configs`, {
+    method: 'GET',
+    params: { ...queryParams },
+    ...(options || {}),
+  });
+}
+
+/** UpdateAppDatasetConfigs 更新应用知识库查询配置 PUT /llmops/v1/api/app/${param0}/dataset-configs */
+export async function v1ApiAppAppIdDatasetConfigsUsingPut({
+  params,
+  body,
+  options,
+}) {
+  const { appID: param0, ...queryParams } = params;
+
+  return request(`/llmops/v1/api/app/${param0}/dataset-configs`, {
+    method: 'PUT',
+    params: { ...queryParams },
+    data: body,
+    ...(options || {}),
+  });
+}
+
+/** CreateAppDatasetConfigs 创建应用知识库查询配置 POST /llmops/v1/api/app/${param0}/dataset-configs */
+export async function v1ApiAppAppIdDatasetConfigsUsingPost({
+  params,
+  body,
+  options,
+}) {
+  const { appID: param0, ...queryParams } = params;
+
+  return request(`/llmops/v1/api/app/${param0}/dataset-configs`, {
+    method: 'POST',
+    params: { ...queryParams },
+    data: body,
+    ...(options || {}),
+  });
+}
+
+/** DeleteAppDatasetConfigs 删除应用知识库查询配置 DELETE /llmops/v1/api/app/${param0}/dataset-configs */
+export async function v1ApiAppAppIdDatasetConfigsUsingDelete({
+  params,
+  options,
+}) {
+  const { appID: param0, ...queryParams } = params;
+
+  return request(`/llmops/v1/api/app/${param0}/dataset-configs`, {
+    method: 'DELETE',
+    params: {
+      ...queryParams,
+    },
+    ...(options || {}),
+  });
+}
+import { queryOptions, useMutation } from '@tanstack/react-query';
+import { request } from 'axios';
+
+import * as apis from './appDatasetConfigs';
+
+/** GetAppDatasetConfigsList 查询应用知识库查询配置 GET /llmops/v1/api/app/${param0}/dataset-configs */
+export function v1ApiAppAppIdDatasetConfigsUsingGetQueryOptions(options) {
+  return queryOptions({
+    queryFn: async ({ queryKey }) => {
+      return apis.v1ApiAppAppIdDatasetConfigsUsingGet(queryKey[1]);
+    },
+    queryKey: ['v1ApiAppAppIdDatasetConfigsUsingGet', options],
+  });
+}
+
+/** UpdateAppDatasetConfigs 更新应用知识库查询配置 PUT /llmops/v1/api/app/${param0}/dataset-configs */
+export function useV1ApiAppAppIdDatasetConfigsUsingPutMutation(options) {
+  const { onSuccess, onError } = options || {};
+
+  const response = useMutation({
+    mutationFn: apis.v1ApiAppAppIdDatasetConfigsUsingPut,
+    onSuccess(data) {
+      onSuccess && onSuccess(data);
+    },
+    onError(error) {
+      onError && onError(error);
+    },
+  });
+
+  return response;
+}
+
+/** CreateAppDatasetConfigs 创建应用知识库查询配置 POST /llmops/v1/api/app/${param0}/dataset-configs */
+export function useV1ApiAppAppIdDatasetConfigsUsingPostMutation(options) {
+  const { onSuccess, onError } = options || {};
+
+  const response = useMutation({
+    mutationFn: apis.v1ApiAppAppIdDatasetConfigsUsingPost,
+    onSuccess(data) {
+      onSuccess && onSuccess(data);
+    },
+    onError(error) {
+      onError && onError(error);
+    },
+  });
+
+  return response;
+}
+
+/** DeleteAppDatasetConfigs 删除应用知识库查询配置 DELETE /llmops/v1/api/app/${param0}/dataset-configs */
+export function useV1ApiAppAppIdDatasetConfigsUsingDeleteMutation(options) {
+  const { onSuccess, onError } = options || {};
+
+  const response = useMutation({
+    mutationFn: apis.v1ApiAppAppIdDatasetConfigsUsingDelete,
+    onSuccess(data) {
+      onSuccess && onSuccess(data);
+    },
+    onError(error) {
+      onError && onError(error);
+    },
+  });
+
+  return response;
+}
+import { request } from 'axios';
+
+/** ListMember app下的用户列表 GET /llmops/v1/api/app/${param0}/member */
+export async function v1ApiAppAppIdMemberUsingGet({ params, options }) {
+  const { appID: param0, ...queryParams } = params;
+
+  return request(`/llmops/v1/api/app/${param0}/member`, {
+    method: 'GET',
+    params: {
+      ...queryParams,
+    },
+    ...(options || {}),
+  });
+}
+
+/** AddMember 增加app用户 POST /llmops/v1/api/app/${param0}/member */
+export async function v1ApiAppAppIdMemberUsingPost({ params, body, options }) {
+  const { appID: param0, ...queryParams } = params;
+
+  return request(`/llmops/v1/api/app/${param0}/member`, {
+    method: 'POST',
+    params: { ...queryParams },
+    data: body,
+    ...(options || {}),
+  });
+}
+
+/** DeleteMember 删除app用户 DELETE /llmops/v1/api/app/${param0}/member */
+export async function v1ApiAppAppIdMemberUsingDelete({
+  params,
+  body,
+  options,
+}) {
+  const { appID: param0, ...queryParams } = params;
+
+  return request(`/llmops/v1/api/app/${param0}/member`, {
+    method: 'DELETE',
+    params: { ...queryParams },
+    data: body,
+    ...(options || {}),
+  });
+}
+
+/** UpdateMemberRole 更新app用户角色 PUT /llmops/v1/api/app/${param0}/member-role */
+export async function v1ApiAppAppIdMemberRoleUsingPut({
+  params,
+  body,
+  options,
+}) {
+  const { appID: param0, ...queryParams } = params;
+
+  return request(`/llmops/v1/api/app/${param0}/member-role`, {
+    method: 'PUT',
+    params: { ...queryParams },
+    data: body,
+    ...(options || {}),
+  });
+}
+import { queryOptions, useMutation } from '@tanstack/react-query';
+import { request } from 'axios';
+
+import * as apis from './appMember';
+
+/** ListMember app下的用户列表 GET /llmops/v1/api/app/${param0}/member */
+export function v1ApiAppAppIdMemberUsingGetQueryOptions(options) {
+  return queryOptions({
+    queryFn: async ({ queryKey }) => {
+      return apis.v1ApiAppAppIdMemberUsingGet(queryKey[1]);
+    },
+    queryKey: ['v1ApiAppAppIdMemberUsingGet', options],
+  });
+}
+
+/** AddMember 增加app用户 POST /llmops/v1/api/app/${param0}/member */
+export function useV1ApiAppAppIdMemberUsingPostMutation(options) {
+  const { onSuccess, onError } = options || {};
+
+  const response = useMutation({
+    mutationFn: apis.v1ApiAppAppIdMemberUsingPost,
+    onSuccess(data) {
+      onSuccess && onSuccess(data);
+    },
+    onError(error) {
+      onError && onError(error);
+    },
+  });
+
+  return response;
+}
+
+/** DeleteMember 删除app用户 DELETE /llmops/v1/api/app/${param0}/member */
+export function useV1ApiAppAppIdMemberUsingDeleteMutation(options) {
+  const { onSuccess, onError } = options || {};
+
+  const response = useMutation({
+    mutationFn: apis.v1ApiAppAppIdMemberUsingDelete,
+    onSuccess(data) {
+      onSuccess && onSuccess(data);
+    },
+    onError(error) {
+      onError && onError(error);
+    },
+  });
+
+  return response;
+}
+
+/** UpdateMemberRole 更新app用户角色 PUT /llmops/v1/api/app/${param0}/member-role */
+export function useV1ApiAppAppIdMemberRoleUsingPutMutation(options) {
+  const { onSuccess, onError } = options || {};
+
+  const response = useMutation({
+    mutationFn: apis.v1ApiAppAppIdMemberRoleUsingPut,
+    onSuccess(data) {
+      onSuccess && onSuccess(data);
+    },
+    onError(error) {
+      onError && onError(error);
+    },
+  });
+
+  return response;
+}
+import { request } from 'axios';
+
+/** UpdateModelConfigs 更新 app model configs PUT /llmops/v1/api/app/${param0}/model-configs */
+export async function v1ApiAppAppIdModelConfigsUsingPut({
+  params,
+  body,
+  options,
+}) {
+  const { appID: param0, ...queryParams } = params;
+
+  return request(`/llmops/v1/api/app/${param0}/model-configs`, {
+    method: 'PUT',
+    params: { ...queryParams },
+    data: body,
+    ...(options || {}),
+  });
+}
+
+/** CreateOrUpdateModelConfigs 创建 app model configs POST /llmops/v1/api/app/${param0}/model-configs */
+export async function v1ApiAppAppIdModelConfigsUsingPost({
+  params,
+  body,
+  options,
+}) {
+  const { appID: param0, ...queryParams } = params;
+
+  return request(`/llmops/v1/api/app/${param0}/model-configs`, {
+    method: 'POST',
+    params: { ...queryParams },
+    data: body,
+    ...(options || {}),
+  });
+}
+
+/** CreateOrUpdateModelConfigPromptPrefix 创建或修改角色和背景以及推荐问题开关 POST /llmops/v1/api/app/${param0}/model-prompt */
+export async function v1ApiAppAppIdModelPromptUsingPost({
+  params,
+  body,
+  options,
+}) {
+  const { appID: param0, ...queryParams } = params;
+
+  return request(`/llmops/v1/api/app/${param0}/model-prompt`, {
+    method: 'POST',
+    params: { ...queryParams },
+    data: body,
+    ...(options || {}),
+  });
+}
+
+/** GetPluginList 获取插件列表 PUT /llmops/v1/api/app/${param0}/plugin */
+export async function v1ApiAppAppIdPluginUsingPut({ params, options }) {
+  const { appID: param0, ...queryParams } = params;
+
+  return request(`/llmops/v1/api/app/${param0}/plugin`, {
+    method: 'PUT',
+    params: { ...queryParams },
+    ...(options || {}),
+  });
+}
+import { queryOptions, useMutation } from '@tanstack/react-query';
+import { request } from 'axios';
+
+import * as apis from './appModelConfigs';
+
+/** UpdateModelConfigs 更新 app model configs PUT /llmops/v1/api/app/${param0}/model-configs */
+export function useV1ApiAppAppIdModelConfigsUsingPutMutation(options) {
+  const { onSuccess, onError } = options || {};
+
+  const response = useMutation({
+    mutationFn: apis.v1ApiAppAppIdModelConfigsUsingPut,
+    onSuccess(data) {
+      onSuccess && onSuccess(data);
+    },
+    onError(error) {
+      onError && onError(error);
+    },
+  });
+
+  return response;
+}
+
+/** CreateOrUpdateModelConfigs 创建 app model configs POST /llmops/v1/api/app/${param0}/model-configs */
+export function useV1ApiAppAppIdModelConfigsUsingPostMutation(options) {
+  const { onSuccess, onError } = options || {};
+
+  const response = useMutation({
+    mutationFn: apis.v1ApiAppAppIdModelConfigsUsingPost,
+    onSuccess(data) {
+      onSuccess && onSuccess(data);
+    },
+    onError(error) {
+      onError && onError(error);
+    },
+  });
+
+  return response;
+}
+
+/** CreateOrUpdateModelConfigPromptPrefix 创建或修改角色和背景以及推荐问题开关 POST /llmops/v1/api/app/${param0}/model-prompt */
+export function useV1ApiAppAppIdModelPromptUsingPostMutation(options) {
+  const { onSuccess, onError } = options || {};
+
+  const response = useMutation({
+    mutationFn: apis.v1ApiAppAppIdModelPromptUsingPost,
+    onSuccess(data) {
+      onSuccess && onSuccess(data);
+    },
+    onError(error) {
+      onError && onError(error);
+    },
+  });
+
+  return response;
+}
+
+/** GetPluginList 获取插件列表 PUT /llmops/v1/api/app/${param0}/plugin */
+export function useV1ApiAppAppIdPluginUsingPutMutation(options) {
+  const { onSuccess, onError } = options || {};
+
+  const response = useMutation({
+    mutationFn: apis.v1ApiAppAppIdPluginUsingPut,
+    onSuccess(data) {
+      onSuccess && onSuccess(data);
+    },
+    onError(error) {
+      onError && onError(error);
+    },
+  });
+
+  return response;
+}
+import { request } from 'axios';
+
+/** CreateAppV2 创建 app POST /llmops/v2/api/app */
+export async function v2ApiAppUsingPost({ body, options }) {
+  return request('/llmops/v2/api/app', {
+    method: 'POST',
+    data: body,
+    ...(options || {}),
+  });
+}
+
+/** GetAppDetailsV2 查询 app 详情 GET /llmops/v2/api/app/${param0}/details */
+export async function v2ApiAppAppIdDetailsUsingGet({ params, options }) {
+  const { appID: param0, ...queryParams } = params;
+
+  return request(`/llmops/v2/api/app/${param0}/details`, {
+    method: 'GET',
+    params: { ...queryParams },
+    ...(options || {}),
+  });
+}
+
+/** UpdateAppV2 更新 app 信息 POST /llmops/v2/api/app/${param0}/update */
+export async function v2ApiAppAppIdUpdateUsingPost({ params, body, options }) {
+  const { appID: param0, ...queryParams } = params;
+
+  return request(`/llmops/v2/api/app/${param0}/update`, {
+    method: 'POST',
+    params: { ...queryParams },
+    data: body,
+    ...(options || {}),
+  });
+}
+
+/** ListAppV2 查询用户关联的 app 列表 GET /llmops/v2/api/app/list */
+export async function v2ApiAppListUsingGet({ params, options }) {
+  return request('/llmops/v2/api/app/list', {
+    method: 'GET',
+    params: {
+      ...params,
+    },
+    ...(options || {}),
+  });
+}
+
+/** GetApiTokenV2 获取一个 app token GET /llmops/v2/api/app/share/api-token */
+export async function v2ApiAppShareApiTokenUsingGet({ params, options }) {
+  return request('/llmops/v2/api/app/share/api-token', {
+    method: 'GET',
+    params: {
+      ...params,
+    },
+    ...(options || {}),
+  });
+}
+import { queryOptions, useMutation } from '@tanstack/react-query';
+import { request } from 'axios';
+
+import * as apis from './appV2';
+
+/** CreateAppV2 创建 app POST /llmops/v2/api/app */
+export function useV2ApiAppUsingPostMutation(options) {
+  const { onSuccess, onError } = options || {};
+
+  const response = useMutation({
+    mutationFn: apis.v2ApiAppUsingPost,
+    onSuccess(data) {
+      onSuccess && onSuccess(data);
+    },
+    onError(error) {
+      onError && onError(error);
+    },
+  });
+
+  return response;
+}
+
+/** GetAppDetailsV2 查询 app 详情 GET /llmops/v2/api/app/${param0}/details */
+export function v2ApiAppAppIdDetailsUsingGetQueryOptions(options) {
+  return queryOptions({
+    queryFn: async ({ queryKey }) => {
+      return apis.v2ApiAppAppIdDetailsUsingGet(queryKey[1]);
+    },
+    queryKey: ['v2ApiAppAppIdDetailsUsingGet', options],
+  });
+}
+
+/** UpdateAppV2 更新 app 信息 POST /llmops/v2/api/app/${param0}/update */
+export function useV2ApiAppAppIdUpdateUsingPostMutation(options) {
+  const { onSuccess, onError } = options || {};
+
+  const response = useMutation({
+    mutationFn: apis.v2ApiAppAppIdUpdateUsingPost,
+    onSuccess(data) {
+      onSuccess && onSuccess(data);
+    },
+    onError(error) {
+      onError && onError(error);
+    },
+  });
+
+  return response;
+}
+
+/** ListAppV2 查询用户关联的 app 列表 GET /llmops/v2/api/app/list */
+export function v2ApiAppListUsingGetQueryOptions(options) {
+  return queryOptions({
+    queryFn: async ({ queryKey }) => {
+      return apis.v2ApiAppListUsingGet(queryKey[1]);
+    },
+    queryKey: ['v2ApiAppListUsingGet', options],
+  });
+}
+
+/** GetApiTokenV2 获取一个 app token GET /llmops/v2/api/app/share/api-token */
+export function v2ApiAppShareApiTokenUsingGetQueryOptions(options) {
+  return queryOptions({
+    queryFn: async ({ queryKey }) => {
+      return apis.v2ApiAppShareApiTokenUsingGet(queryKey[1]);
+    },
+    queryKey: ['v2ApiAppShareApiTokenUsingGet', options],
+  });
+}
+import { request } from 'axios';
+
+/** ListAttentionApp 应用列表 GET /llmops/v1/api/attention/app/list */
+export async function v1ApiAttentionAppListUsingGet({ params, options }) {
+  return request('/llmops/v1/api/attention/app/list', {
+    method: 'GET',
+    params: {
+      ...params,
+    },
+    ...(options || {}),
+  });
+}
+
+/** ListAttentionConversations 查询会话列表 POST /llmops/v1/api/attention/conversations */
+export async function v1ApiAttentionConversationsUsingPost({ body, options }) {
+  return request('/llmops/v1/api/attention/conversations', {
+    method: 'POST',
+    data: body,
+    ...(options || {}),
+  });
+}
+
+/** GetAttentionConversationCount 获取对话数 POST /llmops/v1/api/attention/conversations/count */
+export async function v1ApiAttentionConversationsCountUsingPost({
+  body,
+  options,
+}) {
+  return request('/llmops/v1/api/attention/conversations/count', {
+    method: 'POST',
+    data: body,
+    ...(options || {}),
+  });
+}
+
+/** GetAttentionMessagesCount 获取消息数 POST /llmops/v1/api/attention/messages/count */
+export async function v1ApiAttentionMessagesCountUsingPost({ body, options }) {
+  return request('/llmops/v1/api/attention/messages/count', {
+    method: 'POST',
+    data: body,
+    ...(options || {}),
+  });
+}
+
+/** GetAttentionMessagesHistory 获取聊天历史 GET /llmops/v1/api/attention/messages/history */
+export async function v1ApiAttentionMessagesHistoryUsingGet({
+  params,
+  options,
+}) {
+  return request('/llmops/v1/api/attention/messages/history', {
+    method: 'GET',
+    params: {
+      ...params,
+    },
+    ...(options || {}),
+  });
+}
+
+/** CreateAttentionUser 添加特别关注 POST /llmops/v1/api/attention/user */
+export async function v1ApiAttentionUserUsingPost({ body, options }) {
+  return request('/llmops/v1/api/attention/user', {
+    method: 'POST',
+    data: body,
+    ...(options || {}),
+  });
+}
+
+/** ListAllUser 系统全局用户列表 GET /llmops/v1/api/attention/user/all */
+export async function v1ApiAttentionUserAllUsingGet({ params, options }) {
+  return request('/llmops/v1/api/attention/user/all', {
+    method: 'GET',
+    params: {
+      // size has a default value: 10
+      size: '10',
+
+      ...params,
+    },
+    ...(options || {}),
+  });
+}
+
+/** DeleteAttentionUser 取消特别关注 POST /llmops/v1/api/attention/user/cancel */
+export async function v1ApiAttentionUserCancelUsingPost({ body, options }) {
+  return request('/llmops/v1/api/attention/user/cancel', {
+    method: 'POST',
+    data: body,
+    ...(options || {}),
+  });
+}
+
+/** GetAttentionUserList 查询特别关注列表 POST /llmops/v1/api/attention/user/list */
+export async function v1ApiAttentionUserListUsingPost({ params, options }) {
+  return request('/llmops/v1/api/attention/user/list', {
+    method: 'POST',
+    params: {
+      ...params,
+    },
+    ...(options || {}),
+  });
+}
+import { queryOptions, useMutation } from '@tanstack/react-query';
+import { request } from 'axios';
+
+import * as apis from './attention';
+
+/** ListAttentionApp 应用列表 GET /llmops/v1/api/attention/app/list */
+export function v1ApiAttentionAppListUsingGetQueryOptions(options) {
+  return queryOptions({
+    queryFn: async ({ queryKey }) => {
+      return apis.v1ApiAttentionAppListUsingGet(queryKey[1]);
+    },
+    queryKey: ['v1ApiAttentionAppListUsingGet', options],
+  });
+}
+
+/** ListAttentionConversations 查询会话列表 POST /llmops/v1/api/attention/conversations */
+export function useV1ApiAttentionConversationsUsingPostMutation(options) {
+  const { onSuccess, onError } = options || {};
+
+  const response = useMutation({
+    mutationFn: apis.v1ApiAttentionConversationsUsingPost,
+    onSuccess(data) {
+      onSuccess && onSuccess(data);
+    },
+    onError(error) {
+      onError && onError(error);
+    },
+  });
+
+  return response;
+}
+
+/** GetAttentionConversationCount 获取对话数 POST /llmops/v1/api/attention/conversations/count */
+export function useV1ApiAttentionConversationsCountUsingPostMutation(options) {
+  const { onSuccess, onError } = options || {};
+
+  const response = useMutation({
+    mutationFn: apis.v1ApiAttentionConversationsCountUsingPost,
+    onSuccess(data) {
+      onSuccess && onSuccess(data);
+    },
+    onError(error) {
+      onError && onError(error);
+    },
+  });
+
+  return response;
+}
+
+/** GetAttentionMessagesCount 获取消息数 POST /llmops/v1/api/attention/messages/count */
+export function useV1ApiAttentionMessagesCountUsingPostMutation(options) {
+  const { onSuccess, onError } = options || {};
+
+  const response = useMutation({
+    mutationFn: apis.v1ApiAttentionMessagesCountUsingPost,
+    onSuccess(data) {
+      onSuccess && onSuccess(data);
+    },
+    onError(error) {
+      onError && onError(error);
+    },
+  });
+
+  return response;
+}
+
+/** GetAttentionMessagesHistory 获取聊天历史 GET /llmops/v1/api/attention/messages/history */
+export function v1ApiAttentionMessagesHistoryUsingGetQueryOptions(options) {
+  return queryOptions({
+    queryFn: async ({ queryKey }) => {
+      return apis.v1ApiAttentionMessagesHistoryUsingGet(queryKey[1]);
+    },
+    queryKey: ['v1ApiAttentionMessagesHistoryUsingGet', options],
+  });
+}
+
+/** CreateAttentionUser 添加特别关注 POST /llmops/v1/api/attention/user */
+export function useV1ApiAttentionUserUsingPostMutation(options) {
+  const { onSuccess, onError } = options || {};
+
+  const response = useMutation({
+    mutationFn: apis.v1ApiAttentionUserUsingPost,
+    onSuccess(data) {
+      onSuccess && onSuccess(data);
+    },
+    onError(error) {
+      onError && onError(error);
+    },
+  });
+
+  return response;
+}
+
+/** ListAllUser 系统全局用户列表 GET /llmops/v1/api/attention/user/all */
+export function v1ApiAttentionUserAllUsingGetQueryOptions(options) {
+  return queryOptions({
+    queryFn: async ({ queryKey }) => {
+      return apis.v1ApiAttentionUserAllUsingGet(queryKey[1]);
+    },
+    queryKey: ['v1ApiAttentionUserAllUsingGet', options],
+  });
+}
+
+/** DeleteAttentionUser 取消特别关注 POST /llmops/v1/api/attention/user/cancel */
+export function useV1ApiAttentionUserCancelUsingPostMutation(options) {
+  const { onSuccess, onError } = options || {};
+
+  const response = useMutation({
+    mutationFn: apis.v1ApiAttentionUserCancelUsingPost,
+    onSuccess(data) {
+      onSuccess && onSuccess(data);
+    },
+    onError(error) {
+      onError && onError(error);
+    },
+  });
+
+  return response;
+}
+
+/** GetAttentionUserList 查询特别关注列表 POST /llmops/v1/api/attention/user/list */
+export function useV1ApiAttentionUserListUsingPostMutation(options) {
+  const { onSuccess, onError } = options || {};
+
+  const response = useMutation({
+    mutationFn: apis.v1ApiAttentionUserListUsingPost,
+    onSuccess(data) {
+      onSuccess && onSuccess(data);
+    },
+    onError(error) {
+      onError && onError(error);
+    },
+  });
+
+  return response;
+}
+import { request } from 'axios';
+
+/** Authorize 获取code的跳转 GET /llmops/auth/authorize */
+export async function authAuthorizeUsingGet({ params, options }) {
+  return request('/llmops/auth/authorize', {
+    method: 'GET',
+    params: {
+      ...params,
+    },
+    ...(options || {}),
+  });
+}
+import { queryOptions, useMutation } from '@tanstack/react-query';
+import { request } from 'axios';
+
+import * as apis from './authorize';
+
+/** Authorize 获取code的跳转 GET /llmops/auth/authorize */
+export function authAuthorizeUsingGetQueryOptions(options) {
+  return queryOptions({
+    queryFn: async ({ queryKey }) => {
+      return apis.authAuthorizeUsingGet(queryKey[1]);
+    },
+    queryKey: ['authAuthorizeUsingGet', options],
+  });
+}
+import { request } from 'axios';
+
+/** Messages Messages POST /llmops/v1/api/chat-messages */
+export async function v1ApiChatMessagesUsingPost({ body, options }) {
+  return request('/llmops/v1/api/chat-messages', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    data: body,
+    ...(options || {}),
+  });
+}
+
+/** WebMessages 分享页的聊天 POST /llmops/v1/api/chat-messages-web */
+export async function v1ApiChatMessagesWebUsingPost({ body, options }) {
+  return request('/llmops/v1/api/chat-messages-web', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    data: body,
+    ...(options || {}),
+  });
+}
+
+/** ChatMessage ChatMessage POST /llmops/v1/api/chat-messages/gpt */
+export async function v1ApiChatMessagesGptUsingPost({ body, options }) {
+  return request('/llmops/v1/api/chat-messages/gpt', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    data: body,
+    ...(options || {}),
+  });
+}
+
+/** QuestionRecommend QuestionRecommend POST /llmops/v1/api/chat-messages/question-recommend */
+export async function v1ApiChatMessagesQuestionRecommendUsingPost({
+  body,
+  options,
+}) {
+  return request('/llmops/v1/api/chat-messages/question-recommend', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    data: body,
+    ...(options || {}),
+  });
+}
+
+/** V2Messages 用于微精灵聊天的v2版本 POST /llmops/v2/api/chat-messages */
+export async function v2ApiChatMessagesUsingPost({ body, options }) {
+  return request('/llmops/v2/api/chat-messages', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    data: body,
+    ...(options || {}),
+  });
+}
+import { queryOptions, useMutation } from '@tanstack/react-query';
+import { request } from 'axios';
+
+import * as apis from './chat';
+
+/** Messages Messages POST /llmops/v1/api/chat-messages */
+export function useV1ApiChatMessagesUsingPostMutation(options) {
+  const { onSuccess, onError } = options || {};
+
+  const response = useMutation({
+    mutationFn: apis.v1ApiChatMessagesUsingPost,
+    onSuccess(data) {
+      onSuccess && onSuccess(data);
+    },
+    onError(error) {
+      onError && onError(error);
+    },
+  });
+
+  return response;
+}
+
+/** WebMessages 分享页的聊天 POST /llmops/v1/api/chat-messages-web */
+export function useV1ApiChatMessagesWebUsingPostMutation(options) {
+  const { onSuccess, onError } = options || {};
+
+  const response = useMutation({
+    mutationFn: apis.v1ApiChatMessagesWebUsingPost,
+    onSuccess(data) {
+      onSuccess && onSuccess(data);
+    },
+    onError(error) {
+      onError && onError(error);
+    },
+  });
+
+  return response;
+}
+
+/** ChatMessage ChatMessage POST /llmops/v1/api/chat-messages/gpt */
+export function useV1ApiChatMessagesGptUsingPostMutation(options) {
+  const { onSuccess, onError } = options || {};
+
+  const response = useMutation({
+    mutationFn: apis.v1ApiChatMessagesGptUsingPost,
+    onSuccess(data) {
+      onSuccess && onSuccess(data);
+    },
+    onError(error) {
+      onError && onError(error);
+    },
+  });
+
+  return response;
+}
+
+/** QuestionRecommend QuestionRecommend POST /llmops/v1/api/chat-messages/question-recommend */
+export function useV1ApiChatMessagesQuestionRecommendUsingPostMutation(
+  options
+) {
+  const { onSuccess, onError } = options || {};
+
+  const response = useMutation({
+    mutationFn: apis.v1ApiChatMessagesQuestionRecommendUsingPost,
+    onSuccess(data) {
+      onSuccess && onSuccess(data);
+    },
+    onError(error) {
+      onError && onError(error);
+    },
+  });
+
+  return response;
+}
+
+/** V2Messages 用于微精灵聊天的v2版本 POST /llmops/v2/api/chat-messages */
+export function useV2ApiChatMessagesUsingPostMutation(options) {
+  const { onSuccess, onError } = options || {};
+
+  const response = useMutation({
+    mutationFn: apis.v2ApiChatMessagesUsingPost,
+    onSuccess(data) {
+      onSuccess && onSuccess(data);
+    },
+    onError(error) {
+      onError && onError(error);
+    },
+  });
+
+  return response;
+}
+import { request } from 'axios';
+
+/** ConversationList 会话历史 GET /llmops/v1/api/conversations */
+export async function v1ApiConversationsUsingGet({ params, options }) {
+  return request('/llmops/v1/api/conversations', {
+    method: 'GET',
+    params: {
+      ...params,
+    },
+    ...(options || {}),
+  });
+}
+
+/** DeleteConversation 删除会话 DELETE /llmops/v1/api/conversations */
+export async function v1ApiConversationsUsingDelete({ params, options }) {
+  return request('/llmops/v1/api/conversations', {
+    method: 'DELETE',
+    params: {
+      ...params,
+    },
+    ...(options || {}),
+  });
+}
+import { queryOptions, useMutation } from '@tanstack/react-query';
+import { request } from 'axios';
+
+import * as apis from './conversation';
+
+/** ConversationList 会话历史 GET /llmops/v1/api/conversations */
+export function v1ApiConversationsUsingGetQueryOptions(options) {
+  return queryOptions({
+    queryFn: async ({ queryKey }) => {
+      return apis.v1ApiConversationsUsingGet(queryKey[1]);
+    },
+    queryKey: ['v1ApiConversationsUsingGet', options],
+  });
+}
+
+/** DeleteConversation 删除会话 DELETE /llmops/v1/api/conversations */
+export function useV1ApiConversationsUsingDeleteMutation(options) {
+  const { onSuccess, onError } = options || {};
+
+  const response = useMutation({
+    mutationFn: apis.v1ApiConversationsUsingDelete,
+    onSuccess(data) {
+      onSuccess && onSuccess(data);
+    },
+    onError(error) {
+      onError && onError(error);
+    },
+  });
+
+  return response;
+}
+import { request } from 'axios';
+
+/** CreateFeedbacks CreateFeedbacks POST /llmops/v1/api/feedbacks/${param0} */
+export async function v1ApiFeedbacksMessageIdUsingPost({
+  params,
+  body,
+  options,
+}) {
+  const { message_id: param0, ...queryParams } = params;
+
+  return request(`/llmops/v1/api/feedbacks/${param0}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    params: { ...queryParams },
+    data: body,
+    ...(options || {}),
+  });
+}
+import { queryOptions, useMutation } from '@tanstack/react-query';
+import { request } from 'axios';
+
+import * as apis from './createFeedbacks';
+
+/** CreateFeedbacks CreateFeedbacks POST /llmops/v1/api/feedbacks/${param0} */
+export function useV1ApiFeedbacksMessageIdUsingPostMutation(options) {
+  const { onSuccess, onError } = options || {};
+
+  const response = useMutation({
+    mutationFn: apis.v1ApiFeedbacksMessageIdUsingPost,
+    onSuccess(data) {
+      onSuccess && onSuccess(data);
+    },
+    onError(error) {
+      onError && onError(error);
+    },
+  });
+
+  return response;
+}
+import { request } from 'axios';
+
+/** CreateDatasetsJoin 创建 app 数据集关联 POST /llmops/v1/api/app/${param0}/datasets */
+export async function v1ApiAppAppIdDatasetsUsingPost({
+  params,
+  body,
+  options,
+}) {
+  const { appID: param0, ...queryParams } = params;
+
+  return request(`/llmops/v1/api/app/${param0}/datasets`, {
+    method: 'POST',
+    params: { ...queryParams },
+    data: body,
+    ...(options || {}),
+  });
+}
+
+/** DeleteDatasetsJoin 删除 app 数据集关联 DELETE /llmops/v1/api/app/${param0}/datasets */
+export async function v1ApiAppAppIdDatasetsUsingDelete({ params, options }) {
+  const { appID: param0, ...queryParams } = params;
+
+  return request(`/llmops/v1/api/app/${param0}/datasets`, {
+    method: 'DELETE',
+    params: {
+      ...queryParams,
+    },
+    ...(options || {}),
+  });
+}
+import { queryOptions, useMutation } from '@tanstack/react-query';
+import { request } from 'axios';
+
+import * as apis from './datasetsJoin';
+
+/** CreateDatasetsJoin 创建 app 数据集关联 POST /llmops/v1/api/app/${param0}/datasets */
+export function useV1ApiAppAppIdDatasetsUsingPostMutation(options) {
+  const { onSuccess, onError } = options || {};
+
+  const response = useMutation({
+    mutationFn: apis.v1ApiAppAppIdDatasetsUsingPost,
+    onSuccess(data) {
+      onSuccess && onSuccess(data);
+    },
+    onError(error) {
+      onError && onError(error);
+    },
+  });
+
+  return response;
+}
+
+/** DeleteDatasetsJoin 删除 app 数据集关联 DELETE /llmops/v1/api/app/${param0}/datasets */
+export function useV1ApiAppAppIdDatasetsUsingDeleteMutation(options) {
+  const { onSuccess, onError } = options || {};
+
+  const response = useMutation({
+    mutationFn: apis.v1ApiAppAppIdDatasetsUsingDelete,
+    onSuccess(data) {
+      onSuccess && onSuccess(data);
+    },
+    onError(error) {
+      onError && onError(error);
+    },
+  });
+
+  return response;
+}
+import { request } from 'axios';
+
+/** GetDatasetsList 数据集列表 GET /llmops/v1/api/app/${param0}/datasets-list */
+export async function v1ApiAppAppIdDatasetsListUsingGet({ params, options }) {
+  const { appID: param0, ...queryParams } = params;
+
+  return request(`/llmops/v1/api/app/${param0}/datasets-list`, {
+    method: 'GET',
+    params: {
+      ...queryParams,
+    },
+    ...(options || {}),
+  });
+}
+import { queryOptions, useMutation } from '@tanstack/react-query';
+import { request } from 'axios';
+
+import * as apis from './datasetsList';
+
+/** GetDatasetsList 数据集列表 GET /llmops/v1/api/app/${param0}/datasets-list */
+export function v1ApiAppAppIdDatasetsListUsingGetQueryOptions(options) {
+  return queryOptions({
+    queryFn: async ({ queryKey }) => {
+      return apis.v1ApiAppAppIdDatasetsListUsingGet(queryKey[1]);
+    },
+    queryKey: ['v1ApiAppAppIdDatasetsListUsingGet', options],
+  });
+}
+import { request } from 'axios';
+
+/** DeleteFeedbacks DeleteFeedbacks DELETE /llmops/v1/api/feedbacks/${param0} */
+export async function v1ApiFeedbacksMessageIdUsingDelete({ params, options }) {
+  const { message_id: param0, ...queryParams } = params;
+
+  return request(`/llmops/v1/api/feedbacks/${param0}`, {
+    method: 'DELETE',
+    params: {
+      ...queryParams,
+    },
+    ...(options || {}),
+  });
+}
+import { queryOptions, useMutation } from '@tanstack/react-query';
+import { request } from 'axios';
+
+import * as apis from './deleteFeedbacks';
+
+/** DeleteFeedbacks DeleteFeedbacks DELETE /llmops/v1/api/feedbacks/${param0} */
+export function useV1ApiFeedbacksMessageIdUsingDeleteMutation(options) {
+  const { onSuccess, onError } = options || {};
+
+  const response = useMutation({
+    mutationFn: apis.v1ApiFeedbacksMessageIdUsingDelete,
+    onSuccess(data) {
+      onSuccess && onSuccess(data);
+    },
+    onError(error) {
+      onError && onError(error);
+    },
+  });
+
+  return response;
+}
+import { request } from 'axios';
+
+/** DeleteKey 为应用添加各种类型机器人appkey DELETE /llmops/v1/api/robot/${param0}/appkey */
+export async function v1ApiRobotWorkspaceIdAppkeyUsingDelete({
+  params,
+  body,
+  options,
+}) {
+  const { workspaceID: param0, ...queryParams } = params;
+
+  return request(`/llmops/v1/api/robot/${param0}/appkey`, {
+    method: 'DELETE',
+    params: { ...queryParams },
+    data: body,
+    ...(options || {}),
+  });
+}
+import { queryOptions, useMutation } from '@tanstack/react-query';
+import { request } from 'axios';
+
+import * as apis from './deleteKey';
+
+/** DeleteKey 为应用添加各种类型机器人appkey DELETE /llmops/v1/api/robot/${param0}/appkey */
+export function useV1ApiRobotWorkspaceIdAppkeyUsingDeleteMutation(options) {
+  const { onSuccess, onError } = options || {};
+
+  const response = useMutation({
+    mutationFn: apis.v1ApiRobotWorkspaceIdAppkeyUsingDelete,
+    onSuccess(data) {
+      onSuccess && onSuccess(data);
+    },
+    onError(error) {
+      onError && onError(error);
+    },
+  });
+
+  return response;
+}
+import { request } from 'axios';
+
+/** Exchange 换取token GET /llmops/auth/exchange */
+export async function authExchangeUsingGet({ params, options }) {
+  return request('/llmops/auth/exchange', {
+    method: 'GET',
+    params: {
+      ...params,
+    },
+    ...(options || {}),
+  });
+}
+import { queryOptions, useMutation } from '@tanstack/react-query';
+import { request } from 'axios';
+
+import * as apis from './exchange';
+
+/** Exchange 换取token GET /llmops/auth/exchange */
+export function authExchangeUsingGetQueryOptions(options) {
+  return queryOptions({
+    queryFn: async ({ queryKey }) => {
+      return apis.authExchangeUsingGet(queryKey[1]);
+    },
+    queryKey: ['authExchangeUsingGet', options],
+  });
+}
+import { request } from 'axios';
+
+/** Filestream 上传文件 POST /llmops/v1/api/file */
+export async function v1ApiFileUsingPost({ params, body, options }) {
+  return request('/llmops/v1/api/file', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    params: {
+      ...params,
+    },
+    data: body,
+    ...(options || {}),
+  });
+}
+
+/** SpeechToText 语音转文字 POST /llmops/v1/api/speech_to_text */
+export async function v1ApiSpeechToTextUsingPost({ body, options }) {
+  return request('/llmops/v1/api/speech_to_text', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    data: body,
+    ...(options || {}),
+  });
+}
+
+/** TextToSpeech 文字转语音 POST /llmops/v1/api/text_to_speech */
+export async function v1ApiTextToSpeechUsingPost({ body, options }) {
+  return request('/llmops/v1/api/text_to_speech', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    data: body,
+    ...(options || {}),
+  });
+}
+
+/** 上传文件V2接口 上传文件V2接口用于向服务器提交文件。 POST /llmops/v2/api/file */
+export async function v2ApiFileUsingPost({ params, body, options }) {
+  const formData = new FormData();
+
+  Object.keys(body).forEach((ele) => {
+    const item = body[ele];
+
+    if (item !== undefined && item !== null) {
+      formData.append(
+        ele,
+        typeof item === 'object' ? JSON.stringify(item) : item
+      );
+    }
+  });
+
+  return request('/llmops/v2/api/file', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+    params: {
+      ...params,
+    },
+    data: formData,
+    ...(options || {}),
+  });
+}
+import { queryOptions, useMutation } from '@tanstack/react-query';
+import { request } from 'axios';
+
+import * as apis from './files';
+
+/** Filestream 上传文件 POST /llmops/v1/api/file */
+export function useV1ApiFileUsingPostMutation(options) {
+  const { onSuccess, onError } = options || {};
+
+  const response = useMutation({
+    mutationFn: apis.v1ApiFileUsingPost,
+    onSuccess(data) {
+      onSuccess && onSuccess(data);
+    },
+    onError(error) {
+      onError && onError(error);
+    },
+  });
+
+  return response;
+}
+
+/** SpeechToText 语音转文字 POST /llmops/v1/api/speech_to_text */
+export function useV1ApiSpeechToTextUsingPostMutation(options) {
+  const { onSuccess, onError } = options || {};
+
+  const response = useMutation({
+    mutationFn: apis.v1ApiSpeechToTextUsingPost,
+    onSuccess(data) {
+      onSuccess && onSuccess(data);
+    },
+    onError(error) {
+      onError && onError(error);
+    },
+  });
+
+  return response;
+}
+
+/** TextToSpeech 文字转语音 POST /llmops/v1/api/text_to_speech */
+export function useV1ApiTextToSpeechUsingPostMutation(options) {
+  const { onSuccess, onError } = options || {};
+
+  const response = useMutation({
+    mutationFn: apis.v1ApiTextToSpeechUsingPost,
+    onSuccess(data) {
+      onSuccess && onSuccess(data);
+    },
+    onError(error) {
+      onError && onError(error);
+    },
+  });
+
+  return response;
+}
+
+/** 上传文件V2接口 上传文件V2接口用于向服务器提交文件。 POST /llmops/v2/api/file */
+export function useV2ApiFileUsingPostMutation(options) {
+  const { onSuccess, onError } = options || {};
+
+  const response = useMutation({
+    mutationFn: apis.v2ApiFileUsingPost,
+    onSuccess(data) {
+      onSuccess && onSuccess(data);
+    },
+    onError(error) {
+      onError && onError(error);
+    },
+  });
+
+  return response;
+}
+import { request } from 'axios';
+
+/** GetAppKey 为应用获取各种类型机器人appkey GET /llmops/v1/api/robot/${param0}/appkey */
+export async function v1ApiRobotWorkspaceIdAppkeyUsingGet({ params, options }) {
+  const { workspaceID: param0, ...queryParams } = params;
+
+  return request(`/llmops/v1/api/robot/${param0}/appkey`, {
+    method: 'GET',
+    params: {
+      ...queryParams,
+    },
+    ...(options || {}),
+  });
+}
+import { queryOptions, useMutation } from '@tanstack/react-query';
+import { request } from 'axios';
+
+import * as apis from './getAppKey';
+
+/** GetAppKey 为应用获取各种类型机器人appkey GET /llmops/v1/api/robot/${param0}/appkey */
+export function v1ApiRobotWorkspaceIdAppkeyUsingGetQueryOptions(options) {
+  return queryOptions({
+    queryFn: async ({ queryKey }) => {
+      return apis.v1ApiRobotWorkspaceIdAppkeyUsingGet(queryKey[1]);
+    },
+    queryKey: ['v1ApiRobotWorkspaceIdAppkeyUsingGet', options],
+  });
+}
+import { request } from 'axios';
+
+/** History 会话历史 GET /llmops/v1/api/conversations/${param0}/history */
+export async function v1ApiConversationsConversationIdHistoryUsingGet({
+  params,
+  options,
+}) {
+  const { conversation_id: param0, ...queryParams } = params;
+
+  return request(`/llmops/v1/api/conversations/${param0}/history`, {
+    method: 'GET',
+    params: { ...queryParams },
+    ...(options || {}),
+  });
+}
+
+/** DeleteHistory 会话历史 DELETE /llmops/v1/api/conversations/${param0}/history */
+export async function v1ApiConversationsConversationIdHistoryUsingDelete({
+  params,
+  options,
+}) {
+  const { conversation_id: param0, ...queryParams } = params;
+
+  return request(`/llmops/v1/api/conversations/${param0}/history`, {
+    method: 'DELETE',
+    params: {
+      ...queryParams,
+    },
+    ...(options || {}),
+  });
+}
+
+/** GetMessageCount 用于微精灵获取消息数的v2版本 GET /llmops/v2/api/chat-messages/messagesCount */
+export async function v2ApiChatMessagesMessagesCountUsingGet({
+  params,
+  options,
+}) {
+  return request('/llmops/v2/api/chat-messages/messagesCount', {
+    method: 'GET',
+    params: {
+      ...params,
+    },
+    ...(options || {}),
+  });
+}
+import { queryOptions, useMutation } from '@tanstack/react-query';
+import { request } from 'axios';
+
+import * as apis from './history';
+
+/** History 会话历史 GET /llmops/v1/api/conversations/${param0}/history */
+export function v1ApiConversationsConversationIdHistoryUsingGetQueryOptions(
+  options
+) {
+  return queryOptions({
+    queryFn: async ({ queryKey }) => {
+      return apis.v1ApiConversationsConversationIdHistoryUsingGet(queryKey[1]);
+    },
+    queryKey: ['v1ApiConversationsConversationIdHistoryUsingGet', options],
+  });
+}
+
+/** DeleteHistory 会话历史 DELETE /llmops/v1/api/conversations/${param0}/history */
+export function useV1ApiConversationsConversationIdHistoryUsingDeleteMutation(
+  options
+) {
+  const { onSuccess, onError } = options || {};
+
+  const response = useMutation({
+    mutationFn: apis.v1ApiConversationsConversationIdHistoryUsingDelete,
+    onSuccess(data) {
+      onSuccess && onSuccess(data);
+    },
+    onError(error) {
+      onError && onError(error);
+    },
+  });
+
+  return response;
+}
+
+/** GetMessageCount 用于微精灵获取消息数的v2版本 GET /llmops/v2/api/chat-messages/messagesCount */
+export function v2ApiChatMessagesMessagesCountUsingGetQueryOptions(options) {
+  return queryOptions({
+    queryFn: async ({ queryKey }) => {
+      return apis.v2ApiChatMessagesMessagesCountUsingGet(queryKey[1]);
+    },
+    queryKey: ['v2ApiChatMessagesMessagesCountUsingGet', options],
+  });
+}
+import { request } from 'axios';
+
+/** GetIamUserId 查询 IAM 用户信息 GET /llmops/v1/api/iamAccount */
+export async function v1ApiIamAccountUsingGet({ params, options }) {
+  return request('/llmops/v1/api/iamAccount', {
+    method: 'GET',
+    params: {
+      ...params,
+    },
+    ...(options || {}),
+  });
+}
+import { queryOptions, useMutation } from '@tanstack/react-query';
+import { request } from 'axios';
+
+import * as apis from './iam';
+
+/** GetIamUserId 查询 IAM 用户信息 GET /llmops/v1/api/iamAccount */
+export function v1ApiIamAccountUsingGetQueryOptions(options) {
+  return queryOptions({
+    queryFn: async ({ queryKey }) => {
+      return apis.v1ApiIamAccountUsingGet(queryKey[1]);
+    },
+    queryKey: ['v1ApiIamAccountUsingGet', options],
+  });
+}
+export * from './authorize';
+export * from './authorize.reactquery';
+export * from './exchange';
+export * from './exchange.reactquery';
+export * from './refreshToken';
+export * from './refreshToken.reactquery';
+export * from './app';
+export * from './app.reactquery';
+export * from './share';
+export * from './share.reactquery';
+export * from './apiToken';
+export * from './apiToken.reactquery';
+export * from './appDatasetConfigs';
+export * from './appDatasetConfigs.reactquery';
+export * from './datasetsJoin';
+export * from './datasetsJoin.reactquery';
+export * from './datasetsList';
+export * from './datasetsList.reactquery';
+export * from './appMember';
+export * from './appMember.reactquery';
+export * from './appModelConfigs';
+export * from './appModelConfigs.reactquery';
+export * from './recommended';
+export * from './recommended.reactquery';
+export * from './attention';
+export * from './attention.reactquery';
+export * from './chat';
+export * from './chat.reactquery';
+export * from './conversation';
+export * from './conversation.reactquery';
+export * from './history';
+export * from './history.reactquery';
+export * from './listFeedbacks';
+export * from './listFeedbacks.reactquery';
+export * from './createFeedbacks';
+export * from './createFeedbacks.reactquery';
+export * from './deleteFeedbacks';
+export * from './deleteFeedbacks.reactquery';
+export * from './files';
+export * from './files.reactquery';
+export * from './iam';
+export * from './iam.reactquery';
+export * from './provider';
+export * from './provider.reactquery';
+export * from './getAppKey';
+export * from './getAppKey.reactquery';
+export * from './addAppKey';
+export * from './addAppKey.reactquery';
+export * from './deleteKey';
+export * from './deleteKey.reactquery';
+export * from './updateAppKeyState';
+export * from './updateAppKeyState.reactquery';
+export * from './user';
+export * from './user.reactquery';
+export * from './appV2';
+export * from './appV2.reactquery';
+export * from './workspaceAppV2';
+export * from './workspaceAppV2.reactquery';
+export * from './workspace';
+export * from './workspace.reactquery';
+export * from './workspaceGroup';
+export * from './workspaceGroup.reactquery';
+import { request } from 'axios';
+
+/** ListFeedbacks ListFeedbacks GET /llmops/v1/api/feedbacks/ */
+export async function v1ApiFeedbacksUsingGet({ params, options }) {
+  return request('/llmops/v1/api/feedbacks/', {
+    method: 'GET',
+    params: {
+      ...params,
+    },
+    ...(options || {}),
+  });
+}
+import { queryOptions, useMutation } from '@tanstack/react-query';
+import { request } from 'axios';
+
+import * as apis from './listFeedbacks';
+
+/** ListFeedbacks ListFeedbacks GET /llmops/v1/api/feedbacks/ */
+export function v1ApiFeedbacksUsingGetQueryOptions(options) {
+  return queryOptions({
+    queryFn: async ({ queryKey }) => {
+      return apis.v1ApiFeedbacksUsingGet(queryKey[1]);
+    },
+    queryKey: ['v1ApiFeedbacksUsingGet', options],
+  });
+}
+import { request } from 'axios';
+
+/** ListProviders 查询 Provider 列表 GET /llmops/v1/api/provider/list */
+export async function v1ApiProviderListUsingGet({ params, options }) {
+  return request('/llmops/v1/api/provider/list', {
+    method: 'GET',
+    params: {
+      ...params,
+    },
+    ...(options || {}),
+  });
+}
+import { queryOptions, useMutation } from '@tanstack/react-query';
+import { request } from 'axios';
+
+import * as apis from './provider';
+
+/** ListProviders 查询 Provider 列表 GET /llmops/v1/api/provider/list */
+export function v1ApiProviderListUsingGetQueryOptions(options) {
+  return queryOptions({
+    queryFn: async ({ queryKey }) => {
+      return apis.v1ApiProviderListUsingGet(queryKey[1]);
+    },
+    queryKey: ['v1ApiProviderListUsingGet', options],
+  });
+}
+import { request } from 'axios';
+
+/** ListRecommendedContext 查询推荐内容列表 GET /llmops/v1/api/app/${param0}/recommended/context */
+export async function v1ApiAppAppIdRecommendedContextUsingGet({
+  params,
+  options,
+}) {
+  const { appID: param0, ...queryParams } = params;
+
+  return request(`/llmops/v1/api/app/${param0}/recommended/context`, {
+    method: 'GET',
+    params: { ...queryParams },
+    ...(options || {}),
+  });
+}
+
+/** CreateOrUpdateRecommendedContext 创建或更新推荐内容列表 POST /llmops/v1/api/app/${param0}/recommended/context */
+export async function v1ApiAppAppIdRecommendedContextUsingPost({
+  params,
+  body,
+  options,
+}) {
+  const { appID: param0, ...queryParams } = params;
+
+  return request(`/llmops/v1/api/app/${param0}/recommended/context`, {
+    method: 'POST',
+    params: { ...queryParams },
+    data: body,
+    ...(options || {}),
+  });
+}
+import { queryOptions, useMutation } from '@tanstack/react-query';
+import { request } from 'axios';
+
+import * as apis from './recommended';
+
+/** ListRecommendedContext 查询推荐内容列表 GET /llmops/v1/api/app/${param0}/recommended/context */
+export function v1ApiAppAppIdRecommendedContextUsingGetQueryOptions(options) {
+  return queryOptions({
+    queryFn: async ({ queryKey }) => {
+      return apis.v1ApiAppAppIdRecommendedContextUsingGet(queryKey[1]);
+    },
+    queryKey: ['v1ApiAppAppIdRecommendedContextUsingGet', options],
+  });
+}
+
+/** CreateOrUpdateRecommendedContext 创建或更新推荐内容列表 POST /llmops/v1/api/app/${param0}/recommended/context */
+export function useV1ApiAppAppIdRecommendedContextUsingPostMutation(options) {
+  const { onSuccess, onError } = options || {};
+
+  const response = useMutation({
+    mutationFn: apis.v1ApiAppAppIdRecommendedContextUsingPost,
+    onSuccess(data) {
+      onSuccess && onSuccess(data);
+    },
+    onError(error) {
+      onError && onError(error);
+    },
+  });
+
+  return response;
+}
+import { request } from 'axios';
+
+/** RefreshToken 刷新token POST /llmops/auth/refresh-token */
+export async function authRefreshTokenUsingPost({ body, options }) {
+  return request('/llmops/auth/refresh-token', {
+    method: 'POST',
+    data: body,
+    ...(options || {}),
+  });
+}
+import { queryOptions, useMutation } from '@tanstack/react-query';
+import { request } from 'axios';
+
+import * as apis from './refreshToken';
+
+/** RefreshToken 刷新token POST /llmops/auth/refresh-token */
+export function useAuthRefreshTokenUsingPostMutation(options) {
+  const { onSuccess, onError } = options || {};
+
+  const response = useMutation({
+    mutationFn: apis.authRefreshTokenUsingPost,
+    onSuccess(data) {
+      onSuccess && onSuccess(data);
+    },
+    onError(error) {
+      onError && onError(error);
+    },
+  });
+
+  return response;
+}
+import { request } from 'axios';
+
+/** H5GetApiToken 获取一个 app token h5版 GET /llmops/v1/api/app/h5/share/api-token */
+export async function v1ApiAppH5ShareApiTokenUsingGet({ params, options }) {
+  return request('/llmops/v1/api/app/h5/share/api-token', {
+    method: 'GET',
+    params: {
+      ...params,
+    },
+    ...(options || {}),
+  });
+}
+
+/** GetApiToken 获取一个 app token GET /llmops/v1/api/app/share/api-token */
+export async function v1ApiAppShareApiTokenUsingGet({ params, options }) {
+  return request('/llmops/v1/api/app/share/api-token', {
+    method: 'GET',
+    params: {
+      ...params,
+    },
+    ...(options || {}),
+  });
+}
+import { queryOptions, useMutation } from '@tanstack/react-query';
+import { request } from 'axios';
+
+import * as apis from './share';
+
+/** H5GetApiToken 获取一个 app token h5版 GET /llmops/v1/api/app/h5/share/api-token */
+export function v1ApiAppH5ShareApiTokenUsingGetQueryOptions(options) {
+  return queryOptions({
+    queryFn: async ({ queryKey }) => {
+      return apis.v1ApiAppH5ShareApiTokenUsingGet(queryKey[1]);
+    },
+    queryKey: ['v1ApiAppH5ShareApiTokenUsingGet', options],
+  });
+}
+
+/** GetApiToken 获取一个 app token GET /llmops/v1/api/app/share/api-token */
+export function v1ApiAppShareApiTokenUsingGetQueryOptions(options) {
+  return queryOptions({
+    queryFn: async ({ queryKey }) => {
+      return apis.v1ApiAppShareApiTokenUsingGet(queryKey[1]);
+    },
+    queryKey: ['v1ApiAppShareApiTokenUsingGet', options],
+  });
+}
+import { request } from 'axios';
+
+/** UpdateAppKeyState 为应用获取各种类型机器人状态 POST /llmops/v1/api/robot/${param0}/appkey/state */
+export async function v1ApiRobotWorkspaceIdAppkeyStateUsingPost({
+  params,
+  body,
+  options,
+}) {
+  const { workspaceID: param0, ...queryParams } = params;
+
+  return request(`/llmops/v1/api/robot/${param0}/appkey/state`, {
+    method: 'POST',
+    params: { ...queryParams },
+    data: body,
+    ...(options || {}),
+  });
+}
+import { queryOptions, useMutation } from '@tanstack/react-query';
+import { request } from 'axios';
+
+import * as apis from './updateAppKeyState';
+
+/** UpdateAppKeyState 为应用获取各种类型机器人状态 POST /llmops/v1/api/robot/${param0}/appkey/state */
+export function useV1ApiRobotWorkspaceIdAppkeyStateUsingPostMutation(options) {
+  const { onSuccess, onError } = options || {};
+
+  const response = useMutation({
+    mutationFn: apis.v1ApiRobotWorkspaceIdAppkeyStateUsingPost,
+    onSuccess(data) {
+      onSuccess && onSuccess(data);
+    },
+    onError(error) {
+      onError && onError(error);
+    },
+  });
+
+  return response;
+}
+import { request } from 'axios';
+
+/** ListUser 系统全局用户列表 GET /llmops/v1/api/user */
+export async function v1ApiUserUsingGet({ params, options }) {
+  return request('/llmops/v1/api/user', {
+    method: 'GET',
+    params: {
+      // size has a default value: 10
+      size: '10',
+
+      ...params,
+    },
+    ...(options || {}),
+  });
+}
+
+/** GetUserInfoByToken 获取iam用户数据 GET /llmops/v1/api/user/info */
+export async function v1ApiUserInfoUsingGet({ params, options }) {
+  return request('/llmops/v1/api/user/info', {
+    method: 'GET',
+    params: {
+      ...params,
+    },
+    ...(options || {}),
+  });
+}
+
+/** UpdateUserRole 更新用户角色 PUT /llmops/v1/api/user/role */
+export async function v1ApiUserRoleUsingPut({ body, options }) {
+  return request('/llmops/v1/api/user/role', {
+    method: 'PUT',
+    data: body,
+    ...(options || {}),
+  });
+}
+import { queryOptions, useMutation } from '@tanstack/react-query';
+import { request } from 'axios';
+
+import * as apis from './user';
+
+/** ListUser 系统全局用户列表 GET /llmops/v1/api/user */
+export function v1ApiUserUsingGetQueryOptions(options) {
+  return queryOptions({
+    queryFn: async ({ queryKey }) => {
+      return apis.v1ApiUserUsingGet(queryKey[1]);
+    },
+    queryKey: ['v1ApiUserUsingGet', options],
+  });
+}
+
+/** GetUserInfoByToken 获取iam用户数据 GET /llmops/v1/api/user/info */
+export function v1ApiUserInfoUsingGetQueryOptions(options) {
+  return queryOptions({
+    queryFn: async ({ queryKey }) => {
+      return apis.v1ApiUserInfoUsingGet(queryKey[1]);
+    },
+    queryKey: ['v1ApiUserInfoUsingGet', options],
+  });
+}
+
+/** UpdateUserRole 更新用户角色 PUT /llmops/v1/api/user/role */
+export function useV1ApiUserRoleUsingPutMutation(options) {
+  const { onSuccess, onError } = options || {};
+
+  const response = useMutation({
+    mutationFn: apis.v1ApiUserRoleUsingPut,
+    onSuccess(data) {
+      onSuccess && onSuccess(data);
+    },
+    onError(error) {
+      onError && onError(error);
+    },
+  });
+
+  return response;
+}
+import { request } from 'axios';
+
+/** GetWorkspaceList 空间列表 GET /llmops/v2/api/workspaces */
+export async function v2ApiWorkspacesUsingGet({ options }) {
+  return request('/llmops/v2/api/workspaces', {
+    method: 'GET',
+    ...(options || {}),
+  });
+}
+
+/** CreateWorkspace 创建空间 POST /llmops/v2/api/workspaces */
+export async function v2ApiWorkspacesUsingPost({ body, options }) {
+  return request('/llmops/v2/api/workspaces', {
+    method: 'POST',
+    data: body,
+    ...(options || {}),
+  });
+}
+
+/** GetDefaultWorkspace 获取用户默认空间 GET /llmops/v2/api/workspaces-default */
+export async function v2ApiWorkspacesDefaultUsingGet({ options }) {
+  return request('/llmops/v2/api/workspaces-default', {
+    method: 'GET',
+    ...(options || {}),
+  });
+}
+
+/** 切换默认空间 POST /llmops/v2/api/workspaces-default */
+export async function v2ApiWorkspacesDefaultUsingPost({ params, options }) {
+  return request('/llmops/v2/api/workspaces-default', {
+    method: 'POST',
+    params: {
+      ...params,
+    },
+    ...(options || {}),
+  });
+}
+
+/** UpdateWorkspace 更新空间 POST /llmops/v2/api/workspaces/${param0} */
+export async function v2ApiWorkspacesWorkspaceIdUsingPost({
+  params,
+  body,
+  options,
+}) {
+  const { workspaceID: param0, ...queryParams } = params;
+
+  return request(`/llmops/v2/api/workspaces/${param0}`, {
+    method: 'POST',
+    params: { ...queryParams },
+    data: body,
+    ...(options || {}),
+  });
+}
+
+/** DeleteWorkspace 删除空间 DELETE /llmops/v2/api/workspaces/${param0} */
+export async function v2ApiWorkspacesWorkspaceIdUsingDelete({
+  params,
+  options,
+}) {
+  const { workspaceID: param0, ...queryParams } = params;
+
+  return request(`/llmops/v2/api/workspaces/${param0}`, {
+    method: 'DELETE',
+    params: { ...queryParams },
+    ...(options || {}),
+  });
+}
+
+/** CreateDatasetsJoinV2 创建 app 数据集关联 POST /llmops/v2/api/workspaces/${param0}/app/${param1}/datasets/join */
+export async function v2ApiWorkspacesWorkspaceIdAppAppIdDatasetsJoinUsingPost({
+  params,
+  body,
+  options,
+}) {
+  const { workspaceID: param0, appID: param1, ...queryParams } = params;
+
+  return request(
+    `/llmops/v2/api/workspaces/${param0}/app/${param1}/datasets/join`,
+    {
+      method: 'POST',
+      params: { ...queryParams },
+      data: body,
+      ...(options || {}),
+    }
+  );
+}
+
+/** GetWorkspaceDatasetsList 空间下数据集列表 GET /llmops/v2/api/workspaces/${param0}/datasets */
+export async function v2ApiWorkspacesWorkspaceIdDatasetsUsingGet({
+  params,
+  options,
+}) {
+  const { workspaceID: param0, ...queryParams } = params;
+
+  return request(`/llmops/v2/api/workspaces/${param0}/datasets`, {
+    method: 'GET',
+    params: { ...queryParams },
+    ...(options || {}),
+  });
+}
+
+/** CreateWorkspaceDatasets 创建空间下数据集 POST /llmops/v2/api/workspaces/${param0}/datasets */
+export async function v2ApiWorkspacesWorkspaceIdDatasetsUsingPost({
+  params,
+  body,
+  options,
+}) {
+  const { workspaceID: param0, ...queryParams } = params;
+
+  return request(`/llmops/v2/api/workspaces/${param0}/datasets`, {
+    method: 'POST',
+    params: { ...queryParams },
+    data: body,
+    ...(options || {}),
+  });
+}
+
+/** GetWorkspaceUserRole 查询空间用户权限 GET /llmops/v2/api/workspaces/${param0}/permissions */
+export async function v2ApiWorkspacesWorkspaceIdPermissionsUsingGet({
+  params,
+  options,
+}) {
+  const { workspaceID: param0, ...queryParams } = params;
+
+  return request(`/llmops/v2/api/workspaces/${param0}/permissions`, {
+    method: 'GET',
+    params: { ...queryParams },
+    ...(options || {}),
+  });
+}
+
+/** DeleteWorkspaceUsers 删除空间下用户 DELETE /llmops/v2/api/workspaces/${param0}/user/${param1} */
+export async function v2ApiWorkspacesWorkspaceIdUserUserIdUsingDelete({
+  params,
+  options,
+}) {
+  const { workspaceID: param0, userID: param1, ...queryParams } = params;
+
+  return request(`/llmops/v2/api/workspaces/${param0}/user/${param1}`, {
+    method: 'DELETE',
+    params: { ...queryParams },
+    ...(options || {}),
+  });
+}
+
+/** GetWorkspaceUsers 查询空间下用户列表 GET /llmops/v2/api/workspaces/${param0}/users */
+export async function v2ApiWorkspacesWorkspaceIdUsersUsingGet({
+  params,
+  options,
+}) {
+  const { workspaceID: param0, ...queryParams } = params;
+
+  return request(`/llmops/v2/api/workspaces/${param0}/users`, {
+    method: 'GET',
+    params: { ...queryParams },
+    ...(options || {}),
+  });
+}
+
+/** CreateOrUpdateWorkspaceUsers 添加或更新空间下用户角色 POST /llmops/v2/api/workspaces/${param0}/users */
+export async function v2ApiWorkspacesWorkspaceIdUsersUsingPost({
+  params,
+  body,
+  options,
+}) {
+  const { workspaceID: param0, ...queryParams } = params;
+
+  return request(`/llmops/v2/api/workspaces/${param0}/users`, {
+    method: 'POST',
+    params: { ...queryParams },
+    data: body,
+    ...(options || {}),
+  });
+}
+import { queryOptions, useMutation } from '@tanstack/react-query';
+import { request } from 'axios';
+
+import * as apis from './workspace';
+
+/** GetWorkspaceList 空间列表 GET /llmops/v2/api/workspaces */
+export function v2ApiWorkspacesUsingGetQueryOptions(options) {
+  return queryOptions({
+    queryFn: async ({ queryKey }) => {
+      return apis.v2ApiWorkspacesUsingGet(queryKey[1]);
+    },
+    queryKey: ['v2ApiWorkspacesUsingGet', options],
+  });
+}
+
+/** CreateWorkspace 创建空间 POST /llmops/v2/api/workspaces */
+export function useV2ApiWorkspacesUsingPostMutation(options) {
+  const { onSuccess, onError } = options || {};
+
+  const response = useMutation({
+    mutationFn: apis.v2ApiWorkspacesUsingPost,
+    onSuccess(data) {
+      onSuccess && onSuccess(data);
+    },
+    onError(error) {
+      onError && onError(error);
+    },
+  });
+
+  return response;
+}
+
+/** GetDefaultWorkspace 获取用户默认空间 GET /llmops/v2/api/workspaces-default */
+export function v2ApiWorkspacesDefaultUsingGetQueryOptions(options) {
+  return queryOptions({
+    queryFn: async ({ queryKey }) => {
+      return apis.v2ApiWorkspacesDefaultUsingGet(queryKey[1]);
+    },
+    queryKey: ['v2ApiWorkspacesDefaultUsingGet', options],
+  });
+}
+
+/** 切换默认空间 POST /llmops/v2/api/workspaces-default */
+export function useV2ApiWorkspacesDefaultUsingPostMutation(options) {
+  const { onSuccess, onError } = options || {};
+
+  const response = useMutation({
+    mutationFn: apis.v2ApiWorkspacesDefaultUsingPost,
+    onSuccess(data) {
+      onSuccess && onSuccess(data);
+    },
+    onError(error) {
+      onError && onError(error);
+    },
+  });
+
+  return response;
+}
+
+/** UpdateWorkspace 更新空间 POST /llmops/v2/api/workspaces/${param0} */
+export function useV2ApiWorkspacesWorkspaceIdUsingPostMutation(options) {
+  const { onSuccess, onError } = options || {};
+
+  const response = useMutation({
+    mutationFn: apis.v2ApiWorkspacesWorkspaceIdUsingPost,
+    onSuccess(data) {
+      onSuccess && onSuccess(data);
+    },
+    onError(error) {
+      onError && onError(error);
+    },
+  });
+
+  return response;
+}
+
+/** DeleteWorkspace 删除空间 DELETE /llmops/v2/api/workspaces/${param0} */
+export function useV2ApiWorkspacesWorkspaceIdUsingDeleteMutation(options) {
+  const { onSuccess, onError } = options || {};
+
+  const response = useMutation({
+    mutationFn: apis.v2ApiWorkspacesWorkspaceIdUsingDelete,
+    onSuccess(data) {
+      onSuccess && onSuccess(data);
+    },
+    onError(error) {
+      onError && onError(error);
+    },
+  });
+
+  return response;
+}
+
+/** CreateDatasetsJoinV2 创建 app 数据集关联 POST /llmops/v2/api/workspaces/${param0}/app/${param1}/datasets/join */
+export function useV2ApiWorkspacesWorkspaceIdAppAppIdDatasetsJoinUsingPostMutation(
+  options
+) {
+  const { onSuccess, onError } = options || {};
+
+  const response = useMutation({
+    mutationFn: apis.v2ApiWorkspacesWorkspaceIdAppAppIdDatasetsJoinUsingPost,
+    onSuccess(data) {
+      onSuccess && onSuccess(data);
+    },
+    onError(error) {
+      onError && onError(error);
+    },
+  });
+
+  return response;
+}
+
+/** GetWorkspaceDatasetsList 空间下数据集列表 GET /llmops/v2/api/workspaces/${param0}/datasets */
+export function v2ApiWorkspacesWorkspaceIdDatasetsUsingGetQueryOptions(
+  options
+) {
+  return queryOptions({
+    queryFn: async ({ queryKey }) => {
+      return apis.v2ApiWorkspacesWorkspaceIdDatasetsUsingGet(queryKey[1]);
+    },
+    queryKey: ['v2ApiWorkspacesWorkspaceIdDatasetsUsingGet', options],
+  });
+}
+
+/** CreateWorkspaceDatasets 创建空间下数据集 POST /llmops/v2/api/workspaces/${param0}/datasets */
+export function useV2ApiWorkspacesWorkspaceIdDatasetsUsingPostMutation(
+  options
+) {
+  const { onSuccess, onError } = options || {};
+
+  const response = useMutation({
+    mutationFn: apis.v2ApiWorkspacesWorkspaceIdDatasetsUsingPost,
+    onSuccess(data) {
+      onSuccess && onSuccess(data);
+    },
+    onError(error) {
+      onError && onError(error);
+    },
+  });
+
+  return response;
+}
+
+/** GetWorkspaceUserRole 查询空间用户权限 GET /llmops/v2/api/workspaces/${param0}/permissions */
+export function v2ApiWorkspacesWorkspaceIdPermissionsUsingGetQueryOptions(
+  options
+) {
+  return queryOptions({
+    queryFn: async ({ queryKey }) => {
+      return apis.v2ApiWorkspacesWorkspaceIdPermissionsUsingGet(queryKey[1]);
+    },
+    queryKey: ['v2ApiWorkspacesWorkspaceIdPermissionsUsingGet', options],
+  });
+}
+
+/** DeleteWorkspaceUsers 删除空间下用户 DELETE /llmops/v2/api/workspaces/${param0}/user/${param1} */
+export function useV2ApiWorkspacesWorkspaceIdUserUserIdUsingDeleteMutation(
+  options
+) {
+  const { onSuccess, onError } = options || {};
+
+  const response = useMutation({
+    mutationFn: apis.v2ApiWorkspacesWorkspaceIdUserUserIdUsingDelete,
+    onSuccess(data) {
+      onSuccess && onSuccess(data);
+    },
+    onError(error) {
+      onError && onError(error);
+    },
+  });
+
+  return response;
+}
+
+/** GetWorkspaceUsers 查询空间下用户列表 GET /llmops/v2/api/workspaces/${param0}/users */
+export function v2ApiWorkspacesWorkspaceIdUsersUsingGetQueryOptions(options) {
+  return queryOptions({
+    queryFn: async ({ queryKey }) => {
+      return apis.v2ApiWorkspacesWorkspaceIdUsersUsingGet(queryKey[1]);
+    },
+    queryKey: ['v2ApiWorkspacesWorkspaceIdUsersUsingGet', options],
+  });
+}
+
+/** CreateOrUpdateWorkspaceUsers 添加或更新空间下用户角色 POST /llmops/v2/api/workspaces/${param0}/users */
+export function useV2ApiWorkspacesWorkspaceIdUsersUsingPostMutation(options) {
+  const { onSuccess, onError } = options || {};
+
+  const response = useMutation({
+    mutationFn: apis.v2ApiWorkspacesWorkspaceIdUsersUsingPost,
+    onSuccess(data) {
+      onSuccess && onSuccess(data);
+    },
+    onError(error) {
+      onError && onError(error);
+    },
+  });
+
+  return response;
+}
+import { request } from 'axios';
+
+/** CopyApp 复制 app POST /llmops/v2/api/copy_apps */
+export async function v2ApiCopyAppsUsingPost({ body, options }) {
+  return request('/llmops/v2/api/copy_apps', {
+    method: 'POST',
+    data: body,
+    ...(options || {}),
+  });
+}
+
+/** UpdateAppV2.1 更新 app 信息 POST /llmops/v2/api/workspaces/${param0}/app/${param1} */
+export async function v2ApiWorkspacesWorkspaceIdAppAppIdUsingPost({
+  params,
+  body,
+  options,
+}) {
+  const { workspaceID: param0, appID: param1, ...queryParams } = params;
+
+  return request(`/llmops/v2/api/workspaces/${param0}/app/${param1}`, {
+    method: 'POST',
+    params: { ...queryParams },
+    data: body,
+    ...(options || {}),
+  });
+}
+
+/** GetAppDetailsV2.1 查询 app 详情 GET /llmops/v2/api/workspaces/${param0}/app/${param1}/details */
+export async function v2ApiWorkspacesWorkspaceIdAppAppIdDetailsUsingGet({
+  params,
+  options,
+}) {
+  const { workspaceID: param0, appID: param1, ...queryParams } = params;
+
+  return request(`/llmops/v2/api/workspaces/${param0}/app/${param1}/details`, {
+    method: 'GET',
+    params: { ...queryParams },
+    ...(options || {}),
+  });
+}
+
+/** GetSumHourlyMessagesCountV2.1 每小时messages数 GET /llmops/v2/api/workspaces/${param0}/app/${param1}/hourly-messages */
+export async function v2ApiWorkspacesWorkspaceIdAppAppIdHourlyMessagesUsingGet({
+  params,
+  options,
+}) {
+  const { workspaceID: param0, appID: param1, ...queryParams } = params;
+
+  return request(
+    `/llmops/v2/api/workspaces/${param0}/app/${param1}/hourly-messages`,
+    {
+      method: 'GET',
+      params: {
+        ...queryParams,
+      },
+      ...(options || {}),
+    }
+  );
+}
+
+/** GetSumHourlyTokenV2.1 每小时token数 GET /llmops/v2/api/workspaces/${param0}/app/${param1}/hourly-token */
+export async function v2ApiWorkspacesWorkspaceIdAppAppIdHourlyTokenUsingGet({
+  params,
+  options,
+}) {
+  const { workspaceID: param0, appID: param1, ...queryParams } = params;
+
+  return request(
+    `/llmops/v2/api/workspaces/${param0}/app/${param1}/hourly-token`,
+    {
+      method: 'GET',
+      params: {
+        ...queryParams,
+      },
+      ...(options || {}),
+    }
+  );
+}
+
+/** GetSumDailyMessagesCountV2.1 每日messages数 GET /llmops/v2/api/workspaces/${param0}/app/${param1}/messages */
+export async function v2ApiWorkspacesWorkspaceIdAppAppIdMessagesUsingGet({
+  params,
+  options,
+}) {
+  const { workspaceID: param0, appID: param1, ...queryParams } = params;
+
+  return request(`/llmops/v2/api/workspaces/${param0}/app/${param1}/messages`, {
+    method: 'GET',
+    params: {
+      ...queryParams,
+    },
+    ...(options || {}),
+  });
+}
+
+/** UpdateAppStatusV2.1 更新 app 状态 PUT /llmops/v2/api/workspaces/${param0}/app/${param1}/update_status */
+export async function v2ApiWorkspacesWorkspaceIdAppAppIdUpdateStatusUsingPut({
+  params,
+  body,
+  options,
+}) {
+  const { workspaceID: param0, appID: param1, ...queryParams } = params;
+
+  return request(
+    `/llmops/v2/api/workspaces/${param0}/app/${param1}/update_status`,
+    {
+      method: 'PUT',
+      params: { ...queryParams },
+      data: body,
+      ...(options || {}),
+    }
+  );
+}
+
+/** ListAppV2.1 查询用户关联的 app 列表 GET /llmops/v2/api/workspaces/${param0}/apps */
+export async function v2ApiWorkspacesWorkspaceIdAppsUsingGet({
+  params,
+  options,
+}) {
+  const { workspaceID: param0, ...queryParams } = params;
+
+  return request(`/llmops/v2/api/workspaces/${param0}/apps`, {
+    method: 'GET',
+    params: {
+      ...queryParams,
+    },
+    ...(options || {}),
+  });
+}
+
+/** CreateAppV2.1 创建 app POST /llmops/v2/api/workspaces/${param0}/apps */
+export async function v2ApiWorkspacesWorkspaceIdAppsUsingPost({
+  params,
+  body,
+  options,
+}) {
+  const { workspaceID: param0, ...queryParams } = params;
+
+  return request(`/llmops/v2/api/workspaces/${param0}/apps`, {
+    method: 'POST',
+    params: { ...queryParams },
+    data: body,
+    ...(options || {}),
+  });
+}
+
+/** DeleteDatasetsJoinV2.1 删除 app 数据集关联 DELETE /llmops/v2/api/workspaces/${param1}/app/${param0}/datasets */
+export async function v2ApiWorkspacesWorkspaceIdAppAppIdDatasetsUsingDelete({
+  params,
+  options,
+}) {
+  const { appID: param0, workspaceID: param1, ...queryParams } = params;
+
+  return request(`/llmops/v2/api/workspaces/${param1}/app/${param0}/datasets`, {
+    method: 'DELETE',
+    params: {
+      ...queryParams,
+    },
+    ...(options || {}),
+  });
+}
+
+/** GetAppLogsV2.1 查询 app 日志与标注 GET /llmops/v2/api/workspaces/${param1}/app/${param0}/logs */
+export async function v2ApiWorkspacesWorkspaceIdAppAppIdLogsUsingGet({
+  params,
+  options,
+}) {
+  const { appID: param0, workspaceID: param1, ...queryParams } = params;
+
+  return request(`/llmops/v2/api/workspaces/${param1}/app/${param0}/logs`, {
+    method: 'GET',
+    params: {
+      ...queryParams,
+    },
+    ...(options || {}),
+  });
+}
+
+/** UpdateModelConfigsV2.1 更新 app model configs PUT /llmops/v2/api/workspaces/${param1}/app/${param0}/model-configs */
+export async function v2ApiWorkspacesWorkspaceIdAppAppIdModelConfigsUsingPut({
+  params,
+  body,
+  options,
+}) {
+  const { appID: param0, workspaceID: param1, ...queryParams } = params;
+
+  return request(
+    `/llmops/v2/api/workspaces/${param1}/app/${param0}/model-configs`,
+    {
+      method: 'PUT',
+      params: { ...queryParams },
+      data: body,
+      ...(options || {}),
+    }
+  );
+}
+
+/** GetPluginListV2.1 获取插件列表 GET /llmops/v2/api/workspaces/${param1}/app/${param0}/plugin */
+export async function v2ApiWorkspacesWorkspaceIdAppAppIdPluginUsingGet({
+  params,
+  options,
+}) {
+  const { appID: param0, workspaceID: param1, ...queryParams } = params;
+
+  return request(`/llmops/v2/api/workspaces/${param1}/app/${param0}/plugin`, {
+    method: 'GET',
+    params: { ...queryParams },
+    ...(options || {}),
+  });
+}
+
+/** GetSumDailyTokenV2.1 每日token GET /llmops/v2/api/workspaces/${param1}/app/${param0}/token */
+export async function v2ApiWorkspacesWorkspaceIdAppAppIdTokenUsingGet({
+  params,
+  options,
+}) {
+  const { appID: param0, workspaceID: param1, ...queryParams } = params;
+
+  return request(`/llmops/v2/api/workspaces/${param1}/app/${param0}/token`, {
+    method: 'GET',
+    params: {
+      ...queryParams,
+    },
+    ...(options || {}),
+  });
+}
+
+/** DeleteAppV2.1 删除 app DELETE /llmops/v2/api/workspaces/${param1}/apps/${param0} */
+export async function v2ApiWorkspacesWorkspaceIdAppsAppIdUsingDelete({
+  params,
+  options,
+}) {
+  const { appID: param0, workspaceID: param1, ...queryParams } = params;
+
+  return request(`/llmops/v2/api/workspaces/${param1}/apps/${param0}`, {
+    method: 'DELETE',
+    params: { ...queryParams },
+    ...(options || {}),
+  });
+}
+
+/** UpdateAppImage 更新 app名称头像 POST /llmops/v2/api/workspaces/${param1}/apps/${param0}/base */
+export async function v2ApiWorkspacesWorkspaceIdAppsAppIdBaseUsingPost({
+  params,
+  body,
+  options,
+}) {
+  const { appID: param0, workspaceID: param1, ...queryParams } = params;
+
+  return request(`/llmops/v2/api/workspaces/${param1}/apps/${param0}/base`, {
+    method: 'POST',
+    params: { ...queryParams },
+    data: body,
+    ...(options || {}),
+  });
+}
+
+/** UpdateAppGroup 更新 app 分组 POST /llmops/v2/api/workspaces/${param1}/apps/${param0}/group */
+export async function v2ApiWorkspacesWorkspaceIdAppsAppIdGroupUsingPost({
+  params,
+  body,
+  options,
+}) {
+  const { appID: param0, workspaceID: param1, ...queryParams } = params;
+
+  return request(`/llmops/v2/api/workspaces/${param1}/apps/${param0}/group`, {
+    method: 'POST',
+    params: { ...queryParams },
+    data: body,
+    ...(options || {}),
+  });
+}
+
+/** GetAppRecommendedContext 获取自定义推荐问题 & 推荐开关 GET /llmops/v2/api/workspaces/recommended/${param0}/details */
+export async function v2ApiWorkspacesRecommendedMessageIdDetailsUsingGet({
+  params,
+  options,
+}) {
+  const { messageId: param0, ...queryParams } = params;
+
+  return request(`/llmops/v2/api/workspaces/recommended/${param0}/details`, {
+    method: 'GET',
+    params: { ...queryParams },
+    ...(options || {}),
+  });
+}
+import { queryOptions, useMutation } from '@tanstack/react-query';
+import { request } from 'axios';
+
+import * as apis from './workspaceAppV2';
+
+/** CopyApp 复制 app POST /llmops/v2/api/copy_apps */
+export function useV2ApiCopyAppsUsingPostMutation(options) {
+  const { onSuccess, onError } = options || {};
+
+  const response = useMutation({
+    mutationFn: apis.v2ApiCopyAppsUsingPost,
+    onSuccess(data) {
+      onSuccess && onSuccess(data);
+    },
+    onError(error) {
+      onError && onError(error);
+    },
+  });
+
+  return response;
+}
+
+/** UpdateAppV2.1 更新 app 信息 POST /llmops/v2/api/workspaces/${param0}/app/${param1} */
+export function useV2ApiWorkspacesWorkspaceIdAppAppIdUsingPostMutation(
+  options
+) {
+  const { onSuccess, onError } = options || {};
+
+  const response = useMutation({
+    mutationFn: apis.v2ApiWorkspacesWorkspaceIdAppAppIdUsingPost,
+    onSuccess(data) {
+      onSuccess && onSuccess(data);
+    },
+    onError(error) {
+      onError && onError(error);
+    },
+  });
+
+  return response;
+}
+
+/** GetAppDetailsV2.1 查询 app 详情 GET /llmops/v2/api/workspaces/${param0}/app/${param1}/details */
+export function v2ApiWorkspacesWorkspaceIdAppAppIdDetailsUsingGetQueryOptions(
+  options
+) {
+  return queryOptions({
+    queryFn: async ({ queryKey }) => {
+      return apis.v2ApiWorkspacesWorkspaceIdAppAppIdDetailsUsingGet(
+        queryKey[1]
+      );
+    },
+    queryKey: ['v2ApiWorkspacesWorkspaceIdAppAppIdDetailsUsingGet', options],
+  });
+}
+
+/** GetSumHourlyMessagesCountV2.1 每小时messages数 GET /llmops/v2/api/workspaces/${param0}/app/${param1}/hourly-messages */
+export function v2ApiWorkspacesWorkspaceIdAppAppIdHourlyMessagesUsingGetQueryOptions(
+  options
+) {
+  return queryOptions({
+    queryFn: async ({ queryKey }) => {
+      return apis.v2ApiWorkspacesWorkspaceIdAppAppIdHourlyMessagesUsingGet(
+        queryKey[1]
+      );
+    },
+    queryKey: [
+      'v2ApiWorkspacesWorkspaceIdAppAppIdHourlyMessagesUsingGet',
+      options,
+    ],
+  });
+}
+
+/** GetSumHourlyTokenV2.1 每小时token数 GET /llmops/v2/api/workspaces/${param0}/app/${param1}/hourly-token */
+export function v2ApiWorkspacesWorkspaceIdAppAppIdHourlyTokenUsingGetQueryOptions(
+  options
+) {
+  return queryOptions({
+    queryFn: async ({ queryKey }) => {
+      return apis.v2ApiWorkspacesWorkspaceIdAppAppIdHourlyTokenUsingGet(
+        queryKey[1]
+      );
+    },
+    queryKey: [
+      'v2ApiWorkspacesWorkspaceIdAppAppIdHourlyTokenUsingGet',
+      options,
+    ],
+  });
+}
+
+/** GetSumDailyMessagesCountV2.1 每日messages数 GET /llmops/v2/api/workspaces/${param0}/app/${param1}/messages */
+export function v2ApiWorkspacesWorkspaceIdAppAppIdMessagesUsingGetQueryOptions(
+  options
+) {
+  return queryOptions({
+    queryFn: async ({ queryKey }) => {
+      return apis.v2ApiWorkspacesWorkspaceIdAppAppIdMessagesUsingGet(
+        queryKey[1]
+      );
+    },
+    queryKey: ['v2ApiWorkspacesWorkspaceIdAppAppIdMessagesUsingGet', options],
+  });
+}
+
+/** UpdateAppStatusV2.1 更新 app 状态 PUT /llmops/v2/api/workspaces/${param0}/app/${param1}/update_status */
+export function useV2ApiWorkspacesWorkspaceIdAppAppIdUpdateStatusUsingPutMutation(
+  options
+) {
+  const { onSuccess, onError } = options || {};
+
+  const response = useMutation({
+    mutationFn: apis.v2ApiWorkspacesWorkspaceIdAppAppIdUpdateStatusUsingPut,
+    onSuccess(data) {
+      onSuccess && onSuccess(data);
+    },
+    onError(error) {
+      onError && onError(error);
+    },
+  });
+
+  return response;
+}
+
+/** ListAppV2.1 查询用户关联的 app 列表 GET /llmops/v2/api/workspaces/${param0}/apps */
+export function v2ApiWorkspacesWorkspaceIdAppsUsingGetQueryOptions(options) {
+  return queryOptions({
+    queryFn: async ({ queryKey }) => {
+      return apis.v2ApiWorkspacesWorkspaceIdAppsUsingGet(queryKey[1]);
+    },
+    queryKey: ['v2ApiWorkspacesWorkspaceIdAppsUsingGet', options],
+  });
+}
+
+/** CreateAppV2.1 创建 app POST /llmops/v2/api/workspaces/${param0}/apps */
+export function useV2ApiWorkspacesWorkspaceIdAppsUsingPostMutation(options) {
+  const { onSuccess, onError } = options || {};
+
+  const response = useMutation({
+    mutationFn: apis.v2ApiWorkspacesWorkspaceIdAppsUsingPost,
+    onSuccess(data) {
+      onSuccess && onSuccess(data);
+    },
+    onError(error) {
+      onError && onError(error);
+    },
+  });
+
+  return response;
+}
+
+/** DeleteDatasetsJoinV2.1 删除 app 数据集关联 DELETE /llmops/v2/api/workspaces/${param1}/app/${param0}/datasets */
+export function useV2ApiWorkspacesWorkspaceIdAppAppIdDatasetsUsingDeleteMutation(
+  options
+) {
+  const { onSuccess, onError } = options || {};
+
+  const response = useMutation({
+    mutationFn: apis.v2ApiWorkspacesWorkspaceIdAppAppIdDatasetsUsingDelete,
+    onSuccess(data) {
+      onSuccess && onSuccess(data);
+    },
+    onError(error) {
+      onError && onError(error);
+    },
+  });
+
+  return response;
+}
+
+/** GetAppLogsV2.1 查询 app 日志与标注 GET /llmops/v2/api/workspaces/${param1}/app/${param0}/logs */
+export function v2ApiWorkspacesWorkspaceIdAppAppIdLogsUsingGetQueryOptions(
+  options
+) {
+  return queryOptions({
+    queryFn: async ({ queryKey }) => {
+      return apis.v2ApiWorkspacesWorkspaceIdAppAppIdLogsUsingGet(queryKey[1]);
+    },
+    queryKey: ['v2ApiWorkspacesWorkspaceIdAppAppIdLogsUsingGet', options],
+  });
+}
+
+/** UpdateModelConfigsV2.1 更新 app model configs PUT /llmops/v2/api/workspaces/${param1}/app/${param0}/model-configs */
+export function useV2ApiWorkspacesWorkspaceIdAppAppIdModelConfigsUsingPutMutation(
+  options
+) {
+  const { onSuccess, onError } = options || {};
+
+  const response = useMutation({
+    mutationFn: apis.v2ApiWorkspacesWorkspaceIdAppAppIdModelConfigsUsingPut,
+    onSuccess(data) {
+      onSuccess && onSuccess(data);
+    },
+    onError(error) {
+      onError && onError(error);
+    },
+  });
+
+  return response;
+}
+
+/** GetPluginListV2.1 获取插件列表 GET /llmops/v2/api/workspaces/${param1}/app/${param0}/plugin */
+export function v2ApiWorkspacesWorkspaceIdAppAppIdPluginUsingGetQueryOptions(
+  options
+) {
+  return queryOptions({
+    queryFn: async ({ queryKey }) => {
+      return apis.v2ApiWorkspacesWorkspaceIdAppAppIdPluginUsingGet(queryKey[1]);
+    },
+    queryKey: ['v2ApiWorkspacesWorkspaceIdAppAppIdPluginUsingGet', options],
+  });
+}
+
+/** GetSumDailyTokenV2.1 每日token GET /llmops/v2/api/workspaces/${param1}/app/${param0}/token */
+export function v2ApiWorkspacesWorkspaceIdAppAppIdTokenUsingGetQueryOptions(
+  options
+) {
+  return queryOptions({
+    queryFn: async ({ queryKey }) => {
+      return apis.v2ApiWorkspacesWorkspaceIdAppAppIdTokenUsingGet(queryKey[1]);
+    },
+    queryKey: ['v2ApiWorkspacesWorkspaceIdAppAppIdTokenUsingGet', options],
+  });
+}
+
+/** DeleteAppV2.1 删除 app DELETE /llmops/v2/api/workspaces/${param1}/apps/${param0} */
+export function useV2ApiWorkspacesWorkspaceIdAppsAppIdUsingDeleteMutation(
+  options
+) {
+  const { onSuccess, onError } = options || {};
+
+  const response = useMutation({
+    mutationFn: apis.v2ApiWorkspacesWorkspaceIdAppsAppIdUsingDelete,
+    onSuccess(data) {
+      onSuccess && onSuccess(data);
+    },
+    onError(error) {
+      onError && onError(error);
+    },
+  });
+
+  return response;
+}
+
+/** UpdateAppImage 更新 app名称头像 POST /llmops/v2/api/workspaces/${param1}/apps/${param0}/base */
+export function useV2ApiWorkspacesWorkspaceIdAppsAppIdBaseUsingPostMutation(
+  options
+) {
+  const { onSuccess, onError } = options || {};
+
+  const response = useMutation({
+    mutationFn: apis.v2ApiWorkspacesWorkspaceIdAppsAppIdBaseUsingPost,
+    onSuccess(data) {
+      onSuccess && onSuccess(data);
+    },
+    onError(error) {
+      onError && onError(error);
+    },
+  });
+
+  return response;
+}
+
+/** UpdateAppGroup 更新 app 分组 POST /llmops/v2/api/workspaces/${param1}/apps/${param0}/group */
+export function useV2ApiWorkspacesWorkspaceIdAppsAppIdGroupUsingPostMutation(
+  options
+) {
+  const { onSuccess, onError } = options || {};
+
+  const response = useMutation({
+    mutationFn: apis.v2ApiWorkspacesWorkspaceIdAppsAppIdGroupUsingPost,
+    onSuccess(data) {
+      onSuccess && onSuccess(data);
+    },
+    onError(error) {
+      onError && onError(error);
+    },
+  });
+
+  return response;
+}
+
+/** GetAppRecommendedContext 获取自定义推荐问题 & 推荐开关 GET /llmops/v2/api/workspaces/recommended/${param0}/details */
+export function v2ApiWorkspacesRecommendedMessageIdDetailsUsingGetQueryOptions(
+  options
+) {
+  return queryOptions({
+    queryFn: async ({ queryKey }) => {
+      return apis.v2ApiWorkspacesRecommendedMessageIdDetailsUsingGet(
+        queryKey[1]
+      );
+    },
+    queryKey: ['v2ApiWorkspacesRecommendedMessageIdDetailsUsingGet', options],
+  });
+}
+import { request } from 'axios';
+
+/** GetWorkspaceGroupList 空间分组列表 GET /llmops/v2/api/workspaces/${param0}/groups */
+export async function v2ApiWorkspacesWorkspaceIdGroupsUsingGet({
+  params,
+  options,
+}) {
+  const { workspaceID: param0, ...queryParams } = params;
+
+  return request(`/llmops/v2/api/workspaces/${param0}/groups`, {
+    method: 'GET',
+    params: { ...queryParams },
+    ...(options || {}),
+  });
+}
+
+/** CreateWorkspaceGroup 创建空间分组 POST /llmops/v2/api/workspaces/${param0}/groups */
+export async function v2ApiWorkspacesWorkspaceIdGroupsUsingPost({
+  params,
+  body,
+  options,
+}) {
+  const { workspaceID: param0, ...queryParams } = params;
+
+  return request(`/llmops/v2/api/workspaces/${param0}/groups`, {
+    method: 'POST',
+    params: { ...queryParams },
+    data: body,
+    ...(options || {}),
+  });
+}
+
+/** UpdateWorkspaceGroup 更新分组 POST /llmops/v2/api/workspaces/${param0}/groups/${param1} */
+export async function v2ApiWorkspacesWorkspaceIdGroupsWorkspaceGroupIdUsingPost({
+  params,
+  body,
+  options,
+}) {
+  const {
+    workspaceID: param0,
+    workspaceGroupID: param1,
+    ...queryParams
+  } = params;
+
+  return request(`/llmops/v2/api/workspaces/${param0}/groups/${param1}`, {
+    method: 'POST',
+    params: { ...queryParams },
+    data: body,
+    ...(options || {}),
+  });
+}
+
+/** DeleteWorkspaceGroup 删除分组 DELETE /llmops/v2/api/workspaces/${param0}/groups/${param1} */
+export async function v2ApiWorkspacesWorkspaceIdGroupsWorkspaceGroupIdUsingDelete({
+  params,
+  options,
+}) {
+  const {
+    workspaceID: param0,
+    workspaceGroupID: param1,
+    ...queryParams
+  } = params;
+
+  return request(`/llmops/v2/api/workspaces/${param0}/groups/${param1}`, {
+    method: 'DELETE',
+    params: { ...queryParams },
+    ...(options || {}),
+  });
+}
+import { queryOptions, useMutation } from '@tanstack/react-query';
+import { request } from 'axios';
+
+import * as apis from './workspaceGroup';
+
+/** GetWorkspaceGroupList 空间分组列表 GET /llmops/v2/api/workspaces/${param0}/groups */
+export function v2ApiWorkspacesWorkspaceIdGroupsUsingGetQueryOptions(options) {
+  return queryOptions({
+    queryFn: async ({ queryKey }) => {
+      return apis.v2ApiWorkspacesWorkspaceIdGroupsUsingGet(queryKey[1]);
+    },
+    queryKey: ['v2ApiWorkspacesWorkspaceIdGroupsUsingGet', options],
+  });
+}
+
+/** CreateWorkspaceGroup 创建空间分组 POST /llmops/v2/api/workspaces/${param0}/groups */
+export function useV2ApiWorkspacesWorkspaceIdGroupsUsingPostMutation(options) {
+  const { onSuccess, onError } = options || {};
+
+  const response = useMutation({
+    mutationFn: apis.v2ApiWorkspacesWorkspaceIdGroupsUsingPost,
+    onSuccess(data) {
+      onSuccess && onSuccess(data);
+    },
+    onError(error) {
+      onError && onError(error);
+    },
+  });
+
+  return response;
+}
+
+/** UpdateWorkspaceGroup 更新分组 POST /llmops/v2/api/workspaces/${param0}/groups/${param1} */
+export function useV2ApiWorkspacesWorkspaceIdGroupsWorkspaceGroupIdUsingPostMutation(
+  options
+) {
+  const { onSuccess, onError } = options || {};
+
+  const response = useMutation({
+    mutationFn: apis.v2ApiWorkspacesWorkspaceIdGroupsWorkspaceGroupIdUsingPost,
+    onSuccess(data) {
+      onSuccess && onSuccess(data);
+    },
+    onError(error) {
+      onError && onError(error);
+    },
+  });
+
+  return response;
+}
+
+/** DeleteWorkspaceGroup 删除分组 DELETE /llmops/v2/api/workspaces/${param0}/groups/${param1} */
+export function useV2ApiWorkspacesWorkspaceIdGroupsWorkspaceGroupIdUsingDeleteMutation(
+  options
+) {
+  const { onSuccess, onError } = options || {};
+
+  const response = useMutation({
+    mutationFn:
+      apis.v2ApiWorkspacesWorkspaceIdGroupsWorkspaceGroupIdUsingDelete,
+    onSuccess(data) {
+      onSuccess && onSuccess(data);
+    },
+    onError(error) {
+      onError && onError(error);
+    },
+  });
+
+  return response;
+}

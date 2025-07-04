@@ -2,7 +2,8 @@
 import chalk from 'chalk';
 import { program } from 'commander';
 
-import { GenerateServiceProps, generateService } from '../index';
+import type { GenerateServiceProps } from '../index';
+import { generateService } from '../index';
 import { readConfig } from '../readConfig';
 
 program

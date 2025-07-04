@@ -1,0 +1,6044 @@
+/* eslint-disable */
+// @ts-ignore
+import { request } from 'axios';
+
+import * as API from './types';
+
+/** AddAppKey 为应用添加各种类型机器人appkey POST /llmops/v1/api/robot/${param0}/appkey */
+export async function v1ApiRobotWorkspaceIdAppkeyUsingPost({
+  params,
+  body,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.v1ApiRobotWorkspaceIdAppkeyUsingPostParams;
+  body: API.AddAppkeyReq;
+  options?: { [key: string]: unknown };
+}) {
+  const { workspaceID: param0, ...queryParams } = params;
+
+  return request<unknown>(`/llmops/v1/api/robot/${param0}/appkey`, {
+    method: 'POST',
+    params: { ...queryParams },
+    data: body,
+    ...(options || {}),
+  });
+}
+/* eslint-disable */
+// @ts-ignore
+import { request } from 'axios';
+
+import * as API from './types';
+
+/** ListApiToken 获取app 的 token 列表 GET /llmops/v1/api/app/${param0}/api-token */
+export async function v1ApiAppAppIdApiTokenUsingGet({
+  params,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.v1ApiAppAppIdApiTokenUsingGetParams;
+  options?: { [key: string]: unknown };
+}) {
+  const { appID: param0, ...queryParams } = params;
+
+  return request<API.ApiTokenDataList>(
+    `/llmops/v1/api/app/${param0}/api-token`,
+    {
+      method: 'GET',
+      params: {
+        ...queryParams,
+      },
+      ...(options || {}),
+    }
+  );
+}
+
+/** CreateApiToken 创建 app 的token POST /llmops/v1/api/app/${param0}/api-token */
+export async function v1ApiAppAppIdApiTokenUsingPost({
+  params,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.v1ApiAppAppIdApiTokenUsingPostParams;
+  options?: { [key: string]: unknown };
+}) {
+  const { appID: param0, ...queryParams } = params;
+
+  return request<API.CreateApiTokenRESP>(
+    `/llmops/v1/api/app/${param0}/api-token`,
+    {
+      method: 'POST',
+      params: { ...queryParams },
+      ...(options || {}),
+    }
+  );
+}
+/* eslint-disable */
+// @ts-ignore
+import { request } from 'axios';
+
+import * as API from './types';
+
+/** GetAppCostTokens 查询 app token消耗 POST /llmops/v1/api/${param0}/cost */
+export async function v1ApiAppIdCostUsingPost({
+  params,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.v1ApiAppIdCostUsingPostParams;
+  options?: { [key: string]: unknown };
+}) {
+  const { appID: param0, ...queryParams } = params;
+
+  return request<API.QueryTokenResp>(`/llmops/v1/api/${param0}/cost`, {
+    method: 'POST',
+    params: {
+      ...queryParams,
+    },
+    ...(options || {}),
+  });
+}
+
+/** CreateApp 创建 app POST /llmops/v1/api/app */
+export async function v1ApiAppUsingPost({
+  body,
+  options,
+}: {
+  body: API.CreateAppReq;
+  options?: { [key: string]: unknown };
+}) {
+  return request<unknown>('/llmops/v1/api/app', {
+    method: 'POST',
+    data: body,
+    ...(options || {}),
+  });
+}
+
+/** DeleteApp 删除 app DELETE /llmops/v1/api/app/${param0}/delete */
+export async function v1ApiAppAppIdOpenApiDeleteUsingDelete({
+  params,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.v1ApiAppAppIdOpenApiDeleteUsingDeleteParams;
+  options?: { [key: string]: unknown };
+}) {
+  const { appID: param0, ...queryParams } = params;
+
+  return request<API.DeleteResp>(`/llmops/v1/api/app/${param0}/delete`, {
+    method: 'DELETE',
+    params: { ...queryParams },
+    ...(options || {}),
+  });
+}
+
+/** GetAppDetails 查询 app 详情 GET /llmops/v1/api/app/${param0}/details */
+export async function v1ApiAppAppIdDetailsUsingGet({
+  params,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.v1ApiAppAppIdDetailsUsingGetParams;
+  options?: { [key: string]: unknown };
+}) {
+  const { appID: param0, ...queryParams } = params;
+
+  return request<API.AppDetail>(`/llmops/v1/api/app/${param0}/details`, {
+    method: 'GET',
+    params: { ...queryParams },
+    ...(options || {}),
+  });
+}
+
+/** GetSumHourlyMessagesCount 每小时messages数 GET /llmops/v1/api/app/${param0}/hourly-messages */
+export async function v1ApiAppAppIdHourlyMessagesUsingGet({
+  params,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.v1ApiAppAppIdHourlyMessagesUsingGetParams;
+  options?: { [key: string]: unknown };
+}) {
+  const { appID: param0, ...queryParams } = params;
+
+  return request<API.MessagesCountResp[]>(
+    `/llmops/v1/api/app/${param0}/hourly-messages`,
+    {
+      method: 'GET',
+      params: {
+        ...queryParams,
+      },
+      ...(options || {}),
+    }
+  );
+}
+
+/** GetSumHourlyToken 每小时token数 GET /llmops/v1/api/app/${param0}/hourly-token */
+export async function v1ApiAppAppIdHourlyTokenUsingGet({
+  params,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.v1ApiAppAppIdHourlyTokenUsingGetParams;
+  options?: { [key: string]: unknown };
+}) {
+  const { appID: param0, ...queryParams } = params;
+
+  return request<API.MessagesTokenResp[]>(
+    `/llmops/v1/api/app/${param0}/hourly-token`,
+    {
+      method: 'GET',
+      params: {
+        ...queryParams,
+      },
+      ...(options || {}),
+    }
+  );
+}
+
+/** GetAppLogs 查询 app 日志与标注 GET /llmops/v1/api/app/${param0}/logs */
+export async function v1ApiAppAppIdLogsUsingGet({
+  params,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.v1ApiAppAppIdLogsUsingGetParams;
+  options?: { [key: string]: unknown };
+}) {
+  const { appID: param0, ...queryParams } = params;
+
+  return request<API.ListConversationLogsResp>(
+    `/llmops/v1/api/app/${param0}/logs`,
+    {
+      method: 'GET',
+      params: {
+        ...queryParams,
+      },
+      ...(options || {}),
+    }
+  );
+}
+
+/** GetLogsMessages 查询 app 日志与标注消息详情 GET /llmops/v1/api/app/${param0}/logs/${param1}/messages */
+export async function v1ApiAppAppIdLogsConversationIdMessagesUsingGet({
+  params,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.v1ApiAppAppIdLogsConversationIdMessagesUsingGetParams;
+  options?: { [key: string]: unknown };
+}) {
+  const { appID: param0, conversationID: param1, ...queryParams } = params;
+
+  return request<API.HistoryInfo[]>(
+    `/llmops/v1/api/app/${param0}/logs/${param1}/messages`,
+    {
+      method: 'GET',
+      params: { ...queryParams },
+      ...(options || {}),
+    }
+  );
+}
+
+/** GetSumDailyMessagesCount 每日messages数 GET /llmops/v1/api/app/${param0}/messages */
+export async function v1ApiAppAppIdMessagesUsingGet({
+  params,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.v1ApiAppAppIdMessagesUsingGetParams;
+  options?: { [key: string]: unknown };
+}) {
+  const { appID: param0, ...queryParams } = params;
+
+  return request<API.MessagesCountResp[]>(
+    `/llmops/v1/api/app/${param0}/messages`,
+    {
+      method: 'GET',
+      params: {
+        ...queryParams,
+      },
+      ...(options || {}),
+    }
+  );
+}
+
+/** ShareChat 创建分享path PUT /llmops/v1/api/app/${param0}/share */
+export async function v1ApiAppAppIdShareUsingPut({
+  params,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.v1ApiAppAppIdShareUsingPutParams;
+  options?: { [key: string]: unknown };
+}) {
+  const { appID: param0, ...queryParams } = params;
+
+  return request<API.CreateSharePathRESP>(
+    `/llmops/v1/api/app/${param0}/share`,
+    {
+      method: 'PUT',
+      params: {
+        ...queryParams,
+      },
+      ...(options || {}),
+    }
+  );
+}
+
+/** GetSumDailyToken 每日token GET /llmops/v1/api/app/${param0}/token */
+export async function v1ApiAppAppIdTokenUsingGet({
+  params,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.v1ApiAppAppIdTokenUsingGetParams;
+  options?: { [key: string]: unknown };
+}) {
+  const { appID: param0, ...queryParams } = params;
+
+  return request<API.MessagesTokenResp[]>(
+    `/llmops/v1/api/app/${param0}/token`,
+    {
+      method: 'GET',
+      params: {
+        ...queryParams,
+      },
+      ...(options || {}),
+    }
+  );
+}
+
+/** UpdateApp 更新 app PUT /llmops/v1/api/app/${param0}/update */
+export async function v1ApiAppAppIdUpdateUsingPut({
+  params,
+  body,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.v1ApiAppAppIdUpdateUsingPutParams;
+  body: API.UpdateAppReq;
+  options?: { [key: string]: unknown };
+}) {
+  const { appID: param0, ...queryParams } = params;
+
+  return request<unknown>(`/llmops/v1/api/app/${param0}/update`, {
+    method: 'PUT',
+    params: { ...queryParams },
+    data: body,
+    ...(options || {}),
+  });
+}
+
+/** ReleaseDiscover 发布到发现 PUT /llmops/v1/api/app/${param0}/update_status */
+export async function v1ApiAppAppIdUpdateStatusUsingPut({
+  params,
+  body,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.v1ApiAppAppIdUpdateStatusUsingPutParams;
+  body: API.ReleaseDiscoverReq;
+  options?: { [key: string]: unknown };
+}) {
+  const { appID: param0, ...queryParams } = params;
+
+  return request<unknown>(`/llmops/v1/api/app/${param0}/update_status`, {
+    method: 'PUT',
+    params: { ...queryParams },
+    data: body,
+    ...(options || {}),
+  });
+}
+
+/** GetImagePreSignedUrl 获取上传预签名地址 GET /llmops/v1/api/app/image */
+export async function v1ApiAppImageUsingGet({
+  options,
+}: {
+  options?: { [key: string]: unknown };
+}) {
+  return request<API.GetImagePreSignedUrlResp>('/llmops/v1/api/app/image', {
+    method: 'GET',
+    ...(options || {}),
+  });
+}
+
+/** ListApp 查询 app 列表 GET /llmops/v1/api/app/list */
+export async function v1ApiAppListUsingGet({
+  options,
+}: {
+  options?: { [key: string]: unknown };
+}) {
+  return request<API.AppResp[]>('/llmops/v1/api/app/list', {
+    method: 'GET',
+    ...(options || {}),
+  });
+}
+
+/** ListAppPick 查询精选 app 列表 GET /llmops/v1/api/app/list-pick */
+export async function v1ApiAppListPickUsingGet({
+  options,
+}: {
+  options?: { [key: string]: unknown };
+}) {
+  return request<API.App[]>('/llmops/v1/api/app/list-pick', {
+    method: 'GET',
+    ...(options || {}),
+  });
+}
+
+/** ListAppByUser 查询用户关联的 app 列表 GET /llmops/v1/api/app/list-private */
+export async function v1ApiAppListPrivateUsingGet({
+  params,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.v1ApiAppListPrivateUsingGetParams;
+  options?: { [key: string]: unknown };
+}) {
+  return request<API.AppResp[]>('/llmops/v1/api/app/list-private', {
+    method: 'GET',
+    params: {
+      ...params,
+    },
+    ...(options || {}),
+  });
+}
+
+/** ListAppPublic 查询公共 app 列表 GET /llmops/v1/api/app/list-public */
+export async function v1ApiAppListPublicUsingGet({
+  params,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.v1ApiAppListPublicUsingGetParams;
+  options?: { [key: string]: unknown };
+}) {
+  return request<API.AppResp[]>('/llmops/v1/api/app/list-public', {
+    method: 'GET',
+    params: {
+      ...params,
+    },
+    ...(options || {}),
+  });
+}
+/* eslint-disable */
+// @ts-ignore
+import { request } from 'axios';
+
+import * as API from './types';
+
+/** GetAppDatasetConfigsList 查询应用知识库查询配置 GET /llmops/v1/api/app/${param0}/dataset-configs */
+export async function v1ApiAppAppIdDatasetConfigsUsingGet({
+  params,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.v1ApiAppAppIdDatasetConfigsUsingGetParams;
+  options?: { [key: string]: unknown };
+}) {
+  const { appID: param0, ...queryParams } = params;
+
+  return request<API.ListAppDatasetConfigResp>(
+    `/llmops/v1/api/app/${param0}/dataset-configs`,
+    {
+      method: 'GET',
+      params: { ...queryParams },
+      ...(options || {}),
+    }
+  );
+}
+
+/** UpdateAppDatasetConfigs 更新应用知识库查询配置 PUT /llmops/v1/api/app/${param0}/dataset-configs */
+export async function v1ApiAppAppIdDatasetConfigsUsingPut({
+  params,
+  body,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.v1ApiAppAppIdDatasetConfigsUsingPutParams;
+  body: API.AppDatasetConfigs;
+  options?: { [key: string]: unknown };
+}) {
+  const { appID: param0, ...queryParams } = params;
+
+  return request<unknown>(`/llmops/v1/api/app/${param0}/dataset-configs`, {
+    method: 'PUT',
+    params: { ...queryParams },
+    data: body,
+    ...(options || {}),
+  });
+}
+
+/** CreateAppDatasetConfigs 创建应用知识库查询配置 POST /llmops/v1/api/app/${param0}/dataset-configs */
+export async function v1ApiAppAppIdDatasetConfigsUsingPost({
+  params,
+  body,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.v1ApiAppAppIdDatasetConfigsUsingPostParams;
+  body: API.AppDatasetConfigs;
+  options?: { [key: string]: unknown };
+}) {
+  const { appID: param0, ...queryParams } = params;
+
+  return request<unknown>(`/llmops/v1/api/app/${param0}/dataset-configs`, {
+    method: 'POST',
+    params: { ...queryParams },
+    data: body,
+    ...(options || {}),
+  });
+}
+
+/** DeleteAppDatasetConfigs 删除应用知识库查询配置 DELETE /llmops/v1/api/app/${param0}/dataset-configs */
+export async function v1ApiAppAppIdDatasetConfigsUsingDelete({
+  params,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.v1ApiAppAppIdDatasetConfigsUsingDeleteParams;
+  options?: { [key: string]: unknown };
+}) {
+  const { appID: param0, ...queryParams } = params;
+
+  return request<unknown>(`/llmops/v1/api/app/${param0}/dataset-configs`, {
+    method: 'DELETE',
+    params: {
+      ...queryParams,
+    },
+    ...(options || {}),
+  });
+}
+/* eslint-disable */
+// @ts-ignore
+import { request } from 'axios';
+
+import * as API from './types';
+
+/** ListMember app下的用户列表 GET /llmops/v1/api/app/${param0}/member */
+export async function v1ApiAppAppIdMemberUsingGet({
+  params,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.v1ApiAppAppIdMemberUsingGetParams;
+  options?: { [key: string]: unknown };
+}) {
+  const { appID: param0, ...queryParams } = params;
+
+  return request<API.ListMemberRESP>(`/llmops/v1/api/app/${param0}/member`, {
+    method: 'GET',
+    params: {
+      ...queryParams,
+    },
+    ...(options || {}),
+  });
+}
+
+/** AddMember 增加app用户 POST /llmops/v1/api/app/${param0}/member */
+export async function v1ApiAppAppIdMemberUsingPost({
+  params,
+  body,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.v1ApiAppAppIdMemberUsingPostParams;
+  body: API.MemberBody;
+  options?: { [key: string]: unknown };
+}) {
+  const { appID: param0, ...queryParams } = params;
+
+  return request<API.EmptyObject>(`/llmops/v1/api/app/${param0}/member`, {
+    method: 'POST',
+    params: { ...queryParams },
+    data: body,
+    ...(options || {}),
+  });
+}
+
+/** DeleteMember 删除app用户 DELETE /llmops/v1/api/app/${param0}/member */
+export async function v1ApiAppAppIdMemberUsingDelete({
+  params,
+  body,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.v1ApiAppAppIdMemberUsingDeleteParams;
+  body: API.DeleteMemberBody;
+  options?: { [key: string]: unknown };
+}) {
+  const { appID: param0, ...queryParams } = params;
+
+  return request<API.EmptyObject>(`/llmops/v1/api/app/${param0}/member`, {
+    method: 'DELETE',
+    params: { ...queryParams },
+    data: body,
+    ...(options || {}),
+  });
+}
+
+/** UpdateMemberRole 更新app用户角色 PUT /llmops/v1/api/app/${param0}/member-role */
+export async function v1ApiAppAppIdMemberRoleUsingPut({
+  params,
+  body,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.v1ApiAppAppIdMemberRoleUsingPutParams;
+  body: API.MemberBody;
+  options?: { [key: string]: unknown };
+}) {
+  const { appID: param0, ...queryParams } = params;
+
+  return request<API.EmptyObject>(`/llmops/v1/api/app/${param0}/member-role`, {
+    method: 'PUT',
+    params: { ...queryParams },
+    data: body,
+    ...(options || {}),
+  });
+}
+/* eslint-disable */
+// @ts-ignore
+import { request } from 'axios';
+
+import * as API from './types';
+
+/** UpdateModelConfigs 更新 app model configs PUT /llmops/v1/api/app/${param0}/model-configs */
+export async function v1ApiAppAppIdModelConfigsUsingPut({
+  params,
+  body,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.v1ApiAppAppIdModelConfigsUsingPutParams;
+  body: API.AppModelConfigs;
+  options?: { [key: string]: unknown };
+}) {
+  const { appID: param0, ...queryParams } = params;
+
+  return request<unknown>(`/llmops/v1/api/app/${param0}/model-configs`, {
+    method: 'PUT',
+    params: { ...queryParams },
+    data: body,
+    ...(options || {}),
+  });
+}
+
+/** CreateOrUpdateModelConfigs 创建 app model configs POST /llmops/v1/api/app/${param0}/model-configs */
+export async function v1ApiAppAppIdModelConfigsUsingPost({
+  params,
+  body,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.v1ApiAppAppIdModelConfigsUsingPostParams;
+  body: API.AppModelConfigs;
+  options?: { [key: string]: unknown };
+}) {
+  const { appID: param0, ...queryParams } = params;
+
+  return request<unknown>(`/llmops/v1/api/app/${param0}/model-configs`, {
+    method: 'POST',
+    params: { ...queryParams },
+    data: body,
+    ...(options || {}),
+  });
+}
+
+/** CreateOrUpdateModelConfigPromptPrefix 创建或修改角色和背景以及推荐问题开关 POST /llmops/v1/api/app/${param0}/model-prompt */
+export async function v1ApiAppAppIdModelPromptUsingPost({
+  params,
+  body,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.v1ApiAppAppIdModelPromptUsingPostParams;
+  body: API.AppModelConfigPromptPrefix;
+  options?: { [key: string]: unknown };
+}) {
+  const { appID: param0, ...queryParams } = params;
+
+  return request<unknown>(`/llmops/v1/api/app/${param0}/model-prompt`, {
+    method: 'POST',
+    params: { ...queryParams },
+    data: body,
+    ...(options || {}),
+  });
+}
+
+/** GetPluginList 获取插件列表 PUT /llmops/v1/api/app/${param0}/plugin */
+export async function v1ApiAppAppIdPluginUsingPut({
+  params,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.v1ApiAppAppIdPluginUsingPutParams;
+  options?: { [key: string]: unknown };
+}) {
+  const { appID: param0, ...queryParams } = params;
+
+  return request<unknown>(`/llmops/v1/api/app/${param0}/plugin`, {
+    method: 'PUT',
+    params: { ...queryParams },
+    ...(options || {}),
+  });
+}
+/* eslint-disable */
+// @ts-ignore
+import { request } from 'axios';
+
+import * as API from './types';
+
+/** CreateAppV2 创建 app POST /llmops/v2/api/app */
+export async function v2ApiAppUsingPost({
+  body,
+  options,
+}: {
+  body: API.CreateAppReqV2;
+  options?: { [key: string]: unknown };
+}) {
+  return request<unknown>('/llmops/v2/api/app', {
+    method: 'POST',
+    data: body,
+    ...(options || {}),
+  });
+}
+
+/** GetAppDetailsV2 查询 app 详情 GET /llmops/v2/api/app/${param0}/details */
+export async function v2ApiAppAppIdDetailsUsingGet({
+  params,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.v2ApiAppAppIdDetailsUsingGetParams;
+  options?: { [key: string]: unknown };
+}) {
+  const { appID: param0, ...queryParams } = params;
+
+  return request<API.AppDetail>(`/llmops/v2/api/app/${param0}/details`, {
+    method: 'GET',
+    params: { ...queryParams },
+    ...(options || {}),
+  });
+}
+
+/** UpdateAppV2 更新 app 信息 POST /llmops/v2/api/app/${param0}/update */
+export async function v2ApiAppAppIdUpdateUsingPost({
+  params,
+  body,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.v2ApiAppAppIdUpdateUsingPostParams;
+  body: API.UpdateAppReqV2;
+  options?: { [key: string]: unknown };
+}) {
+  const { appID: param0, ...queryParams } = params;
+
+  return request<unknown>(`/llmops/v2/api/app/${param0}/update`, {
+    method: 'POST',
+    params: { ...queryParams },
+    data: body,
+    ...(options || {}),
+  });
+}
+
+/** ListAppV2 查询用户关联的 app 列表 GET /llmops/v2/api/app/list */
+export async function v2ApiAppListUsingGet({
+  params,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.v2ApiAppListUsingGetParams;
+  options?: { [key: string]: unknown };
+}) {
+  return request<API.AppResp[]>('/llmops/v2/api/app/list', {
+    method: 'GET',
+    params: {
+      ...params,
+    },
+    ...(options || {}),
+  });
+}
+
+/** GetApiTokenV2 获取一个 app token GET /llmops/v2/api/app/share/api-token */
+export async function v2ApiAppShareApiTokenUsingGet({
+  params,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.v2ApiAppShareApiTokenUsingGetParams;
+  options?: { [key: string]: unknown };
+}) {
+  return request<API.GetApiTokenByRandomPathRESP>(
+    '/llmops/v2/api/app/share/api-token',
+    {
+      method: 'GET',
+      params: {
+        ...params,
+      },
+      ...(options || {}),
+    }
+  );
+}
+/* eslint-disable */
+// @ts-ignore
+import { request } from 'axios';
+
+import * as API from './types';
+
+/** ListAttentionApp 应用列表 GET /llmops/v1/api/attention/app/list */
+export async function v1ApiAttentionAppListUsingGet({
+  params,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.v1ApiAttentionAppListUsingGetParams;
+  options?: { [key: string]: unknown };
+}) {
+  return request<API.AppResp[]>('/llmops/v1/api/attention/app/list', {
+    method: 'GET',
+    params: {
+      ...params,
+    },
+    ...(options || {}),
+  });
+}
+
+/** ListAttentionConversations 查询会话列表 POST /llmops/v1/api/attention/conversations */
+export async function v1ApiAttentionConversationsUsingPost({
+  body,
+  options,
+}: {
+  body: API.ListAttentionConversationReq;
+  options?: { [key: string]: unknown };
+}) {
+  return request<API.ListConversationResp>(
+    '/llmops/v1/api/attention/conversations',
+    {
+      method: 'POST',
+      data: body,
+      ...(options || {}),
+    }
+  );
+}
+
+/** GetAttentionConversationCount 获取对话数 POST /llmops/v1/api/attention/conversations/count */
+export async function v1ApiAttentionConversationsCountUsingPost({
+  body,
+  options,
+}: {
+  body: API.GetAttentionDataCountReq;
+  options?: { [key: string]: unknown };
+}) {
+  return request<API.AttentionDataCountResp>(
+    '/llmops/v1/api/attention/conversations/count',
+    {
+      method: 'POST',
+      data: body,
+      ...(options || {}),
+    }
+  );
+}
+
+/** GetAttentionMessagesCount 获取消息数 POST /llmops/v1/api/attention/messages/count */
+export async function v1ApiAttentionMessagesCountUsingPost({
+  body,
+  options,
+}: {
+  body: API.GetAttentionDataCountReq;
+  options?: { [key: string]: unknown };
+}) {
+  return request<API.AttentionDataCountResp[]>(
+    '/llmops/v1/api/attention/messages/count',
+    {
+      method: 'POST',
+      data: body,
+      ...(options || {}),
+    }
+  );
+}
+
+/** GetAttentionMessagesHistory 获取聊天历史 GET /llmops/v1/api/attention/messages/history */
+export async function v1ApiAttentionMessagesHistoryUsingGet({
+  params,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.v1ApiAttentionMessagesHistoryUsingGetParams;
+  options?: { [key: string]: unknown };
+}) {
+  return request<API.HistoryInfo[]>(
+    '/llmops/v1/api/attention/messages/history',
+    {
+      method: 'GET',
+      params: {
+        ...params,
+      },
+      ...(options || {}),
+    }
+  );
+}
+
+/** CreateAttentionUser 添加特别关注 POST /llmops/v1/api/attention/user */
+export async function v1ApiAttentionUserUsingPost({
+  body,
+  options,
+}: {
+  body: API.CreateAttentionReq;
+  options?: { [key: string]: unknown };
+}) {
+  return request<unknown>('/llmops/v1/api/attention/user', {
+    method: 'POST',
+    data: body,
+    ...(options || {}),
+  });
+}
+
+/** ListAllUser 系统全局用户列表 GET /llmops/v1/api/attention/user/all */
+export async function v1ApiAttentionUserAllUsingGet({
+  params,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.v1ApiAttentionUserAllUsingGetParams;
+  options?: { [key: string]: unknown };
+}) {
+  return request<API.ListAllAttentionUser>(
+    '/llmops/v1/api/attention/user/all',
+    {
+      method: 'GET',
+      params: {
+        // size has a default value: 10
+        size: '10',
+
+        ...params,
+      },
+      ...(options || {}),
+    }
+  );
+}
+
+/** DeleteAttentionUser 取消特别关注 POST /llmops/v1/api/attention/user/cancel */
+export async function v1ApiAttentionUserCancelUsingPost({
+  body,
+  options,
+}: {
+  body: API.DeleteAttentionReq;
+  options?: { [key: string]: unknown };
+}) {
+  return request<unknown>('/llmops/v1/api/attention/user/cancel', {
+    method: 'POST',
+    data: body,
+    ...(options || {}),
+  });
+}
+
+/** GetAttentionUserList 查询特别关注列表 POST /llmops/v1/api/attention/user/list */
+export async function v1ApiAttentionUserListUsingPost({
+  params,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.v1ApiAttentionUserListUsingPostParams;
+  options?: { [key: string]: unknown };
+}) {
+  return request<API.ListAttentionUserResp>(
+    '/llmops/v1/api/attention/user/list',
+    {
+      method: 'POST',
+      params: {
+        ...params,
+      },
+      ...(options || {}),
+    }
+  );
+}
+/* eslint-disable */
+// @ts-ignore
+import { request } from 'axios';
+
+import * as API from './types';
+
+/** Authorize 获取code的跳转 GET /llmops/auth/authorize */
+export async function authAuthorizeUsingGet({
+  params,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.authAuthorizeUsingGetParams;
+  options?: { [key: string]: unknown };
+}) {
+  return request<unknown>('/llmops/auth/authorize', {
+    method: 'GET',
+    params: {
+      ...params,
+    },
+    ...(options || {}),
+  });
+}
+/* eslint-disable */
+// @ts-ignore
+import { request } from 'axios';
+
+import * as API from './types';
+
+/** Messages Messages POST /llmops/v1/api/chat-messages */
+export async function v1ApiChatMessagesUsingPost({
+  body,
+  options,
+}: {
+  body: API.Chat;
+  options?: { [key: string]: unknown };
+}) {
+  return request<API.ResponseData>('/llmops/v1/api/chat-messages', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    data: body,
+    ...(options || {}),
+  });
+}
+
+/** WebMessages 分享页的聊天 POST /llmops/v1/api/chat-messages-web */
+export async function v1ApiChatMessagesWebUsingPost({
+  body,
+  options,
+}: {
+  body: API.Chat;
+  options?: { [key: string]: unknown };
+}) {
+  return request<API.ResponseData>('/llmops/v1/api/chat-messages-web', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    data: body,
+    ...(options || {}),
+  });
+}
+
+/** ChatMessage ChatMessage POST /llmops/v1/api/chat-messages/gpt */
+export async function v1ApiChatMessagesGptUsingPost({
+  body,
+  options,
+}: {
+  body: API.ChatMessageReq;
+  options?: { [key: string]: unknown };
+}) {
+  return request<API.ResponseRecommendData>(
+    '/llmops/v1/api/chat-messages/gpt',
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      data: body,
+      ...(options || {}),
+    }
+  );
+}
+
+/** QuestionRecommend QuestionRecommend POST /llmops/v1/api/chat-messages/question-recommend */
+export async function v1ApiChatMessagesQuestionRecommendUsingPost({
+  body,
+  options,
+}: {
+  body: API.QuestionRecommendReq;
+  options?: { [key: string]: unknown };
+}) {
+  return request<API.RecommendQuestionAndContext>(
+    '/llmops/v1/api/chat-messages/question-recommend',
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      data: body,
+      ...(options || {}),
+    }
+  );
+}
+
+/** V2Messages 用于微精灵聊天的v2版本 POST /llmops/v2/api/chat-messages */
+export async function v2ApiChatMessagesUsingPost({
+  body,
+  options,
+}: {
+  body: API.Chat;
+  options?: { [key: string]: unknown };
+}) {
+  return request<API.ResponseData>('/llmops/v2/api/chat-messages', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    data: body,
+    ...(options || {}),
+  });
+}
+/* eslint-disable */
+// @ts-ignore
+import { request } from 'axios';
+
+import * as API from './types';
+
+/** ConversationList 会话历史 GET /llmops/v1/api/conversations */
+export async function v1ApiConversationsUsingGet({
+  params,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.v1ApiConversationsUsingGetParams;
+  options?: { [key: string]: unknown };
+}) {
+  return request<API.ConversationMsg[]>('/llmops/v1/api/conversations', {
+    method: 'GET',
+    params: {
+      ...params,
+    },
+    ...(options || {}),
+  });
+}
+
+/** DeleteConversation 删除会话 DELETE /llmops/v1/api/conversations */
+export async function v1ApiConversationsUsingDelete({
+  params,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.v1ApiConversationsUsingDeleteParams;
+  options?: { [key: string]: unknown };
+}) {
+  return request<API.DeleteResp>('/llmops/v1/api/conversations', {
+    method: 'DELETE',
+    params: {
+      ...params,
+    },
+    ...(options || {}),
+  });
+}
+/* eslint-disable */
+// @ts-ignore
+import { request } from 'axios';
+
+import * as API from './types';
+
+/** CreateFeedbacks CreateFeedbacks POST /llmops/v1/api/feedbacks/${param0} */
+export async function v1ApiFeedbacksMessageIdUsingPost({
+  params,
+  body,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.v1ApiFeedbacksMessageIdUsingPostParams;
+  body: API.FeedbacksReqBody;
+  options?: { [key: string]: unknown };
+}) {
+  const { message_id: param0, ...queryParams } = params;
+
+  return request<API.CreateFeedbacksResp>(
+    `/llmops/v1/api/feedbacks/${param0}`,
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      params: { ...queryParams },
+      data: body,
+      ...(options || {}),
+    }
+  );
+}
+/* eslint-disable */
+// @ts-ignore
+import { request } from 'axios';
+
+import * as API from './types';
+
+/** CreateDatasetsJoin 创建 app 数据集关联 POST /llmops/v1/api/app/${param0}/datasets */
+export async function v1ApiAppAppIdDatasetsUsingPost({
+  params,
+  body,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.v1ApiAppAppIdDatasetsUsingPostParams;
+  body: API.V1ApiAppAppIdDatasetsUsingPostBody;
+  options?: { [key: string]: unknown };
+}) {
+  const { appID: param0, ...queryParams } = params;
+
+  return request<unknown>(`/llmops/v1/api/app/${param0}/datasets`, {
+    method: 'POST',
+    params: { ...queryParams },
+    data: body,
+    ...(options || {}),
+  });
+}
+
+/** DeleteDatasetsJoin 删除 app 数据集关联 DELETE /llmops/v1/api/app/${param0}/datasets */
+export async function v1ApiAppAppIdDatasetsUsingDelete({
+  params,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.v1ApiAppAppIdDatasetsUsingDeleteParams;
+  options?: { [key: string]: unknown };
+}) {
+  const { appID: param0, ...queryParams } = params;
+
+  return request<API.DeleteResp>(`/llmops/v1/api/app/${param0}/datasets`, {
+    method: 'DELETE',
+    params: {
+      ...queryParams,
+    },
+    ...(options || {}),
+  });
+}
+/* eslint-disable */
+// @ts-ignore
+import { request } from 'axios';
+
+import * as API from './types';
+
+/** GetDatasetsList 数据集列表 GET /llmops/v1/api/app/${param0}/datasets-list */
+export async function v1ApiAppAppIdDatasetsListUsingGet({
+  params,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.v1ApiAppAppIdDatasetsListUsingGetParams;
+  options?: { [key: string]: unknown };
+}) {
+  const { appID: param0, ...queryParams } = params;
+
+  return request<API.ListDatasetsResp>(
+    `/llmops/v1/api/app/${param0}/datasets-list`,
+    {
+      method: 'GET',
+      params: {
+        ...queryParams,
+      },
+      ...(options || {}),
+    }
+  );
+}
+/* eslint-disable */
+// @ts-ignore
+import { request } from 'axios';
+
+import * as API from './types';
+
+/** DeleteFeedbacks DeleteFeedbacks DELETE /llmops/v1/api/feedbacks/${param0} */
+export async function v1ApiFeedbacksMessageIdUsingDelete({
+  params,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.v1ApiFeedbacksMessageIdUsingDeleteParams;
+  options?: { [key: string]: unknown };
+}) {
+  const { message_id: param0, ...queryParams } = params;
+
+  return request<API.DeleteFeedbacksResp>(
+    `/llmops/v1/api/feedbacks/${param0}`,
+    {
+      method: 'DELETE',
+      params: {
+        ...queryParams,
+      },
+      ...(options || {}),
+    }
+  );
+}
+/* eslint-disable */
+// @ts-ignore
+import { request } from 'axios';
+
+import * as API from './types';
+
+/** DeleteKey 为应用添加各种类型机器人appkey DELETE /llmops/v1/api/robot/${param0}/appkey */
+export async function v1ApiRobotWorkspaceIdAppkeyUsingDelete({
+  params,
+  body,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.v1ApiRobotWorkspaceIdAppkeyUsingDeleteParams;
+  body: API.GetAppKeyReq;
+  options?: { [key: string]: unknown };
+}) {
+  const { workspaceID: param0, ...queryParams } = params;
+
+  return request<unknown>(`/llmops/v1/api/robot/${param0}/appkey`, {
+    method: 'DELETE',
+    params: { ...queryParams },
+    data: body,
+    ...(options || {}),
+  });
+}
+/* eslint-disable */
+// @ts-ignore
+import * as API from './types';
+
+export function displayPermissionEnum(field: API.Permission) {
+  return {
+    read_only: '只读权限',
+    operation: '操作权限',
+    no_permission: '无权限',
+  }[field];
+}
+
+export function displayProviderTypeEnum(field: API.ProviderType) {
+  return {
+    openai: 'openai',
+    spark: 'spark',
+    wenxin: 'wenxin',
+    rockai: 'rockai',
+  }[field];
+}
+
+export function displayRbacRoleEnum(field: API.RbacRole) {
+  return {
+    system_admin: '系统管理员',
+    system_user: '系统普通用户',
+    app_admin: 'app超管用户',
+    app_user: 'app普通用户',
+  }[field];
+}
+
+export function displayWorkspaceRoleEnum(field: API.WorkspaceRole) {
+  return { workspace_admin: '空间超管用户', workspace_user: '空间普通用户' }[
+    field
+  ];
+}
+/* eslint-disable */
+// @ts-ignore
+import * as API from './types';
+
+export function displayAddAppkeyReq(field: keyof API.AddAppkeyReq) {
+  return {
+    appid: 'appid',
+    appkey: 'appkey',
+    appsecret: 'appsecret',
+    encodingAESKey: 'encodingAESKey',
+    token: 'token',
+    type: 'wjl,dingding,feishu,wxa,wx',
+  }[field];
+}
+
+export function displayApiToken(field: keyof API.ApiToken) {
+  return {
+    apiTokenID: 'apiTokenID',
+    appID: 'appID',
+    createdAt: 'createdAt',
+    token: 'token',
+    updatedAt: 'updatedAt',
+  }[field];
+}
+
+export function displayApiTokenDataList(field: keyof API.ApiTokenDataList) {
+  return {
+    data: 'data',
+    total: 'total',
+  }[field];
+}
+
+export function displayApp(field: keyof API.App) {
+  return {
+    appID: 'appID',
+    appImage: 'appImage',
+    appStatus: 'appStatus',
+    appType: '应用类型',
+    createdAt: 'createdAt',
+    description: 'description',
+    groupID: 'groupID',
+    guidance: '开场提问引导',
+    name: 'name',
+    operator: 'operator',
+    priority: '应用优先级',
+    prologue: 'prologue',
+    recommendSwitch: 'recommendSwitch',
+    templateStatus: '是否模版',
+    updatedAt: 'updatedAt',
+    workspaceID: 'workspaceID',
+  }[field];
+}
+
+export function displayAppDataset(field: keyof API.AppDataset) {
+  return {
+    description: '描述',
+    llmDesc: 'llm描述',
+    name: '知识库名',
+  }[field];
+}
+
+export function displayAppDatasetConfig(field: keyof API.AppDatasetConfig) {
+  return {
+    appDatasetConfigID: 'appDatasetConfigID',
+    appID: 'appID',
+    createdAt: 'createdAt',
+    minScore: 'minScore',
+    searchSource: 'searchSource',
+    timeoutSecond: 'timeoutSecond',
+    topK: 'topK',
+    updatedAt: 'updatedAt',
+  }[field];
+}
+
+export function displayAppDatasetConfigs(field: keyof API.AppDatasetConfigs) {
+  return {
+    minScore: '最低分数',
+    searchSource: '知识库源，默认 warehouse',
+    timeoutSecond: '知识库查询超时时间',
+    topK: '知识库条数',
+  }[field];
+}
+
+export function displayAppDatasets(field: keyof API.AppDatasets) {
+  return {
+    appCount: 'appCount',
+    author: 'author',
+    datasetID: 'datasetID',
+    datasetName: 'datasetName',
+    docCount: 'docCount',
+    state: 'state',
+  }[field];
+}
+
+export function displayAppDetail(field: keyof API.AppDetail) {
+  return {
+    AnswerTokensCount: '消耗输出token',
+    appDatasetConfig: 'appDatasetConfig',
+    appDatasets: '数据集Id列表',
+    appGroupID: 'appGroupID',
+    appID: 'appID',
+    appImage: '应用头像',
+    appName: '应用名',
+    appPrePrompt: 'PrePrompt',
+    appPromptPrefix: 'appPromptPrefix',
+    appProvider: '模型',
+    appProviderID:
+      'AppDatasetSource   database2.AppDatasetSourceInfo     `json:"appDatasetSource"`',
+    appProviderName: '模型名',
+    appRecommendedContext: '推荐内容',
+    appStatus: 'appStatus',
+    appToken: '应用token列表',
+    configs: 'configs',
+    conversationCount: '会话总数',
+    createAt: 'createAt',
+    description: '应用描述',
+    guidance: '开场提问引导',
+    h5RandomPath: 'H5随机分享路径',
+    historyLimit: 'historyLimit',
+    messagesCount: '消息总数',
+    pcRandomPath: 'PC随机分享路径',
+    prologue: '开场白',
+    queryTokensCount: '消耗输入token',
+    switchRecommendedQuestion: 'switchRecommendedQuestion',
+    templateStatus: 'templateStatus',
+    totalTokens: '消耗总token',
+    workspaceID: 'workspaceID',
+  }[field];
+}
+
+export function displayAppMessagesCount(field: keyof API.AppMessagesCount) {
+  return {
+    total: 'total',
+  }[field];
+}
+
+export function displayAppModelConfigPromptPrefix(
+  field: keyof API.AppModelConfigPromptPrefix
+) {
+  return {
+    background: 'background',
+    role: 'role',
+    switchRecommendedQuestion: 'switchRecommendedQuestion',
+  }[field];
+}
+
+export function displayAppModelConfigs(field: keyof API.AppModelConfigs) {
+  return {
+    configs: 'configs',
+    prePrompt: 'prePrompt',
+    providerId: 'providerId',
+  }[field];
+}
+
+export function displayAppRecommendedContext(
+  field: keyof API.AppRecommendedContext
+) {
+  return {
+    appID: 'appID',
+    appRecommendedContextID: 'appRecommendedContextID',
+    context: 'context',
+    createdAt: 'createdAt',
+    description: 'description',
+    name: 'name',
+    updatedAt: 'updatedAt',
+  }[field];
+}
+
+export function displayAppRecommendedContext2(
+  field: keyof API.AppRecommendedContext2
+) {
+  return {
+    context: 'context',
+    description: 'description',
+    id: 'id',
+    name: 'name',
+  }[field];
+}
+
+export function displayAppRecommendedContext3(
+  field: keyof API.AppRecommendedContext3
+) {
+  return {
+    context: 'context',
+    description: 'description',
+    id: 'id',
+    name: 'name',
+  }[field];
+}
+
+export function displayAppRecommendedContextResp(
+  field: keyof API.AppRecommendedContextResp
+) {
+  return {
+    questions: 'questions',
+    recommendSwitch: 'recommendSwitch',
+  }[field];
+}
+
+export function displayAppResp(field: keyof API.AppResp) {
+  return {
+    appGroupID: 'appGroupID',
+    appGroupName: 'appGroupName',
+    appImage: 'appImage',
+    appStatus: 'appStatus',
+    createAt: 'createAt',
+    datasetCount: 'datasetCount',
+    description: 'description',
+    h5: 'h5',
+    id: 'id',
+    name: 'name',
+    pc: 'pc',
+    workspaceID: 'workspaceID',
+  }[field];
+}
+
+export function displayAppWithPermission(field: keyof API.AppWithPermission) {
+  return {
+    appID: 'appID',
+    appImage: 'appImage',
+    appStatus: 'appStatus',
+    appType: '应用类型',
+    createdAt: 'createdAt',
+    description: 'description',
+    groupID: 'groupID',
+    guidance: '开场提问引导',
+    isAppAdmin: 'isAppAdmin',
+    name: 'name',
+    operator: 'operator',
+    priority: '应用优先级',
+    prologue: 'prologue',
+    recommendSwitch: 'recommendSwitch',
+    templateStatus: '是否模版',
+    updatedAt: 'updatedAt',
+    workspaceID: 'workspaceID',
+  }[field];
+}
+
+export function displayAttentionDataCountResp(
+  field: keyof API.AttentionDataCountResp
+) {
+  return {
+    total: 'total',
+  }[field];
+}
+
+export function displayAttentionUser(field: keyof API.AttentionUser) {
+  return {
+    email: 'email',
+    isAttentionUser: 'isAttentionUser',
+    phone: 'phone',
+    userID: 'userID',
+    userName: 'userName',
+  }[field];
+}
+
+export function displayAttentionUserResp(field: keyof API.AttentionUserResp) {
+  return {
+    email: 'email',
+    lastMessageTime: 'lastMessageTime',
+    phone: 'phone',
+    userID: 'userID',
+    userName: 'userName',
+  }[field];
+}
+
+export function displayauthAuthorizeUsingGetParams(
+  field: keyof API.authAuthorizeUsingGetParams
+) {
+  return {
+    redirect_uri: '业务回调地址',
+    state: '保持请求和回调的状态，授权成功后会回传该参数',
+  }[field];
+}
+
+export function displayauthExchangeUsingGetParams(
+  field: keyof API.authExchangeUsingGetParams
+) {
+  return {
+    code: 'code',
+    redirect_uri: '业务回调地址',
+  }[field];
+}
+
+export function displayChat(field: keyof API.Chat) {
+  return {
+    conversation_id: 'conversation_id',
+    inputs: 'inputs',
+    isIgnore: 'isIgnore',
+    query: 'query',
+    response_mode: 'response_mode',
+    user: 'user',
+  }[field];
+}
+
+export function displayChatMessageReq(field: keyof API.ChatMessageReq) {
+  return {
+    prompt: 'prompt',
+    query: 'query',
+  }[field];
+}
+
+export function displayConversationLogsResp(
+  field: keyof API.ConversationLogsResp
+) {
+  return {
+    AnswerTokensCount: '消耗输出token',
+    appID: 'appID',
+    conversationID: 'conversationID',
+    conversationName: 'conversationName',
+    createdAt: 'createdAt',
+    messagesCount: 'messagesCount',
+    queryTokensCount: '消耗输入token',
+    totalTokens: '消耗总token',
+    userID: 'userID',
+    userInfo: 'userInfo',
+  }[field];
+}
+
+export function displayConversationMsg(field: keyof API.ConversationMsg) {
+  return {
+    conversationId: 'conversationId',
+    createAt: 'createAt',
+    name: 'name',
+    userId: 'userId',
+  }[field];
+}
+
+export function displayConversationResp(field: keyof API.ConversationResp) {
+  return {
+    AnswerTokensCount: '消耗输出token',
+    appID: 'appID',
+    appName: 'appName',
+    conversationID: 'conversationID',
+    conversationName: 'conversationName',
+    createdAt: 'createdAt',
+    lastMessagesTime: 'lastMessagesTime',
+    messagesCount: 'messagesCount',
+    queryTokensCount: '消耗输入token',
+    totalTokens: '消耗总token',
+    userID: 'userID',
+    userInfo: 'userInfo',
+  }[field];
+}
+
+export function displayCopyAppReq(field: keyof API.CopyAppReq) {
+  return {
+    appID: 'appID',
+    workspaceID: 'workspaceID',
+  }[field];
+}
+
+export function displayCreateApiTokenRESP(field: keyof API.CreateApiTokenRESP) {
+  return {
+    token: 'token',
+  }[field];
+}
+
+export function displayCreateAppReq(field: keyof API.CreateAppReq) {
+  return {
+    description: 'description',
+    guidance: 'guidance',
+    name: 'name',
+    prologue: 'prologue',
+  }[field];
+}
+
+export function displayCreateAppReqV2(field: keyof API.CreateAppReqV2) {
+  return {
+    appDescription: 'appDescription',
+    appGroupID: 'appGroupID',
+    appGuidance: '提示查询',
+    appImage: 'appImage',
+    appName: 'appName',
+    appPrologue: '开场白',
+    historyLimit: 'historyLimit',
+    modelConfigs: 'modelConfigs',
+    prePrompt: 'prePrompt',
+    providerId: 'providerId',
+  }[field];
+}
+
+export function displayCreateAttentionReq(field: keyof API.CreateAttentionReq) {
+  return {
+    followeeUserIDList: 'followeeUserIDList',
+    iamID: 'iamID',
+  }[field];
+}
+
+export function displayCreateSharePathRESP(
+  field: keyof API.CreateSharePathRESP
+) {
+  return {
+    path: 'path',
+  }[field];
+}
+
+export function displayData(field: keyof API.Data) {
+  return {
+    appkey: 'appkey',
+    appsecret: 'appsecret',
+    state: '0-未开启，1-开启',
+    url: 'url',
+    wxExtra: 'wxExtra',
+  }[field];
+}
+
+export function displayDatasetData(field: keyof API.DatasetData) {
+  return {
+    author: 'author',
+    description: 'description',
+    docCount: 'docCount',
+    document_count: 'document_count',
+    id: 'id',
+    name: 'name',
+    permission: 'permission',
+    state: 'state',
+    uuid: 'uuid',
+    word_count: 'word_count',
+  }[field];
+}
+
+export function displayDeleteAttentionReq(field: keyof API.DeleteAttentionReq) {
+  return {
+    followeeUserIDList: 'followeeUserIDList',
+    iamID: 'iamID',
+  }[field];
+}
+
+export function displayDeleteMemberBody(field: keyof API.DeleteMemberBody) {
+  return {
+    userID: '用户id',
+  }[field];
+}
+
+export function displayDeleteResp(field: keyof API.DeleteResp) {
+  return {
+    msg: 'msg',
+  }[field];
+}
+
+export function displayErrorResp(field: keyof API.ErrorResp) {
+  return {
+    msg: 'msg',
+    type: 'type',
+  }[field];
+}
+
+export function displayExchangeTokenRESP(field: keyof API.ExchangeTokenRESP) {
+  return {
+    access_token: '访问令牌',
+    expires_in: '访问令牌过期时间',
+    refresh_expires_in: '刷新令牌过期时间',
+    refresh_token: '刷新令牌',
+    token_type: '令牌类型',
+  }[field];
+}
+
+export function displayFeedback(field: keyof API.Feedback) {
+  return {
+    comment: '评论',
+    conversation_id: 'conversation_id',
+    createdAt: 'createdAt',
+    message_id: 'message_id',
+    rating: 'like/unlike',
+    score: '打分',
+    updatedAt: 'updatedAt',
+  }[field];
+}
+
+export function displayFeedbacksReqBody(field: keyof API.FeedbacksReqBody) {
+  return {
+    comment: '评论',
+    conversation_id: 'conversation_id',
+    rating: 'like/unlike',
+    score: '分数1-10',
+  }[field];
+}
+
+export function displayFilestreamResp(field: keyof API.FilestreamResp) {
+  return {
+    conversation_id: 'conversation_id',
+  }[field];
+}
+
+export function displayGetApiTokenByRandomPathRESP(
+  field: keyof API.GetApiTokenByRandomPathRESP
+) {
+  return {
+    apiTokenID: 'apiTokenID',
+    appID: 'appID',
+    appName: 'appName',
+    createdAt: 'createdAt',
+    recommendedContext: 'recommendedContext',
+    switchRecommendedContext: 'switchRecommendedContext',
+    switchRecommendedQuestion: 'switchRecommendedQuestion',
+    token: 'token',
+    updatedAt: 'updatedAt',
+  }[field];
+}
+
+export function displayGetAppKeyReq(field: keyof API.GetAppKeyReq) {
+  return {
+    appid: 'appid',
+    type: 'wjl,dingding,feishu,wxa,wx',
+  }[field];
+}
+
+export function displayGetAttentionDataCountReq(
+  field: keyof API.GetAttentionDataCountReq
+) {
+  return {
+    appIDList: 'appIDList',
+    iamID: 'iamID',
+    userID: 'userID',
+  }[field];
+}
+
+export function displayGetImagePreSignedUrlResp(
+  field: keyof API.GetImagePreSignedUrlResp
+) {
+  return {
+    appImage: 'appImage',
+    preSignedPutUrl: 'preSignedPutUrl',
+  }[field];
+}
+
+export function displayGuidances(field: keyof API.Guidances) {
+  return {
+    items: 'items',
+  }[field];
+}
+
+export function displayHistoryInfo(field: keyof API.HistoryInfo) {
+  return {
+    Rating: 'like/unlike',
+    answer: 'answer',
+    answerToken: 'answerToken',
+    comment: '评论',
+    createAt: 'createAt',
+    format: 'format',
+    messageId: 'messageId',
+    query: 'query',
+    queryToken: 'queryToken',
+    score: '打分',
+    totalToken: 'totalToken',
+  }[field];
+}
+
+export function displayIAMUserInfo(field: keyof API.IAMUserInfo) {
+  return {
+    createdTime: '创建时间',
+    email: 'Cid         string `json:"cid"`',
+    id: '用户id',
+    idpId: 'idpId',
+    isAdmin: '是否iam管理员',
+    isAppAdmin: 'isAppAdmin',
+    isRkUser: '是否罗克佳华人员',
+    isSuperUser: '是否超级管理员',
+    isSystemAdmin: 'isSystemAdmin',
+    lastTime: 'Deleted     int32  `json:"deleted"`     // 逻辑删除',
+    loginName: '登录名',
+    msgType: '消息类型',
+    phone: '电话',
+    rkUserCard: '罗克佳华用户账号',
+    sign: '个性签名',
+    status: '状态：1可用；0未激活；-1禁用',
+    updatedTime: '修改时间',
+    useType: '用户类型',
+    userName: '用户名',
+    wechatAppId: 'wechatAppId',
+    wechatSwitch: 'wechatSwitch',
+    wechatgzhSwitch: 'wechatgzhSwitch',
+  }[field];
+}
+
+export function displayListAllAttentionUser(
+  field: keyof API.ListAllAttentionUser
+) {
+  return {
+    data: 'data',
+    total: 'total',
+  }[field];
+}
+
+export function displayListAppDatasetConfigResp(
+  field: keyof API.ListAppDatasetConfigResp
+) {
+  return {
+    data: 'data',
+    total: 'total',
+  }[field];
+}
+
+export function displayListAppDatasets(field: keyof API.ListAppDatasets) {
+  return {
+    Data: 'Data',
+    total: 'total',
+  }[field];
+}
+
+export function displayListAppResp(field: keyof API.ListAppResp) {
+  return {
+    data: 'data',
+    total: 'total',
+  }[field];
+}
+
+export function displayListAttentionConversationReq(
+  field: keyof API.ListAttentionConversationReq
+) {
+  return {
+    appIDList: 'appIDList',
+    iamID: 'iamID',
+    offset: 'offset',
+    size: 'size',
+    userID: 'userID',
+  }[field];
+}
+
+export function displayListAttentionUserResp(
+  field: keyof API.ListAttentionUserResp
+) {
+  return {
+    data: 'data',
+    total: 'total',
+  }[field];
+}
+
+export function displayListConversationLogsResp(
+  field: keyof API.ListConversationLogsResp
+) {
+  return {
+    data: 'data',
+    total: 'total',
+  }[field];
+}
+
+export function displayListConversationResp(
+  field: keyof API.ListConversationResp
+) {
+  return {
+    data: 'data',
+    total: 'total',
+  }[field];
+}
+
+export function displayListDatasetsResp(field: keyof API.ListDatasetsResp) {
+  return {
+    data: 'data',
+    has_more: 'has_more',
+    offset: 'offset',
+    size: 'size',
+    total: 'total',
+  }[field];
+}
+
+export function displayListFeedbacksResp(field: keyof API.ListFeedbacksResp) {
+  return {
+    data: 'data',
+    total: 'total',
+  }[field];
+}
+
+export function displayListMemberRESP(field: keyof API.ListMemberRESP) {
+  return {
+    data: 'data',
+    total: 'total',
+  }[field];
+}
+
+export function displayListProviderResp(field: keyof API.ListProviderResp) {
+  return {
+    data: 'data',
+    total: 'total',
+  }[field];
+}
+
+export function displayListUserWithAppRESP(
+  field: keyof API.ListUserWithAppRESP
+) {
+  return {
+    data: 'data',
+    total: 'total',
+  }[field];
+}
+
+export function displayListWorkspaceGroup(field: keyof API.ListWorkspaceGroup) {
+  return {
+    data: 'data',
+  }[field];
+}
+
+export function displayListWorkspacePermissions(
+  field: keyof API.ListWorkspacePermissions
+) {
+  return {
+    data: 'data',
+    total: 'total',
+  }[field];
+}
+
+export function displayMemberBody(field: keyof API.MemberBody) {
+  return {
+    role: '角色(system_admin-系统管理员;system_user-系统管普通用户;app_admin-应用管理员;app_user-应用普通用户)',
+    userID: '用户id',
+  }[field];
+}
+
+export function displayMemberWithRoleData(field: keyof API.MemberWithRoleData) {
+  return {
+    appRole: '应用角色',
+    createdAt: 'createdAt',
+    email: 'email',
+    idpID: 'idpID',
+    isAppAdmin: '是否是app管理员',
+    isSystemAdmin: '是否是系统管理员',
+    operator: 'operator',
+    phone: 'phone',
+    role: '角色(系统管理员、系统普通用户)',
+    updatedAt: 'updatedAt',
+    userID: 'iam 用户id',
+    userName: 'userName',
+  }[field];
+}
+
+export function displayMessagesCountResp(field: keyof API.MessagesCountResp) {
+  return {
+    messagesCount: '请求消耗token',
+    time: 'time',
+  }[field];
+}
+
+export function displayMessagesTokenResp(field: keyof API.MessagesTokenResp) {
+  return {
+    answerToken: '回答消耗token',
+    queryToken: '请求消耗token',
+    time: 'time',
+    totalToken: 'totalToken',
+  }[field];
+}
+
+export function displayModelConfigsMap(field: keyof API.ModelConfigsMap) {
+  return {
+    model_type:
+      '模型(ERNIE-Bot-4;ERNIE-Bot;ERNIE-Bot-turbo;gpt-3.5-turbo-16k;gpt-4-1106-preview)',
+    penalty_score:
+      '通过对已生成的token增加惩罚，减少重复生成的现象。取值范围：[1.0, 2.0]',
+    temperature:
+      '较高的数值会使输出更加随机，而较低的数值会使其更加集中和确定。默认0.95，范围 (0, 1.0]',
+    tools_call: 'tools call',
+    top_p:
+      '影响输出文本的多样性，取值越大，生成文本的多样性越强。取值范围 [0, 1.0]',
+  }[field];
+}
+
+export function displayModelConfigsMap2(field: keyof API.ModelConfigsMap2) {
+  return {
+    model_type:
+      '模型(ERNIE-Bot-4;ERNIE-Bot;ERNIE-Bot-turbo;gpt-3.5-turbo-16k;gpt-4-1106-preview)',
+    penalty_score:
+      '通过对已生成的token增加惩罚，减少重复生成的现象。取值范围：[1.0, 2.0]',
+    temperature:
+      '较高的数值会使输出更加随机，而较低的数值会使其更加集中和确定。默认0.95，范围 (0, 1.0]',
+    tools_call: 'tools_call',
+    top_p:
+      '影响输出文本的多样性，取值越大，生成文本的多样性越强。取值范围 [0, 1.0]',
+  }[field];
+}
+
+export function displayProviderResp(field: keyof API.ProviderResp) {
+  return {
+    name: '名字',
+    providerID: 'providerID',
+    subType: 'subType',
+    type: '类型',
+  }[field];
+}
+
+export function displayQueryTokenResp(field: keyof API.QueryTokenResp) {
+  return {
+    AnswerTokensCount: '消耗输出token',
+    queryTokensCount: '消耗输入token',
+    totalTokens: '消耗总token',
+  }[field];
+}
+
+export function displayQuestionRecommendReq(
+  field: keyof API.QuestionRecommendReq
+) {
+  return {
+    conversation_id: 'conversation_id',
+    user: 'Query          string `json:"query"`Answer         string `json:"answer"`',
+  }[field];
+}
+
+export function displayRecommendQuestionAndContext(
+  field: keyof API.RecommendQuestionAndContext
+) {
+  return {
+    contexts: 'contexts',
+    questions: 'questions',
+  }[field];
+}
+
+export function displayRefreshTokenBody(field: keyof API.RefreshTokenBody) {
+  return {
+    refreshToken: 'refreshToken',
+  }[field];
+}
+
+export function displayReleaseDiscoverReq(field: keyof API.ReleaseDiscoverReq) {
+  return {
+    alterAppID: 'alterAppID',
+    appType: '应用类型',
+    templateStatus: '是否作为模版 TRUE:作为模版；FALSE:不作为',
+  }[field];
+}
+
+export function displayResponseData(field: keyof API.ResponseData) {
+  return {
+    answer: 'answer',
+    conversation_id: 'conversation_id',
+    created_at: 'created_at',
+    event: 'event',
+    id: 'id',
+    trace_id: 'trace_id',
+  }[field];
+}
+
+export function displayResponseRecommendData(
+  field: keyof API.ResponseRecommendData
+) {
+  return {
+    answer: 'answer',
+    conversation_id: 'conversation_id',
+    created_at: 'created_at',
+    event: 'event',
+    id: 'id',
+    trace_id: 'trace_id',
+  }[field];
+}
+
+export function displaySpeechToTextResp(field: keyof API.SpeechToTextResp) {
+  return {
+    text: '转化的结果',
+  }[field];
+}
+
+export function displayTextToSpeechReq(field: keyof API.TextToSpeechReq) {
+  return {
+    text: '需要转的文字',
+  }[field];
+}
+
+export function displayUpdateAppGroup(field: keyof API.UpdateAppGroup) {
+  return {
+    appGroupID: 'appGroupID',
+  }[field];
+}
+
+export function displayUpdateAppKeyStateReq(
+  field: keyof API.UpdateAppKeyStateReq
+) {
+  return {
+    appid: 'appid',
+    state: '0-关闭，1-启动',
+    type: 'wjl,dingding,feishu',
+  }[field];
+}
+
+export function displayUpdateAppReq(field: keyof API.UpdateAppReq) {
+  return {
+    appDescription: 'appDescription',
+    appGroupID: 'appGroupID',
+    appImage: 'appImage',
+    appName: 'appName',
+  }[field];
+}
+
+export function displayUpdateAppReqV2(field: keyof API.UpdateAppReqV2) {
+  return {
+    appGroupID: 'appGroupID',
+    appGuidance: '提示查询',
+    appPrologue: '开场白',
+    appRecommendedContexts: '推荐内容',
+    historyLimit: 'historyLimit',
+    modelConfigs: 'modelConfigs',
+    prePrompt: 'prePrompt',
+    providerId: 'providerId',
+    recommendSwitch: 'recommendSwitch',
+  }[field];
+}
+
+export function displayUpdateAppStatusReq(field: keyof API.UpdateAppStatusReq) {
+  return {
+    appStatus: 'PUBLIC:公开；PRIVATE:私有',
+  }[field];
+}
+
+export function displayUpdateUserRoleBody(field: keyof API.UpdateUserRoleBody) {
+  return {
+    role: '角色(system_admin-系统管理员;system_user-系统管普通用户;app_admin-应用管理员;app_user-应用普通用户)',
+    userID: '用户id',
+  }[field];
+}
+
+export function displayUser(field: keyof API.User) {
+  return {
+    createdAt: 'createdAt',
+    email: 'email',
+    idpID: 'idpID',
+    operator: 'operator',
+    phone: 'phone',
+    role: '角色(系统管理员、系统普通用户)',
+    updatedAt: 'updatedAt',
+    userID: 'iam 用户id',
+    userName: 'userName',
+  }[field];
+}
+
+export function displayUserWithAppData(field: keyof API.UserWithAppData) {
+  return {
+    appWithPermissionList: 'appWithPermissionList',
+    createdAt: 'createdAt',
+    email: 'email',
+    idpID: 'idpID',
+    isSystemAdmin: 'isSystemAdmin',
+    operator: 'operator',
+    phone: 'phone',
+    role: '角色(系统管理员、系统普通用户)',
+    updatedAt: 'updatedAt',
+    userID: 'iam 用户id',
+    userName: 'userName',
+  }[field];
+}
+
+export function displayv1ApiAppAppIdApiTokenUsingGetParams(
+  field: keyof API.v1ApiAppAppIdApiTokenUsingGetParams
+) {
+  return {
+    appID: '应用id',
+    size: '每页大小',
+    offset: '分页',
+  }[field];
+}
+
+export function displayv1ApiAppAppIdApiTokenUsingPostParams(
+  field: keyof API.v1ApiAppAppIdApiTokenUsingPostParams
+) {
+  return {
+    appID: '应用id',
+  }[field];
+}
+
+export function displayv1ApiAppAppIdDatasetConfigsUsingDeleteParams(
+  field: keyof API.v1ApiAppAppIdDatasetConfigsUsingDeleteParams
+) {
+  return {
+    appID: '应用id',
+    appDatasetConfigID: '应用知识库配置id',
+  }[field];
+}
+
+export function displayv1ApiAppAppIdDatasetConfigsUsingGetParams(
+  field: keyof API.v1ApiAppAppIdDatasetConfigsUsingGetParams
+) {
+  return {
+    appID: '应用id',
+  }[field];
+}
+
+export function displayv1ApiAppAppIdDatasetConfigsUsingPostParams(
+  field: keyof API.v1ApiAppAppIdDatasetConfigsUsingPostParams
+) {
+  return {
+    appID: '应用id',
+  }[field];
+}
+
+export function displayv1ApiAppAppIdDatasetConfigsUsingPutParams(
+  field: keyof API.v1ApiAppAppIdDatasetConfigsUsingPutParams
+) {
+  return {
+    appID: '应用id',
+  }[field];
+}
+
+export function displayv1ApiAppAppIdDatasetsListUsingGetParams(
+  field: keyof API.v1ApiAppAppIdDatasetsListUsingGetParams
+) {
+  return {
+    appID: '应用id',
+    size: 'size',
+    offset: 'offset',
+  }[field];
+}
+
+export function displayv1ApiAppAppIdDatasetsUsingDeleteParams(
+  field: keyof API.v1ApiAppAppIdDatasetsUsingDeleteParams
+) {
+  return {
+    appID: '应用id',
+    datasetID: '数据集id',
+  }[field];
+}
+
+export function displayv1ApiAppAppIdDatasetsUsingPostParams(
+  field: keyof API.v1ApiAppAppIdDatasetsUsingPostParams
+) {
+  return {
+    appID: '应用id',
+  }[field];
+}
+
+export function displayv1ApiAppAppIdDetailsUsingGetParams(
+  field: keyof API.v1ApiAppAppIdDetailsUsingGetParams
+) {
+  return {
+    appID: '应用id',
+  }[field];
+}
+
+export function displayv1ApiAppAppIdHourlyMessagesUsingGetParams(
+  field: keyof API.v1ApiAppAppIdHourlyMessagesUsingGetParams
+) {
+  return {
+    appID: '应用id',
+    starTimestamp: '开始时间，秒级时间戳',
+    endTimestamp: '结束时间，秒级时间戳',
+  }[field];
+}
+
+export function displayv1ApiAppAppIdHourlyTokenUsingGetParams(
+  field: keyof API.v1ApiAppAppIdHourlyTokenUsingGetParams
+) {
+  return {
+    appID: '应用id',
+    starTimestamp: '开始时间，秒级时间戳',
+    endTimestamp: '结束时间，秒级时间戳',
+  }[field];
+}
+
+export function displayv1ApiAppAppIdLogsConversationIdMessagesUsingGetParams(
+  field: keyof API.v1ApiAppAppIdLogsConversationIdMessagesUsingGetParams
+) {
+  return {
+    appID: '应用id',
+    conversationID: '会话id',
+  }[field];
+}
+
+export function displayv1ApiAppAppIdLogsUsingGetParams(
+  field: keyof API.v1ApiAppAppIdLogsUsingGetParams
+) {
+  return {
+    appID: '应用id',
+    conversationID: '会话id',
+    endTimestamp: '结束时间',
+    pageOffset: '页数1开始',
+    pageSize: '每页数量',
+    providerID: '模型id',
+    starTimestamp: '开始时间',
+    userID: '用户id',
+  }[field];
+}
+
+export function displayv1ApiAppAppIdMemberRoleUsingPutParams(
+  field: keyof API.v1ApiAppAppIdMemberRoleUsingPutParams
+) {
+  return {
+    appID: '应用id',
+  }[field];
+}
+
+export function displayv1ApiAppAppIdMemberUsingDeleteParams(
+  field: keyof API.v1ApiAppAppIdMemberUsingDeleteParams
+) {
+  return {
+    appID: '应用id',
+  }[field];
+}
+
+export function displayv1ApiAppAppIdMemberUsingGetParams(
+  field: keyof API.v1ApiAppAppIdMemberUsingGetParams
+) {
+  return {
+    appID: '应用id',
+    size: '每页大小',
+    offset: '分页',
+  }[field];
+}
+
+export function displayv1ApiAppAppIdMemberUsingPostParams(
+  field: keyof API.v1ApiAppAppIdMemberUsingPostParams
+) {
+  return {
+    appID: '应用id',
+  }[field];
+}
+
+export function displayv1ApiAppAppIdMessagesUsingGetParams(
+  field: keyof API.v1ApiAppAppIdMessagesUsingGetParams
+) {
+  return {
+    appID: '应用id',
+    starTimestamp: '开始时间，秒级时间戳',
+    endTimestamp: '结束时间，秒级时间戳',
+  }[field];
+}
+
+export function displayv1ApiAppAppIdModelConfigsUsingPostParams(
+  field: keyof API.v1ApiAppAppIdModelConfigsUsingPostParams
+) {
+  return {
+    appID: '应用id',
+  }[field];
+}
+
+export function displayv1ApiAppAppIdModelConfigsUsingPutParams(
+  field: keyof API.v1ApiAppAppIdModelConfigsUsingPutParams
+) {
+  return {
+    appID: '应用id',
+  }[field];
+}
+
+export function displayv1ApiAppAppIdModelPromptUsingPostParams(
+  field: keyof API.v1ApiAppAppIdModelPromptUsingPostParams
+) {
+  return {
+    appID: '应用id',
+  }[field];
+}
+
+export function displayv1ApiAppAppIdOpenApiDeleteUsingDeleteParams(
+  field: keyof API.v1ApiAppAppIdOpenApiDeleteUsingDeleteParams
+) {
+  return {
+    appID: '应用id',
+  }[field];
+}
+
+export function displayv1ApiAppAppIdPluginUsingPutParams(
+  field: keyof API.v1ApiAppAppIdPluginUsingPutParams
+) {
+  return {
+    appID: '应用id',
+  }[field];
+}
+
+export function displayv1ApiAppAppIdRecommendedContextUsingGetParams(
+  field: keyof API.v1ApiAppAppIdRecommendedContextUsingGetParams
+) {
+  return {
+    appID: '应用id',
+  }[field];
+}
+
+export function displayv1ApiAppAppIdRecommendedContextUsingPostParams(
+  field: keyof API.v1ApiAppAppIdRecommendedContextUsingPostParams
+) {
+  return {
+    appID: '应用id',
+  }[field];
+}
+
+export function displayv1ApiAppAppIdShareUsingPutParams(
+  field: keyof API.v1ApiAppAppIdShareUsingPutParams
+) {
+  return {
+    appID: '应用id',
+    isH5: '是否h5',
+  }[field];
+}
+
+export function displayv1ApiAppAppIdTokenUsingGetParams(
+  field: keyof API.v1ApiAppAppIdTokenUsingGetParams
+) {
+  return {
+    appID: '应用id',
+    starTimestamp: '开始时间，秒级时间戳',
+    endTimestamp: '结束时间，秒级时间戳',
+  }[field];
+}
+
+export function displayv1ApiAppAppIdUpdateStatusUsingPutParams(
+  field: keyof API.v1ApiAppAppIdUpdateStatusUsingPutParams
+) {
+  return {
+    appID: '应用id',
+  }[field];
+}
+
+export function displayv1ApiAppAppIdUpdateUsingPutParams(
+  field: keyof API.v1ApiAppAppIdUpdateUsingPutParams
+) {
+  return {
+    appID: '应用id',
+  }[field];
+}
+
+export function displayv1ApiAppH5ShareApiTokenUsingGetParams(
+  field: keyof API.v1ApiAppH5ShareApiTokenUsingGetParams
+) {
+  return {
+    randomPath: '分享的随机path',
+  }[field];
+}
+
+export function displayv1ApiAppIdCostUsingPostParams(
+  field: keyof API.v1ApiAppIdCostUsingPostParams
+) {
+  return {
+    appID: '应用id',
+    conversationID: '会话id',
+    endTimestamp: '结束时间',
+    pageOffset: '页数1开始',
+    pageSize: '每页数量',
+    providerID: '模型id',
+    starTimestamp: '开始时间',
+    userID: '用户id',
+  }[field];
+}
+
+export function displayv1ApiAppListPrivateUsingGetParams(
+  field: keyof API.v1ApiAppListPrivateUsingGetParams
+) {
+  return {
+    onlyConversations: '是否只查看会话过的应用',
+  }[field];
+}
+
+export function displayv1ApiAppListPublicUsingGetParams(
+  field: keyof API.v1ApiAppListPublicUsingGetParams
+) {
+  return {
+    onlyConversations: '是否只查看会话过的应用',
+  }[field];
+}
+
+export function displayv1ApiAppShareApiTokenUsingGetParams(
+  field: keyof API.v1ApiAppShareApiTokenUsingGetParams
+) {
+  return {
+    randomPath: '分享的随机path',
+  }[field];
+}
+
+export function displayv1ApiAttentionAppListUsingGetParams(
+  field: keyof API.v1ApiAttentionAppListUsingGetParams
+) {
+  return {
+    iamID: 'IAM用户id',
+  }[field];
+}
+
+export function displayv1ApiAttentionMessagesHistoryUsingGetParams(
+  field: keyof API.v1ApiAttentionMessagesHistoryUsingGetParams
+) {
+  return {
+    iamID: 'IAM ID',
+    appID: '应用id',
+    conversationID: '会话id',
+  }[field];
+}
+
+export function displayv1ApiAttentionUserAllUsingGetParams(
+  field: keyof API.v1ApiAttentionUserAllUsingGetParams
+) {
+  return {
+    iamID: '登陆用户IAMID',
+    isAttention: '用户id',
+    nameOrPhone: '名字或电话，模糊匹配',
+    offset: 'offset',
+    phone: '电话号码',
+    size: 'size',
+    userID: '用户id',
+    userName: '用户名字用于搜索',
+  }[field];
+}
+
+export function displayv1ApiAttentionUserListUsingPostParams(
+  field: keyof API.v1ApiAttentionUserListUsingPostParams
+) {
+  return {
+    iamID: 'IAM ID',
+    size: '默认10',
+    offset: '默认0',
+  }[field];
+}
+
+export function displayv1ApiConversationsConversationIdHistoryUsingDeleteParams(
+  field: keyof API.v1ApiConversationsConversationIdHistoryUsingDeleteParams
+) {
+  return {
+    conversation_id: '会话id',
+    message_id: '聊天信息id',
+  }[field];
+}
+
+export function displayv1ApiConversationsConversationIdHistoryUsingGetParams(
+  field: keyof API.v1ApiConversationsConversationIdHistoryUsingGetParams
+) {
+  return {
+    conversation_id: '会话id',
+  }[field];
+}
+
+export function displayv1ApiConversationsUsingDeleteParams(
+  field: keyof API.v1ApiConversationsUsingDeleteParams
+) {
+  return {
+    conversation_id: '会话id',
+  }[field];
+}
+
+export function displayv1ApiConversationsUsingGetParams(
+  field: keyof API.v1ApiConversationsUsingGetParams
+) {
+  return {
+    user_id: '用户id,空值不返回',
+  }[field];
+}
+
+export function displayv1ApiFeedbacksMessageIdUsingDeleteParams(
+  field: keyof API.v1ApiFeedbacksMessageIdUsingDeleteParams
+) {
+  return {
+    message_id: '消息id',
+    conversation_id: '会话id',
+  }[field];
+}
+
+export function displayv1ApiFeedbacksMessageIdUsingPostParams(
+  field: keyof API.v1ApiFeedbacksMessageIdUsingPostParams
+) {
+  return {
+    message_id: '消息id',
+  }[field];
+}
+
+export function displayv1ApiFeedbacksUsingGetParams(
+  field: keyof API.v1ApiFeedbacksUsingGetParams
+) {
+  return {
+    conversation_ID: 'conversation_ID',
+    message_ID: 'message_ID',
+    pageOffset: '页数1开始',
+    pageSize: '每页数量',
+  }[field];
+}
+
+export function displayv1ApiFileUsingPostParams(
+  field: keyof API.v1ApiFileUsingPostParams
+) {
+  return {
+    conversation_id: '会话id',
+    user_id: 'user id',
+  }[field];
+}
+
+export function displayv1ApiIamAccountUsingGetParams(
+  field: keyof API.v1ApiIamAccountUsingGetParams
+) {
+  return {
+    openId: 'openId',
+  }[field];
+}
+
+export function displayv1ApiProviderListUsingGetParams(
+  field: keyof API.v1ApiProviderListUsingGetParams
+) {
+  return {
+    size: 'size',
+    offset: 'offset',
+  }[field];
+}
+
+export function displayv1ApiRobotWorkspaceIdAppkeyStateUsingPostParams(
+  field: keyof API.v1ApiRobotWorkspaceIdAppkeyStateUsingPostParams
+) {
+  return {
+    workspaceID: '空间ID',
+  }[field];
+}
+
+export function displayv1ApiRobotWorkspaceIdAppkeyUsingDeleteParams(
+  field: keyof API.v1ApiRobotWorkspaceIdAppkeyUsingDeleteParams
+) {
+  return {
+    workspaceID: '空间ID',
+  }[field];
+}
+
+export function displayv1ApiRobotWorkspaceIdAppkeyUsingGetParams(
+  field: keyof API.v1ApiRobotWorkspaceIdAppkeyUsingGetParams
+) {
+  return {
+    workspaceID: '空间ID',
+    appid: 'appid',
+    type: 'wjl,dingding,feishu,wxa,wx',
+  }[field];
+}
+
+export function displayv1ApiRobotWorkspaceIdAppkeyUsingPostParams(
+  field: keyof API.v1ApiRobotWorkspaceIdAppkeyUsingPostParams
+) {
+  return {
+    workspaceID: '空间ID',
+  }[field];
+}
+
+export function displayv1ApiUserInfoUsingGetParams(
+  field: keyof API.v1ApiUserInfoUsingGetParams
+) {
+  return {
+    appID: '应用id',
+  }[field];
+}
+
+export function displayv1ApiUserUsingGetParams(
+  field: keyof API.v1ApiUserUsingGetParams
+) {
+  return {
+    offset: 'offset',
+    phone: '电话号码',
+    size: 'size',
+    userID: '用户id',
+    userName: '用户名字用于搜索',
+  }[field];
+}
+
+export function displayv2ApiAppAppIdDetailsUsingGetParams(
+  field: keyof API.v2ApiAppAppIdDetailsUsingGetParams
+) {
+  return {
+    appID: '应用id',
+  }[field];
+}
+
+export function displayv2ApiAppAppIdUpdateUsingPostParams(
+  field: keyof API.v2ApiAppAppIdUpdateUsingPostParams
+) {
+  return {
+    appID: '应用id',
+  }[field];
+}
+
+export function displayv2ApiAppListUsingGetParams(
+  field: keyof API.v2ApiAppListUsingGetParams
+) {
+  return {
+    onlyConversations: '是否只查看会话过的应用',
+  }[field];
+}
+
+export function displayv2ApiAppShareApiTokenUsingGetParams(
+  field: keyof API.v2ApiAppShareApiTokenUsingGetParams
+) {
+  return {
+    randomPath: '分享的随机path',
+  }[field];
+}
+
+export function displayv2ApiChatMessagesMessagesCountUsingGetParams(
+  field: keyof API.v2ApiChatMessagesMessagesCountUsingGetParams
+) {
+  return {
+    isPerPerson: '是否查询人均,默认false',
+    starTimestamp: '开始时间，秒级时间戳',
+    endTimestamp: '结束时间，秒级时间戳',
+  }[field];
+}
+
+export function displayv2ApiFileUsingPostParams(
+  field: keyof API.v2ApiFileUsingPostParams
+) {
+  return {
+    conversation_id: '会话id',
+    user_id: 'user id',
+  }[field];
+}
+
+export function displayv2ApiWorkspacesDefaultUsingPostParams(
+  field: keyof API.v2ApiWorkspacesDefaultUsingPostParams
+) {
+  return {
+    workspaceID: '空间ID',
+  }[field];
+}
+
+export function displayv2ApiWorkspacesRecommendedMessageIdDetailsUsingGetParams(
+  field: keyof API.v2ApiWorkspacesRecommendedMessageIdDetailsUsingGetParams
+) {
+  return {
+    messageId: '消息id',
+  }[field];
+}
+
+export function displayv2ApiWorkspacesWorkspaceIdAppAppIdDatasetsJoinUsingPostParams(
+  field: keyof API.v2ApiWorkspacesWorkspaceIdAppAppIdDatasetsJoinUsingPostParams
+) {
+  return {
+    workspaceID: '空间ID',
+    appID: '应用id',
+  }[field];
+}
+
+export function displayv2ApiWorkspacesWorkspaceIdAppAppIdDatasetsUsingDeleteParams(
+  field: keyof API.v2ApiWorkspacesWorkspaceIdAppAppIdDatasetsUsingDeleteParams
+) {
+  return {
+    appID: '应用id',
+    workspaceID: '空间ID',
+    datasetID: '数据集id',
+  }[field];
+}
+
+export function displayv2ApiWorkspacesWorkspaceIdAppAppIdDetailsUsingGetParams(
+  field: keyof API.v2ApiWorkspacesWorkspaceIdAppAppIdDetailsUsingGetParams
+) {
+  return {
+    workspaceID: '空间ID',
+    appID: '应用id',
+  }[field];
+}
+
+export function displayv2ApiWorkspacesWorkspaceIdAppAppIdHourlyMessagesUsingGetParams(
+  field: keyof API.v2ApiWorkspacesWorkspaceIdAppAppIdHourlyMessagesUsingGetParams
+) {
+  return {
+    workspaceID: '空间ID',
+    appID: '应用id',
+    starTimestamp: '开始时间，秒级时间戳',
+    endTimestamp: '结束时间，秒级时间戳',
+  }[field];
+}
+
+export function displayv2ApiWorkspacesWorkspaceIdAppAppIdHourlyTokenUsingGetParams(
+  field: keyof API.v2ApiWorkspacesWorkspaceIdAppAppIdHourlyTokenUsingGetParams
+) {
+  return {
+    workspaceID: '空间ID',
+    appID: '应用id',
+    starTimestamp: '开始时间，秒级时间戳',
+    endTimestamp: '结束时间，秒级时间戳',
+  }[field];
+}
+
+export function displayv2ApiWorkspacesWorkspaceIdAppAppIdLogsUsingGetParams(
+  field: keyof API.v2ApiWorkspacesWorkspaceIdAppAppIdLogsUsingGetParams
+) {
+  return {
+    appID: '应用id',
+    workspaceID: '空间ID',
+    conversationID: '会话id',
+    endTimestamp: '结束时间',
+    pageOffset: '页数1开始',
+    pageSize: '每页数量',
+    providerID: '模型id',
+    starTimestamp: '开始时间',
+    userID: '用户id',
+  }[field];
+}
+
+export function displayv2ApiWorkspacesWorkspaceIdAppAppIdMessagesUsingGetParams(
+  field: keyof API.v2ApiWorkspacesWorkspaceIdAppAppIdMessagesUsingGetParams
+) {
+  return {
+    workspaceID: '空间ID',
+    appID: '应用id',
+    starTimestamp: '开始时间，秒级时间戳',
+    endTimestamp: '结束时间，秒级时间戳',
+  }[field];
+}
+
+export function displayv2ApiWorkspacesWorkspaceIdAppAppIdModelConfigsUsingPutParams(
+  field: keyof API.v2ApiWorkspacesWorkspaceIdAppAppIdModelConfigsUsingPutParams
+) {
+  return {
+    appID: '应用id',
+    workspaceID: '空间ID',
+  }[field];
+}
+
+export function displayv2ApiWorkspacesWorkspaceIdAppAppIdPluginUsingGetParams(
+  field: keyof API.v2ApiWorkspacesWorkspaceIdAppAppIdPluginUsingGetParams
+) {
+  return {
+    appID: '应用id',
+    workspaceID: '空间ID',
+  }[field];
+}
+
+export function displayv2ApiWorkspacesWorkspaceIdAppAppIdTokenUsingGetParams(
+  field: keyof API.v2ApiWorkspacesWorkspaceIdAppAppIdTokenUsingGetParams
+) {
+  return {
+    appID: '应用id',
+    starTimestamp: '开始时间，秒级时间戳',
+    endTimestamp: '结束时间，秒级时间戳',
+  }[field];
+}
+
+export function displayv2ApiWorkspacesWorkspaceIdAppAppIdUpdateStatusUsingPutParams(
+  field: keyof API.v2ApiWorkspacesWorkspaceIdAppAppIdUpdateStatusUsingPutParams
+) {
+  return {
+    workspaceID: '空间ID',
+    appID: '应用id',
+  }[field];
+}
+
+export function displayv2ApiWorkspacesWorkspaceIdAppAppIdUsingPostParams(
+  field: keyof API.v2ApiWorkspacesWorkspaceIdAppAppIdUsingPostParams
+) {
+  return {
+    workspaceID: '空间ID',
+    appID: '应用id',
+  }[field];
+}
+
+export function displayv2ApiWorkspacesWorkspaceIdAppsAppIdBaseUsingPostParams(
+  field: keyof API.v2ApiWorkspacesWorkspaceIdAppsAppIdBaseUsingPostParams
+) {
+  return {
+    appID: '应用id',
+    workspaceID: '空间ID',
+  }[field];
+}
+
+export function displayv2ApiWorkspacesWorkspaceIdAppsAppIdGroupUsingPostParams(
+  field: keyof API.v2ApiWorkspacesWorkspaceIdAppsAppIdGroupUsingPostParams
+) {
+  return {
+    appID: '应用id',
+    workspaceID: '空间ID',
+  }[field];
+}
+
+export function displayv2ApiWorkspacesWorkspaceIdAppsAppIdUsingDeleteParams(
+  field: keyof API.v2ApiWorkspacesWorkspaceIdAppsAppIdUsingDeleteParams
+) {
+  return {
+    appID: '应用id',
+    workspaceID: '空间ID',
+  }[field];
+}
+
+export function displayv2ApiWorkspacesWorkspaceIdAppsUsingGetParams(
+  field: keyof API.v2ApiWorkspacesWorkspaceIdAppsUsingGetParams
+) {
+  return {
+    workspaceID: '空间ID',
+    onlyConversations: '是否只查看会话过的应用',
+    appName: '应用名，模糊查询',
+  }[field];
+}
+
+export function displayv2ApiWorkspacesWorkspaceIdAppsUsingPostParams(
+  field: keyof API.v2ApiWorkspacesWorkspaceIdAppsUsingPostParams
+) {
+  return {
+    workspaceID: '空间ID',
+  }[field];
+}
+
+export function displayv2ApiWorkspacesWorkspaceIdDatasetsUsingGetParams(
+  field: keyof API.v2ApiWorkspacesWorkspaceIdDatasetsUsingGetParams
+) {
+  return {
+    workspaceID: '空间ID',
+  }[field];
+}
+
+export function displayv2ApiWorkspacesWorkspaceIdDatasetsUsingPostParams(
+  field: keyof API.v2ApiWorkspacesWorkspaceIdDatasetsUsingPostParams
+) {
+  return {
+    workspaceID: '空间ID',
+  }[field];
+}
+
+export function displayv2ApiWorkspacesWorkspaceIdGroupsUsingGetParams(
+  field: keyof API.v2ApiWorkspacesWorkspaceIdGroupsUsingGetParams
+) {
+  return {
+    workspaceID: '空间ID',
+  }[field];
+}
+
+export function displayv2ApiWorkspacesWorkspaceIdGroupsUsingPostParams(
+  field: keyof API.v2ApiWorkspacesWorkspaceIdGroupsUsingPostParams
+) {
+  return {
+    workspaceID: '空间ID',
+  }[field];
+}
+
+export function displayv2ApiWorkspacesWorkspaceIdGroupsWorkspaceGroupIdUsingDeleteParams(
+  field: keyof API.v2ApiWorkspacesWorkspaceIdGroupsWorkspaceGroupIdUsingDeleteParams
+) {
+  return {
+    workspaceID: '空间ID',
+    workspaceGroupID: '分组ID',
+  }[field];
+}
+
+export function displayv2ApiWorkspacesWorkspaceIdGroupsWorkspaceGroupIdUsingPostParams(
+  field: keyof API.v2ApiWorkspacesWorkspaceIdGroupsWorkspaceGroupIdUsingPostParams
+) {
+  return {
+    workspaceID: '空间ID',
+    workspaceGroupID: '分组ID',
+  }[field];
+}
+
+export function displayv2ApiWorkspacesWorkspaceIdPermissionsUsingGetParams(
+  field: keyof API.v2ApiWorkspacesWorkspaceIdPermissionsUsingGetParams
+) {
+  return {
+    workspaceID: '空间ID',
+  }[field];
+}
+
+export function displayv2ApiWorkspacesWorkspaceIdUsersUsingGetParams(
+  field: keyof API.v2ApiWorkspacesWorkspaceIdUsersUsingGetParams
+) {
+  return {
+    workspaceID: '空间ID',
+  }[field];
+}
+
+export function displayv2ApiWorkspacesWorkspaceIdUsersUsingPostParams(
+  field: keyof API.v2ApiWorkspacesWorkspaceIdUsersUsingPostParams
+) {
+  return {
+    workspaceID: '空间ID',
+  }[field];
+}
+
+export function displayv2ApiWorkspacesWorkspaceIdUserUserIdUsingDeleteParams(
+  field: keyof API.v2ApiWorkspacesWorkspaceIdUserUserIdUsingDeleteParams
+) {
+  return {
+    workspaceID: '空间ID',
+    userID: 'userID',
+  }[field];
+}
+
+export function displayv2ApiWorkspacesWorkspaceIdUsingDeleteParams(
+  field: keyof API.v2ApiWorkspacesWorkspaceIdUsingDeleteParams
+) {
+  return {
+    workspaceID: '空间ID',
+  }[field];
+}
+
+export function displayv2ApiWorkspacesWorkspaceIdUsingPostParams(
+  field: keyof API.v2ApiWorkspacesWorkspaceIdUsingPostParams
+) {
+  return {
+    workspaceID: '空间ID',
+  }[field];
+}
+
+export function displayWJLAccount(field: keyof API.WJLAccount) {
+  return {
+    code: 'code',
+    data: 'data',
+    msg: 'msg',
+    success: 'success',
+  }[field];
+}
+
+export function displayWorkspaceGroup(field: keyof API.WorkspaceGroup) {
+  return {
+    createdAt: 'createdAt',
+    name: '分组名',
+    updatedAt: 'updatedAt',
+    workspaceGroupID: 'workspaceGroupID',
+    workspaceID: 'workspaceID',
+  }[field];
+}
+
+export function displayWorkspaceGroupReq(field: keyof API.WorkspaceGroupReq) {
+  return {
+    name: 'name',
+  }[field];
+}
+
+export function displayWorkspaceListResp(field: keyof API.WorkspaceListResp) {
+  return {
+    data: 'data',
+    total: 'total',
+  }[field];
+}
+
+export function displayWorkspacePermissions(
+  field: keyof API.WorkspacePermissions
+) {
+  return {
+    createdAt: 'createdAt',
+    email: 'email',
+    idpID: 'idpID',
+    operator: 'operator',
+    permission: '枚举read_only（只读）、operation（操作）',
+    phone: 'phone',
+    role: '角色(系统管理员、系统普通用户)',
+    updatedAt: 'updatedAt',
+    userID: 'iam 用户id',
+    userName: 'userName',
+  }[field];
+}
+
+export function displayWorkspaceReq(field: keyof API.WorkspaceReq) {
+  return {
+    description: '描述',
+    name: '空间名',
+  }[field];
+}
+
+export function displayWorkspaceResp(field: keyof API.WorkspaceResp) {
+  return {
+    description: '空间描述',
+    name: '空间名',
+    workspaceID: '空间ID',
+  }[field];
+}
+
+export function displayWorkspaceUser(field: keyof API.WorkspaceUser) {
+  return {
+    role: 'workspace_admin空间超管用户；workspace_user空间普通用户',
+    userID: '用户id',
+  }[field];
+}
+
+export function displayWxExtra(field: keyof API.WxExtra) {
+  return {
+    encodingAESKey: 'encodingAESKey',
+    token: 'token',
+  }[field];
+}
+/* eslint-disable */
+// @ts-ignore
+import { request } from 'axios';
+
+import * as API from './types';
+
+/** Exchange 换取token GET /llmops/auth/exchange */
+export async function authExchangeUsingGet({
+  params,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.authExchangeUsingGetParams;
+  options?: { [key: string]: unknown };
+}) {
+  return request<API.ExchangeTokenRESP>('/llmops/auth/exchange', {
+    method: 'GET',
+    params: {
+      ...params,
+    },
+    ...(options || {}),
+  });
+}
+/* eslint-disable */
+// @ts-ignore
+import { request } from 'axios';
+
+import * as API from './types';
+
+/** Filestream 上传文件 POST /llmops/v1/api/file */
+export async function v1ApiFileUsingPost({
+  params,
+  body,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.v1ApiFileUsingPostParams;
+  body: API.V1ApiFileUsingPostBody;
+  options?: { [key: string]: unknown };
+}) {
+  return request<API.FilestreamResp>('/llmops/v1/api/file', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    params: {
+      ...params,
+    },
+    data: body,
+    ...(options || {}),
+  });
+}
+
+/** SpeechToText 语音转文字 POST /llmops/v1/api/speech_to_text */
+export async function v1ApiSpeechToTextUsingPost({
+  body,
+  options,
+}: {
+  body: API.V1ApiSpeechToTextUsingPostBody;
+  options?: { [key: string]: unknown };
+}) {
+  return request<API.SpeechToTextResp>('/llmops/v1/api/speech_to_text', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    data: body,
+    ...(options || {}),
+  });
+}
+
+/** TextToSpeech 文字转语音 POST /llmops/v1/api/text_to_speech */
+export async function v1ApiTextToSpeechUsingPost({
+  body,
+  options,
+}: {
+  body: API.TextToSpeechReq;
+  options?: { [key: string]: unknown };
+}) {
+  return request<unknown>('/llmops/v1/api/text_to_speech', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    data: body,
+    ...(options || {}),
+  });
+}
+
+/** 上传文件V2接口 上传文件V2接口用于向服务器提交文件。 POST /llmops/v2/api/file */
+export async function v2ApiFileUsingPost({
+  params,
+  body,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.v2ApiFileUsingPostParams;
+  body: API.V2ApiFileUsingPostBody;
+  options?: { [key: string]: unknown };
+}) {
+  const formData = new FormData();
+
+  Object.keys(body).forEach((ele) => {
+    const item = (body as { [key: string]: any })[ele];
+
+    if (item !== undefined && item !== null) {
+      if (typeof item === 'object' && !(item instanceof File)) {
+        if (item instanceof Array) {
+          item.forEach((f) => formData.append(ele, f || ''));
+        } else {
+          formData.append(ele, JSON.stringify(item));
+        }
+      } else {
+        formData.append(ele, item);
+      }
+    }
+  });
+
+  return request<API.FilestreamResp>('/llmops/v2/api/file', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+    params: {
+      ...params,
+    },
+    data: formData,
+    ...(options || {}),
+  });
+}
+/* eslint-disable */
+// @ts-ignore
+import { request } from 'axios';
+
+import * as API from './types';
+
+/** GetAppKey 为应用获取各种类型机器人appkey GET /llmops/v1/api/robot/${param0}/appkey */
+export async function v1ApiRobotWorkspaceIdAppkeyUsingGet({
+  params,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.v1ApiRobotWorkspaceIdAppkeyUsingGetParams;
+  options?: { [key: string]: unknown };
+}) {
+  const { workspaceID: param0, ...queryParams } = params;
+
+  return request<API.Data>(`/llmops/v1/api/robot/${param0}/appkey`, {
+    method: 'GET',
+    params: {
+      ...queryParams,
+    },
+    ...(options || {}),
+  });
+}
+/* eslint-disable */
+// @ts-ignore
+import { request } from 'axios';
+
+import * as API from './types';
+
+/** History 会话历史 GET /llmops/v1/api/conversations/${param0}/history */
+export async function v1ApiConversationsConversationIdHistoryUsingGet({
+  params,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.v1ApiConversationsConversationIdHistoryUsingGetParams;
+  options?: { [key: string]: unknown };
+}) {
+  const { conversation_id: param0, ...queryParams } = params;
+
+  return request<API.HistoryInfo[]>(
+    `/llmops/v1/api/conversations/${param0}/history`,
+    {
+      method: 'GET',
+      params: { ...queryParams },
+      ...(options || {}),
+    }
+  );
+}
+
+/** DeleteHistory 会话历史 DELETE /llmops/v1/api/conversations/${param0}/history */
+export async function v1ApiConversationsConversationIdHistoryUsingDelete({
+  params,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.v1ApiConversationsConversationIdHistoryUsingDeleteParams;
+  options?: { [key: string]: unknown };
+}) {
+  const { conversation_id: param0, ...queryParams } = params;
+
+  return request<API.DeleteResp>(
+    `/llmops/v1/api/conversations/${param0}/history`,
+    {
+      method: 'DELETE',
+      params: {
+        ...queryParams,
+      },
+      ...(options || {}),
+    }
+  );
+}
+
+/** GetMessageCount 用于微精灵获取消息数的v2版本 GET /llmops/v2/api/chat-messages/messagesCount */
+export async function v2ApiChatMessagesMessagesCountUsingGet({
+  params,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.v2ApiChatMessagesMessagesCountUsingGetParams;
+  options?: { [key: string]: unknown };
+}) {
+  return request<API.AppMessagesCount>(
+    '/llmops/v2/api/chat-messages/messagesCount',
+    {
+      method: 'GET',
+      params: {
+        ...params,
+      },
+      ...(options || {}),
+    }
+  );
+}
+/* eslint-disable */
+// @ts-ignore
+import { request } from 'axios';
+
+import * as API from './types';
+
+/** GetIamUserId 查询 IAM 用户信息 GET /llmops/v1/api/iamAccount */
+export async function v1ApiIamAccountUsingGet({
+  params,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.v1ApiIamAccountUsingGetParams;
+  options?: { [key: string]: unknown };
+}) {
+  return request<API.WJLAccount>('/llmops/v1/api/iamAccount', {
+    method: 'GET',
+    params: {
+      ...params,
+    },
+    ...(options || {}),
+  });
+}
+/* eslint-disable */
+// @ts-ignore
+export * from './types';
+export * from './displayEnumLabel';
+
+export * from './displayTypeLabel';
+
+export * from './authorize';
+export * from './exchange';
+export * from './refreshToken';
+export * from './app';
+export * from './share';
+export * from './apiToken';
+export * from './appDatasetConfigs';
+export * from './datasetsJoin';
+export * from './datasetsList';
+export * from './appMember';
+export * from './appModelConfigs';
+export * from './recommended';
+export * from './attention';
+export * from './chat';
+export * from './conversation';
+export * from './history';
+export * from './listFeedbacks';
+export * from './createFeedbacks';
+export * from './deleteFeedbacks';
+export * from './files';
+export * from './iam';
+export * from './provider';
+export * from './getAppKey';
+export * from './addAppKey';
+export * from './deleteKey';
+export * from './updateAppKeyState';
+export * from './user';
+export * from './appV2';
+export * from './workspaceAppV2';
+export * from './workspace';
+export * from './workspaceGroup';
+/* eslint-disable */
+// @ts-ignore
+import { request } from 'axios';
+
+import * as API from './types';
+
+/** ListFeedbacks ListFeedbacks GET /llmops/v1/api/feedbacks/ */
+export async function v1ApiFeedbacksUsingGet({
+  params,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.v1ApiFeedbacksUsingGetParams;
+  options?: { [key: string]: unknown };
+}) {
+  return request<API.ListFeedbacksResp>('/llmops/v1/api/feedbacks/', {
+    method: 'GET',
+    params: {
+      ...params,
+    },
+    ...(options || {}),
+  });
+}
+/* eslint-disable */
+// @ts-ignore
+import { request } from 'axios';
+
+import * as API from './types';
+
+/** ListProviders 查询 Provider 列表 GET /llmops/v1/api/provider/list */
+export async function v1ApiProviderListUsingGet({
+  params,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.v1ApiProviderListUsingGetParams;
+  options?: { [key: string]: unknown };
+}) {
+  return request<API.ListProviderResp>('/llmops/v1/api/provider/list', {
+    method: 'GET',
+    params: {
+      ...params,
+    },
+    ...(options || {}),
+  });
+}
+/* eslint-disable */
+// @ts-ignore
+import { request } from 'axios';
+
+import * as API from './types';
+
+/** ListRecommendedContext 查询推荐内容列表 GET /llmops/v1/api/app/${param0}/recommended/context */
+export async function v1ApiAppAppIdRecommendedContextUsingGet({
+  params,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.v1ApiAppAppIdRecommendedContextUsingGetParams;
+  options?: { [key: string]: unknown };
+}) {
+  const { appID: param0, ...queryParams } = params;
+
+  return request<API.AppRecommendedContext[]>(
+    `/llmops/v1/api/app/${param0}/recommended/context`,
+    {
+      method: 'GET',
+      params: { ...queryParams },
+      ...(options || {}),
+    }
+  );
+}
+
+/** CreateOrUpdateRecommendedContext 创建或更新推荐内容列表 POST /llmops/v1/api/app/${param0}/recommended/context */
+export async function v1ApiAppAppIdRecommendedContextUsingPost({
+  params,
+  body,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.v1ApiAppAppIdRecommendedContextUsingPostParams;
+  body: API.AppRecommendedContext;
+  options?: { [key: string]: unknown };
+}) {
+  const { appID: param0, ...queryParams } = params;
+
+  return request<unknown>(`/llmops/v1/api/app/${param0}/recommended/context`, {
+    method: 'POST',
+    params: { ...queryParams },
+    data: body,
+    ...(options || {}),
+  });
+}
+/* eslint-disable */
+// @ts-ignore
+import { request } from 'axios';
+
+import * as API from './types';
+
+/** RefreshToken 刷新token POST /llmops/auth/refresh-token */
+export async function authRefreshTokenUsingPost({
+  body,
+  options,
+}: {
+  body: API.RefreshTokenBody;
+  options?: { [key: string]: unknown };
+}) {
+  return request<API.ExchangeTokenRESP>('/llmops/auth/refresh-token', {
+    method: 'POST',
+    data: body,
+    ...(options || {}),
+  });
+}
+/* eslint-disable */
+// @ts-ignore
+import { request } from 'axios';
+
+import * as API from './types';
+
+/** H5GetApiToken 获取一个 app token h5版 GET /llmops/v1/api/app/h5/share/api-token */
+export async function v1ApiAppH5ShareApiTokenUsingGet({
+  params,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.v1ApiAppH5ShareApiTokenUsingGetParams;
+  options?: { [key: string]: unknown };
+}) {
+  return request<API.GetApiTokenByRandomPathRESP>(
+    '/llmops/v1/api/app/h5/share/api-token',
+    {
+      method: 'GET',
+      params: {
+        ...params,
+      },
+      ...(options || {}),
+    }
+  );
+}
+
+/** GetApiToken 获取一个 app token GET /llmops/v1/api/app/share/api-token */
+export async function v1ApiAppShareApiTokenUsingGet({
+  params,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.v1ApiAppShareApiTokenUsingGetParams;
+  options?: { [key: string]: unknown };
+}) {
+  return request<API.GetApiTokenByRandomPathRESP>(
+    '/llmops/v1/api/app/share/api-token',
+    {
+      method: 'GET',
+      params: {
+        ...params,
+      },
+      ...(options || {}),
+    }
+  );
+}
+/* eslint-disable */
+// @ts-ignore
+
+export type AddAppkeyReq = {
+  appid: string;
+  appkey: string;
+  appsecret?: string;
+  encodingAESKey?: string;
+  token?: string;
+  /** wjl,dingding,feishu,wxa,wx */
+  type: string;
+};
+
+export type ApiToken = {
+  apiTokenID?: string;
+  appID?: string;
+  createdAt?: string;
+  token?: string;
+  updatedAt?: string;
+};
+
+export type ApiTokenDataList = {
+  data?: ApiToken[];
+  total?: number;
+};
+
+export type App = {
+  appID?: string;
+  appImage?: number;
+  appStatus?: string;
+  /** 应用类型 */
+  appType?: number;
+  createdAt?: string;
+  description?: string;
+  groupID?: string;
+  /** 开场提问引导 */
+  guidance?: Map;
+  name?: string;
+  operator?: string;
+  /** 应用优先级 */
+  priority?: number;
+  prologue?: string;
+  recommendSwitch?: Bool;
+  /** 是否模版 */
+  templateStatus?: string;
+  updatedAt?: string;
+  workspaceID?: string;
+};
+
+export type AppDataset = {
+  /** 描述 */
+  description?: string;
+  /** llm描述 */
+  llmDesc?: string;
+  /** 知识库名 */
+  name?: string;
+};
+
+export type AppDatasetConfig = {
+  appDatasetConfigID?: string;
+  appID?: string;
+  createdAt?: string;
+  minScore?: number;
+  searchSource?: string;
+  timeoutSecond?: number;
+  topK?: number;
+  updatedAt?: string;
+};
+
+export type AppDatasetConfigs = {
+  /** 最低分数 */
+  minScore?: number;
+  /** 知识库源，默认 warehouse */
+  searchSource?: string;
+  /** 知识库查询超时时间 */
+  timeoutSecond?: number;
+  /** 知识库条数 */
+  topK?: number;
+};
+
+export type AppDatasets = {
+  appCount?: number;
+  author?: string;
+  datasetID?: string;
+  datasetName?: string;
+  docCount?: number;
+  state?: string;
+};
+
+export type AppDetail = {
+  /** 消耗输出token */
+  AnswerTokensCount?: number;
+  appDatasetConfig?: AppDatasetConfig;
+  /** 数据集Id列表 */
+  appDatasets?: AppDatasets[];
+  appGroupID?: string;
+  appID?: string;
+  /** 应用头像 */
+  appImage?: string;
+  /** 应用名 */
+  appName?: string;
+  /** PrePrompt */
+  appPrePrompt?: string;
+  appPromptPrefix?: AppModelConfigPromptPrefix;
+  /** 模型 */
+  appProvider?: string;
+  /** AppDatasetSource   database2.AppDatasetSourceInfo     `json:"appDatasetSource"` */
+  appProviderID?: string;
+  /** 模型名 */
+  appProviderName?: string;
+  /** 推荐内容 */
+  appRecommendedContext?: AppRecommendedContext[];
+  appStatus?: string;
+  /** 应用token列表 */
+  appToken?: string[];
+  configs?: ModelConfigsMap;
+  /** 会话总数 */
+  conversationCount?: number;
+  createAt?: string;
+  /** 应用描述 */
+  description?: string;
+  /** 开场提问引导 */
+  guidance?: Guidances;
+  /** H5随机分享路径 */
+  h5RandomPath?: string;
+  historyLimit?: number;
+  /** 消息总数 */
+  messagesCount?: number;
+  /** PC随机分享路径 */
+  pcRandomPath?: string;
+  /** 开场白 */
+  prologue?: string;
+  /** 消耗输入token */
+  queryTokensCount?: number;
+  switchRecommendedQuestion?: boolean;
+  templateStatus?: string;
+  /** 消耗总token */
+  totalTokens?: number;
+  workspaceID?: string;
+};
+
+export type AppMessagesCount = {
+  total?: number;
+};
+
+export type AppModelConfigPromptPrefix = {
+  background?: string;
+  role?: string;
+  switchRecommendedQuestion?: boolean;
+};
+
+export type AppModelConfigs = {
+  configs?: ModelConfigsMap;
+  prePrompt?: string;
+  providerId?: string;
+};
+
+export type AppRecommendedContext = {
+  appID?: string;
+  appRecommendedContextID?: string;
+  context?: string;
+  createdAt?: string;
+  description?: string;
+  name?: string;
+  updatedAt?: string;
+};
+
+export type AppRecommendedContext2 = {
+  context?: string;
+  description?: string;
+  id?: string;
+  name?: string;
+};
+
+export type AppRecommendedContext3 = {
+  context?: string;
+  description?: string;
+  id?: string;
+  name?: string;
+};
+
+export type AppRecommendedContextResp = {
+  questions?: string;
+  recommendSwitch?: boolean;
+};
+
+export type AppResp = {
+  appGroupID?: string;
+  appGroupName?: string;
+  appImage?: string;
+  appStatus?: string;
+  createAt?: string;
+  datasetCount?: number;
+  description?: string;
+  h5?: string;
+  id?: string;
+  name?: string;
+  pc?: string;
+  workspaceID?: string;
+};
+
+export type AppWithPermission = {
+  appID?: string;
+  appImage?: number;
+  appStatus?: string;
+  /** 应用类型 */
+  appType?: number;
+  createdAt?: string;
+  description?: string;
+  groupID?: string;
+  /** 开场提问引导 */
+  guidance?: Map;
+  isAppAdmin?: boolean;
+  name?: string;
+  operator?: string;
+  /** 应用优先级 */
+  priority?: number;
+  prologue?: string;
+  recommendSwitch?: Bool;
+  /** 是否模版 */
+  templateStatus?: string;
+  updatedAt?: string;
+  workspaceID?: string;
+};
+
+export type AttentionDataCountResp = {
+  total?: number;
+};
+
+export type AttentionUser = {
+  email?: string;
+  isAttentionUser?: boolean;
+  phone?: string;
+  userID?: string;
+  userName?: string;
+};
+
+export type AttentionUserResp = {
+  email?: string;
+  lastMessageTime?: string;
+  phone?: string;
+  userID?: string;
+  userName?: string;
+};
+
+export type authAuthorizeUsingGetParams = {
+  /** 业务回调地址 */
+  redirect_uri: string;
+  /** 保持请求和回调的状态，授权成功后会回传该参数 */
+  state?: string;
+};
+
+export type authExchangeUsingGetParams = {
+  /** code */
+  code: string;
+  /** 业务回调地址 */
+  redirect_uri: string;
+};
+
+export type Bool = string;
+
+export type Chat = {
+  conversation_id?: string;
+  inputs?: Record<string, unknown>;
+  isIgnore?: boolean;
+  query?: string;
+  response_mode?: string;
+  user?: string;
+};
+
+export type ChatMessageReq = {
+  prompt?: string;
+  query?: string;
+};
+
+export type ConversationLogsResp = {
+  /** 消耗输出token */
+  AnswerTokensCount?: number;
+  appID?: string;
+  conversationID?: string;
+  conversationName?: string;
+  createdAt?: string;
+  messagesCount?: number;
+  /** 消耗输入token */
+  queryTokensCount?: number;
+  /** 消耗总token */
+  totalTokens?: number;
+  userID?: string;
+  userInfo?: User;
+};
+
+export type ConversationMsg = {
+  conversationId?: string;
+  createAt?: string;
+  name?: string;
+  userId?: string;
+};
+
+export type ConversationResp = {
+  /** 消耗输出token */
+  AnswerTokensCount?: number;
+  appID?: string;
+  appName?: string;
+  conversationID?: string;
+  conversationName?: string;
+  createdAt?: string;
+  lastMessagesTime?: string;
+  messagesCount?: number;
+  /** 消耗输入token */
+  queryTokensCount?: number;
+  /** 消耗总token */
+  totalTokens?: number;
+  userID?: string;
+  userInfo?: User;
+};
+
+export type CopyAppReq = {
+  appID?: string;
+  workspaceID?: string;
+};
+
+export type CreateApiTokenRESP = {
+  token?: string;
+};
+
+export type CreateAppReq = {
+  description?: string;
+  guidance?: Guidances;
+  name?: string;
+  prologue?: string;
+};
+
+export type CreateAppReqV2 = {
+  appDescription?: string;
+  appGroupID?: string;
+  /** 提示查询 */
+  appGuidance?: Guidances;
+  appImage?: string;
+  appName?: string;
+  /** 开场白 */
+  appPrologue?: string;
+  historyLimit?: number;
+  modelConfigs?: ModelConfigsMap;
+  prePrompt?: string;
+  providerId?: string;
+};
+
+export type CreateAttentionReq = {
+  followeeUserIDList?: string[];
+  iamID?: string;
+};
+
+export type CreateFeedbacksResp = object;
+
+export type CreateSharePathRESP = {
+  path?: string;
+};
+
+export type Data = {
+  appkey?: string;
+  appsecret?: string;
+  /** 0-未开启，1-开启 */
+  state?: number;
+  url?: string;
+  wxExtra?: WxExtra;
+};
+
+export type DatasetData = {
+  author?: string;
+  description?: string;
+  docCount?: number;
+  document_count?: number;
+  id?: string;
+  name?: string;
+  permission?: string;
+  state?: string;
+  uuid?: string;
+  word_count?: number;
+};
+
+export type DeleteAttentionReq = {
+  followeeUserIDList?: string[];
+  iamID?: string;
+};
+
+export type DeleteFeedbacksResp = object;
+
+export type DeleteMemberBody = {
+  /** 用户id */
+  userID?: string;
+};
+
+export type DeleteResp = {
+  msg?: string;
+};
+
+export type EmptyObject = object;
+
+export type ErrorResp = {
+  msg?: string;
+  type?: Record<string, unknown>;
+};
+
+export type ExchangeTokenRESP = {
+  /** 访问令牌 */
+  access_token?: string;
+  /** 访问令牌过期时间 */
+  expires_in?: string;
+  /** 刷新令牌过期时间 */
+  refresh_expires_in?: string;
+  /** 刷新令牌 */
+  refresh_token?: string;
+  /** 令牌类型 */
+  token_type?: string;
+};
+
+export type Feedback = {
+  /** 评论 */
+  comment?: string;
+  conversation_id?: string;
+  createdAt?: string;
+  message_id?: string;
+  /** like/unlike */
+  rating?: string;
+  /** 打分 */
+  score?: number;
+  updatedAt?: string;
+};
+
+export type FeedbacksReqBody = {
+  /** 评论 */
+  comment?: string;
+  conversation_id?: string;
+  /** like/unlike */
+  rating?: string;
+  /** 分数1-10 */
+  score?: number;
+};
+
+export type FilestreamResp = {
+  conversation_id?: string;
+};
+
+export type GetApiTokenByRandomPathRESP = {
+  apiTokenID?: string;
+  appID?: string;
+  appName?: string;
+  createdAt?: string;
+  recommendedContext?: AppRecommendedContext[];
+  switchRecommendedContext?: boolean;
+  switchRecommendedQuestion?: boolean;
+  token?: string;
+  updatedAt?: string;
+};
+
+export type GetAppKeyReq = {
+  appid: string;
+  /** wjl,dingding,feishu,wxa,wx */
+  type: string;
+};
+
+export type GetAttentionDataCountReq = {
+  appIDList?: string[];
+  iamID?: string;
+  userID?: string;
+};
+
+export type GetImagePreSignedUrlResp = {
+  appImage?: string;
+  preSignedPutUrl?: string;
+};
+
+export type Guidances = {
+  items?: string[];
+};
+
+export type HistoryInfo = {
+  /** like/unlike */
+  Rating?: string;
+  answer?: string;
+  answerToken?: number;
+  /** 评论 */
+  comment?: string;
+  createAt?: string;
+  format?: string[];
+  messageId?: string;
+  query?: string;
+  queryToken?: number;
+  /** 打分 */
+  score?: number;
+  totalToken?: number;
+};
+
+export type IAMUserInfo = {
+  /** 创建时间 */
+  createdTime?: string;
+  /** Cid         string `json:"cid"` */
+  email?: string;
+  /** 用户id */
+  id?: string;
+  idpId?: string;
+  /** 是否iam管理员 */
+  isAdmin?: boolean;
+  isAppAdmin?: boolean;
+  /** 是否罗克佳华人员 */
+  isRkUser?: boolean;
+  /** 是否超级管理员 */
+  isSuperUser?: boolean;
+  isSystemAdmin?: boolean;
+  /** Deleted     int32  `json:"deleted"`     // 逻辑删除 */
+  lastTime?: string;
+  /** 登录名 */
+  loginName?: string;
+  /** 消息类型 */
+  msgType?: number;
+  /** 电话 */
+  phone?: string;
+  /** 罗克佳华用户账号 */
+  rkUserCard?: string;
+  /** 个性签名 */
+  sign?: string;
+  /** 状态：1可用；0未激活；-1禁用 */
+  status?: number;
+  /** 修改时间 */
+  updatedTime?: string;
+  /** 用户类型 */
+  useType?: string;
+  /** 用户名 */
+  userName?: string;
+  wechatAppId?: string;
+  wechatSwitch?: boolean;
+  wechatgzhSwitch?: boolean;
+};
+
+export type ListAllAttentionUser = {
+  data?: AttentionUser[];
+  total?: number;
+};
+
+export type ListAppDatasetConfigResp = {
+  data?: AppDatasetConfig[];
+  total?: number;
+};
+
+export type ListAppDatasets = {
+  Data?: AppDatasets[];
+  total?: number;
+};
+
+export type ListAppResp = {
+  data?: AppResp[];
+  total?: number;
+};
+
+export type ListAttentionConversationReq = {
+  appIDList?: string[];
+  iamID?: string;
+  offset?: number;
+  size?: number;
+  userID?: string;
+};
+
+export type ListAttentionUserResp = {
+  data?: AttentionUserResp[];
+  total?: number;
+};
+
+export type ListConversationLogsResp = {
+  data?: ConversationLogsResp[];
+  total?: number;
+};
+
+export type ListConversationResp = {
+  data?: ConversationResp[];
+  total?: number;
+};
+
+export type ListDatasetsResp = {
+  data?: DatasetData[];
+  has_more?: boolean;
+  offset?: number;
+  size?: number;
+  total?: number;
+};
+
+export type ListFeedbacksResp = {
+  data?: Feedback[];
+  total?: number;
+};
+
+export type ListMemberRESP = {
+  data?: MemberWithRoleData[];
+  total?: number;
+};
+
+export type ListProviderResp = {
+  data?: ProviderResp[];
+  total?: number;
+};
+
+export type ListUserWithAppRESP = {
+  data?: UserWithAppData[];
+  total?: number;
+};
+
+export type ListWorkspaceGroup = {
+  data?: WorkspaceGroup[];
+};
+
+export type ListWorkspacePermissions = {
+  data?: WorkspacePermissions[];
+  total?: number;
+};
+
+export type Map = object;
+
+export type MemberBody = {
+  /** 角色(system_admin-系统管理员;system_user-系统管普通用户;app_admin-应用管理员;app_user-应用普通用户) */
+  role?: RbacRole;
+  /** 用户id */
+  userID?: string;
+};
+
+export type MemberWithRoleData = {
+  /** 应用角色 */
+  appRole?: RbacRole;
+  createdAt?: string;
+  email?: string;
+  idpID?: string;
+  /** 是否是app管理员 */
+  isAppAdmin?: boolean;
+  /** 是否是系统管理员 */
+  isSystemAdmin?: boolean;
+  operator?: string;
+  phone?: string;
+  /** 角色(系统管理员、系统普通用户) */
+  role?: RbacRole;
+  updatedAt?: string;
+  /** iam 用户id */
+  userID?: string;
+  userName?: string;
+};
+
+export type MessagesCountResp = {
+  /** 请求消耗token */
+  messagesCount?: number;
+  time?: string;
+};
+
+export type MessagesTokenResp = {
+  /** 回答消耗token */
+  answerToken?: number;
+  /** 请求消耗token */
+  queryToken?: number;
+  time?: string;
+  totalToken?: number;
+};
+
+export type ModelConfigsMap = {
+  /** 模型(ERNIE-Bot-4;ERNIE-Bot;ERNIE-Bot-turbo;gpt-3.5-turbo-16k;gpt-4-1106-preview) */
+  model_type?: string;
+  /** 通过对已生成的token增加惩罚，减少重复生成的现象。取值范围：[1.0, 2.0] */
+  penalty_score?: number;
+  /** 较高的数值会使输出更加随机，而较低的数值会使其更加集中和确定。默认0.95，范围 (0, 1.0] */
+  temperature?: number;
+  /** tools call */
+  tools_call?: boolean;
+  /** 影响输出文本的多样性，取值越大，生成文本的多样性越强。取值范围 [0, 1.0] */
+  top_p?: number;
+};
+
+export type ModelConfigsMap2 = {
+  /** 模型(ERNIE-Bot-4;ERNIE-Bot;ERNIE-Bot-turbo;gpt-3.5-turbo-16k;gpt-4-1106-preview) */
+  model_type?: string;
+  /** 通过对已生成的token增加惩罚，减少重复生成的现象。取值范围：[1.0, 2.0] */
+  penalty_score?: number;
+  /** 较高的数值会使输出更加随机，而较低的数值会使其更加集中和确定。默认0.95，范围 (0, 1.0] */
+  temperature?: number;
+  tools_call?: boolean;
+  /** 影响输出文本的多样性，取值越大，生成文本的多样性越强。取值范围 [0, 1.0] */
+  top_p?: number;
+};
+
+export enum Permission {
+  'read_only' = 'read_only',
+  'operation' = 'operation',
+  'no_permission' = 'no_permission',
+}
+
+export type IPermission = keyof typeof Permission;
+
+export type ProviderResp = {
+  /** 名字 */
+  name?: string;
+  providerID?: string;
+  subType?: string[];
+  /** 类型 */
+  type?: ProviderType;
+};
+
+export enum ProviderType {
+  'openai' = 'openai',
+  'spark' = 'spark',
+  'wenxin' = 'wenxin',
+  'rockai' = 'rockai',
+}
+
+export type IProviderType = keyof typeof ProviderType;
+
+export type QueryTokenResp = {
+  /** 消耗输出token */
+  AnswerTokensCount?: number;
+  /** 消耗输入token */
+  queryTokensCount?: number;
+  /** 消耗总token */
+  totalTokens?: number;
+};
+
+export type QuestionRecommendReq = {
+  conversation_id?: string;
+  /** Query          string `json:"query"`Answer         string `json:"answer"` */
+  user?: string;
+};
+
+export enum RbacRole {
+  'system_admin' = 'system_admin',
+  'system_user' = 'system_user',
+  'app_admin' = 'app_admin',
+  'app_user' = 'app_user',
+}
+
+export type IRbacRole = keyof typeof RbacRole;
+
+export type RecommendQuestionAndContext = {
+  contexts?: AppRecommendedContext[];
+  questions?: string[];
+};
+
+export type RefreshTokenBody = {
+  refreshToken?: string;
+};
+
+export type ReleaseDiscoverReq = {
+  alterAppID?: string;
+  /** 应用类型 */
+  appType?: number;
+  /** 是否作为模版 TRUE:作为模版；FALSE:不作为 */
+  templateStatus?: string;
+};
+
+export type ResponseData = {
+  answer?: string;
+  conversation_id?: string;
+  created_at?: number;
+  event?: string;
+  id?: string;
+  trace_id?: string;
+};
+
+export type ResponseRecommendData = {
+  answer?: string;
+  conversation_id?: string;
+  created_at?: number;
+  event?: string;
+  id?: string;
+  trace_id?: string;
+};
+
+export type SpeechToTextResp = {
+  /** 转化的结果 */
+  text?: string;
+};
+
+export type TextToSpeechReq = {
+  /** 需要转的文字 */
+  text?: string;
+};
+
+export type UpdateAppGroup = {
+  appGroupID?: string;
+};
+
+export type UpdateAppKeyStateReq = {
+  appid: string;
+  /** 0-关闭，1-启动 */
+  state?: number;
+  /** wjl,dingding,feishu */
+  type: string;
+};
+
+export type UpdateAppReq = {
+  appDescription?: string;
+  appGroupID?: string;
+  appImage?: string;
+  appName?: string;
+};
+
+export type UpdateAppReqV2 = {
+  appGroupID?: string;
+  /** 提示查询 */
+  appGuidance?: Guidances;
+  /** 开场白 */
+  appPrologue?: string;
+  /** 推荐内容 */
+  appRecommendedContexts?: AppRecommendedContext[];
+  historyLimit?: number;
+  modelConfigs?: ModelConfigsMap;
+  prePrompt?: string;
+  providerId?: string;
+  recommendSwitch?: boolean;
+};
+
+export type UpdateAppStatusReq = {
+  /** PUBLIC:公开；PRIVATE:私有 */
+  appStatus?: string;
+};
+
+export type UpdateUserRoleBody = {
+  /** 角色(system_admin-系统管理员;system_user-系统管普通用户;app_admin-应用管理员;app_user-应用普通用户) */
+  role?: RbacRole;
+  /** 用户id */
+  userID?: string;
+};
+
+export type User = {
+  createdAt?: string;
+  email?: string;
+  idpID?: string;
+  operator?: string;
+  phone?: string;
+  /** 角色(系统管理员、系统普通用户) */
+  role?: RbacRole;
+  updatedAt?: string;
+  /** iam 用户id */
+  userID?: string;
+  userName?: string;
+};
+
+export type UserWithAppData = {
+  appWithPermissionList?: AppWithPermission[];
+  createdAt?: string;
+  email?: string;
+  idpID?: string;
+  isSystemAdmin?: boolean;
+  operator?: string;
+  phone?: string;
+  /** 角色(系统管理员、系统普通用户) */
+  role?: RbacRole;
+  updatedAt?: string;
+  /** iam 用户id */
+  userID?: string;
+  userName?: string;
+};
+
+export type v1ApiAppAppIdApiTokenUsingGetParams = {
+  /** 应用id */
+  appID: string;
+  /** 每页大小 */
+  size: number;
+  /** 分页 */
+  offset: number;
+};
+
+export type v1ApiAppAppIdApiTokenUsingPostParams = {
+  /** 应用id */
+  appID: string;
+};
+
+export type v1ApiAppAppIdDatasetConfigsUsingDeleteParams = {
+  /** 应用id */
+  appID: string;
+  /** 应用知识库配置id */
+  appDatasetConfigID: string;
+};
+
+export type v1ApiAppAppIdDatasetConfigsUsingGetParams = {
+  /** 应用id */
+  appID: string;
+};
+
+export type v1ApiAppAppIdDatasetConfigsUsingPostParams = {
+  /** 应用id */
+  appID: string;
+};
+
+export type v1ApiAppAppIdDatasetConfigsUsingPutParams = {
+  /** 应用id */
+  appID: string;
+};
+
+export type v1ApiAppAppIdDatasetsListUsingGetParams = {
+  /** 应用id */
+  appID: string;
+  /** size */
+  size?: number;
+  /** offset */
+  offset?: number;
+};
+
+export type v1ApiAppAppIdDatasetsUsingDeleteParams = {
+  /** 应用id */
+  appID: string;
+  /** 数据集id */
+  datasetID: string;
+};
+
+export type V1ApiAppAppIdDatasetsUsingPostBody = API.AppDatasets[];
+
+export type v1ApiAppAppIdDatasetsUsingPostParams = {
+  /** 应用id */
+  appID: string;
+};
+
+export type v1ApiAppAppIdDetailsUsingGetParams = {
+  /** 应用id */
+  appID: string;
+};
+
+export type v1ApiAppAppIdHourlyMessagesUsingGetParams = {
+  /** 应用id */
+  appID: string;
+  /** 开始时间，秒级时间戳 */
+  starTimestamp?: number;
+  /** 结束时间，秒级时间戳 */
+  endTimestamp?: number;
+};
+
+export type v1ApiAppAppIdHourlyTokenUsingGetParams = {
+  /** 应用id */
+  appID: string;
+  /** 开始时间，秒级时间戳 */
+  starTimestamp?: number;
+  /** 结束时间，秒级时间戳 */
+  endTimestamp?: number;
+};
+
+export type v1ApiAppAppIdLogsConversationIdMessagesUsingGetParams = {
+  /** 应用id */
+  appID: string;
+  /** 会话id */
+  conversationID: string;
+};
+
+export type v1ApiAppAppIdLogsUsingGetParams = {
+  /** 应用id */
+  appID: string;
+  /** 会话id */
+  conversationID?: string;
+  /** 结束时间 */
+  endTimestamp?: number;
+  /** 页数1开始 */
+  pageOffset?: number;
+  /** 每页数量 */
+  pageSize?: number;
+  /** 模型id */
+  providerID?: string;
+  /** 开始时间 */
+  starTimestamp?: number;
+  /** 用户id */
+  userID?: string;
+};
+
+export type v1ApiAppAppIdMemberRoleUsingPutParams = {
+  /** 应用id */
+  appID: string;
+};
+
+export type v1ApiAppAppIdMemberUsingDeleteParams = {
+  /** 应用id */
+  appID: string;
+};
+
+export type v1ApiAppAppIdMemberUsingGetParams = {
+  /** 应用id */
+  appID: string;
+  /** 每页大小 */
+  size: number;
+  /** 分页 */
+  offset: number;
+};
+
+export type v1ApiAppAppIdMemberUsingPostParams = {
+  /** 应用id */
+  appID: string;
+};
+
+export type v1ApiAppAppIdMessagesUsingGetParams = {
+  /** 应用id */
+  appID: string;
+  /** 开始时间，秒级时间戳 */
+  starTimestamp?: number;
+  /** 结束时间，秒级时间戳 */
+  endTimestamp?: number;
+};
+
+export type v1ApiAppAppIdModelConfigsUsingPostParams = {
+  /** 应用id */
+  appID: string;
+};
+
+export type v1ApiAppAppIdModelConfigsUsingPutParams = {
+  /** 应用id */
+  appID: string;
+};
+
+export type v1ApiAppAppIdModelPromptUsingPostParams = {
+  /** 应用id */
+  appID: string;
+};
+
+export type v1ApiAppAppIdOpenApiDeleteUsingDeleteParams = {
+  /** 应用id */
+  appID: string;
+};
+
+export type v1ApiAppAppIdPluginUsingPutParams = {
+  /** 应用id */
+  appID: string;
+};
+
+export type v1ApiAppAppIdRecommendedContextUsingGetParams = {
+  /** 应用id */
+  appID: string;
+};
+
+export type v1ApiAppAppIdRecommendedContextUsingPostParams = {
+  /** 应用id */
+  appID: string;
+};
+
+export type v1ApiAppAppIdShareUsingPutParams = {
+  /** 应用id */
+  appID: string;
+  /** 是否h5 */
+  isH5?: boolean;
+};
+
+export type v1ApiAppAppIdTokenUsingGetParams = {
+  /** 应用id */
+  appID: string;
+  /** 开始时间，秒级时间戳 */
+  starTimestamp?: number;
+  /** 结束时间，秒级时间戳 */
+  endTimestamp?: number;
+};
+
+export type v1ApiAppAppIdUpdateStatusUsingPutParams = {
+  /** 应用id */
+  appID: string;
+};
+
+export type v1ApiAppAppIdUpdateUsingPutParams = {
+  /** 应用id */
+  appID: string;
+};
+
+export type v1ApiAppH5ShareApiTokenUsingGetParams = {
+  /** 分享的随机path */
+  randomPath: string;
+};
+
+export type v1ApiAppIdCostUsingPostParams = {
+  /** 应用id */
+  appID: string;
+  /** 会话id */
+  conversationID?: string;
+  /** 结束时间 */
+  endTimestamp?: number;
+  /** 页数1开始 */
+  pageOffset?: number;
+  /** 每页数量 */
+  pageSize?: number;
+  /** 模型id */
+  providerID?: string;
+  /** 开始时间 */
+  starTimestamp?: number;
+  /** 用户id */
+  userID?: string;
+};
+
+export type v1ApiAppListPrivateUsingGetParams = {
+  /** 是否只查看会话过的应用 */
+  onlyConversations?: boolean;
+};
+
+export type v1ApiAppListPublicUsingGetParams = {
+  /** 是否只查看会话过的应用 */
+  onlyConversations?: boolean;
+};
+
+export type v1ApiAppShareApiTokenUsingGetParams = {
+  /** 分享的随机path */
+  randomPath: string;
+};
+
+export type v1ApiAttentionAppListUsingGetParams = {
+  /** IAM用户id */
+  iamID: string;
+};
+
+export type v1ApiAttentionMessagesHistoryUsingGetParams = {
+  /** IAM ID */
+  iamID: string;
+  /** 应用id */
+  appID: string;
+  /** 会话id */
+  conversationID: string;
+};
+
+export type v1ApiAttentionUserAllUsingGetParams = {
+  /** 登陆用户IAMID */
+  iamID?: string;
+  /** 用户id */
+  isAttention?: boolean;
+  /** 名字或电话，模糊匹配 */
+  nameOrPhone?: string;
+  offset?: number;
+  /** 电话号码 */
+  phone?: string;
+  size?: number;
+  /** 用户id */
+  userID?: string;
+  /** 用户名字用于搜索 */
+  userName?: string;
+};
+
+export type v1ApiAttentionUserListUsingPostParams = {
+  /** IAM ID */
+  iamID: string;
+  /** 默认10 */
+  size?: number;
+  /** 默认0 */
+  offset?: number;
+};
+
+export type v1ApiConversationsConversationIdHistoryUsingDeleteParams = {
+  /** 会话id */
+  conversation_id: string;
+  /** 聊天信息id */
+  message_id: string;
+};
+
+export type v1ApiConversationsConversationIdHistoryUsingGetParams = {
+  /** 会话id */
+  conversation_id: string;
+};
+
+export type v1ApiConversationsUsingDeleteParams = {
+  /** 会话id */
+  conversation_id: string;
+};
+
+export type v1ApiConversationsUsingGetParams = {
+  /** 用户id,空值不返回 */
+  user_id?: string;
+};
+
+export type v1ApiFeedbacksMessageIdUsingDeleteParams = {
+  /** 消息id */
+  message_id: string;
+  /** 会话id */
+  conversation_id: string;
+};
+
+export type v1ApiFeedbacksMessageIdUsingPostParams = {
+  /** 消息id */
+  message_id: string;
+};
+
+export type v1ApiFeedbacksUsingGetParams = {
+  conversation_ID?: string;
+  message_ID?: string;
+  /** 页数1开始 */
+  pageOffset?: number;
+  /** 每页数量 */
+  pageSize?: number;
+};
+
+export type V1ApiFileUsingPostBody = {
+  /** 文件 */
+  file: string;
+};
+
+export type v1ApiFileUsingPostParams = {
+  /** 会话id */
+  conversation_id?: string;
+  /** user id */
+  user_id?: string;
+};
+
+export type v1ApiIamAccountUsingGetParams = {
+  /** openId */
+  openId: string;
+};
+
+export type v1ApiProviderListUsingGetParams = {
+  /** size */
+  size?: number;
+  /** offset */
+  offset?: number;
+};
+
+export type v1ApiRobotWorkspaceIdAppkeyStateUsingPostParams = {
+  /** 空间ID */
+  workspaceID: string;
+};
+
+export type v1ApiRobotWorkspaceIdAppkeyUsingDeleteParams = {
+  /** 空间ID */
+  workspaceID: string;
+};
+
+export type v1ApiRobotWorkspaceIdAppkeyUsingGetParams = {
+  /** 空间ID */
+  workspaceID: string;
+  appid: string;
+  /** wjl,dingding,feishu,wxa,wx */
+  type: string;
+};
+
+export type v1ApiRobotWorkspaceIdAppkeyUsingPostParams = {
+  /** 空间ID */
+  workspaceID: string;
+};
+
+export type V1ApiSpeechToTextUsingPostBody = {
+  /** 文件 */
+  file: string;
+};
+
+export type v1ApiUserInfoUsingGetParams = {
+  /** 应用id */
+  appID?: string;
+};
+
+export type v1ApiUserUsingGetParams = {
+  offset?: number;
+  /** 电话号码 */
+  phone?: string;
+  size?: number;
+  /** 用户id */
+  userID?: string;
+  /** 用户名字用于搜索 */
+  userName?: string;
+};
+
+export type v2ApiAppAppIdDetailsUsingGetParams = {
+  /** 应用id */
+  appID: string;
+};
+
+export type v2ApiAppAppIdUpdateUsingPostParams = {
+  /** 应用id */
+  appID: string;
+};
+
+export type v2ApiAppListUsingGetParams = {
+  /** 是否只查看会话过的应用 */
+  onlyConversations?: boolean;
+};
+
+export type v2ApiAppShareApiTokenUsingGetParams = {
+  /** 分享的随机path */
+  randomPath: string;
+};
+
+export type v2ApiChatMessagesMessagesCountUsingGetParams = {
+  /** 是否查询人均,默认false */
+  isPerPerson?: boolean;
+  /** 开始时间，秒级时间戳 */
+  starTimestamp?: number;
+  /** 结束时间，秒级时间戳 */
+  endTimestamp?: number;
+};
+
+export type V2ApiFileUsingPostBody = {
+  /** 要上传的文件 */
+  files: unknown[];
+};
+
+export type v2ApiFileUsingPostParams = {
+  /** 会话id */
+  conversation_id?: string;
+  /** user id */
+  user_id?: string;
+};
+
+export type v2ApiWorkspacesDefaultUsingPostParams = {
+  /** 空间ID */
+  workspaceID: string;
+};
+
+export type v2ApiWorkspacesRecommendedMessageIdDetailsUsingGetParams = {
+  /** 消息id */
+  messageId: string;
+};
+
+export type V2ApiWorkspacesWorkspaceIdAppAppIdDatasetsJoinUsingPostBody =
+  API.AppDatasets[];
+
+export type v2ApiWorkspacesWorkspaceIdAppAppIdDatasetsJoinUsingPostParams = {
+  /** 空间ID */
+  workspaceID: string;
+  /** 应用id */
+  appID: string;
+};
+
+export type v2ApiWorkspacesWorkspaceIdAppAppIdDatasetsUsingDeleteParams = {
+  /** 应用id */
+  appID: string;
+  /** 空间ID */
+  workspaceID: string;
+  /** 数据集id */
+  datasetID: string;
+};
+
+export type v2ApiWorkspacesWorkspaceIdAppAppIdDetailsUsingGetParams = {
+  /** 空间ID */
+  workspaceID: string;
+  /** 应用id */
+  appID: string;
+};
+
+export type v2ApiWorkspacesWorkspaceIdAppAppIdHourlyMessagesUsingGetParams = {
+  /** 空间ID */
+  workspaceID: string;
+  /** 应用id */
+  appID: string;
+  /** 开始时间，秒级时间戳 */
+  starTimestamp?: number;
+  /** 结束时间，秒级时间戳 */
+  endTimestamp?: number;
+};
+
+export type v2ApiWorkspacesWorkspaceIdAppAppIdHourlyTokenUsingGetParams = {
+  /** 空间ID */
+  workspaceID: string;
+  /** 应用id */
+  appID: string;
+  /** 开始时间，秒级时间戳 */
+  starTimestamp?: number;
+  /** 结束时间，秒级时间戳 */
+  endTimestamp?: number;
+};
+
+export type v2ApiWorkspacesWorkspaceIdAppAppIdLogsUsingGetParams = {
+  /** 应用id */
+  appID: string;
+  /** 空间ID */
+  workspaceID: string;
+  /** 会话id */
+  conversationID?: string;
+  /** 结束时间 */
+  endTimestamp?: number;
+  /** 页数1开始 */
+  pageOffset?: number;
+  /** 每页数量 */
+  pageSize?: number;
+  /** 模型id */
+  providerID?: string;
+  /** 开始时间 */
+  starTimestamp?: number;
+  /** 用户id */
+  userID?: string;
+};
+
+export type v2ApiWorkspacesWorkspaceIdAppAppIdMessagesUsingGetParams = {
+  /** 空间ID */
+  workspaceID: string;
+  /** 应用id */
+  appID: string;
+  /** 开始时间，秒级时间戳 */
+  starTimestamp?: number;
+  /** 结束时间，秒级时间戳 */
+  endTimestamp?: number;
+};
+
+export type v2ApiWorkspacesWorkspaceIdAppAppIdModelConfigsUsingPutParams = {
+  /** 应用id */
+  appID: string;
+  /** 空间ID */
+  workspaceID: string;
+};
+
+export type v2ApiWorkspacesWorkspaceIdAppAppIdPluginUsingGetParams = {
+  /** 应用id */
+  appID: string;
+  /** 空间ID */
+  workspaceID: string;
+};
+
+export type v2ApiWorkspacesWorkspaceIdAppAppIdTokenUsingGetParams = {
+  /** 应用id */
+  appID: string;
+  /** 开始时间，秒级时间戳 */
+  starTimestamp?: number;
+  /** 结束时间，秒级时间戳 */
+  endTimestamp?: number;
+};
+
+export type v2ApiWorkspacesWorkspaceIdAppAppIdUpdateStatusUsingPutParams = {
+  /** 空间ID */
+  workspaceID: string;
+  /** 应用id */
+  appID: string;
+};
+
+export type v2ApiWorkspacesWorkspaceIdAppAppIdUsingPostParams = {
+  /** 空间ID */
+  workspaceID: string;
+  /** 应用id */
+  appID: string;
+};
+
+export type v2ApiWorkspacesWorkspaceIdAppsAppIdBaseUsingPostParams = {
+  /** 应用id */
+  appID: string;
+  /** 空间ID */
+  workspaceID: string;
+};
+
+export type v2ApiWorkspacesWorkspaceIdAppsAppIdGroupUsingPostParams = {
+  /** 应用id */
+  appID: string;
+  /** 空间ID */
+  workspaceID: string;
+};
+
+export type v2ApiWorkspacesWorkspaceIdAppsAppIdUsingDeleteParams = {
+  /** 应用id */
+  appID: string;
+  /** 空间ID */
+  workspaceID: string;
+};
+
+export type v2ApiWorkspacesWorkspaceIdAppsUsingGetParams = {
+  /** 空间ID */
+  workspaceID: string;
+  /** 是否只查看会话过的应用 */
+  onlyConversations?: boolean;
+  /** 应用名，模糊查询 */
+  appName?: string;
+};
+
+export type v2ApiWorkspacesWorkspaceIdAppsUsingPostParams = {
+  /** 空间ID */
+  workspaceID: string;
+};
+
+export type v2ApiWorkspacesWorkspaceIdDatasetsUsingGetParams = {
+  /** 空间ID */
+  workspaceID: string;
+};
+
+export type v2ApiWorkspacesWorkspaceIdDatasetsUsingPostParams = {
+  /** 空间ID */
+  workspaceID: string;
+};
+
+export type v2ApiWorkspacesWorkspaceIdGroupsUsingGetParams = {
+  /** 空间ID */
+  workspaceID: string;
+};
+
+export type v2ApiWorkspacesWorkspaceIdGroupsUsingPostParams = {
+  /** 空间ID */
+  workspaceID: string;
+};
+
+export type v2ApiWorkspacesWorkspaceIdGroupsWorkspaceGroupIdUsingDeleteParams =
+  {
+    /** 空间ID */
+    workspaceID: string;
+    /** 分组ID */
+    workspaceGroupID: string;
+  };
+
+export type v2ApiWorkspacesWorkspaceIdGroupsWorkspaceGroupIdUsingPostParams = {
+  /** 空间ID */
+  workspaceID: string;
+  /** 分组ID */
+  workspaceGroupID: string;
+};
+
+export type v2ApiWorkspacesWorkspaceIdPermissionsUsingGetParams = {
+  /** 空间ID */
+  workspaceID: string;
+};
+
+export type v2ApiWorkspacesWorkspaceIdUsersUsingGetParams = {
+  /** 空间ID */
+  workspaceID: string;
+};
+
+export type v2ApiWorkspacesWorkspaceIdUsersUsingPostParams = {
+  /** 空间ID */
+  workspaceID: string;
+};
+
+export type v2ApiWorkspacesWorkspaceIdUserUserIdUsingDeleteParams = {
+  /** 空间ID */
+  workspaceID: string;
+  /** userID */
+  userID: string;
+};
+
+export type v2ApiWorkspacesWorkspaceIdUsingDeleteParams = {
+  /** 空间ID */
+  workspaceID: string;
+};
+
+export type v2ApiWorkspacesWorkspaceIdUsingPostParams = {
+  /** 空间ID */
+  workspaceID: string;
+};
+
+export type WJLAccount = {
+  code?: number;
+  data?: {
+    avatar?: string;
+    iamUserId?: string;
+    nameInTeam?: string;
+    nickName?: string;
+    phone?: string;
+    realNameFlag?: number;
+  };
+  msg?: string;
+  success?: boolean;
+};
+
+export type WorkspaceGroup = {
+  createdAt?: string;
+  /** 分组名 */
+  name?: string;
+  updatedAt?: string;
+  workspaceGroupID?: string;
+  workspaceID?: string;
+};
+
+export type WorkspaceGroupReq = {
+  name?: string;
+};
+
+export type WorkspaceListResp = {
+  data?: WorkspaceResp[];
+  total?: number;
+};
+
+export type WorkspacePermissions = {
+  createdAt?: string;
+  email?: string;
+  idpID?: string;
+  operator?: string;
+  /** 枚举read_only（只读）、operation（操作） */
+  permission?: Permission;
+  phone?: string;
+  /** 角色(系统管理员、系统普通用户) */
+  role?: RbacRole;
+  updatedAt?: string;
+  /** iam 用户id */
+  userID?: string;
+  userName?: string;
+};
+
+export type WorkspaceReq = {
+  /** 描述 */
+  description?: string;
+  /** 空间名 */
+  name?: string;
+};
+
+export type WorkspaceResp = {
+  /** 空间描述 */
+  description?: string;
+  /** 空间名 */
+  name?: string;
+  /** 空间ID */
+  workspaceID?: string;
+};
+
+export enum WorkspaceRole {
+  'workspace_admin' = 'workspace_admin',
+  'workspace_user' = 'workspace_user',
+}
+
+export type IWorkspaceRole = keyof typeof WorkspaceRole;
+
+export type WorkspaceUser = {
+  /** workspace_admin空间超管用户；workspace_user空间普通用户 */
+  role?: WorkspaceRole;
+  /** 用户id */
+  userID?: string;
+};
+
+export type WxExtra = {
+  encodingAESKey?: string;
+  token?: string;
+};
+/* eslint-disable */
+// @ts-ignore
+import { request } from 'axios';
+
+import * as API from './types';
+
+/** UpdateAppKeyState 为应用获取各种类型机器人状态 POST /llmops/v1/api/robot/${param0}/appkey/state */
+export async function v1ApiRobotWorkspaceIdAppkeyStateUsingPost({
+  params,
+  body,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.v1ApiRobotWorkspaceIdAppkeyStateUsingPostParams;
+  body: API.UpdateAppKeyStateReq;
+  options?: { [key: string]: unknown };
+}) {
+  const { workspaceID: param0, ...queryParams } = params;
+
+  return request<unknown>(`/llmops/v1/api/robot/${param0}/appkey/state`, {
+    method: 'POST',
+    params: { ...queryParams },
+    data: body,
+    ...(options || {}),
+  });
+}
+/* eslint-disable */
+// @ts-ignore
+import { request } from 'axios';
+
+import * as API from './types';
+
+/** ListUser 系统全局用户列表 GET /llmops/v1/api/user */
+export async function v1ApiUserUsingGet({
+  params,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.v1ApiUserUsingGetParams;
+  options?: { [key: string]: unknown };
+}) {
+  return request<API.ListUserWithAppRESP>('/llmops/v1/api/user', {
+    method: 'GET',
+    params: {
+      // size has a default value: 10
+      size: '10',
+
+      ...params,
+    },
+    ...(options || {}),
+  });
+}
+
+/** GetUserInfoByToken 获取iam用户数据 GET /llmops/v1/api/user/info */
+export async function v1ApiUserInfoUsingGet({
+  params,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.v1ApiUserInfoUsingGetParams;
+  options?: { [key: string]: unknown };
+}) {
+  return request<API.IAMUserInfo>('/llmops/v1/api/user/info', {
+    method: 'GET',
+    params: {
+      ...params,
+    },
+    ...(options || {}),
+  });
+}
+
+/** UpdateUserRole 更新用户角色 PUT /llmops/v1/api/user/role */
+export async function v1ApiUserRoleUsingPut({
+  body,
+  options,
+}: {
+  body: API.UpdateUserRoleBody;
+  options?: { [key: string]: unknown };
+}) {
+  return request<API.EmptyObject>('/llmops/v1/api/user/role', {
+    method: 'PUT',
+    data: body,
+    ...(options || {}),
+  });
+}
+/* eslint-disable */
+// @ts-ignore
+import { request } from 'axios';
+
+import * as API from './types';
+
+/** GetWorkspaceList 空间列表 GET /llmops/v2/api/workspaces */
+export async function v2ApiWorkspacesUsingGet({
+  options,
+}: {
+  options?: { [key: string]: unknown };
+}) {
+  return request<API.WorkspaceListResp>('/llmops/v2/api/workspaces', {
+    method: 'GET',
+    ...(options || {}),
+  });
+}
+
+/** CreateWorkspace 创建空间 POST /llmops/v2/api/workspaces */
+export async function v2ApiWorkspacesUsingPost({
+  body,
+  options,
+}: {
+  body: API.WorkspaceReq;
+  options?: { [key: string]: unknown };
+}) {
+  return request<unknown>('/llmops/v2/api/workspaces', {
+    method: 'POST',
+    data: body,
+    ...(options || {}),
+  });
+}
+
+/** GetDefaultWorkspace 获取用户默认空间 GET /llmops/v2/api/workspaces-default */
+export async function v2ApiWorkspacesDefaultUsingGet({
+  options,
+}: {
+  options?: { [key: string]: unknown };
+}) {
+  return request<API.WorkspaceResp>('/llmops/v2/api/workspaces-default', {
+    method: 'GET',
+    ...(options || {}),
+  });
+}
+
+/** 切换默认空间 POST /llmops/v2/api/workspaces-default */
+export async function v2ApiWorkspacesDefaultUsingPost({
+  params,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.v2ApiWorkspacesDefaultUsingPostParams;
+  options?: { [key: string]: unknown };
+}) {
+  return request<unknown>('/llmops/v2/api/workspaces-default', {
+    method: 'POST',
+    params: {
+      ...params,
+    },
+    ...(options || {}),
+  });
+}
+
+/** UpdateWorkspace 更新空间 POST /llmops/v2/api/workspaces/${param0} */
+export async function v2ApiWorkspacesWorkspaceIdUsingPost({
+  params,
+  body,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.v2ApiWorkspacesWorkspaceIdUsingPostParams;
+  body: API.WorkspaceReq;
+  options?: { [key: string]: unknown };
+}) {
+  const { workspaceID: param0, ...queryParams } = params;
+
+  return request<unknown>(`/llmops/v2/api/workspaces/${param0}`, {
+    method: 'POST',
+    params: { ...queryParams },
+    data: body,
+    ...(options || {}),
+  });
+}
+
+/** DeleteWorkspace 删除空间 DELETE /llmops/v2/api/workspaces/${param0} */
+export async function v2ApiWorkspacesWorkspaceIdUsingDelete({
+  params,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.v2ApiWorkspacesWorkspaceIdUsingDeleteParams;
+  options?: { [key: string]: unknown };
+}) {
+  const { workspaceID: param0, ...queryParams } = params;
+
+  return request<unknown>(`/llmops/v2/api/workspaces/${param0}`, {
+    method: 'DELETE',
+    params: { ...queryParams },
+    ...(options || {}),
+  });
+}
+
+/** CreateDatasetsJoinV2 创建 app 数据集关联 POST /llmops/v2/api/workspaces/${param0}/app/${param1}/datasets/join */
+export async function v2ApiWorkspacesWorkspaceIdAppAppIdDatasetsJoinUsingPost({
+  params,
+  body,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.v2ApiWorkspacesWorkspaceIdAppAppIdDatasetsJoinUsingPostParams;
+  body: API.V2ApiWorkspacesWorkspaceIdAppAppIdDatasetsJoinUsingPostBody;
+  options?: { [key: string]: unknown };
+}) {
+  const { workspaceID: param0, appID: param1, ...queryParams } = params;
+
+  return request<unknown>(
+    `/llmops/v2/api/workspaces/${param0}/app/${param1}/datasets/join`,
+    {
+      method: 'POST',
+      params: { ...queryParams },
+      data: body,
+      ...(options || {}),
+    }
+  );
+}
+
+/** GetWorkspaceDatasetsList 空间下数据集列表 GET /llmops/v2/api/workspaces/${param0}/datasets */
+export async function v2ApiWorkspacesWorkspaceIdDatasetsUsingGet({
+  params,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.v2ApiWorkspacesWorkspaceIdDatasetsUsingGetParams;
+  options?: { [key: string]: unknown };
+}) {
+  const { workspaceID: param0, ...queryParams } = params;
+
+  return request<API.ListAppDatasets>(
+    `/llmops/v2/api/workspaces/${param0}/datasets`,
+    {
+      method: 'GET',
+      params: { ...queryParams },
+      ...(options || {}),
+    }
+  );
+}
+
+/** CreateWorkspaceDatasets 创建空间下数据集 POST /llmops/v2/api/workspaces/${param0}/datasets */
+export async function v2ApiWorkspacesWorkspaceIdDatasetsUsingPost({
+  params,
+  body,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.v2ApiWorkspacesWorkspaceIdDatasetsUsingPostParams;
+  body: API.AppDataset;
+  options?: { [key: string]: unknown };
+}) {
+  const { workspaceID: param0, ...queryParams } = params;
+
+  return request<unknown>(`/llmops/v2/api/workspaces/${param0}/datasets`, {
+    method: 'POST',
+    params: { ...queryParams },
+    data: body,
+    ...(options || {}),
+  });
+}
+
+/** GetWorkspaceUserRole 查询空间用户权限 GET /llmops/v2/api/workspaces/${param0}/permissions */
+export async function v2ApiWorkspacesWorkspaceIdPermissionsUsingGet({
+  params,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.v2ApiWorkspacesWorkspaceIdPermissionsUsingGetParams;
+  options?: { [key: string]: unknown };
+}) {
+  const { workspaceID: param0, ...queryParams } = params;
+
+  return request<API.WorkspacePermissions>(
+    `/llmops/v2/api/workspaces/${param0}/permissions`,
+    {
+      method: 'GET',
+      params: { ...queryParams },
+      ...(options || {}),
+    }
+  );
+}
+
+/** DeleteWorkspaceUsers 删除空间下用户 DELETE /llmops/v2/api/workspaces/${param0}/user/${param1} */
+export async function v2ApiWorkspacesWorkspaceIdUserUserIdUsingDelete({
+  params,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.v2ApiWorkspacesWorkspaceIdUserUserIdUsingDeleteParams;
+  options?: { [key: string]: unknown };
+}) {
+  const { workspaceID: param0, userID: param1, ...queryParams } = params;
+
+  return request<unknown>(
+    `/llmops/v2/api/workspaces/${param0}/user/${param1}`,
+    {
+      method: 'DELETE',
+      params: { ...queryParams },
+      ...(options || {}),
+    }
+  );
+}
+
+/** GetWorkspaceUsers 查询空间下用户列表 GET /llmops/v2/api/workspaces/${param0}/users */
+export async function v2ApiWorkspacesWorkspaceIdUsersUsingGet({
+  params,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.v2ApiWorkspacesWorkspaceIdUsersUsingGetParams;
+  options?: { [key: string]: unknown };
+}) {
+  const { workspaceID: param0, ...queryParams } = params;
+
+  return request<API.ListWorkspacePermissions>(
+    `/llmops/v2/api/workspaces/${param0}/users`,
+    {
+      method: 'GET',
+      params: { ...queryParams },
+      ...(options || {}),
+    }
+  );
+}
+
+/** CreateOrUpdateWorkspaceUsers 添加或更新空间下用户角色 POST /llmops/v2/api/workspaces/${param0}/users */
+export async function v2ApiWorkspacesWorkspaceIdUsersUsingPost({
+  params,
+  body,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.v2ApiWorkspacesWorkspaceIdUsersUsingPostParams;
+  body: API.WorkspaceUser;
+  options?: { [key: string]: unknown };
+}) {
+  const { workspaceID: param0, ...queryParams } = params;
+
+  return request<unknown>(`/llmops/v2/api/workspaces/${param0}/users`, {
+    method: 'POST',
+    params: { ...queryParams },
+    data: body,
+    ...(options || {}),
+  });
+}
+/* eslint-disable */
+// @ts-ignore
+import { request } from 'axios';
+
+import * as API from './types';
+
+/** CopyApp 复制 app POST /llmops/v2/api/copy_apps */
+export async function v2ApiCopyAppsUsingPost({
+  body,
+  options,
+}: {
+  body: API.CopyAppReq;
+  options?: { [key: string]: unknown };
+}) {
+  return request<unknown>('/llmops/v2/api/copy_apps', {
+    method: 'POST',
+    data: body,
+    ...(options || {}),
+  });
+}
+
+/** UpdateAppV2.1 更新 app 信息 POST /llmops/v2/api/workspaces/${param0}/app/${param1} */
+export async function v2ApiWorkspacesWorkspaceIdAppAppIdUsingPost({
+  params,
+  body,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.v2ApiWorkspacesWorkspaceIdAppAppIdUsingPostParams;
+  body: API.UpdateAppReqV2;
+  options?: { [key: string]: unknown };
+}) {
+  const { workspaceID: param0, appID: param1, ...queryParams } = params;
+
+  return request<unknown>(`/llmops/v2/api/workspaces/${param0}/app/${param1}`, {
+    method: 'POST',
+    params: { ...queryParams },
+    data: body,
+    ...(options || {}),
+  });
+}
+
+/** GetAppDetailsV2.1 查询 app 详情 GET /llmops/v2/api/workspaces/${param0}/app/${param1}/details */
+export async function v2ApiWorkspacesWorkspaceIdAppAppIdDetailsUsingGet({
+  params,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.v2ApiWorkspacesWorkspaceIdAppAppIdDetailsUsingGetParams;
+  options?: { [key: string]: unknown };
+}) {
+  const { workspaceID: param0, appID: param1, ...queryParams } = params;
+
+  return request<API.AppDetail>(
+    `/llmops/v2/api/workspaces/${param0}/app/${param1}/details`,
+    {
+      method: 'GET',
+      params: { ...queryParams },
+      ...(options || {}),
+    }
+  );
+}
+
+/** GetSumHourlyMessagesCountV2.1 每小时messages数 GET /llmops/v2/api/workspaces/${param0}/app/${param1}/hourly-messages */
+export async function v2ApiWorkspacesWorkspaceIdAppAppIdHourlyMessagesUsingGet({
+  params,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.v2ApiWorkspacesWorkspaceIdAppAppIdHourlyMessagesUsingGetParams;
+  options?: { [key: string]: unknown };
+}) {
+  const { workspaceID: param0, appID: param1, ...queryParams } = params;
+
+  return request<API.MessagesCountResp[]>(
+    `/llmops/v2/api/workspaces/${param0}/app/${param1}/hourly-messages`,
+    {
+      method: 'GET',
+      params: {
+        ...queryParams,
+      },
+      ...(options || {}),
+    }
+  );
+}
+
+/** GetSumHourlyTokenV2.1 每小时token数 GET /llmops/v2/api/workspaces/${param0}/app/${param1}/hourly-token */
+export async function v2ApiWorkspacesWorkspaceIdAppAppIdHourlyTokenUsingGet({
+  params,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.v2ApiWorkspacesWorkspaceIdAppAppIdHourlyTokenUsingGetParams;
+  options?: { [key: string]: unknown };
+}) {
+  const { workspaceID: param0, appID: param1, ...queryParams } = params;
+
+  return request<API.MessagesTokenResp[]>(
+    `/llmops/v2/api/workspaces/${param0}/app/${param1}/hourly-token`,
+    {
+      method: 'GET',
+      params: {
+        ...queryParams,
+      },
+      ...(options || {}),
+    }
+  );
+}
+
+/** GetSumDailyMessagesCountV2.1 每日messages数 GET /llmops/v2/api/workspaces/${param0}/app/${param1}/messages */
+export async function v2ApiWorkspacesWorkspaceIdAppAppIdMessagesUsingGet({
+  params,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.v2ApiWorkspacesWorkspaceIdAppAppIdMessagesUsingGetParams;
+  options?: { [key: string]: unknown };
+}) {
+  const { workspaceID: param0, appID: param1, ...queryParams } = params;
+
+  return request<API.MessagesCountResp[]>(
+    `/llmops/v2/api/workspaces/${param0}/app/${param1}/messages`,
+    {
+      method: 'GET',
+      params: {
+        ...queryParams,
+      },
+      ...(options || {}),
+    }
+  );
+}
+
+/** UpdateAppStatusV2.1 更新 app 状态 PUT /llmops/v2/api/workspaces/${param0}/app/${param1}/update_status */
+export async function v2ApiWorkspacesWorkspaceIdAppAppIdUpdateStatusUsingPut({
+  params,
+  body,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.v2ApiWorkspacesWorkspaceIdAppAppIdUpdateStatusUsingPutParams;
+  body: API.UpdateAppStatusReq;
+  options?: { [key: string]: unknown };
+}) {
+  const { workspaceID: param0, appID: param1, ...queryParams } = params;
+
+  return request<unknown>(
+    `/llmops/v2/api/workspaces/${param0}/app/${param1}/update_status`,
+    {
+      method: 'PUT',
+      params: { ...queryParams },
+      data: body,
+      ...(options || {}),
+    }
+  );
+}
+
+/** ListAppV2.1 查询用户关联的 app 列表 GET /llmops/v2/api/workspaces/${param0}/apps */
+export async function v2ApiWorkspacesWorkspaceIdAppsUsingGet({
+  params,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.v2ApiWorkspacesWorkspaceIdAppsUsingGetParams;
+  options?: { [key: string]: unknown };
+}) {
+  const { workspaceID: param0, ...queryParams } = params;
+
+  return request<API.ListAppResp>(`/llmops/v2/api/workspaces/${param0}/apps`, {
+    method: 'GET',
+    params: {
+      ...queryParams,
+    },
+    ...(options || {}),
+  });
+}
+
+/** CreateAppV2.1 创建 app POST /llmops/v2/api/workspaces/${param0}/apps */
+export async function v2ApiWorkspacesWorkspaceIdAppsUsingPost({
+  params,
+  body,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.v2ApiWorkspacesWorkspaceIdAppsUsingPostParams;
+  body: API.CreateAppReqV2;
+  options?: { [key: string]: unknown };
+}) {
+  const { workspaceID: param0, ...queryParams } = params;
+
+  return request<unknown>(`/llmops/v2/api/workspaces/${param0}/apps`, {
+    method: 'POST',
+    params: { ...queryParams },
+    data: body,
+    ...(options || {}),
+  });
+}
+
+/** DeleteDatasetsJoinV2.1 删除 app 数据集关联 DELETE /llmops/v2/api/workspaces/${param1}/app/${param0}/datasets */
+export async function v2ApiWorkspacesWorkspaceIdAppAppIdDatasetsUsingDelete({
+  params,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.v2ApiWorkspacesWorkspaceIdAppAppIdDatasetsUsingDeleteParams;
+  options?: { [key: string]: unknown };
+}) {
+  const { appID: param0, workspaceID: param1, ...queryParams } = params;
+
+  return request<API.DeleteResp>(
+    `/llmops/v2/api/workspaces/${param1}/app/${param0}/datasets`,
+    {
+      method: 'DELETE',
+      params: {
+        ...queryParams,
+      },
+      ...(options || {}),
+    }
+  );
+}
+
+/** GetAppLogsV2.1 查询 app 日志与标注 GET /llmops/v2/api/workspaces/${param1}/app/${param0}/logs */
+export async function v2ApiWorkspacesWorkspaceIdAppAppIdLogsUsingGet({
+  params,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.v2ApiWorkspacesWorkspaceIdAppAppIdLogsUsingGetParams;
+  options?: { [key: string]: unknown };
+}) {
+  const { appID: param0, workspaceID: param1, ...queryParams } = params;
+
+  return request<API.ListConversationLogsResp>(
+    `/llmops/v2/api/workspaces/${param1}/app/${param0}/logs`,
+    {
+      method: 'GET',
+      params: {
+        ...queryParams,
+      },
+      ...(options || {}),
+    }
+  );
+}
+
+/** UpdateModelConfigsV2.1 更新 app model configs PUT /llmops/v2/api/workspaces/${param1}/app/${param0}/model-configs */
+export async function v2ApiWorkspacesWorkspaceIdAppAppIdModelConfigsUsingPut({
+  params,
+  body,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.v2ApiWorkspacesWorkspaceIdAppAppIdModelConfigsUsingPutParams;
+  body: API.AppModelConfigs;
+  options?: { [key: string]: unknown };
+}) {
+  const { appID: param0, workspaceID: param1, ...queryParams } = params;
+
+  return request<unknown>(
+    `/llmops/v2/api/workspaces/${param1}/app/${param0}/model-configs`,
+    {
+      method: 'PUT',
+      params: { ...queryParams },
+      data: body,
+      ...(options || {}),
+    }
+  );
+}
+
+/** GetPluginListV2.1 获取插件列表 GET /llmops/v2/api/workspaces/${param1}/app/${param0}/plugin */
+export async function v2ApiWorkspacesWorkspaceIdAppAppIdPluginUsingGet({
+  params,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.v2ApiWorkspacesWorkspaceIdAppAppIdPluginUsingGetParams;
+  options?: { [key: string]: unknown };
+}) {
+  const { appID: param0, workspaceID: param1, ...queryParams } = params;
+
+  return request<unknown>(
+    `/llmops/v2/api/workspaces/${param1}/app/${param0}/plugin`,
+    {
+      method: 'GET',
+      params: { ...queryParams },
+      ...(options || {}),
+    }
+  );
+}
+
+/** GetSumDailyTokenV2.1 每日token GET /llmops/v2/api/workspaces/${param1}/app/${param0}/token */
+export async function v2ApiWorkspacesWorkspaceIdAppAppIdTokenUsingGet({
+  params,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.v2ApiWorkspacesWorkspaceIdAppAppIdTokenUsingGetParams;
+  options?: { [key: string]: unknown };
+}) {
+  const { appID: param0, workspaceID: param1, ...queryParams } = params;
+
+  return request<API.MessagesTokenResp[]>(
+    `/llmops/v2/api/workspaces/${param1}/app/${param0}/token`,
+    {
+      method: 'GET',
+      params: {
+        ...queryParams,
+      },
+      ...(options || {}),
+    }
+  );
+}
+
+/** DeleteAppV2.1 删除 app DELETE /llmops/v2/api/workspaces/${param1}/apps/${param0} */
+export async function v2ApiWorkspacesWorkspaceIdAppsAppIdUsingDelete({
+  params,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.v2ApiWorkspacesWorkspaceIdAppsAppIdUsingDeleteParams;
+  options?: { [key: string]: unknown };
+}) {
+  const { appID: param0, workspaceID: param1, ...queryParams } = params;
+
+  return request<API.DeleteResp>(
+    `/llmops/v2/api/workspaces/${param1}/apps/${param0}`,
+    {
+      method: 'DELETE',
+      params: { ...queryParams },
+      ...(options || {}),
+    }
+  );
+}
+
+/** UpdateAppImage 更新 app名称头像 POST /llmops/v2/api/workspaces/${param1}/apps/${param0}/base */
+export async function v2ApiWorkspacesWorkspaceIdAppsAppIdBaseUsingPost({
+  params,
+  body,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.v2ApiWorkspacesWorkspaceIdAppsAppIdBaseUsingPostParams;
+  body: API.UpdateAppReq;
+  options?: { [key: string]: unknown };
+}) {
+  const { appID: param0, workspaceID: param1, ...queryParams } = params;
+
+  return request<unknown>(
+    `/llmops/v2/api/workspaces/${param1}/apps/${param0}/base`,
+    {
+      method: 'POST',
+      params: { ...queryParams },
+      data: body,
+      ...(options || {}),
+    }
+  );
+}
+
+/** UpdateAppGroup 更新 app 分组 POST /llmops/v2/api/workspaces/${param1}/apps/${param0}/group */
+export async function v2ApiWorkspacesWorkspaceIdAppsAppIdGroupUsingPost({
+  params,
+  body,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.v2ApiWorkspacesWorkspaceIdAppsAppIdGroupUsingPostParams;
+  body: API.UpdateAppGroup;
+  options?: { [key: string]: unknown };
+}) {
+  const { appID: param0, workspaceID: param1, ...queryParams } = params;
+
+  return request<unknown>(
+    `/llmops/v2/api/workspaces/${param1}/apps/${param0}/group`,
+    {
+      method: 'POST',
+      params: { ...queryParams },
+      data: body,
+      ...(options || {}),
+    }
+  );
+}
+
+/** GetAppRecommendedContext 获取自定义推荐问题 & 推荐开关 GET /llmops/v2/api/workspaces/recommended/${param0}/details */
+export async function v2ApiWorkspacesRecommendedMessageIdDetailsUsingGet({
+  params,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.v2ApiWorkspacesRecommendedMessageIdDetailsUsingGetParams;
+  options?: { [key: string]: unknown };
+}) {
+  const { messageId: param0, ...queryParams } = params;
+
+  return request<API.AppRecommendedContextResp>(
+    `/llmops/v2/api/workspaces/recommended/${param0}/details`,
+    {
+      method: 'GET',
+      params: { ...queryParams },
+      ...(options || {}),
+    }
+  );
+}
+/* eslint-disable */
+// @ts-ignore
+import { request } from 'axios';
+
+import * as API from './types';
+
+/** GetWorkspaceGroupList 空间分组列表 GET /llmops/v2/api/workspaces/${param0}/groups */
+export async function v2ApiWorkspacesWorkspaceIdGroupsUsingGet({
+  params,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.v2ApiWorkspacesWorkspaceIdGroupsUsingGetParams;
+  options?: { [key: string]: unknown };
+}) {
+  const { workspaceID: param0, ...queryParams } = params;
+
+  return request<API.ListWorkspaceGroup>(
+    `/llmops/v2/api/workspaces/${param0}/groups`,
+    {
+      method: 'GET',
+      params: { ...queryParams },
+      ...(options || {}),
+    }
+  );
+}
+
+/** CreateWorkspaceGroup 创建空间分组 POST /llmops/v2/api/workspaces/${param0}/groups */
+export async function v2ApiWorkspacesWorkspaceIdGroupsUsingPost({
+  params,
+  body,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.v2ApiWorkspacesWorkspaceIdGroupsUsingPostParams;
+  body: API.WorkspaceGroupReq;
+  options?: { [key: string]: unknown };
+}) {
+  const { workspaceID: param0, ...queryParams } = params;
+
+  return request<API.ListWorkspaceGroup>(
+    `/llmops/v2/api/workspaces/${param0}/groups`,
+    {
+      method: 'POST',
+      params: { ...queryParams },
+      data: body,
+      ...(options || {}),
+    }
+  );
+}
+
+/** UpdateWorkspaceGroup 更新分组 POST /llmops/v2/api/workspaces/${param0}/groups/${param1} */
+export async function v2ApiWorkspacesWorkspaceIdGroupsWorkspaceGroupIdUsingPost({
+  params,
+  body,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.v2ApiWorkspacesWorkspaceIdGroupsWorkspaceGroupIdUsingPostParams;
+  body: API.WorkspaceGroupReq;
+  options?: { [key: string]: unknown };
+}) {
+  const {
+    workspaceID: param0,
+    workspaceGroupID: param1,
+    ...queryParams
+  } = params;
+
+  return request<unknown>(
+    `/llmops/v2/api/workspaces/${param0}/groups/${param1}`,
+    {
+      method: 'POST',
+      params: { ...queryParams },
+      data: body,
+      ...(options || {}),
+    }
+  );
+}
+
+/** DeleteWorkspaceGroup 删除分组 DELETE /llmops/v2/api/workspaces/${param0}/groups/${param1} */
+export async function v2ApiWorkspacesWorkspaceIdGroupsWorkspaceGroupIdUsingDelete({
+  params,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.v2ApiWorkspacesWorkspaceIdGroupsWorkspaceGroupIdUsingDeleteParams;
+  options?: { [key: string]: unknown };
+}) {
+  const {
+    workspaceID: param0,
+    workspaceGroupID: param1,
+    ...queryParams
+  } = params;
+
+  return request<unknown>(
+    `/llmops/v2/api/workspaces/${param0}/groups/${param1}`,
+    {
+      method: 'DELETE',
+      params: { ...queryParams },
+      ...(options || {}),
+    }
+  );
+}

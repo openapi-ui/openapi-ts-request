@@ -1,0 +1,25 @@
+/* eslint-disable */
+// @ts-ignore
+export * from './types';
+
+export * from './sysA';
+/* eslint-disable */
+// @ts-ignore
+import request from '../request';
+
+import * as API from './types';
+
+/** a1 GET /sys-a/a1 */
+export async function sysAa1UsingGet({
+  options,
+}: {
+  options?: { [key: string]: unknown };
+}) {
+  return request<string>('/sys-a/a1', {
+    method: 'GET',
+    ...(options || {}),
+  });
+}
+/* eslint-disable */
+// @ts-ignore
+export {};

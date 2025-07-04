@@ -1,0 +1,95 @@
+/* eslint-disable */
+// @ts-ignore
+import { queryOptions, useMutation } from '@tanstack/react-query';
+import type { DefaultError } from '@tanstack/react-query';
+import { request } from 'axios';
+
+import * as apis from './fileController';
+import * as API from './types';
+
+/** 导入文件 导入文件 POST /webapi/clear/importNavReCheckFile */
+export function useWebapiClearImportNavReCheckFileUsingPostMutation(options?: {
+  onSuccess?: (value?: API.ResponseString_) => void;
+  onError?: (error?: DefaultError) => void;
+}) {
+  const { onSuccess, onError } = options || {};
+
+  const response = useMutation({
+    mutationFn: apis.webapiClearImportNavReCheckFileUsingPost,
+    onSuccess(data: API.ResponseString_) {
+      onSuccess?.(data);
+    },
+    onError(error) {
+      onError?.(error);
+    },
+  });
+
+  return response;
+}
+/* eslint-disable */
+// @ts-ignore
+import { request } from 'axios';
+
+import * as API from './types';
+
+/** 导入文件 导入文件 POST /webapi/clear/importNavReCheckFile */
+export async function webapiClearImportNavReCheckFileUsingPost({
+  body,
+  file,
+  options,
+}: {
+  body: API.WebapiClearImportNavReCheckFileUsingPostBody;
+  file?: File;
+  options?: { [key: string]: unknown };
+}) {
+  const formData = new FormData();
+
+  if (file) {
+    formData.append('file', file);
+  }
+
+  Object.keys(body).forEach((ele) => {
+    const item = (body as { [key: string]: any })[ele];
+
+    if (item !== undefined && item !== null) {
+      if (typeof item === 'object' && !(item instanceof File)) {
+        if (item instanceof Array) {
+          item.forEach((f) => formData.append(ele, f || ''));
+        } else {
+          formData.append(ele, JSON.stringify(item));
+        }
+      } else {
+        formData.append(ele, item);
+      }
+    }
+  });
+
+  return request<API.ResponseString_>('/webapi/clear/importNavReCheckFile', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+    data: formData,
+    ...(options || {}),
+  });
+}
+/* eslint-disable */
+// @ts-ignore
+export * from './types';
+
+export * from './fileController';
+export * from './fileController.reactquery';
+/* eslint-disable */
+// @ts-ignore
+
+export type ResponseString_ = {
+  msg?: string;
+  result?: string;
+  resultCode?: string;
+  success?: boolean;
+};
+
+export type WebapiClearImportNavReCheckFileUsingPostBody = {
+  /** file */
+  file: string;
+};

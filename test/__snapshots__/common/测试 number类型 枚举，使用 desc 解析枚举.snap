@@ -1,0 +1,73 @@
+/* eslint-disable */
+// @ts-ignore
+import * as API from './types';
+
+export function displaySysUserRoleEnum(field: API.SysUserRole) {
+  return { 0: 'User', 1: 'Agent', 2: 'Admin' }[field];
+}
+/* eslint-disable */
+// @ts-ignore
+export * from './types';
+export * from './displayEnumLabel';
+
+export * from './user';
+/* eslint-disable */
+// @ts-ignore
+
+export type apiSysUserGetUserInfoUsingGetParams = {
+  userId?: number;
+};
+
+export type ResultOutputUserInfoOutput = {
+  /** 是否成功标记 */
+  success?: boolean;
+  /** 编码 */
+  code?: string;
+  /** 消息 */
+  msg?: string;
+  data?: UserInfoOutput;
+};
+
+export enum SysUserRole {
+  User = 0,
+  Agent = 1,
+  Admin = 2,
+}
+
+export type ISysUserRole = keyof typeof SysUserRole;
+
+export type UserInfoOutput = {
+  /** 昵称 */
+  nickName?: string;
+  /** 头像 */
+  avatar?: string;
+  /** 手机号 */
+  phone?: string;
+  role?: SysUserRole;
+};
+/* eslint-disable */
+// @ts-ignore
+import { request } from 'axios';
+
+import * as API from './types';
+
+/** 获取用户信息 GET /api/sys/user/get-user-info */
+export async function apiSysUserGetUserInfoUsingGet({
+  params,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.apiSysUserGetUserInfoUsingGetParams;
+  options?: { [key: string]: unknown };
+}) {
+  return request<API.ResultOutputUserInfoOutput>(
+    '/api/sys/user/get-user-info',
+    {
+      method: 'GET',
+      params: {
+        ...params,
+      },
+      ...(options || {}),
+    }
+  );
+}

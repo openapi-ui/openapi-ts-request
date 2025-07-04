@@ -1,6 +1,6 @@
-import { OpenAPIV3 } from 'openapi-types';
+import type { OpenAPIV3 } from 'openapi-types';
 
-import {
+import type {
   PriorityRule,
   ReactQueryMode,
   SchemaObjectFormat,

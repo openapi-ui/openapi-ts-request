@@ -1,0 +1,1440 @@
+/* eslint-disable */
+// @ts-ignore
+import { request } from 'axios';
+
+import * as API from './types';
+
+/** getGoodsByIds POST /mall/feign/goods/getGoodsByIds https://apifox.com/web/project/5327758/apis/api-229418941-run */
+export async function feignGoodsGetGoodsByIdsUsingPost({
+  body,
+  options,
+}: {
+  body: API.FeignGoodsGetGoodsByIdsUsingPostBody;
+  options?: { [key: string]: unknown };
+}) {
+  return request<API.GoodsDTO[]>('/mall/feign/goods/getGoodsByIds', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    data: body,
+    ...(options || {}),
+  });
+}
+
+/** getGoodsList POST /mall/feign/goods/getGoodsByName https://apifox.com/web/project/5327758/apis/api-229418940-run */
+export async function feignGoodsGetGoodsByNameUsingPost({
+  body,
+  options,
+}: {
+  body: API.GoodsQueryDTO;
+  options?: { [key: string]: unknown };
+}) {
+  return request<API.GoodsDTO[]>('/mall/feign/goods/getGoodsByName', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    data: body,
+    ...(options || {}),
+  });
+}
+/* eslint-disable */
+// @ts-ignore
+export * from './types';
+
+export * from './shangpinshenheguanli';
+export * from './feign';
+export * from './shangpinjichuguanli';
+export * from './shangpinkuozhanfuwu';
+/* eslint-disable */
+// @ts-ignore
+import { request } from 'axios';
+
+import * as API from './types';
+
+/** 添加商品 POST /mall/goods/addGoods https://apifox.com/web/project/5327758/apis/api-229419585-run */
+export async function goodsAddGoodsUsingPost({
+  body,
+  options,
+}: {
+  body: API.AddGoodsReq1;
+  options?: { [key: string]: unknown };
+}) {
+  return request<API.ResponseResultBoolean>('/mall/goods/addGoods', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    data: body,
+    ...(options || {}),
+  });
+}
+
+/** 批量删除商品 POST /mall/goods/batchDeleteGoods https://apifox.com/web/project/5327758/apis/api-229419591-run */
+export async function goodsBatchDeleteGoodsUsingPost({
+  body,
+  options,
+}: {
+  body: API.BatchDeleteGoodsReq;
+  options?: { [key: string]: unknown };
+}) {
+  return request<API.ResponseResultBoolean>('/mall/goods/batchDeleteGoods', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    data: body,
+    ...(options || {}),
+  });
+}
+
+/** 批量启禁用商品 POST /mall/goods/batchUpdateStatus https://apifox.com/web/project/5327758/apis/api-229419593-run */
+export async function goodsBatchUpdateStatusUsingPost({
+  body,
+  options,
+}: {
+  body: API.BatchUpdateStatusReq;
+  options?: { [key: string]: unknown };
+}) {
+  return request<API.ResponseResultBoolean>('/mall/goods/batchUpdateStatus', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    data: body,
+    ...(options || {}),
+  });
+}
+
+/** 删除商品 GET /mall/goods/deleteGoods https://apifox.com/web/project/5327758/apis/api-229419590-run */
+export async function goodsDeleteGoodsUsingGet({
+  params,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.goodsDeleteGoodsUsingGetParams;
+  options?: { [key: string]: unknown };
+}) {
+  return request<API.ResponseResultBoolean>('/mall/goods/deleteGoods', {
+    method: 'GET',
+    params: {
+      ...params,
+    },
+    ...(options || {}),
+  });
+}
+
+/** 查询商品详情 POST /mall/goods/getGoodsDetail https://apifox.com/web/project/5327758/apis/api-229419594-run */
+export async function goodsGetGoodsDetailUsingPost({
+  params,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.goodsGetGoodsDetailUsingPostParams;
+  options?: { [key: string]: unknown };
+}) {
+  return request<API.ResponseResultGoodsDetailRes>(
+    '/mall/goods/getGoodsDetail',
+    {
+      method: 'POST',
+      params: {
+        ...params,
+      },
+      ...(options || {}),
+    }
+  );
+}
+
+/** 查询商品数量 GET /mall/goods/getGoodsNum https://apifox.com/web/project/5327758/apis/api-229419589-run */
+export async function goodsGetGoodsNumUsingGet({
+  params,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.goodsGetGoodsNumUsingGetParams;
+  options?: { [key: string]: unknown };
+}) {
+  return request<API.ResponseResultGoodsNumDTO>('/mall/goods/getGoodsNum', {
+    method: 'GET',
+    params: {
+      ...params,
+    },
+    ...(options || {}),
+  });
+}
+
+/** 查询医院药房商品列表 POST /mall/goods/hospitalGoodsPage https://apifox.com/web/project/5327758/apis/api-229419588-run */
+export async function goodsHospitalGoodsPageUsingPost({
+  body,
+  options,
+}: {
+  body: API.QueryGoodsReq;
+  options?: { [key: string]: unknown };
+}) {
+  return request<API.ResponseResultIPageGoodsPageQueryDTO>(
+    '/mall/goods/hospitalGoodsPage',
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      data: body,
+      ...(options || {}),
+    }
+  );
+}
+
+/** 查询我的药房商品列表 POST /mall/goods/pharmacyGoodsPage https://apifox.com/web/project/5327758/apis/api-229419587-run */
+export async function goodsPharmacyGoodsPageUsingPost({
+  body,
+  options,
+}: {
+  body: API.QueryGoodsReq;
+  options?: { [key: string]: unknown };
+}) {
+  return request<API.ResponseResultIPageGoodsPageQueryDTO>(
+    '/mall/goods/pharmacyGoodsPage',
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      data: body,
+      ...(options || {}),
+    }
+  );
+}
+
+/** 编辑商品 POST /mall/goods/updateGoods https://apifox.com/web/project/5327758/apis/api-229419586-run */
+export async function goodsUpdateGoodsUsingPost({
+  body,
+  options,
+}: {
+  body: API.UpdateGoodsReq;
+  options?: { [key: string]: unknown };
+}) {
+  return request<API.ResponseResultBoolean>('/mall/goods/updateGoods', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    data: body,
+    ...(options || {}),
+  });
+}
+
+/** 启禁用商品 POST /mall/goods/updateGoodsStatus https://apifox.com/web/project/5327758/apis/api-229419592-run */
+export async function goodsUpdateGoodsStatusUsingPost({
+  body,
+  options,
+}: {
+  body: API.DisableGoodsReq;
+  options?: { [key: string]: unknown };
+}) {
+  return request<API.ResponseResultBoolean>('/mall/goods/updateGoodsStatus', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    data: body,
+    ...(options || {}),
+  });
+}
+/* eslint-disable */
+// @ts-ignore
+import { request } from 'axios';
+
+import * as API from './types';
+
+/** 新增商品属性字典 POST /mall/goods/addGoodsAttributeDict https://apifox.com/web/project/5327758/apis/api-231097233-run */
+export async function goodsAddGoodsAttributeDictUsingPost({
+  body,
+  options,
+}: {
+  body: API.GoodsAttributeDictAddReq;
+  options?: { [key: string]: unknown };
+}) {
+  return request<API.ResponseResultBoolean>(
+    '/mall/goods/addGoodsAttributeDict',
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      data: body,
+      ...(options || {}),
+    }
+  );
+}
+
+/** 获取诊断字典值 GET /mall/goods/getDiagnoseByDictName https://apifox.com/web/project/5327758/apis/api-229956960-run */
+export async function goodsGetDiagnoseByDictNameUsingGet({
+  params,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.goodsGetDiagnoseByDictNameUsingGetParams;
+  options?: { [key: string]: unknown };
+}) {
+  return request<API.ResponseResultListDiagnoseDictValueRes>(
+    '/mall/goods/getDiagnoseByDictName',
+    {
+      method: 'GET',
+      params: {
+        ...params,
+      },
+      ...(options || {}),
+    }
+  );
+}
+
+/** 获取商品属性字典 POST /mall/goods/getGoodsAttributeDict https://apifox.com/web/project/5327758/apis/api-230881259-run */
+export async function goodsGetGoodsAttributeDictUsingPost({
+  body,
+  options,
+}: {
+  body: API.GoodsAttributeDictPageReq;
+  options?: { [key: string]: unknown };
+}) {
+  return request<API.ResponseResultIPageGoodsAttributeDictPageRes>(
+    '/mall/goods/getGoodsAttributeDict',
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      data: body,
+      ...(options || {}),
+    }
+  );
+}
+
+/** 获取药房供应商 GET /mall/goods/getPharmacySuppliers https://apifox.com/web/project/5327758/apis/api-230751273-run */
+export async function goodsGetPharmacySuppliersUsingGet({
+  params,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.goodsGetPharmacySuppliersUsingGetParams;
+  options?: { [key: string]: unknown };
+}) {
+  return request<API.ResponseResultListsupplierRes>(
+    '/mall/goods/getPharmacySuppliers',
+    {
+      method: 'GET',
+      params: {
+        ...params,
+      },
+      ...(options || {}),
+    }
+  );
+}
+
+/** 获取科室字典值 GET /mall/goods/getSectionDict https://apifox.com/web/project/5327758/apis/api-229904215-run */
+export async function goodsGetSectionDictUsingGet({
+  params,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.goodsGetSectionDictUsingGetParams;
+  options?: { [key: string]: unknown };
+}) {
+  return request<API.ResponseResultListSectionDictValueRes>(
+    '/mall/goods/getSectionDict',
+    {
+      method: 'GET',
+      params: {
+        ...params,
+      },
+      ...(options || {}),
+    }
+  );
+}
+
+/** 获取供应商资质信息 GET /mall/goods/getSupplierCertificate https://apifox.com/web/project/5327758/apis/api-231170942-run */
+export async function goodsGetSupplierCertificateUsingGet({
+  params,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.goodsGetSupplierCertificateUsingGetParams;
+  options?: { [key: string]: unknown };
+}) {
+  return request<API.ResponseResultSupplierCertificateRes>(
+    '/mall/goods/getSupplierCertificate',
+    {
+      method: 'GET',
+      params: {
+        ...params,
+      },
+      ...(options || {}),
+    }
+  );
+}
+
+/** 共享商品 POST /mall/goods/shareGoods https://apifox.com/web/project/5327758/apis/api-230292228-run */
+export async function goodsShareGoodsUsingPost({
+  body,
+  options,
+}: {
+  body: API.ShareGoodsReq;
+  options?: { [key: string]: unknown };
+}) {
+  return request<API.ResponseResultBoolean>('/mall/goods/shareGoods', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    data: body,
+    ...(options || {}),
+  });
+}
+/* eslint-disable */
+// @ts-ignore
+import { request } from 'axios';
+
+import * as API from './types';
+
+/** 商品审核 POST /mall/goods/auditGoods https://apifox.com/web/project/5327758/apis/api-226991471-run */
+export async function goodsAuditGoodsUsingPost({
+  body,
+  options,
+}: {
+  body: API.AuditGoodsReq;
+  options?: { [key: string]: unknown };
+}) {
+  return request<API.ResponseResultBoolean>('/mall/goods/auditGoods', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    data: body,
+    ...(options || {}),
+  });
+}
+
+/** 批量审核商品 POST /mall/goods/batchAuditGoods https://apifox.com/web/project/5327758/apis/api-231575710-run */
+export async function goodsBatchAuditGoodsUsingPost({
+  body,
+  options,
+}: {
+  body: API.BatchAuditGoodsReq;
+  options?: { [key: string]: unknown };
+}) {
+  return request<API.ResponseResultBoolean>('/mall/goods/batchAuditGoods', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    data: body,
+    ...(options || {}),
+  });
+}
+
+/** 审核商品信息 GET /mall/goods/getGoodsInfo https://apifox.com/web/project/5327758/apis/api-227394999-run */
+export async function goodsGetGoodsInfoUsingGet({
+  params,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.goodsGetGoodsInfoUsingGetParams;
+  options?: { [key: string]: unknown };
+}) {
+  return request<API.ResponseResultBaseGoodDTO>('/mall/goods/getGoodsInfo', {
+    method: 'GET',
+    params: {
+      ...params,
+    },
+    ...(options || {}),
+  });
+}
+
+/** 商品审核列表 POST /mall/goods/goodsAuditPage https://apifox.com/web/project/5327758/apis/api-226950154-run */
+export async function goodsGoodsAuditPageUsingPost({
+  body,
+  options,
+}: {
+  body: API.QueryGoodsReq;
+  options?: { [key: string]: unknown };
+}) {
+  return request<API.ResponseResultIPageGoodsPageQueryDTO>(
+    '/mall/goods/goodsAuditPage',
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      data: body,
+      ...(options || {}),
+    }
+  );
+}
+/* eslint-disable */
+// @ts-ignore
+
+export type AddGoodsReq1 = {
+  /** 机构id */
+  orgId: string;
+  /** 机构编码 */
+  orgCode: string;
+  /** 商品类型((western_medicine:西药 / western_chinese:中药 / food:中药 / health_product:保健品 / medical_equipment:医疗器械 / inspection:检验检查)' */
+  goodsType: string;
+  /** 商品名 */
+  goodsName?: string;
+  /** 通用名 */
+  commonName: string;
+  /** 通用名拼音 */
+  commonNamePy?: string;
+  /** 商品主图 */
+  goodsMainImg: string;
+  /** 厂商名称 */
+  drugManufacturerName?: string;
+  /** 药品类型:(western_medicine:西药 / chinese_patent_medicine:中成药) */
+  medicineType?: string;
+  /** 药剂型 */
+  formType?: string;
+  /** 药品规格 */
+  spec?: string;
+  /** 包装材料 */
+  packagingMaterials?: string;
+  /** 最小包装单位 */
+  minPackageUnit?: string;
+  /** 最小包装数量 */
+  minPackageValue?: number;
+  /** 最小制剂单位 */
+  minPreparationUnit?: string;
+  /** 所属科室 */
+  belongSection?: string;
+  /** 适应症 */
+  indication?: string;
+  /** 禁忌症 */
+  contraindication?: string;
+  /** 不良反应 */
+  adverseReaction?: string;
+  /** 是否处方药(1:处方药 / 0:非处方药) */
+  prescriptionDrug?: number;
+  /** 批准文号 */
+  approveNo?: string;
+  /** 上市许可持有人(企业) */
+  enterpriseName?: string;
+  /** 中药剂型(chinese_herbal_pieces:中药饮片 / chinese_medicinal_granule:中药颗粒 / homemade_medicine:自制药品) */
+  chineseFormType?: string;
+  /** 生产地区 */
+  productArea?: string;
+  /** 贮藏方法 */
+  storageMethod?: string;
+  /** 当量 */
+  equivalent?: number;
+  /** 配料表 */
+  ingredientList?: string;
+  /** 营养成分 */
+  nutrients?: string;
+  /** 营养成分表(图片) */
+  nutrientsImg?: string;
+  /** 食品生产许可证编号 */
+  productLicenseNumber?: string;
+  /** 保健品保健功能描述 */
+  healthFunc?: string;
+  /** 保健品功效成分 */
+  funcComponents?: string;
+  /** 保健食品批准证号 */
+  healthApprovalNumber?: string;
+  /** 医疗器械注册证号 */
+  registNumber?: string;
+  /** 服务项目名称 */
+  serviceItemName?: string;
+  /** 医疗项目编码 */
+  medicalItemCode?: string;
+  /** 服务医疗机构名称 */
+  serviceMedicalName?: string;
+  /** 服务区域范围 */
+  serviceAreaScope?: string;
+  /** 服务医疗机构-省 */
+  serviceMedicalProvince?: string;
+  /** 服务医疗机构-市 */
+  serviceMedicalCity?: string;
+  /** 服务医疗机构-区 */
+  serviceMedicalDistrict?: string;
+  /** 服务医疗机构-详细地址 */
+  serviceMedicalAddress?: string;
+  /** 服务适用人群 */
+  applicablePopulation?: string;
+  /** 服务检查前准备 */
+  preparationInspection?: string;
+  /** 检查注意事项 */
+  inspectionPrecautions?: string;
+  /** 服务报告有效期 */
+  reportExpiration?: string;
+  /** 服务报告出具时间 */
+  reportIssueTime?: string;
+  /** 是否集采(0:否 / 1:是) */
+  purchased?: number;
+  /** 是否基药(0:否 / 1:是) */
+  basicDrug?: number;
+  /** 医保类型(Non_medical:目录外(自费) / Category_A:甲类 / Category_B:乙类) */
+  nhsaType?: string;
+  /** 国家医保药品编码 */
+  nhsaCode?: string;
+  /** 省医保药品编码 */
+  provinceMedicalCode?: string;
+  /** 市医保药品编码 */
+  cityMedicalCode?: string;
+  /** 药品本位码 */
+  standardCode?: string;
+  /** 条码 */
+  barCode?: string;
+  /** 我的药房库存 */
+  myStock: number;
+  /** 锁库数量 */
+  lockCount?: number;
+  /** 库存计量单位 */
+  stockUnit: string;
+  /** 我的零售价 */
+  salePrice: number;
+  /** 生产批号(销售信息) */
+  productBatchNumber?: string;
+  /** 商品重量 */
+  goodsWeight?: number;
+  /** 生产日期 */
+  productionDate?: string;
+  /** 有效期 */
+  expirationDate?: string;
+};
+
+export type AuditGoodsReq = {
+  goodsId: string;
+  /** 审核状态(wait:待审核 / pass:审核通过 / refuse:审核拒绝) */
+  auditStatus: string;
+  refuseReason?: string;
+};
+
+export type BaseGoodDTO = {
+  /** 商品id */
+  id?: string;
+  /** 机构id */
+  orgId?: string;
+  /** 机构编码 */
+  orgCode?: string;
+  /** 商品类型(western_medicine:西药/中成药 / chinese_medicine:中药 / food:食品 / health_product:保健品 / medical_equipment:医疗器械 / inspection:检验检查) */
+  goodsType?: string;
+  /** 商品名 */
+  goodsName?: string;
+  /** 通用名 */
+  commonName?: string;
+  /** 通用名拼音 */
+  commonNamePy?: string;
+  /** 商品主图 */
+  goodsMainImg?: string;
+  /** 厂商名称 */
+  drugManufacturerName?: string;
+  /** 我的药房库存 */
+  myStock?: number;
+  /** 锁库数量 */
+  lockCount?: number;
+  /** 库存单位 */
+  stockUnit?: string;
+  /** 我的零售价 */
+  salePrice?: number;
+  /** 规格 */
+  spec?: string;
+  /** 是否集采(0:否 / 1:是) */
+  purchased?: number;
+  /** 是否基药(0:否 / 1:是) */
+  basicDrug?: number;
+  /** 医保类型(Non_medical:目录外(自费) / Category_A:甲类 / Category_B:乙类) */
+  nhsaType?: number;
+  /** 国家医保药品编码 */
+  nhsaCode?: string;
+  /** 省医保药品编码 */
+  provinceMedicalCode?: string;
+  /** 市医保药品编码 */
+  cityMedicalCode?: string;
+  /** 药品本位码 */
+  standardCode?: string;
+  /** 条码 */
+  barCode?: string;
+  /** 审核状态:(wait:待审核 / pass:审核通过 / refuse:审核拒绝) */
+  auditStatus?: string;
+};
+
+export type BatchAuditGoodsReq = {
+  /** 商品ID集合 */
+  goodsIdList: string[];
+  /** 审核状态(wait:待审核 / pass:审核通过 / refuse:审核拒绝) */
+  auditStatus: string;
+  /** 审核拒绝原因 */
+  refuseReason?: string;
+};
+
+export type BatchDeleteGoodsReq = {
+  /** 商品id集合 */
+  goodsIds: string[];
+  /** 机构id */
+  orgId: string;
+};
+
+export type BatchUpdateStatusReq = {
+  /** 商品id */
+  goodsIds: string[];
+  /** 机构id */
+  orgId: string;
+  /** 是否可用 */
+  status: number;
+};
+
+export type DiagnoseDictValueRes = {
+  id?: string;
+  diagnoseCode?: string;
+  diagnoseName?: string;
+};
+
+export type DisableGoodsReq = {
+  /** 商品id */
+  goodsId: string;
+  /** 机构id */
+  orgId: string;
+  /** 是否可用 */
+  status: number;
+};
+
+export type FeignGoodsGetGoodsByIdsUsingPostBody = string[];
+
+export type GoodsAttributeDictAddReq = {
+  /** 字典名称 */
+  name: string;
+  /** 字典类型(1:剂型 / 2:包装单位 / 3:库存计量 / 4:制剂单位 / 5:包装材质) */
+  type: number;
+};
+
+export type GoodsAttributeDictPageReq = {
+  /** 当前页码 */
+  pageIndex?: number;
+  /** 每页显示的记录数 */
+  pageSize?: number;
+  /** 字典名称 */
+  name?: string;
+  /** 字典类型(1:剂型 / 2:包装单位 / 3:库存计量 / 4:制剂单位 / 5:包装材质) */
+  type: number;
+};
+
+export type GoodsAttributeDictPageRes = {
+  /** id */
+  id?: string;
+  /** 字典值名称 */
+  name?: string;
+  /** 来源类型(1:剂型 / 2:包装单位 / 3:库存计量 / 4:制剂单位 /  5:包装材质) */
+  type?: number;
+};
+
+export type goodsDeleteGoodsUsingGetParams = {
+  goodsId: string;
+  orgId: string;
+};
+
+export type GoodsDetailRes = {
+  id?: string;
+  /** 机构id */
+  orgId?: string;
+  /** 机构编码 */
+  orgCode?: string;
+  /** 商品类型((western_medicine:西药 / western_chinese:中药 / food:中药 / health_product:保健品 / medical_equipment:医疗器械 / inspection:检验检查)' */
+  goodsType?: string;
+  /** 商品名 */
+  goodsName?: string;
+  /** 通用名 */
+  commonName?: string;
+  /** 通用名拼音 */
+  commonNamePy?: string;
+  /** 商品主图 */
+  goodsMainImg?: string;
+  /** 厂商名称 */
+  drugManufacturerName?: string;
+  /** 药品类型:(western_medicine:西药 / chinese_patent_medicine:中成药) */
+  medicineType?: string;
+  /** 药剂型 */
+  formType?: string;
+  /** 药品规格 */
+  spec?: string;
+  /** 包装材料 */
+  packagingMaterials?: string;
+  /** 最小包装单位 */
+  minPackageUnit?: string;
+  /** 最小包装数量 */
+  minPackageValue?: number;
+  /** 最小制剂单位 */
+  minPreparationUnit?: string;
+  /** 所属科室 */
+  belongSection?: string;
+  /** 适应症 */
+  indication?: string;
+  /** 禁忌症 */
+  contraindication?: string;
+  /** 不良反应 */
+  adverseReaction?: string;
+  /** 是否处方药(1:处方药 / 0:非处方药) */
+  prescriptionDrug?: number;
+  /** 批准文号 */
+  approveNo?: string;
+  /** 上市许可持有人(企业) */
+  enterpriseName?: string;
+  /** 中药剂型(chinese_herbal_pieces:中药饮片 / chinese_medicinal_granule:中药颗粒 / homemade_medicine:自制药品) */
+  chineseFormType?: string;
+  /** 生产地区 */
+  productArea?: string;
+  /** 贮藏方法 */
+  storageMethod?: string;
+  /** 当量 */
+  equivalent?: number;
+  /** 配料表 */
+  ingredientList?: string;
+  /** 营养成分 */
+  nutrients?: string;
+  /** 营养成分表(图片) */
+  nutrientsImg?: string;
+  /** 食品生产许可证编号 */
+  productLicenseNumber?: string;
+  /** 保健品保健功能描述 */
+  healthFunc?: string;
+  /** 保健品功效成分 */
+  funcComponents?: string;
+  /** 保健食品批准证号 */
+  healthApprovalNumber?: string;
+  /** 医疗器械注册证号 */
+  registNumber?: string;
+  /** 服务项目名称 */
+  serviceItemName?: string;
+  /** 医疗项目编码 */
+  medicalItemCode?: string;
+  /** 服务医疗机构名称 */
+  serviceMedicalName?: string;
+  /** 服务区域范围 */
+  serviceAreaScope?: string;
+  /** 服务医疗机构-省 */
+  serviceMedicalProvince?: string;
+  /** 服务医疗机构-市 */
+  serviceMedicalCity?: string;
+  /** 服务医疗机构-区 */
+  serviceMedicalDistrict?: string;
+  /** 服务医疗机构-详细地址 */
+  serviceMedicalAddress?: string;
+  /** 服务适用人群 */
+  applicablePopulation?: string;
+  /** 服务检查前准备 */
+  preparationInspection?: string;
+  /** 检查注意事项 */
+  inspectionPrecautions?: string;
+  /** 服务报告有效期 */
+  reportExpiration?: string;
+  /** 服务报告出具时间 */
+  reportIssueTime?: string;
+  /** 是否集采(0:否 / 1:是) */
+  purchased?: number;
+  /** 是否基药(0:否 / 1:是) */
+  basicDrug?: number;
+  /** 医保类型(Non_medical:目录外(自费) / Category_A:甲类 / Category_B:乙类) */
+  nhsaType?: string;
+  /** 国家医保药品编码 */
+  nhsaCode?: string;
+  /** 省医保药品编码 */
+  provinceMedicalCode?: string;
+  /** 市医保药品编码 */
+  cityMedicalCode?: string;
+  /** 药品本位码 */
+  standardCode?: string;
+  /** 条码 */
+  barCode?: string;
+  /** 我的药房库存 */
+  myStock?: number;
+  /** 锁库数量 */
+  lockCount?: number;
+  /** 库存计量单位 */
+  stockUnit?: string;
+  /** 我的零售价 */
+  salePrice?: number;
+  /** 生产批号(销售信息) */
+  productBatchNumber?: string;
+  /** 商品重量 */
+  goodsWeight?: number;
+  /** 生产日期 */
+  productionDate?: string;
+  /** 有效期 */
+  expirationDate?: string;
+};
+
+export type GoodsDTO = {
+  id?: string;
+  /** 机构id */
+  orgId?: string;
+  /** 机构编码 */
+  orgCode?: string;
+  /** 商品类型((western_medicine:西药 / western_chinese:中药 / food:中药 / health_product:保健品 / medical_equipment:医疗器械 / inspection:检验检查)' */
+  goodsType?: string;
+  /** 商品名 */
+  goodsName?: string;
+  /** 通用名 */
+  commonName?: string;
+  /** 通用名拼音 */
+  commonNamePy?: string;
+  /** 商品主图 */
+  goodsMainImg?: string;
+  /** 厂商名称 */
+  drugManufacturerName?: string;
+  /** 药品类型:(western_medicine:西药 / chinese_patent_medicine:中成药) */
+  medicineType?: string;
+  /** 药剂型 */
+  formType?: string;
+  /** 药品规格 */
+  spec?: string;
+  /** 包装材料 */
+  packagingMaterials?: string;
+  /** 最小包装单位 */
+  minPackageUnit?: string;
+  /** 最小包装数量 */
+  minPackageValue?: number;
+  /** 最小制剂单位 */
+  minPreparationUnit?: string;
+  /** 所属科室 */
+  belongSection?: string;
+  /** 适应症 */
+  indication?: string;
+  /** 禁忌症 */
+  contraindication?: string;
+  /** 不良反应 */
+  adverseReaction?: string;
+  /** 是否处方药(1:处方药 / 0:非处方药) */
+  prescriptionDrug?: number;
+  /** 批准文号 */
+  approveNo?: string;
+  /** 上市许可持有人(企业) */
+  enterpriseName?: string;
+  /** 中药剂型(chinese_herbal_pieces:中药饮片 / chinese_medicinal_granule:中药颗粒 / homemade_medicine:自制药品) */
+  chineseFormType?: string;
+  /** 生产地区 */
+  productArea?: string;
+  /** 贮藏方法 */
+  storageMethod?: string;
+  /** 当量 */
+  equivalent?: number;
+  /** 配料表 */
+  ingredientList?: string;
+  /** 营养成分 */
+  nutrients?: string;
+  /** 营养成分表(图片) */
+  nutrientsImg?: string;
+  /** 食品生产许可证编号 */
+  productLicenseNumber?: string;
+  /** 保健品保健功能描述 */
+  healthFunc?: string;
+  /** 保健品功效成分 */
+  funcComponents?: string;
+  /** 保健食品批准证号 */
+  healthApprovalNumber?: string;
+  /** 医疗器械注册证号 */
+  registNumber?: string;
+  /** 服务项目名称 */
+  serviceItemName?: string;
+  /** 医疗项目编码 */
+  medicalItemCode?: string;
+  /** 服务医疗机构名称 */
+  serviceMedicalName?: string;
+  /** 服务区域范围 */
+  serviceAreaScope?: string;
+  /** 服务医疗机构-省 */
+  serviceMedicalProvince?: string;
+  /** 服务医疗机构-市 */
+  serviceMedicalCity?: string;
+  /** 服务医疗机构-区 */
+  serviceMedicalDistrict?: string;
+  /** 服务医疗机构-详细地址 */
+  serviceMedicalAddress?: string;
+  /** 服务适用人群 */
+  applicablePopulation?: string;
+  /** 服务检查前准备 */
+  preparationInspection?: string;
+  /** 检查注意事项 */
+  inspectionPrecautions?: string;
+  /** 服务报告有效期 */
+  reportExpiration?: string;
+  /** 服务报告出具时间 */
+  reportIssueTime?: string;
+  /** 是否集采(0:否 / 1:是) */
+  purchased?: number;
+  /** 是否基药(0:否 / 1:是) */
+  basicDrug?: number;
+  /** 医保类型(Non_medical:目录外(自费) / Category_A:甲类 / Category_B:乙类) */
+  nhsaType?: string;
+  /** 国家医保药品编码 */
+  nhsaCode?: string;
+  /** 省医保药品编码 */
+  provinceMedicalCode?: string;
+  /** 市医保药品编码 */
+  cityMedicalCode?: string;
+  /** 药品本位码 */
+  standardCode?: string;
+  /** 条码 */
+  barCode?: string;
+  /** 我的药房库存 */
+  myStock?: number;
+  /** 锁库数量 */
+  lockCount?: number;
+  /** 库存计量单位 */
+  stockUnit?: string;
+  /** 我的零售价 */
+  salePrice?: number;
+  /** 生产批号(销售信息) */
+  productBatchNumber?: string;
+  /** 商品重量 */
+  goodsWeight?: number;
+  /** 生产日期 */
+  productionDate?: string;
+  /** 有效期 */
+  expirationDate?: string;
+};
+
+export type goodsGetDiagnoseByDictNameUsingGetParams = {
+  dictName: string;
+};
+
+export type goodsGetGoodsDetailUsingPostParams = {
+  goodsId: string;
+  orgId: string;
+};
+
+export type goodsGetGoodsInfoUsingGetParams = {
+  goodsId?: string;
+};
+
+export type goodsGetGoodsNumUsingGetParams = {
+  orgId: string;
+};
+
+export type goodsGetPharmacySuppliersUsingGetParams = {
+  orgId: string;
+};
+
+export type goodsGetSectionDictUsingGetParams = {
+  orgId: string;
+};
+
+export type goodsGetSupplierCertificateUsingGetParams = {
+  orgId: string;
+};
+
+export type GoodsNumDTO = {
+  /** 审核通过数量 */
+  numberOfAuditPass?: number;
+  /** 审核拒绝数量 */
+  numberOfAuditRefuse?: number;
+  /** 等待审核数量 */
+  numberOfAuditWait?: number;
+};
+
+export type GoodsPageQueryDTO = {
+  /** 商品id */
+  id?: string;
+  /** 机构id */
+  orgId?: string;
+  /** 机构编码 */
+  orgCode?: string;
+  /** 商品名 */
+  goodsName?: string;
+  /** 商品类型(western_medicine:西药/中成药 / chinese_medicine:中药 / food:食品 / health_product:保健品 / medical_equipment:医疗器械 / inspection:检验检查)' */
+  goodsType?: string;
+  /** 商品展示名：[商品名]商品通用名+规格+最小包装数量+最小剂型单位+最小包装单位 */
+  goodsNameDisplay?: string;
+  /** 通用名 */
+  commonName?: string;
+  /** 通用名拼音 */
+  commonNamePy?: string;
+  /** 商品主图 */
+  goodsMainImg?: string;
+  /** 厂商名称 */
+  drugManufacturerName?: string;
+  /** 是否集采(0:否 / 1:是) */
+  purchased?: number;
+  /** 是否基药(0:否 / 1:是) */
+  basicDrug?: number;
+  /** 医保类型(Non_medical:目录外(自费) / Category_A:甲类 / Category_B:乙类) */
+  nhsaType?: string;
+  /** 国家医保药品编码 */
+  nhsaCode?: string;
+  /** 省医保药品编码 */
+  provinceMedicalCode?: string;
+  /** 市医保药品编码 */
+  cityMedicalCode?: string;
+  /** 药品本位码 */
+  standardCode?: string;
+  /** 条码 */
+  barCode?: string;
+  /** 我的药房库存 */
+  myStock?: number;
+  /** 锁库数量 */
+  lockCount?: number;
+  /** 库存单位 */
+  stockUnit?: string;
+  /** 我的零售价 */
+  salePrice?: number;
+  /** 生产批号(销售信息) */
+  productBatchNumber?: string;
+  /** 规格 */
+  spec?: string;
+  /** 商品重量 */
+  goodsWeight?: number;
+  /** 生产日期 */
+  productionDate?: string;
+  /** 有效期 */
+  expirationDate?: string;
+  /** 添加方式(HIS:HIS同步/ SELF:自行添加 / ERP:ERP同步) */
+  addWay?: string;
+  /** 状态(0:禁用 / 1:启用) */
+  status?: number;
+  /** 是否处方药(1:是处方药 / 0:非处方药) */
+  prescriptionDrug?: number;
+  /** 药品类型:(western_medicine:西药 / chinese_patent_medicine:中成药) */
+  medicineType?: string;
+  /** 最小制剂单位 */
+  minPreparationUnit?: string;
+  /** 最小包装单位 */
+  minPackageUnit?: string;
+  /** 最小包装数量 */
+  minPackageValue?: number;
+  /** 组合商品名称 */
+  combinedGoodsName?: string;
+  /** 运费 */
+  freight?: string;
+  /** 服务区域范围 */
+  serviceAreaScope?: string;
+  /** 实际销量 */
+  realSalesVolume?: number;
+  /** 供应商名称 */
+  supplierName?: string;
+  /** 服务机构名称 */
+  serviceMedicalName?: string;
+  /** 服务项目名称 */
+  serviceItemName?: string;
+  /** 商品状态(我的药房：网院共享商品、自有商品；网院药房：云门诊-已共享) */
+  goodsStatus?: string;
+  /** 是否共享低级别医院(0:否 / 1:是) */
+  shareLowLevelStatus?: number;
+  /** 创建时间 */
+  addTime?: string;
+  /** 审核状态:(wait:待审核 / pass:审核通过 / refuse:审核拒绝) */
+  auditStatus?: string;
+  /** 自动检测结果(0:自动检测失败 / 1:自动检测成功) */
+  autoDetectRes?: number;
+  /** 自动检测失败原因 */
+  autoDetectFailReason?: string;
+};
+
+export type GoodsQueryDTO = {
+  /** 机构id */
+  orgId: string;
+  /** 商品名称关键字 */
+  goodsKeyWord: string;
+  /** 商品来源(pharmacy:我的药房，cloud:云药房，his:医院药房，当前版本只有我的药房，此参数可不传) */
+  goodsOrigin?: string;
+  /** 机构的顶级医院id */
+  hospitalOrgId?: string;
+};
+
+export type IPageGoodsAttributeDictPageRes = {
+  records?: GoodsAttributeDictPageRes[];
+  total?: number;
+  size?: number;
+  current?: number;
+  orders?: OrderItem[];
+  optimizeCountSql?: boolean;
+  isSearchCount?: boolean;
+  hitCount?: boolean;
+  countId?: string;
+  maxLimit?: number;
+  searchCount?: boolean;
+  pages?: number;
+  ascs?: string[];
+  asc?: string[];
+  descs?: string[];
+  desc?: string[];
+};
+
+export type IPageGoodsPageQueryDTO = {
+  records?: GoodsPageQueryDTO[];
+  total?: number;
+  size?: number;
+  current?: number;
+  orders?: OrderItem[];
+  optimizeCountSql?: boolean;
+  isSearchCount?: boolean;
+  hitCount?: boolean;
+  countId?: string;
+  maxLimit?: number;
+  searchCount?: boolean;
+  /** 当前分页总页数 */
+  pages?: number;
+  ascs?: string[];
+  asc?: string[];
+  descs?: string[];
+  desc?: string[];
+};
+
+export type OrderItem = {
+  column?: string;
+  asc?: boolean;
+};
+
+export type QueryGoodsReq = {
+  /** 当前页码 */
+  pageIndex?: number;
+  /** 每页显示的记录数 */
+  pageSize?: number;
+  /** 机构id */
+  orgId: string;
+  /** 机构的顶级医院id */
+  hospitalOrgId?: string;
+  /** 机构类型 */
+  orgType?: string;
+  /** 供应商机构id */
+  supplyOrgId?: string;
+  /** 我的零售价-最低价格 */
+  salePriceLow?: number;
+  /** 我的零售价-最高价格 */
+  salePriceHigh?: number;
+  /** 商品类型 */
+  goodsType?: string;
+  /** 服务区域范围 */
+  serviceAreaScope?: string;
+  /** 医保类型 */
+  nhsaType?: number;
+  /** 适应症 */
+  indication?: string[];
+  /** 所属科室 */
+  belongSection?: string;
+  /** 审核状态 */
+  auditStatus?: string;
+  /** 商品名称关键字 */
+  goodsKeyWord?: string;
+  /** 创建时间-左区间 */
+  createTimeLeft?: string;
+  /** 创建时间-右区间 */
+  createTimeRight?: string;
+};
+
+export type ResponseResultBaseGoodDTO = {
+  code?: string;
+  msg?: string;
+  data?: BaseGoodDTO;
+};
+
+export type ResponseResultBoolean = {
+  code?: string;
+  msg?: string;
+  data?: boolean;
+};
+
+export type ResponseResultGoodsDetailRes = {
+  code?: string;
+  msg?: string;
+  data?: GoodsDetailRes;
+};
+
+export type ResponseResultGoodsNumDTO = {
+  code?: string;
+  msg?: string;
+  data?: GoodsNumDTO;
+};
+
+export type ResponseResultIPageGoodsAttributeDictPageRes = {
+  code?: string;
+  msg?: string;
+  data?: IPageGoodsAttributeDictPageRes;
+};
+
+export type ResponseResultIPageGoodsPageQueryDTO = {
+  code?: string;
+  msg?: string;
+  data?: IPageGoodsPageQueryDTO;
+};
+
+export type ResponseResultListDiagnoseDictValueRes = {
+  code?: string;
+  msg?: string;
+  data?: DiagnoseDictValueRes[];
+};
+
+export type ResponseResultListSectionDictValueRes = {
+  code?: string;
+  msg?: string;
+  data?: SectionDictValueRes[];
+};
+
+export type ResponseResultListsupplierRes = {
+  code?: string;
+  msg?: string;
+  data?: supplierRes[];
+};
+
+export type ResponseResultSupplierCertificateRes = {
+  code?: string;
+  msg?: string;
+  data?: SupplierCertificateRes;
+};
+
+export type SectionDictValueRes = {
+  id?: string;
+  sectionCode?: string;
+  sectionName?: string;
+};
+
+export type ShareGoodsReq = {
+  orgId: string;
+  goodsIdList: string[];
+};
+
+export type SupplierCertificateRes = {
+  /** 机构名称 */
+  orgName?: string;
+  /** 机构资质 */
+  certificates?: string[];
+  /** 营业执照 */
+  licensePhotoUrls?: string[];
+};
+
+export type supplierRes = {
+  /** 供应商ID */
+  supplierId?: string;
+  /** 供应商code */
+  supplierCode?: string;
+  /** 供应商名称 */
+  supplierName?: string;
+};
+
+export type UpdateGoodsReq = {
+  /** 机构id */
+  orgId: string;
+  /** 机构编码 */
+  orgCode: string;
+  /** 商品类型((western_medicine:西药 / western_chinese:中药 / food:食品 / health_product:保健品 / medical_equipment:医疗器械 / inspection:检验检查)' */
+  goodsType: string;
+  /** 商品名 */
+  goodsName?: string;
+  /** 通用名 */
+  commonName: string;
+  /** 通用名拼音 */
+  commonNamePy?: string;
+  /** 商品主图 */
+  goodsMainImg: string;
+  /** 厂商名称 */
+  drugManufacturerName?: string;
+  /** 药品类型:(western_medicine:西药 / chinese_patent_medicine:中成药) */
+  medicineType?: string;
+  /** 药剂型 */
+  formType?: string;
+  /** 药品规格 */
+  spec?: string;
+  /** 包装材料 */
+  packagingMaterials?: string;
+  /** 最小包装单位 */
+  minPackageUnit?: string;
+  /** 最小包装数量 */
+  minPackageValue?: number;
+  /** 最小制剂单位 */
+  minPreparationUnit?: string;
+  /** 所属科室 */
+  belongSection?: string;
+  /** 适应症 */
+  indication?: string;
+  /** 禁忌症 */
+  contraindication?: string;
+  /** 不良反应 */
+  adverseReaction?: string;
+  /** 是否处方药(1:处方药 / 0:非处方药) */
+  prescriptionDrug?: number;
+  /** 批准文号 */
+  approveNo?: string;
+  /** 上市许可持有人(企业) */
+  enterpriseName?: string;
+  /** 中药剂型(chinese_herbal_pieces:中药饮片 / chinese_medicinal_granule:中药颗粒 / homemade_medicine:自制药品) */
+  chineseFormType?: string;
+  /** 生产地区 */
+  productArea?: string;
+  /** 贮藏方法 */
+  storageMethod?: string;
+  /** 当量 */
+  equivalent?: number;
+  /** 配料表 */
+  ingredientList?: string;
+  /** 营养成分 */
+  nutrients?: string;
+  /** 营养成分表(图片) */
+  nutrientsImg?: string;
+  /** 食品生产许可证编号 */
+  productLicenseNumber?: string;
+  /** 保健品保健功能描述 */
+  healthFunc?: string;
+  /** 保健品功效成分 */
+  funcComponents?: string;
+  /** 保健食品批准证号 */
+  healthApprovalNumber?: string;
+  /** 医疗器械注册证号 */
+  registNumber?: string;
+  /** 服务项目名称 */
+  serviceItemName?: string;
+  /** 医疗项目编码 */
+  medicalItemCode?: string;
+  /** 服务医疗机构名称 */
+  serviceMedicalName?: string;
+  /** 服务区域范围 */
+  serviceAreaScope?: string;
+  /** 服务医疗机构-省 */
+  serviceMedicalProvince?: string;
+  /** 服务医疗机构-市 */
+  serviceMedicalCity?: string;
+  /** 服务医疗机构-区 */
+  serviceMedicalDistrict?: string;
+  /** 服务医疗机构-详细地址 */
+  serviceMedicalAddress?: string;
+  /** 服务适用人群 */
+  applicablePopulation?: string;
+  /** 服务检查前准备 */
+  preparationInspection?: string;
+  /** 检查注意事项 */
+  inspectionPrecautions?: string;
+  /** 服务报告有效期 */
+  reportExpiration?: string;
+  /** 服务报告出具时间 */
+  reportIssueTime?: string;
+  /** 是否集采(0:否 / 1:是) */
+  purchased?: number;
+  /** 是否基药(0:否 / 1:是) */
+  basicDrug?: number;
+  /** 医保类型(Non_medical:目录外(自费) / Category_A:甲类 / Category_B:乙类) */
+  nhsaType?: string;
+  /** 国家医保药品编码 */
+  nhsaCode?: string;
+  /** 省医保药品编码 */
+  provinceMedicalCode?: string;
+  /** 市医保药品编码 */
+  cityMedicalCode?: string;
+  /** 药品本位码 */
+  standardCode?: string;
+  /** 条码 */
+  barCode?: string;
+  /** 我的药房库存 */
+  myStock: number;
+  /** 锁库数量 */
+  lockCount?: number;
+  /** 库存计量单位 */
+  stockUnit: string;
+  /** 我的零售价 */
+  salePrice: number;
+  /** 生产批号(销售信息) */
+  productBatchNumber?: string;
+  /** 商品重量 */
+  goodsWeight?: number;
+  /** 生产日期 */
+  productionDate?: string;
+  /** 有效期 */
+  expirationDate?: string;
+  /** 商品id */
+  id: string;
+};

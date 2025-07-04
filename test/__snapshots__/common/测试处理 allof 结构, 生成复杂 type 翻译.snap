@@ -1,0 +1,102 @@
+/* eslint-disable */
+// @ts-ignore
+import * as API from './types';
+
+export function displayBatch(field: keyof API.Batch) {
+  return (
+    displayResponse(field as keyof API.Response) ||
+    displayBatchAllOf(field as keyof API.BatchAllOf)
+  );
+}
+
+export function displayBatchAllOf(field: keyof API.BatchAllOf) {
+  return {
+    data: 'data',
+  }[field];
+}
+
+export function displayBatchList(field: keyof API.BatchList) {
+  return (
+    displayResponse(field as keyof API.Response) ||
+    {
+      data: 'data',
+    }[field]
+  );
+}
+
+export function displaybatchUsingGetParams(
+  field: keyof API.batchUsingGetParams
+) {
+  return {
+    errorMessage: 'log to filter by errorMessage',
+  }[field];
+}
+
+export function displayResponse(field: keyof API.Response) {
+  return {
+    errorCode: '业务约定的错误码',
+    errorMessage: '业务上的错误信息',
+    success: '业务上的请求是否成功',
+  }[field];
+}
+/* eslint-disable */
+// @ts-ignore
+export * from './types';
+export * from './displayTypeLabel';
+
+export * from './log';
+/* eslint-disable */
+// @ts-ignore
+import { request } from 'axios';
+
+import * as API from './types';
+
+/** Finds log by errorMessage Finds log by errorMessage GET /batch */
+export async function batchUsingGet({
+  params,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.batchUsingGetParams;
+  options?: { [key: string]: unknown };
+}) {
+  return request<API.BatchList>('/batch', {
+    method: 'GET',
+    params: {
+      ...params,
+    },
+    ...(options || {}),
+  });
+}
+/* eslint-disable */
+// @ts-ignore
+
+export type Batch =
+  // #/components/schemas/Response
+  Response &
+    // #/components/schemas/Batch_allOf
+    BatchAllOf;
+
+export type BatchAllOf = {
+  data?: Record<string, unknown>;
+};
+
+export type BatchList =
+  // #/components/schemas/Response
+  Response & {
+    data?: Batch[];
+  };
+
+export type batchUsingGetParams = {
+  /** log to filter by errorMessage */
+  errorMessage?: unknown;
+};
+
+export type Response = {
+  /** 业务约定的错误码 */
+  errorCode?: string;
+  /** 业务上的错误信息 */
+  errorMessage?: string;
+  /** 业务上的请求是否成功 */
+  success: boolean;
+};

@@ -1,0 +1,132 @@
+/* eslint-disable */
+// @ts-ignore
+import * as API from './types';
+
+export function displayBusinessTypeEnum(field: API.BusinessTypeEnum) {
+  return {
+    CLASSIFICATION: 'CLASSIFICATION',
+    DEVICE: 'DEVICE',
+    INSTRUMENT: 'INSTRUMENT',
+  }[field];
+}
+
+export function displayTimeIntervalEnum(field: API.TimeIntervalEnum) {
+  return {
+    DAY: 'DAY',
+    HALFHOUR: 'HALFHOUR',
+    HOUR: 'HOUR',
+    MINUTE: 'MINUTE',
+    MONTH: 'MONTH',
+    QUARTERHOUR: 'QUARTERHOUR',
+    YEAR: 'YEAR',
+  }[field];
+}
+
+export function displayTimeQueryTypeEnum(field: API.TimeQueryTypeEnum) {
+  return { NATURAL: 'NATURAL', SHIFT: 'SHIFT' }[field];
+}
+
+export function displayVsTypeEnum(field: API.VsTypeEnum) {
+  return { CLASSIFICATION: 'CLASSIFICATION', DEVICE: 'DEVICE', TIME: 'TIME' }[
+    field
+  ];
+}
+/* eslint-disable */
+// @ts-ignore
+import { request } from 'axios';
+
+import * as API from './types';
+
+/** 分时电量查询 POST /electricity/classification/time-sharing-electricity */
+export async function electricityClassificationTimeSharingElectricityUsingPost({
+  body,
+  options,
+}: {
+  body: API.fenxiangshebaoziranshijiantongjichaxunDto;
+  options?: { [key: string]: unknown };
+}) {
+  return request<API.StatisticsQueryVo>(
+    '/electricity/classification/time-sharing-electricity',
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      data: body,
+      ...(options || {}),
+    }
+  );
+}
+/* eslint-disable */
+// @ts-ignore
+export * from './types';
+export * from './displayEnumLabel';
+
+export * from './fenxiangyongdimokuai6C76B49E435F7713E0531F0B10Ac7013';
+/* eslint-disable */
+// @ts-ignore
+
+export enum BusinessTypeEnum {
+  'CLASSIFICATION' = 'CLASSIFICATION',
+  'DEVICE' = 'DEVICE',
+  'INSTRUMENT' = 'INSTRUMENT',
+}
+
+export type IBusinessTypeEnum = keyof typeof BusinessTypeEnum;
+
+export type fenxiangshebaoziranshijiantongjichaxunDto = {
+  /** 业务类型 */
+  businessType?: 'CLASSIFICATION' | 'DEVICE' | 'INSTRUMENT';
+  /** 结束时间 */
+  endTime?: string;
+  /** 能源类型 */
+  energyType?: string;
+  /** 根据业务类型传勾选id */
+  ids?: string[];
+  /** 开始时间 */
+  startTime?: string;
+  /** 时间粒度 */
+  timeInterval?:
+    | 'DAY'
+    | 'HALFHOUR'
+    | 'HOUR'
+    | 'MINUTE'
+    | 'MONTH'
+    | 'QUARTERHOUR'
+    | 'YEAR';
+  /** 查询类型 自然时间-NATURAL,班制时间-SHIFT */
+  timeQueryType?: 'NATURAL' | 'SHIFT';
+  /** 对比结束时间 */
+  vsEndTime?: string;
+  /** 对比开始时间 */
+  vsStartTime?: string;
+  /** 比较类型 */
+  vsType?: 'CLASSIFICATION' | 'DEVICE' | 'TIME';
+};
+
+export enum TimeIntervalEnum {
+  'DAY' = 'DAY',
+  'HALFHOUR' = 'HALFHOUR',
+  'HOUR' = 'HOUR',
+  'MINUTE' = 'MINUTE',
+  'MONTH' = 'MONTH',
+  'QUARTERHOUR' = 'QUARTERHOUR',
+  'YEAR' = 'YEAR',
+}
+
+export type ITimeIntervalEnum = keyof typeof TimeIntervalEnum;
+
+export enum TimeQueryTypeEnum {
+  'NATURAL' = 'NATURAL',
+  'SHIFT' = 'SHIFT',
+}
+
+export type ITimeQueryTypeEnum = keyof typeof TimeQueryTypeEnum;
+
+export enum VsTypeEnum {
+  'CLASSIFICATION' = 'CLASSIFICATION',
+  'DEVICE' = 'DEVICE',
+  'TIME' = 'TIME',
+}
+
+export type IVsTypeEnum = keyof typeof VsTypeEnum;

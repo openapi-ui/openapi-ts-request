@@ -12,16 +12,12 @@ import {
   uniq,
 } from 'lodash';
 import { readFileSync } from 'node:fs';
-import { OpenAPI, OpenAPIV2, OpenAPIV3 } from 'openapi-types';
+import type { OpenAPI, OpenAPIV2, OpenAPIV3 } from 'openapi-types';
 import converter from 'swagger2openapi';
 
 import log, { logError } from './log';
-import {
-  type APIFoxBody,
-  type GetSchemaByApifoxProps,
-  OpenAPIObject,
-  OperationObject,
-} from './type';
+import type { OpenAPIObject, OperationObject } from './type';
+import { type APIFoxBody, type GetSchemaByApifoxProps } from './type';
 
 export const getImportStatement = (requestLibPath: string) => {
   if (requestLibPath) {

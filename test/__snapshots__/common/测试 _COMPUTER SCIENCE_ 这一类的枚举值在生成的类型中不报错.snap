@@ -1,0 +1,65 @@
+/* eslint-disable */
+// @ts-ignore
+import * as API from './types';
+
+export function displayGenderEnum(field: API.GenderEnum) {
+  return { MALE: 'MALE', FEMALE: 'FEMALE', OTHER: 'OTHER' }[field];
+}
+
+export function displayMajorEnum(field: API.Major) {
+  return {
+    'COMPUTER SCIENCE': 'COMPUTER SCIENCE',
+    MATHEMATICS: 'MATHEMATICS',
+    PHYSICS: 'PHYSICS',
+    LITERATURE: 'LITERATURE',
+  }[field];
+}
+/* eslint-disable */
+// @ts-ignore
+export * from './types';
+export * from './displayEnumLabel';
+
+export * from './student';
+/* eslint-disable */
+// @ts-ignore
+import { request } from 'axios';
+
+import * as API from './types';
+
+/** Returns a student object GET /hello */
+export async function helloUsingGet({
+  options,
+}: {
+  options?: { [key: string]: unknown };
+}) {
+  return request<API.Student>('/hello', {
+    method: 'GET',
+    ...(options || {}),
+  });
+}
+/* eslint-disable */
+// @ts-ignore
+
+export enum GenderEnum {
+  'MALE' = 'MALE',
+  'FEMALE' = 'FEMALE',
+  'OTHER' = 'OTHER',
+}
+
+export type IGenderEnum = keyof typeof GenderEnum;
+
+export enum Major {
+  'COMPUTER SCIENCE' = 'COMPUTER SCIENCE',
+  'MATHEMATICS' = 'MATHEMATICS',
+  'PHYSICS' = 'PHYSICS',
+  'LITERATURE' = 'LITERATURE',
+}
+
+export type IMajor = keyof typeof Major;
+
+export type Student = {
+  name: string;
+  age: number;
+  gender: 'MALE' | 'FEMALE' | 'OTHER';
+  major: Major;
+};

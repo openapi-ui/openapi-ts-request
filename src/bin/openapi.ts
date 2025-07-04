@@ -4,10 +4,11 @@ import { pickBy } from 'lodash';
 import { join } from 'path';
 
 import * as pkg from '../../package.json';
-import { GenerateServiceProps, generateService } from '../index';
+import type { GenerateServiceProps } from '../index';
+import { generateService } from '../index';
 import { logError } from '../log';
 import { readConfig } from '../readConfig';
-import { IPriorityRule, IReactQueryMode } from '../type';
+import type { IPriorityRule, IReactQueryMode } from '../type';
 
 const params = program
   .name('openapi')

@@ -1,8 +1,8 @@
 import { isArray, isObject } from 'lodash';
-import { OpenAPIV3 } from 'openapi-types';
+import type { OpenAPIV3 } from 'openapi-types';
 
 import { isSchemaObject } from '../generator/util';
-import {
+import type {
   OpenAPIObject,
   ParameterObject,
   ReferenceObject,
