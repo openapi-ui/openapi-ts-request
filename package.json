@@ -31,9 +31,6 @@
     "lint": "eslint ./src --report-unused-disable-directives --max-warnings=0",
     "lint:fix": "eslint ./src --report-unused-disable-directives --max-warnings=0 --fix",
     "test:unit": "vitest",
-    "test": "rm -rf ./test/apis/ ./test/mocks && npm run build && cd ./test && node ./test.js && cd ..",
-    "test:new": "npm run build && cd ./test && node ./test.js && cd ..",
-    "test:windows": "rimraf ./test/apis/ ./test/mocks && npm run build && cd ./test && node ./test.js && cd ..",
     "prepare": "husky",
     "openapi-ts-request": "openapi-ts"
   },
