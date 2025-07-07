@@ -24,7 +24,7 @@
   ],
   "tags": [
     {
-      "name": "宠物",
+      "name": "宠物们",
       "description": "Everything about your Pets",
       "externalDocs": {
         "description": "Find out more",
@@ -47,7 +47,7 @@
   "paths": {
     "/pet": {
       "put": {
-        "tags": ["宠物", "你好", "世界", "happy"],
+        "tags": ["宠物们", "你好", "世界", "happy"],
         "summary": "Update an existing pet",
         "description": "Update an existing pet by Id",
         "operationId": "updatePet",
@@ -105,7 +105,7 @@
         ]
       },
       "post": {
-        "tags": ["宠物"],
+        "tags": ["宠物们"],
         "summary": "Add a new pet to the store",
         "description": "Add a new pet to the store",
         "operationId": "addPet",
@@ -159,7 +159,7 @@
     },
     "/pet/findByStatus": {
       "get": {
-        "tags": ["宠物"],
+        "tags": ["宠物们"],
         "summary": "Finds Pets by status",
         "description": "Multiple status values can be provided with comma separated strings",
         "operationId": "findPetsByStatus",
@@ -212,7 +212,7 @@
     },
     "/pet/findByTags": {
       "get": {
-        "tags": ["宠物"],
+        "tags": ["宠物们"],
         "summary": "Finds Pets by tags",
         "description": "Multiple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.",
         "operationId": "findPetsByTags",
@@ -266,7 +266,7 @@
     },
     "/pet/{petId}": {
       "get": {
-        "tags": ["宠物"],
+        "tags": ["宠物们"],
         "summary": "Find pet by ID",
         "description": "Returns a single pet",
         "operationId": "getPetById",
@@ -315,7 +315,7 @@
         ]
       },
       "post": {
-        "tags": ["宠物"],
+        "tags": ["宠物们"],
         "summary": "Updates a pet in the store with form data",
         "description": "",
         "operationId": "updatePetWithForm",
@@ -359,7 +359,7 @@
         ]
       },
       "delete": {
-        "tags": ["宠物"],
+        "tags": ["宠物们"],
         "summary": "Deletes a pet",
         "description": "",
         "operationId": "deletePet",
@@ -398,7 +398,7 @@
     },
     "/pet/{petId}/uploadImage": {
       "post": {
-        "tags": ["宠物"],
+        "tags": ["宠物们"],
         "summary": "uploads an image",
         "description": "",
         "operationId": "uploadFile",

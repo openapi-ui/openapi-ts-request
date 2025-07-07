@@ -1,9 +1,9 @@
 import { isObject, isUndefined, keys } from 'lodash';
 import memoizee from 'memoizee';
-import { OpenAPIV3 } from 'openapi-types';
+import type { OpenAPIV3 } from 'openapi-types';
 
 import { isReferenceObject } from '../generator/util';
-import {
+import type {
   ArraySchemaObject,
   ISchemaObject,
   OpenAPIObject,

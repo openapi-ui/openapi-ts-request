@@ -2,6 +2,10 @@
 // @ts-ignore
 import * as {{ namespace }} from './{{ interfaceFileName }}';
 
+{% if customTemplate %}
+  {{ list }}
+{% else %}
+
 {% for type in list -%}
   {%- if type.props.length %}
     export function display{{ type.typeName }}(field: keyof {{ namespace }}.{{ type.typeName }}) {
@@ -20,7 +24,7 @@ import * as {{ namespace }} from './{{ interfaceFileName }}';
               display{{ p.type | safe }}(field as keyof {{ namespace }}.{{ p.type }})
             {%- else %}
               {{ p.name }}: '{{ p.desc if p.desc else p.name }}',
-            {%- endif %}   
+            {%- endif %}
           {%- endfor %}
         {%- if prop.length > 1 %}
           }[field]
@@ -40,3 +44,4 @@ import * as {{ namespace }} from './{{ interfaceFileName }}';
   {%- endif %}
 
 {% endfor -%}
+{%- endif %}

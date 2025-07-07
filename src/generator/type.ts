@@ -1,12 +1,8 @@
 import type { ProjectOptions } from 'ts-morph';
 
-import {
-  type MutuallyExclusive,
-  OperationObject,
-  ParameterObject,
-  SchemaObject,
-} from '../type';
-import { TypescriptFileType } from './config';
+import type { OperationObject, ParameterObject, SchemaObject } from '../type';
+import { type MutuallyExclusive } from '../type';
+import type { TypescriptFileType } from './config';
 
 export type ITypescriptFileType = keyof typeof TypescriptFileType;
 
@@ -39,6 +35,7 @@ export interface ITypeItem {
   isEnum: boolean;
   displayLabelFuncName?: string;
   enumLabelType?: string;
+  description?: string;
 }
 
 export type ICustomSchemaObject = SchemaObject & { isAllowed?: boolean };

@@ -1,4 +1,4 @@
-import { IReactQueryMode } from './type';
+import type { IReactQueryMode } from './type';
 
 export enum SchemaObjectFormat {
   int32 = 'int32',

@@ -1,6 +1,6 @@
-import { Dictionary } from 'lodash';
+import type { Dictionary } from 'lodash';
 
-import { IReactQueryMode, ParameterObject, SchemaObject } from '../type';
+import type { IReactQueryMode, ParameterObject, SchemaObject } from '../type';
 
 export const serviceEntryFileName = 'index';
 

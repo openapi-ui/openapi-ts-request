@@ -1,13 +1,12 @@
 import { isEmpty, map } from 'lodash';
 
 import { PriorityRule, ReactQueryMode } from './config';
-import { TypescriptFileType } from './generator/config';
+import type { TypescriptFileType } from './generator/config';
 import { mockGenerator } from './generator/mockGenarator';
 import ServiceGenerator from './generator/serviceGenarator';
-import { APIDataType } from './generator/type';
-import {
+import type { APIDataType, ITypeItem } from './generator/type';
+import type {
   ComponentsObject,
-  type GetSchemaByApifoxProps,
   IPriorityRule,
   IReactQueryMode,
   OpenAPIObject,
@@ -15,6 +14,7 @@ import {
   ReferenceObject,
   SchemaObject,
 } from './type';
+import { type GetSchemaByApifoxProps } from './type';
 import {
   getImportStatement,
   getOpenAPIConfig,
@@ -245,6 +245,20 @@ export type GenerateServiceProps = {
         item: T,
         context: U
       ) => string;
+      /**
+       * 自定义 displayEnumLabel 模板
+       */
+      [TypescriptFileType.displayEnumLabel]?: <T, U>(
+        enums: T[],
+        config: U
+      ) => ITypeItem[];
+      /**
+       * 自定义 displayTypeLabel 模板
+       */
+      [TypescriptFileType.displayTypeLabel]?: <T, U>(
+        types: T[],
+        config: U
+      ) => ITypeItem[];
     };
   };
 };

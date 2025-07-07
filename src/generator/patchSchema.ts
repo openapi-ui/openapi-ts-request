@@ -1,5 +1,5 @@
+import type { Dictionary } from 'lodash';
 import {
-  Dictionary,
   forEach,
   has,
   isEmpty,
@@ -12,7 +12,7 @@ import {
   uniq,
 } from 'lodash';
 
-import { ComponentsObject, ISchemaObject, SchemaObject } from '../type';
+import type { ComponentsObject, ISchemaObject, SchemaObject } from '../type';
 import {
   isArraySchemaObject,
   isNonArraySchemaObject,

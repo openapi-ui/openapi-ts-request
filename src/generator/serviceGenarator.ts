@@ -1,7 +1,7 @@
 import { existsSync, readFileSync } from 'fs';
 import { globSync } from 'glob';
+import type { Dictionary } from 'lodash';
 import {
-  Dictionary,
   // camelCase,
   entries,
   filter,
@@ -27,7 +27,7 @@ import {
 } from '../config';
 import type { GenerateServiceProps } from '../index';
 import log from '../log';
-import {
+import type {
   ArraySchemaObject,
   ContentObject,
   ISchemaObject,
@@ -62,7 +62,7 @@ import {
 import { writeFile } from './file';
 import { Merger } from './merge';
 import { patchSchema } from './patchSchema';
-import {
+import type {
   APIDataType,
   ControllerType,
   ICustomParameterObject,
@@ -72,9 +72,9 @@ import {
   IServiceControllerPayload,
   ITypeItem,
   ITypescriptFileType,
-  type MergeOption,
   TagAPIDataType,
 } from './type';
+import { type MergeOption } from './type';
 import {
   capitalizeFirstLetter,
   genDefaultFunctionName,
@@ -359,11 +359,19 @@ export default class ServiceGenerator {
     // 生成枚举翻译
     const enums = filter(this.interfaceTPConfigs, (item) => item.isEnum);
     if (!isGenJavaScript && !isOnlyGenTypeScriptType && !isEmpty(enums)) {
+      const hookCustomTemplateService =
+        this.config.hook?.customTemplates?.[
+          TypescriptFileType.displayEnumLabel
+        ];
+
       this.genFileFromTemplate(
         `${displayEnumLabelFileName}.ts`,
         TypescriptFileType.displayEnumLabel,
         {
-          list: enums,
+          customTemplate: !!hookCustomTemplateService,
+          list: hookCustomTemplateService
+            ? hookCustomTemplateService(enums, this.config)
+            : enums,
           namespace: this.config.namespace,
           interfaceFileName: interfaceFileName,
         }
@@ -381,11 +389,19 @@ export default class ServiceGenerator {
       this.config.isDisplayTypeLabel &&
       !isEmpty(displayTypeLabels)
     ) {
+      const hookCustomTemplateService =
+        this.config.hook?.customTemplates?.[
+          TypescriptFileType.displayTypeLabel
+        ];
+
       this.genFileFromTemplate(
         `${displayTypeLabelFileName}.ts`,
         TypescriptFileType.displayTypeLabel,
         {
-          list: displayTypeLabels,
+          customTemplate: !!hookCustomTemplateService,
+          list: hookCustomTemplateService
+            ? hookCustomTemplateService(enums, this.config)
+            : displayTypeLabels,
           namespace: this.config.namespace,
           interfaceFileName: interfaceFileName,
         }
@@ -569,6 +585,7 @@ export default class ServiceGenerator {
               isEnum: enumObj.isEnum,
               displayLabelFuncName: camelCase(`display-${item.name}-Enum`),
               enumLabelType: enumObj.enumLabelType,
+              description: enumObj.description,
             });
           }
         });
@@ -947,7 +964,7 @@ export default class ServiceGenerator {
 
     // 具名 body 场景
     if (isReferenceObject(schema)) {
-      bodySchema.type = `${this.config.namespace}.${bodySchema.type}`;
+      bodySchema.type = `${bodySchema.type}`;
     } else {
       bodySchema.isAnonymous = true;
     }
@@ -1049,7 +1066,7 @@ export default class ServiceGenerator {
           DEFAULT_SCHEMA) as SchemaObject;
       }
 
-      responseSchema.type = `${this.config.namespace}.${this.getType(schema, this.config.namespace)}`;
+      responseSchema.type = `${this.getType(schema, this.config.namespace)}`;
 
       return responseSchema;
     }
@@ -1251,6 +1268,7 @@ export default class ServiceGenerator {
       isEnum: true,
       type: Array.isArray(enumArray) ? enumStr : 'string',
       enumLabelType: enumLabelTypeStr,
+      description: schemaObject.description,
     };
   }
 

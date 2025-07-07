@@ -1,5 +1,5 @@
+import type { Dictionary } from 'lodash';
 import {
-  Dictionary,
   countBy,
   every,
   filter,
@@ -20,7 +20,7 @@ import pinyin from 'tiny-pinyin';
 
 import { SchemaObjectType } from '../config';
 import log from '../log';
-import {
+import type {
   ArraySchemaObject,
   BinaryArraySchemaObject,
   ComponentsObject,
@@ -32,7 +32,7 @@ import {
   SchemaObject,
 } from '../type';
 import { numberEnum } from './config';
-import { ICustomSchemaObject, ITypeItem } from './type';
+import type { ICustomSchemaObject, ITypeItem } from './type';
 
 export function stripDot(str: string) {
   return str.replace(/[-_ .](\w)/g, (_all, letter: string) =>
@@ -135,8 +135,8 @@ export function getDefaultType(
   }
 
   if (isReferenceObject(schemaObject)) {
-    return getRefName(schemaObject);
-    // return [namespace, getRefName(schemaObject)].filter((s) => s).join('.');
+    // return getRefName(schemaObject);
+    return [namespace, getRefName(schemaObject)].filter((s) => s).join('.');
   }
 
   let type = schemaObject?.type;

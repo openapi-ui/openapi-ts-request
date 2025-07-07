@@ -11,6 +11,7 @@ module.exports = {
     'test',
     '*.cjs',
     'openapi-ts-request.config.ts',
+    'vitest.config.ts',
   ],
   plugins: [],
   parserOptions: {
@@ -21,5 +22,6 @@ module.exports = {
   rules: {
     '@typescript-eslint/ban-ts-comment': 'warn',
     '@typescript-eslint/no-explicit-any': 'off',
+    '@typescript-eslint/consistent-type-imports': 'error',
   },
 };
