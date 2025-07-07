@@ -1,5 +1,27 @@
 # openapi-ts-request
 
+## 1.6.0
+
+### Minor Changes
+
+- [#381](https://github.com/openapi-ui/openapi-ts-request/pull/381) [`2ac8cf5`](https://github.com/openapi-ui/openapi-ts-request/commit/2ac8cf587b47a0d540b127e37d685f6268bfaf8a) Thanks [@asins](https://github.com/asins)! - feat: 支持通过hooks处理enum types
+
+### Patch Changes
+
+- [#385](https://github.com/openapi-ui/openapi-ts-request/pull/385) [`296739e`](https://github.com/openapi-ui/openapi-ts-request/commit/296739e0e0afc68d2c454e125c65d13ad1b404bc) Thanks [@AdoKevin](https://github.com/AdoKevin)! - fix: refactor test cases to use vitest as testing framework
+
+- [#385](https://github.com/openapi-ui/openapi-ts-request/pull/385) [`296739e`](https://github.com/openapi-ui/openapi-ts-request/commit/296739e0e0afc68d2c454e125c65d13ad1b404bc) Thanks [@AdoKevin](https://github.com/AdoKevin)! - fix: 生成的类型缺少namespace问题
+
+- [#390](https://github.com/openapi-ui/openapi-ts-request/pull/390) [`97baffc`](https://github.com/openapi-ui/openapi-ts-request/commit/97baffcf3f907cba1e304107d9e8c8a6327270ac) Thanks [@AdoKevin](https://github.com/AdoKevin)! - fix: 新增的 enum label hook中取变量错误
+
+- [#385](https://github.com/openapi-ui/openapi-ts-request/pull/385) [`296739e`](https://github.com/openapi-ui/openapi-ts-request/commit/296739e0e0afc68d2c454e125c65d13ad1b404bc) Thanks [@AdoKevin](https://github.com/AdoKevin)! - style: prefer type import
+
+- [#392](https://github.com/openapi-ui/openapi-ts-request/pull/392) [`d4d19c8`](https://github.com/openapi-ui/openapi-ts-request/commit/d4d19c835630e0bff61bfdc571183944feb9484b) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - chore: clean test script
+
+- [#392](https://github.com/openapi-ui/openapi-ts-request/pull/392) [`0d2ac27`](https://github.com/openapi-ui/openapi-ts-request/commit/0d2ac2724bcf9b74a6eb88242635d2962d3ac406) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - perf: perf parmas customTemplates type definition
+
+- [#392](https://github.com/openapi-ui/openapi-ts-request/pull/392) [`3b75878`](https://github.com/openapi-ui/openapi-ts-request/commit/3b75878234417cd663d3b5c3554eb454212ddc0c) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - chore: add user documentation
+
 ## 1.5.2
 
 ### Patch Changes
