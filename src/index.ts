@@ -4,7 +4,7 @@ import { PriorityRule, ReactQueryMode } from './config';
 import type { TypescriptFileType } from './generator/config';
 import { mockGenerator } from './generator/mockGenarator';
 import ServiceGenerator from './generator/serviceGenarator';
-import type { APIDataType } from './generator/type';
+import type { APIDataType, ITypeItem } from './generator/type';
 import type {
   ComponentsObject,
   IPriorityRule,
@@ -239,11 +239,11 @@ export type GenerateServiceProps = {
      */
     customTemplates?: {
       /**
-       * 自定义 displayTypeLabel 模板
+       * 自定义 serviceController 模板
        */
-      [TypescriptFileType.displayTypeLabel]?: <T, U>(
-        types: T[],
-        config: U
+      [TypescriptFileType.serviceController]?: <T, U>(
+        item: T,
+        context: U
       ) => string;
       /**
        * 自定义 displayEnumLabel 模板
@@ -251,15 +251,14 @@ export type GenerateServiceProps = {
       [TypescriptFileType.displayEnumLabel]?: <T, U>(
         enums: T[],
         config: U
-      ) => string;
-
+      ) => ITypeItem[];
       /**
-       * 自定义 serviceController 模板
+       * 自定义 displayTypeLabel 模板
        */
-      [TypescriptFileType.serviceController]?: <T, U>(
-        item: T,
-        context: U
-      ) => string;
+      [TypescriptFileType.displayTypeLabel]?: <T, U>(
+        types: T[],
+        config: U
+      ) => ITypeItem[];
     };
   };
 };
