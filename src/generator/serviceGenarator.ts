@@ -966,10 +966,8 @@ export default class ServiceGenerator {
       isAnonymous: false,
     };
 
-    // 具名 body 场景
-    if (isReferenceObject(schema)) {
-      bodySchema.type = `${bodySchema.type}`;
-    } else {
+    // 匿名 body 场景
+    if (!isReferenceObject(schema)) {
       bodySchema.isAnonymous = true;
     }
 
@@ -1070,7 +1068,7 @@ export default class ServiceGenerator {
           DEFAULT_SCHEMA) as SchemaObject;
       }
 
-      responseSchema.type = `${this.getType(schema, this.config.namespace)}`;
+      responseSchema.type = this.getType(schema, this.config.namespace);
 
       return responseSchema;
     }
