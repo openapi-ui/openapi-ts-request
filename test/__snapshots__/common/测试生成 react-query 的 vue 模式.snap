@@ -4276,7 +4276,7 @@ export type v1ApiAppAppIdDatasetsUsingDeleteParams = {
   datasetID: string;
 };
 
-export type V1ApiAppAppIdDatasetsUsingPostBody = API.AppDatasets[];
+export type V1ApiAppAppIdDatasetsUsingPostBody = AppDatasets[];
 
 export type v1ApiAppAppIdDatasetsUsingPostParams = {
   /** 应用id */
@@ -4668,7 +4668,7 @@ export type v2ApiWorkspacesRecommendedMessageIdDetailsUsingGetParams = {
 };
 
 export type V2ApiWorkspacesWorkspaceIdAppAppIdDatasetsJoinUsingPostBody =
-  API.AppDatasets[];
+  AppDatasets[];
 
 export type v2ApiWorkspacesWorkspaceIdAppAppIdDatasetsJoinUsingPostParams = {
   /** 空间ID */

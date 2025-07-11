@@ -641,6 +641,10 @@ export default class ServiceGenerator {
               const params =
                 this.getParamsTP(newApi.parameters, newApi.path) || {};
               const body = this.getBodyTP(
+                newApi.requestBody as RequestBodyObject,
+                this.config.namespace
+              );
+              const bodyWithoutNamespace = this.getBodyTP(
                 newApi.requestBody as RequestBodyObject
               );
               const response = this.getResponseTP(newApi.responses);
@@ -665,7 +669,7 @@ export default class ServiceGenerator {
                 const bodyName = upperFirst(`${functionName}Body`);
                 this.interfaceTPConfigs.push({
                   typeName: bodyName,
-                  type: body?.type,
+                  type: bodyWithoutNamespace?.type,
                   isEnum: false,
                   props: [],
                 });
@@ -931,7 +935,7 @@ export default class ServiceGenerator {
     return resolveTypeName(`${namespace}${typeName ?? data.operationId}Params`);
   }
 
-  private getBodyTP(requestBody: RequestBodyObject) {
+  private getBodyTP(requestBody: RequestBodyObject, namespace?: string) {
     const reqBody = this.resolveRefObject(requestBody);
 
     if (isEmpty(reqBody)) {
@@ -958,7 +962,7 @@ export default class ServiceGenerator {
     const bodySchema = {
       mediaType,
       required,
-      type: this.getType(schema, this.config.namespace),
+      type: this.getType(schema, namespace),
       isAnonymous: false,
     };
 
