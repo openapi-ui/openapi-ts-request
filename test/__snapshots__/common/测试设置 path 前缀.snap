@@ -395,9 +395,9 @@ export type User = {
   userStatus?: number;
 };
 
-export type UserCreateWithArrayUsingPostBody = API.User[];
+export type UserCreateWithArrayUsingPostBody = User[];
 
-export type UserCreateWithListUsingPostBody = API.User[];
+export type UserCreateWithListUsingPostBody = User[];
 
 export type userLoginUsingGetParams = {
   /** The user name for login */
