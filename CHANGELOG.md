@@ -1,5 +1,11 @@
 # openapi-ts-request
 
+## 1.6.1
+
+### Patch Changes
+
+- [#398](https://github.com/openapi-ui/openapi-ts-request/pull/398) [`b7dd4d7`](https://github.com/openapi-ui/openapi-ts-request/commit/b7dd4d75c47d7ca3eef72f24778fe9968462ee67) Thanks [@AdoKevin](https://github.com/AdoKevin)! - fix: 修复引用类型返回值在 types.ts中也包含了 namespace 的问题
+
 ## 1.6.0
 
 ### Minor Changes
