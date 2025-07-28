@@ -1,5 +1,11 @@
 # openapi-ts-request
 
+## 1.6.2
+
+### Patch Changes
+
+- [#409](https://github.com/openapi-ui/openapi-ts-request/pull/409) [`948217a`](https://github.com/openapi-ui/openapi-ts-request/commit/948217a34291aef04b820cf15e5f82d0872d5786) Thanks [@asins](https://github.com/asins)! - 为enum类型时对外追加description字段
+
 ## 1.6.1
 
 ### Patch Changes
