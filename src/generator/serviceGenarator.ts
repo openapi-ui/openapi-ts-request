@@ -604,7 +604,7 @@ export default class ServiceGenerator {
             ? camelCase(`display-${typeName}-Enum`)
             : '',
           enumLabelType: isEnum ? (result.enumLabelType as string) : '',
-          description: result.description,
+          description: result.description as string,
         });
       }
 
