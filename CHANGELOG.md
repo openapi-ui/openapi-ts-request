@@ -1,5 +1,11 @@
 # openapi-ts-request
 
+## 1.6.3
+
+### Patch Changes
+
+- [#412](https://github.com/openapi-ui/openapi-ts-request/pull/412) [`4443208`](https://github.com/openapi-ui/openapi-ts-request/commit/444320864838843f1a10ec2190cd1a51f9d647da) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - fix: fix translateChineseModuleNodeToEnglish not support includeTags
+
 ## 1.6.2
 
 ### Patch Changes
