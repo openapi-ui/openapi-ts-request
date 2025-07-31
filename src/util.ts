@@ -261,7 +261,7 @@ function isJSONString(str: string) {
 export async function translateChineseModuleNodeToEnglish(
   openAPI: OpenAPIObject
 ) {
-  return new Promise((resolve, reject) => {
+  return new Promise<Record<string, string> | boolean>((resolve, reject) => {
     const translateMap: Record<string, string> = {};
     const operations = [] as OperationObject[];
     let tags: string[] = [];
@@ -308,7 +308,7 @@ export async function translateChineseModuleNodeToEnglish(
             }
           });
         });
-        resolve(true);
+        resolve(translateMap);
       })
       .catch(() => {
         reject(false);
