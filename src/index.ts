@@ -1,4 +1,4 @@
-import { isEmpty, map } from 'lodash';
+import { isEmpty, isObject, isString, map } from 'lodash';
 
 import { PriorityRule, ReactQueryMode } from './config';
 import type { TypescriptFileType } from './generator/config';
@@ -301,7 +301,13 @@ export async function generateService({
   }
 
   if (isTranslateToEnglishTag) {
-    await translateChineseModuleNodeToEnglish(openAPI);
+    const res = await translateChineseModuleNodeToEnglish(openAPI);
+
+    if (isObject(res) && !isEmpty(includeTags)) {
+      includeTags = map(includeTags, (item) => {
+        return isString(item) ? res[item] || item : item;
+      });
+    }
   }
 
   const requestImportStatement = getImportStatement(requestLibPath);
@@ -314,7 +320,7 @@ export async function generateService({
       priorityRule,
       includeTags: includeTags
         ? map(includeTags, (item) =>
-            typeof item === 'string' ? item.toLowerCase() : item
+            isString(item) ? item.toLowerCase() : item
           )
         : priorityRule === PriorityRule.include ||
             priorityRule === PriorityRule.both
@@ -322,7 +328,7 @@ export async function generateService({
           : null,
       includePaths: includePaths
         ? map(includePaths, (item) =>
-            typeof item === 'string' ? item.toLowerCase() : item
+            isString(item) ? item.toLowerCase() : item
           )
         : priorityRule === PriorityRule.include ||
             priorityRule === PriorityRule.both
@@ -330,12 +336,12 @@ export async function generateService({
           : null,
       excludeTags: excludeTags
         ? map(excludeTags, (item) =>
-            typeof item === 'string' ? item.toLowerCase() : item
+            isString(item) ? item.toLowerCase() : item
           )
         : null,
       excludePaths: excludePaths
         ? map(excludePaths, (item) =>
-            typeof item === 'string' ? item.toLowerCase() : item
+            isString(item) ? item.toLowerCase() : item
           )
         : null,
       requestOptionsType: '{[key: string]: unknown}',
