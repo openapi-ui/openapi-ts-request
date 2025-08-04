@@ -11,3 +11,5 @@ updates:
       interval: "daily"
     ignore:
       - dependency-name: "chalk"
+      - dependency-name: "glob"
+      - dependency-name: "rimraf"
