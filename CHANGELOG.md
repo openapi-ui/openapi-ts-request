@@ -1,5 +1,11 @@
 # openapi-ts-request
 
+## 1.6.4
+
+### Patch Changes
+
+- [#419](https://github.com/openapi-ui/openapi-ts-request/pull/419) [`7521be1`](https://github.com/openapi-ui/openapi-ts-request/commit/7521be1876efe45747d8cb2f6f503af2b137d68d) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - chore: locked some deps version
+
 ## 1.6.3
 
 ### Patch Changes
