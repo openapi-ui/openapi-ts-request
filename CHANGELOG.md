@@ -1,5 +1,13 @@
 # openapi-ts-request
 
+## 1.6.5
+
+### Patch Changes
+
+- [#423](https://github.com/openapi-ui/openapi-ts-request/pull/423) [`fb0317e`](https://github.com/openapi-ui/openapi-ts-request/commit/fb0317e3054dbba5a33ca1f625d484a1d97b48b5) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - chore: use node@18
+
+- [#422](https://github.com/openapi-ui/openapi-ts-request/pull/422) [`00820c9`](https://github.com/openapi-ui/openapi-ts-request/commit/00820c9991ad1acffe72d0005cbbb2c5749bc9a9) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - chore: locked some deps version
+
 ## 1.6.4
 
 ### Patch Changes
