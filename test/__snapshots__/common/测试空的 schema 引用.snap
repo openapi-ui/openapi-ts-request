@@ -42,7 +42,7 @@ export async function electricityClassificationTimeSharingElectricityUsingPost({
   body,
   options,
 }: {
-  body: API.fenxiangshebaoziranshijiantongjichaxunDto;
+  body: API.fenxiangshebeiziranshijiantongjichaxunDto;
   options?: { [key: string]: unknown };
 }) {
   return request<API.StatisticsQueryVo>(
@@ -62,7 +62,7 @@ export async function electricityClassificationTimeSharingElectricityUsingPost({
 export * from './types';
 export * from './displayEnumLabel';
 
-export * from './fenxiangyongdimokuai6C76B49E435F7713E0531F0B10Ac7013';
+export * from './fenxiangyongdianmokuai6C76B49E435F7713E0531F0B10Ac7013';
 /* eslint-disable */
 // @ts-ignore
 
@@ -74,7 +74,7 @@ export enum BusinessTypeEnum {
 
 export type IBusinessTypeEnum = keyof typeof BusinessTypeEnum;
 
-export type fenxiangshebaoziranshijiantongjichaxunDto = {
+export type fenxiangshebeiziranshijiantongjichaxunDto = {
   /** 业务类型 */
   businessType?: 'CLASSIFICATION' | 'DEVICE' | 'INSTRUMENT';
   /** 结束时间 */
