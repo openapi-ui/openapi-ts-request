@@ -13,3 +13,6 @@ updates:
       - dependency-name: "chalk"
       - dependency-name: "glob"
       - dependency-name: "rimraf"
+      - dependency-name: "vitest"
+      - dependency-name: "lint-staged"
+      - dependency-name: "minimatch"
