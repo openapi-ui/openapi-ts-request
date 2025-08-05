@@ -35,34 +35,34 @@ export type Pet = {
   status?: 'available' | 'pending' | 'sold';
 };
 
-export type petFindByStatusUsingGetParams = {
+export type PetFindByStatusUsingGetParams = {
   /** Status values that need to be considered for filter */
   status?: 'available' | 'pending' | 'sold';
 };
 
-export type petFindByTagsUsingGetParams = {
+export type PetFindByTagsUsingGetParams = {
   /** Tags to filter by */
   tags?: string[];
 };
 
-export type petPetIdUploadImageUsingPostParams = {
+export type PetPetIdUploadImageUsingPostParams = {
   /** ID of pet to update */
   petId: number;
   /** Additional Metadata */
   additionalMetadata?: string;
 };
 
-export type petPetIdUsingDeleteParams = {
+export type PetPetIdUsingDeleteParams = {
   /** Pet id to delete */
   petId: number;
 };
 
-export type petPetIdUsingGetParams = {
+export type PetPetIdUsingGetParams = {
   /** ID of pet to return */
   petId: number;
 };
 
-export type petPetIdUsingPostParams = {
+export type PetPetIdUsingPostParams = {
   /** ID of pet that needs to be updated */
   petId: number;
   /** Name of pet that needs to be updated */
@@ -87,12 +87,12 @@ export enum StatusEnum2 {
 
 export type IStatusEnum2 = keyof typeof StatusEnum2;
 
-export type storeOrderOrderIdUsingDeleteParams = {
+export type StoreOrderOrderIdUsingDeleteParams = {
   /** ID of the order that needs to be deleted */
   orderId: number;
 };
 
-export type storeOrderOrderIdUsingGetParams = {
+export type StoreOrderOrderIdUsingGetParams = {
   /** ID of order that needs to be fetched */
   orderId: number;
 };
@@ -114,24 +114,24 @@ export type User = {
   userStatus?: number;
 };
 
-export type userLoginUsingGetParams = {
+export type UserLoginUsingGetParams = {
   /** The user name for login */
   username?: string;
   /** The password for login in clear text */
   password?: string;
 };
 
-export type userUsernameUsingDeleteParams = {
+export type UserUsernameUsingDeleteParams = {
   /** The name that needs to be deleted */
   username: string;
 };
 
-export type userUsernameUsingGetParams = {
+export type UserUsernameUsingGetParams = {
   /** The name that needs to be fetched. Use user1 for testing.  */
   username: string;
 };
 
-export type userUsernameUsingPutParams = {
+export type UserUsernameUsingPutParams = {
   /** name that needs to be updated */
   username: string;
 };

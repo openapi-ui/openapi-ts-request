@@ -14,6 +14,7 @@ import {
   isUndefined,
   keys,
   map,
+  upperFirst,
 } from 'lodash';
 import ReservedDict from 'reserved-words';
 import pinyin from 'tiny-pinyin';
@@ -97,12 +98,12 @@ export function resolveTypeName(typeName: string) {
   }
 
   if (!/[\u3220-\uFA29]/.test(name) && !/^\d$/.test(name)) {
-    return name;
+    return upperFirst(name);
   }
 
   const noBlankName = name.replace(/ +/g, '');
 
-  return pinyin.convertToPinyin(noBlankName, '', true);
+  return upperFirst(pinyin.convertToPinyin(noBlankName, '', true));
 }
 
 export function getRefName(refObject: ReferenceObject | string) {

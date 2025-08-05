@@ -15,7 +15,7 @@ export async function adminAdminsUsingGet({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.adminAdminsUsingGetParams;
+  params: API.AdminAdminsUsingGetParams;
   options?: { [key: string]: unknown };
 }) {
   return request<
@@ -59,7 +59,7 @@ export async function adminAdminsIdUsingGet({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.adminAdminsIdUsingGetParams;
+  params: API.AdminAdminsIdUsingGetParams;
   options?: { [key: string]: unknown };
 }) {
   const { id: param0, ...queryParams } = params;
@@ -82,7 +82,7 @@ export async function adminAdminsIdUsingPut({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.adminAdminsIdUsingPutParams;
+  params: API.AdminAdminsIdUsingPutParams;
   body: API.AdminUpdateArg;
   options?: { [key: string]: unknown };
 }) {
@@ -106,7 +106,7 @@ export async function adminAdminsIdPermissionsUsingPatch({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.adminAdminsIdPermissionsUsingPatchParams;
+  params: API.AdminAdminsIdPermissionsUsingPatchParams;
   body: API.AdminSetPermissionsArg;
   options?: { [key: string]: unknown };
 }) {
@@ -129,7 +129,7 @@ export async function adminAdminsIdResetUsingPatch({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.adminAdminsIdResetUsingPatchParams;
+  params: API.AdminAdminsIdResetUsingPatchParams;
   options?: { [key: string]: unknown };
 }) {
   const { id: param0, ...queryParams } = params;
@@ -152,7 +152,7 @@ export async function adminAdminsIdToggleUsingPatch({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.adminAdminsIdToggleUsingPatchParams;
+  params: API.AdminAdminsIdToggleUsingPatchParams;
   body: API.AdminToggleArg;
   options?: { [key: string]: unknown };
 }) {
@@ -191,7 +191,7 @@ export async function adminEvaluationsUsingGet({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.adminEvaluationsUsingGetParams;
+  params: API.AdminEvaluationsUsingGetParams;
   options?: { [key: string]: unknown };
 }) {
   return request<
@@ -236,7 +236,7 @@ export async function adminEvaluationsIdUsingPut({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.adminEvaluationsIdUsingPutParams;
+  params: API.AdminEvaluationsIdUsingPutParams;
   body: API.EvaluationUpdateArg;
   options?: { [key: string]: unknown };
 }) {
@@ -259,7 +259,7 @@ export async function adminEvaluationsIdDataUsingGet({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.adminEvaluationsIdDataUsingGetParams;
+  params: API.AdminEvaluationsIdDataUsingGetParams;
   options?: { [key: string]: unknown };
 }) {
   const { id: param0, ...queryParams } = params;
@@ -297,7 +297,7 @@ export async function adminEvaluationsReportsUsingGet({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.adminEvaluationsReportsUsingGetParams;
+  params: API.AdminEvaluationsReportsUsingGetParams;
   options?: { [key: string]: unknown };
 }) {
   return request<
@@ -319,7 +319,7 @@ export async function adminEvaluationsReportsIdDataUsingGet({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.adminEvaluationsReportsIdDataUsingGetParams;
+  params: API.AdminEvaluationsReportsIdDataUsingGetParams;
   options?: { [key: string]: unknown };
 }) {
   const { id: param0, ...queryParams } = params;
@@ -341,7 +341,7 @@ export async function adminEvaluationsReportsIdExamineUsingPatch({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.adminEvaluationsReportsIdExamineUsingPatchParams;
+  params: API.AdminEvaluationsReportsIdExamineUsingPatchParams;
   options?: { [key: string]: unknown };
 }) {
   const { id: param0, ...queryParams } = params;
@@ -359,7 +359,7 @@ export async function adminEvaluationsReportsIdSendUsingPatch({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.adminEvaluationsReportsIdSendUsingPatchParams;
+  params: API.AdminEvaluationsReportsIdSendUsingPatchParams;
   options?: { [key: string]: unknown };
 }) {
   const { id: param0, ...queryParams } = params;
@@ -377,7 +377,7 @@ export async function adminEvaluationsReportsOpenApiExportUsingGet({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.adminEvaluationsReportsOpenApiExportUsingGetParams;
+  params: API.AdminEvaluationsReportsOpenApiExportUsingGetParams;
   options?: { [key: string]: unknown };
 }) {
   return request<
@@ -467,7 +467,7 @@ export async function adminOrganizationsIdUsingGet({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.adminOrganizationsIdUsingGetParams;
+  params: API.AdminOrganizationsIdUsingGetParams;
   options?: { [key: string]: unknown };
 }) {
   const { id: param0, ...queryParams } = params;
@@ -490,7 +490,7 @@ export async function adminOrganizationsIdUsingPut({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.adminOrganizationsIdUsingPutParams;
+  params: API.AdminOrganizationsIdUsingPutParams;
   body: API.OrganizationUpdateArg;
   options?: { [key: string]: unknown };
 }) {
@@ -514,7 +514,7 @@ export async function adminOrganizationsIdMoveUsingPatch({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.adminOrganizationsIdMoveUsingPatchParams;
+  params: API.AdminOrganizationsIdMoveUsingPatchParams;
   body: API.OrganizationMoveArg;
   options?: { [key: string]: unknown };
 }) {
@@ -537,7 +537,7 @@ export async function adminOrganizationsIdPermissionsUsingGet({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.adminOrganizationsIdPermissionsUsingGetParams;
+  params: API.AdminOrganizationsIdPermissionsUsingGetParams;
   options?: { [key: string]: unknown };
 }) {
   const { id: param0, ...queryParams } = params;
@@ -560,7 +560,7 @@ export async function adminOrganizationsIdToggleUsingPatch({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.adminOrganizationsIdToggleUsingPatchParams;
+  params: API.AdminOrganizationsIdToggleUsingPatchParams;
   body: API.OrganizationToggleArg;
   options?: { [key: string]: unknown };
 }) {
@@ -599,7 +599,7 @@ export async function adminScalesUsingGet({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.adminScalesUsingGetParams;
+  params: API.AdminScalesUsingGetParams;
   options?: { [key: string]: unknown };
 }) {
   return request<
@@ -621,7 +621,7 @@ export async function adminScalesIdUsingGet({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.adminScalesIdUsingGetParams;
+  params: API.AdminScalesIdUsingGetParams;
   options?: { [key: string]: unknown };
 }) {
   const { id: param0, ...queryParams } = params;
@@ -644,7 +644,7 @@ export async function adminScalesIdToggleUsingPatch({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.adminScalesIdToggleUsingPatchParams;
+  params: API.AdminScalesIdToggleUsingPatchParams;
   body: API.ScaleToggleArg;
   options?: { [key: string]: unknown };
 }) {
@@ -727,7 +727,7 @@ export async function adminSystemsLogsUsingGet({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.adminSystemsLogsUsingGetParams;
+  params: API.AdminSystemsLogsUsingGetParams;
   options?: { [key: string]: unknown };
 }) {
   return request<
@@ -749,7 +749,7 @@ export async function adminSystemsLogsOpenApiExportUsingGet({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.adminSystemsLogsOpenApiExportUsingGetParams;
+  params: API.AdminSystemsLogsOpenApiExportUsingGetParams;
   options?: { [key: string]: unknown };
 }) {
   return request<
@@ -787,7 +787,7 @@ export async function adminUsersUsingGet({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.adminUsersUsingGetParams;
+  params: API.AdminUsersUsingGetParams;
   options?: { [key: string]: unknown };
 }) {
   return request<
@@ -810,7 +810,7 @@ export async function adminUsersIdToggleUsingPatch({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.adminUsersIdToggleUsingPatchParams;
+  params: API.AdminUsersIdToggleUsingPatchParams;
   body: API.UserToggleArg;
   options?: { [key: string]: unknown };
 }) {
@@ -833,7 +833,7 @@ export async function adminUsersSheetsUsingGet({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.adminUsersSheetsUsingGetParams;
+  params: API.AdminUsersSheetsUsingGetParams;
   options?: { [key: string]: unknown };
 }) {
   return request<
@@ -878,7 +878,7 @@ export async function adminUsersSheetsIdUsingPut({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.adminUsersSheetsIdUsingPutParams;
+  params: API.AdminUsersSheetsIdUsingPutParams;
   body: API.UserSheetUpdateArg;
   options?: { [key: string]: unknown };
 }) {
@@ -902,7 +902,7 @@ export async function adminUsersSheetsIdToggleUsingPatch({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.adminUsersSheetsIdToggleUsingPatchParams;
+  params: API.AdminUsersSheetsIdToggleUsingPatchParams;
   body: API.UserSheetToggleArg;
   options?: { [key: string]: unknown };
 }) {
@@ -1019,7 +1019,7 @@ export async function userEvaluationsIdUsingGet({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.userEvaluationsIdUsingGetParams;
+  params: API.UserEvaluationsIdUsingGetParams;
   options?: { [key: string]: unknown };
 }) {
   const { id: param0, ...queryParams } = params;
@@ -1042,7 +1042,7 @@ export async function userEvaluationsIdReportsUsingPost({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.userEvaluationsIdReportsUsingPostParams;
+  params: API.UserEvaluationsIdReportsUsingPostParams;
   body: API.EvaluationReportCreateArg;
   options?: { [key: string]: unknown };
 }) {
@@ -1069,7 +1069,7 @@ export async function userEvaluationsReportsUsingGet({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.userEvaluationsReportsUsingGetParams;
+  params: API.UserEvaluationsReportsUsingGetParams;
   options?: { [key: string]: unknown };
 }) {
   return request<
@@ -1091,7 +1091,7 @@ export async function userEvaluationsReportsIdUsingGet({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.userEvaluationsReportsIdUsingGetParams;
+  params: API.UserEvaluationsReportsIdUsingGetParams;
   options?: { [key: string]: unknown };
 }) {
   const { id: param0, ...queryParams } = params;
@@ -1203,32 +1203,32 @@ export async function userUtilsDataUsingGet({
 /* eslint-disable */
 // @ts-ignore
 
-export type adminAdminsIdPermissionsUsingPatchParams = {
+export type AdminAdminsIdPermissionsUsingPatchParams = {
   /** 成员id */
   id: string;
 };
 
-export type adminAdminsIdResetUsingPatchParams = {
+export type AdminAdminsIdResetUsingPatchParams = {
   /** 成员id */
   id: string;
 };
 
-export type adminAdminsIdToggleUsingPatchParams = {
+export type AdminAdminsIdToggleUsingPatchParams = {
   /** 成员id */
   id: string;
 };
 
-export type adminAdminsIdUsingGetParams = {
+export type AdminAdminsIdUsingGetParams = {
   /** 成员id */
   id: string;
 };
 
-export type adminAdminsIdUsingPutParams = {
+export type AdminAdminsIdUsingPutParams = {
   /** 成员id */
   id: string;
 };
 
-export type adminAdminsUsingGetParams = {
+export type AdminAdminsUsingGetParams = {
   /** 创建时间范围 */
   created_at?: string;
   /** 机构id */
@@ -1259,32 +1259,32 @@ export type AdminCreateRet = {
   password?: string;
 };
 
-export type adminEvaluationsIdDataUsingGetParams = {
+export type AdminEvaluationsIdDataUsingGetParams = {
   /** 测评id */
   id: string;
 };
 
-export type adminEvaluationsIdUsingPutParams = {
+export type AdminEvaluationsIdUsingPutParams = {
   /** 测评id */
   id: string;
 };
 
-export type adminEvaluationsReportsIdDataUsingGetParams = {
+export type AdminEvaluationsReportsIdDataUsingGetParams = {
   /** 报告id */
   id: string;
 };
 
-export type adminEvaluationsReportsIdExamineUsingPatchParams = {
+export type AdminEvaluationsReportsIdExamineUsingPatchParams = {
   /** 报告id */
   id: string;
 };
 
-export type adminEvaluationsReportsIdSendUsingPatchParams = {
+export type AdminEvaluationsReportsIdSendUsingPatchParams = {
   /** 报告id */
   id: string;
 };
 
-export type adminEvaluationsReportsOpenApiExportUsingGetParams = {
+export type AdminEvaluationsReportsOpenApiExportUsingGetParams = {
   /** 测评时间范围 */
   created_at?: string;
   /** 测评id */
@@ -1301,7 +1301,7 @@ export type adminEvaluationsReportsOpenApiExportUsingGetParams = {
   warning_level?: string;
 };
 
-export type adminEvaluationsReportsUsingGetParams = {
+export type AdminEvaluationsReportsUsingGetParams = {
   /** 测评时间范围 */
   created_at?: string;
   /** 测评id */
@@ -1322,7 +1322,7 @@ export type adminEvaluationsReportsUsingGetParams = {
   warning_level?: string;
 };
 
-export type adminEvaluationsUsingGetParams = {
+export type AdminEvaluationsUsingGetParams = {
   /** 创建时间范围 */
   created_at?: string;
   /** 测评名称 */
@@ -1409,27 +1409,27 @@ export type AdminLogModuleDict = {
   value?: string;
 };
 
-export type adminOrganizationsIdMoveUsingPatchParams = {
+export type AdminOrganizationsIdMoveUsingPatchParams = {
   /** 机构id */
   id: string;
 };
 
-export type adminOrganizationsIdPermissionsUsingGetParams = {
+export type AdminOrganizationsIdPermissionsUsingGetParams = {
   /** 机构id */
   id: string;
 };
 
-export type adminOrganizationsIdToggleUsingPatchParams = {
+export type AdminOrganizationsIdToggleUsingPatchParams = {
   /** 机构id */
   id: string;
 };
 
-export type adminOrganizationsIdUsingGetParams = {
+export type AdminOrganizationsIdUsingGetParams = {
   /** 机构id */
   id: string;
 };
 
-export type adminOrganizationsIdUsingPutParams = {
+export type AdminOrganizationsIdUsingPutParams = {
   /** 机构id */
   id: string;
 };
@@ -1444,17 +1444,17 @@ export type AdminResetRet = {
   password?: string;
 };
 
-export type adminScalesIdToggleUsingPatchParams = {
+export type AdminScalesIdToggleUsingPatchParams = {
   /** 量表id */
   id: string;
 };
 
-export type adminScalesIdUsingGetParams = {
+export type AdminScalesIdUsingGetParams = {
   /** 量表id */
   id: string;
 };
 
-export type adminScalesUsingGetParams = {
+export type AdminScalesUsingGetParams = {
   /** 创建时间范围 */
   created_at?: string;
   /** 量表名称 */
@@ -1474,7 +1474,7 @@ export type AdminSetPermissionsArg = {
   role?: string;
 };
 
-export type adminSystemsLogsOpenApiExportUsingGetParams = {
+export type AdminSystemsLogsOpenApiExportUsingGetParams = {
   /** 操作行为 */
   action?: string;
   /** 操作时间范围 */
@@ -1487,7 +1487,7 @@ export type adminSystemsLogsOpenApiExportUsingGetParams = {
   organization_id?: string;
 };
 
-export type adminSystemsLogsUsingGetParams = {
+export type AdminSystemsLogsUsingGetParams = {
   /** 操作行为 */
   action?: string;
   /** 操作时间范围 */
@@ -1516,22 +1516,22 @@ export type AdminUpdateArg = {
   number?: string;
 };
 
-export type adminUsersIdToggleUsingPatchParams = {
+export type AdminUsersIdToggleUsingPatchParams = {
   /** 用户id */
   id: string;
 };
 
-export type adminUsersSheetsIdToggleUsingPatchParams = {
+export type AdminUsersSheetsIdToggleUsingPatchParams = {
   /** 信息表id */
   id: string;
 };
 
-export type adminUsersSheetsIdUsingPutParams = {
+export type AdminUsersSheetsIdUsingPutParams = {
   /** 信息表id */
   id: string;
 };
 
-export type adminUsersSheetsUsingGetParams = {
+export type AdminUsersSheetsUsingGetParams = {
   /** 上传时间范围 */
   created_at?: string;
   /** 信息表名称 */
@@ -1546,7 +1546,7 @@ export type adminUsersSheetsUsingGetParams = {
   type?: string;
 };
 
-export type adminUsersUsingGetParams = {
+export type AdminUsersUsingGetParams = {
   /** 年龄范围 */
   age?: string;
   /** 性别 */
@@ -2028,22 +2028,22 @@ export type UploadRet = {
   url?: string;
 };
 
-export type userEvaluationsIdReportsUsingPostParams = {
+export type UserEvaluationsIdReportsUsingPostParams = {
   /** 测评任务id */
   id: string;
 };
 
-export type userEvaluationsIdUsingGetParams = {
+export type UserEvaluationsIdUsingGetParams = {
   /** 测评任务id */
   id: string;
 };
 
-export type userEvaluationsReportsIdUsingGetParams = {
+export type UserEvaluationsReportsIdUsingGetParams = {
   /** 测评报告id */
   id: string;
 };
 
-export type userEvaluationsReportsUsingGetParams = {
+export type UserEvaluationsReportsUsingGetParams = {
   /** 页码 */
   page?: number;
   /** 分页大小 */

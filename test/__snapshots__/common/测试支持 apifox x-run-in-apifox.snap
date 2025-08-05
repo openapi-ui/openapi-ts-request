@@ -113,7 +113,7 @@ export async function goodsDeleteGoodsUsingGet({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.goodsDeleteGoodsUsingGetParams;
+  params: API.GoodsDeleteGoodsUsingGetParams;
   options?: { [key: string]: unknown };
 }) {
   return request<API.ResponseResultBoolean>('/mall/goods/deleteGoods', {
@@ -131,7 +131,7 @@ export async function goodsGetGoodsDetailUsingPost({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.goodsGetGoodsDetailUsingPostParams;
+  params: API.GoodsGetGoodsDetailUsingPostParams;
   options?: { [key: string]: unknown };
 }) {
   return request<API.ResponseResultGoodsDetailRes>(
@@ -152,7 +152,7 @@ export async function goodsGetGoodsNumUsingGet({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.goodsGetGoodsNumUsingGetParams;
+  params: API.GoodsGetGoodsNumUsingGetParams;
   options?: { [key: string]: unknown };
 }) {
   return request<API.ResponseResultGoodsNumDTO>('/mall/goods/getGoodsNum', {
@@ -274,7 +274,7 @@ export async function goodsGetDiagnoseByDictNameUsingGet({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.goodsGetDiagnoseByDictNameUsingGetParams;
+  params: API.GoodsGetDiagnoseByDictNameUsingGetParams;
   options?: { [key: string]: unknown };
 }) {
   return request<API.ResponseResultListDiagnoseDictValueRes>(
@@ -316,7 +316,7 @@ export async function goodsGetPharmacySuppliersUsingGet({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.goodsGetPharmacySuppliersUsingGetParams;
+  params: API.GoodsGetPharmacySuppliersUsingGetParams;
   options?: { [key: string]: unknown };
 }) {
   return request<API.ResponseResultListsupplierRes>(
@@ -337,7 +337,7 @@ export async function goodsGetSectionDictUsingGet({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.goodsGetSectionDictUsingGetParams;
+  params: API.GoodsGetSectionDictUsingGetParams;
   options?: { [key: string]: unknown };
 }) {
   return request<API.ResponseResultListSectionDictValueRes>(
@@ -358,7 +358,7 @@ export async function goodsGetSupplierCertificateUsingGet({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.goodsGetSupplierCertificateUsingGetParams;
+  params: API.GoodsGetSupplierCertificateUsingGetParams;
   options?: { [key: string]: unknown };
 }) {
   return request<API.ResponseResultSupplierCertificateRes>(
@@ -438,7 +438,7 @@ export async function goodsGetGoodsInfoUsingGet({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.goodsGetGoodsInfoUsingGetParams;
+  params: API.GoodsGetGoodsInfoUsingGetParams;
   options?: { [key: string]: unknown };
 }) {
   return request<API.ResponseResultBaseGoodDTO>('/mall/goods/getGoodsInfo', {
@@ -727,7 +727,7 @@ export type GoodsAttributeDictPageRes = {
   type?: number;
 };
 
-export type goodsDeleteGoodsUsingGetParams = {
+export type GoodsDeleteGoodsUsingGetParams = {
   goodsId: string;
   orgId: string;
 };
@@ -992,32 +992,32 @@ export type GoodsDTO = {
   expirationDate?: string;
 };
 
-export type goodsGetDiagnoseByDictNameUsingGetParams = {
+export type GoodsGetDiagnoseByDictNameUsingGetParams = {
   dictName: string;
 };
 
-export type goodsGetGoodsDetailUsingPostParams = {
+export type GoodsGetGoodsDetailUsingPostParams = {
   goodsId: string;
   orgId: string;
 };
 
-export type goodsGetGoodsInfoUsingGetParams = {
+export type GoodsGetGoodsInfoUsingGetParams = {
   goodsId?: string;
 };
 
-export type goodsGetGoodsNumUsingGetParams = {
+export type GoodsGetGoodsNumUsingGetParams = {
   orgId: string;
 };
 
-export type goodsGetPharmacySuppliersUsingGetParams = {
+export type GoodsGetPharmacySuppliersUsingGetParams = {
   orgId: string;
 };
 
-export type goodsGetSectionDictUsingGetParams = {
+export type GoodsGetSectionDictUsingGetParams = {
   orgId: string;
 };
 
-export type goodsGetSupplierCertificateUsingGetParams = {
+export type GoodsGetSupplierCertificateUsingGetParams = {
   orgId: string;
 };
 
@@ -1270,7 +1270,7 @@ export type ResponseResultListSectionDictValueRes = {
 export type ResponseResultListsupplierRes = {
   code?: string;
   msg?: string;
-  data?: supplierRes[];
+  data?: SupplierRes[];
 };
 
 export type ResponseResultSupplierCertificateRes = {
@@ -1299,7 +1299,7 @@ export type SupplierCertificateRes = {
   licensePhotoUrls?: string[];
 };
 
-export type supplierRes = {
+export type SupplierRes = {
   /** 供应商ID */
   supplierId?: string;
   /** 供应商code */

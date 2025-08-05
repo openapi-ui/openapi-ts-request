@@ -10,7 +10,7 @@ export async function cityCityUsingGet({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.cityCityUsingGetParams;
+  params: API.CityCityUsingGetParams;
   options?: { [key: string]: unknown };
 }) {
   const { city: param0, ...queryParams } = params;
@@ -101,7 +101,7 @@ export async function cityCityUsingPut({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.cityCityUsingPutParams;
+  params: API.CityCityUsingPutParams;
   options?: { [key: string]: unknown };
 }) {
   const { city: param0, ...queryParams } = params;
@@ -115,12 +115,12 @@ export async function cityCityUsingPut({
 /* eslint-disable */
 // @ts-ignore
 
-export type cityCityUsingGetParams = {
+export type CityCityUsingGetParams = {
   city: string;
   query_string?: string;
 };
 
-export type cityCityUsingPutParams = {
+export type CityCityUsingPutParams = {
   city: Poi2CategoryEnum;
 };
 

@@ -17,7 +17,7 @@ export async function petFindByStatusUsingGet({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.petFindByStatusUsingGetParams;
+  params: API.PetFindByStatusUsingGetParams;
   options?: { [key: string]: unknown };
 }) {
   return request<API.Pet[]>('/pet/findByStatus', {
@@ -54,7 +54,7 @@ export type Pet = {
   status?: 'available' | 'pending' | 'sold';
 };
 
-export type petFindByStatusUsingGetParams = {
+export type PetFindByStatusUsingGetParams = {
   /** Status values that need to be considered for filter */
   status?: 'available' | 'pending' | 'sold';
 };

@@ -11,7 +11,7 @@ export async function cgiBinGettokenUsingGet({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.cgiBinGettokenUsingGetParams;
+  params: API.CgiBinGettokenUsingGetParams;
   body: API.CgiBinGettokenUsingGetBody;
   options?: { [key: string]: unknown };
 }) {
@@ -41,7 +41,7 @@ export type CgiBinGettokenUsingGetBody = {
   age?: number;
 };
 
-export type cgiBinGettokenUsingGetParams = {
+export type CgiBinGettokenUsingGetParams = {
   /** 企业ID，获取方式参考：[术语说明-corpid](https://developer.work.weixin.qq.com/document/path/91039#14953/corpid) */
   corpid: string;
   /** 应用的凭证密钥，获取方式参考：[术语说明-secret](https://developer.work.weixin.qq.com/document/path/91039#14953/secret) */
