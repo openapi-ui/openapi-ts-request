@@ -1,5 +1,11 @@
 # openapi-ts-request
 
+## 1.6.6
+
+### Patch Changes
+
+- [#425](https://github.com/openapi-ui/openapi-ts-request/pull/425) [`2d2925a`](https://github.com/openapi-ui/openapi-ts-request/commit/2d2925a7e5bc0187e0e3c94ebc609d786ac64577) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - perf: typeName upperFist
+
 ## 1.6.5
 
 ### Patch Changes
