@@ -24,8 +24,8 @@ export function displayBatchList(field: keyof API.BatchList) {
   );
 }
 
-export function displaybatchUsingGetParams(
-  field: keyof API.batchUsingGetParams
+export function displayBatchUsingGetParams(
+  field: keyof API.BatchUsingGetParams
 ) {
   return {
     errorMessage: 'log to filter by errorMessage',
@@ -57,7 +57,7 @@ export async function batchUsingGet({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.batchUsingGetParams;
+  params: API.BatchUsingGetParams;
   options?: { [key: string]: unknown };
 }) {
   return request<API.BatchList>('/batch', {
@@ -87,7 +87,7 @@ export type BatchList =
     data?: Batch[];
   };
 
-export type batchUsingGetParams = {
+export type BatchUsingGetParams = {
   /** log to filter by errorMessage */
   errorMessage?: unknown;
 };

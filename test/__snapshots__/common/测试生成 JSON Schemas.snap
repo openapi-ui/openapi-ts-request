@@ -11,7 +11,7 @@ export async function v1ApiRobotWorkspaceIdAppkeyUsingPost({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.v1ApiRobotWorkspaceIdAppkeyUsingPostParams;
+  params: API.V1ApiRobotWorkspaceIdAppkeyUsingPostParams;
   body: API.AddAppkeyReq;
   options?: { [key: string]: unknown };
 }) {
@@ -36,7 +36,7 @@ export async function v1ApiAppAppIdApiTokenUsingGet({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.v1ApiAppAppIdApiTokenUsingGetParams;
+  params: API.V1ApiAppAppIdApiTokenUsingGetParams;
   options?: { [key: string]: unknown };
 }) {
   const { appID: param0, ...queryParams } = params;
@@ -59,7 +59,7 @@ export async function v1ApiAppAppIdApiTokenUsingPost({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.v1ApiAppAppIdApiTokenUsingPostParams;
+  params: API.V1ApiAppAppIdApiTokenUsingPostParams;
   options?: { [key: string]: unknown };
 }) {
   const { appID: param0, ...queryParams } = params;
@@ -85,7 +85,7 @@ export async function v1ApiAppIdCostUsingPost({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.v1ApiAppIdCostUsingPostParams;
+  params: API.V1ApiAppIdCostUsingPostParams;
   options?: { [key: string]: unknown };
 }) {
   const { appID: param0, ...queryParams } = params;
@@ -120,7 +120,7 @@ export async function v1ApiAppAppIdOpenApiDeleteUsingDelete({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.v1ApiAppAppIdOpenApiDeleteUsingDeleteParams;
+  params: API.V1ApiAppAppIdOpenApiDeleteUsingDeleteParams;
   options?: { [key: string]: unknown };
 }) {
   const { appID: param0, ...queryParams } = params;
@@ -138,7 +138,7 @@ export async function v1ApiAppAppIdDetailsUsingGet({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.v1ApiAppAppIdDetailsUsingGetParams;
+  params: API.V1ApiAppAppIdDetailsUsingGetParams;
   options?: { [key: string]: unknown };
 }) {
   const { appID: param0, ...queryParams } = params;
@@ -156,7 +156,7 @@ export async function v1ApiAppAppIdHourlyMessagesUsingGet({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.v1ApiAppAppIdHourlyMessagesUsingGetParams;
+  params: API.V1ApiAppAppIdHourlyMessagesUsingGetParams;
   options?: { [key: string]: unknown };
 }) {
   const { appID: param0, ...queryParams } = params;
@@ -179,7 +179,7 @@ export async function v1ApiAppAppIdHourlyTokenUsingGet({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.v1ApiAppAppIdHourlyTokenUsingGetParams;
+  params: API.V1ApiAppAppIdHourlyTokenUsingGetParams;
   options?: { [key: string]: unknown };
 }) {
   const { appID: param0, ...queryParams } = params;
@@ -202,7 +202,7 @@ export async function v1ApiAppAppIdLogsUsingGet({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.v1ApiAppAppIdLogsUsingGetParams;
+  params: API.V1ApiAppAppIdLogsUsingGetParams;
   options?: { [key: string]: unknown };
 }) {
   const { appID: param0, ...queryParams } = params;
@@ -225,7 +225,7 @@ export async function v1ApiAppAppIdLogsConversationIdMessagesUsingGet({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.v1ApiAppAppIdLogsConversationIdMessagesUsingGetParams;
+  params: API.V1ApiAppAppIdLogsConversationIdMessagesUsingGetParams;
   options?: { [key: string]: unknown };
 }) {
   const { appID: param0, conversationID: param1, ...queryParams } = params;
@@ -246,7 +246,7 @@ export async function v1ApiAppAppIdMessagesUsingGet({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.v1ApiAppAppIdMessagesUsingGetParams;
+  params: API.V1ApiAppAppIdMessagesUsingGetParams;
   options?: { [key: string]: unknown };
 }) {
   const { appID: param0, ...queryParams } = params;
@@ -269,7 +269,7 @@ export async function v1ApiAppAppIdShareUsingPut({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.v1ApiAppAppIdShareUsingPutParams;
+  params: API.V1ApiAppAppIdShareUsingPutParams;
   options?: { [key: string]: unknown };
 }) {
   const { appID: param0, ...queryParams } = params;
@@ -292,7 +292,7 @@ export async function v1ApiAppAppIdTokenUsingGet({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.v1ApiAppAppIdTokenUsingGetParams;
+  params: API.V1ApiAppAppIdTokenUsingGetParams;
   options?: { [key: string]: unknown };
 }) {
   const { appID: param0, ...queryParams } = params;
@@ -316,7 +316,7 @@ export async function v1ApiAppAppIdUpdateUsingPut({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.v1ApiAppAppIdUpdateUsingPutParams;
+  params: API.V1ApiAppAppIdUpdateUsingPutParams;
   body: API.UpdateAppReq;
   options?: { [key: string]: unknown };
 }) {
@@ -337,7 +337,7 @@ export async function v1ApiAppAppIdUpdateStatusUsingPut({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.v1ApiAppAppIdUpdateStatusUsingPutParams;
+  params: API.V1ApiAppAppIdUpdateStatusUsingPutParams;
   body: API.ReleaseDiscoverReq;
   options?: { [key: string]: unknown };
 }) {
@@ -393,7 +393,7 @@ export async function v1ApiAppListPrivateUsingGet({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.v1ApiAppListPrivateUsingGetParams;
+  params: API.V1ApiAppListPrivateUsingGetParams;
   options?: { [key: string]: unknown };
 }) {
   return request<API.AppResp[]>('/llmops/v1/api/app/list-private', {
@@ -411,7 +411,7 @@ export async function v1ApiAppListPublicUsingGet({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.v1ApiAppListPublicUsingGetParams;
+  params: API.V1ApiAppListPublicUsingGetParams;
   options?: { [key: string]: unknown };
 }) {
   return request<API.AppResp[]>('/llmops/v1/api/app/list-public', {
@@ -434,7 +434,7 @@ export async function v1ApiAppAppIdDatasetConfigsUsingGet({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.v1ApiAppAppIdDatasetConfigsUsingGetParams;
+  params: API.V1ApiAppAppIdDatasetConfigsUsingGetParams;
   options?: { [key: string]: unknown };
 }) {
   const { appID: param0, ...queryParams } = params;
@@ -456,7 +456,7 @@ export async function v1ApiAppAppIdDatasetConfigsUsingPut({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.v1ApiAppAppIdDatasetConfigsUsingPutParams;
+  params: API.V1ApiAppAppIdDatasetConfigsUsingPutParams;
   body: API.AppDatasetConfigs;
   options?: { [key: string]: unknown };
 }) {
@@ -477,7 +477,7 @@ export async function v1ApiAppAppIdDatasetConfigsUsingPost({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.v1ApiAppAppIdDatasetConfigsUsingPostParams;
+  params: API.V1ApiAppAppIdDatasetConfigsUsingPostParams;
   body: API.AppDatasetConfigs;
   options?: { [key: string]: unknown };
 }) {
@@ -497,7 +497,7 @@ export async function v1ApiAppAppIdDatasetConfigsUsingDelete({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.v1ApiAppAppIdDatasetConfigsUsingDeleteParams;
+  params: API.V1ApiAppAppIdDatasetConfigsUsingDeleteParams;
   options?: { [key: string]: unknown };
 }) {
   const { appID: param0, ...queryParams } = params;
@@ -522,7 +522,7 @@ export async function v1ApiAppAppIdMemberUsingGet({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.v1ApiAppAppIdMemberUsingGetParams;
+  params: API.V1ApiAppAppIdMemberUsingGetParams;
   options?: { [key: string]: unknown };
 }) {
   const { appID: param0, ...queryParams } = params;
@@ -543,7 +543,7 @@ export async function v1ApiAppAppIdMemberUsingPost({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.v1ApiAppAppIdMemberUsingPostParams;
+  params: API.V1ApiAppAppIdMemberUsingPostParams;
   body: API.MemberBody;
   options?: { [key: string]: unknown };
 }) {
@@ -564,7 +564,7 @@ export async function v1ApiAppAppIdMemberUsingDelete({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.v1ApiAppAppIdMemberUsingDeleteParams;
+  params: API.V1ApiAppAppIdMemberUsingDeleteParams;
   body: API.DeleteMemberBody;
   options?: { [key: string]: unknown };
 }) {
@@ -585,7 +585,7 @@ export async function v1ApiAppAppIdMemberRoleUsingPut({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.v1ApiAppAppIdMemberRoleUsingPutParams;
+  params: API.V1ApiAppAppIdMemberRoleUsingPutParams;
   body: API.MemberBody;
   options?: { [key: string]: unknown };
 }) {
@@ -611,7 +611,7 @@ export async function v1ApiAppAppIdModelConfigsUsingPut({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.v1ApiAppAppIdModelConfigsUsingPutParams;
+  params: API.V1ApiAppAppIdModelConfigsUsingPutParams;
   body: API.AppModelConfigs;
   options?: { [key: string]: unknown };
 }) {
@@ -632,7 +632,7 @@ export async function v1ApiAppAppIdModelConfigsUsingPost({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.v1ApiAppAppIdModelConfigsUsingPostParams;
+  params: API.V1ApiAppAppIdModelConfigsUsingPostParams;
   body: API.AppModelConfigs;
   options?: { [key: string]: unknown };
 }) {
@@ -653,7 +653,7 @@ export async function v1ApiAppAppIdModelPromptUsingPost({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.v1ApiAppAppIdModelPromptUsingPostParams;
+  params: API.V1ApiAppAppIdModelPromptUsingPostParams;
   body: API.AppModelConfigPromptPrefix;
   options?: { [key: string]: unknown };
 }) {
@@ -673,7 +673,7 @@ export async function v1ApiAppAppIdPluginUsingPut({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.v1ApiAppAppIdPluginUsingPutParams;
+  params: API.V1ApiAppAppIdPluginUsingPutParams;
   options?: { [key: string]: unknown };
 }) {
   const { appID: param0, ...queryParams } = params;
@@ -711,7 +711,7 @@ export async function v2ApiAppAppIdDetailsUsingGet({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.v2ApiAppAppIdDetailsUsingGetParams;
+  params: API.V2ApiAppAppIdDetailsUsingGetParams;
   options?: { [key: string]: unknown };
 }) {
   const { appID: param0, ...queryParams } = params;
@@ -730,7 +730,7 @@ export async function v2ApiAppAppIdUpdateUsingPost({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.v2ApiAppAppIdUpdateUsingPostParams;
+  params: API.V2ApiAppAppIdUpdateUsingPostParams;
   body: API.UpdateAppReqV2;
   options?: { [key: string]: unknown };
 }) {
@@ -750,7 +750,7 @@ export async function v2ApiAppListUsingGet({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.v2ApiAppListUsingGetParams;
+  params: API.V2ApiAppListUsingGetParams;
   options?: { [key: string]: unknown };
 }) {
   return request<API.AppResp[]>('/llmops/v2/api/app/list', {
@@ -768,7 +768,7 @@ export async function v2ApiAppShareApiTokenUsingGet({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.v2ApiAppShareApiTokenUsingGetParams;
+  params: API.V2ApiAppShareApiTokenUsingGetParams;
   options?: { [key: string]: unknown };
 }) {
   return request<API.GetApiTokenByRandomPathRESP>(
@@ -794,7 +794,7 @@ export async function v1ApiAttentionAppListUsingGet({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.v1ApiAttentionAppListUsingGetParams;
+  params: API.V1ApiAttentionAppListUsingGetParams;
   options?: { [key: string]: unknown };
 }) {
   return request<API.AppResp[]>('/llmops/v1/api/attention/app/list', {
@@ -866,7 +866,7 @@ export async function v1ApiAttentionMessagesHistoryUsingGet({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.v1ApiAttentionMessagesHistoryUsingGetParams;
+  params: API.V1ApiAttentionMessagesHistoryUsingGetParams;
   options?: { [key: string]: unknown };
 }) {
   return request<API.HistoryInfo[]>(
@@ -902,7 +902,7 @@ export async function v1ApiAttentionUserAllUsingGet({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.v1ApiAttentionUserAllUsingGetParams;
+  params: API.V1ApiAttentionUserAllUsingGetParams;
   options?: { [key: string]: unknown };
 }) {
   return request<API.ListAllAttentionUser>(
@@ -941,7 +941,7 @@ export async function v1ApiAttentionUserListUsingPost({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.v1ApiAttentionUserListUsingPostParams;
+  params: API.V1ApiAttentionUserListUsingPostParams;
   options?: { [key: string]: unknown };
 }) {
   return request<API.ListAttentionUserResp>(
@@ -967,7 +967,7 @@ export async function authAuthorizeUsingGet({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.authAuthorizeUsingGetParams;
+  params: API.AuthAuthorizeUsingGetParams;
   options?: { [key: string]: unknown };
 }) {
   return request<unknown>('/llmops/auth/authorize', {
@@ -1091,7 +1091,7 @@ export async function v1ApiConversationsUsingGet({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.v1ApiConversationsUsingGetParams;
+  params: API.V1ApiConversationsUsingGetParams;
   options?: { [key: string]: unknown };
 }) {
   return request<API.ConversationMsg[]>('/llmops/v1/api/conversations', {
@@ -1109,7 +1109,7 @@ export async function v1ApiConversationsUsingDelete({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.v1ApiConversationsUsingDeleteParams;
+  params: API.V1ApiConversationsUsingDeleteParams;
   options?: { [key: string]: unknown };
 }) {
   return request<API.DeleteResp>('/llmops/v1/api/conversations', {
@@ -1133,7 +1133,7 @@ export async function v1ApiFeedbacksMessageIdUsingPost({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.v1ApiFeedbacksMessageIdUsingPostParams;
+  params: API.V1ApiFeedbacksMessageIdUsingPostParams;
   body: API.FeedbacksReqBody;
   options?: { [key: string]: unknown };
 }) {
@@ -1165,7 +1165,7 @@ export async function v1ApiAppAppIdDatasetsUsingPost({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.v1ApiAppAppIdDatasetsUsingPostParams;
+  params: API.V1ApiAppAppIdDatasetsUsingPostParams;
   body: API.V1ApiAppAppIdDatasetsUsingPostBody;
   options?: { [key: string]: unknown };
 }) {
@@ -1185,7 +1185,7 @@ export async function v1ApiAppAppIdDatasetsUsingDelete({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.v1ApiAppAppIdDatasetsUsingDeleteParams;
+  params: API.V1ApiAppAppIdDatasetsUsingDeleteParams;
   options?: { [key: string]: unknown };
 }) {
   const { appID: param0, ...queryParams } = params;
@@ -1210,7 +1210,7 @@ export async function v1ApiAppAppIdDatasetsListUsingGet({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.v1ApiAppAppIdDatasetsListUsingGetParams;
+  params: API.V1ApiAppAppIdDatasetsListUsingGetParams;
   options?: { [key: string]: unknown };
 }) {
   const { appID: param0, ...queryParams } = params;
@@ -1238,7 +1238,7 @@ export async function v1ApiFeedbacksMessageIdUsingDelete({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.v1ApiFeedbacksMessageIdUsingDeleteParams;
+  params: API.V1ApiFeedbacksMessageIdUsingDeleteParams;
   options?: { [key: string]: unknown };
 }) {
   const { message_id: param0, ...queryParams } = params;
@@ -1267,7 +1267,7 @@ export async function v1ApiRobotWorkspaceIdAppkeyUsingDelete({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.v1ApiRobotWorkspaceIdAppkeyUsingDeleteParams;
+  params: API.V1ApiRobotWorkspaceIdAppkeyUsingDeleteParams;
   body: API.GetAppKeyReq;
   options?: { [key: string]: unknown };
 }) {
@@ -1327,7 +1327,7 @@ export async function authExchangeUsingGet({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.authExchangeUsingGetParams;
+  params: API.AuthExchangeUsingGetParams;
   options?: { [key: string]: unknown };
 }) {
   return request<API.ExchangeTokenRESP>('/llmops/auth/exchange', {
@@ -1351,7 +1351,7 @@ export async function v1ApiFileUsingPost({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.v1ApiFileUsingPostParams;
+  params: API.V1ApiFileUsingPostParams;
   body: API.V1ApiFileUsingPostBody;
   options?: { [key: string]: unknown };
 }) {
@@ -1411,7 +1411,7 @@ export async function v2ApiFileUsingPost({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.v2ApiFileUsingPostParams;
+  params: API.V2ApiFileUsingPostParams;
   body: API.V2ApiFileUsingPostBody;
   options?: { [key: string]: unknown };
 }) {
@@ -1457,7 +1457,7 @@ export async function v1ApiRobotWorkspaceIdAppkeyUsingGet({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.v1ApiRobotWorkspaceIdAppkeyUsingGetParams;
+  params: API.V1ApiRobotWorkspaceIdAppkeyUsingGetParams;
   options?: { [key: string]: unknown };
 }) {
   const { workspaceID: param0, ...queryParams } = params;
@@ -1482,7 +1482,7 @@ export async function v1ApiConversationsConversationIdHistoryUsingGet({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.v1ApiConversationsConversationIdHistoryUsingGetParams;
+  params: API.V1ApiConversationsConversationIdHistoryUsingGetParams;
   options?: { [key: string]: unknown };
 }) {
   const { conversation_id: param0, ...queryParams } = params;
@@ -1503,7 +1503,7 @@ export async function v1ApiConversationsConversationIdHistoryUsingDelete({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.v1ApiConversationsConversationIdHistoryUsingDeleteParams;
+  params: API.V1ApiConversationsConversationIdHistoryUsingDeleteParams;
   options?: { [key: string]: unknown };
 }) {
   const { conversation_id: param0, ...queryParams } = params;
@@ -1526,7 +1526,7 @@ export async function v2ApiChatMessagesMessagesCountUsingGet({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.v2ApiChatMessagesMessagesCountUsingGetParams;
+  params: API.V2ApiChatMessagesMessagesCountUsingGetParams;
   options?: { [key: string]: unknown };
 }) {
   return request<API.AppMessagesCount>(
@@ -1552,7 +1552,7 @@ export async function v1ApiIamAccountUsingGet({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.v1ApiIamAccountUsingGetParams;
+  params: API.V1ApiIamAccountUsingGetParams;
   options?: { [key: string]: unknown };
 }) {
   return request<API.WJLAccount>('/llmops/v1/api/iamAccount', {
@@ -1613,7 +1613,7 @@ export async function v1ApiFeedbacksUsingGet({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.v1ApiFeedbacksUsingGetParams;
+  params: API.V1ApiFeedbacksUsingGetParams;
   options?: { [key: string]: unknown };
 }) {
   return request<API.ListFeedbacksResp>('/llmops/v1/api/feedbacks/', {
@@ -1636,7 +1636,7 @@ export async function v1ApiProviderListUsingGet({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.v1ApiProviderListUsingGetParams;
+  params: API.V1ApiProviderListUsingGetParams;
   options?: { [key: string]: unknown };
 }) {
   return request<API.ListProviderResp>('/llmops/v1/api/provider/list', {
@@ -1659,7 +1659,7 @@ export async function v1ApiAppAppIdRecommendedContextUsingGet({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.v1ApiAppAppIdRecommendedContextUsingGetParams;
+  params: API.V1ApiAppAppIdRecommendedContextUsingGetParams;
   options?: { [key: string]: unknown };
 }) {
   const { appID: param0, ...queryParams } = params;
@@ -1681,7 +1681,7 @@ export async function v1ApiAppAppIdRecommendedContextUsingPost({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.v1ApiAppAppIdRecommendedContextUsingPostParams;
+  params: API.V1ApiAppAppIdRecommendedContextUsingPostParams;
   body: API.AppRecommendedContext;
   options?: { [key: string]: unknown };
 }) {
@@ -1714,7 +1714,7 @@ export async function authRefreshTokenUsingPost({
     ...(options || {}),
   });
 }
-export const $GetImagePreSignedUrlResp = {
+export const $getImagePreSignedUrlResp = {
   properties: {
     appImage: { type: 'string' },
     preSignedPutUrl: { type: 'string' },
@@ -1723,7 +1723,7 @@ export const $GetImagePreSignedUrlResp = {
   isAllowed: true,
 };
 
-export const $ConversationMsg = {
+export const $conversationMsg = {
   properties: {
     conversationId: { type: 'string' },
     createAt: { type: 'string' },
@@ -1734,11 +1734,11 @@ export const $ConversationMsg = {
   isAllowed: true,
 };
 
-export const $CreateFeedbacksResp = { type: 'object', isAllowed: true };
+export const $createFeedbacksResp = { type: 'object', isAllowed: true };
 
-export const $DeleteFeedbacksResp = { type: 'object', isAllowed: true };
+export const $deleteFeedbacksResp = { type: 'object', isAllowed: true };
 
-export const $HistoryInfo = {
+export const $historyInfo = {
   properties: {
     Rating: { description: 'like/unlike', type: 'string' },
     answer: { type: 'string' },
@@ -1756,7 +1756,7 @@ export const $HistoryInfo = {
   isAllowed: true,
 };
 
-export const $ApiToken = {
+export const $apiToken = {
   properties: {
     apiTokenID: { type: 'string' },
     appID: { type: 'string' },
@@ -1768,7 +1768,7 @@ export const $ApiToken = {
   isAllowed: true,
 };
 
-export const $ApiTokenDataList = {
+export const $apiTokenDataList = {
   properties: {
     data: {
       items: {
@@ -1791,7 +1791,7 @@ export const $ApiTokenDataList = {
   isAllowed: true,
 };
 
-export const $App = {
+export const $app = {
   properties: {
     appID: { type: 'string' },
     appImage: { type: 'integer' },
@@ -1826,7 +1826,7 @@ export const $App = {
   isAllowed: true,
 };
 
-export const $AppDatasetConfig = {
+export const $appDatasetConfig = {
   properties: {
     appDatasetConfigID: { type: 'string' },
     appID: { type: 'string' },
@@ -1841,7 +1841,7 @@ export const $AppDatasetConfig = {
   isAllowed: true,
 };
 
-export const $AppRecommendedContext = {
+export const $appRecommendedContext = {
   properties: {
     appID: { type: 'string' },
     appRecommendedContextID: { type: 'string' },
@@ -1855,13 +1855,13 @@ export const $AppRecommendedContext = {
   isAllowed: true,
 };
 
-export const $Guidances = {
+export const $guidances = {
   properties: { items: { items: { type: 'string' }, type: 'array' } },
   type: 'object',
   isAllowed: true,
 };
 
-export const $ListWorkspaceGroup = {
+export const $listWorkspaceGroup = {
   properties: {
     data: {
       items: {
@@ -1883,7 +1883,7 @@ export const $ListWorkspaceGroup = {
   isAllowed: true,
 };
 
-export const $User = {
+export const $user = {
   properties: {
     createdAt: { type: 'string' },
     email: { type: 'string' },
@@ -1912,7 +1912,7 @@ export const $User = {
   isAllowed: true,
 };
 
-export const $WorkspaceGroup = {
+export const $workspaceGroup = {
   properties: {
     createdAt: { type: 'string' },
     name: { description: '分组名', type: 'string' },
@@ -1924,7 +1924,7 @@ export const $WorkspaceGroup = {
   isAllowed: true,
 };
 
-export const $DatasetData = {
+export const $datasetData = {
   properties: {
     author: { type: 'string' },
     description: { type: 'string' },
@@ -1941,7 +1941,7 @@ export const $DatasetData = {
   isAllowed: true,
 };
 
-export const $ListDatasetsResp = {
+export const $listDatasetsResp = {
   properties: {
     data: {
       items: {
@@ -1972,7 +1972,7 @@ export const $ListDatasetsResp = {
   isAllowed: true,
 };
 
-export const $Permission = {
+export const $permission = {
   enum: ['read_only', 'operation', 'no_permission'],
   type: 'string',
   'x-enum-comments': {
@@ -1984,14 +1984,14 @@ export const $Permission = {
   isAllowed: true,
 };
 
-export const $ProviderType = {
+export const $providerType = {
   enum: ['openai', 'spark', 'wenxin', 'rockai'],
   type: 'string',
   'x-enum-varnames': ['OpenAI', 'Spark', 'WenXin', 'RockAI'],
   isAllowed: true,
 };
 
-export const $RbacRole = {
+export const $rbacRole = {
   enum: ['system_admin', 'system_user', 'app_admin', 'app_user'],
   type: 'string',
   'x-enum-comments': {
@@ -2004,7 +2004,7 @@ export const $RbacRole = {
   isAllowed: true,
 };
 
-export const $WorkspaceRole = {
+export const $workspaceRole = {
   enum: ['workspace_admin', 'workspace_user'],
   type: 'string',
   'x-enum-comments': {
@@ -2015,25 +2015,25 @@ export const $WorkspaceRole = {
   isAllowed: true,
 };
 
-export const $FilestreamResp = {
+export const $filestreamResp = {
   properties: { conversation_id: { type: 'string' } },
   type: 'object',
   isAllowed: true,
 };
 
-export const $SpeechToTextResp = {
+export const $speechToTextResp = {
   properties: { text: { description: '转化的结果', type: 'string' } },
   type: 'object',
   isAllowed: true,
 };
 
-export const $TextToSpeechReq = {
+export const $textToSpeechReq = {
   properties: { text: { description: '需要转的文字', type: 'string' } },
   type: 'object',
   isAllowed: true,
 };
 
-export const $Feedback = {
+export const $feedback = {
   properties: {
     comment: { description: '评论', type: 'string' },
     conversation_id: { type: 'string' },
@@ -2047,20 +2047,20 @@ export const $Feedback = {
   isAllowed: true,
 };
 
-export const $Map = {
+export const $map = {
   additionalProperties: true,
   type: 'object',
   isAllowed: true,
 };
 
-export const $Bool = {
+export const $bool = {
   type: 'string',
   'x-enum-comments': { BOOL_FALSE: 'false', BOOL_TRUE: 'true' },
   'x-enum-varnames': ['BOOL_UNKNOWN', 'BOOL_TRUE', 'BOOL_FALSE'],
   isAllowed: true,
 };
 
-export const $Chat = {
+export const $chat = {
   properties: {
     conversation_id: { type: 'string' },
     inputs: { type: 'object' },
@@ -2073,13 +2073,13 @@ export const $Chat = {
   isAllowed: true,
 };
 
-export const $ChatMessageReq = {
+export const $chatMessageReq = {
   properties: { prompt: { type: 'string' }, query: { type: 'string' } },
   type: 'object',
   isAllowed: true,
 };
 
-export const $FeedbacksReqBody = {
+export const $feedbacksReqBody = {
   properties: {
     comment: { description: '评论', type: 'string' },
     conversation_id: { type: 'string' },
@@ -2090,7 +2090,7 @@ export const $FeedbacksReqBody = {
   isAllowed: true,
 };
 
-export const $ListFeedbacksResp = {
+export const $listFeedbacksResp = {
   properties: {
     data: {
       items: {
@@ -2115,7 +2115,7 @@ export const $ListFeedbacksResp = {
   isAllowed: true,
 };
 
-export const $QuestionRecommendReq = {
+export const $questionRecommendReq = {
   properties: {
     conversation_id: { type: 'string' },
     user: {
@@ -2128,7 +2128,7 @@ export const $QuestionRecommendReq = {
   isAllowed: true,
 };
 
-export const $ResponseData = {
+export const $responseData = {
   properties: {
     answer: { type: 'string' },
     conversation_id: { type: 'string' },
@@ -2141,7 +2141,7 @@ export const $ResponseData = {
   isAllowed: true,
 };
 
-export const $ResponseRecommendData = {
+export const $responseRecommendData = {
   properties: {
     answer: { type: 'string' },
     conversation_id: { type: 'string' },
@@ -2154,7 +2154,7 @@ export const $ResponseRecommendData = {
   isAllowed: true,
 };
 
-export const $AppDataset = {
+export const $appDataset = {
   properties: {
     description: { description: '描述', type: 'string' },
     llmDesc: { description: 'llm描述', type: 'string' },
@@ -2164,7 +2164,7 @@ export const $AppDataset = {
   isAllowed: true,
 };
 
-export const $AppDatasetConfigs = {
+export const $appDatasetConfigs = {
   properties: {
     minScore: { description: '最低分数', type: 'number' },
     searchSource: { description: '知识库源，默认 warehouse', type: 'string' },
@@ -2175,7 +2175,7 @@ export const $AppDatasetConfigs = {
   isAllowed: true,
 };
 
-export const $AppModelConfigPromptPrefix = {
+export const $appModelConfigPromptPrefix = {
   properties: {
     background: { type: 'string' },
     role: { type: 'string' },
@@ -2185,7 +2185,7 @@ export const $AppModelConfigPromptPrefix = {
   isAllowed: true,
 };
 
-export const $AppModelConfigs = {
+export const $appModelConfigs = {
   properties: {
     configs: {
       properties: {
@@ -2222,7 +2222,7 @@ export const $AppModelConfigs = {
   isAllowed: true,
 };
 
-export const $AppRecommendedContext2 = {
+export const $appRecommendedContext2 = {
   properties: {
     context: { type: 'string' },
     description: { type: 'string' },
@@ -2233,13 +2233,13 @@ export const $AppRecommendedContext2 = {
   isAllowed: true,
 };
 
-export const $CopyAppReq = {
+export const $copyAppReq = {
   properties: { appID: { type: 'string' }, workspaceID: { type: 'string' } },
   type: 'object',
   isAllowed: true,
 };
 
-export const $CreateAppReq = {
+export const $createAppReq = {
   properties: {
     description: { type: 'string' },
     guidance: {
@@ -2255,7 +2255,7 @@ export const $CreateAppReq = {
   isAllowed: true,
 };
 
-export const $CreateAppReqV2 = {
+export const $createAppReqV2 = {
   properties: {
     appDescription: { type: 'string' },
     appGroupID: { type: 'string' },
@@ -2305,7 +2305,7 @@ export const $CreateAppReqV2 = {
   isAllowed: true,
 };
 
-export const $CreateAttentionReq = {
+export const $createAttentionReq = {
   properties: {
     followeeUserIDList: { items: { type: 'string' }, type: 'array' },
     iamID: { type: 'string' },
@@ -2314,7 +2314,7 @@ export const $CreateAttentionReq = {
   isAllowed: true,
 };
 
-export const $DeleteAttentionReq = {
+export const $deleteAttentionReq = {
   properties: {
     followeeUserIDList: { items: { type: 'string' }, type: 'array' },
     iamID: { type: 'string' },
@@ -2323,13 +2323,13 @@ export const $DeleteAttentionReq = {
   isAllowed: true,
 };
 
-export const $DeleteMemberBody = {
+export const $deleteMemberBody = {
   properties: { userID: { description: '用户id', type: 'string' } },
   type: 'object',
   isAllowed: true,
 };
 
-export const $GetAttentionDataCountReq = {
+export const $getAttentionDataCountReq = {
   properties: {
     appIDList: { items: { type: 'string' }, type: 'array' },
     iamID: { type: 'string' },
@@ -2339,7 +2339,7 @@ export const $GetAttentionDataCountReq = {
   isAllowed: true,
 };
 
-export const $ListAttentionConversationReq = {
+export const $listAttentionConversationReq = {
   properties: {
     appIDList: { items: { type: 'string' }, type: 'array' },
     iamID: { type: 'string' },
@@ -2351,7 +2351,7 @@ export const $ListAttentionConversationReq = {
   isAllowed: true,
 };
 
-export const $MemberBody = {
+export const $memberBody = {
   properties: {
     role: {
       description:
@@ -2374,7 +2374,7 @@ export const $MemberBody = {
   isAllowed: true,
 };
 
-export const $ModelConfigsMap = {
+export const $modelConfigsMap = {
   properties: {
     model_type: {
       description:
@@ -2402,13 +2402,13 @@ export const $ModelConfigsMap = {
   isAllowed: true,
 };
 
-export const $RefreshTokenBody = {
+export const $refreshTokenBody = {
   properties: { refreshToken: { type: 'string' } },
   type: 'object',
   isAllowed: true,
 };
 
-export const $ReleaseDiscoverReq = {
+export const $releaseDiscoverReq = {
   properties: {
     alterAppID: { type: 'string' },
     appType: { description: '应用类型', type: 'integer' },
@@ -2421,13 +2421,13 @@ export const $ReleaseDiscoverReq = {
   isAllowed: true,
 };
 
-export const $UpdateAppGroup = {
+export const $updateAppGroup = {
   properties: { appGroupID: { type: 'string' } },
   type: 'object',
   isAllowed: true,
 };
 
-export const $UpdateAppReq = {
+export const $updateAppReq = {
   properties: {
     appDescription: { type: 'string' },
     appGroupID: { type: 'string' },
@@ -2438,7 +2438,7 @@ export const $UpdateAppReq = {
   isAllowed: true,
 };
 
-export const $UpdateAppReqV2 = {
+export const $updateAppReqV2 = {
   properties: {
     appGroupID: { type: 'string' },
     appGuidance: {
@@ -2501,7 +2501,7 @@ export const $UpdateAppReqV2 = {
   isAllowed: true,
 };
 
-export const $UpdateAppStatusReq = {
+export const $updateAppStatusReq = {
   properties: {
     appStatus: { description: 'PUBLIC:公开；PRIVATE:私有', type: 'string' },
   },
@@ -2509,7 +2509,7 @@ export const $UpdateAppStatusReq = {
   isAllowed: true,
 };
 
-export const $UpdateUserRoleBody = {
+export const $updateUserRoleBody = {
   properties: {
     role: {
       description:
@@ -2532,13 +2532,13 @@ export const $UpdateUserRoleBody = {
   isAllowed: true,
 };
 
-export const $WorkspaceGroupReq = {
+export const $workspaceGroupReq = {
   properties: { name: { type: 'string' } },
   type: 'object',
   isAllowed: true,
 };
 
-export const $WorkspaceReq = {
+export const $workspaceReq = {
   properties: {
     description: { description: '描述', type: 'string' },
     name: { description: '空间名', type: 'string' },
@@ -2547,7 +2547,7 @@ export const $WorkspaceReq = {
   isAllowed: true,
 };
 
-export const $WorkspaceUser = {
+export const $workspaceUser = {
   properties: {
     role: {
       description: 'workspace_admin空间超管用户；workspace_user空间普通用户',
@@ -2567,7 +2567,7 @@ export const $WorkspaceUser = {
   isAllowed: true,
 };
 
-export const $AppDatasets = {
+export const $appDatasets = {
   properties: {
     appCount: { type: 'integer' },
     author: { type: 'string' },
@@ -2580,7 +2580,7 @@ export const $AppDatasets = {
   isAllowed: true,
 };
 
-export const $AppDetail = {
+export const $appDetail = {
   properties: {
     AnswerTokensCount: { description: '消耗输出token', type: 'integer' },
     appDatasetConfig: {
@@ -2714,13 +2714,13 @@ export const $AppDetail = {
   isAllowed: true,
 };
 
-export const $AppMessagesCount = {
+export const $appMessagesCount = {
   properties: { total: { type: 'integer' } },
   type: 'object',
   isAllowed: true,
 };
 
-export const $AppRecommendedContext3 = {
+export const $appRecommendedContext3 = {
   properties: {
     context: { type: 'string' },
     description: { type: 'string' },
@@ -2731,7 +2731,7 @@ export const $AppRecommendedContext3 = {
   isAllowed: true,
 };
 
-export const $AppRecommendedContextResp = {
+export const $appRecommendedContextResp = {
   properties: {
     questions: { type: 'string' },
     recommendSwitch: { type: 'boolean' },
@@ -2740,7 +2740,7 @@ export const $AppRecommendedContextResp = {
   isAllowed: true,
 };
 
-export const $AppResp = {
+export const $appResp = {
   properties: {
     appGroupID: { type: 'string' },
     appGroupName: { type: 'string' },
@@ -2759,7 +2759,7 @@ export const $AppResp = {
   isAllowed: true,
 };
 
-export const $AppWithPermission = {
+export const $appWithPermission = {
   properties: {
     appID: { type: 'string' },
     appImage: { type: 'integer' },
@@ -2795,13 +2795,13 @@ export const $AppWithPermission = {
   isAllowed: true,
 };
 
-export const $AttentionDataCountResp = {
+export const $attentionDataCountResp = {
   properties: { total: { type: 'integer' } },
   type: 'object',
   isAllowed: true,
 };
 
-export const $AttentionUser = {
+export const $attentionUser = {
   properties: {
     email: { type: 'string' },
     isAttentionUser: { type: 'boolean' },
@@ -2813,7 +2813,7 @@ export const $AttentionUser = {
   isAllowed: true,
 };
 
-export const $AttentionUserResp = {
+export const $attentionUserResp = {
   properties: {
     email: { type: 'string' },
     lastMessageTime: { type: 'string' },
@@ -2825,7 +2825,7 @@ export const $AttentionUserResp = {
   isAllowed: true,
 };
 
-export const $ConversationLogsResp = {
+export const $conversationLogsResp = {
   properties: {
     AnswerTokensCount: { description: '消耗输出token', type: 'integer' },
     appID: { type: 'string' },
@@ -2875,7 +2875,7 @@ export const $ConversationLogsResp = {
   isAllowed: true,
 };
 
-export const $ConversationResp = {
+export const $conversationResp = {
   properties: {
     AnswerTokensCount: { description: '消耗输出token', type: 'integer' },
     appID: { type: 'string' },
@@ -2927,25 +2927,25 @@ export const $ConversationResp = {
   isAllowed: true,
 };
 
-export const $CreateApiTokenRESP = {
+export const $createApiTokenRESP = {
   properties: { token: { type: 'string' } },
   type: 'object',
   isAllowed: true,
 };
 
-export const $CreateSharePathRESP = {
+export const $createSharePathRESP = {
   properties: { path: { type: 'string' } },
   type: 'object',
   isAllowed: true,
 };
 
-export const $DeleteResp = {
+export const $deleteResp = {
   properties: { msg: { type: 'string' } },
   type: 'object',
   isAllowed: true,
 };
 
-export const $ExchangeTokenRESP = {
+export const $exchangeTokenRESP = {
   properties: {
     access_token: { description: '访问令牌', type: 'string' },
     expires_in: { description: '访问令牌过期时间', type: 'string' },
@@ -2957,7 +2957,7 @@ export const $ExchangeTokenRESP = {
   isAllowed: true,
 };
 
-export const $GetApiTokenByRandomPathRESP = {
+export const $getApiTokenByRandomPathRESP = {
   properties: {
     apiTokenID: { type: 'string' },
     appID: { type: 'string' },
@@ -2989,7 +2989,7 @@ export const $GetApiTokenByRandomPathRESP = {
   isAllowed: true,
 };
 
-export const $IAMUserInfo = {
+export const $iAMUserInfo = {
   properties: {
     createdTime: { description: '创建时间', type: 'string' },
     email: { description: 'Cid         string `json:"cid"`', type: 'string' },
@@ -3021,7 +3021,7 @@ export const $IAMUserInfo = {
   isAllowed: true,
 };
 
-export const $ListAllAttentionUser = {
+export const $listAllAttentionUser = {
   properties: {
     data: {
       items: {
@@ -3044,7 +3044,7 @@ export const $ListAllAttentionUser = {
   isAllowed: true,
 };
 
-export const $ListAppDatasetConfigResp = {
+export const $listAppDatasetConfigResp = {
   properties: {
     data: {
       items: {
@@ -3070,7 +3070,7 @@ export const $ListAppDatasetConfigResp = {
   isAllowed: true,
 };
 
-export const $ListAppDatasets = {
+export const $listAppDatasets = {
   properties: {
     Data: {
       items: {
@@ -3094,7 +3094,7 @@ export const $ListAppDatasets = {
   isAllowed: true,
 };
 
-export const $ListAppResp = {
+export const $listAppResp = {
   properties: {
     data: {
       items: {
@@ -3124,7 +3124,7 @@ export const $ListAppResp = {
   isAllowed: true,
 };
 
-export const $ListAttentionUserResp = {
+export const $listAttentionUserResp = {
   properties: {
     data: {
       items: {
@@ -3147,7 +3147,7 @@ export const $ListAttentionUserResp = {
   isAllowed: true,
 };
 
-export const $ListConversationLogsResp = {
+export const $listConversationLogsResp = {
   properties: {
     data: {
       items: {
@@ -3208,7 +3208,7 @@ export const $ListConversationLogsResp = {
   isAllowed: true,
 };
 
-export const $ListConversationResp = {
+export const $listConversationResp = {
   properties: {
     data: {
       items: {
@@ -3271,7 +3271,7 @@ export const $ListConversationResp = {
   isAllowed: true,
 };
 
-export const $ListMemberRESP = {
+export const $listMemberRESP = {
   properties: {
     data: {
       items: {
@@ -3337,7 +3337,7 @@ export const $ListMemberRESP = {
   isAllowed: true,
 };
 
-export const $ListProviderResp = {
+export const $listProviderResp = {
   properties: {
     data: {
       items: {
@@ -3366,7 +3366,7 @@ export const $ListProviderResp = {
   isAllowed: true,
 };
 
-export const $ListUserWithAppRESP = {
+export const $listUserWithAppRESP = {
   properties: {
     data: {
       items: {
@@ -3456,7 +3456,7 @@ export const $ListUserWithAppRESP = {
   isAllowed: true,
 };
 
-export const $ListWorkspacePermissions = {
+export const $listWorkspacePermissions = {
   properties: {
     data: {
       items: {
@@ -3514,7 +3514,7 @@ export const $ListWorkspacePermissions = {
   isAllowed: true,
 };
 
-export const $MemberWithRoleData = {
+export const $memberWithRoleData = {
   properties: {
     appRole: {
       description: '应用角色',
@@ -3559,7 +3559,7 @@ export const $MemberWithRoleData = {
   isAllowed: true,
 };
 
-export const $MessagesCountResp = {
+export const $messagesCountResp = {
   properties: {
     messagesCount: { description: '请求消耗token', type: 'integer' },
     time: { type: 'string' },
@@ -3568,7 +3568,7 @@ export const $MessagesCountResp = {
   isAllowed: true,
 };
 
-export const $MessagesTokenResp = {
+export const $messagesTokenResp = {
   properties: {
     answerToken: { description: '回答消耗token', type: 'integer' },
     queryToken: { description: '请求消耗token', type: 'integer' },
@@ -3579,7 +3579,7 @@ export const $MessagesTokenResp = {
   isAllowed: true,
 };
 
-export const $ModelConfigsMap2 = {
+export const $modelConfigsMap2 = {
   properties: {
     model_type: {
       description:
@@ -3607,7 +3607,7 @@ export const $ModelConfigsMap2 = {
   isAllowed: true,
 };
 
-export const $ProviderResp = {
+export const $providerResp = {
   properties: {
     name: { description: '名字', type: 'string' },
     providerID: { type: 'string' },
@@ -3625,7 +3625,7 @@ export const $ProviderResp = {
   isAllowed: true,
 };
 
-export const $QueryTokenResp = {
+export const $queryTokenResp = {
   properties: {
     AnswerTokensCount: { description: '消耗输出token', type: 'integer' },
     queryTokensCount: { description: '消耗输入token', type: 'integer' },
@@ -3635,7 +3635,7 @@ export const $QueryTokenResp = {
   isAllowed: true,
 };
 
-export const $RecommendQuestionAndContext = {
+export const $recommendQuestionAndContext = {
   properties: {
     contexts: {
       items: {
@@ -3657,7 +3657,7 @@ export const $RecommendQuestionAndContext = {
   isAllowed: true,
 };
 
-export const $UserWithAppData = {
+export const $userWithAppData = {
   properties: {
     appWithPermissionList: {
       items: {
@@ -3726,7 +3726,7 @@ export const $UserWithAppData = {
   isAllowed: true,
 };
 
-export const $WJLAccount = {
+export const $wJLAccount = {
   properties: {
     code: { type: 'integer' },
     data: {
@@ -3747,7 +3747,7 @@ export const $WJLAccount = {
   isAllowed: true,
 };
 
-export const $WorkspaceListResp = {
+export const $workspaceListResp = {
   properties: {
     data: {
       items: {
@@ -3768,7 +3768,7 @@ export const $WorkspaceListResp = {
   isAllowed: true,
 };
 
-export const $WorkspacePermissions = {
+export const $workspacePermissions = {
   properties: {
     createdAt: { type: 'string' },
     email: { type: 'string' },
@@ -3810,7 +3810,7 @@ export const $WorkspacePermissions = {
   isAllowed: true,
 };
 
-export const $WorkspaceResp = {
+export const $workspaceResp = {
   properties: {
     description: { description: '空间描述', type: 'string' },
     name: { description: '空间名', type: 'string' },
@@ -3820,7 +3820,7 @@ export const $WorkspaceResp = {
   isAllowed: true,
 };
 
-export const $AddAppkeyReq = {
+export const $addAppkeyReq = {
   properties: {
     appid: { type: 'string' },
     appkey: { type: 'string' },
@@ -3834,7 +3834,7 @@ export const $AddAppkeyReq = {
   isAllowed: true,
 };
 
-export const $Data = {
+export const $data = {
   properties: {
     appkey: { type: 'string' },
     appsecret: { type: 'string' },
@@ -3854,7 +3854,7 @@ export const $Data = {
   isAllowed: true,
 };
 
-export const $GetAppKeyReq = {
+export const $getAppKeyReq = {
   properties: {
     appid: { type: 'string' },
     type: { description: 'wjl,dingding,feishu,wxa,wx', type: 'string' },
@@ -3864,7 +3864,7 @@ export const $GetAppKeyReq = {
   isAllowed: true,
 };
 
-export const $UpdateAppKeyStateReq = {
+export const $updateAppKeyStateReq = {
   properties: {
     appid: { type: 'string' },
     state: { description: '0-关闭，1-启动', type: 'integer' },
@@ -3875,15 +3875,15 @@ export const $UpdateAppKeyStateReq = {
   isAllowed: true,
 };
 
-export const $WxExtra = {
+export const $wxExtra = {
   properties: { encodingAESKey: { type: 'string' }, token: { type: 'string' } },
   type: 'object',
   isAllowed: true,
 };
 
-export const $EmptyObject = { type: 'object', isAllowed: true };
+export const $emptyObject = { type: 'object', isAllowed: true };
 
-export const $ErrorResp = {
+export const $errorResp = {
   properties: { msg: { type: 'string' }, type: { type: 'object' } },
   type: 'object',
   isAllowed: true,
@@ -3900,7 +3900,7 @@ export async function v1ApiAppH5ShareApiTokenUsingGet({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.v1ApiAppH5ShareApiTokenUsingGetParams;
+  params: API.V1ApiAppH5ShareApiTokenUsingGetParams;
   options?: { [key: string]: unknown };
 }) {
   return request<API.GetApiTokenByRandomPathRESP>(
@@ -3921,7 +3921,7 @@ export async function v1ApiAppShareApiTokenUsingGet({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.v1ApiAppShareApiTokenUsingGetParams;
+  params: API.V1ApiAppShareApiTokenUsingGetParams;
   options?: { [key: string]: unknown };
 }) {
   return request<API.GetApiTokenByRandomPathRESP>(
@@ -4180,14 +4180,14 @@ export type AttentionUserResp = {
   userName?: string;
 };
 
-export type authAuthorizeUsingGetParams = {
+export type AuthAuthorizeUsingGetParams = {
   /** 业务回调地址 */
   redirect_uri: string;
   /** 保持请求和回调的状态，授权成功后会回传该参数 */
   state?: string;
 };
 
-export type authExchangeUsingGetParams = {
+export type AuthExchangeUsingGetParams = {
   /** code */
   code: string;
   /** 业务回调地址 */
@@ -4789,7 +4789,7 @@ export type UserWithAppData = {
   userName?: string;
 };
 
-export type v1ApiAppAppIdApiTokenUsingGetParams = {
+export type V1ApiAppAppIdApiTokenUsingGetParams = {
   /** 应用id */
   appID: string;
   /** 每页大小 */
@@ -4798,34 +4798,34 @@ export type v1ApiAppAppIdApiTokenUsingGetParams = {
   offset: number;
 };
 
-export type v1ApiAppAppIdApiTokenUsingPostParams = {
+export type V1ApiAppAppIdApiTokenUsingPostParams = {
   /** 应用id */
   appID: string;
 };
 
-export type v1ApiAppAppIdDatasetConfigsUsingDeleteParams = {
+export type V1ApiAppAppIdDatasetConfigsUsingDeleteParams = {
   /** 应用id */
   appID: string;
   /** 应用知识库配置id */
   appDatasetConfigID: string;
 };
 
-export type v1ApiAppAppIdDatasetConfigsUsingGetParams = {
+export type V1ApiAppAppIdDatasetConfigsUsingGetParams = {
   /** 应用id */
   appID: string;
 };
 
-export type v1ApiAppAppIdDatasetConfigsUsingPostParams = {
+export type V1ApiAppAppIdDatasetConfigsUsingPostParams = {
   /** 应用id */
   appID: string;
 };
 
-export type v1ApiAppAppIdDatasetConfigsUsingPutParams = {
+export type V1ApiAppAppIdDatasetConfigsUsingPutParams = {
   /** 应用id */
   appID: string;
 };
 
-export type v1ApiAppAppIdDatasetsListUsingGetParams = {
+export type V1ApiAppAppIdDatasetsListUsingGetParams = {
   /** 应用id */
   appID: string;
   /** size */
@@ -4834,7 +4834,7 @@ export type v1ApiAppAppIdDatasetsListUsingGetParams = {
   offset?: number;
 };
 
-export type v1ApiAppAppIdDatasetsUsingDeleteParams = {
+export type V1ApiAppAppIdDatasetsUsingDeleteParams = {
   /** 应用id */
   appID: string;
   /** 数据集id */
@@ -4843,26 +4843,17 @@ export type v1ApiAppAppIdDatasetsUsingDeleteParams = {
 
 export type V1ApiAppAppIdDatasetsUsingPostBody = AppDatasets[];
 
-export type v1ApiAppAppIdDatasetsUsingPostParams = {
+export type V1ApiAppAppIdDatasetsUsingPostParams = {
   /** 应用id */
   appID: string;
 };
 
-export type v1ApiAppAppIdDetailsUsingGetParams = {
+export type V1ApiAppAppIdDetailsUsingGetParams = {
   /** 应用id */
   appID: string;
 };
 
-export type v1ApiAppAppIdHourlyMessagesUsingGetParams = {
-  /** 应用id */
-  appID: string;
-  /** 开始时间，秒级时间戳 */
-  starTimestamp?: number;
-  /** 结束时间，秒级时间戳 */
-  endTimestamp?: number;
-};
-
-export type v1ApiAppAppIdHourlyTokenUsingGetParams = {
+export type V1ApiAppAppIdHourlyMessagesUsingGetParams = {
   /** 应用id */
   appID: string;
   /** 开始时间，秒级时间戳 */
@@ -4871,14 +4862,23 @@ export type v1ApiAppAppIdHourlyTokenUsingGetParams = {
   endTimestamp?: number;
 };
 
-export type v1ApiAppAppIdLogsConversationIdMessagesUsingGetParams = {
+export type V1ApiAppAppIdHourlyTokenUsingGetParams = {
+  /** 应用id */
+  appID: string;
+  /** 开始时间，秒级时间戳 */
+  starTimestamp?: number;
+  /** 结束时间，秒级时间戳 */
+  endTimestamp?: number;
+};
+
+export type V1ApiAppAppIdLogsConversationIdMessagesUsingGetParams = {
   /** 应用id */
   appID: string;
   /** 会话id */
   conversationID: string;
 };
 
-export type v1ApiAppAppIdLogsUsingGetParams = {
+export type V1ApiAppAppIdLogsUsingGetParams = {
   /** 应用id */
   appID: string;
   /** 会话id */
@@ -4897,17 +4897,17 @@ export type v1ApiAppAppIdLogsUsingGetParams = {
   userID?: string;
 };
 
-export type v1ApiAppAppIdMemberRoleUsingPutParams = {
+export type V1ApiAppAppIdMemberRoleUsingPutParams = {
   /** 应用id */
   appID: string;
 };
 
-export type v1ApiAppAppIdMemberUsingDeleteParams = {
+export type V1ApiAppAppIdMemberUsingDeleteParams = {
   /** 应用id */
   appID: string;
 };
 
-export type v1ApiAppAppIdMemberUsingGetParams = {
+export type V1ApiAppAppIdMemberUsingGetParams = {
   /** 应用id */
   appID: string;
   /** 每页大小 */
@@ -4916,12 +4916,12 @@ export type v1ApiAppAppIdMemberUsingGetParams = {
   offset: number;
 };
 
-export type v1ApiAppAppIdMemberUsingPostParams = {
+export type V1ApiAppAppIdMemberUsingPostParams = {
   /** 应用id */
   appID: string;
 };
 
-export type v1ApiAppAppIdMessagesUsingGetParams = {
+export type V1ApiAppAppIdMessagesUsingGetParams = {
   /** 应用id */
   appID: string;
   /** 开始时间，秒级时间戳 */
@@ -4930,49 +4930,49 @@ export type v1ApiAppAppIdMessagesUsingGetParams = {
   endTimestamp?: number;
 };
 
-export type v1ApiAppAppIdModelConfigsUsingPostParams = {
+export type V1ApiAppAppIdModelConfigsUsingPostParams = {
   /** 应用id */
   appID: string;
 };
 
-export type v1ApiAppAppIdModelConfigsUsingPutParams = {
+export type V1ApiAppAppIdModelConfigsUsingPutParams = {
   /** 应用id */
   appID: string;
 };
 
-export type v1ApiAppAppIdModelPromptUsingPostParams = {
+export type V1ApiAppAppIdModelPromptUsingPostParams = {
   /** 应用id */
   appID: string;
 };
 
-export type v1ApiAppAppIdOpenApiDeleteUsingDeleteParams = {
+export type V1ApiAppAppIdOpenApiDeleteUsingDeleteParams = {
   /** 应用id */
   appID: string;
 };
 
-export type v1ApiAppAppIdPluginUsingPutParams = {
+export type V1ApiAppAppIdPluginUsingPutParams = {
   /** 应用id */
   appID: string;
 };
 
-export type v1ApiAppAppIdRecommendedContextUsingGetParams = {
+export type V1ApiAppAppIdRecommendedContextUsingGetParams = {
   /** 应用id */
   appID: string;
 };
 
-export type v1ApiAppAppIdRecommendedContextUsingPostParams = {
+export type V1ApiAppAppIdRecommendedContextUsingPostParams = {
   /** 应用id */
   appID: string;
 };
 
-export type v1ApiAppAppIdShareUsingPutParams = {
+export type V1ApiAppAppIdShareUsingPutParams = {
   /** 应用id */
   appID: string;
   /** 是否h5 */
   isH5?: boolean;
 };
 
-export type v1ApiAppAppIdTokenUsingGetParams = {
+export type V1ApiAppAppIdTokenUsingGetParams = {
   /** 应用id */
   appID: string;
   /** 开始时间，秒级时间戳 */
@@ -4981,22 +4981,22 @@ export type v1ApiAppAppIdTokenUsingGetParams = {
   endTimestamp?: number;
 };
 
-export type v1ApiAppAppIdUpdateStatusUsingPutParams = {
+export type V1ApiAppAppIdUpdateStatusUsingPutParams = {
   /** 应用id */
   appID: string;
 };
 
-export type v1ApiAppAppIdUpdateUsingPutParams = {
+export type V1ApiAppAppIdUpdateUsingPutParams = {
   /** 应用id */
   appID: string;
 };
 
-export type v1ApiAppH5ShareApiTokenUsingGetParams = {
+export type V1ApiAppH5ShareApiTokenUsingGetParams = {
   /** 分享的随机path */
   randomPath: string;
 };
 
-export type v1ApiAppIdCostUsingPostParams = {
+export type V1ApiAppIdCostUsingPostParams = {
   /** 应用id */
   appID: string;
   /** 会话id */
@@ -5015,27 +5015,27 @@ export type v1ApiAppIdCostUsingPostParams = {
   userID?: string;
 };
 
-export type v1ApiAppListPrivateUsingGetParams = {
+export type V1ApiAppListPrivateUsingGetParams = {
   /** 是否只查看会话过的应用 */
   onlyConversations?: boolean;
 };
 
-export type v1ApiAppListPublicUsingGetParams = {
+export type V1ApiAppListPublicUsingGetParams = {
   /** 是否只查看会话过的应用 */
   onlyConversations?: boolean;
 };
 
-export type v1ApiAppShareApiTokenUsingGetParams = {
+export type V1ApiAppShareApiTokenUsingGetParams = {
   /** 分享的随机path */
   randomPath: string;
 };
 
-export type v1ApiAttentionAppListUsingGetParams = {
+export type V1ApiAttentionAppListUsingGetParams = {
   /** IAM用户id */
   iamID: string;
 };
 
-export type v1ApiAttentionMessagesHistoryUsingGetParams = {
+export type V1ApiAttentionMessagesHistoryUsingGetParams = {
   /** IAM ID */
   iamID: string;
   /** 应用id */
@@ -5044,7 +5044,7 @@ export type v1ApiAttentionMessagesHistoryUsingGetParams = {
   conversationID: string;
 };
 
-export type v1ApiAttentionUserAllUsingGetParams = {
+export type V1ApiAttentionUserAllUsingGetParams = {
   /** 登陆用户IAMID */
   iamID?: string;
   /** 用户id */
@@ -5061,7 +5061,7 @@ export type v1ApiAttentionUserAllUsingGetParams = {
   userName?: string;
 };
 
-export type v1ApiAttentionUserListUsingPostParams = {
+export type V1ApiAttentionUserListUsingPostParams = {
   /** IAM ID */
   iamID: string;
   /** 默认10 */
@@ -5070,41 +5070,41 @@ export type v1ApiAttentionUserListUsingPostParams = {
   offset?: number;
 };
 
-export type v1ApiConversationsConversationIdHistoryUsingDeleteParams = {
+export type V1ApiConversationsConversationIdHistoryUsingDeleteParams = {
   /** 会话id */
   conversation_id: string;
   /** 聊天信息id */
   message_id: string;
 };
 
-export type v1ApiConversationsConversationIdHistoryUsingGetParams = {
+export type V1ApiConversationsConversationIdHistoryUsingGetParams = {
   /** 会话id */
   conversation_id: string;
 };
 
-export type v1ApiConversationsUsingDeleteParams = {
+export type V1ApiConversationsUsingDeleteParams = {
   /** 会话id */
   conversation_id: string;
 };
 
-export type v1ApiConversationsUsingGetParams = {
+export type V1ApiConversationsUsingGetParams = {
   /** 用户id,空值不返回 */
   user_id?: string;
 };
 
-export type v1ApiFeedbacksMessageIdUsingDeleteParams = {
+export type V1ApiFeedbacksMessageIdUsingDeleteParams = {
   /** 消息id */
   message_id: string;
   /** 会话id */
   conversation_id: string;
 };
 
-export type v1ApiFeedbacksMessageIdUsingPostParams = {
+export type V1ApiFeedbacksMessageIdUsingPostParams = {
   /** 消息id */
   message_id: string;
 };
 
-export type v1ApiFeedbacksUsingGetParams = {
+export type V1ApiFeedbacksUsingGetParams = {
   conversation_ID?: string;
   message_ID?: string;
   /** 页数1开始 */
@@ -5118,36 +5118,36 @@ export type V1ApiFileUsingPostBody = {
   file: string;
 };
 
-export type v1ApiFileUsingPostParams = {
+export type V1ApiFileUsingPostParams = {
   /** 会话id */
   conversation_id?: string;
   /** user id */
   user_id?: string;
 };
 
-export type v1ApiIamAccountUsingGetParams = {
+export type V1ApiIamAccountUsingGetParams = {
   /** openId */
   openId: string;
 };
 
-export type v1ApiProviderListUsingGetParams = {
+export type V1ApiProviderListUsingGetParams = {
   /** size */
   size?: number;
   /** offset */
   offset?: number;
 };
 
-export type v1ApiRobotWorkspaceIdAppkeyStateUsingPostParams = {
+export type V1ApiRobotWorkspaceIdAppkeyStateUsingPostParams = {
   /** 空间ID */
   workspaceID: string;
 };
 
-export type v1ApiRobotWorkspaceIdAppkeyUsingDeleteParams = {
+export type V1ApiRobotWorkspaceIdAppkeyUsingDeleteParams = {
   /** 空间ID */
   workspaceID: string;
 };
 
-export type v1ApiRobotWorkspaceIdAppkeyUsingGetParams = {
+export type V1ApiRobotWorkspaceIdAppkeyUsingGetParams = {
   /** 空间ID */
   workspaceID: string;
   appid: string;
@@ -5155,7 +5155,7 @@ export type v1ApiRobotWorkspaceIdAppkeyUsingGetParams = {
   type: string;
 };
 
-export type v1ApiRobotWorkspaceIdAppkeyUsingPostParams = {
+export type V1ApiRobotWorkspaceIdAppkeyUsingPostParams = {
   /** 空间ID */
   workspaceID: string;
 };
@@ -5165,12 +5165,12 @@ export type V1ApiSpeechToTextUsingPostBody = {
   file: string;
 };
 
-export type v1ApiUserInfoUsingGetParams = {
+export type V1ApiUserInfoUsingGetParams = {
   /** 应用id */
   appID?: string;
 };
 
-export type v1ApiUserUsingGetParams = {
+export type V1ApiUserUsingGetParams = {
   offset?: number;
   /** 电话号码 */
   phone?: string;
@@ -5181,27 +5181,27 @@ export type v1ApiUserUsingGetParams = {
   userName?: string;
 };
 
-export type v2ApiAppAppIdDetailsUsingGetParams = {
+export type V2ApiAppAppIdDetailsUsingGetParams = {
   /** 应用id */
   appID: string;
 };
 
-export type v2ApiAppAppIdUpdateUsingPostParams = {
+export type V2ApiAppAppIdUpdateUsingPostParams = {
   /** 应用id */
   appID: string;
 };
 
-export type v2ApiAppListUsingGetParams = {
+export type V2ApiAppListUsingGetParams = {
   /** 是否只查看会话过的应用 */
   onlyConversations?: boolean;
 };
 
-export type v2ApiAppShareApiTokenUsingGetParams = {
+export type V2ApiAppShareApiTokenUsingGetParams = {
   /** 分享的随机path */
   randomPath: string;
 };
 
-export type v2ApiChatMessagesMessagesCountUsingGetParams = {
+export type V2ApiChatMessagesMessagesCountUsingGetParams = {
   /** 是否查询人均,默认false */
   isPerPerson?: boolean;
   /** 开始时间，秒级时间戳 */
@@ -5215,19 +5215,19 @@ export type V2ApiFileUsingPostBody = {
   files: unknown[];
 };
 
-export type v2ApiFileUsingPostParams = {
+export type V2ApiFileUsingPostParams = {
   /** 会话id */
   conversation_id?: string;
   /** user id */
   user_id?: string;
 };
 
-export type v2ApiWorkspacesDefaultUsingPostParams = {
+export type V2ApiWorkspacesDefaultUsingPostParams = {
   /** 空间ID */
   workspaceID: string;
 };
 
-export type v2ApiWorkspacesRecommendedMessageIdDetailsUsingGetParams = {
+export type V2ApiWorkspacesRecommendedMessageIdDetailsUsingGetParams = {
   /** 消息id */
   messageId: string;
 };
@@ -5235,14 +5235,14 @@ export type v2ApiWorkspacesRecommendedMessageIdDetailsUsingGetParams = {
 export type V2ApiWorkspacesWorkspaceIdAppAppIdDatasetsJoinUsingPostBody =
   AppDatasets[];
 
-export type v2ApiWorkspacesWorkspaceIdAppAppIdDatasetsJoinUsingPostParams = {
+export type V2ApiWorkspacesWorkspaceIdAppAppIdDatasetsJoinUsingPostParams = {
   /** 空间ID */
   workspaceID: string;
   /** 应用id */
   appID: string;
 };
 
-export type v2ApiWorkspacesWorkspaceIdAppAppIdDatasetsUsingDeleteParams = {
+export type V2ApiWorkspacesWorkspaceIdAppAppIdDatasetsUsingDeleteParams = {
   /** 应用id */
   appID: string;
   /** 空间ID */
@@ -5251,25 +5251,14 @@ export type v2ApiWorkspacesWorkspaceIdAppAppIdDatasetsUsingDeleteParams = {
   datasetID: string;
 };
 
-export type v2ApiWorkspacesWorkspaceIdAppAppIdDetailsUsingGetParams = {
+export type V2ApiWorkspacesWorkspaceIdAppAppIdDetailsUsingGetParams = {
   /** 空间ID */
   workspaceID: string;
   /** 应用id */
   appID: string;
 };
 
-export type v2ApiWorkspacesWorkspaceIdAppAppIdHourlyMessagesUsingGetParams = {
-  /** 空间ID */
-  workspaceID: string;
-  /** 应用id */
-  appID: string;
-  /** 开始时间，秒级时间戳 */
-  starTimestamp?: number;
-  /** 结束时间，秒级时间戳 */
-  endTimestamp?: number;
-};
-
-export type v2ApiWorkspacesWorkspaceIdAppAppIdHourlyTokenUsingGetParams = {
+export type V2ApiWorkspacesWorkspaceIdAppAppIdHourlyMessagesUsingGetParams = {
   /** 空间ID */
   workspaceID: string;
   /** 应用id */
@@ -5280,7 +5269,18 @@ export type v2ApiWorkspacesWorkspaceIdAppAppIdHourlyTokenUsingGetParams = {
   endTimestamp?: number;
 };
 
-export type v2ApiWorkspacesWorkspaceIdAppAppIdLogsUsingGetParams = {
+export type V2ApiWorkspacesWorkspaceIdAppAppIdHourlyTokenUsingGetParams = {
+  /** 空间ID */
+  workspaceID: string;
+  /** 应用id */
+  appID: string;
+  /** 开始时间，秒级时间戳 */
+  starTimestamp?: number;
+  /** 结束时间，秒级时间戳 */
+  endTimestamp?: number;
+};
+
+export type V2ApiWorkspacesWorkspaceIdAppAppIdLogsUsingGetParams = {
   /** 应用id */
   appID: string;
   /** 空间ID */
@@ -5301,7 +5301,7 @@ export type v2ApiWorkspacesWorkspaceIdAppAppIdLogsUsingGetParams = {
   userID?: string;
 };
 
-export type v2ApiWorkspacesWorkspaceIdAppAppIdMessagesUsingGetParams = {
+export type V2ApiWorkspacesWorkspaceIdAppAppIdMessagesUsingGetParams = {
   /** 空间ID */
   workspaceID: string;
   /** 应用id */
@@ -5312,21 +5312,21 @@ export type v2ApiWorkspacesWorkspaceIdAppAppIdMessagesUsingGetParams = {
   endTimestamp?: number;
 };
 
-export type v2ApiWorkspacesWorkspaceIdAppAppIdModelConfigsUsingPutParams = {
+export type V2ApiWorkspacesWorkspaceIdAppAppIdModelConfigsUsingPutParams = {
   /** 应用id */
   appID: string;
   /** 空间ID */
   workspaceID: string;
 };
 
-export type v2ApiWorkspacesWorkspaceIdAppAppIdPluginUsingGetParams = {
+export type V2ApiWorkspacesWorkspaceIdAppAppIdPluginUsingGetParams = {
   /** 应用id */
   appID: string;
   /** 空间ID */
   workspaceID: string;
 };
 
-export type v2ApiWorkspacesWorkspaceIdAppAppIdTokenUsingGetParams = {
+export type V2ApiWorkspacesWorkspaceIdAppAppIdTokenUsingGetParams = {
   /** 应用id */
   appID: string;
   /** 开始时间，秒级时间戳 */
@@ -5335,42 +5335,42 @@ export type v2ApiWorkspacesWorkspaceIdAppAppIdTokenUsingGetParams = {
   endTimestamp?: number;
 };
 
-export type v2ApiWorkspacesWorkspaceIdAppAppIdUpdateStatusUsingPutParams = {
+export type V2ApiWorkspacesWorkspaceIdAppAppIdUpdateStatusUsingPutParams = {
   /** 空间ID */
   workspaceID: string;
   /** 应用id */
   appID: string;
 };
 
-export type v2ApiWorkspacesWorkspaceIdAppAppIdUsingPostParams = {
+export type V2ApiWorkspacesWorkspaceIdAppAppIdUsingPostParams = {
   /** 空间ID */
   workspaceID: string;
   /** 应用id */
   appID: string;
 };
 
-export type v2ApiWorkspacesWorkspaceIdAppsAppIdBaseUsingPostParams = {
+export type V2ApiWorkspacesWorkspaceIdAppsAppIdBaseUsingPostParams = {
   /** 应用id */
   appID: string;
   /** 空间ID */
   workspaceID: string;
 };
 
-export type v2ApiWorkspacesWorkspaceIdAppsAppIdGroupUsingPostParams = {
+export type V2ApiWorkspacesWorkspaceIdAppsAppIdGroupUsingPostParams = {
   /** 应用id */
   appID: string;
   /** 空间ID */
   workspaceID: string;
 };
 
-export type v2ApiWorkspacesWorkspaceIdAppsAppIdUsingDeleteParams = {
+export type V2ApiWorkspacesWorkspaceIdAppsAppIdUsingDeleteParams = {
   /** 应用id */
   appID: string;
   /** 空间ID */
   workspaceID: string;
 };
 
-export type v2ApiWorkspacesWorkspaceIdAppsUsingGetParams = {
+export type V2ApiWorkspacesWorkspaceIdAppsUsingGetParams = {
   /** 空间ID */
   workspaceID: string;
   /** 是否只查看会话过的应用 */
@@ -5379,32 +5379,32 @@ export type v2ApiWorkspacesWorkspaceIdAppsUsingGetParams = {
   appName?: string;
 };
 
-export type v2ApiWorkspacesWorkspaceIdAppsUsingPostParams = {
+export type V2ApiWorkspacesWorkspaceIdAppsUsingPostParams = {
   /** 空间ID */
   workspaceID: string;
 };
 
-export type v2ApiWorkspacesWorkspaceIdDatasetsUsingGetParams = {
+export type V2ApiWorkspacesWorkspaceIdDatasetsUsingGetParams = {
   /** 空间ID */
   workspaceID: string;
 };
 
-export type v2ApiWorkspacesWorkspaceIdDatasetsUsingPostParams = {
+export type V2ApiWorkspacesWorkspaceIdDatasetsUsingPostParams = {
   /** 空间ID */
   workspaceID: string;
 };
 
-export type v2ApiWorkspacesWorkspaceIdGroupsUsingGetParams = {
+export type V2ApiWorkspacesWorkspaceIdGroupsUsingGetParams = {
   /** 空间ID */
   workspaceID: string;
 };
 
-export type v2ApiWorkspacesWorkspaceIdGroupsUsingPostParams = {
+export type V2ApiWorkspacesWorkspaceIdGroupsUsingPostParams = {
   /** 空间ID */
   workspaceID: string;
 };
 
-export type v2ApiWorkspacesWorkspaceIdGroupsWorkspaceGroupIdUsingDeleteParams =
+export type V2ApiWorkspacesWorkspaceIdGroupsWorkspaceGroupIdUsingDeleteParams =
   {
     /** 空间ID */
     workspaceID: string;
@@ -5412,41 +5412,41 @@ export type v2ApiWorkspacesWorkspaceIdGroupsWorkspaceGroupIdUsingDeleteParams =
     workspaceGroupID: string;
   };
 
-export type v2ApiWorkspacesWorkspaceIdGroupsWorkspaceGroupIdUsingPostParams = {
+export type V2ApiWorkspacesWorkspaceIdGroupsWorkspaceGroupIdUsingPostParams = {
   /** 空间ID */
   workspaceID: string;
   /** 分组ID */
   workspaceGroupID: string;
 };
 
-export type v2ApiWorkspacesWorkspaceIdPermissionsUsingGetParams = {
+export type V2ApiWorkspacesWorkspaceIdPermissionsUsingGetParams = {
   /** 空间ID */
   workspaceID: string;
 };
 
-export type v2ApiWorkspacesWorkspaceIdUsersUsingGetParams = {
+export type V2ApiWorkspacesWorkspaceIdUsersUsingGetParams = {
   /** 空间ID */
   workspaceID: string;
 };
 
-export type v2ApiWorkspacesWorkspaceIdUsersUsingPostParams = {
+export type V2ApiWorkspacesWorkspaceIdUsersUsingPostParams = {
   /** 空间ID */
   workspaceID: string;
 };
 
-export type v2ApiWorkspacesWorkspaceIdUserUserIdUsingDeleteParams = {
+export type V2ApiWorkspacesWorkspaceIdUserUserIdUsingDeleteParams = {
   /** 空间ID */
   workspaceID: string;
   /** userID */
   userID: string;
 };
 
-export type v2ApiWorkspacesWorkspaceIdUsingDeleteParams = {
+export type V2ApiWorkspacesWorkspaceIdUsingDeleteParams = {
   /** 空间ID */
   workspaceID: string;
 };
 
-export type v2ApiWorkspacesWorkspaceIdUsingPostParams = {
+export type V2ApiWorkspacesWorkspaceIdUsingPostParams = {
   /** 空间ID */
   workspaceID: string;
 };
@@ -5546,7 +5546,7 @@ export async function v1ApiRobotWorkspaceIdAppkeyStateUsingPost({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.v1ApiRobotWorkspaceIdAppkeyStateUsingPostParams;
+  params: API.V1ApiRobotWorkspaceIdAppkeyStateUsingPostParams;
   body: API.UpdateAppKeyStateReq;
   options?: { [key: string]: unknown };
 }) {
@@ -5571,7 +5571,7 @@ export async function v1ApiUserUsingGet({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.v1ApiUserUsingGetParams;
+  params: API.V1ApiUserUsingGetParams;
   options?: { [key: string]: unknown };
 }) {
   return request<API.ListUserWithAppRESP>('/llmops/v1/api/user', {
@@ -5592,7 +5592,7 @@ export async function v1ApiUserInfoUsingGet({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.v1ApiUserInfoUsingGetParams;
+  params: API.V1ApiUserInfoUsingGetParams;
   options?: { [key: string]: unknown };
 }) {
   return request<API.IAMUserInfo>('/llmops/v1/api/user/info', {
@@ -5669,7 +5669,7 @@ export async function v2ApiWorkspacesDefaultUsingPost({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.v2ApiWorkspacesDefaultUsingPostParams;
+  params: API.V2ApiWorkspacesDefaultUsingPostParams;
   options?: { [key: string]: unknown };
 }) {
   return request<unknown>('/llmops/v2/api/workspaces-default', {
@@ -5688,7 +5688,7 @@ export async function v2ApiWorkspacesWorkspaceIdUsingPost({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.v2ApiWorkspacesWorkspaceIdUsingPostParams;
+  params: API.V2ApiWorkspacesWorkspaceIdUsingPostParams;
   body: API.WorkspaceReq;
   options?: { [key: string]: unknown };
 }) {
@@ -5708,7 +5708,7 @@ export async function v2ApiWorkspacesWorkspaceIdUsingDelete({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.v2ApiWorkspacesWorkspaceIdUsingDeleteParams;
+  params: API.V2ApiWorkspacesWorkspaceIdUsingDeleteParams;
   options?: { [key: string]: unknown };
 }) {
   const { workspaceID: param0, ...queryParams } = params;
@@ -5727,7 +5727,7 @@ export async function v2ApiWorkspacesWorkspaceIdAppAppIdDatasetsJoinUsingPost({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.v2ApiWorkspacesWorkspaceIdAppAppIdDatasetsJoinUsingPostParams;
+  params: API.V2ApiWorkspacesWorkspaceIdAppAppIdDatasetsJoinUsingPostParams;
   body: API.V2ApiWorkspacesWorkspaceIdAppAppIdDatasetsJoinUsingPostBody;
   options?: { [key: string]: unknown };
 }) {
@@ -5750,7 +5750,7 @@ export async function v2ApiWorkspacesWorkspaceIdDatasetsUsingGet({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.v2ApiWorkspacesWorkspaceIdDatasetsUsingGetParams;
+  params: API.V2ApiWorkspacesWorkspaceIdDatasetsUsingGetParams;
   options?: { [key: string]: unknown };
 }) {
   const { workspaceID: param0, ...queryParams } = params;
@@ -5772,7 +5772,7 @@ export async function v2ApiWorkspacesWorkspaceIdDatasetsUsingPost({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.v2ApiWorkspacesWorkspaceIdDatasetsUsingPostParams;
+  params: API.V2ApiWorkspacesWorkspaceIdDatasetsUsingPostParams;
   body: API.AppDataset;
   options?: { [key: string]: unknown };
 }) {
@@ -5792,7 +5792,7 @@ export async function v2ApiWorkspacesWorkspaceIdPermissionsUsingGet({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.v2ApiWorkspacesWorkspaceIdPermissionsUsingGetParams;
+  params: API.V2ApiWorkspacesWorkspaceIdPermissionsUsingGetParams;
   options?: { [key: string]: unknown };
 }) {
   const { workspaceID: param0, ...queryParams } = params;
@@ -5813,7 +5813,7 @@ export async function v2ApiWorkspacesWorkspaceIdUserUserIdUsingDelete({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.v2ApiWorkspacesWorkspaceIdUserUserIdUsingDeleteParams;
+  params: API.V2ApiWorkspacesWorkspaceIdUserUserIdUsingDeleteParams;
   options?: { [key: string]: unknown };
 }) {
   const { workspaceID: param0, userID: param1, ...queryParams } = params;
@@ -5834,7 +5834,7 @@ export async function v2ApiWorkspacesWorkspaceIdUsersUsingGet({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.v2ApiWorkspacesWorkspaceIdUsersUsingGetParams;
+  params: API.V2ApiWorkspacesWorkspaceIdUsersUsingGetParams;
   options?: { [key: string]: unknown };
 }) {
   const { workspaceID: param0, ...queryParams } = params;
@@ -5856,7 +5856,7 @@ export async function v2ApiWorkspacesWorkspaceIdUsersUsingPost({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.v2ApiWorkspacesWorkspaceIdUsersUsingPostParams;
+  params: API.V2ApiWorkspacesWorkspaceIdUsersUsingPostParams;
   body: API.WorkspaceUser;
   options?: { [key: string]: unknown };
 }) {
@@ -5897,7 +5897,7 @@ export async function v2ApiWorkspacesWorkspaceIdAppAppIdUsingPost({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.v2ApiWorkspacesWorkspaceIdAppAppIdUsingPostParams;
+  params: API.V2ApiWorkspacesWorkspaceIdAppAppIdUsingPostParams;
   body: API.UpdateAppReqV2;
   options?: { [key: string]: unknown };
 }) {
@@ -5917,7 +5917,7 @@ export async function v2ApiWorkspacesWorkspaceIdAppAppIdDetailsUsingGet({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.v2ApiWorkspacesWorkspaceIdAppAppIdDetailsUsingGetParams;
+  params: API.V2ApiWorkspacesWorkspaceIdAppAppIdDetailsUsingGetParams;
   options?: { [key: string]: unknown };
 }) {
   const { workspaceID: param0, appID: param1, ...queryParams } = params;
@@ -5938,7 +5938,7 @@ export async function v2ApiWorkspacesWorkspaceIdAppAppIdHourlyMessagesUsingGet({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.v2ApiWorkspacesWorkspaceIdAppAppIdHourlyMessagesUsingGetParams;
+  params: API.V2ApiWorkspacesWorkspaceIdAppAppIdHourlyMessagesUsingGetParams;
   options?: { [key: string]: unknown };
 }) {
   const { workspaceID: param0, appID: param1, ...queryParams } = params;
@@ -5961,7 +5961,7 @@ export async function v2ApiWorkspacesWorkspaceIdAppAppIdHourlyTokenUsingGet({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.v2ApiWorkspacesWorkspaceIdAppAppIdHourlyTokenUsingGetParams;
+  params: API.V2ApiWorkspacesWorkspaceIdAppAppIdHourlyTokenUsingGetParams;
   options?: { [key: string]: unknown };
 }) {
   const { workspaceID: param0, appID: param1, ...queryParams } = params;
@@ -5984,7 +5984,7 @@ export async function v2ApiWorkspacesWorkspaceIdAppAppIdMessagesUsingGet({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.v2ApiWorkspacesWorkspaceIdAppAppIdMessagesUsingGetParams;
+  params: API.V2ApiWorkspacesWorkspaceIdAppAppIdMessagesUsingGetParams;
   options?: { [key: string]: unknown };
 }) {
   const { workspaceID: param0, appID: param1, ...queryParams } = params;
@@ -6008,7 +6008,7 @@ export async function v2ApiWorkspacesWorkspaceIdAppAppIdUpdateStatusUsingPut({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.v2ApiWorkspacesWorkspaceIdAppAppIdUpdateStatusUsingPutParams;
+  params: API.V2ApiWorkspacesWorkspaceIdAppAppIdUpdateStatusUsingPutParams;
   body: API.UpdateAppStatusReq;
   options?: { [key: string]: unknown };
 }) {
@@ -6031,7 +6031,7 @@ export async function v2ApiWorkspacesWorkspaceIdAppsUsingGet({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.v2ApiWorkspacesWorkspaceIdAppsUsingGetParams;
+  params: API.V2ApiWorkspacesWorkspaceIdAppsUsingGetParams;
   options?: { [key: string]: unknown };
 }) {
   const { workspaceID: param0, ...queryParams } = params;
@@ -6052,7 +6052,7 @@ export async function v2ApiWorkspacesWorkspaceIdAppsUsingPost({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.v2ApiWorkspacesWorkspaceIdAppsUsingPostParams;
+  params: API.V2ApiWorkspacesWorkspaceIdAppsUsingPostParams;
   body: API.CreateAppReqV2;
   options?: { [key: string]: unknown };
 }) {
@@ -6072,7 +6072,7 @@ export async function v2ApiWorkspacesWorkspaceIdAppAppIdDatasetsUsingDelete({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.v2ApiWorkspacesWorkspaceIdAppAppIdDatasetsUsingDeleteParams;
+  params: API.V2ApiWorkspacesWorkspaceIdAppAppIdDatasetsUsingDeleteParams;
   options?: { [key: string]: unknown };
 }) {
   const { appID: param0, workspaceID: param1, ...queryParams } = params;
@@ -6095,7 +6095,7 @@ export async function v2ApiWorkspacesWorkspaceIdAppAppIdLogsUsingGet({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.v2ApiWorkspacesWorkspaceIdAppAppIdLogsUsingGetParams;
+  params: API.V2ApiWorkspacesWorkspaceIdAppAppIdLogsUsingGetParams;
   options?: { [key: string]: unknown };
 }) {
   const { appID: param0, workspaceID: param1, ...queryParams } = params;
@@ -6119,7 +6119,7 @@ export async function v2ApiWorkspacesWorkspaceIdAppAppIdModelConfigsUsingPut({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.v2ApiWorkspacesWorkspaceIdAppAppIdModelConfigsUsingPutParams;
+  params: API.V2ApiWorkspacesWorkspaceIdAppAppIdModelConfigsUsingPutParams;
   body: API.AppModelConfigs;
   options?: { [key: string]: unknown };
 }) {
@@ -6142,7 +6142,7 @@ export async function v2ApiWorkspacesWorkspaceIdAppAppIdPluginUsingGet({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.v2ApiWorkspacesWorkspaceIdAppAppIdPluginUsingGetParams;
+  params: API.V2ApiWorkspacesWorkspaceIdAppAppIdPluginUsingGetParams;
   options?: { [key: string]: unknown };
 }) {
   const { appID: param0, workspaceID: param1, ...queryParams } = params;
@@ -6163,7 +6163,7 @@ export async function v2ApiWorkspacesWorkspaceIdAppAppIdTokenUsingGet({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.v2ApiWorkspacesWorkspaceIdAppAppIdTokenUsingGetParams;
+  params: API.V2ApiWorkspacesWorkspaceIdAppAppIdTokenUsingGetParams;
   options?: { [key: string]: unknown };
 }) {
   const { appID: param0, workspaceID: param1, ...queryParams } = params;
@@ -6186,7 +6186,7 @@ export async function v2ApiWorkspacesWorkspaceIdAppsAppIdUsingDelete({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.v2ApiWorkspacesWorkspaceIdAppsAppIdUsingDeleteParams;
+  params: API.V2ApiWorkspacesWorkspaceIdAppsAppIdUsingDeleteParams;
   options?: { [key: string]: unknown };
 }) {
   const { appID: param0, workspaceID: param1, ...queryParams } = params;
@@ -6208,7 +6208,7 @@ export async function v2ApiWorkspacesWorkspaceIdAppsAppIdBaseUsingPost({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.v2ApiWorkspacesWorkspaceIdAppsAppIdBaseUsingPostParams;
+  params: API.V2ApiWorkspacesWorkspaceIdAppsAppIdBaseUsingPostParams;
   body: API.UpdateAppReq;
   options?: { [key: string]: unknown };
 }) {
@@ -6232,7 +6232,7 @@ export async function v2ApiWorkspacesWorkspaceIdAppsAppIdGroupUsingPost({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.v2ApiWorkspacesWorkspaceIdAppsAppIdGroupUsingPostParams;
+  params: API.V2ApiWorkspacesWorkspaceIdAppsAppIdGroupUsingPostParams;
   body: API.UpdateAppGroup;
   options?: { [key: string]: unknown };
 }) {
@@ -6255,7 +6255,7 @@ export async function v2ApiWorkspacesRecommendedMessageIdDetailsUsingGet({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.v2ApiWorkspacesRecommendedMessageIdDetailsUsingGetParams;
+  params: API.V2ApiWorkspacesRecommendedMessageIdDetailsUsingGetParams;
   options?: { [key: string]: unknown };
 }) {
   const { messageId: param0, ...queryParams } = params;
@@ -6281,7 +6281,7 @@ export async function v2ApiWorkspacesWorkspaceIdGroupsUsingGet({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.v2ApiWorkspacesWorkspaceIdGroupsUsingGetParams;
+  params: API.V2ApiWorkspacesWorkspaceIdGroupsUsingGetParams;
   options?: { [key: string]: unknown };
 }) {
   const { workspaceID: param0, ...queryParams } = params;
@@ -6303,7 +6303,7 @@ export async function v2ApiWorkspacesWorkspaceIdGroupsUsingPost({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.v2ApiWorkspacesWorkspaceIdGroupsUsingPostParams;
+  params: API.V2ApiWorkspacesWorkspaceIdGroupsUsingPostParams;
   body: API.WorkspaceGroupReq;
   options?: { [key: string]: unknown };
 }) {
@@ -6327,7 +6327,7 @@ export async function v2ApiWorkspacesWorkspaceIdGroupsWorkspaceGroupIdUsingPost(
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.v2ApiWorkspacesWorkspaceIdGroupsWorkspaceGroupIdUsingPostParams;
+  params: API.V2ApiWorkspacesWorkspaceIdGroupsWorkspaceGroupIdUsingPostParams;
   body: API.WorkspaceGroupReq;
   options?: { [key: string]: unknown };
 }) {
@@ -6354,7 +6354,7 @@ export async function v2ApiWorkspacesWorkspaceIdGroupsWorkspaceGroupIdUsingDelet
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.v2ApiWorkspacesWorkspaceIdGroupsWorkspaceGroupIdUsingDeleteParams;
+  params: API.V2ApiWorkspacesWorkspaceIdGroupsWorkspaceGroupIdUsingDeleteParams;
   options?: { [key: string]: unknown };
 }) {
   const {

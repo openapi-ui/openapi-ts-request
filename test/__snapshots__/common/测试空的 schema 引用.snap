@@ -42,7 +42,7 @@ export async function electricityClassificationTimeSharingElectricityUsingPost({
   body,
   options,
 }: {
-  body: API.fenxiangshebeiziranshijiantongjichaxunDto;
+  body: API.FenxiangshebeiziranshijiantongjichaxunDto;
   options?: { [key: string]: unknown };
 }) {
   return request<API.StatisticsQueryVo>(
@@ -74,7 +74,7 @@ export enum BusinessTypeEnum {
 
 export type IBusinessTypeEnum = keyof typeof BusinessTypeEnum;
 
-export type fenxiangshebeiziranshijiantongjichaxunDto = {
+export type FenxiangshebeiziranshijiantongjichaxunDto = {
   /** 业务类型 */
   businessType?: 'CLASSIFICATION' | 'DEVICE' | 'INSTRUMENT';
   /** 结束时间 */

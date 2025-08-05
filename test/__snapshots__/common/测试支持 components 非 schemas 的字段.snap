@@ -10,7 +10,7 @@ export async function activityIdUsingGet({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.activityIdUsingGetParams;
+  params: API.ActivityIdUsingGetParams;
   options?: { [key: string]: unknown };
 }) {
   const { id: param0, ...queryParams } = params;
@@ -29,7 +29,7 @@ export * from './activity';
 /* eslint-disable */
 // @ts-ignore
 
-export type activityIdUsingGetParams = {
+export type ActivityIdUsingGetParams = {
   /** 活动id */
   id: number;
 };

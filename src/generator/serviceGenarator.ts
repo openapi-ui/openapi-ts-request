@@ -12,6 +12,7 @@ import {
   isFunction,
   isObject,
   keys,
+  lowerFirst,
   map,
   upperFirst,
 } from 'lodash';
@@ -238,9 +239,10 @@ export default class ServiceGenerator {
             }
           }
 
+          const tagTypeName = resolveTypeName(tag);
           const tagKey = this.config.isCamelCase
-            ? camelCase(resolveTypeName(tag))
-            : resolveTypeName(tag);
+            ? camelCase(tagTypeName)
+            : lowerFirst(tagTypeName);
 
           if (!this.apiData[tagKey]) {
             this.apiData[tagKey] = [];
@@ -610,7 +612,7 @@ export default class ServiceGenerator {
 
       if (this.config.isGenJsonSchemas) {
         this.schemaList.push({
-          typeName: `$${resolveTypeName(schemaKey)}`,
+          typeName: `$${lowerFirst(resolveTypeName(schemaKey))}`,
           type: JSON.stringify(
             patchSchema<SchemaObject>(
               schema,
@@ -933,7 +935,9 @@ export default class ServiceGenerator {
     const typeName =
       this.config?.hook?.customTypeName?.(data) || this.getFunctionName(data);
 
-    return resolveTypeName(`${namespace}${typeName ?? data.operationId}Params`);
+    return upperFirst(
+      resolveTypeName(`${namespace}${typeName ?? data.operationId}Params`)
+    );
   }
 
   private getBodyTP(requestBody: RequestBodyObject, namespace?: string) {

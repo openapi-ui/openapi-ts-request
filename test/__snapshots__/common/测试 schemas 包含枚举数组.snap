@@ -8,7 +8,7 @@ export * from './user';
 
 export type StatusEnumArray = ('value1' | 'value2' | 'value3')[];
 
-export type userUsernameUsingDeleteParams = {
+export type UserUsernameUsingDeleteParams = {
   /** The name that needs to be deleted */
   username: string;
   /** The status that needs to be deleted */
@@ -26,7 +26,7 @@ export async function userUsernameUsingDelete({
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.userUsernameUsingDeleteParams;
+  params: API.UserUsernameUsingDeleteParams;
   options?: { [key: string]: unknown };
 }) {
   const { username: param0, ...queryParams } = params;
