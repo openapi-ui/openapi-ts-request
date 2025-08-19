@@ -11,7 +11,8 @@ import {
   map,
   uniq,
 } from 'lodash';
-import { readFileSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
+import { writeFile } from 'node:fs/promises';
 import type { OpenAPI, OpenAPIV2, OpenAPIV3 } from 'openapi-types';
 import converter from 'swagger2openapi';
 
@@ -258,11 +259,44 @@ function isJSONString(str: string) {
   }
 }
 
+function readFileSafelySync(filePath: string) {
+  if (!existsSync(filePath)) {
+    logError(`文件 ${filePath} 不存在`);
+    return null;
+  }
+
+  try {
+    return readFileSync(filePath, 'utf-8');
+  } catch (error) {
+    logError(`读取文件 ${filePath} 时出错:`, error);
+    return null;
+  }
+}
+
+async function writeFileAsync(filePath: string, content: string) {
+  try {
+    await writeFile(filePath, content, 'utf8');
+  } catch (error) {
+    logError(`文件 ${filePath} 写入失败`);
+  }
+}
+
 export async function translateChineseModuleNodeToEnglish(
   openAPI: OpenAPIObject
 ) {
+  const content = readFileSafelySync(
+    process.cwd() + '/openapi-ts-request.cache.json'
+  );
+  let i18n: Record<string, string> | null = {};
+
+  if (content !== null) {
+    if (isJSONString(content)) {
+      i18n = JSON.parse(content) as Record<string, string>;
+    }
+  }
+
   return new Promise<Record<string, string> | boolean>((resolve, reject) => {
-    const translateMap: Record<string, string> = {};
+    const translateMap: Record<string, string> = i18n;
     const operations = [] as OperationObject[];
     let tags: string[] = [];
 
@@ -281,7 +315,7 @@ export async function translateChineseModuleNodeToEnglish(
     void Promise.all(
       map(uniq(tags), (tagName) => {
         return new Promise((resolve) => {
-          if (tagName && /[\u3220-\uFA29]/.test(tagName)) {
+          if (tagName && /[\u3220-\uFA29]/.test(tagName) && !i18n[tagName]) {
             void translate(tagName, null, 'en')
               .then((translateRes) => {
                 const text = camelCase(translateRes?.translation);
@@ -309,6 +343,10 @@ export async function translateChineseModuleNodeToEnglish(
           });
         });
         resolve(translateMap);
+        void writeFileAsync(
+          process.cwd() + '/openapi-ts-request.cache.json',
+          JSON.stringify(translateMap, null, 2)
+        );
       })
       .catch(() => {
         reject(false);
