@@ -1,5 +1,11 @@
 # openapi-ts-request
 
+## 1.6.7
+
+### Patch Changes
+
+- [#437](https://github.com/openapi-ui/openapi-ts-request/pull/437) [`8022910`](https://github.com/openapi-ui/openapi-ts-request/commit/8022910f12f613a37d26881704045a3efa8e44dc) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - perf: perf translate english tag speed by add i18n cache file
+
 ## 1.6.6
 
 ### Patch Changes
