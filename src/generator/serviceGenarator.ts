@@ -6,6 +6,7 @@ import {
   entries,
   filter,
   find,
+  findIndex,
   forEach,
   isArray,
   isEmpty,
@@ -652,7 +653,6 @@ export default class ServiceGenerator {
                 newApi.requestBody as RequestBodyObject
               );
               const response = this.getResponseTP(newApi.responses);
-              // console.log(this.resolveObject(newApi.responses))
               const file = this.getFileTP(
                 newApi.requestBody as RequestBodyObject
               );
@@ -699,11 +699,8 @@ export default class ServiceGenerator {
 
               // 如果有多个响应类型，生成对应的类型定义
               if (responsesType) {
-                const responsesTypeName = upperFirst(
-                  `${functionName}Responses`
-                );
                 this.interfaceTPConfigs.push({
-                  typeName: responsesTypeName,
+                  typeName: upperFirst(`${functionName}Responses`),
                   type: responsesType,
                   isEnum: false,
                   props: [],
@@ -1124,7 +1121,13 @@ export default class ServiceGenerator {
     responses: ResponsesObject = {},
     functionName: string
   ) {
-    if (isEmpty(responses)) {
+    if (
+      isEmpty(responses) ||
+      ~findIndex(
+        this.interfaceTPConfigs,
+        (item) => item.typeName === upperFirst(`${functionName}Responses`)
+      )
+    ) {
       return null;
     }
 

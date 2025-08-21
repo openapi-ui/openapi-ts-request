@@ -389,63 +389,6 @@ export type PetUsingPutResponses = {
   405: unknown;
 };
 
-export type PetUsingPutResponses2 = {
-  /**
-   * Successful operation
-   */
-  200: Pet;
-  /**
-   * Invalid ID supplied
-   */
-  400: unknown;
-  /**
-   * Pet not found
-   */
-  404: unknown;
-  /**
-   * Validation exception
-   */
-  405: unknown;
-};
-
-export type PetUsingPutResponses3 = {
-  /**
-   * Successful operation
-   */
-  200: Pet;
-  /**
-   * Invalid ID supplied
-   */
-  400: unknown;
-  /**
-   * Pet not found
-   */
-  404: unknown;
-  /**
-   * Validation exception
-   */
-  405: unknown;
-};
-
-export type PetUsingPutResponses4 = {
-  /**
-   * Successful operation
-   */
-  200: Pet;
-  /**
-   * Invalid ID supplied
-   */
-  400: unknown;
-  /**
-   * Pet not found
-   */
-  404: unknown;
-  /**
-   * Validation exception
-   */
-  405: unknown;
-};
-
 export enum StatusEnum {
   'placed' = 'placed',
   'approved' = 'approved',
