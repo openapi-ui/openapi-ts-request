@@ -5,7 +5,20 @@ export * from './types';
 export * from './userZ';
 /* eslint-disable */
 // @ts-ignore
-export {};
+
+export type UserZz1UsingGetResponses = {
+  /**
+   * OK
+   */
+  200: string;
+};
+
+export type UserZz1Zz1UsingGetResponses = {
+  /**
+   * OK
+   */
+  200: string;
+};
 /* eslint-disable */
 // @ts-ignore
 import request from '../request';

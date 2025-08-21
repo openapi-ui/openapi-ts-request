@@ -18,6 +18,13 @@ export type ApiSysUserGetUserInfoUsingGetParams = {
   userId?: number;
 };
 
+export type ApiSysUserGetUserInfoUsingGetResponses = {
+  /**
+   * OK
+   */
+  200: ResultOutputUserInfoOutput;
+};
+
 export type ResultOutputUserInfoOutput = {
   /** 是否成功标记 */
   success?: boolean;

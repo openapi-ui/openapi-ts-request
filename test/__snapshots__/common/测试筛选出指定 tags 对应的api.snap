@@ -201,9 +201,31 @@ export type PetFindByStatusUsingGetParams = {
   status?: 'available' | 'pending' | 'sold';
 };
 
+export type PetFindByStatusUsingGetResponses = {
+  /**
+   * successful operation
+   */
+  200: Pet[];
+  /**
+   * Invalid status value
+   */
+  400: unknown;
+};
+
 export type PetFindByTagsUsingGetParams = {
   /** Tags to filter by */
   tags?: string[];
+};
+
+export type PetFindByTagsUsingGetResponses = {
+  /**
+   * successful operation
+   */
+  200: Pet[];
+  /**
+   * Invalid tag value
+   */
+  400: unknown;
 };
 
 export type PetPetIdUploadImageUsingPostBody = string;
@@ -215,14 +237,43 @@ export type PetPetIdUploadImageUsingPostParams = {
   additionalMetadata?: string;
 };
 
+export type PetPetIdUploadImageUsingPostResponses = {
+  /**
+   * successful operation
+   */
+  200: ApiResponse;
+};
+
 export type PetPetIdUsingDeleteParams = {
   /** Pet id to delete */
   petId: number;
 };
 
+export type PetPetIdUsingDeleteResponses = {
+  /**
+   * Invalid pet value
+   */
+  400: unknown;
+};
+
 export type PetPetIdUsingGetParams = {
   /** ID of pet to return */
   petId: number;
+};
+
+export type PetPetIdUsingGetResponses = {
+  /**
+   * successful operation
+   */
+  200: Pet;
+  /**
+   * Invalid ID supplied
+   */
+  400: unknown;
+  /**
+   * Pet not found
+   */
+  404: unknown;
 };
 
 export type PetPetIdUsingPostParams = {
@@ -232,6 +283,43 @@ export type PetPetIdUsingPostParams = {
   name?: string;
   /** Status of pet that needs to be updated */
   status?: string;
+};
+
+export type PetPetIdUsingPostResponses = {
+  /**
+   * Invalid input
+   */
+  405: unknown;
+};
+
+export type PetUsingPostResponses = {
+  /**
+   * Successful operation
+   */
+  200: Pet;
+  /**
+   * Invalid input
+   */
+  405: unknown;
+};
+
+export type PetUsingPutResponses = {
+  /**
+   * Successful operation
+   */
+  200: Pet;
+  /**
+   * Invalid ID supplied
+   */
+  400: unknown;
+  /**
+   * Pet not found
+   */
+  404: unknown;
+  /**
+   * Validation exception
+   */
+  405: unknown;
 };
 
 export enum StatusEnum {
