@@ -3622,11 +3622,56 @@ export type AuthAuthorizeUsingGetParams = {
   state?: string;
 };
 
+export type AuthAuthorizeUsingGetResponses = {
+  /**
+   * 成功
+   */
+  302: unknown;
+  /**
+   * 失败
+   */
+  400: ErrorResp;
+  /**
+   * 失败
+   */
+  500: ErrorResp;
+};
+
 export type AuthExchangeUsingGetParams = {
   /** code */
   code: string;
   /** 业务回调地址 */
   redirect_uri: string;
+};
+
+export type AuthExchangeUsingGetResponses = {
+  /**
+   * 成功
+   */
+  200: ExchangeTokenRESP;
+  /**
+   * 失败
+   */
+  400: ErrorResp;
+  /**
+   * 失败
+   */
+  500: ErrorResp;
+};
+
+export type AuthRefreshTokenUsingPostResponses = {
+  /**
+   * 成功
+   */
+  200: ExchangeTokenRESP;
+  /**
+   * 失败
+   */
+  400: ErrorResp;
+  /**
+   * 失败
+   */
+  500: ErrorResp;
 };
 
 export type Bool = string;
@@ -4233,9 +4278,39 @@ export type V1ApiAppAppIdApiTokenUsingGetParams = {
   offset: number;
 };
 
+export type V1ApiAppAppIdApiTokenUsingGetResponses = {
+  /**
+   * 成功
+   */
+  200: ApiTokenDataList;
+  /**
+   * 失败
+   */
+  400: ErrorResp;
+  /**
+   * 失败
+   */
+  500: ErrorResp;
+};
+
 export type V1ApiAppAppIdApiTokenUsingPostParams = {
   /** 应用id */
   appID: string;
+};
+
+export type V1ApiAppAppIdApiTokenUsingPostResponses = {
+  /**
+   * 成功
+   */
+  200: CreateApiTokenRESP;
+  /**
+   * 失败
+   */
+  400: ErrorResp;
+  /**
+   * 失败
+   */
+  500: ErrorResp;
 };
 
 export type V1ApiAppAppIdDatasetConfigsUsingDeleteParams = {
@@ -4245,9 +4320,39 @@ export type V1ApiAppAppIdDatasetConfigsUsingDeleteParams = {
   appDatasetConfigID: string;
 };
 
+export type V1ApiAppAppIdDatasetConfigsUsingDeleteResponses = {
+  /**
+   * 成功
+   */
+  200: unknown;
+  /**
+   * 失败
+   */
+  400: ErrorResp;
+  /**
+   * 失败
+   */
+  500: ErrorResp;
+};
+
 export type V1ApiAppAppIdDatasetConfigsUsingGetParams = {
   /** 应用id */
   appID: string;
+};
+
+export type V1ApiAppAppIdDatasetConfigsUsingGetResponses = {
+  /**
+   * 成功
+   */
+  200: ListAppDatasetConfigResp;
+  /**
+   * 失败
+   */
+  400: ErrorResp;
+  /**
+   * 失败
+   */
+  500: ErrorResp;
 };
 
 export type V1ApiAppAppIdDatasetConfigsUsingPostParams = {
@@ -4255,9 +4360,39 @@ export type V1ApiAppAppIdDatasetConfigsUsingPostParams = {
   appID: string;
 };
 
+export type V1ApiAppAppIdDatasetConfigsUsingPostResponses = {
+  /**
+   * 成功
+   */
+  200: unknown;
+  /**
+   * 失败
+   */
+  400: ErrorResp;
+  /**
+   * 失败
+   */
+  500: ErrorResp;
+};
+
 export type V1ApiAppAppIdDatasetConfigsUsingPutParams = {
   /** 应用id */
   appID: string;
+};
+
+export type V1ApiAppAppIdDatasetConfigsUsingPutResponses = {
+  /**
+   * 成功
+   */
+  200: unknown;
+  /**
+   * 失败
+   */
+  400: ErrorResp;
+  /**
+   * 失败
+   */
+  500: ErrorResp;
 };
 
 export type V1ApiAppAppIdDatasetsListUsingGetParams = {
@@ -4269,11 +4404,41 @@ export type V1ApiAppAppIdDatasetsListUsingGetParams = {
   offset?: number;
 };
 
+export type V1ApiAppAppIdDatasetsListUsingGetResponses = {
+  /**
+   * OK
+   */
+  200: ListDatasetsResp;
+  /**
+   * Bad Request
+   */
+  400: ErrorResp;
+  /**
+   * Internal Server Error
+   */
+  500: ErrorResp;
+};
+
 export type V1ApiAppAppIdDatasetsUsingDeleteParams = {
   /** 应用id */
   appID: string;
   /** 数据集id */
   datasetID: string;
+};
+
+export type V1ApiAppAppIdDatasetsUsingDeleteResponses = {
+  /**
+   * 成功
+   */
+  200: DeleteResp;
+  /**
+   * 失败
+   */
+  400: ErrorResp;
+  /**
+   * 失败
+   */
+  500: ErrorResp;
 };
 
 export type V1ApiAppAppIdDatasetsUsingPostBody = AppDatasets[];
@@ -4283,9 +4448,39 @@ export type V1ApiAppAppIdDatasetsUsingPostParams = {
   appID: string;
 };
 
+export type V1ApiAppAppIdDatasetsUsingPostResponses = {
+  /**
+   * 成功
+   */
+  200: unknown;
+  /**
+   * 失败
+   */
+  400: ErrorResp;
+  /**
+   * 失败
+   */
+  500: ErrorResp;
+};
+
 export type V1ApiAppAppIdDetailsUsingGetParams = {
   /** 应用id */
   appID: string;
+};
+
+export type V1ApiAppAppIdDetailsUsingGetResponses = {
+  /**
+   * 成功
+   */
+  200: AppDetail;
+  /**
+   * 失败
+   */
+  400: ErrorResp;
+  /**
+   * 失败
+   */
+  500: ErrorResp;
 };
 
 export type V1ApiAppAppIdHourlyMessagesUsingGetParams = {
@@ -4297,6 +4492,21 @@ export type V1ApiAppAppIdHourlyMessagesUsingGetParams = {
   endTimestamp?: number;
 };
 
+export type V1ApiAppAppIdHourlyMessagesUsingGetResponses = {
+  /**
+   * 成功
+   */
+  200: MessagesCountResp[];
+  /**
+   * 失败
+   */
+  400: ErrorResp;
+  /**
+   * 失败
+   */
+  500: ErrorResp;
+};
+
 export type V1ApiAppAppIdHourlyTokenUsingGetParams = {
   /** 应用id */
   appID: string;
@@ -4306,11 +4516,41 @@ export type V1ApiAppAppIdHourlyTokenUsingGetParams = {
   endTimestamp?: number;
 };
 
+export type V1ApiAppAppIdHourlyTokenUsingGetResponses = {
+  /**
+   * 成功
+   */
+  200: MessagesTokenResp[];
+  /**
+   * 失败
+   */
+  400: ErrorResp;
+  /**
+   * 失败
+   */
+  500: ErrorResp;
+};
+
 export type V1ApiAppAppIdLogsConversationIdMessagesUsingGetParams = {
   /** 应用id */
   appID: string;
   /** 会话id */
   conversationID: string;
+};
+
+export type V1ApiAppAppIdLogsConversationIdMessagesUsingGetResponses = {
+  /**
+   * 成功
+   */
+  200: HistoryInfo[];
+  /**
+   * 失败
+   */
+  400: ErrorResp;
+  /**
+   * 失败
+   */
+  500: ErrorResp;
 };
 
 export type V1ApiAppAppIdLogsUsingGetParams = {
@@ -4332,14 +4572,59 @@ export type V1ApiAppAppIdLogsUsingGetParams = {
   userID?: string;
 };
 
+export type V1ApiAppAppIdLogsUsingGetResponses = {
+  /**
+   * 成功
+   */
+  200: ListConversationLogsResp;
+  /**
+   * 失败
+   */
+  400: ErrorResp;
+  /**
+   * 失败
+   */
+  500: ErrorResp;
+};
+
 export type V1ApiAppAppIdMemberRoleUsingPutParams = {
   /** 应用id */
   appID: string;
 };
 
+export type V1ApiAppAppIdMemberRoleUsingPutResponses = {
+  /**
+   * 成功
+   */
+  200: EmptyObject;
+  /**
+   * 失败
+   */
+  400: ErrorResp;
+  /**
+   * 失败
+   */
+  500: ErrorResp;
+};
+
 export type V1ApiAppAppIdMemberUsingDeleteParams = {
   /** 应用id */
   appID: string;
+};
+
+export type V1ApiAppAppIdMemberUsingDeleteResponses = {
+  /**
+   * 成功
+   */
+  200: EmptyObject;
+  /**
+   * 失败
+   */
+  400: ErrorResp;
+  /**
+   * 失败
+   */
+  500: ErrorResp;
 };
 
 export type V1ApiAppAppIdMemberUsingGetParams = {
@@ -4351,9 +4636,39 @@ export type V1ApiAppAppIdMemberUsingGetParams = {
   offset: number;
 };
 
+export type V1ApiAppAppIdMemberUsingGetResponses = {
+  /**
+   * 成功
+   */
+  200: ListMemberRESP;
+  /**
+   * 失败
+   */
+  400: ErrorResp;
+  /**
+   * 失败
+   */
+  500: ErrorResp;
+};
+
 export type V1ApiAppAppIdMemberUsingPostParams = {
   /** 应用id */
   appID: string;
+};
+
+export type V1ApiAppAppIdMemberUsingPostResponses = {
+  /**
+   * 成功
+   */
+  200: EmptyObject;
+  /**
+   * 失败
+   */
+  400: ErrorResp;
+  /**
+   * 失败
+   */
+  500: ErrorResp;
 };
 
 export type V1ApiAppAppIdMessagesUsingGetParams = {
@@ -4365,9 +4680,39 @@ export type V1ApiAppAppIdMessagesUsingGetParams = {
   endTimestamp?: number;
 };
 
+export type V1ApiAppAppIdMessagesUsingGetResponses = {
+  /**
+   * 成功
+   */
+  200: MessagesCountResp[];
+  /**
+   * 失败
+   */
+  400: ErrorResp;
+  /**
+   * 失败
+   */
+  500: ErrorResp;
+};
+
 export type V1ApiAppAppIdModelConfigsUsingPostParams = {
   /** 应用id */
   appID: string;
+};
+
+export type V1ApiAppAppIdModelConfigsUsingPostResponses = {
+  /**
+   * 成功
+   */
+  200: unknown;
+  /**
+   * 失败
+   */
+  400: ErrorResp;
+  /**
+   * 失败
+   */
+  500: ErrorResp;
 };
 
 export type V1ApiAppAppIdModelConfigsUsingPutParams = {
@@ -4375,9 +4720,39 @@ export type V1ApiAppAppIdModelConfigsUsingPutParams = {
   appID: string;
 };
 
+export type V1ApiAppAppIdModelConfigsUsingPutResponses = {
+  /**
+   * 成功
+   */
+  200: unknown;
+  /**
+   * 失败
+   */
+  400: ErrorResp;
+  /**
+   * 失败
+   */
+  500: ErrorResp;
+};
+
 export type V1ApiAppAppIdModelPromptUsingPostParams = {
   /** 应用id */
   appID: string;
+};
+
+export type V1ApiAppAppIdModelPromptUsingPostResponses = {
+  /**
+   * 成功
+   */
+  200: unknown;
+  /**
+   * 失败
+   */
+  400: ErrorResp;
+  /**
+   * 失败
+   */
+  500: ErrorResp;
 };
 
 export type V1ApiAppAppIdOpenApiDeleteUsingDeleteParams = {
@@ -4385,9 +4760,39 @@ export type V1ApiAppAppIdOpenApiDeleteUsingDeleteParams = {
   appID: string;
 };
 
+export type V1ApiAppAppIdOpenApiDeleteUsingDeleteResponses = {
+  /**
+   * 成功
+   */
+  200: DeleteResp;
+  /**
+   * 失败
+   */
+  400: ErrorResp;
+  /**
+   * 失败
+   */
+  500: ErrorResp;
+};
+
 export type V1ApiAppAppIdPluginUsingPutParams = {
   /** 应用id */
   appID: string;
+};
+
+export type V1ApiAppAppIdPluginUsingPutResponses = {
+  /**
+   * 成功
+   */
+  200: unknown;
+  /**
+   * 失败
+   */
+  400: ErrorResp;
+  /**
+   * 失败
+   */
+  500: ErrorResp;
 };
 
 export type V1ApiAppAppIdRecommendedContextUsingGetParams = {
@@ -4395,9 +4800,39 @@ export type V1ApiAppAppIdRecommendedContextUsingGetParams = {
   appID: string;
 };
 
+export type V1ApiAppAppIdRecommendedContextUsingGetResponses = {
+  /**
+   * 成功
+   */
+  200: AppRecommendedContext[];
+  /**
+   * 失败
+   */
+  400: ErrorResp;
+  /**
+   * 失败
+   */
+  500: ErrorResp;
+};
+
 export type V1ApiAppAppIdRecommendedContextUsingPostParams = {
   /** 应用id */
   appID: string;
+};
+
+export type V1ApiAppAppIdRecommendedContextUsingPostResponses = {
+  /**
+   * 成功
+   */
+  200: unknown;
+  /**
+   * 失败
+   */
+  400: ErrorResp;
+  /**
+   * 失败
+   */
+  500: ErrorResp;
 };
 
 export type V1ApiAppAppIdShareUsingPutParams = {
@@ -4405,6 +4840,21 @@ export type V1ApiAppAppIdShareUsingPutParams = {
   appID: string;
   /** 是否h5 */
   isH5?: boolean;
+};
+
+export type V1ApiAppAppIdShareUsingPutResponses = {
+  /**
+   * 成功
+   */
+  200: CreateSharePathRESP;
+  /**
+   * 失败
+   */
+  400: ErrorResp;
+  /**
+   * 失败
+   */
+  500: ErrorResp;
 };
 
 export type V1ApiAppAppIdTokenUsingGetParams = {
@@ -4416,9 +4866,39 @@ export type V1ApiAppAppIdTokenUsingGetParams = {
   endTimestamp?: number;
 };
 
+export type V1ApiAppAppIdTokenUsingGetResponses = {
+  /**
+   * 成功
+   */
+  200: MessagesTokenResp[];
+  /**
+   * 失败
+   */
+  400: ErrorResp;
+  /**
+   * 失败
+   */
+  500: ErrorResp;
+};
+
 export type V1ApiAppAppIdUpdateStatusUsingPutParams = {
   /** 应用id */
   appID: string;
+};
+
+export type V1ApiAppAppIdUpdateStatusUsingPutResponses = {
+  /**
+   * 成功
+   */
+  200: unknown;
+  /**
+   * 失败
+   */
+  400: ErrorResp;
+  /**
+   * 失败
+   */
+  500: ErrorResp;
 };
 
 export type V1ApiAppAppIdUpdateUsingPutParams = {
@@ -4426,9 +4906,39 @@ export type V1ApiAppAppIdUpdateUsingPutParams = {
   appID: string;
 };
 
+export type V1ApiAppAppIdUpdateUsingPutResponses = {
+  /**
+   * 成功
+   */
+  200: unknown;
+  /**
+   * 失败
+   */
+  400: ErrorResp;
+  /**
+   * 失败
+   */
+  500: ErrorResp;
+};
+
 export type V1ApiAppH5ShareApiTokenUsingGetParams = {
   /** 分享的随机path */
   randomPath: string;
+};
+
+export type V1ApiAppH5ShareApiTokenUsingGetResponses = {
+  /**
+   * 成功
+   */
+  200: GetApiTokenByRandomPathRESP;
+  /**
+   * 失败
+   */
+  400: ErrorResp;
+  /**
+   * 失败
+   */
+  500: ErrorResp;
 };
 
 export type V1ApiAppIdCostUsingPostParams = {
@@ -4450,9 +4960,69 @@ export type V1ApiAppIdCostUsingPostParams = {
   userID?: string;
 };
 
+export type V1ApiAppIdCostUsingPostResponses = {
+  /**
+   * 成功
+   */
+  200: QueryTokenResp;
+  /**
+   * 失败
+   */
+  400: ErrorResp;
+  /**
+   * 失败
+   */
+  500: ErrorResp;
+};
+
+export type V1ApiAppImageUsingGetResponses = {
+  /**
+   * 成功
+   */
+  200: GetImagePreSignedUrlResp;
+  /**
+   * 失败
+   */
+  400: ErrorResp;
+  /**
+   * 失败
+   */
+  500: ErrorResp;
+};
+
+export type V1ApiAppListPickUsingGetResponses = {
+  /**
+   * 成功
+   */
+  200: App[];
+  /**
+   * 失败
+   */
+  400: ErrorResp;
+  /**
+   * 失败
+   */
+  500: ErrorResp;
+};
+
 export type V1ApiAppListPrivateUsingGetParams = {
   /** 是否只查看会话过的应用 */
   onlyConversations?: boolean;
+};
+
+export type V1ApiAppListPrivateUsingGetResponses = {
+  /**
+   * 成功
+   */
+  200: AppResp[];
+  /**
+   * 失败
+   */
+  400: ErrorResp;
+  /**
+   * 失败
+   */
+  500: ErrorResp;
 };
 
 export type V1ApiAppListPublicUsingGetParams = {
@@ -4460,14 +5030,134 @@ export type V1ApiAppListPublicUsingGetParams = {
   onlyConversations?: boolean;
 };
 
+export type V1ApiAppListPublicUsingGetResponses = {
+  /**
+   * 成功
+   */
+  200: AppResp[];
+  /**
+   * 失败
+   */
+  400: ErrorResp;
+  /**
+   * 失败
+   */
+  500: ErrorResp;
+};
+
+export type V1ApiAppListUsingGetResponses = {
+  /**
+   * 成功
+   */
+  200: AppResp[];
+  /**
+   * 失败
+   */
+  400: ErrorResp;
+  /**
+   * 失败
+   */
+  500: ErrorResp;
+};
+
 export type V1ApiAppShareApiTokenUsingGetParams = {
   /** 分享的随机path */
   randomPath: string;
 };
 
+export type V1ApiAppShareApiTokenUsingGetResponses = {
+  /**
+   * 成功
+   */
+  200: GetApiTokenByRandomPathRESP;
+  /**
+   * 失败
+   */
+  400: ErrorResp;
+  /**
+   * 失败
+   */
+  500: ErrorResp;
+};
+
+export type V1ApiAppUsingPostResponses = {
+  /**
+   * 成功
+   */
+  200: unknown;
+  /**
+   * 失败
+   */
+  400: ErrorResp;
+  /**
+   * 失败
+   */
+  500: ErrorResp;
+};
+
 export type V1ApiAttentionAppListUsingGetParams = {
   /** IAM用户id */
   iamID: string;
+};
+
+export type V1ApiAttentionAppListUsingGetResponses = {
+  /**
+   * 成功
+   */
+  200: AppResp[];
+  /**
+   * 失败
+   */
+  400: ErrorResp;
+  /**
+   * 失败
+   */
+  500: ErrorResp;
+};
+
+export type V1ApiAttentionConversationsCountUsingPostResponses = {
+  /**
+   * 成功
+   */
+  200: AttentionDataCountResp;
+  /**
+   * 失败
+   */
+  400: ErrorResp;
+  /**
+   * 失败
+   */
+  500: ErrorResp;
+};
+
+export type V1ApiAttentionConversationsUsingPostResponses = {
+  /**
+   * 成功
+   */
+  200: ListConversationResp;
+  /**
+   * 失败
+   */
+  400: ErrorResp;
+  /**
+   * 失败
+   */
+  500: ErrorResp;
+};
+
+export type V1ApiAttentionMessagesCountUsingPostResponses = {
+  /**
+   * 成功
+   */
+  200: AttentionDataCountResp[];
+  /**
+   * 失败
+   */
+  400: ErrorResp;
+  /**
+   * 失败
+   */
+  500: ErrorResp;
 };
 
 export type V1ApiAttentionMessagesHistoryUsingGetParams = {
@@ -4477,6 +5167,21 @@ export type V1ApiAttentionMessagesHistoryUsingGetParams = {
   appID: string;
   /** 会话id */
   conversationID: string;
+};
+
+export type V1ApiAttentionMessagesHistoryUsingGetResponses = {
+  /**
+   * 成功
+   */
+  200: HistoryInfo[];
+  /**
+   * 失败
+   */
+  400: ErrorResp;
+  /**
+   * 失败
+   */
+  500: ErrorResp;
 };
 
 export type V1ApiAttentionUserAllUsingGetParams = {
@@ -4496,6 +5201,36 @@ export type V1ApiAttentionUserAllUsingGetParams = {
   userName?: string;
 };
 
+export type V1ApiAttentionUserAllUsingGetResponses = {
+  /**
+   * 成功
+   */
+  200: ListAllAttentionUser;
+  /**
+   * 失败
+   */
+  400: ErrorResp;
+  /**
+   * 失败
+   */
+  500: ErrorResp;
+};
+
+export type V1ApiAttentionUserCancelUsingPostResponses = {
+  /**
+   * 成功
+   */
+  200: unknown;
+  /**
+   * 失败
+   */
+  400: ErrorResp;
+  /**
+   * 失败
+   */
+  500: ErrorResp;
+};
+
 export type V1ApiAttentionUserListUsingPostParams = {
   /** IAM ID */
   iamID: string;
@@ -4505,6 +5240,96 @@ export type V1ApiAttentionUserListUsingPostParams = {
   offset?: number;
 };
 
+export type V1ApiAttentionUserListUsingPostResponses = {
+  /**
+   * 成功
+   */
+  200: ListAttentionUserResp;
+  /**
+   * 失败
+   */
+  400: ErrorResp;
+  /**
+   * 失败
+   */
+  500: ErrorResp;
+};
+
+export type V1ApiAttentionUserUsingPostResponses = {
+  /**
+   * 成功
+   */
+  200: unknown;
+  /**
+   * 失败
+   */
+  400: ErrorResp;
+  /**
+   * 失败
+   */
+  500: ErrorResp;
+};
+
+export type V1ApiChatMessagesGptUsingPostResponses = {
+  /**
+   * OK
+   */
+  200: ResponseRecommendData;
+  /**
+   * Bad Request
+   */
+  400: ErrorResp;
+  /**
+   * Internal Server Error
+   */
+  500: ErrorResp;
+};
+
+export type V1ApiChatMessagesQuestionRecommendUsingPostResponses = {
+  /**
+   * OK
+   */
+  200: RecommendQuestionAndContext;
+  /**
+   * Bad Request
+   */
+  400: ErrorResp;
+  /**
+   * Internal Server Error
+   */
+  500: ErrorResp;
+};
+
+export type V1ApiChatMessagesUsingPostResponses = {
+  /**
+   * OK
+   */
+  200: ResponseData;
+  /**
+   * Bad Request
+   */
+  400: ErrorResp;
+  /**
+   * Internal Server Error
+   */
+  500: ErrorResp;
+};
+
+export type V1ApiChatMessagesWebUsingPostResponses = {
+  /**
+   * OK
+   */
+  200: ResponseData;
+  /**
+   * Bad Request
+   */
+  400: ErrorResp;
+  /**
+   * Internal Server Error
+   */
+  500: ErrorResp;
+};
+
 export type V1ApiConversationsConversationIdHistoryUsingDeleteParams = {
   /** 会话id */
   conversation_id: string;
@@ -4512,9 +5337,39 @@ export type V1ApiConversationsConversationIdHistoryUsingDeleteParams = {
   message_id: string;
 };
 
+export type V1ApiConversationsConversationIdHistoryUsingDeleteResponses = {
+  /**
+   * OK
+   */
+  200: DeleteResp;
+  /**
+   * Bad Request
+   */
+  400: ErrorResp;
+  /**
+   * Internal Server Error
+   */
+  500: ErrorResp;
+};
+
 export type V1ApiConversationsConversationIdHistoryUsingGetParams = {
   /** 会话id */
   conversation_id: string;
+};
+
+export type V1ApiConversationsConversationIdHistoryUsingGetResponses = {
+  /**
+   * OK
+   */
+  200: HistoryInfo[];
+  /**
+   * Bad Request
+   */
+  400: ErrorResp;
+  /**
+   * Internal Server Error
+   */
+  500: ErrorResp;
 };
 
 export type V1ApiConversationsUsingDeleteParams = {
@@ -4522,9 +5377,39 @@ export type V1ApiConversationsUsingDeleteParams = {
   conversation_id: string;
 };
 
+export type V1ApiConversationsUsingDeleteResponses = {
+  /**
+   * OK
+   */
+  200: DeleteResp;
+  /**
+   * Bad Request
+   */
+  400: ErrorResp;
+  /**
+   * Internal Server Error
+   */
+  500: ErrorResp;
+};
+
 export type V1ApiConversationsUsingGetParams = {
   /** 用户id,空值不返回 */
   user_id?: string;
+};
+
+export type V1ApiConversationsUsingGetResponses = {
+  /**
+   * OK
+   */
+  200: ConversationMsg[];
+  /**
+   * Bad Request
+   */
+  400: ErrorResp;
+  /**
+   * Internal Server Error
+   */
+  500: ErrorResp;
 };
 
 export type V1ApiFeedbacksMessageIdUsingDeleteParams = {
@@ -4534,9 +5419,39 @@ export type V1ApiFeedbacksMessageIdUsingDeleteParams = {
   conversation_id: string;
 };
 
+export type V1ApiFeedbacksMessageIdUsingDeleteResponses = {
+  /**
+   * OK
+   */
+  200: DeleteFeedbacksResp;
+  /**
+   * Bad Request
+   */
+  400: ErrorResp;
+  /**
+   * Internal Server Error
+   */
+  500: ErrorResp;
+};
+
 export type V1ApiFeedbacksMessageIdUsingPostParams = {
   /** 消息id */
   message_id: string;
+};
+
+export type V1ApiFeedbacksMessageIdUsingPostResponses = {
+  /**
+   * OK
+   */
+  200: CreateFeedbacksResp;
+  /**
+   * Bad Request
+   */
+  400: ErrorResp;
+  /**
+   * Internal Server Error
+   */
+  500: ErrorResp;
 };
 
 export type V1ApiFeedbacksUsingGetParams = {
@@ -4546,6 +5461,21 @@ export type V1ApiFeedbacksUsingGetParams = {
   pageOffset?: number;
   /** 每页数量 */
   pageSize?: number;
+};
+
+export type V1ApiFeedbacksUsingGetResponses = {
+  /**
+   * OK
+   */
+  200: ListFeedbacksResp;
+  /**
+   * Bad Request
+   */
+  400: ErrorResp;
+  /**
+   * Internal Server Error
+   */
+  500: ErrorResp;
 };
 
 export type V1ApiFileUsingPostBody = {
@@ -4560,9 +5490,39 @@ export type V1ApiFileUsingPostParams = {
   user_id?: string;
 };
 
+export type V1ApiFileUsingPostResponses = {
+  /**
+   * OK
+   */
+  200: FilestreamResp;
+  /**
+   * Bad Request
+   */
+  400: ErrorResp;
+  /**
+   * Internal Server Error
+   */
+  500: ErrorResp;
+};
+
 export type V1ApiIamAccountUsingGetParams = {
   /** openId */
   openId: string;
+};
+
+export type V1ApiIamAccountUsingGetResponses = {
+  /**
+   * 成功
+   */
+  200: WJLAccount;
+  /**
+   * 失败
+   */
+  400: ErrorResp;
+  /**
+   * 失败
+   */
+  500: ErrorResp;
 };
 
 export type V1ApiProviderListUsingGetParams = {
@@ -4572,14 +5532,59 @@ export type V1ApiProviderListUsingGetParams = {
   offset?: number;
 };
 
+export type V1ApiProviderListUsingGetResponses = {
+  /**
+   * 成功
+   */
+  200: ListProviderResp;
+  /**
+   * 失败
+   */
+  400: ErrorResp;
+  /**
+   * 失败
+   */
+  500: ErrorResp;
+};
+
 export type V1ApiRobotWorkspaceIdAppkeyStateUsingPostParams = {
   /** 空间ID */
   workspaceID: string;
 };
 
+export type V1ApiRobotWorkspaceIdAppkeyStateUsingPostResponses = {
+  /**
+   * 成功
+   */
+  200: unknown;
+  /**
+   * 失败
+   */
+  400: ErrorResp;
+  /**
+   * 失败
+   */
+  500: ErrorResp;
+};
+
 export type V1ApiRobotWorkspaceIdAppkeyUsingDeleteParams = {
   /** 空间ID */
   workspaceID: string;
+};
+
+export type V1ApiRobotWorkspaceIdAppkeyUsingDeleteResponses = {
+  /**
+   * 成功
+   */
+  200: unknown;
+  /**
+   * 失败
+   */
+  400: ErrorResp;
+  /**
+   * 失败
+   */
+  500: ErrorResp;
 };
 
 export type V1ApiRobotWorkspaceIdAppkeyUsingGetParams = {
@@ -4590,9 +5595,39 @@ export type V1ApiRobotWorkspaceIdAppkeyUsingGetParams = {
   type: string;
 };
 
+export type V1ApiRobotWorkspaceIdAppkeyUsingGetResponses = {
+  /**
+   * 成功
+   */
+  200: Data;
+  /**
+   * 失败
+   */
+  400: ErrorResp;
+  /**
+   * 失败
+   */
+  500: ErrorResp;
+};
+
 export type V1ApiRobotWorkspaceIdAppkeyUsingPostParams = {
   /** 空间ID */
   workspaceID: string;
+};
+
+export type V1ApiRobotWorkspaceIdAppkeyUsingPostResponses = {
+  /**
+   * 成功
+   */
+  200: unknown;
+  /**
+   * 失败
+   */
+  400: ErrorResp;
+  /**
+   * 失败
+   */
+  500: ErrorResp;
 };
 
 export type V1ApiSpeechToTextUsingPostBody = {
@@ -4600,9 +5635,65 @@ export type V1ApiSpeechToTextUsingPostBody = {
   file: string;
 };
 
+export type V1ApiSpeechToTextUsingPostResponses = {
+  /**
+   * OK
+   */
+  200: SpeechToTextResp;
+  /**
+   * Bad Request
+   */
+  400: ErrorResp;
+  /**
+   * Internal Server Error
+   */
+  500: ErrorResp;
+};
+
+export type V1ApiTextToSpeechUsingPostResponses = {
+  /**
+   * Bad Request
+   */
+  400: ErrorResp;
+  /**
+   * Internal Server Error
+   */
+  500: ErrorResp;
+};
+
 export type V1ApiUserInfoUsingGetParams = {
   /** 应用id */
   appID?: string;
+};
+
+export type V1ApiUserInfoUsingGetResponses = {
+  /**
+   * 成功
+   */
+  200: IAMUserInfo;
+  /**
+   * 失败
+   */
+  400: ErrorResp;
+  /**
+   * 失败
+   */
+  500: ErrorResp;
+};
+
+export type V1ApiUserRoleUsingPutResponses = {
+  /**
+   * 成功
+   */
+  200: EmptyObject;
+  /**
+   * 失败
+   */
+  400: ErrorResp;
+  /**
+   * 失败
+   */
+  500: ErrorResp;
 };
 
 export type V1ApiUserUsingGetParams = {
@@ -4616,9 +5707,39 @@ export type V1ApiUserUsingGetParams = {
   userName?: string;
 };
 
+export type V1ApiUserUsingGetResponses = {
+  /**
+   * 成功
+   */
+  200: ListUserWithAppRESP;
+  /**
+   * 失败
+   */
+  400: ErrorResp;
+  /**
+   * 失败
+   */
+  500: ErrorResp;
+};
+
 export type V2ApiAppAppIdDetailsUsingGetParams = {
   /** 应用id */
   appID: string;
+};
+
+export type V2ApiAppAppIdDetailsUsingGetResponses = {
+  /**
+   * 成功
+   */
+  200: AppDetail;
+  /**
+   * 失败
+   */
+  400: ErrorResp;
+  /**
+   * 失败
+   */
+  500: ErrorResp;
 };
 
 export type V2ApiAppAppIdUpdateUsingPostParams = {
@@ -4626,14 +5747,74 @@ export type V2ApiAppAppIdUpdateUsingPostParams = {
   appID: string;
 };
 
+export type V2ApiAppAppIdUpdateUsingPostResponses = {
+  /**
+   * 成功
+   */
+  200: unknown;
+  /**
+   * 失败
+   */
+  400: ErrorResp;
+  /**
+   * 失败
+   */
+  500: ErrorResp;
+};
+
 export type V2ApiAppListUsingGetParams = {
   /** 是否只查看会话过的应用 */
   onlyConversations?: boolean;
 };
 
+export type V2ApiAppListUsingGetResponses = {
+  /**
+   * 成功
+   */
+  200: AppResp[];
+  /**
+   * 失败
+   */
+  400: ErrorResp;
+  /**
+   * 失败
+   */
+  500: ErrorResp;
+};
+
 export type V2ApiAppShareApiTokenUsingGetParams = {
   /** 分享的随机path */
   randomPath: string;
+};
+
+export type V2ApiAppShareApiTokenUsingGetResponses = {
+  /**
+   * 成功
+   */
+  200: GetApiTokenByRandomPathRESP;
+  /**
+   * 失败
+   */
+  400: ErrorResp;
+  /**
+   * 失败
+   */
+  500: ErrorResp;
+};
+
+export type V2ApiAppUsingPostResponses = {
+  /**
+   * 成功
+   */
+  200: unknown;
+  /**
+   * 失败
+   */
+  400: ErrorResp;
+  /**
+   * 失败
+   */
+  500: ErrorResp;
 };
 
 export type V2ApiChatMessagesMessagesCountUsingGetParams = {
@@ -4643,6 +5824,51 @@ export type V2ApiChatMessagesMessagesCountUsingGetParams = {
   starTimestamp?: number;
   /** 结束时间，秒级时间戳 */
   endTimestamp?: number;
+};
+
+export type V2ApiChatMessagesMessagesCountUsingGetResponses = {
+  /**
+   * OK
+   */
+  200: AppMessagesCount;
+  /**
+   * Bad Request
+   */
+  400: ErrorResp;
+  /**
+   * Internal Server Error
+   */
+  500: ErrorResp;
+};
+
+export type V2ApiChatMessagesUsingPostResponses = {
+  /**
+   * OK
+   */
+  200: ResponseData;
+  /**
+   * Bad Request
+   */
+  400: ErrorResp;
+  /**
+   * Internal Server Error
+   */
+  500: ErrorResp;
+};
+
+export type V2ApiCopyAppsUsingPostResponses = {
+  /**
+   * 成功
+   */
+  200: unknown;
+  /**
+   * 失败
+   */
+  400: ErrorResp;
+  /**
+   * 失败
+   */
+  500: ErrorResp;
 };
 
 export type V2ApiFileUsingPostBody = {
@@ -4657,14 +5883,104 @@ export type V2ApiFileUsingPostParams = {
   user_id?: string;
 };
 
+export type V2ApiFileUsingPostResponses = {
+  /**
+   * 成功
+   */
+  200: FilestreamResp;
+  /**
+   * 失败
+   */
+  400: ErrorResp;
+  /**
+   * 失败
+   */
+  500: ErrorResp;
+};
+
+export type V2ApiWorkspacesDefaultUsingGetResponses = {
+  /**
+   * 成功
+   */
+  200: WorkspaceResp;
+  /**
+   * 失败
+   */
+  400: ErrorResp;
+  /**
+   * 失败
+   */
+  500: ErrorResp;
+};
+
 export type V2ApiWorkspacesDefaultUsingPostParams = {
   /** 空间ID */
   workspaceID: string;
 };
 
+export type V2ApiWorkspacesDefaultUsingPostResponses = {
+  /**
+   * 成功
+   */
+  200: unknown;
+  /**
+   * 失败
+   */
+  400: ErrorResp;
+  /**
+   * 失败
+   */
+  500: ErrorResp;
+};
+
 export type V2ApiWorkspacesRecommendedMessageIdDetailsUsingGetParams = {
   /** 消息id */
   messageId: string;
+};
+
+export type V2ApiWorkspacesRecommendedMessageIdDetailsUsingGetResponses = {
+  /**
+   * 成功
+   */
+  200: AppRecommendedContextResp;
+  /**
+   * 失败
+   */
+  400: ErrorResp;
+  /**
+   * 失败
+   */
+  500: ErrorResp;
+};
+
+export type V2ApiWorkspacesUsingGetResponses = {
+  /**
+   * 成功
+   */
+  200: WorkspaceListResp;
+  /**
+   * 失败
+   */
+  400: ErrorResp;
+  /**
+   * 失败
+   */
+  500: ErrorResp;
+};
+
+export type V2ApiWorkspacesUsingPostResponses = {
+  /**
+   * 成功
+   */
+  200: unknown;
+  /**
+   * 失败
+   */
+  400: ErrorResp;
+  /**
+   * 失败
+   */
+  500: ErrorResp;
 };
 
 export type V2ApiWorkspacesWorkspaceIdAppAppIdDatasetsJoinUsingPostBody =
@@ -4677,6 +5993,21 @@ export type V2ApiWorkspacesWorkspaceIdAppAppIdDatasetsJoinUsingPostParams = {
   appID: string;
 };
 
+export type V2ApiWorkspacesWorkspaceIdAppAppIdDatasetsJoinUsingPostResponses = {
+  /**
+   * 成功
+   */
+  200: unknown;
+  /**
+   * 失败
+   */
+  400: ErrorResp;
+  /**
+   * 失败
+   */
+  500: ErrorResp;
+};
+
 export type V2ApiWorkspacesWorkspaceIdAppAppIdDatasetsUsingDeleteParams = {
   /** 应用id */
   appID: string;
@@ -4686,11 +6017,41 @@ export type V2ApiWorkspacesWorkspaceIdAppAppIdDatasetsUsingDeleteParams = {
   datasetID: string;
 };
 
+export type V2ApiWorkspacesWorkspaceIdAppAppIdDatasetsUsingDeleteResponses = {
+  /**
+   * 成功
+   */
+  200: DeleteResp;
+  /**
+   * 失败
+   */
+  400: ErrorResp;
+  /**
+   * 失败
+   */
+  500: ErrorResp;
+};
+
 export type V2ApiWorkspacesWorkspaceIdAppAppIdDetailsUsingGetParams = {
   /** 空间ID */
   workspaceID: string;
   /** 应用id */
   appID: string;
+};
+
+export type V2ApiWorkspacesWorkspaceIdAppAppIdDetailsUsingGetResponses = {
+  /**
+   * 成功
+   */
+  200: AppDetail;
+  /**
+   * 失败
+   */
+  400: ErrorResp;
+  /**
+   * 失败
+   */
+  500: ErrorResp;
 };
 
 export type V2ApiWorkspacesWorkspaceIdAppAppIdHourlyMessagesUsingGetParams = {
@@ -4704,6 +6065,22 @@ export type V2ApiWorkspacesWorkspaceIdAppAppIdHourlyMessagesUsingGetParams = {
   endTimestamp?: number;
 };
 
+export type V2ApiWorkspacesWorkspaceIdAppAppIdHourlyMessagesUsingGetResponses =
+  {
+    /**
+     * 成功
+     */
+    200: MessagesCountResp[];
+    /**
+     * 失败
+     */
+    400: ErrorResp;
+    /**
+     * 失败
+     */
+    500: ErrorResp;
+  };
+
 export type V2ApiWorkspacesWorkspaceIdAppAppIdHourlyTokenUsingGetParams = {
   /** 空间ID */
   workspaceID: string;
@@ -4713,6 +6090,21 @@ export type V2ApiWorkspacesWorkspaceIdAppAppIdHourlyTokenUsingGetParams = {
   starTimestamp?: number;
   /** 结束时间，秒级时间戳 */
   endTimestamp?: number;
+};
+
+export type V2ApiWorkspacesWorkspaceIdAppAppIdHourlyTokenUsingGetResponses = {
+  /**
+   * 成功
+   */
+  200: MessagesTokenResp[];
+  /**
+   * 失败
+   */
+  400: ErrorResp;
+  /**
+   * 失败
+   */
+  500: ErrorResp;
 };
 
 export type V2ApiWorkspacesWorkspaceIdAppAppIdLogsUsingGetParams = {
@@ -4736,6 +6128,21 @@ export type V2ApiWorkspacesWorkspaceIdAppAppIdLogsUsingGetParams = {
   userID?: string;
 };
 
+export type V2ApiWorkspacesWorkspaceIdAppAppIdLogsUsingGetResponses = {
+  /**
+   * 成功
+   */
+  200: ListConversationLogsResp;
+  /**
+   * 失败
+   */
+  400: ErrorResp;
+  /**
+   * 失败
+   */
+  500: ErrorResp;
+};
+
 export type V2ApiWorkspacesWorkspaceIdAppAppIdMessagesUsingGetParams = {
   /** 空间ID */
   workspaceID: string;
@@ -4747,6 +6154,21 @@ export type V2ApiWorkspacesWorkspaceIdAppAppIdMessagesUsingGetParams = {
   endTimestamp?: number;
 };
 
+export type V2ApiWorkspacesWorkspaceIdAppAppIdMessagesUsingGetResponses = {
+  /**
+   * 成功
+   */
+  200: MessagesCountResp[];
+  /**
+   * 失败
+   */
+  400: ErrorResp;
+  /**
+   * 失败
+   */
+  500: ErrorResp;
+};
+
 export type V2ApiWorkspacesWorkspaceIdAppAppIdModelConfigsUsingPutParams = {
   /** 应用id */
   appID: string;
@@ -4754,11 +6176,41 @@ export type V2ApiWorkspacesWorkspaceIdAppAppIdModelConfigsUsingPutParams = {
   workspaceID: string;
 };
 
+export type V2ApiWorkspacesWorkspaceIdAppAppIdModelConfigsUsingPutResponses = {
+  /**
+   * 成功
+   */
+  200: unknown;
+  /**
+   * 失败
+   */
+  400: ErrorResp;
+  /**
+   * 失败
+   */
+  500: ErrorResp;
+};
+
 export type V2ApiWorkspacesWorkspaceIdAppAppIdPluginUsingGetParams = {
   /** 应用id */
   appID: string;
   /** 空间ID */
   workspaceID: string;
+};
+
+export type V2ApiWorkspacesWorkspaceIdAppAppIdPluginUsingGetResponses = {
+  /**
+   * 成功
+   */
+  200: unknown;
+  /**
+   * 失败
+   */
+  400: ErrorResp;
+  /**
+   * 失败
+   */
+  500: ErrorResp;
 };
 
 export type V2ApiWorkspacesWorkspaceIdAppAppIdTokenUsingGetParams = {
@@ -4770,11 +6222,41 @@ export type V2ApiWorkspacesWorkspaceIdAppAppIdTokenUsingGetParams = {
   endTimestamp?: number;
 };
 
+export type V2ApiWorkspacesWorkspaceIdAppAppIdTokenUsingGetResponses = {
+  /**
+   * 成功
+   */
+  200: MessagesTokenResp[];
+  /**
+   * 失败
+   */
+  400: ErrorResp;
+  /**
+   * 失败
+   */
+  500: ErrorResp;
+};
+
 export type V2ApiWorkspacesWorkspaceIdAppAppIdUpdateStatusUsingPutParams = {
   /** 空间ID */
   workspaceID: string;
   /** 应用id */
   appID: string;
+};
+
+export type V2ApiWorkspacesWorkspaceIdAppAppIdUpdateStatusUsingPutResponses = {
+  /**
+   * 成功
+   */
+  200: unknown;
+  /**
+   * 失败
+   */
+  400: ErrorResp;
+  /**
+   * 失败
+   */
+  500: ErrorResp;
 };
 
 export type V2ApiWorkspacesWorkspaceIdAppAppIdUsingPostParams = {
@@ -4784,11 +6266,41 @@ export type V2ApiWorkspacesWorkspaceIdAppAppIdUsingPostParams = {
   appID: string;
 };
 
+export type V2ApiWorkspacesWorkspaceIdAppAppIdUsingPostResponses = {
+  /**
+   * 成功
+   */
+  200: unknown;
+  /**
+   * 失败
+   */
+  400: ErrorResp;
+  /**
+   * 失败
+   */
+  500: ErrorResp;
+};
+
 export type V2ApiWorkspacesWorkspaceIdAppsAppIdBaseUsingPostParams = {
   /** 应用id */
   appID: string;
   /** 空间ID */
   workspaceID: string;
+};
+
+export type V2ApiWorkspacesWorkspaceIdAppsAppIdBaseUsingPostResponses = {
+  /**
+   * 成功
+   */
+  200: unknown;
+  /**
+   * 失败
+   */
+  400: ErrorResp;
+  /**
+   * 失败
+   */
+  500: ErrorResp;
 };
 
 export type V2ApiWorkspacesWorkspaceIdAppsAppIdGroupUsingPostParams = {
@@ -4798,11 +6310,41 @@ export type V2ApiWorkspacesWorkspaceIdAppsAppIdGroupUsingPostParams = {
   workspaceID: string;
 };
 
+export type V2ApiWorkspacesWorkspaceIdAppsAppIdGroupUsingPostResponses = {
+  /**
+   * 成功
+   */
+  200: unknown;
+  /**
+   * 失败
+   */
+  400: ErrorResp;
+  /**
+   * 失败
+   */
+  500: ErrorResp;
+};
+
 export type V2ApiWorkspacesWorkspaceIdAppsAppIdUsingDeleteParams = {
   /** 应用id */
   appID: string;
   /** 空间ID */
   workspaceID: string;
+};
+
+export type V2ApiWorkspacesWorkspaceIdAppsAppIdUsingDeleteResponses = {
+  /**
+   * 成功
+   */
+  200: DeleteResp;
+  /**
+   * 失败
+   */
+  400: ErrorResp;
+  /**
+   * 失败
+   */
+  500: ErrorResp;
 };
 
 export type V2ApiWorkspacesWorkspaceIdAppsUsingGetParams = {
@@ -4814,9 +6356,39 @@ export type V2ApiWorkspacesWorkspaceIdAppsUsingGetParams = {
   appName?: string;
 };
 
+export type V2ApiWorkspacesWorkspaceIdAppsUsingGetResponses = {
+  /**
+   * 成功
+   */
+  200: ListAppResp;
+  /**
+   * 失败
+   */
+  400: ErrorResp;
+  /**
+   * 失败
+   */
+  500: ErrorResp;
+};
+
 export type V2ApiWorkspacesWorkspaceIdAppsUsingPostParams = {
   /** 空间ID */
   workspaceID: string;
+};
+
+export type V2ApiWorkspacesWorkspaceIdAppsUsingPostResponses = {
+  /**
+   * 成功
+   */
+  200: unknown;
+  /**
+   * 失败
+   */
+  400: ErrorResp;
+  /**
+   * 失败
+   */
+  500: ErrorResp;
 };
 
 export type V2ApiWorkspacesWorkspaceIdDatasetsUsingGetParams = {
@@ -4824,9 +6396,39 @@ export type V2ApiWorkspacesWorkspaceIdDatasetsUsingGetParams = {
   workspaceID: string;
 };
 
+export type V2ApiWorkspacesWorkspaceIdDatasetsUsingGetResponses = {
+  /**
+   * OK
+   */
+  200: ListAppDatasets;
+  /**
+   * Bad Request
+   */
+  400: ErrorResp;
+  /**
+   * Internal Server Error
+   */
+  500: ErrorResp;
+};
+
 export type V2ApiWorkspacesWorkspaceIdDatasetsUsingPostParams = {
   /** 空间ID */
   workspaceID: string;
+};
+
+export type V2ApiWorkspacesWorkspaceIdDatasetsUsingPostResponses = {
+  /**
+   * OK
+   */
+  200: unknown;
+  /**
+   * Bad Request
+   */
+  400: ErrorResp;
+  /**
+   * Internal Server Error
+   */
+  500: ErrorResp;
 };
 
 export type V2ApiWorkspacesWorkspaceIdGroupsUsingGetParams = {
@@ -4834,9 +6436,39 @@ export type V2ApiWorkspacesWorkspaceIdGroupsUsingGetParams = {
   workspaceID: string;
 };
 
+export type V2ApiWorkspacesWorkspaceIdGroupsUsingGetResponses = {
+  /**
+   * 成功
+   */
+  200: ListWorkspaceGroup;
+  /**
+   * 失败
+   */
+  400: ErrorResp;
+  /**
+   * 失败
+   */
+  500: ErrorResp;
+};
+
 export type V2ApiWorkspacesWorkspaceIdGroupsUsingPostParams = {
   /** 空间ID */
   workspaceID: string;
+};
+
+export type V2ApiWorkspacesWorkspaceIdGroupsUsingPostResponses = {
+  /**
+   * 成功
+   */
+  200: ListWorkspaceGroup;
+  /**
+   * 失败
+   */
+  400: ErrorResp;
+  /**
+   * 失败
+   */
+  500: ErrorResp;
 };
 
 export type V2ApiWorkspacesWorkspaceIdGroupsWorkspaceGroupIdUsingDeleteParams =
@@ -4847,6 +6479,22 @@ export type V2ApiWorkspacesWorkspaceIdGroupsWorkspaceGroupIdUsingDeleteParams =
     workspaceGroupID: string;
   };
 
+export type V2ApiWorkspacesWorkspaceIdGroupsWorkspaceGroupIdUsingDeleteResponses =
+  {
+    /**
+     * 成功
+     */
+    200: unknown;
+    /**
+     * 失败
+     */
+    400: ErrorResp;
+    /**
+     * 失败
+     */
+    500: ErrorResp;
+  };
+
 export type V2ApiWorkspacesWorkspaceIdGroupsWorkspaceGroupIdUsingPostParams = {
   /** 空间ID */
   workspaceID: string;
@@ -4854,9 +6502,40 @@ export type V2ApiWorkspacesWorkspaceIdGroupsWorkspaceGroupIdUsingPostParams = {
   workspaceGroupID: string;
 };
 
+export type V2ApiWorkspacesWorkspaceIdGroupsWorkspaceGroupIdUsingPostResponses =
+  {
+    /**
+     * 成功
+     */
+    200: unknown;
+    /**
+     * 失败
+     */
+    400: ErrorResp;
+    /**
+     * 失败
+     */
+    500: ErrorResp;
+  };
+
 export type V2ApiWorkspacesWorkspaceIdPermissionsUsingGetParams = {
   /** 空间ID */
   workspaceID: string;
+};
+
+export type V2ApiWorkspacesWorkspaceIdPermissionsUsingGetResponses = {
+  /**
+   * 成功
+   */
+  200: WorkspacePermissions;
+  /**
+   * 失败
+   */
+  400: ErrorResp;
+  /**
+   * 失败
+   */
+  500: ErrorResp;
 };
 
 export type V2ApiWorkspacesWorkspaceIdUsersUsingGetParams = {
@@ -4864,9 +6543,39 @@ export type V2ApiWorkspacesWorkspaceIdUsersUsingGetParams = {
   workspaceID: string;
 };
 
+export type V2ApiWorkspacesWorkspaceIdUsersUsingGetResponses = {
+  /**
+   * 成功
+   */
+  200: ListWorkspacePermissions;
+  /**
+   * 失败
+   */
+  400: ErrorResp;
+  /**
+   * 失败
+   */
+  500: ErrorResp;
+};
+
 export type V2ApiWorkspacesWorkspaceIdUsersUsingPostParams = {
   /** 空间ID */
   workspaceID: string;
+};
+
+export type V2ApiWorkspacesWorkspaceIdUsersUsingPostResponses = {
+  /**
+   * 成功
+   */
+  200: unknown;
+  /**
+   * 失败
+   */
+  400: ErrorResp;
+  /**
+   * 失败
+   */
+  500: ErrorResp;
 };
 
 export type V2ApiWorkspacesWorkspaceIdUserUserIdUsingDeleteParams = {
@@ -4876,14 +6585,59 @@ export type V2ApiWorkspacesWorkspaceIdUserUserIdUsingDeleteParams = {
   userID: string;
 };
 
+export type V2ApiWorkspacesWorkspaceIdUserUserIdUsingDeleteResponses = {
+  /**
+   * 成功
+   */
+  200: unknown;
+  /**
+   * 失败
+   */
+  400: ErrorResp;
+  /**
+   * 失败
+   */
+  500: ErrorResp;
+};
+
 export type V2ApiWorkspacesWorkspaceIdUsingDeleteParams = {
   /** 空间ID */
   workspaceID: string;
 };
 
+export type V2ApiWorkspacesWorkspaceIdUsingDeleteResponses = {
+  /**
+   * 成功
+   */
+  200: unknown;
+  /**
+   * 失败
+   */
+  400: ErrorResp;
+  /**
+   * 失败
+   */
+  500: ErrorResp;
+};
+
 export type V2ApiWorkspacesWorkspaceIdUsingPostParams = {
   /** 空间ID */
   workspaceID: string;
+};
+
+export type V2ApiWorkspacesWorkspaceIdUsingPostResponses = {
+  /**
+   * 成功
+   */
+  200: unknown;
+  /**
+   * 失败
+   */
+  400: ErrorResp;
+  /**
+   * 失败
+   */
+  500: ErrorResp;
 };
 
 export type WJLAccount = {

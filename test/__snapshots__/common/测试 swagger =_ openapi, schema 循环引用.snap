@@ -1203,9 +1203,25 @@ export async function userUtilsDataUsingGet({
 /* eslint-disable */
 // @ts-ignore
 
+export type AdminAdminsAllUsingGetResponses = {
+  /**
+   * _
+   */
+  200: Response & {
+    data?: Dict[];
+  };
+};
+
 export type AdminAdminsIdPermissionsUsingPatchParams = {
   /** 成员id */
   id: string;
+};
+
+export type AdminAdminsIdPermissionsUsingPatchResponses = {
+  /**
+   * _
+   */
+  200: Response;
 };
 
 export type AdminAdminsIdResetUsingPatchParams = {
@@ -1213,9 +1229,25 @@ export type AdminAdminsIdResetUsingPatchParams = {
   id: string;
 };
 
+export type AdminAdminsIdResetUsingPatchResponses = {
+  /**
+   * _
+   */
+  200: Response & {
+    data?: AdminResetRet;
+  };
+};
+
 export type AdminAdminsIdToggleUsingPatchParams = {
   /** 成员id */
   id: string;
+};
+
+export type AdminAdminsIdToggleUsingPatchResponses = {
+  /**
+   * _
+   */
+  200: Response;
 };
 
 export type AdminAdminsIdUsingGetParams = {
@@ -1223,9 +1255,25 @@ export type AdminAdminsIdUsingGetParams = {
   id: string;
 };
 
+export type AdminAdminsIdUsingGetResponses = {
+  /**
+   * _
+   */
+  200: Response & {
+    data?: AdminInfo;
+  };
+};
+
 export type AdminAdminsIdUsingPutParams = {
   /** 成员id */
   id: string;
+};
+
+export type AdminAdminsIdUsingPutResponses = {
+  /**
+   * _
+   */
+  200: Response;
 };
 
 export type AdminAdminsUsingGetParams = {
@@ -1241,6 +1289,24 @@ export type AdminAdminsUsingGetParams = {
   role?: string;
   /** 手机号、姓名 */
   search?: string;
+};
+
+export type AdminAdminsUsingGetResponses = {
+  /**
+   * _
+   */
+  200: Response & {
+    data?: AdminListRet;
+  };
+};
+
+export type AdminAdminsUsingPostResponses = {
+  /**
+   * _
+   */
+  200: Response & {
+    data?: AdminCreateRet;
+  };
 };
 
 export type AdminCreateArg = {
@@ -1259,9 +1325,27 @@ export type AdminCreateRet = {
   password?: string;
 };
 
+export type AdminEvaluationsAllUsingGetResponses = {
+  /**
+   * _
+   */
+  200: Response & {
+    data?: Dict[];
+  };
+};
+
 export type AdminEvaluationsIdDataUsingGetParams = {
   /** 测评id */
   id: string;
+};
+
+export type AdminEvaluationsIdDataUsingGetResponses = {
+  /**
+   * _
+   */
+  200: Response & {
+    data?: EvaluationData;
+  };
 };
 
 export type AdminEvaluationsIdUsingPutParams = {
@@ -1269,9 +1353,25 @@ export type AdminEvaluationsIdUsingPutParams = {
   id: string;
 };
 
+export type AdminEvaluationsIdUsingPutResponses = {
+  /**
+   * _
+   */
+  200: Response;
+};
+
 export type AdminEvaluationsReportsIdDataUsingGetParams = {
   /** 报告id */
   id: string;
+};
+
+export type AdminEvaluationsReportsIdDataUsingGetResponses = {
+  /**
+   * _
+   */
+  200: Response & {
+    data?: EvaluationReportData;
+  };
 };
 
 export type AdminEvaluationsReportsIdExamineUsingPatchParams = {
@@ -1279,9 +1379,23 @@ export type AdminEvaluationsReportsIdExamineUsingPatchParams = {
   id: string;
 };
 
+export type AdminEvaluationsReportsIdExamineUsingPatchResponses = {
+  /**
+   * _
+   */
+  200: Response;
+};
+
 export type AdminEvaluationsReportsIdSendUsingPatchParams = {
   /** 报告id */
   id: string;
+};
+
+export type AdminEvaluationsReportsIdSendUsingPatchResponses = {
+  /**
+   * _
+   */
+  200: Response;
 };
 
 export type AdminEvaluationsReportsOpenApiExportUsingGetParams = {
@@ -1299,6 +1413,15 @@ export type AdminEvaluationsReportsOpenApiExportUsingGetParams = {
   search?: string;
   /** 预警等级 */
   warning_level?: string;
+};
+
+export type AdminEvaluationsReportsOpenApiExportUsingGetResponses = {
+  /**
+   * _
+   */
+  200: Response & {
+    data?: EvaluationReportExportRet;
+  };
 };
 
 export type AdminEvaluationsReportsUsingGetParams = {
@@ -1322,6 +1445,15 @@ export type AdminEvaluationsReportsUsingGetParams = {
   warning_level?: string;
 };
 
+export type AdminEvaluationsReportsUsingGetResponses = {
+  /**
+   * _
+   */
+  200: Response & {
+    data?: EvaluationReportListRet;
+  };
+};
+
 export type AdminEvaluationsUsingGetParams = {
   /** 创建时间范围 */
   created_at?: string;
@@ -1335,6 +1467,24 @@ export type AdminEvaluationsUsingGetParams = {
   page_size?: number;
   /** 类别 */
   user_type?: string;
+};
+
+export type AdminEvaluationsUsingGetResponses = {
+  /**
+   * _
+   */
+  200: Response & {
+    data?: EvaluationListRet;
+  };
+};
+
+export type AdminEvaluationsUsingPostResponses = {
+  /**
+   * _
+   */
+  200: Response & {
+    data?: EvaluationCreateRet;
+  };
 };
 
 export type AdminInfo = {
@@ -1382,6 +1532,29 @@ export type AdminLoginArg = {
   password?: string;
 };
 
+export type AdminLoginUsingDeleteResponses = {
+  /**
+   * _
+   */
+  200: Response;
+};
+
+export type AdminLoginUsingGetResponses = {
+  /**
+   * _
+   */
+  200: Response & {
+    data?: AdminInfo;
+  };
+};
+
+export type AdminLoginUsingPostResponses = {
+  /**
+   * _
+   */
+  200: Response;
+};
+
 export type AdminLogListRet = {
   list?: AdminLogListRow[];
   page?: Page;
@@ -1409,9 +1582,25 @@ export type AdminLogModuleDict = {
   value?: string;
 };
 
+export type AdminOrganizationsAllUsingGetResponses = {
+  /**
+   * _
+   */
+  200: Response & {
+    data?: OrganizationAllInfo[];
+  };
+};
+
 export type AdminOrganizationsIdMoveUsingPatchParams = {
   /** 机构id */
   id: string;
+};
+
+export type AdminOrganizationsIdMoveUsingPatchResponses = {
+  /**
+   * _
+   */
+  200: Response;
 };
 
 export type AdminOrganizationsIdPermissionsUsingGetParams = {
@@ -1419,9 +1608,25 @@ export type AdminOrganizationsIdPermissionsUsingGetParams = {
   id: string;
 };
 
+export type AdminOrganizationsIdPermissionsUsingGetResponses = {
+  /**
+   * _
+   */
+  200: Response & {
+    data?: AdminPermission[];
+  };
+};
+
 export type AdminOrganizationsIdToggleUsingPatchParams = {
   /** 机构id */
   id: string;
+};
+
+export type AdminOrganizationsIdToggleUsingPatchResponses = {
+  /**
+   * _
+   */
+  200: Response;
 };
 
 export type AdminOrganizationsIdUsingGetParams = {
@@ -1429,9 +1634,34 @@ export type AdminOrganizationsIdUsingGetParams = {
   id: string;
 };
 
+export type AdminOrganizationsIdUsingGetResponses = {
+  /**
+   * _
+   */
+  200: Response & {
+    data?: OrganizationInfo;
+  };
+};
+
 export type AdminOrganizationsIdUsingPutParams = {
   /** 机构id */
   id: string;
+};
+
+export type AdminOrganizationsIdUsingPutResponses = {
+  /**
+   * _
+   */
+  200: Response;
+};
+
+export type AdminOrganizationsUsingPostResponses = {
+  /**
+   * _
+   */
+  200: Response & {
+    data?: OrganizationCreateRet;
+  };
 };
 
 export type AdminPermission = {
@@ -1444,14 +1674,57 @@ export type AdminResetRet = {
   password?: string;
 };
 
+export type AdminScalesAllUsingGetResponses = {
+  /**
+   * _
+   */
+  200: Response & {
+    data?: Dict[];
+  };
+};
+
 export type AdminScalesIdToggleUsingPatchParams = {
   /** 量表id */
   id: string;
 };
 
+export type AdminScalesIdToggleUsingPatchResponses = {
+  /**
+   * _
+   */
+  200: Response;
+};
+
 export type AdminScalesIdUsingGetParams = {
   /** 量表id */
   id: string;
+};
+
+export type AdminScalesIdUsingGetResponses = {
+  /**
+   * _
+   */
+  200: Response & {
+    data?: ScaleInst;
+  };
+};
+
+export type AdminScalesOpenApiImportUsingPostResponses = {
+  /**
+   * _
+   */
+  200: Response & {
+    data?: ScaleImportRet;
+  };
+};
+
+export type AdminScalesPreviewUsingGetResponses = {
+  /**
+   * _
+   */
+  200: Response & {
+    data?: ScaleInst;
+  };
 };
 
 export type AdminScalesUsingGetParams = {
@@ -1465,6 +1738,15 @@ export type AdminScalesUsingGetParams = {
   page_size?: number;
   /** 量表分类 */
   type?: string;
+};
+
+export type AdminScalesUsingGetResponses = {
+  /**
+   * _
+   */
+  200: Response & {
+    data?: ScaleListRet;
+  };
 };
 
 export type AdminSetPermissionsArg = {
@@ -1487,6 +1769,15 @@ export type AdminSystemsLogsOpenApiExportUsingGetParams = {
   organization_id?: string;
 };
 
+export type AdminSystemsLogsOpenApiExportUsingGetResponses = {
+  /**
+   * _
+   */
+  200: Response & {
+    data?: AdminLogExportRet;
+  };
+};
+
 export type AdminSystemsLogsUsingGetParams = {
   /** 操作行为 */
   action?: string;
@@ -1502,6 +1793,24 @@ export type AdminSystemsLogsUsingGetParams = {
   page?: number;
   /** 分页大小 */
   page_size?: number;
+};
+
+export type AdminSystemsLogsUsingGetResponses = {
+  /**
+   * _
+   */
+  200: Response & {
+    data?: AdminLogListRet;
+  };
+};
+
+export type AdminSystemsScreenDataUsingGetResponses = {
+  /**
+   * _
+   */
+  200: Response & {
+    data?: SystemScreenData;
+  };
 };
 
 export type AdminToggleArg = {
@@ -1521,14 +1830,44 @@ export type AdminUsersIdToggleUsingPatchParams = {
   id: string;
 };
 
+export type AdminUsersIdToggleUsingPatchResponses = {
+  /**
+   * _
+   */
+  200: Response;
+};
+
+export type AdminUsersSheetsAllUsingGetResponses = {
+  /**
+   * _
+   */
+  200: Response & {
+    data?: Dict[];
+  };
+};
+
 export type AdminUsersSheetsIdToggleUsingPatchParams = {
   /** 信息表id */
   id: string;
 };
 
+export type AdminUsersSheetsIdToggleUsingPatchResponses = {
+  /**
+   * _
+   */
+  200: Response;
+};
+
 export type AdminUsersSheetsIdUsingPutParams = {
   /** 信息表id */
   id: string;
+};
+
+export type AdminUsersSheetsIdUsingPutResponses = {
+  /**
+   * _
+   */
+  200: Response;
 };
 
 export type AdminUsersSheetsUsingGetParams = {
@@ -1546,6 +1885,24 @@ export type AdminUsersSheetsUsingGetParams = {
   type?: string;
 };
 
+export type AdminUsersSheetsUsingGetResponses = {
+  /**
+   * _
+   */
+  200: Response & {
+    data?: UserSheetListRet;
+  };
+};
+
+export type AdminUsersSheetsUsingPostResponses = {
+  /**
+   * _
+   */
+  200: Response & {
+    data?: UserSheetCreateRet;
+  };
+};
+
 export type AdminUsersUsingGetParams = {
   /** 年龄范围 */
   age?: string;
@@ -1561,11 +1918,47 @@ export type AdminUsersUsingGetParams = {
   search?: string;
 };
 
+export type AdminUsersUsingGetResponses = {
+  /**
+   * _
+   */
+  200: Response & {
+    data?: UserListRet;
+  };
+};
+
+export type AdminUtilsAreasUsingGetResponses = {
+  /**
+   * _
+   */
+  200: Response & {
+    data?: Area[];
+  };
+};
+
+export type AdminUtilsDataUsingGetResponses = {
+  /**
+   * _
+   */
+  200: Response & {
+    data?: UtilDataAdminRet;
+  };
+};
+
 export type AdminUtilsUploadsUsingPostBody = {
   /** 文件类型 */
   type: 'excel';
   /** 文件内容 */
   file: string;
+};
+
+export type AdminUtilsUploadsUsingPostResponses = {
+  /**
+   * _
+   */
+  200: Response & {
+    data?: UploadRet;
+  };
 };
 
 export type Area = {
@@ -2033,9 +2426,27 @@ export type UserEvaluationsIdReportsUsingPostParams = {
   id: string;
 };
 
+export type UserEvaluationsIdReportsUsingPostResponses = {
+  /**
+   * _
+   */
+  200: Response & {
+    data?: EvaluationReportCreateRet;
+  };
+};
+
 export type UserEvaluationsIdUsingGetParams = {
   /** 测评任务id */
   id: string;
+};
+
+export type UserEvaluationsIdUsingGetResponses = {
+  /**
+   * _
+   */
+  200: Response & {
+    data?: EvaluationInfo;
+  };
 };
 
 export type UserEvaluationsReportsIdUsingGetParams = {
@@ -2043,11 +2454,29 @@ export type UserEvaluationsReportsIdUsingGetParams = {
   id: string;
 };
 
+export type UserEvaluationsReportsIdUsingGetResponses = {
+  /**
+   * _
+   */
+  200: Response & {
+    data?: EvaluationReportData;
+  };
+};
+
 export type UserEvaluationsReportsUsingGetParams = {
   /** 页码 */
   page?: number;
   /** 分页大小 */
   page_size?: number;
+};
+
+export type UserEvaluationsReportsUsingGetResponses = {
+  /**
+   * _
+   */
+  200: Response & {
+    data?: EvaluationReportUserListRet;
+  };
 };
 
 export type UserInfo = {
@@ -2107,6 +2536,40 @@ export type UserLoginArg = {
 export type UserLoginRet = {
   id?: string;
   new?: boolean;
+};
+
+export type UserLoginUsingPostResponses = {
+  /**
+   * _
+   */
+  200: Response & {
+    data?: UserLoginRet;
+  };
+};
+
+export type UserLoginVerifyUsingPostResponses = {
+  /**
+   * _
+   */
+  200: Response & {
+    data?: UserVerifyRet;
+  };
+};
+
+export type UserProfileUsingGetResponses = {
+  /**
+   * _
+   */
+  200: Response & {
+    data?: UserInfo;
+  };
+};
+
+export type UserProfileUsingPutResponses = {
+  /**
+   * _
+   */
+  200: Response;
 };
 
 export type UserSheetCreateArg = {
@@ -2176,6 +2639,15 @@ export type UserUpdateArg = {
   name?: string;
   /** 用户类别 */
   type?: string;
+};
+
+export type UserUtilsDataUsingGetResponses = {
+  /**
+   * _
+   */
+  200: Response & {
+    data?: UtilDataUserRet;
+  };
 };
 
 export type UserVerifyArg = {

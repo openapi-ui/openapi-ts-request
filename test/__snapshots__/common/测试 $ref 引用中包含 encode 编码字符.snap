@@ -354,9 +354,37 @@ export type DisableGoodsReq = {
   status: number;
 };
 
+export type GoodsAddGoodsUsingPostResponses = {
+  /**
+   * 成功
+   */
+  200: ResponseResultBoolean;
+};
+
+export type GoodsBatchDeleteGoodsUsingPostResponses = {
+  /**
+   * 成功
+   */
+  200: ResponseResultBoolean;
+};
+
+export type GoodsBatchUpdateStatusUsingPostResponses = {
+  /**
+   * 成功
+   */
+  200: ResponseResultBoolean;
+};
+
 export type GoodsDeleteGoodsUsingGetParams = {
   goodsId: string;
   orgId: string;
+};
+
+export type GoodsDeleteGoodsUsingGetResponses = {
+  /**
+   * 成功
+   */
+  200: ResponseResultBoolean;
 };
 
 export type GoodsDetailRes = {
@@ -494,8 +522,29 @@ export type GoodsGetGoodsDetailUsingPostParams = {
   orgId: string;
 };
 
+export type GoodsGetGoodsDetailUsingPostResponses = {
+  /**
+   * 成功
+   */
+  200: ResponseResultGoodsDetailRes;
+};
+
 export type GoodsGetGoodsNumUsingGetParams = {
   orgId: string;
+};
+
+export type GoodsGetGoodsNumUsingGetResponses = {
+  /**
+   * 成功
+   */
+  200: ResponseResultGoodsNumDTO;
+};
+
+export type GoodsHospitalGoodsPageUsingPostResponses = {
+  /**
+   * 成功
+   */
+  200: ResponseResultIPageGoodsPageQueryDTO;
 };
 
 export type GoodsNumDTO = {
@@ -602,6 +651,27 @@ export type GoodsPageQueryDTO = {
   autoDetectRes?: number;
   /** 自动检测失败原因 */
   autoDetectFailReason?: string;
+};
+
+export type GoodsPharmacyGoodsPageUsingPostResponses = {
+  /**
+   * 成功
+   */
+  200: ResponseResultIPageGoodsPageQueryDTO;
+};
+
+export type GoodsUpdateGoodsStatusUsingPostResponses = {
+  /**
+   * 成功
+   */
+  200: ResponseResultBoolean;
+};
+
+export type GoodsUpdateGoodsUsingPostResponses = {
+  /**
+   * 成功
+   */
+  200: ResponseResultBoolean;
 };
 
 export type IPageGoodsPageQueryDTO = {

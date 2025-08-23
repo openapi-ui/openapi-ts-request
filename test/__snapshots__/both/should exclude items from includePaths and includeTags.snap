@@ -22,4 +22,10 @@ export async function sysAa1UsingGet({
 }
 /* eslint-disable */
 // @ts-ignore
-export {};
+
+export type SysAa1UsingGetResponses = {
+  /**
+   * OK
+   */
+  200: string;
+};

@@ -74,6 +74,30 @@ export enum BusinessTypeEnum {
 
 export type IBusinessTypeEnum = keyof typeof BusinessTypeEnum;
 
+export type ElectricityClassificationTimeSharingElectricityUsingPostResponses =
+  {
+    /**
+     * OK
+     */
+    200: StatisticsQueryVo;
+    /**
+     * Created
+     */
+    201: unknown;
+    /**
+     * Unauthorized
+     */
+    401: unknown;
+    /**
+     * Forbidden
+     */
+    403: unknown;
+    /**
+     * Not Found
+     */
+    404: unknown;
+  };
+
 export type FenxiangshebeiziranshijiantongjichaxunDto = {
   /** 业务类型 */
   businessType?: 'CLASSIFICATION' | 'DEVICE' | 'INSTRUMENT';

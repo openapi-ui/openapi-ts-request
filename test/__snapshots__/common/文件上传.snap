@@ -93,3 +93,26 @@ export type WebapiClearImportNavReCheckFileUsingPostBody = {
   /** file */
   file: string;
 };
+
+export type WebapiClearImportNavReCheckFileUsingPostResponses = {
+  /**
+   * 结果
+   */
+  200: ResponseString_;
+  /**
+   * Created
+   */
+  201: unknown;
+  /**
+   * Unauthorized
+   */
+  401: unknown;
+  /**
+   * Forbidden
+   */
+  403: unknown;
+  /**
+   * Not Found
+   */
+  404: unknown;
+};

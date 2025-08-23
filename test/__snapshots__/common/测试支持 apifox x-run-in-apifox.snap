@@ -700,6 +700,34 @@ export type DisableGoodsReq = {
 
 export type FeignGoodsGetGoodsByIdsUsingPostBody = string[];
 
+export type FeignGoodsGetGoodsByIdsUsingPostResponses = {
+  /**
+   * 成功
+   */
+  200: GoodsDTO[];
+};
+
+export type FeignGoodsGetGoodsByNameUsingPostResponses = {
+  /**
+   * 成功
+   */
+  200: GoodsDTO[];
+};
+
+export type GoodsAddGoodsAttributeDictUsingPostResponses = {
+  /**
+   * 成功
+   */
+  200: ResponseResultBoolean;
+};
+
+export type GoodsAddGoodsUsingPostResponses = {
+  /**
+   * 成功
+   */
+  200: ResponseResultBoolean;
+};
+
 export type GoodsAttributeDictAddReq = {
   /** 字典名称 */
   name: string;
@@ -727,9 +755,44 @@ export type GoodsAttributeDictPageRes = {
   type?: number;
 };
 
+export type GoodsAuditGoodsUsingPostResponses = {
+  /**
+   * 成功
+   */
+  200: ResponseResultBoolean;
+};
+
+export type GoodsBatchAuditGoodsUsingPostResponses = {
+  /**
+   * 成功
+   */
+  200: ResponseResultBoolean;
+};
+
+export type GoodsBatchDeleteGoodsUsingPostResponses = {
+  /**
+   * 成功
+   */
+  200: ResponseResultBoolean;
+};
+
+export type GoodsBatchUpdateStatusUsingPostResponses = {
+  /**
+   * 成功
+   */
+  200: ResponseResultBoolean;
+};
+
 export type GoodsDeleteGoodsUsingGetParams = {
   goodsId: string;
   orgId: string;
+};
+
+export type GoodsDeleteGoodsUsingGetResponses = {
+  /**
+   * 成功
+   */
+  200: ResponseResultBoolean;
 };
 
 export type GoodsDetailRes = {
@@ -996,29 +1059,99 @@ export type GoodsGetDiagnoseByDictNameUsingGetParams = {
   dictName: string;
 };
 
+export type GoodsGetDiagnoseByDictNameUsingGetResponses = {
+  /**
+   * 成功
+   */
+  200: ResponseResultListDiagnoseDictValueRes;
+};
+
+export type GoodsGetGoodsAttributeDictUsingPostResponses = {
+  /**
+   * 成功
+   */
+  200: ResponseResultIPageGoodsAttributeDictPageRes;
+};
+
 export type GoodsGetGoodsDetailUsingPostParams = {
   goodsId: string;
   orgId: string;
+};
+
+export type GoodsGetGoodsDetailUsingPostResponses = {
+  /**
+   * 成功
+   */
+  200: ResponseResultGoodsDetailRes;
 };
 
 export type GoodsGetGoodsInfoUsingGetParams = {
   goodsId?: string;
 };
 
+export type GoodsGetGoodsInfoUsingGetResponses = {
+  /**
+   * 成功
+   */
+  200: ResponseResultBaseGoodDTO;
+};
+
 export type GoodsGetGoodsNumUsingGetParams = {
   orgId: string;
+};
+
+export type GoodsGetGoodsNumUsingGetResponses = {
+  /**
+   * 成功
+   */
+  200: ResponseResultGoodsNumDTO;
 };
 
 export type GoodsGetPharmacySuppliersUsingGetParams = {
   orgId: string;
 };
 
+export type GoodsGetPharmacySuppliersUsingGetResponses = {
+  /**
+   * 成功
+   */
+  200: ResponseResultListsupplierRes;
+};
+
 export type GoodsGetSectionDictUsingGetParams = {
   orgId: string;
 };
 
+export type GoodsGetSectionDictUsingGetResponses = {
+  /**
+   * 成功
+   */
+  200: ResponseResultListSectionDictValueRes;
+};
+
 export type GoodsGetSupplierCertificateUsingGetParams = {
   orgId: string;
+};
+
+export type GoodsGetSupplierCertificateUsingGetResponses = {
+  /**
+   * 成功
+   */
+  200: ResponseResultSupplierCertificateRes;
+};
+
+export type GoodsGoodsAuditPageUsingPostResponses = {
+  /**
+   * 成功
+   */
+  200: ResponseResultIPageGoodsPageQueryDTO;
+};
+
+export type GoodsHospitalGoodsPageUsingPostResponses = {
+  /**
+   * 成功
+   */
+  200: ResponseResultIPageGoodsPageQueryDTO;
 };
 
 export type GoodsNumDTO = {
@@ -1127,6 +1260,13 @@ export type GoodsPageQueryDTO = {
   autoDetectFailReason?: string;
 };
 
+export type GoodsPharmacyGoodsPageUsingPostResponses = {
+  /**
+   * 成功
+   */
+  200: ResponseResultIPageGoodsPageQueryDTO;
+};
+
 export type GoodsQueryDTO = {
   /** 机构id */
   orgId: string;
@@ -1136,6 +1276,27 @@ export type GoodsQueryDTO = {
   goodsOrigin?: string;
   /** 机构的顶级医院id */
   hospitalOrgId?: string;
+};
+
+export type GoodsShareGoodsUsingPostResponses = {
+  /**
+   * 成功
+   */
+  200: ResponseResultBoolean;
+};
+
+export type GoodsUpdateGoodsStatusUsingPostResponses = {
+  /**
+   * 成功
+   */
+  200: ResponseResultBoolean;
+};
+
+export type GoodsUpdateGoodsUsingPostResponses = {
+  /**
+   * 成功
+   */
+  200: ResponseResultBoolean;
 };
 
 export type IPageGoodsAttributeDictPageRes = {

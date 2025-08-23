@@ -6,6 +6,7 @@ import {
   entries,
   filter,
   find,
+  findIndex,
   forEach,
   isArray,
   isEmpty,
@@ -18,6 +19,7 @@ import {
 } from 'lodash';
 import { minimatch } from 'minimatch';
 import nunjucks from 'nunjucks';
+import type { OpenAPIV3 } from 'openapi-types';
 import { join } from 'path';
 import { rimrafSync } from 'rimraf';
 
@@ -690,6 +692,21 @@ export default class ServiceGenerator {
                 response.type = `${this.config.namespace}.${responseName}`;
               }
 
+              const responsesType = this.getResponsesType(
+                newApi.responses,
+                functionName
+              );
+
+              // 如果有多个响应类型，生成对应的类型定义
+              if (responsesType) {
+                this.interfaceTPConfigs.push({
+                  typeName: upperFirst(`${functionName}Responses`),
+                  type: responsesType,
+                  isEnum: false,
+                  props: [],
+                });
+              }
+
               let formattedPath = newApi.path.replace(
                 /:([^/]*)|{([^}]*)}/gi,
                 (_, str, str2) => `$\{${str || str2}}`
@@ -1089,6 +1106,143 @@ export default class ServiceGenerator {
     responseSchema.type = this.getType(schema, this.config.namespace);
 
     return responseSchema;
+  }
+
+  /**
+   * 生成多状态码响应类型定义
+   * 将 OpenAPI 的 responses 对象转换为 TypeScript 类型定义
+   * 例如：{ 200: ResponseType, 400: unknown, 404: unknown }
+   *
+   * @param responses OpenAPI 响应对象
+   * @param functionName 函数名称，用于生成主响应类型名称
+   * @returns 多状态码响应类型定义字符串，如果没有响应则返回 null
+   */
+  private getResponsesType(
+    responses: ResponsesObject = {},
+    functionName: string
+  ) {
+    if (
+      isEmpty(responses) ||
+      ~findIndex(
+        this.interfaceTPConfigs,
+        (item) => item.typeName === upperFirst(`${functionName}Responses`)
+      )
+    ) {
+      return null;
+    }
+
+    const { components } = this.openAPIData;
+    // 生成主响应类型名称
+    const mainResponseTypeName = upperFirst(`${functionName}Response`);
+    const responseEntries = this.parseResponseEntries(responses, components);
+
+    const responseTypes = responseEntries.map(
+      ({ statusCode, type, description = '' }) => {
+        // 检查是否已存在对应的主响应类型，如果存在则复用，避免重复定义
+        const existType = this.interfaceTPConfigs.find(
+          (item) => item.typeName === mainResponseTypeName
+        );
+        const lastType = existType ? mainResponseTypeName : type;
+
+        // 格式化描述文本，让描述支持换行
+        const formattedDescription = lineBreakReg.test(description)
+          ? description.split('\n')?.join('\n * ')
+          : description;
+
+        // 生成带注释的类型定义
+        return formattedDescription
+          ? `  /**\n   * ${formattedDescription}\n   */\n  ${statusCode}: ${lastType};`
+          : `  ${statusCode}: ${lastType};`;
+      }
+    );
+
+    // 返回完整的对象类型定义
+    return `{\n${responseTypes.join('\n')}\n}`;
+  }
+
+  /**
+   * 解析响应条目，提取每个状态码对应的类型和描述信息
+   *
+   * @param responses OpenAPI 响应对象
+   * @param components OpenAPI 组件对象，用于解析引用类型
+   * @returns 响应条目数组，包含状态码、类型和描述
+   */
+  private parseResponseEntries(
+    responses: ResponsesObject,
+    components: OpenAPIV3.ComponentsObject
+  ) {
+    return keys(responses).map((statusCode) => {
+      const response = this.resolveRefObject(
+        responses[statusCode] as ResponseObject
+      );
+
+      if (!response) {
+        return { statusCode, type: 'unknown', description: '' };
+      }
+
+      const responseType = this.getResponseTypeFromContent(
+        response,
+        components
+      );
+      const description = response.description || '';
+
+      return { statusCode, type: responseType, description };
+    });
+  }
+
+  /**
+   * 从响应内容中提取 TypeScript 类型
+   * 处理不同的媒体类型和 schema 类型
+   *
+   * @param response 响应对象
+   * @param components OpenAPI 组件对象
+   * @returns TypeScript 类型字符串
+   */
+  private getResponseTypeFromContent(
+    response: ResponseObject,
+    components: OpenAPIV3.ComponentsObject
+  ): string {
+    if (!response.content) {
+      return 'unknown';
+    }
+
+    const resContent: ContentObject = response.content;
+    const resContentMediaTypes = keys(resContent);
+    const mediaType = resContentMediaTypes.includes('application/json')
+      ? 'application/json'
+      : resContentMediaTypes[0];
+
+    if (!isObject(resContent) || !mediaType) {
+      return 'unknown';
+    }
+
+    let schema = (resContent[mediaType].schema ||
+      DEFAULT_SCHEMA) as SchemaObject;
+
+    if (isReferenceObject(schema)) {
+      const refName = getLastRefName(schema.$ref);
+      const childrenSchema = components.schemas[refName];
+
+      // 如果配置了 dataFields，尝试从指定字段提取类型
+      if (isNonArraySchemaObject(childrenSchema) && this.config.dataFields) {
+        schema = (this.config.dataFields
+          .map((field) => childrenSchema.properties[field])
+          .filter(Boolean)?.[0] ||
+          resContent[mediaType].schema ||
+          DEFAULT_SCHEMA) as SchemaObject;
+      }
+
+      return this.getType(schema);
+    } else if (isSchemaObject(schema)) {
+      // 设置属性的 required 状态
+      keys(schema.properties).map((fieldName) => {
+        schema.properties[fieldName]['required'] =
+          schema.required?.includes(fieldName) ?? false;
+      });
+      return this.getType(schema);
+    } else {
+      return this.getType(schema);
+    }
   }
 
   private getParamsTP(

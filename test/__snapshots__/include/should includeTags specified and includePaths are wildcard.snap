@@ -59,7 +59,69 @@ export async function sysAa1Aa1Aaa1Aaaa1UsingGet({
 }
 /* eslint-disable */
 // @ts-ignore
-export {};
+
+export type SysAa1Aa1Aaa1Aaaa1UsingGetResponses = {
+  /**
+   * OK
+   */
+  200: string;
+};
+
+export type SysAa1Aa1Aaa1UsingGetResponses = {
+  /**
+   * OK
+   */
+  200: string;
+};
+
+export type SysAa1Aa1UsingGetResponses = {
+  /**
+   * OK
+   */
+  200: string;
+};
+
+export type SysAa1UsingGetResponses = {
+  /**
+   * OK
+   */
+  200: string;
+};
+
+export type UserZz1UsingGetResponses = {
+  /**
+   * OK
+   */
+  200: string;
+};
+
+export type UserZz1Zz1UsingGetResponses = {
+  /**
+   * OK
+   */
+  200: string;
+};
+
+export type UserZz1Zz1Zzz1UsingGetResponses = {
+  /**
+   * OK
+   */
+  200: string;
+};
+
+export type UserZz1Zz1Zzz1Zzzz1UsingGetResponses = {
+  /**
+   * OK
+   */
+  200: string;
+};
+
+export type UserZz1Zz1Zzz1Zzzz1Zzzzz1UsingGetResponses = {
+  /**
+   * OK
+   */
+  200: string;
+};
 /* eslint-disable */
 // @ts-ignore
 import request from '../request';

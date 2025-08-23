@@ -92,6 +92,13 @@ export type BatchUsingGetParams = {
   errorMessage?: unknown;
 };
 
+export type BatchUsingGetResponses = {
+  /**
+   * OK
+   */
+  200: BatchList;
+};
+
 export type Response = {
   /** 业务约定的错误码 */
   errorCode?: string;

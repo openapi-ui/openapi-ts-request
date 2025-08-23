@@ -120,8 +120,30 @@ export type CityCityUsingGetParams = {
   query_string?: string;
 };
 
+export type CityCityUsingGetResponses = {
+  /**
+   * Successful Response
+   */
+  200: CityGetRes;
+  /**
+   * Validation Error
+   */
+  422: HTTPValidationError;
+};
+
 export type CityCityUsingPutParams = {
   city: Poi2CategoryEnum;
+};
+
+export type CityCityUsingPutResponses = {
+  /**
+   * Successful Response
+   */
+  200: CityPutRes;
+  /**
+   * Validation Error
+   */
+  422: HTTPValidationError;
 };
 
 export type CityGetRes = {
@@ -177,6 +199,13 @@ export enum Poi2CategoryEnum {
 }
 
 export type IPoi2CategoryEnum = keyof typeof Poi2CategoryEnum;
+
+export type UsingGetResponses = {
+  /**
+   * Successful Response
+   */
+  200: string;
+};
 
 export type ValidationError = {
   /** Location */

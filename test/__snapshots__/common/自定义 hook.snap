@@ -140,6 +140,33 @@ export type AccountLoginReq = {
   username: string;
 };
 
+export type AccountLoginResponses = {
+  /**
+   * OK
+   */
+  200: ApiResTokenDTO;
+  /**
+   * Created
+   */
+  201: unknown;
+  /**
+   * Unauthorized
+   */
+  401: unknown;
+  /**
+   * Forbidden
+   */
+  403: unknown;
+  /**
+   * Not Found
+   */
+  404: unknown;
+  /**
+   * true代表登录成功，否则为提示信息
+   */
+  default: string;
+};
+
 export type AccountRegisterReq = {
   /** 验证码 */
   captcha?: string;
@@ -151,6 +178,29 @@ export type AccountRegisterReq = {
   password: string;
   /** 用户名 */
   username: string;
+};
+
+export type AccountRegisterResponses = {
+  /**
+   * OK
+   */
+  200: ApiResTokenDTO;
+  /**
+   * Created
+   */
+  201: unknown;
+  /**
+   * Unauthorized
+   */
+  401: unknown;
+  /**
+   * Forbidden
+   */
+  403: unknown;
+  /**
+   * Not Found
+   */
+  404: unknown;
 };
 
 export type ApiReq = object;
@@ -253,6 +303,29 @@ export type CheckImgCaptchaReq = {
   type: 'EDIT_PASSWORD' | 'FORGOT_PASSWORD' | 'LOGIN' | 'REGISTER';
 };
 
+export type CheckImgCaptchaResponses = {
+  /**
+   * OK
+   */
+  200: ApiResCaptchaTokenVO;
+  /**
+   * Created
+   */
+  201: unknown;
+  /**
+   * Unauthorized
+   */
+  401: unknown;
+  /**
+   * Forbidden
+   */
+  403: unknown;
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
 export type EditPasswordReq = {
   /** 新密码 */
   newPassword: string;
@@ -262,6 +335,75 @@ export type EditPasswordReq = {
   token: string;
   /** 用户ID */
   uid: number;
+};
+
+export type EditPasswordResponses = {
+  /**
+   * OK
+   */
+  200: ApiResTokenDTO;
+  /**
+   * Created
+   */
+  201: unknown;
+  /**
+   * Unauthorized
+   */
+  401: unknown;
+  /**
+   * Forbidden
+   */
+  403: unknown;
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type ForgotPasswordResponses = {
+  /**
+   * OK
+   */
+  200: ApiResTokenDTO;
+  /**
+   * Created
+   */
+  201: unknown;
+  /**
+   * Unauthorized
+   */
+  401: unknown;
+  /**
+   * Forbidden
+   */
+  403: unknown;
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetImageCaptchaResponses = {
+  /**
+   * OK
+   */
+  200: ApiResImgCaptchaDTO;
+  /**
+   * Created
+   */
+  201: unknown;
+  /**
+   * Unauthorized
+   */
+  401: unknown;
+  /**
+   * Forbidden
+   */
+  403: unknown;
+  /**
+   * Not Found
+   */
+  404: unknown;
 };
 
 export type ImgCaptchaDTO = {
@@ -279,6 +421,29 @@ export type ImgCaptchaReq = {
 export type LoginIsNeedCaptchaReq = {
   /** 用户名 */
   username: string;
+};
+
+export type LoginIsNeedCaptchaResponses = {
+  /**
+   * OK
+   */
+  200: ApiResboolean;
+  /**
+   * Created
+   */
+  201: unknown;
+  /**
+   * Unauthorized
+   */
+  401: unknown;
+  /**
+   * Forbidden
+   */
+  403: unknown;
+  /**
+   * Not Found
+   */
+  404: unknown;
 };
 
 export enum ShowTypeEnum {

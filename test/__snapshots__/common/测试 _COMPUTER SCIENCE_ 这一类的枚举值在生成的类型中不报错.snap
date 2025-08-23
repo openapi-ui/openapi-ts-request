@@ -48,6 +48,13 @@ export enum GenderEnum {
 
 export type IGenderEnum = keyof typeof GenderEnum;
 
+export type HelloUsingGetResponses = {
+  /**
+   * A student object
+   */
+  200: Student;
+};
+
 export enum Major {
   'COMPUTER SCIENCE' = 'COMPUTER SCIENCE',
   'MATHEMATICS' = 'MATHEMATICS',
