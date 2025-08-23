@@ -1,5 +1,11 @@
 # openapi-ts-request
 
+## 1.7.0
+
+### Minor Changes
+
+- [#442](https://github.com/openapi-ui/openapi-ts-request/pull/442) [`e56121c`](https://github.com/openapi-ui/openapi-ts-request/commit/e56121c9abe369d4c19e4201f0e5006c0bc813d7) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - feat: support generate api responses type
+
 ## 1.6.7
 
 ### Patch Changes
