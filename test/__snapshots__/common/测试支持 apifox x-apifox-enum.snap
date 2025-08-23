@@ -83,6 +83,10 @@ export type DetailUsingGetParams = {
   inquiryOrderId: string;
 };
 
+export type DetailUsingGetResponses = {
+  200: ResponseResultInquiryOrderDetailRes;
+};
+
 export type ImVideoRecordDTO = {
   /** 主键 */
   id?: string;
@@ -271,6 +275,10 @@ export type Object = {};
 export type OrderItem = {
   column?: string;
   asc?: boolean;
+};
+
+export type PageUsingPostResponses = {
+  200: ResponseResultIPageInquiryPageRes;
 };
 
 export type ResponseResultInquiryOrderDetailRes = {

@@ -81,7 +81,7 @@
         },
         "responses": {
           "200": {
-            "description": "",
+            "description": "errcode: 错误码\nerrmsg: 错误日志\naccess_token: 凭证\nexpires_in: 凭证的有效时间",
             "content": {
               "application/json": {
                 "schema": {

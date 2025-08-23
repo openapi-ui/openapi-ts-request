@@ -14,6 +14,17 @@ export type UserUsernameUsingDeleteParams = {
   /** The status that needs to be deleted */
   status: StatusEnumArray;
 };
+
+export type UserUsernameUsingDeleteResponses = {
+  /**
+   * Invalid username supplied
+   */
+  400: unknown;
+  /**
+   * User not found
+   */
+  404: unknown;
+};
 /* eslint-disable */
 // @ts-ignore
 import { request } from 'axios';

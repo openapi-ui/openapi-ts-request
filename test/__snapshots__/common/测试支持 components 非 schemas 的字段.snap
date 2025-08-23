@@ -34,6 +34,10 @@ export type ActivityIdUsingGetParams = {
   id: number;
 };
 
+export type ActivityIdUsingGetResponses = {
+  200: ActivityList;
+};
+
 export type ActivityList = {
   id?: number;
   name?: string;

@@ -166,4 +166,87 @@ export async function sysCc1Cc1Ccc1Cccc1UsingGet({
 }
 /* eslint-disable */
 // @ts-ignore
-export {};
+
+export type SysAa1Aa1Aaa1Aaaa1UsingGetResponses = {
+  /**
+   * OK
+   */
+  200: string;
+};
+
+export type SysAa1Aa1Aaa1UsingGetResponses = {
+  /**
+   * OK
+   */
+  200: string;
+};
+
+export type SysAa1Aa1UsingGetResponses = {
+  /**
+   * OK
+   */
+  200: string;
+};
+
+export type SysAa1UsingGetResponses = {
+  /**
+   * OK
+   */
+  200: string;
+};
+
+export type SysBb1Bb1Bbb1Bbbb1UsingGetResponses = {
+  /**
+   * OK
+   */
+  200: string;
+};
+
+export type SysBb1Bb1Bbb1UsingGetResponses = {
+  /**
+   * OK
+   */
+  200: string;
+};
+
+export type SysBb1Bb1UsingGetResponses = {
+  /**
+   * OK
+   */
+  200: string;
+};
+
+export type SysBb1UsingGetResponses = {
+  /**
+   * OK
+   */
+  200: string;
+};
+
+export type SysCc1Cc1Ccc1Cccc1UsingGetResponses = {
+  /**
+   * OK
+   */
+  200: string;
+};
+
+export type SysCc1Cc1Ccc1UsingGetResponses = {
+  /**
+   * OK
+   */
+  200: string;
+};
+
+export type SysCc1Cc1UsingGetResponses = {
+  /**
+   * OK
+   */
+  200: string;
+};
+
+export type SysCc1UsingGetResponses = {
+  /**
+   * OK
+   */
+  200: string;
+};

@@ -59,6 +59,17 @@ export type PetFindByStatusUsingGetParams = {
   status?: 'available' | 'pending' | 'sold';
 };
 
+export type PetFindByStatusUsingGetResponses = {
+  /**
+   * successful operation
+   */
+  200: Pet[];
+  /**
+   * Invalid status value
+   */
+  400: unknown;
+};
+
 export enum StatusEnum {
   'available' = 'available',
   'pending' = 'pending',

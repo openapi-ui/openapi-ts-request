@@ -58,3 +58,13 @@ export type CgiBinGettokenUsingGetResponse = {
   /** 凭证的有效时间（秒） */
   expires_in: number;
 };
+
+export type CgiBinGettokenUsingGetResponses = {
+  /**
+   * errcode: 错误码
+   * errmsg: 错误日志
+   * access_token: 凭证
+   * expires_in: 凭证的有效时间
+   */
+  200: CgiBinGettokenUsingGetResponse;
+};
