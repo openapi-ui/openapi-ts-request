@@ -92,7 +92,7 @@ importers:
         version: 5.85.5(react@19.0.0)
       '@tanstack/vue-query':
         specifier: ^5.62.16
-        version: 5.85.5(vue@3.5.13(typescript@5.9.2))
+        version: 5.85.6(vue@3.5.13(typescript@5.9.2))
       '@types/js-yaml':
         specifier: ^4.0.9
         version: 4.0.9
@@ -541,6 +541,9 @@ packages:
   '@jridgewell/sourcemap-codec@1.5.4':
     resolution: {integrity: sha512-VT2+G1VQs/9oz078bLrYbecdZKs912zQlkelYpuf+SXF+QvZDYJlbx/LSx+meSAwdDFnF8FVXW92AVjjkVmgFw==}
 
+  '@jridgewell/sourcemap-codec@1.5.5':
+    resolution: {integrity: sha512-cYQ9310grqxueWbl+WuIUIaiUaDcj7WOq5fVhEljNVgRfOUhY9fy2zTvfoqWsnebh8Sl70VScFbICvJnLKB0Og==}
+
   '@jridgewell/trace-mapping@0.3.25':
     resolution: {integrity: sha512-vNk6aEwybGtawWmy/PzwnGDOjCkLWSD2wqvjGGAgOAwCGWySYXfYoxt00IJkTF+8Lb57DwOb3Aa0o9CApepiYQ==}
 
@@ -689,13 +692,16 @@ packages:
   '@tanstack/query-core@5.85.5':
     resolution: {integrity: sha512-KO0WTob4JEApv69iYp1eGvfMSUkgw//IpMnq+//cORBzXf0smyRwPLrUvEe5qtAEGjwZTXrjxg+oJNP/C00t6w==}
 
+  '@tanstack/query-core@5.85.6':
+    resolution: {integrity: sha512-hCj0TktzdCv2bCepIdfwqVwUVWb+GSHm1Jnn8w+40lfhQ3m7lCO7ADRUJy+2unxQ/nzjh2ipC6ye69NDW3l73g==}
+
   '@tanstack/react-query@5.85.5':
     resolution: {integrity: sha512-/X4EFNcnPiSs8wM2v+b6DqS5mmGeuJQvxBglmDxl6ZQb5V26ouD2SJYAcC3VjbNwqhY2zjxVD15rDA5nGbMn3A==}
     peerDependencies:
       react: ^18 || ^19
 
-  '@tanstack/vue-query@5.85.5':
-    resolution: {integrity: sha512-f2gT08SakfnyDGW5bgwsyjqnl2pgacvNWIpyj9UchjTo1JAEYMpMBT26TzhYgRL6il2wnunxnii7DHk1Kcj9Og==}
+  '@tanstack/vue-query@5.85.6':
+    resolution: {integrity: sha512-oi0UKiQq2rjTJXD7MPt5aLW5lE2UniiDJHcn178rlrP56hXEKczCZ3/bs4g6F+PEA2tyA+RaT8PEFGs42rKsIQ==}
     peerDependencies:
       '@vue/composition-api': ^1.1.2
       vue: ^2.6.0 || ^3.3.0
@@ -1783,6 +1789,9 @@ packages:
 
   magic-string@0.30.17:
     resolution: {integrity: sha512-sNPKHvyjVf7gyjwS4xGTaW/mCnF8wnjtifKBEhxfZ7E/S8tQ0rssrwGNn6q8JH/ohItJfSQp9mBtQYuTlH5QnA==}
+
+  magic-string@0.30.18:
+    resolution: {integrity: sha512-yi8swmWbO17qHhwIBNeeZxTceJMeBvWJaId6dyvTSOwTipqeHhMhOrz6513r1sOKnpvQ7zkhlG8tPrpilwTxHQ==}
 
   make-error@1.3.6:
     resolution: {integrity: sha512-s8UhlNe7vPKomQhC1qFelMokr/Sc3AgNbso3n74mVPA5LTZwkB9NlXf4XPamLxJE8h0gh73rM94xvwRT2CVInw==}
@@ -3010,6 +3019,8 @@ snapshots:
 
   '@jridgewell/sourcemap-codec@1.5.4': {}
 
+  '@jridgewell/sourcemap-codec@1.5.5': {}
+
   '@jridgewell/trace-mapping@0.3.25':
     dependencies:
       '@jridgewell/resolve-uri': 3.1.2
@@ -3128,15 +3139,17 @@ snapshots:
 
   '@tanstack/query-core@5.85.5': {}
 
+  '@tanstack/query-core@5.85.6': {}
+
   '@tanstack/react-query@5.85.5(react@19.0.0)':
     dependencies:
       '@tanstack/query-core': 5.85.5
       react: 19.0.0
 
-  '@tanstack/vue-query@5.85.5(vue@3.5.13(typescript@5.9.2))':
+  '@tanstack/vue-query@5.85.6(vue@3.5.13(typescript@5.9.2))':
     dependencies:
       '@tanstack/match-sorter-utils': 8.19.4
-      '@tanstack/query-core': 5.85.5
+      '@tanstack/query-core': 5.85.6
       '@vue/devtools-api': 6.6.4
       vue: 3.5.13(typescript@5.9.2)
       vue-demi: 0.14.10(vue@3.5.13(typescript@5.9.2))
@@ -3359,7 +3372,7 @@ snapshots:
       '@vue/compiler-ssr': 3.5.13
       '@vue/shared': 3.5.13
       estree-walker: 2.0.2
-      magic-string: 0.30.17
+      magic-string: 0.30.18
       postcss: 8.5.6
       source-map-js: 1.2.1
 
@@ -4290,6 +4303,10 @@ snapshots:
   magic-string@0.30.17:
     dependencies:
       '@jridgewell/sourcemap-codec': 1.5.4
+
+  magic-string@0.30.18:
+    dependencies:
+      '@jridgewell/sourcemap-codec': 1.5.5
 
   make-error@1.3.6: {}
 
