@@ -660,7 +660,7 @@ export async function userCreateWithListUsingPost({
   body: API.UserCreateWithListUsingPostBody;
   options?: { [key: string]: unknown };
 }) {
-  return request<unknown>('/user/createWithList', {
+  return request<API.User>('/user/createWithList', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
