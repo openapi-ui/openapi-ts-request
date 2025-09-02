@@ -1048,7 +1048,7 @@ export default class ServiceGenerator {
     const response: ResponseObject | undefined =
       responses &&
       this.resolveRefObject(
-        responses.default || responses['200'] || responses['201']
+        responses['200'] || responses['201'] || responses.default
       );
     const defaultResponse = {
       mediaType: '*/*',
