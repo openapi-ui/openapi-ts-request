@@ -1,5 +1,11 @@
 # openapi-ts-request
 
+## 1.7.2
+
+### Patch Changes
+
+- [#460](https://github.com/openapi-ui/openapi-ts-request/pull/460) [`7a0ed07`](https://github.com/openapi-ui/openapi-ts-request/commit/7a0ed075a2074d43421e7ccf1ddc0c3288f8ef58) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - fix: fix apifox selectedTags #459
+
 ## 1.7.1
 
 ### Patch Changes
