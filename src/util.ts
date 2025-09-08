@@ -6,6 +6,7 @@ import * as yaml from 'js-yaml';
 import {
   camelCase as _camelCase_,
   forEach,
+  isEmpty,
   isObject,
   keys,
   map,
@@ -32,35 +33,6 @@ export const getImportStatement = (requestLibPath: string) => {
   return `import { request } from 'axios';`;
 };
 
-const getApifoxIncludeTags = (tags?: (string | RegExp)[]): '*' | string[] => {
-  let _tags_: string | string[] = '*';
-  if (tags && Array.isArray(tags)) {
-    if (!tags.length) {
-      return '*';
-    }
-
-    _tags_ = [];
-    for (const tag of tags) {
-      if (typeof tag === 'string') {
-        if (tag === '*') {
-          _tags_ = '*';
-          break;
-        }
-      } else if (tag instanceof RegExp) {
-        _tags_ = '*';
-        break;
-        // TODO:后期添加支持判断字符串是否为正则
-      } else {
-        _tags_.push(tag);
-      }
-    }
-  } else if (tags) {
-    _tags_ = [tags as unknown as string];
-  }
-
-  return _tags_ as '*';
-};
-
 /**
  * 通过 apifox 获取 openapi 文档
  * @param params {object}
@@ -73,8 +45,8 @@ const getSchemaByApifox = async ({
   projectId,
   locale = 'zh-CN',
   apifoxVersion = '2024-03-28',
-  includeTags,
-  excludeTags = [],
+  selectedTags,
+  excludedByTags = [],
   apifoxToken,
   oasVersion = '3.0',
   exportFormat = 'JSON',
@@ -84,7 +56,7 @@ const getSchemaByApifox = async ({
   try {
     const body: APIFoxBody = {
       scope: {
-        excludeTags,
+        excludedByTags,
       },
       options: {
         includeApifoxExtensionProperties,
@@ -93,13 +65,13 @@ const getSchemaByApifox = async ({
       oasVersion,
       exportFormat,
     };
-    const tags = getApifoxIncludeTags(includeTags);
+    const tags = !isEmpty(selectedTags) ? selectedTags : '*';
 
     if (tags === '*') {
       body.scope.type = 'ALL';
     } else {
       body.scope.type = 'SELECTED_TAGS';
-      body.scope.includeTags = tags;
+      body.scope.selectedTags = tags;
     }
 
     const res = await axios.post(

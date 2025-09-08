@@ -122,8 +122,8 @@ export type ReadConfigOptions = MutuallyExclusiveWithFallback<
 export interface APIFoxBody {
   scope?: {
     type?: 'ALL' | 'SELECTED_TAGS';
-    includeTags?: string[];
-    excludeTags?: string[];
+    selectedTags?: string[];
+    excludedByTags?: string[];
   };
   options?: {
     includeApifoxExtensionProperties?: boolean;
@@ -144,6 +144,6 @@ export interface GetSchemaByApifoxProps
   apifoxToken: string;
   locale?: string;
   apifoxVersion?: string;
-  includeTags?: (string | RegExp)[];
-  excludeTags?: string[];
+  selectedTags?: string[];
+  excludedByTags?: string[];
 }
