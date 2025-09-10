@@ -194,6 +194,7 @@ $ openapi --help
     -f, --full <boolean>                full replacement (default: true)
     --enableLogging <boolean>           open the log (default: false)
     --priorityRule <string>             priority rule, include/exclude/both (default: "include")
+    --filterCaseInsensitive <boolean>   whether to perform a case-insensitive match with includeTags, includePaths, excludeTags, excludePaths filters. (default: false)
     --includeTags <(string|RegExp)[]>   generate code from include tags
     --includePaths <(string|RegExp)[]>  generate code from include paths
     --excludeTags <(string|RegExp)[]>   generate code from exclude tags
@@ -232,6 +233,7 @@ openapi --i ./spec.json --o ./apis
 | full | 否 | boolean | true | 是否全量替换 |
 | enableLogging | 否 | boolean | false | 是否开启日志 |
 | priorityRule | 否 | string | 'include' | 模式规则，可选include/exclude/both |
+| filterCaseInsensitive | 否 | boolean | false | 执行 includeTags、includePaths、excludeTags、excludePaths 过滤时是否忽略大小写 ｜ |
 | includeTags | 否 | (string\|RegExp)[] | - | 根据指定的 tags 生成代码, priorityRule=include则必填 |
 | includePaths | 否 | (string\|RegExp)[] | - | 根据指定的 paths 生成代码 |
 | excludeTags | 否 | (string\|RegExp)[] | - | 根据指定的 tags 不生成代码 |

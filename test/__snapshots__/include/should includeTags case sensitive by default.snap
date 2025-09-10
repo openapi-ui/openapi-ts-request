@@ -1,0 +1,107 @@
+/* eslint-disable */
+// @ts-ignore
+export * from './types';
+
+export * from './userZ';
+/* eslint-disable */
+// @ts-ignore
+
+export type UserZz1UsingGetResponses = {
+  /**
+   * OK
+   */
+  200: string;
+};
+
+export type UserZz1Zz1UsingGetResponses = {
+  /**
+   * OK
+   */
+  200: string;
+};
+
+export type UserZz1Zz1Zzz1UsingGetResponses = {
+  /**
+   * OK
+   */
+  200: string;
+};
+
+export type UserZz1Zz1Zzz1Zzzz1UsingGetResponses = {
+  /**
+   * OK
+   */
+  200: string;
+};
+
+export type UserZz1Zz1Zzz1Zzzz1Zzzzz1UsingGetResponses = {
+  /**
+   * OK
+   */
+  200: string;
+};
+/* eslint-disable */
+// @ts-ignore
+import request from '../request';
+
+import * as API from './types';
+
+/** f1 ffff GET /user-z/z1 */
+export async function userZz1UsingGet({
+  options,
+}: {
+  options?: { [key: string]: unknown };
+}) {
+  return request<string>('/user-z/z1', {
+    method: 'GET',
+    ...(options || {}),
+  });
+}
+
+/** z1/zz1 GET /user-z/z1/zz1 */
+export async function userZz1Zz1UsingGet({
+  options,
+}: {
+  options?: { [key: string]: unknown };
+}) {
+  return request<string>('/user-z/z1/zz1', {
+    method: 'GET',
+    ...(options || {}),
+  });
+}
+
+/** z1/zz1/zzz1 GET /user-z/z1/zz1/zzz1 */
+export async function userZz1Zz1Zzz1UsingGet({
+  options,
+}: {
+  options?: { [key: string]: unknown };
+}) {
+  return request<string>('/user-z/z1/zz1/zzz1', {
+    method: 'GET',
+    ...(options || {}),
+  });
+}
+
+/** z1/zz1/zzz1/zzzz1 GET /user-z/z1/zz1/zzz1/zzzz1 */
+export async function userZz1Zz1Zzz1Zzzz1UsingGet({
+  options,
+}: {
+  options?: { [key: string]: unknown };
+}) {
+  return request<string>('/user-z/z1/zz1/zzz1/zzzz1', {
+    method: 'GET',
+    ...(options || {}),
+  });
+}
+
+/** z1/zz1/zzz1/zzzz1/zzzzz1 GET /user-z/z1/zz1/zzz1/zzzz1/zzzzz1 */
+export async function userZz1Zz1Zzz1Zzzz1Zzzzz1UsingGet({
+  options,
+}: {
+  options?: { [key: string]: unknown };
+}) {
+  return request<string>('/user-z/z1/zz1/zzz1/zzzz1/zzzzz1', {
+    method: 'GET',
+    ...(options || {}),
+  });
+}
