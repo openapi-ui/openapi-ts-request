@@ -327,9 +327,7 @@ export async function generateService({
           ? [/.*/g]
           : null,
       includePaths: includePaths
-        ? map(includePaths, (item) =>
-            isString(item) ? item.toLowerCase() : item
-          )
+        ? includePaths
         : priorityRule === PriorityRule.include ||
             priorityRule === PriorityRule.both
           ? [/.*/g]
@@ -339,11 +337,7 @@ export async function generateService({
             isString(item) ? item.toLowerCase() : item
           )
         : null,
-      excludePaths: excludePaths
-        ? map(excludePaths, (item) =>
-            isString(item) ? item.toLowerCase() : item
-          )
-        : null,
+      excludePaths: excludePaths ? excludePaths : null,
       requestOptionsType: '{[key: string]: unknown}',
       namespace: 'API',
       isGenReactQuery: false,
