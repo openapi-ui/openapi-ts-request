@@ -192,7 +192,7 @@ $ openapi --help
     -f, --full <boolean>                full replacement (default: true)
     --enableLogging <boolean>           open the log (default: false)
     --priorityRule <string>             priority rule, include/exclude/both (default: "include")
-    --filterCaseInsensitive <boolean>   whether to perform a case-insensitive match with includeTags, includePaths, excludeTags, excludePaths filters. (default: false)
+    --filterCaseInsensitive <boolean>   whether to perform a case-insensitive match with includeTags, includePaths, excludeTags, excludePaths filters (default: false)
     --includeTags <(string|RegExp)[]>   generate code from include tags
     --includePaths <(string|RegExp)[]>  generate code from include paths
     --excludeTags <(string|RegExp)[]>   generate code from exclude tags
@@ -231,7 +231,7 @@ openapi -i ./spec.json -o ./apis
 | full | no | boolean | true | full replacement |
 | enableLogging | no | boolean | false | open the log |
 | priorityRule | no | string | 'include' | priority rule, include/exclude/both |
-| filterCaseInsensitive | no | boolean | false | whether to perform a case-insensitive match with includeTags, includePaths, excludeTags, excludePaths filters. (default: false) ｜ |
+| filterCaseInsensitive | no | boolean | false | whether to perform a case-insensitive match with includeTags, includePaths, excludeTags, excludePaths filters |
 | includeTags | no | (string\|RegExp)[] | - | generate code from include tags, priorityRule=include required |
 | includePaths | no | (string\|RegExp)[] | - | generate code from include paths |
 | excludeTags | no | (string\|RegExp)[] | - | generate code from exclude tags |
