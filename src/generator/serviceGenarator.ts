@@ -202,8 +202,6 @@ export default class ServiceGenerator {
             return;
           }
 
-          const tagLowerCase = tag.toLowerCase();
-
           if (priorityRule === PriorityRule.include) {
             // includeTags 为空，不会匹配任何path，故跳过
             if (isEmpty(includeTags)) {
@@ -211,13 +209,13 @@ export default class ServiceGenerator {
               return;
             }
 
-            if (!this.validateRegexp(tagLowerCase, includeTags)) {
+            if (!this.validateRegexp(tag, includeTags)) {
               return;
             }
           }
 
           if (priorityRule === PriorityRule.exclude) {
-            if (this.validateRegexp(tagLowerCase, excludeTags)) {
+            if (this.validateRegexp(tag, excludeTags)) {
               return;
             }
           }
@@ -230,11 +228,9 @@ export default class ServiceGenerator {
             }
 
             const outIncludeTags =
-              !isEmpty(includeTags) &&
-              !this.validateRegexp(tagLowerCase, includeTags);
+              !isEmpty(includeTags) && !this.validateRegexp(tag, includeTags);
             const inExcludeTags =
-              !isEmpty(excludeTags) &&
-              this.validateRegexp(tagLowerCase, excludeTags);
+              !isEmpty(excludeTags) && this.validateRegexp(tag, excludeTags);
 
             if (outIncludeTags || inExcludeTags) {
               return;
@@ -491,12 +487,7 @@ export default class ServiceGenerator {
         }
 
         const flag = this.validateRegexp(
-          filter(
-            map(tags, (tag) =>
-              tag?.toLowerCase ? tag.toLowerCase() : undefined
-            ),
-            (tag) => !!tag
-          ),
+          filter(tags, (tag) => !!tag),
           includeTags
         );
 
@@ -1561,7 +1552,9 @@ export default class ServiceGenerator {
   // 提取匹配逻辑到单独的函数
   private matches(item: string, reg: string | RegExp): boolean {
     if (typeof reg === 'string') {
-      return minimatch(item, reg);
+      return minimatch(item, reg, {
+        nocase: this.config.filterCaseInsensitive,
+      });
     } else if (reg instanceof RegExp) {
       reg.lastIndex = 0; // 重置正则表达式的 lastIndex 属性
 
