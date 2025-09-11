@@ -26,8 +26,13 @@ const params = program
   .option('-f, --full <boolean>', 'full replacement', true)
   .option('--enableLogging <boolean>', 'open the log', false)
   .option(
-    '--priorityRule <string>',
-    'priority rule, include/exclude/both (default: "include")'
+    '--filterCaseInsensitive <boolean>',
+    'whether to perform a case-insensitive match with includeTags, includePaths, excludeTags, excludePaths filters',
+    false
+  )
+  .option(
+    '--includeTags <(string|RegExp)[]>',
+    'generate code from include tags'
   )
   .option(
     '--filterCaseInsensitive <boolean>',
