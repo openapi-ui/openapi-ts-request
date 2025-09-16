@@ -52,7 +52,7 @@ import { request } from 'axios';
 import * as API from './types';
 
 /** Finds log by errorMessage Finds log by errorMessage GET /batch */
-export async function batchUsingGet({
+export function batchUsingGet({
   params,
   options,
 }: {

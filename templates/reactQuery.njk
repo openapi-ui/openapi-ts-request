@@ -60,7 +60,7 @@ import * as apis from './{{ className }}';
     {%- endif -%}
     ) {
       return queryOptions({
-        queryFn: async ({ queryKey }) => {
+        queryFn: ({ queryKey }) => {
           return apis.{{ api.functionName }}(queryKey[1]{{ " as typeof options" if genType === "ts" }});
         },
         queryKey: ['{{ api.functionName }}', options],

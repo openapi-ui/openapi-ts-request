@@ -38,7 +38,7 @@ import { request } from 'axios';
 import * as API from './types';
 
 /** 分时电量查询 POST /electricity/classification/time-sharing-electricity */
-export async function electricityClassificationTimeSharingElectricityUsingPost({
+export function electricityClassificationTimeSharingElectricityUsingPost({
   body,
   options,
 }: {

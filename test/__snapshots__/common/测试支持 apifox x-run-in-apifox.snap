@@ -5,7 +5,7 @@ import { request } from 'axios';
 import * as API from './types';
 
 /** getGoodsByIds POST /mall/feign/goods/getGoodsByIds https://apifox.com/web/project/5327758/apis/api-229418941-run */
-export async function feignGoodsGetGoodsByIdsUsingPost({
+export function feignGoodsGetGoodsByIdsUsingPost({
   body,
   options,
 }: {
@@ -23,7 +23,7 @@ export async function feignGoodsGetGoodsByIdsUsingPost({
 }
 
 /** getGoodsList POST /mall/feign/goods/getGoodsByName https://apifox.com/web/project/5327758/apis/api-229418940-run */
-export async function feignGoodsGetGoodsByNameUsingPost({
+export function feignGoodsGetGoodsByNameUsingPost({
   body,
   options,
 }: {
@@ -54,7 +54,7 @@ import { request } from 'axios';
 import * as API from './types';
 
 /** 添加商品 POST /mall/goods/addGoods https://apifox.com/web/project/5327758/apis/api-229419585-run */
-export async function goodsAddGoodsUsingPost({
+export function goodsAddGoodsUsingPost({
   body,
   options,
 }: {
@@ -72,7 +72,7 @@ export async function goodsAddGoodsUsingPost({
 }
 
 /** 批量删除商品 POST /mall/goods/batchDeleteGoods https://apifox.com/web/project/5327758/apis/api-229419591-run */
-export async function goodsBatchDeleteGoodsUsingPost({
+export function goodsBatchDeleteGoodsUsingPost({
   body,
   options,
 }: {
@@ -90,7 +90,7 @@ export async function goodsBatchDeleteGoodsUsingPost({
 }
 
 /** 批量启禁用商品 POST /mall/goods/batchUpdateStatus https://apifox.com/web/project/5327758/apis/api-229419593-run */
-export async function goodsBatchUpdateStatusUsingPost({
+export function goodsBatchUpdateStatusUsingPost({
   body,
   options,
 }: {
@@ -108,7 +108,7 @@ export async function goodsBatchUpdateStatusUsingPost({
 }
 
 /** 删除商品 GET /mall/goods/deleteGoods https://apifox.com/web/project/5327758/apis/api-229419590-run */
-export async function goodsDeleteGoodsUsingGet({
+export function goodsDeleteGoodsUsingGet({
   params,
   options,
 }: {
@@ -126,7 +126,7 @@ export async function goodsDeleteGoodsUsingGet({
 }
 
 /** 查询商品详情 POST /mall/goods/getGoodsDetail https://apifox.com/web/project/5327758/apis/api-229419594-run */
-export async function goodsGetGoodsDetailUsingPost({
+export function goodsGetGoodsDetailUsingPost({
   params,
   options,
 }: {
@@ -147,7 +147,7 @@ export async function goodsGetGoodsDetailUsingPost({
 }
 
 /** 查询商品数量 GET /mall/goods/getGoodsNum https://apifox.com/web/project/5327758/apis/api-229419589-run */
-export async function goodsGetGoodsNumUsingGet({
+export function goodsGetGoodsNumUsingGet({
   params,
   options,
 }: {
@@ -165,7 +165,7 @@ export async function goodsGetGoodsNumUsingGet({
 }
 
 /** 查询医院药房商品列表 POST /mall/goods/hospitalGoodsPage https://apifox.com/web/project/5327758/apis/api-229419588-run */
-export async function goodsHospitalGoodsPageUsingPost({
+export function goodsHospitalGoodsPageUsingPost({
   body,
   options,
 }: {
@@ -186,7 +186,7 @@ export async function goodsHospitalGoodsPageUsingPost({
 }
 
 /** 查询我的药房商品列表 POST /mall/goods/pharmacyGoodsPage https://apifox.com/web/project/5327758/apis/api-229419587-run */
-export async function goodsPharmacyGoodsPageUsingPost({
+export function goodsPharmacyGoodsPageUsingPost({
   body,
   options,
 }: {
@@ -207,7 +207,7 @@ export async function goodsPharmacyGoodsPageUsingPost({
 }
 
 /** 编辑商品 POST /mall/goods/updateGoods https://apifox.com/web/project/5327758/apis/api-229419586-run */
-export async function goodsUpdateGoodsUsingPost({
+export function goodsUpdateGoodsUsingPost({
   body,
   options,
 }: {
@@ -225,7 +225,7 @@ export async function goodsUpdateGoodsUsingPost({
 }
 
 /** 启禁用商品 POST /mall/goods/updateGoodsStatus https://apifox.com/web/project/5327758/apis/api-229419592-run */
-export async function goodsUpdateGoodsStatusUsingPost({
+export function goodsUpdateGoodsStatusUsingPost({
   body,
   options,
 }: {
@@ -248,7 +248,7 @@ import { request } from 'axios';
 import * as API from './types';
 
 /** 新增商品属性字典 POST /mall/goods/addGoodsAttributeDict https://apifox.com/web/project/5327758/apis/api-231097233-run */
-export async function goodsAddGoodsAttributeDictUsingPost({
+export function goodsAddGoodsAttributeDictUsingPost({
   body,
   options,
 }: {
@@ -269,7 +269,7 @@ export async function goodsAddGoodsAttributeDictUsingPost({
 }
 
 /** 获取诊断字典值 GET /mall/goods/getDiagnoseByDictName https://apifox.com/web/project/5327758/apis/api-229956960-run */
-export async function goodsGetDiagnoseByDictNameUsingGet({
+export function goodsGetDiagnoseByDictNameUsingGet({
   params,
   options,
 }: {
@@ -290,7 +290,7 @@ export async function goodsGetDiagnoseByDictNameUsingGet({
 }
 
 /** 获取商品属性字典 POST /mall/goods/getGoodsAttributeDict https://apifox.com/web/project/5327758/apis/api-230881259-run */
-export async function goodsGetGoodsAttributeDictUsingPost({
+export function goodsGetGoodsAttributeDictUsingPost({
   body,
   options,
 }: {
@@ -311,7 +311,7 @@ export async function goodsGetGoodsAttributeDictUsingPost({
 }
 
 /** 获取药房供应商 GET /mall/goods/getPharmacySuppliers https://apifox.com/web/project/5327758/apis/api-230751273-run */
-export async function goodsGetPharmacySuppliersUsingGet({
+export function goodsGetPharmacySuppliersUsingGet({
   params,
   options,
 }: {
@@ -332,7 +332,7 @@ export async function goodsGetPharmacySuppliersUsingGet({
 }
 
 /** 获取科室字典值 GET /mall/goods/getSectionDict https://apifox.com/web/project/5327758/apis/api-229904215-run */
-export async function goodsGetSectionDictUsingGet({
+export function goodsGetSectionDictUsingGet({
   params,
   options,
 }: {
@@ -353,7 +353,7 @@ export async function goodsGetSectionDictUsingGet({
 }
 
 /** 获取供应商资质信息 GET /mall/goods/getSupplierCertificate https://apifox.com/web/project/5327758/apis/api-231170942-run */
-export async function goodsGetSupplierCertificateUsingGet({
+export function goodsGetSupplierCertificateUsingGet({
   params,
   options,
 }: {
@@ -374,7 +374,7 @@ export async function goodsGetSupplierCertificateUsingGet({
 }
 
 /** 共享商品 POST /mall/goods/shareGoods https://apifox.com/web/project/5327758/apis/api-230292228-run */
-export async function goodsShareGoodsUsingPost({
+export function goodsShareGoodsUsingPost({
   body,
   options,
 }: {
@@ -397,7 +397,7 @@ import { request } from 'axios';
 import * as API from './types';
 
 /** 商品审核 POST /mall/goods/auditGoods https://apifox.com/web/project/5327758/apis/api-226991471-run */
-export async function goodsAuditGoodsUsingPost({
+export function goodsAuditGoodsUsingPost({
   body,
   options,
 }: {
@@ -415,7 +415,7 @@ export async function goodsAuditGoodsUsingPost({
 }
 
 /** 批量审核商品 POST /mall/goods/batchAuditGoods https://apifox.com/web/project/5327758/apis/api-231575710-run */
-export async function goodsBatchAuditGoodsUsingPost({
+export function goodsBatchAuditGoodsUsingPost({
   body,
   options,
 }: {
@@ -433,7 +433,7 @@ export async function goodsBatchAuditGoodsUsingPost({
 }
 
 /** 审核商品信息 GET /mall/goods/getGoodsInfo https://apifox.com/web/project/5327758/apis/api-227394999-run */
-export async function goodsGetGoodsInfoUsingGet({
+export function goodsGetGoodsInfoUsingGet({
   params,
   options,
 }: {
@@ -451,7 +451,7 @@ export async function goodsGetGoodsInfoUsingGet({
 }
 
 /** 商品审核列表 POST /mall/goods/goodsAuditPage https://apifox.com/web/project/5327758/apis/api-226950154-run */
-export async function goodsGoodsAuditPageUsingPost({
+export function goodsGoodsAuditPageUsingPost({
   body,
   options,
 }: {

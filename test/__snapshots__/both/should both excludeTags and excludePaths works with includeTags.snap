@@ -19,7 +19,7 @@ import request from '../request';
 import * as API from './types';
 
 /** f1 ffff GET /user-z/z1 */
-export async function userZz1UsingGet({
+export function userZz1UsingGet({
   options,
 }: {
   options?: { [key: string]: unknown };

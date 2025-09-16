@@ -10,7 +10,7 @@ import { request } from 'axios';
 import * as API from './types';
 
 /** 添加商品 POST /mall/goods/addGoods https://apifox.com/web/project/5327758/apis/api-229419585-run */
-export async function goodsAddGoodsUsingPost({
+export function goodsAddGoodsUsingPost({
   body,
   options,
 }: {
@@ -28,7 +28,7 @@ export async function goodsAddGoodsUsingPost({
 }
 
 /** 批量删除商品 POST /mall/goods/batchDeleteGoods https://apifox.com/web/project/5327758/apis/api-229419591-run */
-export async function goodsBatchDeleteGoodsUsingPost({
+export function goodsBatchDeleteGoodsUsingPost({
   body,
   options,
 }: {
@@ -46,7 +46,7 @@ export async function goodsBatchDeleteGoodsUsingPost({
 }
 
 /** 批量启禁用商品 POST /mall/goods/batchUpdateStatus https://apifox.com/web/project/5327758/apis/api-229419593-run */
-export async function goodsBatchUpdateStatusUsingPost({
+export function goodsBatchUpdateStatusUsingPost({
   body,
   options,
 }: {
@@ -64,7 +64,7 @@ export async function goodsBatchUpdateStatusUsingPost({
 }
 
 /** 删除商品 GET /mall/goods/deleteGoods https://apifox.com/web/project/5327758/apis/api-229419590-run */
-export async function goodsDeleteGoodsUsingGet({
+export function goodsDeleteGoodsUsingGet({
   params,
   options,
 }: {
@@ -82,7 +82,7 @@ export async function goodsDeleteGoodsUsingGet({
 }
 
 /** 查询商品详情 POST /mall/goods/getGoodsDetail https://apifox.com/web/project/5327758/apis/api-229419594-run */
-export async function goodsGetGoodsDetailUsingPost({
+export function goodsGetGoodsDetailUsingPost({
   params,
   options,
 }: {
@@ -103,7 +103,7 @@ export async function goodsGetGoodsDetailUsingPost({
 }
 
 /** 查询商品数量 GET /mall/goods/getGoodsNum https://apifox.com/web/project/5327758/apis/api-229419589-run */
-export async function goodsGetGoodsNumUsingGet({
+export function goodsGetGoodsNumUsingGet({
   params,
   options,
 }: {
@@ -121,7 +121,7 @@ export async function goodsGetGoodsNumUsingGet({
 }
 
 /** 查询医院药房商品列表 POST /mall/goods/hospitalGoodsPage https://apifox.com/web/project/5327758/apis/api-229419588-run */
-export async function goodsHospitalGoodsPageUsingPost({
+export function goodsHospitalGoodsPageUsingPost({
   body,
   options,
 }: {
@@ -142,7 +142,7 @@ export async function goodsHospitalGoodsPageUsingPost({
 }
 
 /** 查询我的药房商品列表 POST /mall/goods/pharmacyGoodsPage https://apifox.com/web/project/5327758/apis/api-229419587-run */
-export async function goodsPharmacyGoodsPageUsingPost({
+export function goodsPharmacyGoodsPageUsingPost({
   body,
   options,
 }: {
@@ -163,7 +163,7 @@ export async function goodsPharmacyGoodsPageUsingPost({
 }
 
 /** 编辑商品 POST /mall/goods/updateGoods https://apifox.com/web/project/5327758/apis/api-229419586-run */
-export async function goodsUpdateGoodsUsingPost({
+export function goodsUpdateGoodsUsingPost({
   body,
   options,
 }: {
@@ -181,7 +181,7 @@ export async function goodsUpdateGoodsUsingPost({
 }
 
 /** 启禁用商品 POST /mall/goods/updateGoodsStatus https://apifox.com/web/project/5327758/apis/api-229419592-run */
-export async function goodsUpdateGoodsStatusUsingPost({
+export function goodsUpdateGoodsStatusUsingPost({
   body,
   options,
 }: {

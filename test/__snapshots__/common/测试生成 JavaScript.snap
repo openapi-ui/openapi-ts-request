@@ -1,7 +1,7 @@
 import { request } from 'axios';
 
 /** AddAppKey 为应用添加各种类型机器人appkey POST /llmops/v1/api/robot/${param0}/appkey */
-export async function v1ApiRobotWorkspaceIdAppkeyUsingPost({
+export function v1ApiRobotWorkspaceIdAppkeyUsingPost({
   params,
   body,
   options,
@@ -39,7 +39,7 @@ export function useV1ApiRobotWorkspaceIdAppkeyUsingPostMutation(options) {
 import { request } from 'axios';
 
 /** ListApiToken 获取app 的 token 列表 GET /llmops/v1/api/app/${param0}/api-token */
-export async function v1ApiAppAppIdApiTokenUsingGet({ params, options }) {
+export function v1ApiAppAppIdApiTokenUsingGet({ params, options }) {
   const { appID: param0, ...queryParams } = params;
 
   return request(`/llmops/v1/api/app/${param0}/api-token`, {
@@ -52,7 +52,7 @@ export async function v1ApiAppAppIdApiTokenUsingGet({ params, options }) {
 }
 
 /** CreateApiToken 创建 app 的token POST /llmops/v1/api/app/${param0}/api-token */
-export async function v1ApiAppAppIdApiTokenUsingPost({ params, options }) {
+export function v1ApiAppAppIdApiTokenUsingPost({ params, options }) {
   const { appID: param0, ...queryParams } = params;
 
   return request(`/llmops/v1/api/app/${param0}/api-token`, {
@@ -69,7 +69,7 @@ import * as apis from './apiToken';
 /** ListApiToken 获取app 的 token 列表 GET /llmops/v1/api/app/${param0}/api-token */
 export function v1ApiAppAppIdApiTokenUsingGetQueryOptions(options) {
   return queryOptions({
-    queryFn: async ({ queryKey }) => {
+    queryFn: ({ queryKey }) => {
       return apis.v1ApiAppAppIdApiTokenUsingGet(queryKey[1]);
     },
     queryKey: ['v1ApiAppAppIdApiTokenUsingGet', options],
@@ -95,7 +95,7 @@ export function useV1ApiAppAppIdApiTokenUsingPostMutation(options) {
 import { request } from 'axios';
 
 /** GetAppCostTokens 查询 app token消耗 POST /llmops/v1/api/${param0}/cost */
-export async function v1ApiAppIdCostUsingPost({ params, options }) {
+export function v1ApiAppIdCostUsingPost({ params, options }) {
   const { appID: param0, ...queryParams } = params;
 
   return request(`/llmops/v1/api/${param0}/cost`, {
@@ -108,7 +108,7 @@ export async function v1ApiAppIdCostUsingPost({ params, options }) {
 }
 
 /** CreateApp 创建 app POST /llmops/v1/api/app */
-export async function v1ApiAppUsingPost({ body, options }) {
+export function v1ApiAppUsingPost({ body, options }) {
   return request('/llmops/v1/api/app', {
     method: 'POST',
     data: body,
@@ -117,10 +117,7 @@ export async function v1ApiAppUsingPost({ body, options }) {
 }
 
 /** DeleteApp 删除 app DELETE /llmops/v1/api/app/${param0}/delete */
-export async function v1ApiAppAppIdOpenApiDeleteUsingDelete({
-  params,
-  options,
-}) {
+export function v1ApiAppAppIdOpenApiDeleteUsingDelete({ params, options }) {
   const { appID: param0, ...queryParams } = params;
 
   return request(`/llmops/v1/api/app/${param0}/delete`, {
@@ -131,7 +128,7 @@ export async function v1ApiAppAppIdOpenApiDeleteUsingDelete({
 }
 
 /** GetAppDetails 查询 app 详情 GET /llmops/v1/api/app/${param0}/details */
-export async function v1ApiAppAppIdDetailsUsingGet({ params, options }) {
+export function v1ApiAppAppIdDetailsUsingGet({ params, options }) {
   const { appID: param0, ...queryParams } = params;
 
   return request(`/llmops/v1/api/app/${param0}/details`, {
@@ -142,7 +139,7 @@ export async function v1ApiAppAppIdDetailsUsingGet({ params, options }) {
 }
 
 /** GetSumHourlyMessagesCount 每小时messages数 GET /llmops/v1/api/app/${param0}/hourly-messages */
-export async function v1ApiAppAppIdHourlyMessagesUsingGet({ params, options }) {
+export function v1ApiAppAppIdHourlyMessagesUsingGet({ params, options }) {
   const { appID: param0, ...queryParams } = params;
 
   return request(`/llmops/v1/api/app/${param0}/hourly-messages`, {
@@ -155,7 +152,7 @@ export async function v1ApiAppAppIdHourlyMessagesUsingGet({ params, options }) {
 }
 
 /** GetSumHourlyToken 每小时token数 GET /llmops/v1/api/app/${param0}/hourly-token */
-export async function v1ApiAppAppIdHourlyTokenUsingGet({ params, options }) {
+export function v1ApiAppAppIdHourlyTokenUsingGet({ params, options }) {
   const { appID: param0, ...queryParams } = params;
 
   return request(`/llmops/v1/api/app/${param0}/hourly-token`, {
@@ -168,7 +165,7 @@ export async function v1ApiAppAppIdHourlyTokenUsingGet({ params, options }) {
 }
 
 /** GetAppLogs 查询 app 日志与标注 GET /llmops/v1/api/app/${param0}/logs */
-export async function v1ApiAppAppIdLogsUsingGet({ params, options }) {
+export function v1ApiAppAppIdLogsUsingGet({ params, options }) {
   const { appID: param0, ...queryParams } = params;
 
   return request(`/llmops/v1/api/app/${param0}/logs`, {
@@ -181,7 +178,7 @@ export async function v1ApiAppAppIdLogsUsingGet({ params, options }) {
 }
 
 /** GetLogsMessages 查询 app 日志与标注消息详情 GET /llmops/v1/api/app/${param0}/logs/${param1}/messages */
-export async function v1ApiAppAppIdLogsConversationIdMessagesUsingGet({
+export function v1ApiAppAppIdLogsConversationIdMessagesUsingGet({
   params,
   options,
 }) {
@@ -195,7 +192,7 @@ export async function v1ApiAppAppIdLogsConversationIdMessagesUsingGet({
 }
 
 /** GetSumDailyMessagesCount 每日messages数 GET /llmops/v1/api/app/${param0}/messages */
-export async function v1ApiAppAppIdMessagesUsingGet({ params, options }) {
+export function v1ApiAppAppIdMessagesUsingGet({ params, options }) {
   const { appID: param0, ...queryParams } = params;
 
   return request(`/llmops/v1/api/app/${param0}/messages`, {
@@ -208,7 +205,7 @@ export async function v1ApiAppAppIdMessagesUsingGet({ params, options }) {
 }
 
 /** ShareChat 创建分享path PUT /llmops/v1/api/app/${param0}/share */
-export async function v1ApiAppAppIdShareUsingPut({ params, options }) {
+export function v1ApiAppAppIdShareUsingPut({ params, options }) {
   const { appID: param0, ...queryParams } = params;
 
   return request(`/llmops/v1/api/app/${param0}/share`, {
@@ -221,7 +218,7 @@ export async function v1ApiAppAppIdShareUsingPut({ params, options }) {
 }
 
 /** GetSumDailyToken 每日token GET /llmops/v1/api/app/${param0}/token */
-export async function v1ApiAppAppIdTokenUsingGet({ params, options }) {
+export function v1ApiAppAppIdTokenUsingGet({ params, options }) {
   const { appID: param0, ...queryParams } = params;
 
   return request(`/llmops/v1/api/app/${param0}/token`, {
@@ -234,7 +231,7 @@ export async function v1ApiAppAppIdTokenUsingGet({ params, options }) {
 }
 
 /** UpdateApp 更新 app PUT /llmops/v1/api/app/${param0}/update */
-export async function v1ApiAppAppIdUpdateUsingPut({ params, body, options }) {
+export function v1ApiAppAppIdUpdateUsingPut({ params, body, options }) {
   const { appID: param0, ...queryParams } = params;
 
   return request(`/llmops/v1/api/app/${param0}/update`, {
@@ -246,11 +243,7 @@ export async function v1ApiAppAppIdUpdateUsingPut({ params, body, options }) {
 }
 
 /** ReleaseDiscover 发布到发现 PUT /llmops/v1/api/app/${param0}/update_status */
-export async function v1ApiAppAppIdUpdateStatusUsingPut({
-  params,
-  body,
-  options,
-}) {
+export function v1ApiAppAppIdUpdateStatusUsingPut({ params, body, options }) {
   const { appID: param0, ...queryParams } = params;
 
   return request(`/llmops/v1/api/app/${param0}/update_status`, {
@@ -262,7 +255,7 @@ export async function v1ApiAppAppIdUpdateStatusUsingPut({
 }
 
 /** GetImagePreSignedUrl 获取上传预签名地址 GET /llmops/v1/api/app/image */
-export async function v1ApiAppImageUsingGet({ options }) {
+export function v1ApiAppImageUsingGet({ options }) {
   return request('/llmops/v1/api/app/image', {
     method: 'GET',
     ...(options || {}),
@@ -270,7 +263,7 @@ export async function v1ApiAppImageUsingGet({ options }) {
 }
 
 /** ListApp 查询 app 列表 GET /llmops/v1/api/app/list */
-export async function v1ApiAppListUsingGet({ options }) {
+export function v1ApiAppListUsingGet({ options }) {
   return request('/llmops/v1/api/app/list', {
     method: 'GET',
     ...(options || {}),
@@ -278,7 +271,7 @@ export async function v1ApiAppListUsingGet({ options }) {
 }
 
 /** ListAppPick 查询精选 app 列表 GET /llmops/v1/api/app/list-pick */
-export async function v1ApiAppListPickUsingGet({ options }) {
+export function v1ApiAppListPickUsingGet({ options }) {
   return request('/llmops/v1/api/app/list-pick', {
     method: 'GET',
     ...(options || {}),
@@ -286,7 +279,7 @@ export async function v1ApiAppListPickUsingGet({ options }) {
 }
 
 /** ListAppByUser 查询用户关联的 app 列表 GET /llmops/v1/api/app/list-private */
-export async function v1ApiAppListPrivateUsingGet({ params, options }) {
+export function v1ApiAppListPrivateUsingGet({ params, options }) {
   return request('/llmops/v1/api/app/list-private', {
     method: 'GET',
     params: {
@@ -297,7 +290,7 @@ export async function v1ApiAppListPrivateUsingGet({ params, options }) {
 }
 
 /** ListAppPublic 查询公共 app 列表 GET /llmops/v1/api/app/list-public */
-export async function v1ApiAppListPublicUsingGet({ params, options }) {
+export function v1ApiAppListPublicUsingGet({ params, options }) {
   return request('/llmops/v1/api/app/list-public', {
     method: 'GET',
     params: {
@@ -365,7 +358,7 @@ export function useV1ApiAppAppIdOpenApiDeleteUsingDeleteMutation(options) {
 /** GetAppDetails 查询 app 详情 GET /llmops/v1/api/app/${param0}/details */
 export function v1ApiAppAppIdDetailsUsingGetQueryOptions(options) {
   return queryOptions({
-    queryFn: async ({ queryKey }) => {
+    queryFn: ({ queryKey }) => {
       return apis.v1ApiAppAppIdDetailsUsingGet(queryKey[1]);
     },
     queryKey: ['v1ApiAppAppIdDetailsUsingGet', options],
@@ -375,7 +368,7 @@ export function v1ApiAppAppIdDetailsUsingGetQueryOptions(options) {
 /** GetSumHourlyMessagesCount 每小时messages数 GET /llmops/v1/api/app/${param0}/hourly-messages */
 export function v1ApiAppAppIdHourlyMessagesUsingGetQueryOptions(options) {
   return queryOptions({
-    queryFn: async ({ queryKey }) => {
+    queryFn: ({ queryKey }) => {
       return apis.v1ApiAppAppIdHourlyMessagesUsingGet(queryKey[1]);
     },
     queryKey: ['v1ApiAppAppIdHourlyMessagesUsingGet', options],
@@ -385,7 +378,7 @@ export function v1ApiAppAppIdHourlyMessagesUsingGetQueryOptions(options) {
 /** GetSumHourlyToken 每小时token数 GET /llmops/v1/api/app/${param0}/hourly-token */
 export function v1ApiAppAppIdHourlyTokenUsingGetQueryOptions(options) {
   return queryOptions({
-    queryFn: async ({ queryKey }) => {
+    queryFn: ({ queryKey }) => {
       return apis.v1ApiAppAppIdHourlyTokenUsingGet(queryKey[1]);
     },
     queryKey: ['v1ApiAppAppIdHourlyTokenUsingGet', options],
@@ -395,7 +388,7 @@ export function v1ApiAppAppIdHourlyTokenUsingGetQueryOptions(options) {
 /** GetAppLogs 查询 app 日志与标注 GET /llmops/v1/api/app/${param0}/logs */
 export function v1ApiAppAppIdLogsUsingGetQueryOptions(options) {
   return queryOptions({
-    queryFn: async ({ queryKey }) => {
+    queryFn: ({ queryKey }) => {
       return apis.v1ApiAppAppIdLogsUsingGet(queryKey[1]);
     },
     queryKey: ['v1ApiAppAppIdLogsUsingGet', options],
@@ -407,7 +400,7 @@ export function v1ApiAppAppIdLogsConversationIdMessagesUsingGetQueryOptions(
   options
 ) {
   return queryOptions({
-    queryFn: async ({ queryKey }) => {
+    queryFn: ({ queryKey }) => {
       return apis.v1ApiAppAppIdLogsConversationIdMessagesUsingGet(queryKey[1]);
     },
     queryKey: ['v1ApiAppAppIdLogsConversationIdMessagesUsingGet', options],
@@ -417,7 +410,7 @@ export function v1ApiAppAppIdLogsConversationIdMessagesUsingGetQueryOptions(
 /** GetSumDailyMessagesCount 每日messages数 GET /llmops/v1/api/app/${param0}/messages */
 export function v1ApiAppAppIdMessagesUsingGetQueryOptions(options) {
   return queryOptions({
-    queryFn: async ({ queryKey }) => {
+    queryFn: ({ queryKey }) => {
       return apis.v1ApiAppAppIdMessagesUsingGet(queryKey[1]);
     },
     queryKey: ['v1ApiAppAppIdMessagesUsingGet', options],
@@ -444,7 +437,7 @@ export function useV1ApiAppAppIdShareUsingPutMutation(options) {
 /** GetSumDailyToken 每日token GET /llmops/v1/api/app/${param0}/token */
 export function v1ApiAppAppIdTokenUsingGetQueryOptions(options) {
   return queryOptions({
-    queryFn: async ({ queryKey }) => {
+    queryFn: ({ queryKey }) => {
       return apis.v1ApiAppAppIdTokenUsingGet(queryKey[1]);
     },
     queryKey: ['v1ApiAppAppIdTokenUsingGet', options],
@@ -488,7 +481,7 @@ export function useV1ApiAppAppIdUpdateStatusUsingPutMutation(options) {
 /** GetImagePreSignedUrl 获取上传预签名地址 GET /llmops/v1/api/app/image */
 export function v1ApiAppImageUsingGetQueryOptions(options) {
   return queryOptions({
-    queryFn: async ({ queryKey }) => {
+    queryFn: ({ queryKey }) => {
       return apis.v1ApiAppImageUsingGet(queryKey[1]);
     },
     queryKey: ['v1ApiAppImageUsingGet', options],
@@ -498,7 +491,7 @@ export function v1ApiAppImageUsingGetQueryOptions(options) {
 /** ListApp 查询 app 列表 GET /llmops/v1/api/app/list */
 export function v1ApiAppListUsingGetQueryOptions(options) {
   return queryOptions({
-    queryFn: async ({ queryKey }) => {
+    queryFn: ({ queryKey }) => {
       return apis.v1ApiAppListUsingGet(queryKey[1]);
     },
     queryKey: ['v1ApiAppListUsingGet', options],
@@ -508,7 +501,7 @@ export function v1ApiAppListUsingGetQueryOptions(options) {
 /** ListAppPick 查询精选 app 列表 GET /llmops/v1/api/app/list-pick */
 export function v1ApiAppListPickUsingGetQueryOptions(options) {
   return queryOptions({
-    queryFn: async ({ queryKey }) => {
+    queryFn: ({ queryKey }) => {
       return apis.v1ApiAppListPickUsingGet(queryKey[1]);
     },
     queryKey: ['v1ApiAppListPickUsingGet', options],
@@ -518,7 +511,7 @@ export function v1ApiAppListPickUsingGetQueryOptions(options) {
 /** ListAppByUser 查询用户关联的 app 列表 GET /llmops/v1/api/app/list-private */
 export function v1ApiAppListPrivateUsingGetQueryOptions(options) {
   return queryOptions({
-    queryFn: async ({ queryKey }) => {
+    queryFn: ({ queryKey }) => {
       return apis.v1ApiAppListPrivateUsingGet(queryKey[1]);
     },
     queryKey: ['v1ApiAppListPrivateUsingGet', options],
@@ -528,7 +521,7 @@ export function v1ApiAppListPrivateUsingGetQueryOptions(options) {
 /** ListAppPublic 查询公共 app 列表 GET /llmops/v1/api/app/list-public */
 export function v1ApiAppListPublicUsingGetQueryOptions(options) {
   return queryOptions({
-    queryFn: async ({ queryKey }) => {
+    queryFn: ({ queryKey }) => {
       return apis.v1ApiAppListPublicUsingGet(queryKey[1]);
     },
     queryKey: ['v1ApiAppListPublicUsingGet', options],
@@ -537,7 +530,7 @@ export function v1ApiAppListPublicUsingGetQueryOptions(options) {
 import { request } from 'axios';
 
 /** GetAppDatasetConfigsList 查询应用知识库查询配置 GET /llmops/v1/api/app/${param0}/dataset-configs */
-export async function v1ApiAppAppIdDatasetConfigsUsingGet({ params, options }) {
+export function v1ApiAppAppIdDatasetConfigsUsingGet({ params, options }) {
   const { appID: param0, ...queryParams } = params;
 
   return request(`/llmops/v1/api/app/${param0}/dataset-configs`, {
@@ -548,11 +541,7 @@ export async function v1ApiAppAppIdDatasetConfigsUsingGet({ params, options }) {
 }
 
 /** UpdateAppDatasetConfigs 更新应用知识库查询配置 PUT /llmops/v1/api/app/${param0}/dataset-configs */
-export async function v1ApiAppAppIdDatasetConfigsUsingPut({
-  params,
-  body,
-  options,
-}) {
+export function v1ApiAppAppIdDatasetConfigsUsingPut({ params, body, options }) {
   const { appID: param0, ...queryParams } = params;
 
   return request(`/llmops/v1/api/app/${param0}/dataset-configs`, {
@@ -564,7 +553,7 @@ export async function v1ApiAppAppIdDatasetConfigsUsingPut({
 }
 
 /** CreateAppDatasetConfigs 创建应用知识库查询配置 POST /llmops/v1/api/app/${param0}/dataset-configs */
-export async function v1ApiAppAppIdDatasetConfigsUsingPost({
+export function v1ApiAppAppIdDatasetConfigsUsingPost({
   params,
   body,
   options,
@@ -580,10 +569,7 @@ export async function v1ApiAppAppIdDatasetConfigsUsingPost({
 }
 
 /** DeleteAppDatasetConfigs 删除应用知识库查询配置 DELETE /llmops/v1/api/app/${param0}/dataset-configs */
-export async function v1ApiAppAppIdDatasetConfigsUsingDelete({
-  params,
-  options,
-}) {
+export function v1ApiAppAppIdDatasetConfigsUsingDelete({ params, options }) {
   const { appID: param0, ...queryParams } = params;
 
   return request(`/llmops/v1/api/app/${param0}/dataset-configs`, {
@@ -602,7 +588,7 @@ import * as apis from './appDatasetConfigs';
 /** GetAppDatasetConfigsList 查询应用知识库查询配置 GET /llmops/v1/api/app/${param0}/dataset-configs */
 export function v1ApiAppAppIdDatasetConfigsUsingGetQueryOptions(options) {
   return queryOptions({
-    queryFn: async ({ queryKey }) => {
+    queryFn: ({ queryKey }) => {
       return apis.v1ApiAppAppIdDatasetConfigsUsingGet(queryKey[1]);
     },
     queryKey: ['v1ApiAppAppIdDatasetConfigsUsingGet', options],
@@ -662,7 +648,7 @@ export function useV1ApiAppAppIdDatasetConfigsUsingDeleteMutation(options) {
 import { request } from 'axios';
 
 /** ListMember app下的用户列表 GET /llmops/v1/api/app/${param0}/member */
-export async function v1ApiAppAppIdMemberUsingGet({ params, options }) {
+export function v1ApiAppAppIdMemberUsingGet({ params, options }) {
   const { appID: param0, ...queryParams } = params;
 
   return request(`/llmops/v1/api/app/${param0}/member`, {
@@ -675,7 +661,7 @@ export async function v1ApiAppAppIdMemberUsingGet({ params, options }) {
 }
 
 /** AddMember 增加app用户 POST /llmops/v1/api/app/${param0}/member */
-export async function v1ApiAppAppIdMemberUsingPost({ params, body, options }) {
+export function v1ApiAppAppIdMemberUsingPost({ params, body, options }) {
   const { appID: param0, ...queryParams } = params;
 
   return request(`/llmops/v1/api/app/${param0}/member`, {
@@ -687,11 +673,7 @@ export async function v1ApiAppAppIdMemberUsingPost({ params, body, options }) {
 }
 
 /** DeleteMember 删除app用户 DELETE /llmops/v1/api/app/${param0}/member */
-export async function v1ApiAppAppIdMemberUsingDelete({
-  params,
-  body,
-  options,
-}) {
+export function v1ApiAppAppIdMemberUsingDelete({ params, body, options }) {
   const { appID: param0, ...queryParams } = params;
 
   return request(`/llmops/v1/api/app/${param0}/member`, {
@@ -703,11 +685,7 @@ export async function v1ApiAppAppIdMemberUsingDelete({
 }
 
 /** UpdateMemberRole 更新app用户角色 PUT /llmops/v1/api/app/${param0}/member-role */
-export async function v1ApiAppAppIdMemberRoleUsingPut({
-  params,
-  body,
-  options,
-}) {
+export function v1ApiAppAppIdMemberRoleUsingPut({ params, body, options }) {
   const { appID: param0, ...queryParams } = params;
 
   return request(`/llmops/v1/api/app/${param0}/member-role`, {
@@ -725,7 +703,7 @@ import * as apis from './appMember';
 /** ListMember app下的用户列表 GET /llmops/v1/api/app/${param0}/member */
 export function v1ApiAppAppIdMemberUsingGetQueryOptions(options) {
   return queryOptions({
-    queryFn: async ({ queryKey }) => {
+    queryFn: ({ queryKey }) => {
       return apis.v1ApiAppAppIdMemberUsingGet(queryKey[1]);
     },
     queryKey: ['v1ApiAppAppIdMemberUsingGet', options],
@@ -785,11 +763,7 @@ export function useV1ApiAppAppIdMemberRoleUsingPutMutation(options) {
 import { request } from 'axios';
 
 /** UpdateModelConfigs 更新 app model configs PUT /llmops/v1/api/app/${param0}/model-configs */
-export async function v1ApiAppAppIdModelConfigsUsingPut({
-  params,
-  body,
-  options,
-}) {
+export function v1ApiAppAppIdModelConfigsUsingPut({ params, body, options }) {
   const { appID: param0, ...queryParams } = params;
 
   return request(`/llmops/v1/api/app/${param0}/model-configs`, {
@@ -801,11 +775,7 @@ export async function v1ApiAppAppIdModelConfigsUsingPut({
 }
 
 /** CreateOrUpdateModelConfigs 创建 app model configs POST /llmops/v1/api/app/${param0}/model-configs */
-export async function v1ApiAppAppIdModelConfigsUsingPost({
-  params,
-  body,
-  options,
-}) {
+export function v1ApiAppAppIdModelConfigsUsingPost({ params, body, options }) {
   const { appID: param0, ...queryParams } = params;
 
   return request(`/llmops/v1/api/app/${param0}/model-configs`, {
@@ -817,11 +787,7 @@ export async function v1ApiAppAppIdModelConfigsUsingPost({
 }
 
 /** CreateOrUpdateModelConfigPromptPrefix 创建或修改角色和背景以及推荐问题开关 POST /llmops/v1/api/app/${param0}/model-prompt */
-export async function v1ApiAppAppIdModelPromptUsingPost({
-  params,
-  body,
-  options,
-}) {
+export function v1ApiAppAppIdModelPromptUsingPost({ params, body, options }) {
   const { appID: param0, ...queryParams } = params;
 
   return request(`/llmops/v1/api/app/${param0}/model-prompt`, {
@@ -833,7 +799,7 @@ export async function v1ApiAppAppIdModelPromptUsingPost({
 }
 
 /** GetPluginList 获取插件列表 PUT /llmops/v1/api/app/${param0}/plugin */
-export async function v1ApiAppAppIdPluginUsingPut({ params, options }) {
+export function v1ApiAppAppIdPluginUsingPut({ params, options }) {
   const { appID: param0, ...queryParams } = params;
 
   return request(`/llmops/v1/api/app/${param0}/plugin`, {
@@ -917,7 +883,7 @@ export function useV1ApiAppAppIdPluginUsingPutMutation(options) {
 import { request } from 'axios';
 
 /** CreateAppV2 创建 app POST /llmops/v2/api/app */
-export async function v2ApiAppUsingPost({ body, options }) {
+export function v2ApiAppUsingPost({ body, options }) {
   return request('/llmops/v2/api/app', {
     method: 'POST',
     data: body,
@@ -926,7 +892,7 @@ export async function v2ApiAppUsingPost({ body, options }) {
 }
 
 /** GetAppDetailsV2 查询 app 详情 GET /llmops/v2/api/app/${param0}/details */
-export async function v2ApiAppAppIdDetailsUsingGet({ params, options }) {
+export function v2ApiAppAppIdDetailsUsingGet({ params, options }) {
   const { appID: param0, ...queryParams } = params;
 
   return request(`/llmops/v2/api/app/${param0}/details`, {
@@ -937,7 +903,7 @@ export async function v2ApiAppAppIdDetailsUsingGet({ params, options }) {
 }
 
 /** UpdateAppV2 更新 app 信息 POST /llmops/v2/api/app/${param0}/update */
-export async function v2ApiAppAppIdUpdateUsingPost({ params, body, options }) {
+export function v2ApiAppAppIdUpdateUsingPost({ params, body, options }) {
   const { appID: param0, ...queryParams } = params;
 
   return request(`/llmops/v2/api/app/${param0}/update`, {
@@ -949,7 +915,7 @@ export async function v2ApiAppAppIdUpdateUsingPost({ params, body, options }) {
 }
 
 /** ListAppV2 查询用户关联的 app 列表 GET /llmops/v2/api/app/list */
-export async function v2ApiAppListUsingGet({ params, options }) {
+export function v2ApiAppListUsingGet({ params, options }) {
   return request('/llmops/v2/api/app/list', {
     method: 'GET',
     params: {
@@ -960,7 +926,7 @@ export async function v2ApiAppListUsingGet({ params, options }) {
 }
 
 /** GetApiTokenV2 获取一个 app token GET /llmops/v2/api/app/share/api-token */
-export async function v2ApiAppShareApiTokenUsingGet({ params, options }) {
+export function v2ApiAppShareApiTokenUsingGet({ params, options }) {
   return request('/llmops/v2/api/app/share/api-token', {
     method: 'GET',
     params: {
@@ -994,7 +960,7 @@ export function useV2ApiAppUsingPostMutation(options) {
 /** GetAppDetailsV2 查询 app 详情 GET /llmops/v2/api/app/${param0}/details */
 export function v2ApiAppAppIdDetailsUsingGetQueryOptions(options) {
   return queryOptions({
-    queryFn: async ({ queryKey }) => {
+    queryFn: ({ queryKey }) => {
       return apis.v2ApiAppAppIdDetailsUsingGet(queryKey[1]);
     },
     queryKey: ['v2ApiAppAppIdDetailsUsingGet', options],
@@ -1021,7 +987,7 @@ export function useV2ApiAppAppIdUpdateUsingPostMutation(options) {
 /** ListAppV2 查询用户关联的 app 列表 GET /llmops/v2/api/app/list */
 export function v2ApiAppListUsingGetQueryOptions(options) {
   return queryOptions({
-    queryFn: async ({ queryKey }) => {
+    queryFn: ({ queryKey }) => {
       return apis.v2ApiAppListUsingGet(queryKey[1]);
     },
     queryKey: ['v2ApiAppListUsingGet', options],
@@ -1031,7 +997,7 @@ export function v2ApiAppListUsingGetQueryOptions(options) {
 /** GetApiTokenV2 获取一个 app token GET /llmops/v2/api/app/share/api-token */
 export function v2ApiAppShareApiTokenUsingGetQueryOptions(options) {
   return queryOptions({
-    queryFn: async ({ queryKey }) => {
+    queryFn: ({ queryKey }) => {
       return apis.v2ApiAppShareApiTokenUsingGet(queryKey[1]);
     },
     queryKey: ['v2ApiAppShareApiTokenUsingGet', options],
@@ -1040,7 +1006,7 @@ export function v2ApiAppShareApiTokenUsingGetQueryOptions(options) {
 import { request } from 'axios';
 
 /** ListAttentionApp 应用列表 GET /llmops/v1/api/attention/app/list */
-export async function v1ApiAttentionAppListUsingGet({ params, options }) {
+export function v1ApiAttentionAppListUsingGet({ params, options }) {
   return request('/llmops/v1/api/attention/app/list', {
     method: 'GET',
     params: {
@@ -1051,7 +1017,7 @@ export async function v1ApiAttentionAppListUsingGet({ params, options }) {
 }
 
 /** ListAttentionConversations 查询会话列表 POST /llmops/v1/api/attention/conversations */
-export async function v1ApiAttentionConversationsUsingPost({ body, options }) {
+export function v1ApiAttentionConversationsUsingPost({ body, options }) {
   return request('/llmops/v1/api/attention/conversations', {
     method: 'POST',
     data: body,
@@ -1060,10 +1026,7 @@ export async function v1ApiAttentionConversationsUsingPost({ body, options }) {
 }
 
 /** GetAttentionConversationCount 获取对话数 POST /llmops/v1/api/attention/conversations/count */
-export async function v1ApiAttentionConversationsCountUsingPost({
-  body,
-  options,
-}) {
+export function v1ApiAttentionConversationsCountUsingPost({ body, options }) {
   return request('/llmops/v1/api/attention/conversations/count', {
     method: 'POST',
     data: body,
@@ -1072,7 +1035,7 @@ export async function v1ApiAttentionConversationsCountUsingPost({
 }
 
 /** GetAttentionMessagesCount 获取消息数 POST /llmops/v1/api/attention/messages/count */
-export async function v1ApiAttentionMessagesCountUsingPost({ body, options }) {
+export function v1ApiAttentionMessagesCountUsingPost({ body, options }) {
   return request('/llmops/v1/api/attention/messages/count', {
     method: 'POST',
     data: body,
@@ -1081,10 +1044,7 @@ export async function v1ApiAttentionMessagesCountUsingPost({ body, options }) {
 }
 
 /** GetAttentionMessagesHistory 获取聊天历史 GET /llmops/v1/api/attention/messages/history */
-export async function v1ApiAttentionMessagesHistoryUsingGet({
-  params,
-  options,
-}) {
+export function v1ApiAttentionMessagesHistoryUsingGet({ params, options }) {
   return request('/llmops/v1/api/attention/messages/history', {
     method: 'GET',
     params: {
@@ -1095,7 +1055,7 @@ export async function v1ApiAttentionMessagesHistoryUsingGet({
 }
 
 /** CreateAttentionUser 添加特别关注 POST /llmops/v1/api/attention/user */
-export async function v1ApiAttentionUserUsingPost({ body, options }) {
+export function v1ApiAttentionUserUsingPost({ body, options }) {
   return request('/llmops/v1/api/attention/user', {
     method: 'POST',
     data: body,
@@ -1104,7 +1064,7 @@ export async function v1ApiAttentionUserUsingPost({ body, options }) {
 }
 
 /** ListAllUser 系统全局用户列表 GET /llmops/v1/api/attention/user/all */
-export async function v1ApiAttentionUserAllUsingGet({ params, options }) {
+export function v1ApiAttentionUserAllUsingGet({ params, options }) {
   return request('/llmops/v1/api/attention/user/all', {
     method: 'GET',
     params: {
@@ -1118,7 +1078,7 @@ export async function v1ApiAttentionUserAllUsingGet({ params, options }) {
 }
 
 /** DeleteAttentionUser 取消特别关注 POST /llmops/v1/api/attention/user/cancel */
-export async function v1ApiAttentionUserCancelUsingPost({ body, options }) {
+export function v1ApiAttentionUserCancelUsingPost({ body, options }) {
   return request('/llmops/v1/api/attention/user/cancel', {
     method: 'POST',
     data: body,
@@ -1127,7 +1087,7 @@ export async function v1ApiAttentionUserCancelUsingPost({ body, options }) {
 }
 
 /** GetAttentionUserList 查询特别关注列表 POST /llmops/v1/api/attention/user/list */
-export async function v1ApiAttentionUserListUsingPost({ params, options }) {
+export function v1ApiAttentionUserListUsingPost({ params, options }) {
   return request('/llmops/v1/api/attention/user/list', {
     method: 'POST',
     params: {
@@ -1144,7 +1104,7 @@ import * as apis from './attention';
 /** ListAttentionApp 应用列表 GET /llmops/v1/api/attention/app/list */
 export function v1ApiAttentionAppListUsingGetQueryOptions(options) {
   return queryOptions({
-    queryFn: async ({ queryKey }) => {
+    queryFn: ({ queryKey }) => {
       return apis.v1ApiAttentionAppListUsingGet(queryKey[1]);
     },
     queryKey: ['v1ApiAttentionAppListUsingGet', options],
@@ -1205,7 +1165,7 @@ export function useV1ApiAttentionMessagesCountUsingPostMutation(options) {
 /** GetAttentionMessagesHistory 获取聊天历史 GET /llmops/v1/api/attention/messages/history */
 export function v1ApiAttentionMessagesHistoryUsingGetQueryOptions(options) {
   return queryOptions({
-    queryFn: async ({ queryKey }) => {
+    queryFn: ({ queryKey }) => {
       return apis.v1ApiAttentionMessagesHistoryUsingGet(queryKey[1]);
     },
     queryKey: ['v1ApiAttentionMessagesHistoryUsingGet', options],
@@ -1232,7 +1192,7 @@ export function useV1ApiAttentionUserUsingPostMutation(options) {
 /** ListAllUser 系统全局用户列表 GET /llmops/v1/api/attention/user/all */
 export function v1ApiAttentionUserAllUsingGetQueryOptions(options) {
   return queryOptions({
-    queryFn: async ({ queryKey }) => {
+    queryFn: ({ queryKey }) => {
       return apis.v1ApiAttentionUserAllUsingGet(queryKey[1]);
     },
     queryKey: ['v1ApiAttentionUserAllUsingGet', options],
@@ -1275,7 +1235,7 @@ export function useV1ApiAttentionUserListUsingPostMutation(options) {
 import { request } from 'axios';
 
 /** Authorize 获取code的跳转 GET /llmops/auth/authorize */
-export async function authAuthorizeUsingGet({ params, options }) {
+export function authAuthorizeUsingGet({ params, options }) {
   return request('/llmops/auth/authorize', {
     method: 'GET',
     params: {
@@ -1292,7 +1252,7 @@ import * as apis from './authorize';
 /** Authorize 获取code的跳转 GET /llmops/auth/authorize */
 export function authAuthorizeUsingGetQueryOptions(options) {
   return queryOptions({
-    queryFn: async ({ queryKey }) => {
+    queryFn: ({ queryKey }) => {
       return apis.authAuthorizeUsingGet(queryKey[1]);
     },
     queryKey: ['authAuthorizeUsingGet', options],
@@ -1301,7 +1261,7 @@ export function authAuthorizeUsingGetQueryOptions(options) {
 import { request } from 'axios';
 
 /** Messages Messages POST /llmops/v1/api/chat-messages */
-export async function v1ApiChatMessagesUsingPost({ body, options }) {
+export function v1ApiChatMessagesUsingPost({ body, options }) {
   return request('/llmops/v1/api/chat-messages', {
     method: 'POST',
     headers: {
@@ -1313,7 +1273,7 @@ export async function v1ApiChatMessagesUsingPost({ body, options }) {
 }
 
 /** WebMessages 分享页的聊天 POST /llmops/v1/api/chat-messages-web */
-export async function v1ApiChatMessagesWebUsingPost({ body, options }) {
+export function v1ApiChatMessagesWebUsingPost({ body, options }) {
   return request('/llmops/v1/api/chat-messages-web', {
     method: 'POST',
     headers: {
@@ -1325,7 +1285,7 @@ export async function v1ApiChatMessagesWebUsingPost({ body, options }) {
 }
 
 /** ChatMessage ChatMessage POST /llmops/v1/api/chat-messages/gpt */
-export async function v1ApiChatMessagesGptUsingPost({ body, options }) {
+export function v1ApiChatMessagesGptUsingPost({ body, options }) {
   return request('/llmops/v1/api/chat-messages/gpt', {
     method: 'POST',
     headers: {
@@ -1337,10 +1297,7 @@ export async function v1ApiChatMessagesGptUsingPost({ body, options }) {
 }
 
 /** QuestionRecommend QuestionRecommend POST /llmops/v1/api/chat-messages/question-recommend */
-export async function v1ApiChatMessagesQuestionRecommendUsingPost({
-  body,
-  options,
-}) {
+export function v1ApiChatMessagesQuestionRecommendUsingPost({ body, options }) {
   return request('/llmops/v1/api/chat-messages/question-recommend', {
     method: 'POST',
     headers: {
@@ -1352,7 +1309,7 @@ export async function v1ApiChatMessagesQuestionRecommendUsingPost({
 }
 
 /** V2Messages 用于微精灵聊天的v2版本 POST /llmops/v2/api/chat-messages */
-export async function v2ApiChatMessagesUsingPost({ body, options }) {
+export function v2ApiChatMessagesUsingPost({ body, options }) {
   return request('/llmops/v2/api/chat-messages', {
     method: 'POST',
     headers: {
@@ -1456,7 +1413,7 @@ export function useV2ApiChatMessagesUsingPostMutation(options) {
 import { request } from 'axios';
 
 /** ConversationList 会话历史 GET /llmops/v1/api/conversations */
-export async function v1ApiConversationsUsingGet({ params, options }) {
+export function v1ApiConversationsUsingGet({ params, options }) {
   return request('/llmops/v1/api/conversations', {
     method: 'GET',
     params: {
@@ -1467,7 +1424,7 @@ export async function v1ApiConversationsUsingGet({ params, options }) {
 }
 
 /** DeleteConversation 删除会话 DELETE /llmops/v1/api/conversations */
-export async function v1ApiConversationsUsingDelete({ params, options }) {
+export function v1ApiConversationsUsingDelete({ params, options }) {
   return request('/llmops/v1/api/conversations', {
     method: 'DELETE',
     params: {
@@ -1484,7 +1441,7 @@ import * as apis from './conversation';
 /** ConversationList 会话历史 GET /llmops/v1/api/conversations */
 export function v1ApiConversationsUsingGetQueryOptions(options) {
   return queryOptions({
-    queryFn: async ({ queryKey }) => {
+    queryFn: ({ queryKey }) => {
       return apis.v1ApiConversationsUsingGet(queryKey[1]);
     },
     queryKey: ['v1ApiConversationsUsingGet', options],
@@ -1510,11 +1467,7 @@ export function useV1ApiConversationsUsingDeleteMutation(options) {
 import { request } from 'axios';
 
 /** CreateFeedbacks CreateFeedbacks POST /llmops/v1/api/feedbacks/${param0} */
-export async function v1ApiFeedbacksMessageIdUsingPost({
-  params,
-  body,
-  options,
-}) {
+export function v1ApiFeedbacksMessageIdUsingPost({ params, body, options }) {
   const { message_id: param0, ...queryParams } = params;
 
   return request(`/llmops/v1/api/feedbacks/${param0}`, {
@@ -1551,11 +1504,7 @@ export function useV1ApiFeedbacksMessageIdUsingPostMutation(options) {
 import { request } from 'axios';
 
 /** CreateDatasetsJoin 创建 app 数据集关联 POST /llmops/v1/api/app/${param0}/datasets */
-export async function v1ApiAppAppIdDatasetsUsingPost({
-  params,
-  body,
-  options,
-}) {
+export function v1ApiAppAppIdDatasetsUsingPost({ params, body, options }) {
   const { appID: param0, ...queryParams } = params;
 
   return request(`/llmops/v1/api/app/${param0}/datasets`, {
@@ -1567,7 +1516,7 @@ export async function v1ApiAppAppIdDatasetsUsingPost({
 }
 
 /** DeleteDatasetsJoin 删除 app 数据集关联 DELETE /llmops/v1/api/app/${param0}/datasets */
-export async function v1ApiAppAppIdDatasetsUsingDelete({ params, options }) {
+export function v1ApiAppAppIdDatasetsUsingDelete({ params, options }) {
   const { appID: param0, ...queryParams } = params;
 
   return request(`/llmops/v1/api/app/${param0}/datasets`, {
@@ -1619,7 +1568,7 @@ export function useV1ApiAppAppIdDatasetsUsingDeleteMutation(options) {
 import { request } from 'axios';
 
 /** GetDatasetsList 数据集列表 GET /llmops/v1/api/app/${param0}/datasets-list */
-export async function v1ApiAppAppIdDatasetsListUsingGet({ params, options }) {
+export function v1ApiAppAppIdDatasetsListUsingGet({ params, options }) {
   const { appID: param0, ...queryParams } = params;
 
   return request(`/llmops/v1/api/app/${param0}/datasets-list`, {
@@ -1638,7 +1587,7 @@ import * as apis from './datasetsList';
 /** GetDatasetsList 数据集列表 GET /llmops/v1/api/app/${param0}/datasets-list */
 export function v1ApiAppAppIdDatasetsListUsingGetQueryOptions(options) {
   return queryOptions({
-    queryFn: async ({ queryKey }) => {
+    queryFn: ({ queryKey }) => {
       return apis.v1ApiAppAppIdDatasetsListUsingGet(queryKey[1]);
     },
     queryKey: ['v1ApiAppAppIdDatasetsListUsingGet', options],
@@ -1647,7 +1596,7 @@ export function v1ApiAppAppIdDatasetsListUsingGetQueryOptions(options) {
 import { request } from 'axios';
 
 /** DeleteFeedbacks DeleteFeedbacks DELETE /llmops/v1/api/feedbacks/${param0} */
-export async function v1ApiFeedbacksMessageIdUsingDelete({ params, options }) {
+export function v1ApiFeedbacksMessageIdUsingDelete({ params, options }) {
   const { message_id: param0, ...queryParams } = params;
 
   return request(`/llmops/v1/api/feedbacks/${param0}`, {
@@ -1682,7 +1631,7 @@ export function useV1ApiFeedbacksMessageIdUsingDeleteMutation(options) {
 import { request } from 'axios';
 
 /** DeleteKey 为应用添加各种类型机器人appkey DELETE /llmops/v1/api/robot/${param0}/appkey */
-export async function v1ApiRobotWorkspaceIdAppkeyUsingDelete({
+export function v1ApiRobotWorkspaceIdAppkeyUsingDelete({
   params,
   body,
   options,
@@ -1720,7 +1669,7 @@ export function useV1ApiRobotWorkspaceIdAppkeyUsingDeleteMutation(options) {
 import { request } from 'axios';
 
 /** Exchange 换取token GET /llmops/auth/exchange */
-export async function authExchangeUsingGet({ params, options }) {
+export function authExchangeUsingGet({ params, options }) {
   return request('/llmops/auth/exchange', {
     method: 'GET',
     params: {
@@ -1737,7 +1686,7 @@ import * as apis from './exchange';
 /** Exchange 换取token GET /llmops/auth/exchange */
 export function authExchangeUsingGetQueryOptions(options) {
   return queryOptions({
-    queryFn: async ({ queryKey }) => {
+    queryFn: ({ queryKey }) => {
       return apis.authExchangeUsingGet(queryKey[1]);
     },
     queryKey: ['authExchangeUsingGet', options],
@@ -1746,7 +1695,7 @@ export function authExchangeUsingGetQueryOptions(options) {
 import { request } from 'axios';
 
 /** Filestream 上传文件 POST /llmops/v1/api/file */
-export async function v1ApiFileUsingPost({ params, body, options }) {
+export function v1ApiFileUsingPost({ params, body, options }) {
   return request('/llmops/v1/api/file', {
     method: 'POST',
     headers: {
@@ -1761,7 +1710,7 @@ export async function v1ApiFileUsingPost({ params, body, options }) {
 }
 
 /** SpeechToText 语音转文字 POST /llmops/v1/api/speech_to_text */
-export async function v1ApiSpeechToTextUsingPost({ body, options }) {
+export function v1ApiSpeechToTextUsingPost({ body, options }) {
   return request('/llmops/v1/api/speech_to_text', {
     method: 'POST',
     headers: {
@@ -1773,7 +1722,7 @@ export async function v1ApiSpeechToTextUsingPost({ body, options }) {
 }
 
 /** TextToSpeech 文字转语音 POST /llmops/v1/api/text_to_speech */
-export async function v1ApiTextToSpeechUsingPost({ body, options }) {
+export function v1ApiTextToSpeechUsingPost({ body, options }) {
   return request('/llmops/v1/api/text_to_speech', {
     method: 'POST',
     headers: {
@@ -1785,7 +1734,7 @@ export async function v1ApiTextToSpeechUsingPost({ body, options }) {
 }
 
 /** 上传文件V2接口 上传文件V2接口用于向服务器提交文件。 POST /llmops/v2/api/file */
-export async function v2ApiFileUsingPost({ params, body, options }) {
+export function v2ApiFileUsingPost({ params, body, options }) {
   const formData = new FormData();
 
   Object.keys(body).forEach((ele) => {
@@ -1886,7 +1835,7 @@ export function useV2ApiFileUsingPostMutation(options) {
 import { request } from 'axios';
 
 /** GetAppKey 为应用获取各种类型机器人appkey GET /llmops/v1/api/robot/${param0}/appkey */
-export async function v1ApiRobotWorkspaceIdAppkeyUsingGet({ params, options }) {
+export function v1ApiRobotWorkspaceIdAppkeyUsingGet({ params, options }) {
   const { workspaceID: param0, ...queryParams } = params;
 
   return request(`/llmops/v1/api/robot/${param0}/appkey`, {
@@ -1905,7 +1854,7 @@ import * as apis from './getAppKey';
 /** GetAppKey 为应用获取各种类型机器人appkey GET /llmops/v1/api/robot/${param0}/appkey */
 export function v1ApiRobotWorkspaceIdAppkeyUsingGetQueryOptions(options) {
   return queryOptions({
-    queryFn: async ({ queryKey }) => {
+    queryFn: ({ queryKey }) => {
       return apis.v1ApiRobotWorkspaceIdAppkeyUsingGet(queryKey[1]);
     },
     queryKey: ['v1ApiRobotWorkspaceIdAppkeyUsingGet', options],
@@ -1914,7 +1863,7 @@ export function v1ApiRobotWorkspaceIdAppkeyUsingGetQueryOptions(options) {
 import { request } from 'axios';
 
 /** History 会话历史 GET /llmops/v1/api/conversations/${param0}/history */
-export async function v1ApiConversationsConversationIdHistoryUsingGet({
+export function v1ApiConversationsConversationIdHistoryUsingGet({
   params,
   options,
 }) {
@@ -1928,7 +1877,7 @@ export async function v1ApiConversationsConversationIdHistoryUsingGet({
 }
 
 /** DeleteHistory 会话历史 DELETE /llmops/v1/api/conversations/${param0}/history */
-export async function v1ApiConversationsConversationIdHistoryUsingDelete({
+export function v1ApiConversationsConversationIdHistoryUsingDelete({
   params,
   options,
 }) {
@@ -1944,10 +1893,7 @@ export async function v1ApiConversationsConversationIdHistoryUsingDelete({
 }
 
 /** GetMessageCount 用于微精灵获取消息数的v2版本 GET /llmops/v2/api/chat-messages/messagesCount */
-export async function v2ApiChatMessagesMessagesCountUsingGet({
-  params,
-  options,
-}) {
+export function v2ApiChatMessagesMessagesCountUsingGet({ params, options }) {
   return request('/llmops/v2/api/chat-messages/messagesCount', {
     method: 'GET',
     params: {
@@ -1966,7 +1912,7 @@ export function v1ApiConversationsConversationIdHistoryUsingGetQueryOptions(
   options
 ) {
   return queryOptions({
-    queryFn: async ({ queryKey }) => {
+    queryFn: ({ queryKey }) => {
       return apis.v1ApiConversationsConversationIdHistoryUsingGet(queryKey[1]);
     },
     queryKey: ['v1ApiConversationsConversationIdHistoryUsingGet', options],
@@ -1995,7 +1941,7 @@ export function useV1ApiConversationsConversationIdHistoryUsingDeleteMutation(
 /** GetMessageCount 用于微精灵获取消息数的v2版本 GET /llmops/v2/api/chat-messages/messagesCount */
 export function v2ApiChatMessagesMessagesCountUsingGetQueryOptions(options) {
   return queryOptions({
-    queryFn: async ({ queryKey }) => {
+    queryFn: ({ queryKey }) => {
       return apis.v2ApiChatMessagesMessagesCountUsingGet(queryKey[1]);
     },
     queryKey: ['v2ApiChatMessagesMessagesCountUsingGet', options],
@@ -2004,7 +1950,7 @@ export function v2ApiChatMessagesMessagesCountUsingGetQueryOptions(options) {
 import { request } from 'axios';
 
 /** GetIamUserId 查询 IAM 用户信息 GET /llmops/v1/api/iamAccount */
-export async function v1ApiIamAccountUsingGet({ params, options }) {
+export function v1ApiIamAccountUsingGet({ params, options }) {
   return request('/llmops/v1/api/iamAccount', {
     method: 'GET',
     params: {
@@ -2021,7 +1967,7 @@ import * as apis from './iam';
 /** GetIamUserId 查询 IAM 用户信息 GET /llmops/v1/api/iamAccount */
 export function v1ApiIamAccountUsingGetQueryOptions(options) {
   return queryOptions({
-    queryFn: async ({ queryKey }) => {
+    queryFn: ({ queryKey }) => {
       return apis.v1ApiIamAccountUsingGet(queryKey[1]);
     },
     queryKey: ['v1ApiIamAccountUsingGet', options],
@@ -2092,7 +2038,7 @@ export * from './workspaceGroup.reactquery';
 import { request } from 'axios';
 
 /** ListFeedbacks ListFeedbacks GET /llmops/v1/api/feedbacks/ */
-export async function v1ApiFeedbacksUsingGet({ params, options }) {
+export function v1ApiFeedbacksUsingGet({ params, options }) {
   return request('/llmops/v1/api/feedbacks/', {
     method: 'GET',
     params: {
@@ -2109,7 +2055,7 @@ import * as apis from './listFeedbacks';
 /** ListFeedbacks ListFeedbacks GET /llmops/v1/api/feedbacks/ */
 export function v1ApiFeedbacksUsingGetQueryOptions(options) {
   return queryOptions({
-    queryFn: async ({ queryKey }) => {
+    queryFn: ({ queryKey }) => {
       return apis.v1ApiFeedbacksUsingGet(queryKey[1]);
     },
     queryKey: ['v1ApiFeedbacksUsingGet', options],
@@ -2118,7 +2064,7 @@ export function v1ApiFeedbacksUsingGetQueryOptions(options) {
 import { request } from 'axios';
 
 /** ListProviders 查询 Provider 列表 GET /llmops/v1/api/provider/list */
-export async function v1ApiProviderListUsingGet({ params, options }) {
+export function v1ApiProviderListUsingGet({ params, options }) {
   return request('/llmops/v1/api/provider/list', {
     method: 'GET',
     params: {
@@ -2135,7 +2081,7 @@ import * as apis from './provider';
 /** ListProviders 查询 Provider 列表 GET /llmops/v1/api/provider/list */
 export function v1ApiProviderListUsingGetQueryOptions(options) {
   return queryOptions({
-    queryFn: async ({ queryKey }) => {
+    queryFn: ({ queryKey }) => {
       return apis.v1ApiProviderListUsingGet(queryKey[1]);
     },
     queryKey: ['v1ApiProviderListUsingGet', options],
@@ -2144,10 +2090,7 @@ export function v1ApiProviderListUsingGetQueryOptions(options) {
 import { request } from 'axios';
 
 /** ListRecommendedContext 查询推荐内容列表 GET /llmops/v1/api/app/${param0}/recommended/context */
-export async function v1ApiAppAppIdRecommendedContextUsingGet({
-  params,
-  options,
-}) {
+export function v1ApiAppAppIdRecommendedContextUsingGet({ params, options }) {
   const { appID: param0, ...queryParams } = params;
 
   return request(`/llmops/v1/api/app/${param0}/recommended/context`, {
@@ -2158,7 +2101,7 @@ export async function v1ApiAppAppIdRecommendedContextUsingGet({
 }
 
 /** CreateOrUpdateRecommendedContext 创建或更新推荐内容列表 POST /llmops/v1/api/app/${param0}/recommended/context */
-export async function v1ApiAppAppIdRecommendedContextUsingPost({
+export function v1ApiAppAppIdRecommendedContextUsingPost({
   params,
   body,
   options,
@@ -2180,7 +2123,7 @@ import * as apis from './recommended';
 /** ListRecommendedContext 查询推荐内容列表 GET /llmops/v1/api/app/${param0}/recommended/context */
 export function v1ApiAppAppIdRecommendedContextUsingGetQueryOptions(options) {
   return queryOptions({
-    queryFn: async ({ queryKey }) => {
+    queryFn: ({ queryKey }) => {
       return apis.v1ApiAppAppIdRecommendedContextUsingGet(queryKey[1]);
     },
     queryKey: ['v1ApiAppAppIdRecommendedContextUsingGet', options],
@@ -2206,7 +2149,7 @@ export function useV1ApiAppAppIdRecommendedContextUsingPostMutation(options) {
 import { request } from 'axios';
 
 /** RefreshToken 刷新token POST /llmops/auth/refresh-token */
-export async function authRefreshTokenUsingPost({ body, options }) {
+export function authRefreshTokenUsingPost({ body, options }) {
   return request('/llmops/auth/refresh-token', {
     method: 'POST',
     data: body,
@@ -2237,7 +2180,7 @@ export function useAuthRefreshTokenUsingPostMutation(options) {
 import { request } from 'axios';
 
 /** H5GetApiToken 获取一个 app token h5版 GET /llmops/v1/api/app/h5/share/api-token */
-export async function v1ApiAppH5ShareApiTokenUsingGet({ params, options }) {
+export function v1ApiAppH5ShareApiTokenUsingGet({ params, options }) {
   return request('/llmops/v1/api/app/h5/share/api-token', {
     method: 'GET',
     params: {
@@ -2248,7 +2191,7 @@ export async function v1ApiAppH5ShareApiTokenUsingGet({ params, options }) {
 }
 
 /** GetApiToken 获取一个 app token GET /llmops/v1/api/app/share/api-token */
-export async function v1ApiAppShareApiTokenUsingGet({ params, options }) {
+export function v1ApiAppShareApiTokenUsingGet({ params, options }) {
   return request('/llmops/v1/api/app/share/api-token', {
     method: 'GET',
     params: {
@@ -2265,7 +2208,7 @@ import * as apis from './share';
 /** H5GetApiToken 获取一个 app token h5版 GET /llmops/v1/api/app/h5/share/api-token */
 export function v1ApiAppH5ShareApiTokenUsingGetQueryOptions(options) {
   return queryOptions({
-    queryFn: async ({ queryKey }) => {
+    queryFn: ({ queryKey }) => {
       return apis.v1ApiAppH5ShareApiTokenUsingGet(queryKey[1]);
     },
     queryKey: ['v1ApiAppH5ShareApiTokenUsingGet', options],
@@ -2275,7 +2218,7 @@ export function v1ApiAppH5ShareApiTokenUsingGetQueryOptions(options) {
 /** GetApiToken 获取一个 app token GET /llmops/v1/api/app/share/api-token */
 export function v1ApiAppShareApiTokenUsingGetQueryOptions(options) {
   return queryOptions({
-    queryFn: async ({ queryKey }) => {
+    queryFn: ({ queryKey }) => {
       return apis.v1ApiAppShareApiTokenUsingGet(queryKey[1]);
     },
     queryKey: ['v1ApiAppShareApiTokenUsingGet', options],
@@ -2284,7 +2227,7 @@ export function v1ApiAppShareApiTokenUsingGetQueryOptions(options) {
 import { request } from 'axios';
 
 /** UpdateAppKeyState 为应用获取各种类型机器人状态 POST /llmops/v1/api/robot/${param0}/appkey/state */
-export async function v1ApiRobotWorkspaceIdAppkeyStateUsingPost({
+export function v1ApiRobotWorkspaceIdAppkeyStateUsingPost({
   params,
   body,
   options,
@@ -2322,7 +2265,7 @@ export function useV1ApiRobotWorkspaceIdAppkeyStateUsingPostMutation(options) {
 import { request } from 'axios';
 
 /** ListUser 系统全局用户列表 GET /llmops/v1/api/user */
-export async function v1ApiUserUsingGet({ params, options }) {
+export function v1ApiUserUsingGet({ params, options }) {
   return request('/llmops/v1/api/user', {
     method: 'GET',
     params: {
@@ -2336,7 +2279,7 @@ export async function v1ApiUserUsingGet({ params, options }) {
 }
 
 /** GetUserInfoByToken 获取iam用户数据 GET /llmops/v1/api/user/info */
-export async function v1ApiUserInfoUsingGet({ params, options }) {
+export function v1ApiUserInfoUsingGet({ params, options }) {
   return request('/llmops/v1/api/user/info', {
     method: 'GET',
     params: {
@@ -2347,7 +2290,7 @@ export async function v1ApiUserInfoUsingGet({ params, options }) {
 }
 
 /** UpdateUserRole 更新用户角色 PUT /llmops/v1/api/user/role */
-export async function v1ApiUserRoleUsingPut({ body, options }) {
+export function v1ApiUserRoleUsingPut({ body, options }) {
   return request('/llmops/v1/api/user/role', {
     method: 'PUT',
     data: body,
@@ -2362,7 +2305,7 @@ import * as apis from './user';
 /** ListUser 系统全局用户列表 GET /llmops/v1/api/user */
 export function v1ApiUserUsingGetQueryOptions(options) {
   return queryOptions({
-    queryFn: async ({ queryKey }) => {
+    queryFn: ({ queryKey }) => {
       return apis.v1ApiUserUsingGet(queryKey[1]);
     },
     queryKey: ['v1ApiUserUsingGet', options],
@@ -2372,7 +2315,7 @@ export function v1ApiUserUsingGetQueryOptions(options) {
 /** GetUserInfoByToken 获取iam用户数据 GET /llmops/v1/api/user/info */
 export function v1ApiUserInfoUsingGetQueryOptions(options) {
   return queryOptions({
-    queryFn: async ({ queryKey }) => {
+    queryFn: ({ queryKey }) => {
       return apis.v1ApiUserInfoUsingGet(queryKey[1]);
     },
     queryKey: ['v1ApiUserInfoUsingGet', options],
@@ -2398,7 +2341,7 @@ export function useV1ApiUserRoleUsingPutMutation(options) {
 import { request } from 'axios';
 
 /** GetWorkspaceList 空间列表 GET /llmops/v2/api/workspaces */
-export async function v2ApiWorkspacesUsingGet({ options }) {
+export function v2ApiWorkspacesUsingGet({ options }) {
   return request('/llmops/v2/api/workspaces', {
     method: 'GET',
     ...(options || {}),
@@ -2406,7 +2349,7 @@ export async function v2ApiWorkspacesUsingGet({ options }) {
 }
 
 /** CreateWorkspace 创建空间 POST /llmops/v2/api/workspaces */
-export async function v2ApiWorkspacesUsingPost({ body, options }) {
+export function v2ApiWorkspacesUsingPost({ body, options }) {
   return request('/llmops/v2/api/workspaces', {
     method: 'POST',
     data: body,
@@ -2415,7 +2358,7 @@ export async function v2ApiWorkspacesUsingPost({ body, options }) {
 }
 
 /** GetDefaultWorkspace 获取用户默认空间 GET /llmops/v2/api/workspaces-default */
-export async function v2ApiWorkspacesDefaultUsingGet({ options }) {
+export function v2ApiWorkspacesDefaultUsingGet({ options }) {
   return request('/llmops/v2/api/workspaces-default', {
     method: 'GET',
     ...(options || {}),
@@ -2423,7 +2366,7 @@ export async function v2ApiWorkspacesDefaultUsingGet({ options }) {
 }
 
 /** 切换默认空间 POST /llmops/v2/api/workspaces-default */
-export async function v2ApiWorkspacesDefaultUsingPost({ params, options }) {
+export function v2ApiWorkspacesDefaultUsingPost({ params, options }) {
   return request('/llmops/v2/api/workspaces-default', {
     method: 'POST',
     params: {
@@ -2434,11 +2377,7 @@ export async function v2ApiWorkspacesDefaultUsingPost({ params, options }) {
 }
 
 /** UpdateWorkspace 更新空间 POST /llmops/v2/api/workspaces/${param0} */
-export async function v2ApiWorkspacesWorkspaceIdUsingPost({
-  params,
-  body,
-  options,
-}) {
+export function v2ApiWorkspacesWorkspaceIdUsingPost({ params, body, options }) {
   const { workspaceID: param0, ...queryParams } = params;
 
   return request(`/llmops/v2/api/workspaces/${param0}`, {
@@ -2450,10 +2389,7 @@ export async function v2ApiWorkspacesWorkspaceIdUsingPost({
 }
 
 /** DeleteWorkspace 删除空间 DELETE /llmops/v2/api/workspaces/${param0} */
-export async function v2ApiWorkspacesWorkspaceIdUsingDelete({
-  params,
-  options,
-}) {
+export function v2ApiWorkspacesWorkspaceIdUsingDelete({ params, options }) {
   const { workspaceID: param0, ...queryParams } = params;
 
   return request(`/llmops/v2/api/workspaces/${param0}`, {
@@ -2464,7 +2400,7 @@ export async function v2ApiWorkspacesWorkspaceIdUsingDelete({
 }
 
 /** CreateDatasetsJoinV2 创建 app 数据集关联 POST /llmops/v2/api/workspaces/${param0}/app/${param1}/datasets/join */
-export async function v2ApiWorkspacesWorkspaceIdAppAppIdDatasetsJoinUsingPost({
+export function v2ApiWorkspacesWorkspaceIdAppAppIdDatasetsJoinUsingPost({
   params,
   body,
   options,
@@ -2483,7 +2419,7 @@ export async function v2ApiWorkspacesWorkspaceIdAppAppIdDatasetsJoinUsingPost({
 }
 
 /** GetWorkspaceDatasetsList 空间下数据集列表 GET /llmops/v2/api/workspaces/${param0}/datasets */
-export async function v2ApiWorkspacesWorkspaceIdDatasetsUsingGet({
+export function v2ApiWorkspacesWorkspaceIdDatasetsUsingGet({
   params,
   options,
 }) {
@@ -2497,7 +2433,7 @@ export async function v2ApiWorkspacesWorkspaceIdDatasetsUsingGet({
 }
 
 /** CreateWorkspaceDatasets 创建空间下数据集 POST /llmops/v2/api/workspaces/${param0}/datasets */
-export async function v2ApiWorkspacesWorkspaceIdDatasetsUsingPost({
+export function v2ApiWorkspacesWorkspaceIdDatasetsUsingPost({
   params,
   body,
   options,
@@ -2513,7 +2449,7 @@ export async function v2ApiWorkspacesWorkspaceIdDatasetsUsingPost({
 }
 
 /** GetWorkspaceUserRole 查询空间用户权限 GET /llmops/v2/api/workspaces/${param0}/permissions */
-export async function v2ApiWorkspacesWorkspaceIdPermissionsUsingGet({
+export function v2ApiWorkspacesWorkspaceIdPermissionsUsingGet({
   params,
   options,
 }) {
@@ -2527,7 +2463,7 @@ export async function v2ApiWorkspacesWorkspaceIdPermissionsUsingGet({
 }
 
 /** DeleteWorkspaceUsers 删除空间下用户 DELETE /llmops/v2/api/workspaces/${param0}/user/${param1} */
-export async function v2ApiWorkspacesWorkspaceIdUserUserIdUsingDelete({
+export function v2ApiWorkspacesWorkspaceIdUserUserIdUsingDelete({
   params,
   options,
 }) {
@@ -2541,10 +2477,7 @@ export async function v2ApiWorkspacesWorkspaceIdUserUserIdUsingDelete({
 }
 
 /** GetWorkspaceUsers 查询空间下用户列表 GET /llmops/v2/api/workspaces/${param0}/users */
-export async function v2ApiWorkspacesWorkspaceIdUsersUsingGet({
-  params,
-  options,
-}) {
+export function v2ApiWorkspacesWorkspaceIdUsersUsingGet({ params, options }) {
   const { workspaceID: param0, ...queryParams } = params;
 
   return request(`/llmops/v2/api/workspaces/${param0}/users`, {
@@ -2555,7 +2488,7 @@ export async function v2ApiWorkspacesWorkspaceIdUsersUsingGet({
 }
 
 /** CreateOrUpdateWorkspaceUsers 添加或更新空间下用户角色 POST /llmops/v2/api/workspaces/${param0}/users */
-export async function v2ApiWorkspacesWorkspaceIdUsersUsingPost({
+export function v2ApiWorkspacesWorkspaceIdUsersUsingPost({
   params,
   body,
   options,
@@ -2577,7 +2510,7 @@ import * as apis from './workspace';
 /** GetWorkspaceList 空间列表 GET /llmops/v2/api/workspaces */
 export function v2ApiWorkspacesUsingGetQueryOptions(options) {
   return queryOptions({
-    queryFn: async ({ queryKey }) => {
+    queryFn: ({ queryKey }) => {
       return apis.v2ApiWorkspacesUsingGet(queryKey[1]);
     },
     queryKey: ['v2ApiWorkspacesUsingGet', options],
@@ -2604,7 +2537,7 @@ export function useV2ApiWorkspacesUsingPostMutation(options) {
 /** GetDefaultWorkspace 获取用户默认空间 GET /llmops/v2/api/workspaces-default */
 export function v2ApiWorkspacesDefaultUsingGetQueryOptions(options) {
   return queryOptions({
-    queryFn: async ({ queryKey }) => {
+    queryFn: ({ queryKey }) => {
       return apis.v2ApiWorkspacesDefaultUsingGet(queryKey[1]);
     },
     queryKey: ['v2ApiWorkspacesDefaultUsingGet', options],
@@ -2686,7 +2619,7 @@ export function v2ApiWorkspacesWorkspaceIdDatasetsUsingGetQueryOptions(
   options
 ) {
   return queryOptions({
-    queryFn: async ({ queryKey }) => {
+    queryFn: ({ queryKey }) => {
       return apis.v2ApiWorkspacesWorkspaceIdDatasetsUsingGet(queryKey[1]);
     },
     queryKey: ['v2ApiWorkspacesWorkspaceIdDatasetsUsingGet', options],
@@ -2717,7 +2650,7 @@ export function v2ApiWorkspacesWorkspaceIdPermissionsUsingGetQueryOptions(
   options
 ) {
   return queryOptions({
-    queryFn: async ({ queryKey }) => {
+    queryFn: ({ queryKey }) => {
       return apis.v2ApiWorkspacesWorkspaceIdPermissionsUsingGet(queryKey[1]);
     },
     queryKey: ['v2ApiWorkspacesWorkspaceIdPermissionsUsingGet', options],
@@ -2746,7 +2679,7 @@ export function useV2ApiWorkspacesWorkspaceIdUserUserIdUsingDeleteMutation(
 /** GetWorkspaceUsers 查询空间下用户列表 GET /llmops/v2/api/workspaces/${param0}/users */
 export function v2ApiWorkspacesWorkspaceIdUsersUsingGetQueryOptions(options) {
   return queryOptions({
-    queryFn: async ({ queryKey }) => {
+    queryFn: ({ queryKey }) => {
       return apis.v2ApiWorkspacesWorkspaceIdUsersUsingGet(queryKey[1]);
     },
     queryKey: ['v2ApiWorkspacesWorkspaceIdUsersUsingGet', options],
@@ -2772,7 +2705,7 @@ export function useV2ApiWorkspacesWorkspaceIdUsersUsingPostMutation(options) {
 import { request } from 'axios';
 
 /** CopyApp 复制 app POST /llmops/v2/api/copy_apps */
-export async function v2ApiCopyAppsUsingPost({ body, options }) {
+export function v2ApiCopyAppsUsingPost({ body, options }) {
   return request('/llmops/v2/api/copy_apps', {
     method: 'POST',
     data: body,
@@ -2781,7 +2714,7 @@ export async function v2ApiCopyAppsUsingPost({ body, options }) {
 }
 
 /** UpdateAppV2.1 更新 app 信息 POST /llmops/v2/api/workspaces/${param0}/app/${param1} */
-export async function v2ApiWorkspacesWorkspaceIdAppAppIdUsingPost({
+export function v2ApiWorkspacesWorkspaceIdAppAppIdUsingPost({
   params,
   body,
   options,
@@ -2797,7 +2730,7 @@ export async function v2ApiWorkspacesWorkspaceIdAppAppIdUsingPost({
 }
 
 /** GetAppDetailsV2.1 查询 app 详情 GET /llmops/v2/api/workspaces/${param0}/app/${param1}/details */
-export async function v2ApiWorkspacesWorkspaceIdAppAppIdDetailsUsingGet({
+export function v2ApiWorkspacesWorkspaceIdAppAppIdDetailsUsingGet({
   params,
   options,
 }) {
@@ -2811,7 +2744,7 @@ export async function v2ApiWorkspacesWorkspaceIdAppAppIdDetailsUsingGet({
 }
 
 /** GetSumHourlyMessagesCountV2.1 每小时messages数 GET /llmops/v2/api/workspaces/${param0}/app/${param1}/hourly-messages */
-export async function v2ApiWorkspacesWorkspaceIdAppAppIdHourlyMessagesUsingGet({
+export function v2ApiWorkspacesWorkspaceIdAppAppIdHourlyMessagesUsingGet({
   params,
   options,
 }) {
@@ -2830,7 +2763,7 @@ export async function v2ApiWorkspacesWorkspaceIdAppAppIdHourlyMessagesUsingGet({
 }
 
 /** GetSumHourlyTokenV2.1 每小时token数 GET /llmops/v2/api/workspaces/${param0}/app/${param1}/hourly-token */
-export async function v2ApiWorkspacesWorkspaceIdAppAppIdHourlyTokenUsingGet({
+export function v2ApiWorkspacesWorkspaceIdAppAppIdHourlyTokenUsingGet({
   params,
   options,
 }) {
@@ -2849,7 +2782,7 @@ export async function v2ApiWorkspacesWorkspaceIdAppAppIdHourlyTokenUsingGet({
 }
 
 /** GetSumDailyMessagesCountV2.1 每日messages数 GET /llmops/v2/api/workspaces/${param0}/app/${param1}/messages */
-export async function v2ApiWorkspacesWorkspaceIdAppAppIdMessagesUsingGet({
+export function v2ApiWorkspacesWorkspaceIdAppAppIdMessagesUsingGet({
   params,
   options,
 }) {
@@ -2865,7 +2798,7 @@ export async function v2ApiWorkspacesWorkspaceIdAppAppIdMessagesUsingGet({
 }
 
 /** UpdateAppStatusV2.1 更新 app 状态 PUT /llmops/v2/api/workspaces/${param0}/app/${param1}/update_status */
-export async function v2ApiWorkspacesWorkspaceIdAppAppIdUpdateStatusUsingPut({
+export function v2ApiWorkspacesWorkspaceIdAppAppIdUpdateStatusUsingPut({
   params,
   body,
   options,
@@ -2884,10 +2817,7 @@ export async function v2ApiWorkspacesWorkspaceIdAppAppIdUpdateStatusUsingPut({
 }
 
 /** ListAppV2.1 查询用户关联的 app 列表 GET /llmops/v2/api/workspaces/${param0}/apps */
-export async function v2ApiWorkspacesWorkspaceIdAppsUsingGet({
-  params,
-  options,
-}) {
+export function v2ApiWorkspacesWorkspaceIdAppsUsingGet({ params, options }) {
   const { workspaceID: param0, ...queryParams } = params;
 
   return request(`/llmops/v2/api/workspaces/${param0}/apps`, {
@@ -2900,7 +2830,7 @@ export async function v2ApiWorkspacesWorkspaceIdAppsUsingGet({
 }
 
 /** CreateAppV2.1 创建 app POST /llmops/v2/api/workspaces/${param0}/apps */
-export async function v2ApiWorkspacesWorkspaceIdAppsUsingPost({
+export function v2ApiWorkspacesWorkspaceIdAppsUsingPost({
   params,
   body,
   options,
@@ -2916,7 +2846,7 @@ export async function v2ApiWorkspacesWorkspaceIdAppsUsingPost({
 }
 
 /** DeleteDatasetsJoinV2.1 删除 app 数据集关联 DELETE /llmops/v2/api/workspaces/${param1}/app/${param0}/datasets */
-export async function v2ApiWorkspacesWorkspaceIdAppAppIdDatasetsUsingDelete({
+export function v2ApiWorkspacesWorkspaceIdAppAppIdDatasetsUsingDelete({
   params,
   options,
 }) {
@@ -2932,7 +2862,7 @@ export async function v2ApiWorkspacesWorkspaceIdAppAppIdDatasetsUsingDelete({
 }
 
 /** GetAppLogsV2.1 查询 app 日志与标注 GET /llmops/v2/api/workspaces/${param1}/app/${param0}/logs */
-export async function v2ApiWorkspacesWorkspaceIdAppAppIdLogsUsingGet({
+export function v2ApiWorkspacesWorkspaceIdAppAppIdLogsUsingGet({
   params,
   options,
 }) {
@@ -2948,7 +2878,7 @@ export async function v2ApiWorkspacesWorkspaceIdAppAppIdLogsUsingGet({
 }
 
 /** UpdateModelConfigsV2.1 更新 app model configs PUT /llmops/v2/api/workspaces/${param1}/app/${param0}/model-configs */
-export async function v2ApiWorkspacesWorkspaceIdAppAppIdModelConfigsUsingPut({
+export function v2ApiWorkspacesWorkspaceIdAppAppIdModelConfigsUsingPut({
   params,
   body,
   options,
@@ -2967,7 +2897,7 @@ export async function v2ApiWorkspacesWorkspaceIdAppAppIdModelConfigsUsingPut({
 }
 
 /** GetPluginListV2.1 获取插件列表 GET /llmops/v2/api/workspaces/${param1}/app/${param0}/plugin */
-export async function v2ApiWorkspacesWorkspaceIdAppAppIdPluginUsingGet({
+export function v2ApiWorkspacesWorkspaceIdAppAppIdPluginUsingGet({
   params,
   options,
 }) {
@@ -2981,7 +2911,7 @@ export async function v2ApiWorkspacesWorkspaceIdAppAppIdPluginUsingGet({
 }
 
 /** GetSumDailyTokenV2.1 每日token GET /llmops/v2/api/workspaces/${param1}/app/${param0}/token */
-export async function v2ApiWorkspacesWorkspaceIdAppAppIdTokenUsingGet({
+export function v2ApiWorkspacesWorkspaceIdAppAppIdTokenUsingGet({
   params,
   options,
 }) {
@@ -2997,7 +2927,7 @@ export async function v2ApiWorkspacesWorkspaceIdAppAppIdTokenUsingGet({
 }
 
 /** DeleteAppV2.1 删除 app DELETE /llmops/v2/api/workspaces/${param1}/apps/${param0} */
-export async function v2ApiWorkspacesWorkspaceIdAppsAppIdUsingDelete({
+export function v2ApiWorkspacesWorkspaceIdAppsAppIdUsingDelete({
   params,
   options,
 }) {
@@ -3011,7 +2941,7 @@ export async function v2ApiWorkspacesWorkspaceIdAppsAppIdUsingDelete({
 }
 
 /** UpdateAppImage 更新 app名称头像 POST /llmops/v2/api/workspaces/${param1}/apps/${param0}/base */
-export async function v2ApiWorkspacesWorkspaceIdAppsAppIdBaseUsingPost({
+export function v2ApiWorkspacesWorkspaceIdAppsAppIdBaseUsingPost({
   params,
   body,
   options,
@@ -3027,7 +2957,7 @@ export async function v2ApiWorkspacesWorkspaceIdAppsAppIdBaseUsingPost({
 }
 
 /** UpdateAppGroup 更新 app 分组 POST /llmops/v2/api/workspaces/${param1}/apps/${param0}/group */
-export async function v2ApiWorkspacesWorkspaceIdAppsAppIdGroupUsingPost({
+export function v2ApiWorkspacesWorkspaceIdAppsAppIdGroupUsingPost({
   params,
   body,
   options,
@@ -3043,7 +2973,7 @@ export async function v2ApiWorkspacesWorkspaceIdAppsAppIdGroupUsingPost({
 }
 
 /** GetAppRecommendedContext 获取自定义推荐问题 & 推荐开关 GET /llmops/v2/api/workspaces/recommended/${param0}/details */
-export async function v2ApiWorkspacesRecommendedMessageIdDetailsUsingGet({
+export function v2ApiWorkspacesRecommendedMessageIdDetailsUsingGet({
   params,
   options,
 }) {
@@ -3101,7 +3031,7 @@ export function v2ApiWorkspacesWorkspaceIdAppAppIdDetailsUsingGetQueryOptions(
   options
 ) {
   return queryOptions({
-    queryFn: async ({ queryKey }) => {
+    queryFn: ({ queryKey }) => {
       return apis.v2ApiWorkspacesWorkspaceIdAppAppIdDetailsUsingGet(
         queryKey[1]
       );
@@ -3115,7 +3045,7 @@ export function v2ApiWorkspacesWorkspaceIdAppAppIdHourlyMessagesUsingGetQueryOpt
   options
 ) {
   return queryOptions({
-    queryFn: async ({ queryKey }) => {
+    queryFn: ({ queryKey }) => {
       return apis.v2ApiWorkspacesWorkspaceIdAppAppIdHourlyMessagesUsingGet(
         queryKey[1]
       );
@@ -3132,7 +3062,7 @@ export function v2ApiWorkspacesWorkspaceIdAppAppIdHourlyTokenUsingGetQueryOption
   options
 ) {
   return queryOptions({
-    queryFn: async ({ queryKey }) => {
+    queryFn: ({ queryKey }) => {
       return apis.v2ApiWorkspacesWorkspaceIdAppAppIdHourlyTokenUsingGet(
         queryKey[1]
       );
@@ -3149,7 +3079,7 @@ export function v2ApiWorkspacesWorkspaceIdAppAppIdMessagesUsingGetQueryOptions(
   options
 ) {
   return queryOptions({
-    queryFn: async ({ queryKey }) => {
+    queryFn: ({ queryKey }) => {
       return apis.v2ApiWorkspacesWorkspaceIdAppAppIdMessagesUsingGet(
         queryKey[1]
       );
@@ -3180,7 +3110,7 @@ export function useV2ApiWorkspacesWorkspaceIdAppAppIdUpdateStatusUsingPutMutatio
 /** ListAppV2.1 查询用户关联的 app 列表 GET /llmops/v2/api/workspaces/${param0}/apps */
 export function v2ApiWorkspacesWorkspaceIdAppsUsingGetQueryOptions(options) {
   return queryOptions({
-    queryFn: async ({ queryKey }) => {
+    queryFn: ({ queryKey }) => {
       return apis.v2ApiWorkspacesWorkspaceIdAppsUsingGet(queryKey[1]);
     },
     queryKey: ['v2ApiWorkspacesWorkspaceIdAppsUsingGet', options],
@@ -3228,7 +3158,7 @@ export function v2ApiWorkspacesWorkspaceIdAppAppIdLogsUsingGetQueryOptions(
   options
 ) {
   return queryOptions({
-    queryFn: async ({ queryKey }) => {
+    queryFn: ({ queryKey }) => {
       return apis.v2ApiWorkspacesWorkspaceIdAppAppIdLogsUsingGet(queryKey[1]);
     },
     queryKey: ['v2ApiWorkspacesWorkspaceIdAppAppIdLogsUsingGet', options],
@@ -3259,7 +3189,7 @@ export function v2ApiWorkspacesWorkspaceIdAppAppIdPluginUsingGetQueryOptions(
   options
 ) {
   return queryOptions({
-    queryFn: async ({ queryKey }) => {
+    queryFn: ({ queryKey }) => {
       return apis.v2ApiWorkspacesWorkspaceIdAppAppIdPluginUsingGet(queryKey[1]);
     },
     queryKey: ['v2ApiWorkspacesWorkspaceIdAppAppIdPluginUsingGet', options],
@@ -3271,7 +3201,7 @@ export function v2ApiWorkspacesWorkspaceIdAppAppIdTokenUsingGetQueryOptions(
   options
 ) {
   return queryOptions({
-    queryFn: async ({ queryKey }) => {
+    queryFn: ({ queryKey }) => {
       return apis.v2ApiWorkspacesWorkspaceIdAppAppIdTokenUsingGet(queryKey[1]);
     },
     queryKey: ['v2ApiWorkspacesWorkspaceIdAppAppIdTokenUsingGet', options],
@@ -3340,7 +3270,7 @@ export function v2ApiWorkspacesRecommendedMessageIdDetailsUsingGetQueryOptions(
   options
 ) {
   return queryOptions({
-    queryFn: async ({ queryKey }) => {
+    queryFn: ({ queryKey }) => {
       return apis.v2ApiWorkspacesRecommendedMessageIdDetailsUsingGet(
         queryKey[1]
       );
@@ -3351,10 +3281,7 @@ export function v2ApiWorkspacesRecommendedMessageIdDetailsUsingGetQueryOptions(
 import { request } from 'axios';
 
 /** GetWorkspaceGroupList 空间分组列表 GET /llmops/v2/api/workspaces/${param0}/groups */
-export async function v2ApiWorkspacesWorkspaceIdGroupsUsingGet({
-  params,
-  options,
-}) {
+export function v2ApiWorkspacesWorkspaceIdGroupsUsingGet({ params, options }) {
   const { workspaceID: param0, ...queryParams } = params;
 
   return request(`/llmops/v2/api/workspaces/${param0}/groups`, {
@@ -3365,7 +3292,7 @@ export async function v2ApiWorkspacesWorkspaceIdGroupsUsingGet({
 }
 
 /** CreateWorkspaceGroup 创建空间分组 POST /llmops/v2/api/workspaces/${param0}/groups */
-export async function v2ApiWorkspacesWorkspaceIdGroupsUsingPost({
+export function v2ApiWorkspacesWorkspaceIdGroupsUsingPost({
   params,
   body,
   options,
@@ -3381,7 +3308,7 @@ export async function v2ApiWorkspacesWorkspaceIdGroupsUsingPost({
 }
 
 /** UpdateWorkspaceGroup 更新分组 POST /llmops/v2/api/workspaces/${param0}/groups/${param1} */
-export async function v2ApiWorkspacesWorkspaceIdGroupsWorkspaceGroupIdUsingPost({
+export function v2ApiWorkspacesWorkspaceIdGroupsWorkspaceGroupIdUsingPost({
   params,
   body,
   options,
@@ -3401,7 +3328,7 @@ export async function v2ApiWorkspacesWorkspaceIdGroupsWorkspaceGroupIdUsingPost(
 }
 
 /** DeleteWorkspaceGroup 删除分组 DELETE /llmops/v2/api/workspaces/${param0}/groups/${param1} */
-export async function v2ApiWorkspacesWorkspaceIdGroupsWorkspaceGroupIdUsingDelete({
+export function v2ApiWorkspacesWorkspaceIdGroupsWorkspaceGroupIdUsingDelete({
   params,
   options,
 }) {
@@ -3425,7 +3352,7 @@ import * as apis from './workspaceGroup';
 /** GetWorkspaceGroupList 空间分组列表 GET /llmops/v2/api/workspaces/${param0}/groups */
 export function v2ApiWorkspacesWorkspaceIdGroupsUsingGetQueryOptions(options) {
   return queryOptions({
-    queryFn: async ({ queryKey }) => {
+    queryFn: ({ queryKey }) => {
       return apis.v2ApiWorkspacesWorkspaceIdGroupsUsingGet(queryKey[1]);
     },
     queryKey: ['v2ApiWorkspacesWorkspaceIdGroupsUsingGet', options],

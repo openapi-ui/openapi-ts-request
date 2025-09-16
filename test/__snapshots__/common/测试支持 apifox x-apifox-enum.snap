@@ -5,7 +5,7 @@ import { request } from 'axios';
 import * as API from './types';
 
 /** 问诊订单详情 GET /org/inquiryOrder/detail https://apifox.com/web/project/5327748/apis/api-230226778-run */
-export async function detailUsingGet({
+export function detailUsingGet({
   params,
   options,
 }: {
@@ -26,7 +26,7 @@ export async function detailUsingGet({
 }
 
 /** 问诊订单列表 POST /org/inquiryOrder/page https://apifox.com/web/project/5327748/apis/api-229742579-run */
-export async function pageUsingPost({
+export function pageUsingPost({
   body,
   options,
 }: {

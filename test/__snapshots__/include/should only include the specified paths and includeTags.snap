@@ -12,7 +12,7 @@ import request from '../request';
 import * as API from './types';
 
 /** a1 GET /sys-a/a1 */
-export async function sysAa1UsingGet({
+export function sysAa1UsingGet({
   options,
 }: {
   options?: { [key: string]: unknown };
@@ -24,7 +24,7 @@ export async function sysAa1UsingGet({
 }
 
 /** a1/aa1 GET /sys-a/a1/aa1 */
-export async function sysAa1Aa1UsingGet({
+export function sysAa1Aa1UsingGet({
   options,
 }: {
   options?: { [key: string]: unknown };
@@ -36,7 +36,7 @@ export async function sysAa1Aa1UsingGet({
 }
 
 /** a1/a1/aa1 GET /sys-a/a1/aa1/aaa1 */
-export async function sysAa1Aa1Aaa1UsingGet({
+export function sysAa1Aa1Aaa1UsingGet({
   options,
 }: {
   options?: { [key: string]: unknown };
@@ -48,7 +48,7 @@ export async function sysAa1Aa1Aaa1UsingGet({
 }
 
 /** a1/a1/aa1/aaa1 GET /sys-a/a1/aa1/aaa1/aaaa1 */
-export async function sysAa1Aa1Aaa1Aaaa1UsingGet({
+export function sysAa1Aa1Aaa1Aaaa1UsingGet({
   options,
 }: {
   options?: { [key: string]: unknown };
@@ -65,7 +65,7 @@ import request from '../request';
 import * as API from './types';
 
 /** b1 GET /sys-b/b1 */
-export async function sysBb1UsingGet({
+export function sysBb1UsingGet({
   options,
 }: {
   options?: { [key: string]: unknown };
@@ -77,7 +77,7 @@ export async function sysBb1UsingGet({
 }
 
 /** b1/bb1 GET /sys-b/b1/bb1 */
-export async function sysBb1Bb1UsingGet({
+export function sysBb1Bb1UsingGet({
   options,
 }: {
   options?: { [key: string]: unknown };
@@ -89,7 +89,7 @@ export async function sysBb1Bb1UsingGet({
 }
 
 /** b1/bb1/bbb1 GET /sys-b/b1/bb1/bbb1 */
-export async function sysBb1Bb1Bbb1UsingGet({
+export function sysBb1Bb1Bbb1UsingGet({
   options,
 }: {
   options?: { [key: string]: unknown };
@@ -101,7 +101,7 @@ export async function sysBb1Bb1Bbb1UsingGet({
 }
 
 /** b1/bb1/bbb1/bbbb1 GET /sys-b/b1/bb1/bbb1/bbbb1 */
-export async function sysBb1Bb1Bbb1Bbbb1UsingGet({
+export function sysBb1Bb1Bbb1Bbbb1UsingGet({
   options,
 }: {
   options?: { [key: string]: unknown };
@@ -118,7 +118,7 @@ import request from '../request';
 import * as API from './types';
 
 /** c1 GET /sys-c/c1 */
-export async function sysCc1UsingGet({
+export function sysCc1UsingGet({
   options,
 }: {
   options?: { [key: string]: unknown };
@@ -130,7 +130,7 @@ export async function sysCc1UsingGet({
 }
 
 /** c1/cc1 GET /sys-c/c1/cc1 */
-export async function sysCc1Cc1UsingGet({
+export function sysCc1Cc1UsingGet({
   options,
 }: {
   options?: { [key: string]: unknown };
@@ -142,7 +142,7 @@ export async function sysCc1Cc1UsingGet({
 }
 
 /** c1/cc1/ccc1 GET /sys-c/c1/cc1/ccc1 */
-export async function sysCc1Cc1Ccc1UsingGet({
+export function sysCc1Cc1Ccc1UsingGet({
   options,
 }: {
   options?: { [key: string]: unknown };
@@ -154,7 +154,7 @@ export async function sysCc1Cc1Ccc1UsingGet({
 }
 
 /** c1/cc1/ccc1/cccc1 GET /sys-c/c1/cc1/ccc1/cccc1 */
-export async function sysCc1Cc1Ccc1Cccc1UsingGet({
+export function sysCc1Cc1Ccc1Cccc1UsingGet({
   options,
 }: {
   options?: { [key: string]: unknown };

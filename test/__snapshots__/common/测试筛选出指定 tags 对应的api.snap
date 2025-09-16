@@ -18,7 +18,7 @@ import { request } from 'axios';
 import * as API from './types';
 
 /** Update an existing pet Update an existing pet by Id PUT /pet */
-export async function petUsingPut({
+export function petUsingPut({
   body,
   options,
 }: {
@@ -36,7 +36,7 @@ export async function petUsingPut({
 }
 
 /** Add a new pet to the store Add a new pet to the store POST /pet */
-export async function petUsingPost({
+export function petUsingPost({
   body,
   options,
 }: {
@@ -54,7 +54,7 @@ export async function petUsingPost({
 }
 
 /** Find pet by ID Returns a single pet GET /pet/${param0} */
-export async function petPetIdUsingGet({
+export function petPetIdUsingGet({
   params,
   options,
 }: {
@@ -72,7 +72,7 @@ export async function petPetIdUsingGet({
 }
 
 /** Updates a pet in the store with form data POST /pet/${param0} */
-export async function petPetIdUsingPost({
+export function petPetIdUsingPost({
   params,
   options,
 }: {
@@ -92,7 +92,7 @@ export async function petPetIdUsingPost({
 }
 
 /** Deletes a pet DELETE /pet/${param0} */
-export async function petPetIdUsingDelete({
+export function petPetIdUsingDelete({
   params,
   options,
 }: {
@@ -110,7 +110,7 @@ export async function petPetIdUsingDelete({
 }
 
 /** uploads an image POST /pet/${param0}/uploadImage */
-export async function petPetIdUploadImageUsingPost({
+export function petPetIdUploadImageUsingPost({
   params,
   body,
   options,
@@ -136,7 +136,7 @@ export async function petPetIdUploadImageUsingPost({
 }
 
 /** Finds Pets by status Multiple status values can be provided with comma separated strings GET /pet/findByStatus */
-export async function petFindByStatusUsingGet({
+export function petFindByStatusUsingGet({
   params,
   options,
 }: {
@@ -156,7 +156,7 @@ export async function petFindByStatusUsingGet({
 }
 
 /** Finds Pets by tags Multiple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing. GET /pet/findByTags */
-export async function petFindByTagsUsingGet({
+export function petFindByTagsUsingGet({
   params,
   options,
 }: {
