@@ -1,5 +1,15 @@
 # openapi-ts-request
 
+## 1.8.0
+
+### Minor Changes
+
+- [#471](https://github.com/openapi-ui/openapi-ts-request/pull/471) [`0a30ddd`](https://github.com/openapi-ui/openapi-ts-request/commit/0a30ddd627219f89bf676eb6cfee23ff40d8b7bc) Thanks [@AdoKevin](https://github.com/AdoKevin)! - feat: 过滤条件默认大小写敏感，提供参数filterCaseInsensitive支持，关闭 #467
+
+### Patch Changes
+
+- [#480](https://github.com/openapi-ui/openapi-ts-request/pull/480) [`3c329d2`](https://github.com/openapi-ui/openapi-ts-request/commit/3c329d2710ff928b8d1ddbbca3e4f353d9122d28) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - fix: remove fn async #477
+
 ## 1.7.3
 
 ### Patch Changes
