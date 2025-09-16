@@ -5,7 +5,7 @@ import { request } from 'axios';
 import * as API from './types';
 
 /** Getcity GET /city/${param0} */
-export async function cityCityUsingGet({
+export function cityCityUsingGet({
   params,
   options,
 }: {
@@ -71,7 +71,7 @@ import { request } from 'axios';
 import * as API from './types';
 
 /** Hello World GET / */
-export async function usingGet({
+export function usingGet({
   options,
 }: {
   options?: { [key: string]: unknown };
@@ -96,7 +96,7 @@ import { request } from 'axios';
 import * as API from './types';
 
 /** Putcity PUT /city/${param0} */
-export async function cityCityUsingPut({
+export function cityCityUsingPut({
   params,
   options,
 }: {

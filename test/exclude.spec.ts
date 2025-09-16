@@ -103,4 +103,76 @@ describe('openAPI.generateService priorityRule=exclude', () => {
       readGeneratedFiles('./apis/exclude/test5')
     ).resolves.toMatchFileSnapshot(getSnapshotDir(ctx));
   });
+
+  /**
+   * 结果 ['/sys-a/**', '/sys-b/**', '/sys-c/**', '/user-x/**', '/user-y/**']
+   */
+  it('should excludeTags case sensitive by default', async (ctx) => {
+    await generateService({
+      schemaPath: `${__dirname}/example-files/openapi-priority-rule.json`,
+      serversPath: './apis/exclude/test6',
+      requestLibPath: '../request',
+      priorityRule: 'exclude',
+      enableLogging: true, // 开启日志
+      excludeTags: ['sys-A', 'user-z'],
+    });
+
+    await expect(
+      readGeneratedFiles('./apis/exclude/test6')
+    ).resolves.toMatchFileSnapshot(getSnapshotDir(ctx));
+  });
+
+  /**
+   * 结果 ['/sys-b/**', '/sys-c/**', '/user-x/**', '/user-y/**']
+   */
+  it('should excludeTags can be case insensitive', async (ctx) => {
+    await generateService({
+      schemaPath: `${__dirname}/example-files/openapi-priority-rule.json`,
+      serversPath: './apis/exclude/test7',
+      requestLibPath: '../request',
+      priorityRule: 'exclude',
+      filterCaseInsensitive: true,
+      excludeTags: ['sys-A', 'user-z'],
+    });
+
+    await expect(
+      readGeneratedFiles('./apis/exclude/test7')
+    ).resolves.toMatchFileSnapshot(getSnapshotDir(ctx));
+  });
+
+  /**
+   * 结果 ['/sys-a/**', '/sys-b/**', '/sys-c/**', '/user-x/**', '/user-y/**', '/user-z/**']
+   */
+  it('should excludePaths case sensitive by default', async (ctx) => {
+    await generateService({
+      schemaPath: `${__dirname}/example-files/openapi-priority-rule.json`,
+      serversPath: './apis/exclude/test8',
+      requestLibPath: '../request',
+      enableLogging: true, // 开启日志
+      priorityRule: 'exclude',
+      excludePaths: ['/sys-A/a1/aa1/**'],
+    });
+
+    await expect(
+      readGeneratedFiles('./apis/exclude/test8')
+    ).resolves.toMatchFileSnapshot(getSnapshotDir(ctx));
+  });
+
+  /**
+   * 结果 ['/sys-b/**', '/sys-c/**', '/user-x/**', '/user-y/**', '/user-z/**']
+   */
+  it('should excludePaths can be case insensitive', async (ctx) => {
+    await generateService({
+      schemaPath: `${__dirname}/example-files/openapi-priority-rule.json`,
+      serversPath: './apis/exclude/test9',
+      requestLibPath: '../request',
+      filterCaseInsensitive: true,
+      priorityRule: 'exclude',
+      excludePaths: ['/sys-a/a1/aa1/**'],
+    });
+
+    await expect(
+      readGeneratedFiles('./apis/exclude/test9')
+    ).resolves.toMatchFileSnapshot(getSnapshotDir(ctx));
+  });
 });

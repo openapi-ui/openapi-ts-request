@@ -2,10 +2,41 @@
 // @ts-ignore
 export * from './types';
 
+export * from './userZ';
 export * from './userY';
 export * from './userX';
 export * from './sysC';
 export * from './sysB';
+export * from './sysA';
+/* eslint-disable */
+// @ts-ignore
+import request from '../request';
+
+import * as API from './types';
+
+/** a1 GET /sys-a/a1 */
+export function sysAa1UsingGet({
+  options,
+}: {
+  options?: { [key: string]: unknown };
+}) {
+  return request<string>('/sys-a/a1', {
+    method: 'GET',
+    ...(options || {}),
+  });
+}
+
+/** a1/aa1 GET /sys-a/a1/aa1 */
+export function sysAa1Aa1UsingGet({
+  options,
+}: {
+  options?: { [key: string]: unknown };
+}) {
+  return request<string>('/sys-a/a1/aa1', {
+    method: 'GET',
+    ...(options || {}),
+  });
+}
 /* eslint-disable */
 // @ts-ignore
 import request from '../request';
@@ -114,6 +145,20 @@ export function sysCc1Cc1Ccc1Cccc1UsingGet({
 }
 /* eslint-disable */
 // @ts-ignore
+
+export type SysAa1Aa1UsingGetResponses = {
+  /**
+   * OK
+   */
+  200: string;
+};
+
+export type SysAa1UsingGetResponses = {
+  /**
+   * OK
+   */
+  200: string;
+};
 
 export type SysBb1Bb1Bbb1Bbbb1UsingGetResponses = {
   /**
@@ -233,6 +278,41 @@ export type UserYy1Yy1Yyy1Yyyy1Yyyyy1UsingGetResponses = {
    */
   200: string;
 };
+
+export type UserZz1UsingGetResponses = {
+  /**
+   * OK
+   */
+  200: string;
+};
+
+export type UserZz1Zz1UsingGetResponses = {
+  /**
+   * OK
+   */
+  200: string;
+};
+
+export type UserZz1Zz1Zzz1UsingGetResponses = {
+  /**
+   * OK
+   */
+  200: string;
+};
+
+export type UserZz1Zz1Zzz1Zzzz1UsingGetResponses = {
+  /**
+   * OK
+   */
+  200: string;
+};
+
+export type UserZz1Zz1Zzz1Zzzz1Zzzzz1UsingGetResponses = {
+  /**
+   * OK
+   */
+  200: string;
+};
 /* eslint-disable */
 // @ts-ignore
 import request from '../request';
@@ -347,6 +427,71 @@ export function userYy1Yy1Yyy1Yyyy1Yyyyy1UsingGet({
   options?: { [key: string]: unknown };
 }) {
   return request<string>('/user-y/y1/yy1/yyy1/yyyy1/yyyyy1', {
+    method: 'GET',
+    ...(options || {}),
+  });
+}
+/* eslint-disable */
+// @ts-ignore
+import request from '../request';
+
+import * as API from './types';
+
+/** f1 ffff GET /user-z/z1 */
+export function userZz1UsingGet({
+  options,
+}: {
+  options?: { [key: string]: unknown };
+}) {
+  return request<string>('/user-z/z1', {
+    method: 'GET',
+    ...(options || {}),
+  });
+}
+
+/** z1/zz1 GET /user-z/z1/zz1 */
+export function userZz1Zz1UsingGet({
+  options,
+}: {
+  options?: { [key: string]: unknown };
+}) {
+  return request<string>('/user-z/z1/zz1', {
+    method: 'GET',
+    ...(options || {}),
+  });
+}
+
+/** z1/zz1/zzz1 GET /user-z/z1/zz1/zzz1 */
+export function userZz1Zz1Zzz1UsingGet({
+  options,
+}: {
+  options?: { [key: string]: unknown };
+}) {
+  return request<string>('/user-z/z1/zz1/zzz1', {
+    method: 'GET',
+    ...(options || {}),
+  });
+}
+
+/** z1/zz1/zzz1/zzzz1 GET /user-z/z1/zz1/zzz1/zzzz1 */
+export function userZz1Zz1Zzz1Zzzz1UsingGet({
+  options,
+}: {
+  options?: { [key: string]: unknown };
+}) {
+  return request<string>('/user-z/z1/zz1/zzz1/zzzz1', {
+    method: 'GET',
+    ...(options || {}),
+  });
+}
+
+/** z1/zz1/zzz1/zzzz1/zzzzz1 GET /user-z/z1/zz1/zzz1/zzzz1/zzzzz1 */
+export function userZz1Zz1Zzz1Zzzz1Zzzzz1UsingGet({
+  options,
+}: {
+  options?: { [key: string]: unknown };
+}) {
+  return request<string>('/user-z/z1/zz1/zzz1/zzzz1/zzzzz1', {
     method: 'GET',
     ...(options || {}),
   });

@@ -26,8 +26,18 @@ const params = program
   .option('-f, --full <boolean>', 'full replacement', true)
   .option('--enableLogging <boolean>', 'open the log', false)
   .option(
-    '--priorityRule <string>',
-    'priority rule, include/exclude/both (default: "include")'
+    '--filterCaseInsensitive <boolean>',
+    'whether to perform a case-insensitive match with includeTags, includePaths, excludeTags, excludePaths filters',
+    false
+  )
+  .option(
+    '--includeTags <(string|RegExp)[]>',
+    'generate code from include tags'
+  )
+  .option(
+    '--filterCaseInsensitive <boolean>',
+    'whether to perform a case-insensitive match with includeTags, includePaths, excludeTags, excludePaths filters',
+    false
   )
   .option(
     '--includeTags <(string|RegExp)[]>',
@@ -115,6 +125,8 @@ const baseGenerate = (_params_: OptionValues): GenerateServiceProps => {
     full: JSON.parse(_params_.full as string) === true,
     enableLogging: JSON.parse(_params_.enableLogging as string) === true,
     priorityRule: _params_.priorityRule as IPriorityRule,
+    filterCaseInsensitive:
+      JSON.parse(_params_.filterCaseInsensitive as string) === true,
     includeTags: _params_.includeTags as string[],
     includePaths: _params_.includePaths as string[],
     excludeTags: _params_.excludeTags as string[],

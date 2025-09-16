@@ -5,7 +5,7 @@ import { request } from 'axios';
 import * as API from './types';
 
 /** 获取活动详情 GET /activity/${param0} */
-export async function activityIdUsingGet({
+export function activityIdUsingGet({
   params,
   options,
 }: {

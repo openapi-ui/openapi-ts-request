@@ -53,6 +53,11 @@ export type GenerateServiceProps = {
    * 优先规则, include(只允许include列表) | exclude(只排除exclude列表) | both(允许include列表，排除exclude列表)
    */
   priorityRule?: IPriorityRule;
+
+  /**
+   *  includeTags、includePaths、excludeTags、excludePaths 过滤器执行时是否忽略大小写
+   */
+  filterCaseInsensitive?: boolean;
   /**
    * 只解析归属于 tags 集合的 api 和 schema
    */
@@ -319,9 +324,7 @@ export async function generateService({
       enableLogging: false,
       priorityRule,
       includeTags: includeTags
-        ? map(includeTags, (item) =>
-            isString(item) ? item.toLowerCase() : item
-          )
+        ? includeTags
         : priorityRule === PriorityRule.include ||
             priorityRule === PriorityRule.both
           ? [/.*/g]
@@ -332,11 +335,7 @@ export async function generateService({
             priorityRule === PriorityRule.both
           ? [/.*/g]
           : null,
-      excludeTags: excludeTags
-        ? map(excludeTags, (item) =>
-            isString(item) ? item.toLowerCase() : item
-          )
-        : null,
+      excludeTags: excludeTags ? excludeTags : null,
       excludePaths: excludePaths ? excludePaths : null,
       requestOptionsType: '{[key: string]: unknown}',
       namespace: 'API',

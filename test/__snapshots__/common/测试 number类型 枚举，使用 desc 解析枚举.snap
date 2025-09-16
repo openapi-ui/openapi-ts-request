@@ -59,7 +59,7 @@ import { request } from 'axios';
 import * as API from './types';
 
 /** 获取用户信息 GET /api/sys/user/get-user-info */
-export async function apiSysUserGetUserInfoUsingGet({
+export function apiSysUserGetUserInfoUsingGet({
   params,
   options,
 }: {
