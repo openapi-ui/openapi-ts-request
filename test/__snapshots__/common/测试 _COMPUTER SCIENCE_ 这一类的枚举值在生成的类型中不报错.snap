@@ -27,7 +27,7 @@ import { request } from 'axios';
 import * as API from './types';
 
 /** Returns a student object GET /hello */
-export async function helloUsingGet({
+export function helloUsingGet({
   options,
 }: {
   options?: { [key: string]: unknown };

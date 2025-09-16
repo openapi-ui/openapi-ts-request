@@ -12,7 +12,7 @@ import { request } from 'axios';
 import * as API from './types';
 
 /** Finds Pets by status Multiple status values can be provided with comma separated strings GET /pet/findByStatus */
-export async function petFindByStatusUsingGet({
+export function petFindByStatusUsingGet({
   params,
   options,
 }: {

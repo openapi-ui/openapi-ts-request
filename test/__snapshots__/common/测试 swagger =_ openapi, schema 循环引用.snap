@@ -10,7 +10,7 @@ import { request } from 'axios';
 import * as API from './types';
 
 /** 成员分页列表 GET /admin/admins */
-export async function adminAdminsUsingGet({
+export function adminAdminsUsingGet({
   params,
   options,
 }: {
@@ -32,7 +32,7 @@ export async function adminAdminsUsingGet({
 }
 
 /** 成员创建 POST /admin/admins */
-export async function adminAdminsUsingPost({
+export function adminAdminsUsingPost({
   body,
   options,
 }: {
@@ -54,7 +54,7 @@ export async function adminAdminsUsingPost({
 }
 
 /** 成员信息 GET /admin/admins/${param0} */
-export async function adminAdminsIdUsingGet({
+export function adminAdminsIdUsingGet({
   params,
   options,
 }: {
@@ -76,7 +76,7 @@ export async function adminAdminsIdUsingGet({
 }
 
 /** 成员编辑 PUT /admin/admins/${param0} */
-export async function adminAdminsIdUsingPut({
+export function adminAdminsIdUsingPut({
   params,
   body,
   options,
@@ -100,7 +100,7 @@ export async function adminAdminsIdUsingPut({
 }
 
 /** 成员权限设置 PATCH /admin/admins/${param0}/permissions */
-export async function adminAdminsIdPermissionsUsingPatch({
+export function adminAdminsIdPermissionsUsingPatch({
   params,
   body,
   options,
@@ -124,7 +124,7 @@ export async function adminAdminsIdPermissionsUsingPatch({
 }
 
 /** 成员重置密码 PATCH /admin/admins/${param0}/reset */
-export async function adminAdminsIdResetUsingPatch({
+export function adminAdminsIdResetUsingPatch({
   params,
   options,
 }: {
@@ -146,7 +146,7 @@ export async function adminAdminsIdResetUsingPatch({
 }
 
 /** 启用/禁用成员 PATCH /admin/admins/${param0}/toggle */
-export async function adminAdminsIdToggleUsingPatch({
+export function adminAdminsIdToggleUsingPatch({
   params,
   body,
   options,
@@ -170,7 +170,7 @@ export async function adminAdminsIdToggleUsingPatch({
 }
 
 /** 成员全部数据 GET /admin/admins/all */
-export async function adminAdminsAllUsingGet({
+export function adminAdminsAllUsingGet({
   options,
 }: {
   options?: { [key: string]: unknown };
@@ -186,7 +186,7 @@ export async function adminAdminsAllUsingGet({
 }
 
 /** 测评分页列表 GET /admin/evaluations */
-export async function adminEvaluationsUsingGet({
+export function adminEvaluationsUsingGet({
   params,
   options,
 }: {
@@ -208,7 +208,7 @@ export async function adminEvaluationsUsingGet({
 }
 
 /** 测评创建 POST /admin/evaluations */
-export async function adminEvaluationsUsingPost({
+export function adminEvaluationsUsingPost({
   body,
   options,
 }: {
@@ -230,7 +230,7 @@ export async function adminEvaluationsUsingPost({
 }
 
 /** 测评更新 PUT /admin/evaluations/${param0} */
-export async function adminEvaluationsIdUsingPut({
+export function adminEvaluationsIdUsingPut({
   params,
   body,
   options,
@@ -254,7 +254,7 @@ export async function adminEvaluationsIdUsingPut({
 }
 
 /** 团测分析 GET /admin/evaluations/${param0}/data */
-export async function adminEvaluationsIdDataUsingGet({
+export function adminEvaluationsIdDataUsingGet({
   params,
   options,
 }: {
@@ -276,7 +276,7 @@ export async function adminEvaluationsIdDataUsingGet({
 }
 
 /** 测评全部数据 GET /admin/evaluations/all */
-export async function adminEvaluationsAllUsingGet({
+export function adminEvaluationsAllUsingGet({
   options,
 }: {
   options?: { [key: string]: unknown };
@@ -292,7 +292,7 @@ export async function adminEvaluationsAllUsingGet({
 }
 
 /** 测评报告分页列表 GET /admin/evaluations/reports */
-export async function adminEvaluationsReportsUsingGet({
+export function adminEvaluationsReportsUsingGet({
   params,
   options,
 }: {
@@ -314,7 +314,7 @@ export async function adminEvaluationsReportsUsingGet({
 }
 
 /** 查看测评报告数据 GET /admin/evaluations/reports/${param0}/data */
-export async function adminEvaluationsReportsIdDataUsingGet({
+export function adminEvaluationsReportsIdDataUsingGet({
   params,
   options,
 }: {
@@ -336,7 +336,7 @@ export async function adminEvaluationsReportsIdDataUsingGet({
 }
 
 /** 测评报告审核 PATCH /admin/evaluations/reports/${param0}/examine */
-export async function adminEvaluationsReportsIdExamineUsingPatch({
+export function adminEvaluationsReportsIdExamineUsingPatch({
   params,
   options,
 }: {
@@ -354,7 +354,7 @@ export async function adminEvaluationsReportsIdExamineUsingPatch({
 }
 
 /** 测评报告发送 PATCH /admin/evaluations/reports/${param0}/send */
-export async function adminEvaluationsReportsIdSendUsingPatch({
+export function adminEvaluationsReportsIdSendUsingPatch({
   params,
   options,
 }: {
@@ -372,7 +372,7 @@ export async function adminEvaluationsReportsIdSendUsingPatch({
 }
 
 /** 测评报告导出 GET /admin/evaluations/reports/export */
-export async function adminEvaluationsReportsOpenApiExportUsingGet({
+export function adminEvaluationsReportsOpenApiExportUsingGet({
   params,
   options,
 }: {
@@ -394,7 +394,7 @@ export async function adminEvaluationsReportsOpenApiExportUsingGet({
 }
 
 /** 获取当前登录账号信息 GET /admin/login */
-export async function adminLoginUsingGet({
+export function adminLoginUsingGet({
   options,
 }: {
   options?: { [key: string]: unknown };
@@ -410,7 +410,7 @@ export async function adminLoginUsingGet({
 }
 
 /** 账号登入 POST /admin/login */
-export async function adminLoginUsingPost({
+export function adminLoginUsingPost({
   body,
   options,
 }: {
@@ -428,7 +428,7 @@ export async function adminLoginUsingPost({
 }
 
 /** 账号登出 DELETE /admin/login */
-export async function adminLoginUsingDelete({
+export function adminLoginUsingDelete({
   options,
 }: {
   options?: { [key: string]: unknown };
@@ -440,7 +440,7 @@ export async function adminLoginUsingDelete({
 }
 
 /** 机构创建 POST /admin/organizations */
-export async function adminOrganizationsUsingPost({
+export function adminOrganizationsUsingPost({
   body,
   options,
 }: {
@@ -462,7 +462,7 @@ export async function adminOrganizationsUsingPost({
 }
 
 /** 机构详情 GET /admin/organizations/${param0} */
-export async function adminOrganizationsIdUsingGet({
+export function adminOrganizationsIdUsingGet({
   params,
   options,
 }: {
@@ -484,7 +484,7 @@ export async function adminOrganizationsIdUsingGet({
 }
 
 /** 机构编辑 PUT /admin/organizations/${param0} */
-export async function adminOrganizationsIdUsingPut({
+export function adminOrganizationsIdUsingPut({
   params,
   body,
   options,
@@ -508,7 +508,7 @@ export async function adminOrganizationsIdUsingPut({
 }
 
 /** 机构移动 PATCH /admin/organizations/${param0}/move */
-export async function adminOrganizationsIdMoveUsingPatch({
+export function adminOrganizationsIdMoveUsingPatch({
   params,
   body,
   options,
@@ -532,7 +532,7 @@ export async function adminOrganizationsIdMoveUsingPatch({
 }
 
 /** 获取机构成员权限表 GET /admin/organizations/${param0}/permissions */
-export async function adminOrganizationsIdPermissionsUsingGet({
+export function adminOrganizationsIdPermissionsUsingGet({
   params,
   options,
 }: {
@@ -554,7 +554,7 @@ export async function adminOrganizationsIdPermissionsUsingGet({
 }
 
 /** 启用/禁用机构 PATCH /admin/organizations/${param0}/toggle */
-export async function adminOrganizationsIdToggleUsingPatch({
+export function adminOrganizationsIdToggleUsingPatch({
   params,
   body,
   options,
@@ -578,7 +578,7 @@ export async function adminOrganizationsIdToggleUsingPatch({
 }
 
 /** 机构树形列表 GET /admin/organizations/all */
-export async function adminOrganizationsAllUsingGet({
+export function adminOrganizationsAllUsingGet({
   options,
 }: {
   options?: { [key: string]: unknown };
@@ -594,7 +594,7 @@ export async function adminOrganizationsAllUsingGet({
 }
 
 /** 量表分页列表 GET /admin/scales */
-export async function adminScalesUsingGet({
+export function adminScalesUsingGet({
   params,
   options,
 }: {
@@ -616,7 +616,7 @@ export async function adminScalesUsingGet({
 }
 
 /** 量表详情 GET /admin/scales/${param0} */
-export async function adminScalesIdUsingGet({
+export function adminScalesIdUsingGet({
   params,
   options,
 }: {
@@ -638,7 +638,7 @@ export async function adminScalesIdUsingGet({
 }
 
 /** 启用/禁用量表 PATCH /admin/scales/${param0}/toggle */
-export async function adminScalesIdToggleUsingPatch({
+export function adminScalesIdToggleUsingPatch({
   params,
   body,
   options,
@@ -662,7 +662,7 @@ export async function adminScalesIdToggleUsingPatch({
 }
 
 /** 量表全部数据 GET /admin/scales/all */
-export async function adminScalesAllUsingGet({
+export function adminScalesAllUsingGet({
   options,
 }: {
   options?: { [key: string]: unknown };
@@ -678,7 +678,7 @@ export async function adminScalesAllUsingGet({
 }
 
 /** 通过excel导入量表 POST /admin/scales/import */
-export async function adminScalesOpenApiImportUsingPost({
+export function adminScalesOpenApiImportUsingPost({
   body,
   options,
 }: {
@@ -700,7 +700,7 @@ export async function adminScalesOpenApiImportUsingPost({
 }
 
 /** 量表预览 GET /admin/scales/preview */
-export async function adminScalesPreviewUsingGet({
+export function adminScalesPreviewUsingGet({
   body,
   options,
 }: {
@@ -722,7 +722,7 @@ export async function adminScalesPreviewUsingGet({
 }
 
 /** 操作日志 GET /admin/systems/logs */
-export async function adminSystemsLogsUsingGet({
+export function adminSystemsLogsUsingGet({
   params,
   options,
 }: {
@@ -744,7 +744,7 @@ export async function adminSystemsLogsUsingGet({
 }
 
 /** 操作日志导出 GET /admin/systems/logs/export */
-export async function adminSystemsLogsOpenApiExportUsingGet({
+export function adminSystemsLogsOpenApiExportUsingGet({
   params,
   options,
 }: {
@@ -766,7 +766,7 @@ export async function adminSystemsLogsOpenApiExportUsingGet({
 }
 
 /** 数据大屏 GET /admin/systems/screen/data */
-export async function adminSystemsScreenDataUsingGet({
+export function adminSystemsScreenDataUsingGet({
   options,
 }: {
   options?: { [key: string]: unknown };
@@ -782,7 +782,7 @@ export async function adminSystemsScreenDataUsingGet({
 }
 
 /** 用户分页列表 GET /admin/users */
-export async function adminUsersUsingGet({
+export function adminUsersUsingGet({
   params,
   options,
 }: {
@@ -804,7 +804,7 @@ export async function adminUsersUsingGet({
 }
 
 /** 启用/禁用用户 PATCH /admin/users/${param0}/toggle */
-export async function adminUsersIdToggleUsingPatch({
+export function adminUsersIdToggleUsingPatch({
   params,
   body,
   options,
@@ -828,7 +828,7 @@ export async function adminUsersIdToggleUsingPatch({
 }
 
 /** 信息表分页列表 GET /admin/users/sheets */
-export async function adminUsersSheetsUsingGet({
+export function adminUsersSheetsUsingGet({
   params,
   options,
 }: {
@@ -850,7 +850,7 @@ export async function adminUsersSheetsUsingGet({
 }
 
 /** 信息表创建 POST /admin/users/sheets */
-export async function adminUsersSheetsUsingPost({
+export function adminUsersSheetsUsingPost({
   body,
   options,
 }: {
@@ -872,7 +872,7 @@ export async function adminUsersSheetsUsingPost({
 }
 
 /** 信息表更新 PUT /admin/users/sheets/${param0} */
-export async function adminUsersSheetsIdUsingPut({
+export function adminUsersSheetsIdUsingPut({
   params,
   body,
   options,
@@ -896,7 +896,7 @@ export async function adminUsersSheetsIdUsingPut({
 }
 
 /** 启用/禁用信息表 PATCH /admin/users/sheets/${param0}/toggle */
-export async function adminUsersSheetsIdToggleUsingPatch({
+export function adminUsersSheetsIdToggleUsingPatch({
   params,
   body,
   options,
@@ -920,7 +920,7 @@ export async function adminUsersSheetsIdToggleUsingPatch({
 }
 
 /** 信息表全部数据 GET /admin/users/sheets/all */
-export async function adminUsersSheetsAllUsingGet({
+export function adminUsersSheetsAllUsingGet({
   options,
 }: {
   options?: { [key: string]: unknown };
@@ -936,7 +936,7 @@ export async function adminUsersSheetsAllUsingGet({
 }
 
 /** 获取地区数据 GET /admin/utils/areas */
-export async function adminUtilsAreasUsingGet({
+export function adminUtilsAreasUsingGet({
   options,
 }: {
   options?: { [key: string]: unknown };
@@ -952,7 +952,7 @@ export async function adminUtilsAreasUsingGet({
 }
 
 /** 获取字典数据 GET /admin/utils/data */
-export async function adminUtilsDataUsingGet({
+export function adminUtilsDataUsingGet({
   options,
 }: {
   options?: { [key: string]: unknown };
@@ -968,7 +968,7 @@ export async function adminUtilsDataUsingGet({
 }
 
 /** 上传文件 POST /admin/utils/uploads */
-export async function adminUtilsUploadsUsingPost({
+export function adminUtilsUploadsUsingPost({
   body,
   file,
   options,
@@ -1014,7 +1014,7 @@ export async function adminUtilsUploadsUsingPost({
 }
 
 /** 获取测评数据 GET /user/evaluations/${param0} */
-export async function userEvaluationsIdUsingGet({
+export function userEvaluationsIdUsingGet({
   params,
   options,
 }: {
@@ -1036,7 +1036,7 @@ export async function userEvaluationsIdUsingGet({
 }
 
 /** 提交测评报告 POST /user/evaluations/${param0}/reports */
-export async function userEvaluationsIdReportsUsingPost({
+export function userEvaluationsIdReportsUsingPost({
   params,
   body,
   options,
@@ -1064,7 +1064,7 @@ export async function userEvaluationsIdReportsUsingPost({
 }
 
 /** 测评报告分页列表 GET /user/evaluations/reports */
-export async function userEvaluationsReportsUsingGet({
+export function userEvaluationsReportsUsingGet({
   params,
   options,
 }: {
@@ -1086,7 +1086,7 @@ export async function userEvaluationsReportsUsingGet({
 }
 
 /** 查看测评报告数据 GET /user/evaluations/reports/${param0} */
-export async function userEvaluationsReportsIdUsingGet({
+export function userEvaluationsReportsIdUsingGet({
   params,
   options,
 }: {
@@ -1108,7 +1108,7 @@ export async function userEvaluationsReportsIdUsingGet({
 }
 
 /** 账号登入 POST /user/login */
-export async function userLoginUsingPost({
+export function userLoginUsingPost({
   body,
   options,
 }: {
@@ -1130,7 +1130,7 @@ export async function userLoginUsingPost({
 }
 
 /** 发送验证短信 POST /user/login/verify */
-export async function userLoginVerifyUsingPost({
+export function userLoginVerifyUsingPost({
   body,
   options,
 }: {
@@ -1152,7 +1152,7 @@ export async function userLoginVerifyUsingPost({
 }
 
 /** 获取资料 GET /user/profile */
-export async function userProfileUsingGet({
+export function userProfileUsingGet({
   options,
 }: {
   options?: { [key: string]: unknown };
@@ -1168,7 +1168,7 @@ export async function userProfileUsingGet({
 }
 
 /** 更新资料 PUT /user/profile */
-export async function userProfileUsingPut({
+export function userProfileUsingPut({
   body,
   options,
 }: {
@@ -1186,7 +1186,7 @@ export async function userProfileUsingPut({
 }
 
 /** 获取字典数据 GET /user/utils/data */
-export async function userUtilsDataUsingGet({
+export function userUtilsDataUsingGet({
   options,
 }: {
   options?: { [key: string]: unknown };

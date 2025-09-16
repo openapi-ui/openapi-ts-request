@@ -13,7 +13,7 @@ import request from '../request';
 import * as API from './types';
 
 /** b1 GET /sys-b/b1 */
-export async function sysBb1UsingGet({
+export function sysBb1UsingGet({
   options,
 }: {
   options?: { [key: string]: unknown };
@@ -25,7 +25,7 @@ export async function sysBb1UsingGet({
 }
 
 /** b1/bb1 GET /sys-b/b1/bb1 */
-export async function sysBb1Bb1UsingGet({
+export function sysBb1Bb1UsingGet({
   options,
 }: {
   options?: { [key: string]: unknown };
@@ -37,7 +37,7 @@ export async function sysBb1Bb1UsingGet({
 }
 
 /** b1/bb1/bbb1 GET /sys-b/b1/bb1/bbb1 */
-export async function sysBb1Bb1Bbb1UsingGet({
+export function sysBb1Bb1Bbb1UsingGet({
   options,
 }: {
   options?: { [key: string]: unknown };
@@ -49,7 +49,7 @@ export async function sysBb1Bb1Bbb1UsingGet({
 }
 
 /** b1/bb1/bbb1/bbbb1 GET /sys-b/b1/bb1/bbb1/bbbb1 */
-export async function sysBb1Bb1Bbb1Bbbb1UsingGet({
+export function sysBb1Bb1Bbb1Bbbb1UsingGet({
   options,
 }: {
   options?: { [key: string]: unknown };
@@ -66,7 +66,7 @@ import request from '../request';
 import * as API from './types';
 
 /** c1 GET /sys-c/c1 */
-export async function sysCc1UsingGet({
+export function sysCc1UsingGet({
   options,
 }: {
   options?: { [key: string]: unknown };
@@ -78,7 +78,7 @@ export async function sysCc1UsingGet({
 }
 
 /** c1/cc1 GET /sys-c/c1/cc1 */
-export async function sysCc1Cc1UsingGet({
+export function sysCc1Cc1UsingGet({
   options,
 }: {
   options?: { [key: string]: unknown };
@@ -90,7 +90,7 @@ export async function sysCc1Cc1UsingGet({
 }
 
 /** c1/cc1/ccc1 GET /sys-c/c1/cc1/ccc1 */
-export async function sysCc1Cc1Ccc1UsingGet({
+export function sysCc1Cc1Ccc1UsingGet({
   options,
 }: {
   options?: { [key: string]: unknown };
@@ -102,7 +102,7 @@ export async function sysCc1Cc1Ccc1UsingGet({
 }
 
 /** c1/cc1/ccc1/cccc1 GET /sys-c/c1/cc1/ccc1/cccc1 */
-export async function sysCc1Cc1Ccc1Cccc1UsingGet({
+export function sysCc1Cc1Ccc1Cccc1UsingGet({
   options,
 }: {
   options?: { [key: string]: unknown };
@@ -240,7 +240,7 @@ import request from '../request';
 import * as API from './types';
 
 /** x1 GET /user-x/x1 */
-export async function userXx1UsingGet({
+export function userXx1UsingGet({
   options,
 }: {
   options?: { [key: string]: unknown };
@@ -252,7 +252,7 @@ export async function userXx1UsingGet({
 }
 
 /** x1/xx1 GET /user-x/x1/xx1 */
-export async function userXx1Xx1UsingGet({
+export function userXx1Xx1UsingGet({
   options,
 }: {
   options?: { [key: string]: unknown };
@@ -264,7 +264,7 @@ export async function userXx1Xx1UsingGet({
 }
 
 /** x1/xx1/xxx1 GET /user-x/x1/xx1/xxx1 */
-export async function userXx1Xx1Xxx1UsingGet({
+export function userXx1Xx1Xxx1UsingGet({
   options,
 }: {
   options?: { [key: string]: unknown };
@@ -276,7 +276,7 @@ export async function userXx1Xx1Xxx1UsingGet({
 }
 
 /** x1/xx1/xxx1/xxxx1 GET /user-x/x1/xx1/xxx1/xxxx1 */
-export async function userXx1Xx1Xxx1Xxxx1UsingGet({
+export function userXx1Xx1Xxx1Xxxx1UsingGet({
   options,
 }: {
   options?: { [key: string]: unknown };
@@ -293,7 +293,7 @@ import request from '../request';
 import * as API from './types';
 
 /** y1 GET /user-y/y1 */
-export async function userYy1UsingGet({
+export function userYy1UsingGet({
   options,
 }: {
   options?: { [key: string]: unknown };
@@ -305,7 +305,7 @@ export async function userYy1UsingGet({
 }
 
 /** y1/yy1 GET /user-y/y1/yy1 */
-export async function userYy1Yy1UsingGet({
+export function userYy1Yy1UsingGet({
   options,
 }: {
   options?: { [key: string]: unknown };
@@ -317,7 +317,7 @@ export async function userYy1Yy1UsingGet({
 }
 
 /** y1/yy1/yyy1 GET /user-y/y1/yy1/yyy1 */
-export async function userYy1Yy1Yyy1UsingGet({
+export function userYy1Yy1Yyy1UsingGet({
   options,
 }: {
   options?: { [key: string]: unknown };
@@ -329,7 +329,7 @@ export async function userYy1Yy1Yyy1UsingGet({
 }
 
 /** y1/yy1/yyy1/yyyy1 GET /user-y/y1/yy1/yyy1/yyyy1 */
-export async function userYy1Yy1Yyy1Yyyy1UsingGet({
+export function userYy1Yy1Yyy1Yyyy1UsingGet({
   options,
 }: {
   options?: { [key: string]: unknown };
@@ -341,7 +341,7 @@ export async function userYy1Yy1Yyy1Yyyy1UsingGet({
 }
 
 /** y1/yy1/yyy1/yyyy1/yyyyy1 GET /user-y/y1/yy1/yyy1/yyyy1/yyyyy1 */
-export async function userYy1Yy1Yyy1Yyyy1Yyyyy1UsingGet({
+export function userYy1Yy1Yyy1Yyyy1Yyyyy1UsingGet({
   options,
 }: {
   options?: { [key: string]: unknown };

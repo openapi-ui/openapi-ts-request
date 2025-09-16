@@ -12,7 +12,7 @@
     {{ api.data }}
   {% else %}
     /** {{ api.desc if api.desc else '此处后端没有提供注释' }} {{ api.method | upper }} {{ api.pathInComment | safe }}{{ ' ' if api.apifoxRunLink else '' }}{{ api.apifoxRunLink }} */
-    export async function {{ api.functionName }}({
+    export function {{ api.functionName }}({
       {%- if api.params and api.hasParams %}
         params
         {%- if api.hasParams -%}

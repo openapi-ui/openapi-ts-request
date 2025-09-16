@@ -33,7 +33,7 @@ import { request } from 'axios';
 import * as API from './types';
 
 /** 导入文件 导入文件 POST /webapi/clear/importNavReCheckFile */
-export async function webapiClearImportNavReCheckFileUsingPost({
+export function webapiClearImportNavReCheckFileUsingPost({
   body,
   file,
   options,

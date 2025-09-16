@@ -10,7 +10,7 @@ import request from '../request';
 import * as API from './types';
 
 /** a1/a1/aa1 GET /sys-a/a1/aa1/aaa1 */
-export async function sysAa1Aa1Aaa1UsingGet({
+export function sysAa1Aa1Aaa1UsingGet({
   options,
 }: {
   options?: { [key: string]: unknown };
@@ -22,7 +22,7 @@ export async function sysAa1Aa1Aaa1UsingGet({
 }
 
 /** a1/a1/aa1/aaa1 GET /sys-a/a1/aa1/aaa1/aaaa1 */
-export async function sysAa1Aa1Aaa1Aaaa1UsingGet({
+export function sysAa1Aa1Aaa1Aaaa1UsingGet({
   options,
 }: {
   options?: { [key: string]: unknown };
