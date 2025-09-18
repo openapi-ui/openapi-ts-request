@@ -1,0 +1,92 @@
+/* eslint-disable */
+// @ts-ignore
+export * from './types';
+
+export * from './products';
+/* eslint-disable */
+// @ts-ignore
+import { request } from 'axios';
+
+import * as API from './types';
+
+/** Get product list Get paginated product list with search, filter, and sort support GET /products */
+export function productsUsingGet({
+  params,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.ProductsUsingGetParams;
+  options?: { [key: string]: unknown };
+}) {
+  return request<
+    API.BaseResponse & {
+      data?: API.ProductListResponse;
+    }
+  >('/products', {
+    method: 'GET',
+    params: {
+      // page has a default value: 1
+      page: '1',
+      // pageSize has a default value: 10
+      pageSize: '10',
+
+      ...params,
+    },
+    ...(options || {}),
+  });
+}
+/* eslint-disable */
+// @ts-ignore
+
+export type BaseResponse = {
+  /** Response status code */
+  code?: number;
+  /** Response message */
+  message?: string;
+  /** Response data */
+  data?: Record<string, unknown>;
+};
+
+export type PaginatedResponse = {
+  /** Data list */
+  list?: Record<string, unknown>[];
+  /** Total records */
+  total?: number;
+  /** Current page */
+  page?: number;
+};
+
+export type Product = {
+  /** Product ID */
+  productId?: string;
+  /** Product name */
+  name?: string;
+  /** Product description */
+  description?: string;
+};
+
+export type ProductListResponse =
+  // #/components/schemas/PaginatedResponse
+  PaginatedResponse & {
+    list?: Product[];
+  };
+
+export type ProductsUsingGetParams = {
+  /** Page number */
+  page?: number;
+  /** Page size */
+  pageSize?: number;
+  /** Search keyword */
+  keyword?: string;
+  /** Product category ID */
+  categoryId?: string;
+};
+
+export type ProductsUsingGetResponses = {
+  /**
+   * Get successful
+   */
+  200: BaseResponse & {
+    data?: ProductListResponse;
+  };
+};
