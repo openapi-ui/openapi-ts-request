@@ -1,5 +1,11 @@
 # openapi-ts-request
 
+## 1.8.1
+
+### Patch Changes
+
+- [#488](https://github.com/openapi-ui/openapi-ts-request/pull/488) [`386378c`](https://github.com/openapi-ui/openapi-ts-request/commit/386378cf4fc2459a4f452a9f9cce902bea448f4c) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - fix: fix parse parameters ref error #486
+
 ## 1.8.0
 
 ### Minor Changes
