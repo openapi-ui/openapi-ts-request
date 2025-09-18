@@ -1,0 +1,128 @@
+openapi: 3.0.3
+servers:
+  - url: http://localhost:3000/v1
+    description: 开发环境
+
+security:
+  - BearerAuth: []
+
+paths:
+  /products:
+    get:
+      tags:
+        - Products
+      summary: Get product list
+      description: Get paginated product list with search, filter, and sort support
+      parameters:
+        - $ref: '#/components/parameters/PageParam'
+        - $ref: '#/components/parameters/PageSizeParam'
+        - $ref: '#/components/parameters/KeywordParam'
+        - name: categoryId
+          in: query
+          description: Product category ID
+          schema:
+            type: string
+            example: cat_001
+      responses:
+        '200':
+          description: Get successful
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/BaseResponse'
+                  - type: object
+                    properties:
+                      data:
+                        $ref: '#/components/schemas/ProductListResponse'
+
+components:
+  schemas:
+     # Base response format
+    BaseResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: Response status code
+          example: 200
+        message:
+          type: string
+          description: Response message
+          example: Operation successful
+        data:
+          type: object
+          description: Response data
+
+    ProductListResponse:
+      allOf:
+        - $ref: '#/components/schemas/PaginatedResponse'
+        - type: object
+          properties:
+            list:
+              type: array
+              items:
+                $ref: '#/components/schemas/Product'
+
+    PaginatedResponse:
+      type: object
+      properties:
+        list:
+          type: array
+          description: Data list
+          items:
+            type: object
+        total:
+          type: integer
+          description: Total records
+          example: 100
+        page:
+          type: integer
+          description: Current page
+          example: 1
+
+    Product:
+      type: object
+      properties:
+        productId:
+          type: string
+          description: Product ID
+          example: prod_001
+        name:
+          type: string
+          description: Product name
+          example: Classic Pearl Milk Tea
+        description:
+          type: string
+          description: Product description
+          example: 'Rich milk tea with chewy pearls, a classic that never goes out of style'
+
+  parameters:
+    # Pagination parameters
+    PageParam:
+      name: page
+      in: query
+      description: Page number
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+        example: 1
+
+    PageSizeParam:
+      name: pageSize
+      in: query
+      description: Page size
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 10
+        example: 10
+    KeywordParam:
+      name: keyword
+      in: query
+      description: Search keyword
+      schema:
+        type: string
+        example: Pearl Milk Tea

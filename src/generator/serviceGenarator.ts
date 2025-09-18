@@ -501,28 +501,41 @@ export default class ServiceGenerator {
         markAllowedSchema(JSON.stringify(pathItem), this.openAPIData);
 
         operationObject.parameters = operationObject.parameters?.filter(
-          (item: ParameterObject) => item?.in !== `${parametersInsEnum.header}`
+          (item: ParameterObject | ReferenceObject) => {
+            const parameter = this.resolveParameterRef(item);
+            return parameter?.in !== `${parametersInsEnum.header}`;
+          }
         );
         const props = [] as IPropObject[];
 
-        operationObject.parameters?.forEach((parameter: ParameterObject) => {
-          props.push({
-            name: parameter.name,
-            desc: (parameter.description ?? '').replace(lineBreakReg, ''),
-            required: parameter.required || false,
-            type: this.getType(parameter.schema),
-          });
-        });
+        operationObject.parameters?.forEach(
+          (param: ParameterObject | ReferenceObject) => {
+            const parameter = this.resolveParameterRef(param);
+            if (parameter) {
+              props.push({
+                name: parameter.name,
+                desc: (parameter.description ?? '').replace(lineBreakReg, ''),
+                required: parameter.required || false,
+                type: this.getType(parameter.schema),
+              });
+            }
+          }
+        );
 
         // parameters may be in path
-        pathItem.parameters?.forEach((parameter: ParameterObject) => {
-          props.push({
-            name: parameter.name,
-            desc: (parameter.description ?? '').replace(lineBreakReg, ''),
-            required: parameter.required,
-            type: this.getType(parameter.schema),
-          });
-        });
+        pathItem.parameters?.forEach(
+          (param: ParameterObject | ReferenceObject) => {
+            const parameter = this.resolveParameterRef(param);
+            if (parameter) {
+              props.push({
+                name: parameter.name,
+                desc: (parameter.description ?? '').replace(lineBreakReg, ''),
+                required: parameter.required,
+                type: this.getType(parameter.schema),
+              });
+            }
+          }
+        );
 
         const typeName = this.getFunctionParamsTypeName({
           ...operationObject,
@@ -1466,6 +1479,22 @@ export default class ServiceGenerator {
           : false,
       };
     });
+  }
+
+  private resolveParameterRef(
+    param: ParameterObject | ReferenceObject
+  ): ParameterObject | null {
+    if (!isReferenceObject(param)) {
+      return param;
+    }
+
+    // 解析 $ref 引用，从 components.parameters 中获取实际定义
+    const refName = getLastRefName(param.$ref);
+    const parameter = this.openAPIData.components?.parameters?.[
+      refName
+    ] as ParameterObject;
+
+    return parameter || null;
   }
 
   private resolveRefObject<T>(refObject: ReferenceObject | T): T {
