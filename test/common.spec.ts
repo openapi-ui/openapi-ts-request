@@ -484,4 +484,17 @@ export async function ${api.functionName}(${api.body ? `data: ${api.body.type}` 
       readGeneratedFiles('./apis/openapi-anonymous-response')
     ).resolves.toMatchFileSnapshot(getSnapshotDir(ctx));
   });
+
+  it('测试解析 components.parameters 中的 $ref 引用', async (ctx) => {
+    await openAPI.generateService({
+      schemaPath: join(
+        import.meta.dirname,
+        './example-files/openapi-components-parameters.yaml'
+      ),
+      serversPath: './apis/components-parameters',
+    });
+    await expect(
+      readGeneratedFiles('./apis/components-parameters')
+    ).resolves.toMatchFileSnapshot(getSnapshotDir(ctx));
+  });
 });
