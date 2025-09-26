@@ -1,5 +1,11 @@
 # openapi-ts-request
 
+## 1.8.2
+
+### Patch Changes
+
+- [#500](https://github.com/openapi-ui/openapi-ts-request/pull/500) [`88c9dcf`](https://github.com/openapi-ui/openapi-ts-request/commit/88c9dcfb0b876148b7471730e2fa2654aafabe15) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - fix: fix default export axios #499
+
 ## 1.8.1
 
 ### Patch Changes
