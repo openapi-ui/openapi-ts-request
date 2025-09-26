@@ -1,6 +1,6 @@
 /* eslint-disable */
 // @ts-ignore
-import { request } from 'axios';
+import request from 'axios';
 
 import * as API from './types';
 
@@ -26,7 +26,7 @@ export function v1ApiRobotWorkspaceIdAppkeyUsingPost({
 }
 /* eslint-disable */
 // @ts-ignore
-import { request } from 'axios';
+import request from 'axios';
 
 import * as API from './types';
 
@@ -75,7 +75,7 @@ export function v1ApiAppAppIdApiTokenUsingPost({
 }
 /* eslint-disable */
 // @ts-ignore
-import { request } from 'axios';
+import request from 'axios';
 
 import * as API from './types';
 
@@ -424,7 +424,7 @@ export function v1ApiAppListPublicUsingGet({
 }
 /* eslint-disable */
 // @ts-ignore
-import { request } from 'axios';
+import request from 'axios';
 
 import * as API from './types';
 
@@ -512,7 +512,7 @@ export function v1ApiAppAppIdDatasetConfigsUsingDelete({
 }
 /* eslint-disable */
 // @ts-ignore
-import { request } from 'axios';
+import request from 'axios';
 
 import * as API from './types';
 
@@ -600,7 +600,7 @@ export function v1ApiAppAppIdMemberRoleUsingPut({
 }
 /* eslint-disable */
 // @ts-ignore
-import { request } from 'axios';
+import request from 'axios';
 
 import * as API from './types';
 
@@ -686,7 +686,7 @@ export function v1ApiAppAppIdPluginUsingPut({
 }
 /* eslint-disable */
 // @ts-ignore
-import { request } from 'axios';
+import request from 'axios';
 
 import * as API from './types';
 
@@ -784,7 +784,7 @@ export function v2ApiAppShareApiTokenUsingGet({
 }
 /* eslint-disable */
 // @ts-ignore
-import { request } from 'axios';
+import request from 'axios';
 
 import * as API from './types';
 
@@ -957,7 +957,7 @@ export function v1ApiAttentionUserListUsingPost({
 }
 /* eslint-disable */
 // @ts-ignore
-import { request } from 'axios';
+import request from 'axios';
 
 import * as API from './types';
 
@@ -980,7 +980,7 @@ export function authAuthorizeUsingGet({
 }
 /* eslint-disable */
 // @ts-ignore
-import { request } from 'axios';
+import request from 'axios';
 
 import * as API from './types';
 
@@ -1081,7 +1081,7 @@ export function v2ApiChatMessagesUsingPost({
 }
 /* eslint-disable */
 // @ts-ignore
-import { request } from 'axios';
+import request from 'axios';
 
 import * as API from './types';
 
@@ -1122,7 +1122,7 @@ export function v1ApiConversationsUsingDelete({
 }
 /* eslint-disable */
 // @ts-ignore
-import { request } from 'axios';
+import request from 'axios';
 
 import * as API from './types';
 
@@ -1154,7 +1154,7 @@ export function v1ApiFeedbacksMessageIdUsingPost({
 }
 /* eslint-disable */
 // @ts-ignore
-import { request } from 'axios';
+import request from 'axios';
 
 import * as API from './types';
 
@@ -1200,7 +1200,7 @@ export function v1ApiAppAppIdDatasetsUsingDelete({
 }
 /* eslint-disable */
 // @ts-ignore
-import { request } from 'axios';
+import request from 'axios';
 
 import * as API from './types';
 
@@ -1228,7 +1228,7 @@ export function v1ApiAppAppIdDatasetsListUsingGet({
 }
 /* eslint-disable */
 // @ts-ignore
-import { request } from 'axios';
+import request from 'axios';
 
 import * as API from './types';
 
@@ -1256,7 +1256,7 @@ export function v1ApiFeedbacksMessageIdUsingDelete({
 }
 /* eslint-disable */
 // @ts-ignore
-import { request } from 'axios';
+import request from 'axios';
 
 import * as API from './types';
 
@@ -1317,7 +1317,7 @@ export function displayWorkspaceRoleEnum(field: API.WorkspaceRole) {
 }
 /* eslint-disable */
 // @ts-ignore
-import { request } from 'axios';
+import request from 'axios';
 
 import * as API from './types';
 
@@ -1340,7 +1340,7 @@ export function authExchangeUsingGet({
 }
 /* eslint-disable */
 // @ts-ignore
-import { request } from 'axios';
+import request from 'axios';
 
 import * as API from './types';
 
@@ -1447,7 +1447,7 @@ export function v2ApiFileUsingPost({
 }
 /* eslint-disable */
 // @ts-ignore
-import { request } from 'axios';
+import request from 'axios';
 
 import * as API from './types';
 
@@ -1472,7 +1472,7 @@ export function v1ApiRobotWorkspaceIdAppkeyUsingGet({
 }
 /* eslint-disable */
 // @ts-ignore
-import { request } from 'axios';
+import request from 'axios';
 
 import * as API from './types';
 
@@ -1542,7 +1542,7 @@ export function v2ApiChatMessagesMessagesCountUsingGet({
 }
 /* eslint-disable */
 // @ts-ignore
-import { request } from 'axios';
+import request from 'axios';
 
 import * as API from './types';
 
@@ -1603,7 +1603,7 @@ export * from './workspace';
 export * from './workspaceGroup';
 /* eslint-disable */
 // @ts-ignore
-import { request } from 'axios';
+import request from 'axios';
 
 import * as API from './types';
 
@@ -1626,7 +1626,7 @@ export function v1ApiFeedbacksUsingGet({
 }
 /* eslint-disable */
 // @ts-ignore
-import { request } from 'axios';
+import request from 'axios';
 
 import * as API from './types';
 
@@ -1649,7 +1649,7 @@ export function v1ApiProviderListUsingGet({
 }
 /* eslint-disable */
 // @ts-ignore
-import { request } from 'axios';
+import request from 'axios';
 
 import * as API from './types';
 
@@ -1696,7 +1696,7 @@ export function v1ApiAppAppIdRecommendedContextUsingPost({
 }
 /* eslint-disable */
 // @ts-ignore
-import { request } from 'axios';
+import request from 'axios';
 
 import * as API from './types';
 
@@ -3890,7 +3890,7 @@ export const $errorResp = {
 };
 /* eslint-disable */
 // @ts-ignore
-import { request } from 'axios';
+import request from 'axios';
 
 import * as API from './types';
 
@@ -7289,7 +7289,7 @@ export type WxExtra = {
 };
 /* eslint-disable */
 // @ts-ignore
-import { request } from 'axios';
+import request from 'axios';
 
 import * as API from './types';
 
@@ -7315,7 +7315,7 @@ export function v1ApiRobotWorkspaceIdAppkeyStateUsingPost({
 }
 /* eslint-disable */
 // @ts-ignore
-import { request } from 'axios';
+import request from 'axios';
 
 import * as API from './types';
 
@@ -7374,7 +7374,7 @@ export function v1ApiUserRoleUsingPut({
 }
 /* eslint-disable */
 // @ts-ignore
-import { request } from 'axios';
+import request from 'axios';
 
 import * as API from './types';
 
@@ -7625,7 +7625,7 @@ export function v2ApiWorkspacesWorkspaceIdUsersUsingPost({
 }
 /* eslint-disable */
 // @ts-ignore
-import { request } from 'axios';
+import request from 'axios';
 
 import * as API from './types';
 
@@ -8025,7 +8025,7 @@ export function v2ApiWorkspacesRecommendedMessageIdDetailsUsingGet({
 }
 /* eslint-disable */
 // @ts-ignore
-import { request } from 'axios';
+import request from 'axios';
 
 import * as API from './types';
 

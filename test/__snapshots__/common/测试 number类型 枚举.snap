@@ -1,6 +1,6 @@
 /* eslint-disable */
 // @ts-ignore
-import { request } from 'axios';
+import request from 'axios';
 
 import * as API from './types';
 
@@ -66,7 +66,7 @@ export function displayPoi2CategoryEnumEnum(field: API.Poi2CategoryEnum) {
 }
 /* eslint-disable */
 // @ts-ignore
-import { request } from 'axios';
+import request from 'axios';
 
 import * as API from './types';
 
@@ -91,7 +91,7 @@ export * from './cityList';
 export * from './putCity';
 /* eslint-disable */
 // @ts-ignore
-import { request } from 'axios';
+import request from 'axios';
 
 import * as API from './types';
 

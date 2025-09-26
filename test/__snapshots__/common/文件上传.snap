@@ -2,7 +2,7 @@
 // @ts-ignore
 import { queryOptions, useMutation } from '@tanstack/react-query';
 import type { DefaultError } from '@tanstack/react-query';
-import { request } from 'axios';
+import request from 'axios';
 
 import * as apis from './fileController';
 import * as API from './types';
@@ -28,7 +28,7 @@ export function useWebapiClearImportNavReCheckFileUsingPostMutation(options?: {
 }
 /* eslint-disable */
 // @ts-ignore
-import { request } from 'axios';
+import request from 'axios';
 
 import * as API from './types';
 
