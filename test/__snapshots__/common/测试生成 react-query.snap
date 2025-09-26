@@ -2,7 +2,7 @@
 // @ts-ignore
 import { queryOptions, useMutation } from '@tanstack/react-query';
 import type { DefaultError } from '@tanstack/react-query';
-import { request } from 'axios';
+import request from 'axios';
 
 import * as apis from './addAppKey';
 import * as API from './types';
@@ -28,7 +28,7 @@ export function useV1ApiRobotWorkspaceIdAppkeyUsingPostMutation(options?: {
 }
 /* eslint-disable */
 // @ts-ignore
-import { request } from 'axios';
+import request from 'axios';
 
 import * as API from './types';
 
@@ -56,7 +56,7 @@ export function v1ApiRobotWorkspaceIdAppkeyUsingPost({
 // @ts-ignore
 import { queryOptions, useMutation } from '@tanstack/react-query';
 import type { DefaultError } from '@tanstack/react-query';
-import { request } from 'axios';
+import request from 'axios';
 
 import * as apis from './apiToken';
 import * as API from './types';
@@ -96,7 +96,7 @@ export function useV1ApiAppAppIdApiTokenUsingPostMutation(options?: {
 }
 /* eslint-disable */
 // @ts-ignore
-import { request } from 'axios';
+import request from 'axios';
 
 import * as API from './types';
 
@@ -147,7 +147,7 @@ export function v1ApiAppAppIdApiTokenUsingPost({
 // @ts-ignore
 import { queryOptions, useMutation } from '@tanstack/react-query';
 import type { DefaultError } from '@tanstack/react-query';
-import { request } from 'axios';
+import request from 'axios';
 
 import * as apis from './app';
 import * as API from './types';
@@ -441,7 +441,7 @@ export function v1ApiAppListPublicUsingGetQueryOptions(options: {
 }
 /* eslint-disable */
 // @ts-ignore
-import { request } from 'axios';
+import request from 'axios';
 
 import * as API from './types';
 
@@ -792,7 +792,7 @@ export function v1ApiAppListPublicUsingGet({
 // @ts-ignore
 import { queryOptions, useMutation } from '@tanstack/react-query';
 import type { DefaultError } from '@tanstack/react-query';
-import { request } from 'axios';
+import request from 'axios';
 
 import * as apis from './appDatasetConfigs';
 import * as API from './types';
@@ -874,7 +874,7 @@ export function useV1ApiAppAppIdDatasetConfigsUsingDeleteMutation(options?: {
 }
 /* eslint-disable */
 // @ts-ignore
-import { request } from 'axios';
+import request from 'axios';
 
 import * as API from './types';
 
@@ -964,7 +964,7 @@ export function v1ApiAppAppIdDatasetConfigsUsingDelete({
 // @ts-ignore
 import { queryOptions, useMutation } from '@tanstack/react-query';
 import type { DefaultError } from '@tanstack/react-query';
-import { request } from 'axios';
+import request from 'axios';
 
 import * as apis from './appMember';
 import * as API from './types';
@@ -1044,7 +1044,7 @@ export function useV1ApiAppAppIdMemberRoleUsingPutMutation(options?: {
 }
 /* eslint-disable */
 // @ts-ignore
-import { request } from 'axios';
+import request from 'axios';
 
 import * as API from './types';
 
@@ -1134,7 +1134,7 @@ export function v1ApiAppAppIdMemberRoleUsingPut({
 // @ts-ignore
 import { queryOptions, useMutation } from '@tanstack/react-query';
 import type { DefaultError } from '@tanstack/react-query';
-import { request } from 'axios';
+import request from 'axios';
 
 import * as apis from './appModelConfigs';
 import * as API from './types';
@@ -1220,7 +1220,7 @@ export function useV1ApiAppAppIdPluginUsingPutMutation(options?: {
 }
 /* eslint-disable */
 // @ts-ignore
-import { request } from 'axios';
+import request from 'axios';
 
 import * as API from './types';
 
@@ -1308,7 +1308,7 @@ export function v1ApiAppAppIdPluginUsingPut({
 // @ts-ignore
 import { queryOptions, useMutation } from '@tanstack/react-query';
 import type { DefaultError } from '@tanstack/react-query';
-import { request } from 'axios';
+import request from 'axios';
 
 import * as apis from './appV2';
 import * as API from './types';
@@ -1396,7 +1396,7 @@ export function v2ApiAppShareApiTokenUsingGetQueryOptions(options: {
 }
 /* eslint-disable */
 // @ts-ignore
-import { request } from 'axios';
+import request from 'axios';
 
 import * as API from './types';
 
@@ -1496,7 +1496,7 @@ export function v2ApiAppShareApiTokenUsingGet({
 // @ts-ignore
 import { queryOptions, useMutation } from '@tanstack/react-query';
 import type { DefaultError } from '@tanstack/react-query';
-import { request } from 'axios';
+import request from 'axios';
 
 import * as apis from './attention';
 import * as API from './types';
@@ -1666,7 +1666,7 @@ export function useV1ApiAttentionUserListUsingPostMutation(options?: {
 }
 /* eslint-disable */
 // @ts-ignore
-import { request } from 'axios';
+import request from 'axios';
 
 import * as API from './types';
 
@@ -1841,7 +1841,7 @@ export function v1ApiAttentionUserListUsingPost({
 // @ts-ignore
 import { queryOptions, useMutation } from '@tanstack/react-query';
 import type { DefaultError } from '@tanstack/react-query';
-import { request } from 'axios';
+import request from 'axios';
 
 import * as apis from './authorize';
 import * as API from './types';
@@ -1861,7 +1861,7 @@ export function authAuthorizeUsingGetQueryOptions(options: {
 }
 /* eslint-disable */
 // @ts-ignore
-import { request } from 'axios';
+import request from 'axios';
 
 import * as API from './types';
 
@@ -1886,7 +1886,7 @@ export function authAuthorizeUsingGet({
 // @ts-ignore
 import { queryOptions, useMutation } from '@tanstack/react-query';
 import type { DefaultError } from '@tanstack/react-query';
-import { request } from 'axios';
+import request from 'axios';
 
 import * as apis from './chat';
 import * as API from './types';
@@ -1992,7 +1992,7 @@ export function useV2ApiChatMessagesUsingPostMutation(options?: {
 }
 /* eslint-disable */
 // @ts-ignore
-import { request } from 'axios';
+import request from 'axios';
 
 import * as API from './types';
 
@@ -2095,7 +2095,7 @@ export function v2ApiChatMessagesUsingPost({
 // @ts-ignore
 import { queryOptions, useMutation } from '@tanstack/react-query';
 import type { DefaultError } from '@tanstack/react-query';
-import { request } from 'axios';
+import request from 'axios';
 
 import * as apis from './conversation';
 import * as API from './types';
@@ -2135,7 +2135,7 @@ export function useV1ApiConversationsUsingDeleteMutation(options?: {
 }
 /* eslint-disable */
 // @ts-ignore
-import { request } from 'axios';
+import request from 'axios';
 
 import * as API from './types';
 
@@ -2178,7 +2178,7 @@ export function v1ApiConversationsUsingDelete({
 // @ts-ignore
 import { queryOptions, useMutation } from '@tanstack/react-query';
 import type { DefaultError } from '@tanstack/react-query';
-import { request } from 'axios';
+import request from 'axios';
 
 import * as apis from './createFeedbacks';
 import * as API from './types';
@@ -2204,7 +2204,7 @@ export function useV1ApiFeedbacksMessageIdUsingPostMutation(options?: {
 }
 /* eslint-disable */
 // @ts-ignore
-import { request } from 'axios';
+import request from 'axios';
 
 import * as API from './types';
 
@@ -2238,7 +2238,7 @@ export function v1ApiFeedbacksMessageIdUsingPost({
 // @ts-ignore
 import { queryOptions, useMutation } from '@tanstack/react-query';
 import type { DefaultError } from '@tanstack/react-query';
-import { request } from 'axios';
+import request from 'axios';
 
 import * as apis from './datasetsJoin';
 import * as API from './types';
@@ -2284,7 +2284,7 @@ export function useV1ApiAppAppIdDatasetsUsingDeleteMutation(options?: {
 }
 /* eslint-disable */
 // @ts-ignore
-import { request } from 'axios';
+import request from 'axios';
 
 import * as API from './types';
 
@@ -2332,7 +2332,7 @@ export function v1ApiAppAppIdDatasetsUsingDelete({
 // @ts-ignore
 import { queryOptions, useMutation } from '@tanstack/react-query';
 import type { DefaultError } from '@tanstack/react-query';
-import { request } from 'axios';
+import request from 'axios';
 
 import * as apis from './datasetsList';
 import * as API from './types';
@@ -2354,7 +2354,7 @@ export function v1ApiAppAppIdDatasetsListUsingGetQueryOptions(options: {
 }
 /* eslint-disable */
 // @ts-ignore
-import { request } from 'axios';
+import request from 'axios';
 
 import * as API from './types';
 
@@ -2384,7 +2384,7 @@ export function v1ApiAppAppIdDatasetsListUsingGet({
 // @ts-ignore
 import { queryOptions, useMutation } from '@tanstack/react-query';
 import type { DefaultError } from '@tanstack/react-query';
-import { request } from 'axios';
+import request from 'axios';
 
 import * as apis from './deleteFeedbacks';
 import * as API from './types';
@@ -2410,7 +2410,7 @@ export function useV1ApiFeedbacksMessageIdUsingDeleteMutation(options?: {
 }
 /* eslint-disable */
 // @ts-ignore
-import { request } from 'axios';
+import request from 'axios';
 
 import * as API from './types';
 
@@ -2440,7 +2440,7 @@ export function v1ApiFeedbacksMessageIdUsingDelete({
 // @ts-ignore
 import { queryOptions, useMutation } from '@tanstack/react-query';
 import type { DefaultError } from '@tanstack/react-query';
-import { request } from 'axios';
+import request from 'axios';
 
 import * as apis from './deleteKey';
 import * as API from './types';
@@ -2466,7 +2466,7 @@ export function useV1ApiRobotWorkspaceIdAppkeyUsingDeleteMutation(options?: {
 }
 /* eslint-disable */
 // @ts-ignore
-import { request } from 'axios';
+import request from 'axios';
 
 import * as API from './types';
 
@@ -2529,7 +2529,7 @@ export function displayWorkspaceRoleEnum(field: API.WorkspaceRole) {
 // @ts-ignore
 import { queryOptions, useMutation } from '@tanstack/react-query';
 import type { DefaultError } from '@tanstack/react-query';
-import { request } from 'axios';
+import request from 'axios';
 
 import * as apis from './exchange';
 import * as API from './types';
@@ -2549,7 +2549,7 @@ export function authExchangeUsingGetQueryOptions(options: {
 }
 /* eslint-disable */
 // @ts-ignore
-import { request } from 'axios';
+import request from 'axios';
 
 import * as API from './types';
 
@@ -2574,7 +2574,7 @@ export function authExchangeUsingGet({
 // @ts-ignore
 import { queryOptions, useMutation } from '@tanstack/react-query';
 import type { DefaultError } from '@tanstack/react-query';
-import { request } from 'axios';
+import request from 'axios';
 
 import * as apis from './files';
 import * as API from './types';
@@ -2660,7 +2660,7 @@ export function useV2ApiFileUsingPostMutation(options?: {
 }
 /* eslint-disable */
 // @ts-ignore
-import { request } from 'axios';
+import request from 'axios';
 
 import * as API from './types';
 
@@ -2769,7 +2769,7 @@ export function v2ApiFileUsingPost({
 // @ts-ignore
 import { queryOptions, useMutation } from '@tanstack/react-query';
 import type { DefaultError } from '@tanstack/react-query';
-import { request } from 'axios';
+import request from 'axios';
 
 import * as apis from './getAppKey';
 import * as API from './types';
@@ -2791,7 +2791,7 @@ export function v1ApiRobotWorkspaceIdAppkeyUsingGetQueryOptions(options: {
 }
 /* eslint-disable */
 // @ts-ignore
-import { request } from 'axios';
+import request from 'axios';
 
 import * as API from './types';
 
@@ -2818,7 +2818,7 @@ export function v1ApiRobotWorkspaceIdAppkeyUsingGet({
 // @ts-ignore
 import { queryOptions, useMutation } from '@tanstack/react-query';
 import type { DefaultError } from '@tanstack/react-query';
-import { request } from 'axios';
+import request from 'axios';
 
 import * as apis from './history';
 import * as API from './types';
@@ -2876,7 +2876,7 @@ export function v2ApiChatMessagesMessagesCountUsingGetQueryOptions(options: {
 }
 /* eslint-disable */
 // @ts-ignore
-import { request } from 'axios';
+import request from 'axios';
 
 import * as API from './types';
 
@@ -2948,7 +2948,7 @@ export function v2ApiChatMessagesMessagesCountUsingGet({
 // @ts-ignore
 import { queryOptions, useMutation } from '@tanstack/react-query';
 import type { DefaultError } from '@tanstack/react-query';
-import { request } from 'axios';
+import request from 'axios';
 
 import * as apis from './iam';
 import * as API from './types';
@@ -2968,7 +2968,7 @@ export function v1ApiIamAccountUsingGetQueryOptions(options: {
 }
 /* eslint-disable */
 // @ts-ignore
-import { request } from 'axios';
+import request from 'axios';
 
 import * as API from './types';
 
@@ -3060,7 +3060,7 @@ export * from './workspaceGroup.reactquery';
 // @ts-ignore
 import { queryOptions, useMutation } from '@tanstack/react-query';
 import type { DefaultError } from '@tanstack/react-query';
-import { request } from 'axios';
+import request from 'axios';
 
 import * as apis from './listFeedbacks';
 import * as API from './types';
@@ -3080,7 +3080,7 @@ export function v1ApiFeedbacksUsingGetQueryOptions(options: {
 }
 /* eslint-disable */
 // @ts-ignore
-import { request } from 'axios';
+import request from 'axios';
 
 import * as API from './types';
 
@@ -3105,7 +3105,7 @@ export function v1ApiFeedbacksUsingGet({
 // @ts-ignore
 import { queryOptions, useMutation } from '@tanstack/react-query';
 import type { DefaultError } from '@tanstack/react-query';
-import { request } from 'axios';
+import request from 'axios';
 
 import * as apis from './provider';
 import * as API from './types';
@@ -3125,7 +3125,7 @@ export function v1ApiProviderListUsingGetQueryOptions(options: {
 }
 /* eslint-disable */
 // @ts-ignore
-import { request } from 'axios';
+import request from 'axios';
 
 import * as API from './types';
 
@@ -3150,7 +3150,7 @@ export function v1ApiProviderListUsingGet({
 // @ts-ignore
 import { queryOptions, useMutation } from '@tanstack/react-query';
 import type { DefaultError } from '@tanstack/react-query';
-import { request } from 'axios';
+import request from 'axios';
 
 import * as apis from './recommended';
 import * as API from './types';
@@ -3192,7 +3192,7 @@ export function useV1ApiAppAppIdRecommendedContextUsingPostMutation(options?: {
 }
 /* eslint-disable */
 // @ts-ignore
-import { request } from 'axios';
+import request from 'axios';
 
 import * as API from './types';
 
@@ -3241,7 +3241,7 @@ export function v1ApiAppAppIdRecommendedContextUsingPost({
 // @ts-ignore
 import { queryOptions, useMutation } from '@tanstack/react-query';
 import type { DefaultError } from '@tanstack/react-query';
-import { request } from 'axios';
+import request from 'axios';
 
 import * as apis from './refreshToken';
 import * as API from './types';
@@ -3267,7 +3267,7 @@ export function useAuthRefreshTokenUsingPostMutation(options?: {
 }
 /* eslint-disable */
 // @ts-ignore
-import { request } from 'axios';
+import request from 'axios';
 
 import * as API from './types';
 
@@ -3289,7 +3289,7 @@ export function authRefreshTokenUsingPost({
 // @ts-ignore
 import { queryOptions, useMutation } from '@tanstack/react-query';
 import type { DefaultError } from '@tanstack/react-query';
-import { request } from 'axios';
+import request from 'axios';
 
 import * as apis from './share';
 import * as API from './types';
@@ -3325,7 +3325,7 @@ export function v1ApiAppShareApiTokenUsingGetQueryOptions(options: {
 }
 /* eslint-disable */
 // @ts-ignore
-import { request } from 'axios';
+import request from 'axios';
 
 import * as API from './types';
 
@@ -6726,7 +6726,7 @@ export type WxExtra = {
 // @ts-ignore
 import { queryOptions, useMutation } from '@tanstack/react-query';
 import type { DefaultError } from '@tanstack/react-query';
-import { request } from 'axios';
+import request from 'axios';
 
 import * as apis from './updateAppKeyState';
 import * as API from './types';
@@ -6752,7 +6752,7 @@ export function useV1ApiRobotWorkspaceIdAppkeyStateUsingPostMutation(options?: {
 }
 /* eslint-disable */
 // @ts-ignore
-import { request } from 'axios';
+import request from 'axios';
 
 import * as API from './types';
 
@@ -6780,7 +6780,7 @@ export function v1ApiRobotWorkspaceIdAppkeyStateUsingPost({
 // @ts-ignore
 import { queryOptions, useMutation } from '@tanstack/react-query';
 import type { DefaultError } from '@tanstack/react-query';
-import { request } from 'axios';
+import request from 'axios';
 
 import * as apis from './user';
 import * as API from './types';
@@ -6834,7 +6834,7 @@ export function useV1ApiUserRoleUsingPutMutation(options?: {
 }
 /* eslint-disable */
 // @ts-ignore
-import { request } from 'axios';
+import request from 'axios';
 
 import * as API from './types';
 
@@ -6895,7 +6895,7 @@ export function v1ApiUserRoleUsingPut({
 // @ts-ignore
 import { queryOptions, useMutation } from '@tanstack/react-query';
 import type { DefaultError } from '@tanstack/react-query';
-import { request } from 'axios';
+import request from 'axios';
 
 import * as apis from './workspace';
 import * as API from './types';
@@ -7133,7 +7133,7 @@ export function useV2ApiWorkspacesWorkspaceIdUsersUsingPostMutation(options?: {
 }
 /* eslint-disable */
 // @ts-ignore
-import { request } from 'axios';
+import request from 'axios';
 
 import * as API from './types';
 
@@ -7386,7 +7386,7 @@ export function v2ApiWorkspacesWorkspaceIdUsersUsingPost({
 // @ts-ignore
 import { queryOptions, useMutation } from '@tanstack/react-query';
 import type { DefaultError } from '@tanstack/react-query';
-import { request } from 'axios';
+import request from 'axios';
 
 import * as apis from './workspaceAppV2';
 import * as API from './types';
@@ -7722,7 +7722,7 @@ export function v2ApiWorkspacesRecommendedMessageIdDetailsUsingGetQueryOptions(o
 }
 /* eslint-disable */
 // @ts-ignore
-import { request } from 'axios';
+import request from 'axios';
 
 import * as API from './types';
 
@@ -8124,7 +8124,7 @@ export function v2ApiWorkspacesRecommendedMessageIdDetailsUsingGet({
 // @ts-ignore
 import { queryOptions, useMutation } from '@tanstack/react-query';
 import type { DefaultError } from '@tanstack/react-query';
-import { request } from 'axios';
+import request from 'axios';
 
 import * as apis from './workspaceGroup';
 import * as API from './types';
@@ -8207,7 +8207,7 @@ export function useV2ApiWorkspacesWorkspaceIdGroupsWorkspaceGroupIdUsingDeleteMu
 }
 /* eslint-disable */
 // @ts-ignore
-import { request } from 'axios';
+import request from 'axios';
 
 import * as API from './types';
 

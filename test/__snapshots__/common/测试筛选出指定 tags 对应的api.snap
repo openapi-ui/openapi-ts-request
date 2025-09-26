@@ -13,7 +13,7 @@ export * from './displayEnumLabel';
 export * from './pet';
 /* eslint-disable */
 // @ts-ignore
-import { request } from 'axios';
+import request from 'axios';
 
 import * as API from './types';
 
