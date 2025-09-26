@@ -1,4 +1,4 @@
-import { request } from 'axios';
+import request from 'axios';
 
 /** AddAppKey 为应用添加各种类型机器人appkey POST /llmops/v1/api/robot/${param0}/appkey */
 export function v1ApiRobotWorkspaceIdAppkeyUsingPost({
@@ -16,7 +16,7 @@ export function v1ApiRobotWorkspaceIdAppkeyUsingPost({
   });
 }
 import { queryOptions, useMutation } from '@tanstack/react-query';
-import { request } from 'axios';
+import request from 'axios';
 
 import * as apis from './addAppKey';
 
@@ -36,7 +36,7 @@ export function useV1ApiRobotWorkspaceIdAppkeyUsingPostMutation(options) {
 
   return response;
 }
-import { request } from 'axios';
+import request from 'axios';
 
 /** ListApiToken 获取app 的 token 列表 GET /llmops/v1/api/app/${param0}/api-token */
 export function v1ApiAppAppIdApiTokenUsingGet({ params, options }) {
@@ -62,7 +62,7 @@ export function v1ApiAppAppIdApiTokenUsingPost({ params, options }) {
   });
 }
 import { queryOptions, useMutation } from '@tanstack/react-query';
-import { request } from 'axios';
+import request from 'axios';
 
 import * as apis from './apiToken';
 
@@ -92,7 +92,7 @@ export function useV1ApiAppAppIdApiTokenUsingPostMutation(options) {
 
   return response;
 }
-import { request } from 'axios';
+import request from 'axios';
 
 /** GetAppCostTokens 查询 app token消耗 POST /llmops/v1/api/${param0}/cost */
 export function v1ApiAppIdCostUsingPost({ params, options }) {
@@ -300,7 +300,7 @@ export function v1ApiAppListPublicUsingGet({ params, options }) {
   });
 }
 import { queryOptions, useMutation } from '@tanstack/react-query';
-import { request } from 'axios';
+import request from 'axios';
 
 import * as apis from './app';
 
@@ -527,7 +527,7 @@ export function v1ApiAppListPublicUsingGetQueryOptions(options) {
     queryKey: ['v1ApiAppListPublicUsingGet', options],
   });
 }
-import { request } from 'axios';
+import request from 'axios';
 
 /** GetAppDatasetConfigsList 查询应用知识库查询配置 GET /llmops/v1/api/app/${param0}/dataset-configs */
 export function v1ApiAppAppIdDatasetConfigsUsingGet({ params, options }) {
@@ -581,7 +581,7 @@ export function v1ApiAppAppIdDatasetConfigsUsingDelete({ params, options }) {
   });
 }
 import { queryOptions, useMutation } from '@tanstack/react-query';
-import { request } from 'axios';
+import request from 'axios';
 
 import * as apis from './appDatasetConfigs';
 
@@ -645,7 +645,7 @@ export function useV1ApiAppAppIdDatasetConfigsUsingDeleteMutation(options) {
 
   return response;
 }
-import { request } from 'axios';
+import request from 'axios';
 
 /** ListMember app下的用户列表 GET /llmops/v1/api/app/${param0}/member */
 export function v1ApiAppAppIdMemberUsingGet({ params, options }) {
@@ -696,7 +696,7 @@ export function v1ApiAppAppIdMemberRoleUsingPut({ params, body, options }) {
   });
 }
 import { queryOptions, useMutation } from '@tanstack/react-query';
-import { request } from 'axios';
+import request from 'axios';
 
 import * as apis from './appMember';
 
@@ -760,7 +760,7 @@ export function useV1ApiAppAppIdMemberRoleUsingPutMutation(options) {
 
   return response;
 }
-import { request } from 'axios';
+import request from 'axios';
 
 /** UpdateModelConfigs 更新 app model configs PUT /llmops/v1/api/app/${param0}/model-configs */
 export function v1ApiAppAppIdModelConfigsUsingPut({ params, body, options }) {
@@ -809,7 +809,7 @@ export function v1ApiAppAppIdPluginUsingPut({ params, options }) {
   });
 }
 import { queryOptions, useMutation } from '@tanstack/react-query';
-import { request } from 'axios';
+import request from 'axios';
 
 import * as apis from './appModelConfigs';
 
@@ -880,7 +880,7 @@ export function useV1ApiAppAppIdPluginUsingPutMutation(options) {
 
   return response;
 }
-import { request } from 'axios';
+import request from 'axios';
 
 /** CreateAppV2 创建 app POST /llmops/v2/api/app */
 export function v2ApiAppUsingPost({ body, options }) {
@@ -936,7 +936,7 @@ export function v2ApiAppShareApiTokenUsingGet({ params, options }) {
   });
 }
 import { queryOptions, useMutation } from '@tanstack/react-query';
-import { request } from 'axios';
+import request from 'axios';
 
 import * as apis from './appV2';
 
@@ -1003,7 +1003,7 @@ export function v2ApiAppShareApiTokenUsingGetQueryOptions(options) {
     queryKey: ['v2ApiAppShareApiTokenUsingGet', options],
   });
 }
-import { request } from 'axios';
+import request from 'axios';
 
 /** ListAttentionApp 应用列表 GET /llmops/v1/api/attention/app/list */
 export function v1ApiAttentionAppListUsingGet({ params, options }) {
@@ -1097,7 +1097,7 @@ export function v1ApiAttentionUserListUsingPost({ params, options }) {
   });
 }
 import { queryOptions, useMutation } from '@tanstack/react-query';
-import { request } from 'axios';
+import request from 'axios';
 
 import * as apis from './attention';
 
@@ -1232,7 +1232,7 @@ export function useV1ApiAttentionUserListUsingPostMutation(options) {
 
   return response;
 }
-import { request } from 'axios';
+import request from 'axios';
 
 /** Authorize 获取code的跳转 GET /llmops/auth/authorize */
 export function authAuthorizeUsingGet({ params, options }) {
@@ -1245,7 +1245,7 @@ export function authAuthorizeUsingGet({ params, options }) {
   });
 }
 import { queryOptions, useMutation } from '@tanstack/react-query';
-import { request } from 'axios';
+import request from 'axios';
 
 import * as apis from './authorize';
 
@@ -1258,7 +1258,7 @@ export function authAuthorizeUsingGetQueryOptions(options) {
     queryKey: ['authAuthorizeUsingGet', options],
   });
 }
-import { request } from 'axios';
+import request from 'axios';
 
 /** Messages Messages POST /llmops/v1/api/chat-messages */
 export function v1ApiChatMessagesUsingPost({ body, options }) {
@@ -1320,7 +1320,7 @@ export function v2ApiChatMessagesUsingPost({ body, options }) {
   });
 }
 import { queryOptions, useMutation } from '@tanstack/react-query';
-import { request } from 'axios';
+import request from 'axios';
 
 import * as apis from './chat';
 
@@ -1410,7 +1410,7 @@ export function useV2ApiChatMessagesUsingPostMutation(options) {
 
   return response;
 }
-import { request } from 'axios';
+import request from 'axios';
 
 /** ConversationList 会话历史 GET /llmops/v1/api/conversations */
 export function v1ApiConversationsUsingGet({ params, options }) {
@@ -1434,7 +1434,7 @@ export function v1ApiConversationsUsingDelete({ params, options }) {
   });
 }
 import { queryOptions, useMutation } from '@tanstack/react-query';
-import { request } from 'axios';
+import request from 'axios';
 
 import * as apis from './conversation';
 
@@ -1464,7 +1464,7 @@ export function useV1ApiConversationsUsingDeleteMutation(options) {
 
   return response;
 }
-import { request } from 'axios';
+import request from 'axios';
 
 /** CreateFeedbacks CreateFeedbacks POST /llmops/v1/api/feedbacks/${param0} */
 export function v1ApiFeedbacksMessageIdUsingPost({ params, body, options }) {
@@ -1481,7 +1481,7 @@ export function v1ApiFeedbacksMessageIdUsingPost({ params, body, options }) {
   });
 }
 import { queryOptions, useMutation } from '@tanstack/react-query';
-import { request } from 'axios';
+import request from 'axios';
 
 import * as apis from './createFeedbacks';
 
@@ -1501,7 +1501,7 @@ export function useV1ApiFeedbacksMessageIdUsingPostMutation(options) {
 
   return response;
 }
-import { request } from 'axios';
+import request from 'axios';
 
 /** CreateDatasetsJoin 创建 app 数据集关联 POST /llmops/v1/api/app/${param0}/datasets */
 export function v1ApiAppAppIdDatasetsUsingPost({ params, body, options }) {
@@ -1528,7 +1528,7 @@ export function v1ApiAppAppIdDatasetsUsingDelete({ params, options }) {
   });
 }
 import { queryOptions, useMutation } from '@tanstack/react-query';
-import { request } from 'axios';
+import request from 'axios';
 
 import * as apis from './datasetsJoin';
 
@@ -1565,7 +1565,7 @@ export function useV1ApiAppAppIdDatasetsUsingDeleteMutation(options) {
 
   return response;
 }
-import { request } from 'axios';
+import request from 'axios';
 
 /** GetDatasetsList 数据集列表 GET /llmops/v1/api/app/${param0}/datasets-list */
 export function v1ApiAppAppIdDatasetsListUsingGet({ params, options }) {
@@ -1580,7 +1580,7 @@ export function v1ApiAppAppIdDatasetsListUsingGet({ params, options }) {
   });
 }
 import { queryOptions, useMutation } from '@tanstack/react-query';
-import { request } from 'axios';
+import request from 'axios';
 
 import * as apis from './datasetsList';
 
@@ -1593,7 +1593,7 @@ export function v1ApiAppAppIdDatasetsListUsingGetQueryOptions(options) {
     queryKey: ['v1ApiAppAppIdDatasetsListUsingGet', options],
   });
 }
-import { request } from 'axios';
+import request from 'axios';
 
 /** DeleteFeedbacks DeleteFeedbacks DELETE /llmops/v1/api/feedbacks/${param0} */
 export function v1ApiFeedbacksMessageIdUsingDelete({ params, options }) {
@@ -1608,7 +1608,7 @@ export function v1ApiFeedbacksMessageIdUsingDelete({ params, options }) {
   });
 }
 import { queryOptions, useMutation } from '@tanstack/react-query';
-import { request } from 'axios';
+import request from 'axios';
 
 import * as apis from './deleteFeedbacks';
 
@@ -1628,7 +1628,7 @@ export function useV1ApiFeedbacksMessageIdUsingDeleteMutation(options) {
 
   return response;
 }
-import { request } from 'axios';
+import request from 'axios';
 
 /** DeleteKey 为应用添加各种类型机器人appkey DELETE /llmops/v1/api/robot/${param0}/appkey */
 export function v1ApiRobotWorkspaceIdAppkeyUsingDelete({
@@ -1646,7 +1646,7 @@ export function v1ApiRobotWorkspaceIdAppkeyUsingDelete({
   });
 }
 import { queryOptions, useMutation } from '@tanstack/react-query';
-import { request } from 'axios';
+import request from 'axios';
 
 import * as apis from './deleteKey';
 
@@ -1666,7 +1666,7 @@ export function useV1ApiRobotWorkspaceIdAppkeyUsingDeleteMutation(options) {
 
   return response;
 }
-import { request } from 'axios';
+import request from 'axios';
 
 /** Exchange 换取token GET /llmops/auth/exchange */
 export function authExchangeUsingGet({ params, options }) {
@@ -1679,7 +1679,7 @@ export function authExchangeUsingGet({ params, options }) {
   });
 }
 import { queryOptions, useMutation } from '@tanstack/react-query';
-import { request } from 'axios';
+import request from 'axios';
 
 import * as apis from './exchange';
 
@@ -1692,7 +1692,7 @@ export function authExchangeUsingGetQueryOptions(options) {
     queryKey: ['authExchangeUsingGet', options],
   });
 }
-import { request } from 'axios';
+import request from 'axios';
 
 /** Filestream 上传文件 POST /llmops/v1/api/file */
 export function v1ApiFileUsingPost({ params, body, options }) {
@@ -1761,7 +1761,7 @@ export function v2ApiFileUsingPost({ params, body, options }) {
   });
 }
 import { queryOptions, useMutation } from '@tanstack/react-query';
-import { request } from 'axios';
+import request from 'axios';
 
 import * as apis from './files';
 
@@ -1832,7 +1832,7 @@ export function useV2ApiFileUsingPostMutation(options) {
 
   return response;
 }
-import { request } from 'axios';
+import request from 'axios';
 
 /** GetAppKey 为应用获取各种类型机器人appkey GET /llmops/v1/api/robot/${param0}/appkey */
 export function v1ApiRobotWorkspaceIdAppkeyUsingGet({ params, options }) {
@@ -1847,7 +1847,7 @@ export function v1ApiRobotWorkspaceIdAppkeyUsingGet({ params, options }) {
   });
 }
 import { queryOptions, useMutation } from '@tanstack/react-query';
-import { request } from 'axios';
+import request from 'axios';
 
 import * as apis from './getAppKey';
 
@@ -1860,7 +1860,7 @@ export function v1ApiRobotWorkspaceIdAppkeyUsingGetQueryOptions(options) {
     queryKey: ['v1ApiRobotWorkspaceIdAppkeyUsingGet', options],
   });
 }
-import { request } from 'axios';
+import request from 'axios';
 
 /** History 会话历史 GET /llmops/v1/api/conversations/${param0}/history */
 export function v1ApiConversationsConversationIdHistoryUsingGet({
@@ -1903,7 +1903,7 @@ export function v2ApiChatMessagesMessagesCountUsingGet({ params, options }) {
   });
 }
 import { queryOptions, useMutation } from '@tanstack/react-query';
-import { request } from 'axios';
+import request from 'axios';
 
 import * as apis from './history';
 
@@ -1947,7 +1947,7 @@ export function v2ApiChatMessagesMessagesCountUsingGetQueryOptions(options) {
     queryKey: ['v2ApiChatMessagesMessagesCountUsingGet', options],
   });
 }
-import { request } from 'axios';
+import request from 'axios';
 
 /** GetIamUserId 查询 IAM 用户信息 GET /llmops/v1/api/iamAccount */
 export function v1ApiIamAccountUsingGet({ params, options }) {
@@ -1960,7 +1960,7 @@ export function v1ApiIamAccountUsingGet({ params, options }) {
   });
 }
 import { queryOptions, useMutation } from '@tanstack/react-query';
-import { request } from 'axios';
+import request from 'axios';
 
 import * as apis from './iam';
 
@@ -2035,7 +2035,7 @@ export * from './workspace';
 export * from './workspace.reactquery';
 export * from './workspaceGroup';
 export * from './workspaceGroup.reactquery';
-import { request } from 'axios';
+import request from 'axios';
 
 /** ListFeedbacks ListFeedbacks GET /llmops/v1/api/feedbacks/ */
 export function v1ApiFeedbacksUsingGet({ params, options }) {
@@ -2048,7 +2048,7 @@ export function v1ApiFeedbacksUsingGet({ params, options }) {
   });
 }
 import { queryOptions, useMutation } from '@tanstack/react-query';
-import { request } from 'axios';
+import request from 'axios';
 
 import * as apis from './listFeedbacks';
 
@@ -2061,7 +2061,7 @@ export function v1ApiFeedbacksUsingGetQueryOptions(options) {
     queryKey: ['v1ApiFeedbacksUsingGet', options],
   });
 }
-import { request } from 'axios';
+import request from 'axios';
 
 /** ListProviders 查询 Provider 列表 GET /llmops/v1/api/provider/list */
 export function v1ApiProviderListUsingGet({ params, options }) {
@@ -2074,7 +2074,7 @@ export function v1ApiProviderListUsingGet({ params, options }) {
   });
 }
 import { queryOptions, useMutation } from '@tanstack/react-query';
-import { request } from 'axios';
+import request from 'axios';
 
 import * as apis from './provider';
 
@@ -2087,7 +2087,7 @@ export function v1ApiProviderListUsingGetQueryOptions(options) {
     queryKey: ['v1ApiProviderListUsingGet', options],
   });
 }
-import { request } from 'axios';
+import request from 'axios';
 
 /** ListRecommendedContext 查询推荐内容列表 GET /llmops/v1/api/app/${param0}/recommended/context */
 export function v1ApiAppAppIdRecommendedContextUsingGet({ params, options }) {
@@ -2116,7 +2116,7 @@ export function v1ApiAppAppIdRecommendedContextUsingPost({
   });
 }
 import { queryOptions, useMutation } from '@tanstack/react-query';
-import { request } from 'axios';
+import request from 'axios';
 
 import * as apis from './recommended';
 
@@ -2146,7 +2146,7 @@ export function useV1ApiAppAppIdRecommendedContextUsingPostMutation(options) {
 
   return response;
 }
-import { request } from 'axios';
+import request from 'axios';
 
 /** RefreshToken 刷新token POST /llmops/auth/refresh-token */
 export function authRefreshTokenUsingPost({ body, options }) {
@@ -2157,7 +2157,7 @@ export function authRefreshTokenUsingPost({ body, options }) {
   });
 }
 import { queryOptions, useMutation } from '@tanstack/react-query';
-import { request } from 'axios';
+import request from 'axios';
 
 import * as apis from './refreshToken';
 
@@ -2177,7 +2177,7 @@ export function useAuthRefreshTokenUsingPostMutation(options) {
 
   return response;
 }
-import { request } from 'axios';
+import request from 'axios';
 
 /** H5GetApiToken 获取一个 app token h5版 GET /llmops/v1/api/app/h5/share/api-token */
 export function v1ApiAppH5ShareApiTokenUsingGet({ params, options }) {
@@ -2201,7 +2201,7 @@ export function v1ApiAppShareApiTokenUsingGet({ params, options }) {
   });
 }
 import { queryOptions, useMutation } from '@tanstack/react-query';
-import { request } from 'axios';
+import request from 'axios';
 
 import * as apis from './share';
 
@@ -2224,7 +2224,7 @@ export function v1ApiAppShareApiTokenUsingGetQueryOptions(options) {
     queryKey: ['v1ApiAppShareApiTokenUsingGet', options],
   });
 }
-import { request } from 'axios';
+import request from 'axios';
 
 /** UpdateAppKeyState 为应用获取各种类型机器人状态 POST /llmops/v1/api/robot/${param0}/appkey/state */
 export function v1ApiRobotWorkspaceIdAppkeyStateUsingPost({
@@ -2242,7 +2242,7 @@ export function v1ApiRobotWorkspaceIdAppkeyStateUsingPost({
   });
 }
 import { queryOptions, useMutation } from '@tanstack/react-query';
-import { request } from 'axios';
+import request from 'axios';
 
 import * as apis from './updateAppKeyState';
 
@@ -2262,7 +2262,7 @@ export function useV1ApiRobotWorkspaceIdAppkeyStateUsingPostMutation(options) {
 
   return response;
 }
-import { request } from 'axios';
+import request from 'axios';
 
 /** ListUser 系统全局用户列表 GET /llmops/v1/api/user */
 export function v1ApiUserUsingGet({ params, options }) {
@@ -2298,7 +2298,7 @@ export function v1ApiUserRoleUsingPut({ body, options }) {
   });
 }
 import { queryOptions, useMutation } from '@tanstack/react-query';
-import { request } from 'axios';
+import request from 'axios';
 
 import * as apis from './user';
 
@@ -2338,7 +2338,7 @@ export function useV1ApiUserRoleUsingPutMutation(options) {
 
   return response;
 }
-import { request } from 'axios';
+import request from 'axios';
 
 /** GetWorkspaceList 空间列表 GET /llmops/v2/api/workspaces */
 export function v2ApiWorkspacesUsingGet({ options }) {
@@ -2503,7 +2503,7 @@ export function v2ApiWorkspacesWorkspaceIdUsersUsingPost({
   });
 }
 import { queryOptions, useMutation } from '@tanstack/react-query';
-import { request } from 'axios';
+import request from 'axios';
 
 import * as apis from './workspace';
 
@@ -2702,7 +2702,7 @@ export function useV2ApiWorkspacesWorkspaceIdUsersUsingPostMutation(options) {
 
   return response;
 }
-import { request } from 'axios';
+import request from 'axios';
 
 /** CopyApp 复制 app POST /llmops/v2/api/copy_apps */
 export function v2ApiCopyAppsUsingPost({ body, options }) {
@@ -2986,7 +2986,7 @@ export function v2ApiWorkspacesRecommendedMessageIdDetailsUsingGet({
   });
 }
 import { queryOptions, useMutation } from '@tanstack/react-query';
-import { request } from 'axios';
+import request from 'axios';
 
 import * as apis from './workspaceAppV2';
 
@@ -3278,7 +3278,7 @@ export function v2ApiWorkspacesRecommendedMessageIdDetailsUsingGetQueryOptions(
     queryKey: ['v2ApiWorkspacesRecommendedMessageIdDetailsUsingGet', options],
   });
 }
-import { request } from 'axios';
+import request from 'axios';
 
 /** GetWorkspaceGroupList 空间分组列表 GET /llmops/v2/api/workspaces/${param0}/groups */
 export function v2ApiWorkspacesWorkspaceIdGroupsUsingGet({ params, options }) {
@@ -3345,7 +3345,7 @@ export function v2ApiWorkspacesWorkspaceIdGroupsWorkspaceGroupIdUsingDelete({
   });
 }
 import { queryOptions, useMutation } from '@tanstack/react-query';
-import { request } from 'axios';
+import request from 'axios';
 
 import * as apis from './workspaceGroup';
 

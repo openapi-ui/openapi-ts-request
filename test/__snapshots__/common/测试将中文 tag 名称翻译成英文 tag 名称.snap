@@ -13,7 +13,7 @@ export function displayStatusEnum2(field: API.StatusEnum2) {
 }
 /* eslint-disable */
 // @ts-ignore
-import { request } from 'axios';
+import request from 'axios';
 
 import * as API from './types';
 
@@ -36,7 +36,7 @@ export function petUsingPut({
 }
 /* eslint-disable */
 // @ts-ignore
-import { request } from 'axios';
+import request from 'axios';
 
 import * as API from './types';
 
@@ -70,7 +70,7 @@ export * from './warehouse';
 export * from './user';
 /* eslint-disable */
 // @ts-ignore
-import { request } from 'axios';
+import request from 'axios';
 
 import * as API from './types';
 
@@ -570,7 +570,7 @@ export type UserUsingPostResponses = {
 };
 /* eslint-disable */
 // @ts-ignore
-import { request } from 'axios';
+import request from 'axios';
 
 import * as API from './types';
 
@@ -701,7 +701,7 @@ export function userLogoutUsingGet({
 }
 /* eslint-disable */
 // @ts-ignore
-import { request } from 'axios';
+import request from 'axios';
 
 import * as API from './types';
 
@@ -772,7 +772,7 @@ export function storeOrderOrderIdUsingDelete({
 }
 /* eslint-disable */
 // @ts-ignore
-import { request } from 'axios';
+import request from 'axios';
 
 import * as API from './types';
 

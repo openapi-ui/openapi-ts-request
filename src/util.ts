@@ -30,7 +30,7 @@ export const getImportStatement = (requestLibPath: string) => {
     return `import request from '${requestLibPath}';`;
   }
 
-  return `import { request } from 'axios';`;
+  return `import request from 'axios';`;
 };
 
 /**
