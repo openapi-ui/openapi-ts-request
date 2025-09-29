@@ -1420,7 +1420,7 @@ export default class ServiceGenerator {
             return `${Number(value)}:"${enumLabel}"`;
           }).join(',')}}`;
         } else {
-          enumLabelTypeStr = `{${map(enumArray, (value) => `${Number(value)}:"NUMBER_${value}"`).join(',')}}`;
+          enumLabelTypeStr = `{${map(enumArray, (value) => `${Number(value) >= 0 ? Number(value) : `"${value}"`}:"NUMBER_${value}"`).join(',')}}`;
         }
       } else if (isAllNumeric(enumArray)) {
         enumLabelTypeStr = `{${map(enumArray, (value) => `"${value}":"STRING_NUMBER_${value}"`).join(',')}}`;
