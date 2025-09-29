@@ -1,5 +1,11 @@
 # openapi-ts-request
 
+## 1.8.3
+
+### Patch Changes
+
+- [#504](https://github.com/openapi-ui/openapi-ts-request/pull/504) [`ab2a34a`](https://github.com/openapi-ui/openapi-ts-request/commit/ab2a34a4ed769faf0c03aa78736baf7f70dc8dd0) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - fix: fix display negative enum value error #503
+
 ## 1.8.2
 
 ### Patch Changes
