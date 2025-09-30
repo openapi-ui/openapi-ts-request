@@ -1,0 +1,3471 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "测试",
+    "description": "",
+    "version": "1.0.0"
+  },
+  "tags": [],
+  "paths": {
+    "/api/web/workcenter-operate/get-user-workshop-workcenter": {
+      "post": {
+        "summary": "获取车间产线结构",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "selectDeptId",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "clientid",
+            "in": "header",
+            "description": "",
+            "example": "e5cd7e4891bf95d1d19206ce24a7b32e",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResult",
+                  "description": ""
+                },
+                "example": {
+                  "code": "1",
+                  "message": "成功",
+                  "data": [
+                    {
+                      "name": "",
+                      "id": 0,
+                      "workshopId": 0,
+                      "lineList": [
+                        {
+                          "name": "",
+                          "id": 0,
+                          "workshopId": 0,
+                          "lineList": [
+                            {
+                              "name": "",
+                              "id": 0,
+                              "workshopId": 0,
+                              "lineList": [],
+                              "centerList": [
+                                {
+                                  "id": 0,
+                                  "factoryId": 0,
+                                  "deptId": 0,
+                                  "workshopId": 0,
+                                  "lineId": 0,
+                                  "centerCode": "",
+                                  "centerName": "",
+                                  "pinyin": "",
+                                  "mainProcessMachineId": 0,
+                                  "workPType": "",
+                                  "workPCount": 0,
+                                  "deleteFlag": "",
+                                  "createdTime": "",
+                                  "createdUserId": 0,
+                                  "modifyiedUserId": 0,
+                                  "modifyiedTime": "",
+                                  "clockinginId": 0,
+                                  "clockinginUserId": 0,
+                                  "clockinginUserName": "",
+                                  "oeeState": "",
+                                  "oeeTime": "",
+                                  "remarkStatus": "",
+                                  "remarkStatusUserId": 0,
+                                  "remarkStatusUserName": "",
+                                  "stateRecordId": 0,
+                                  "stateStartTime": ""
+                                }
+                              ]
+                            }
+                          ],
+                          "centerList": [
+                            {
+                              "id": 0,
+                              "factoryId": 0,
+                              "deptId": 0,
+                              "workshopId": 0,
+                              "lineId": 0,
+                              "centerCode": "",
+                              "centerName": "",
+                              "pinyin": "",
+                              "mainProcessMachineId": 0,
+                              "workPType": "",
+                              "workPCount": 0,
+                              "deleteFlag": "",
+                              "createdTime": "",
+                              "createdUserId": 0,
+                              "modifyiedUserId": 0,
+                              "modifyiedTime": "",
+                              "clockinginId": 0,
+                              "clockinginUserId": 0,
+                              "clockinginUserName": "",
+                              "oeeState": "",
+                              "oeeTime": "",
+                              "remarkStatus": "",
+                              "remarkStatusUserId": 0,
+                              "remarkStatusUserName": "",
+                              "stateRecordId": 0,
+                              "stateStartTime": ""
+                            }
+                          ]
+                        }
+                      ],
+                      "centerList": [
+                        {
+                          "id": 0,
+                          "factoryId": 0,
+                          "deptId": 0,
+                          "workshopId": 0,
+                          "lineId": 0,
+                          "centerCode": "",
+                          "centerName": "",
+                          "pinyin": "",
+                          "mainProcessMachineId": 0,
+                          "workPType": "",
+                          "workPCount": 0,
+                          "deleteFlag": "",
+                          "createdTime": "",
+                          "createdUserId": 0,
+                          "modifyiedUserId": 0,
+                          "modifyiedTime": "",
+                          "clockinginId": 0,
+                          "clockinginUserId": 0,
+                          "clockinginUserName": "",
+                          "oeeState": "",
+                          "oeeTime": "",
+                          "remarkStatus": "",
+                          "remarkStatusUserId": 0,
+                          "remarkStatusUserName": "",
+                          "stateRecordId": 0,
+                          "stateStartTime": ""
+                        }
+                      ]
+                    },
+                    {
+                      "name": "",
+                      "id": 0,
+                      "workshopId": 0,
+                      "lineList": [
+                        {
+                          "name": "",
+                          "id": 0,
+                          "workshopId": 0,
+                          "lineList": [
+                            {
+                              "name": "",
+                              "id": 0,
+                              "workshopId": 0,
+                              "lineList": [],
+                              "centerList": [
+                                {
+                                  "id": 0,
+                                  "factoryId": 0,
+                                  "deptId": 0,
+                                  "workshopId": 0,
+                                  "lineId": 0,
+                                  "centerCode": "",
+                                  "centerName": "",
+                                  "pinyin": "",
+                                  "mainProcessMachineId": 0,
+                                  "workPType": "",
+                                  "workPCount": 0,
+                                  "deleteFlag": "",
+                                  "createdTime": "",
+                                  "createdUserId": 0,
+                                  "modifyiedUserId": 0,
+                                  "modifyiedTime": "",
+                                  "clockinginId": 0,
+                                  "clockinginUserId": 0,
+                                  "clockinginUserName": "",
+                                  "oeeState": "",
+                                  "oeeTime": "",
+                                  "remarkStatus": "",
+                                  "remarkStatusUserId": 0,
+                                  "remarkStatusUserName": "",
+                                  "stateRecordId": 0,
+                                  "stateStartTime": ""
+                                }
+                              ]
+                            }
+                          ],
+                          "centerList": [
+                            {
+                              "id": 0,
+                              "factoryId": 0,
+                              "deptId": 0,
+                              "workshopId": 0,
+                              "lineId": 0,
+                              "centerCode": "",
+                              "centerName": "",
+                              "pinyin": "",
+                              "mainProcessMachineId": 0,
+                              "workPType": "",
+                              "workPCount": 0,
+                              "deleteFlag": "",
+                              "createdTime": "",
+                              "createdUserId": 0,
+                              "modifyiedUserId": 0,
+                              "modifyiedTime": "",
+                              "clockinginId": 0,
+                              "clockinginUserId": 0,
+                              "clockinginUserName": "",
+                              "oeeState": "",
+                              "oeeTime": "",
+                              "remarkStatus": "",
+                              "remarkStatusUserId": 0,
+                              "remarkStatusUserName": "",
+                              "stateRecordId": 0,
+                              "stateStartTime": ""
+                            }
+                          ]
+                        }
+                      ],
+                      "centerList": [
+                        {
+                          "id": 0,
+                          "factoryId": 0,
+                          "deptId": 0,
+                          "workshopId": 0,
+                          "lineId": 0,
+                          "centerCode": "",
+                          "centerName": "",
+                          "pinyin": "",
+                          "mainProcessMachineId": 0,
+                          "workPType": "",
+                          "workPCount": 0,
+                          "deleteFlag": "",
+                          "createdTime": "",
+                          "createdUserId": 0,
+                          "modifyiedUserId": 0,
+                          "modifyiedTime": "",
+                          "clockinginId": 0,
+                          "clockinginUserId": 0,
+                          "clockinginUserName": "",
+                          "oeeState": "",
+                          "oeeTime": "",
+                          "remarkStatus": "",
+                          "remarkStatusUserId": 0,
+                          "remarkStatusUserName": "",
+                          "stateRecordId": 0,
+                          "stateStartTime": ""
+                        }
+                      ]
+                    },
+                    {
+                      "name": "",
+                      "id": 0,
+                      "workshopId": 0,
+                      "lineList": [
+                        {
+                          "name": "",
+                          "id": 0,
+                          "workshopId": 0,
+                          "lineList": [
+                            {
+                              "name": "",
+                              "id": 0,
+                              "workshopId": 0,
+                              "lineList": [],
+                              "centerList": [
+                                {
+                                  "id": 0,
+                                  "factoryId": 0,
+                                  "deptId": 0,
+                                  "workshopId": 0,
+                                  "lineId": 0,
+                                  "centerCode": "",
+                                  "centerName": "",
+                                  "pinyin": "",
+                                  "mainProcessMachineId": 0,
+                                  "workPType": "",
+                                  "workPCount": 0,
+                                  "deleteFlag": "",
+                                  "createdTime": "",
+                                  "createdUserId": 0,
+                                  "modifyiedUserId": 0,
+                                  "modifyiedTime": "",
+                                  "clockinginId": 0,
+                                  "clockinginUserId": 0,
+                                  "clockinginUserName": "",
+                                  "oeeState": "",
+                                  "oeeTime": "",
+                                  "remarkStatus": "",
+                                  "remarkStatusUserId": 0,
+                                  "remarkStatusUserName": "",
+                                  "stateRecordId": 0,
+                                  "stateStartTime": ""
+                                }
+                              ]
+                            }
+                          ],
+                          "centerList": [
+                            {
+                              "id": 0,
+                              "factoryId": 0,
+                              "deptId": 0,
+                              "workshopId": 0,
+                              "lineId": 0,
+                              "centerCode": "",
+                              "centerName": "",
+                              "pinyin": "",
+                              "mainProcessMachineId": 0,
+                              "workPType": "",
+                              "workPCount": 0,
+                              "deleteFlag": "",
+                              "createdTime": "",
+                              "createdUserId": 0,
+                              "modifyiedUserId": 0,
+                              "modifyiedTime": "",
+                              "clockinginId": 0,
+                              "clockinginUserId": 0,
+                              "clockinginUserName": "",
+                              "oeeState": "",
+                              "oeeTime": "",
+                              "remarkStatus": "",
+                              "remarkStatusUserId": 0,
+                              "remarkStatusUserName": "",
+                              "stateRecordId": 0,
+                              "stateStartTime": ""
+                            }
+                          ]
+                        }
+                      ],
+                      "centerList": [
+                        {
+                          "id": 0,
+                          "factoryId": 0,
+                          "deptId": 0,
+                          "workshopId": 0,
+                          "lineId": 0,
+                          "centerCode": "",
+                          "centerName": "",
+                          "pinyin": "",
+                          "mainProcessMachineId": 0,
+                          "workPType": "",
+                          "workPCount": 0,
+                          "deleteFlag": "",
+                          "createdTime": "",
+                          "createdUserId": 0,
+                          "modifyiedUserId": 0,
+                          "modifyiedTime": "",
+                          "clockinginId": 0,
+                          "clockinginUserId": 0,
+                          "clockinginUserName": "",
+                          "oeeState": "",
+                          "oeeTime": "",
+                          "remarkStatus": "",
+                          "remarkStatusUserId": 0,
+                          "remarkStatusUserName": "",
+                          "stateRecordId": 0,
+                          "stateStartTime": ""
+                        }
+                      ]
+                    },
+                    {
+                      "name": "",
+                      "id": 0,
+                      "workshopId": 0,
+                      "lineList": [
+                        {
+                          "name": "",
+                          "id": 0,
+                          "workshopId": 0,
+                          "lineList": [
+                            {
+                              "name": "",
+                              "id": 0,
+                              "workshopId": 0,
+                              "lineList": [],
+                              "centerList": [
+                                {
+                                  "id": 0,
+                                  "factoryId": 0,
+                                  "deptId": 0,
+                                  "workshopId": 0,
+                                  "lineId": 0,
+                                  "centerCode": "",
+                                  "centerName": "",
+                                  "pinyin": "",
+                                  "mainProcessMachineId": 0,
+                                  "workPType": "",
+                                  "workPCount": 0,
+                                  "deleteFlag": "",
+                                  "createdTime": "",
+                                  "createdUserId": 0,
+                                  "modifyiedUserId": 0,
+                                  "modifyiedTime": "",
+                                  "clockinginId": 0,
+                                  "clockinginUserId": 0,
+                                  "clockinginUserName": "",
+                                  "oeeState": "",
+                                  "oeeTime": "",
+                                  "remarkStatus": "",
+                                  "remarkStatusUserId": 0,
+                                  "remarkStatusUserName": "",
+                                  "stateRecordId": 0,
+                                  "stateStartTime": ""
+                                }
+                              ]
+                            }
+                          ],
+                          "centerList": [
+                            {
+                              "id": 0,
+                              "factoryId": 0,
+                              "deptId": 0,
+                              "workshopId": 0,
+                              "lineId": 0,
+                              "centerCode": "",
+                              "centerName": "",
+                              "pinyin": "",
+                              "mainProcessMachineId": 0,
+                              "workPType": "",
+                              "workPCount": 0,
+                              "deleteFlag": "",
+                              "createdTime": "",
+                              "createdUserId": 0,
+                              "modifyiedUserId": 0,
+                              "modifyiedTime": "",
+                              "clockinginId": 0,
+                              "clockinginUserId": 0,
+                              "clockinginUserName": "",
+                              "oeeState": "",
+                              "oeeTime": "",
+                              "remarkStatus": "",
+                              "remarkStatusUserId": 0,
+                              "remarkStatusUserName": "",
+                              "stateRecordId": 0,
+                              "stateStartTime": ""
+                            }
+                          ]
+                        }
+                      ],
+                      "centerList": [
+                        {
+                          "id": 0,
+                          "factoryId": 0,
+                          "deptId": 0,
+                          "workshopId": 0,
+                          "lineId": 0,
+                          "centerCode": "",
+                          "centerName": "",
+                          "pinyin": "",
+                          "mainProcessMachineId": 0,
+                          "workPType": "",
+                          "workPCount": 0,
+                          "deleteFlag": "",
+                          "createdTime": "",
+                          "createdUserId": 0,
+                          "modifyiedUserId": 0,
+                          "modifyiedTime": "",
+                          "clockinginId": 0,
+                          "clockinginUserId": 0,
+                          "clockinginUserName": "",
+                          "oeeState": "",
+                          "oeeTime": "",
+                          "remarkStatus": "",
+                          "remarkStatusUserId": 0,
+                          "remarkStatusUserName": "",
+                          "stateRecordId": 0,
+                          "stateStartTime": ""
+                        }
+                      ]
+                    }
+                  ],
+                  "success": true
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/api/web/workcenter-operate/get-work-center": {
+      "post": {
+        "summary": "getWorkCenter",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "clientid",
+            "in": "header",
+            "description": "",
+            "example": "e5cd7e4891bf95d1d19206ce24a7b32e",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/JSONObject",
+                "description": ""
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResult",
+                  "description": ""
+                },
+                "example": {
+                  "code": "1",
+                  "message": "成功",
+                  "data": [
+                    {
+                      "id": 0,
+                      "factoryId": 0,
+                      "deptId": 0,
+                      "workshopId": 0,
+                      "lineId": 0,
+                      "centerCode": "",
+                      "centerName": "",
+                      "pinyin": "",
+                      "mainProcessMachineId": 0,
+                      "workPType": "",
+                      "workPCount": 0,
+                      "deleteFlag": "",
+                      "createdTime": "",
+                      "createdUserId": 0,
+                      "modifyiedUserId": 0,
+                      "modifyiedTime": "",
+                      "clockinginId": 0,
+                      "clockinginUserId": 0,
+                      "clockinginUserName": "",
+                      "oeeState": "",
+                      "oeeTime": "",
+                      "remarkStatus": "",
+                      "remarkStatusUserId": 0,
+                      "remarkStatusUserName": "",
+                      "stateRecordId": 0,
+                      "stateStartTime": ""
+                    }
+                  ],
+                  "success": true
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/api/web/workcenter-operate/get-aAndon-req-cfg": {
+      "post": {
+        "summary": "getAndonReqCfg",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "clientid",
+            "in": "header",
+            "description": "",
+            "example": "e5cd7e4891bf95d1d19206ce24a7b32e",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/JSONObject",
+                "description": ""
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResult",
+                  "description": ""
+                },
+                "example": {
+                  "code": "1",
+                  "message": "成功",
+                  "data": [
+                    {
+                      "eventId": 0,
+                      "workshopId": 0,
+                      "lineId": 0,
+                      "showColor": "",
+                      "eventName": "",
+                      "userCheckedTab": "",
+                      "userList": [
+                        {
+                          "id": 0,
+                          "teamId": 0,
+                          "factoryId": 0,
+                          "deptId": 0,
+                          "userId": 0,
+                          "userName": "",
+                          "email": "",
+                          "jobTitle": "",
+                          "jobNo": "",
+                          "telephone": "",
+                          "headImageUrl": "",
+                          "state": "",
+                          "genderCode": "",
+                          "deleteFlag": "",
+                          "createdUserId": 0,
+                          "createdTime": "",
+                          "modifyiedUserId": 0,
+                          "modifyiedTime": "",
+                          "datetimeStamp": "",
+                          "idNumber": "",
+                          "dateOfBirth": "",
+                          "emergencyContact": "",
+                          "emergencyTelephone": "",
+                          "wechatAccount": "",
+                          "entryCompanyDate": "",
+                          "dimissionDate": "",
+                          "remark": ""
+                        }
+                      ]
+                    }
+                  ],
+                  "success": true
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/api/web/workcenter-operate/andon-req": {
+      "post": {
+        "summary": "安灯请求",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "clientid",
+            "in": "header",
+            "description": "",
+            "example": "e5cd7e4891bf95d1d19206ce24a7b32e",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AndonReq",
+                "description": ""
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResult",
+                  "description": ""
+                },
+                "example": {
+                  "code": "1",
+                  "message": "申请成功",
+                  "data": null,
+                  "success": true
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/api/web/workcenter-operate/get-all-workshop-line": {
+      "post": {
+        "summary": "getAllWorkshopAndLineList",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "clientid",
+            "in": "header",
+            "description": "",
+            "example": "e5cd7e4891bf95d1d19206ce24a7b32e",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResult",
+                  "description": ""
+                },
+                "example": {
+                  "code": "1",
+                  "message": "成功",
+                  "data": [
+                    {
+                      "id": 0,
+                      "parentId": 0,
+                      "factoryId": 0,
+                      "type": "",
+                      "deptCode": "",
+                      "deptName": "",
+                      "pinyin": "",
+                      "wubi": "",
+                      "remark": "",
+                      "state": "",
+                      "deleteFlag": "",
+                      "createdUserId": 0,
+                      "createdTime": "",
+                      "modifyiedUserId": 0,
+                      "modifyiedTime": "",
+                      "datetimeStamp": "",
+                      "childList": [
+                        {
+                          "id": 0,
+                          "parentId": 0,
+                          "factoryId": 0,
+                          "type": "",
+                          "deptCode": "",
+                          "deptName": "",
+                          "pinyin": "",
+                          "wubi": "",
+                          "remark": "",
+                          "state": "",
+                          "deleteFlag": "",
+                          "createdUserId": 0,
+                          "createdTime": "",
+                          "modifyiedUserId": 0,
+                          "modifyiedTime": "",
+                          "datetimeStamp": "",
+                          "childList": [
+                            {
+                              "id": 0,
+                              "parentId": 0,
+                              "factoryId": 0,
+                              "type": "",
+                              "deptCode": "",
+                              "deptName": "",
+                              "pinyin": "",
+                              "wubi": "",
+                              "remark": "",
+                              "state": "",
+                              "deleteFlag": "",
+                              "createdUserId": 0,
+                              "createdTime": "",
+                              "modifyiedUserId": 0,
+                              "modifyiedTime": "",
+                              "datetimeStamp": "",
+                              "childList": []
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ],
+                  "success": true
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/api/web/workcenter-operate/get-andon-record-list": {
+      "post": {
+        "summary": "getAndonRecordList",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "clientid",
+            "in": "header",
+            "description": "",
+            "example": "e5cd7e4891bf95d1d19206ce24a7b32e",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AndonRecordQuery",
+                "description": ""
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResultMyPageAndonRecordVO"
+                },
+                "example": {
+                  "code": "",
+                  "message": "",
+                  "data": {
+                    "records": [
+                      {
+                        "id": 0,
+                        "factoryId": 0,
+                        "factoryName": "",
+                        "deptId": 0,
+                        "deptName": "",
+                        "workshopId": 0,
+                        "workshopName": "",
+                        "lineId": 0,
+                        "lineName": "",
+                        "machineId": 0,
+                        "signalId": 0,
+                        "calendarDetailId": 0,
+                        "calendarId": 0,
+                        "calendarDate": "",
+                        "shiftDetailName": "",
+                        "machineName": "",
+                        "machineCode": "",
+                        "configId": 0,
+                        "configName": "",
+                        "eventName": "",
+                        "reportUserId": 0,
+                        "reportUserName": "",
+                        "reportTime": "",
+                        "reportComments": "",
+                        "reportDate": "",
+                        "priority": "",
+                        "notifyUseridStrs": "",
+                        "receiveUserId": 0,
+                        "receiveUserName": "",
+                        "receiveTime": "",
+                        "receiveDurationTime": 0,
+                        "disposeDurationTime": 0,
+                        "disposeUserId": 0,
+                        "disposeUserName": "",
+                        "disposeDesc": "",
+                        "disposeTime": "",
+                        "totalDurationTime": 0,
+                        "sourceType": "",
+                        "state": "",
+                        "eventAnalysis": "",
+                        "createdUserId": 0,
+                        "createdTime": "",
+                        "modifyiedUserId": 0,
+                        "modifyiedTime": "",
+                        "datetimeStamp": "",
+                        "oeeDetailId": 0,
+                        "workCenterName": "",
+                        "workCenterCode": "",
+                        "disposeUserNames": "",
+                        "disposeUserIds": "",
+                        "totalDurationTimeSt": "",
+                        "receiveDurationTimeSt": "",
+                        "disposeDurationTimeSt": "",
+                        "statusText": "",
+                        "disposeUserList": [
+                          {
+                            "id": 0,
+                            "teamId": 0,
+                            "factoryId": 0,
+                            "deptId": 0,
+                            "workshopId": 0,
+                            "lineId": 0,
+                            "userName": "",
+                            "email": "",
+                            "jobTitle": "",
+                            "jobNo": "",
+                            "accountNo": "",
+                            "password": "",
+                            "idNumber": "",
+                            "dateOfBirth": "",
+                            "telephone": "",
+                            "headImageUrl": "",
+                            "userType": "",
+                            "adminFlag": "",
+                            "state": "",
+                            "deleteFlag": "",
+                            "passwordModifyiedTime": "",
+                            "createdUserId": 0,
+                            "createdTime": "",
+                            "modifyiedUserId": 0,
+                            "modifyiedTime": "",
+                            "datetimeStamp": "",
+                            "genderCode": "",
+                            "publicOpenId": "",
+                            "currentFactoryId": 0,
+                            "remark": ""
+                          }
+                        ],
+                        "recordNodeList": [
+                          {
+                            "id": 0,
+                            "andonRecordId": 0,
+                            "nodeDesc": "",
+                            "nodeRemark": "",
+                            "nodeType": "",
+                            "nodeTypeName": "",
+                            "nodeUserId": 0,
+                            "nodeUserName": "",
+                            "createdUserId": 0,
+                            "createdTime": "",
+                            "modifyiedUserId": 0,
+                            "modifyiedTime": ""
+                          }
+                        ],
+                        "showColor": "",
+                        "workCenterId": 0,
+                        "shiftShowColor": "",
+                        "shiftStartTime": "",
+                        "shiftEndTime": "",
+                        "reportImgList": [""],
+                        "disposeImgList": [""],
+                        "reportImgUrls": "",
+                        "disposeImgUrls": "",
+                        "shiftName": "",
+                        "completedUserId": 0,
+                        "completedUserName": ""
+                      }
+                    ],
+                    "total": 0,
+                    "size": 0,
+                    "current": 0,
+                    "orders": [
+                      {
+                        "column": "",
+                        "asc": false
+                      }
+                    ],
+                    "optimizeCountSql": false,
+                    "searchCount": false,
+                    "optimizeJoinOfCountSql": false,
+                    "maxLimit": 0,
+                    "countId": "",
+                    "startTime": "",
+                    "startTimeStr": "",
+                    "endTime": "",
+                    "endTimeStr": "",
+                    "hasNextPage": false
+                  },
+                  "success": false
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/api/web/workcenter-operate/receive-andon": {
+      "post": {
+        "summary": "receiveAndon",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "clientid",
+            "in": "header",
+            "description": "",
+            "example": "e5cd7e4891bf95d1d19206ce24a7b32e",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/JSONObject",
+                "description": ""
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResult",
+                  "description": ""
+                },
+                "example": {
+                  "code": "-1",
+                  "message": "安灯记录id不能为空",
+                  "data": null,
+                  "success": false
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/api/web/workcenter-operate/get-all-user": {
+      "post": {
+        "summary": "getAllUser",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "clientid",
+            "in": "header",
+            "description": "",
+            "example": "e5cd7e4891bf95d1d19206ce24a7b32e",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResult",
+                  "description": ""
+                },
+                "example": {
+                  "code": "1",
+                  "message": "成功",
+                  "data": [
+                    {
+                      "id": 0,
+                      "teamId": 0,
+                      "factoryId": 0,
+                      "deptId": 0,
+                      "userId": 0,
+                      "userName": "",
+                      "email": "",
+                      "jobTitle": "",
+                      "jobNo": "",
+                      "telephone": "",
+                      "headImageUrl": "",
+                      "state": "",
+                      "genderCode": "",
+                      "deleteFlag": "",
+                      "createdUserId": 0,
+                      "createdTime": "",
+                      "modifyiedUserId": 0,
+                      "modifyiedTime": "",
+                      "datetimeStamp": "",
+                      "idNumber": "",
+                      "dateOfBirth": "",
+                      "emergencyContact": "",
+                      "emergencyTelephone": "",
+                      "wechatAccount": "",
+                      "entryCompanyDate": "",
+                      "dimissionDate": "",
+                      "remark": ""
+                    }
+                  ],
+                  "success": true
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/api/web/workcenter-operate/change-dispose-andon": {
+      "post": {
+        "summary": "改变安灯处理人",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "clientid",
+            "in": "header",
+            "description": "",
+            "example": "e5cd7e4891bf95d1d19206ce24a7b32e",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/JSONObject",
+                "description": ""
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResult",
+                  "description": ""
+                },
+                "example": {
+                  "code": "-1",
+                  "message": "安灯记录id不能为空",
+                  "data": null,
+                  "success": false
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/api/web/workcenter-operate/change-andon-event-type": {
+      "post": {
+        "summary": "改变安灯事件类型",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "clientid",
+            "in": "header",
+            "description": "",
+            "example": "e5cd7e4891bf95d1d19206ce24a7b32e",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/JSONObject",
+                "description": ""
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResult",
+                  "description": ""
+                },
+                "example": {
+                  "code": "-1",
+                  "message": "变更的安灯类型不能为空",
+                  "data": null,
+                  "success": false
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/api/web/workcenter-operate/close-andon": {
+      "post": {
+        "summary": "关闭安灯",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "clientid",
+            "in": "header",
+            "description": "",
+            "example": "e5cd7e4891bf95d1d19206ce24a7b32e",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AndonClose",
+                "description": ""
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResult",
+                  "description": ""
+                },
+                "example": {
+                  "code": "1",
+                  "message": "变更安灯类型成功",
+                  "data": null,
+                  "success": true
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/api/web/workcenter-operate/get-andon-record-info": {
+      "post": {
+        "summary": "获取安灯记录详情",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "clientid",
+            "in": "header",
+            "description": "",
+            "example": "e5cd7e4891bf95d1d19206ce24a7b32e",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/JSONObject",
+                "description": ""
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResultAndonRecordVO",
+                  "description": ""
+                },
+                "example": {
+                  "code": "",
+                  "message": "",
+                  "data": {
+                    "id": 0,
+                    "factoryId": 0,
+                    "factoryName": "",
+                    "deptId": 0,
+                    "deptName": "",
+                    "workshopId": 0,
+                    "workshopName": "",
+                    "lineId": 0,
+                    "lineName": "",
+                    "machineId": 0,
+                    "signalId": 0,
+                    "calendarDetailId": 0,
+                    "calendarId": 0,
+                    "calendarDate": "",
+                    "shiftDetailName": "",
+                    "machineName": "",
+                    "machineCode": "",
+                    "configId": 0,
+                    "configName": "",
+                    "eventName": "",
+                    "reportUserId": 0,
+                    "reportUserName": "",
+                    "reportTime": "",
+                    "reportComments": "",
+                    "reportDate": "",
+                    "priority": "",
+                    "notifyUseridStrs": "",
+                    "receiveUserId": 0,
+                    "receiveUserName": "",
+                    "receiveTime": "",
+                    "receiveDurationTime": 0,
+                    "disposeDurationTime": 0,
+                    "disposeUserId": 0,
+                    "disposeUserName": "",
+                    "disposeDesc": "",
+                    "disposeTime": "",
+                    "totalDurationTime": 0,
+                    "sourceType": "",
+                    "state": "",
+                    "eventAnalysis": "",
+                    "createdUserId": 0,
+                    "createdTime": "",
+                    "modifyiedUserId": 0,
+                    "modifyiedTime": "",
+                    "datetimeStamp": "",
+                    "oeeDetailId": 0,
+                    "workCenterName": "",
+                    "workCenterCode": "",
+                    "disposeUserNames": "",
+                    "disposeUserIds": "",
+                    "totalDurationTimeSt": "",
+                    "receiveDurationTimeSt": "",
+                    "disposeDurationTimeSt": "",
+                    "statusText": "",
+                    "disposeUserList": [
+                      {
+                        "id": 0,
+                        "teamId": 0,
+                        "factoryId": 0,
+                        "deptId": 0,
+                        "workshopId": 0,
+                        "lineId": 0,
+                        "userName": "",
+                        "email": "",
+                        "jobTitle": "",
+                        "jobNo": "",
+                        "accountNo": "",
+                        "password": "",
+                        "idNumber": "",
+                        "dateOfBirth": "",
+                        "telephone": "",
+                        "headImageUrl": "",
+                        "userType": "",
+                        "adminFlag": "",
+                        "state": "",
+                        "deleteFlag": "",
+                        "passwordModifyiedTime": "",
+                        "createdUserId": 0,
+                        "createdTime": "",
+                        "modifyiedUserId": 0,
+                        "modifyiedTime": "",
+                        "datetimeStamp": "",
+                        "genderCode": "",
+                        "publicOpenId": "",
+                        "currentFactoryId": 0,
+                        "remark": ""
+                      }
+                    ],
+                    "recordNodeList": [
+                      {
+                        "id": 0,
+                        "andonRecordId": 0,
+                        "nodeDesc": "",
+                        "nodeRemark": "",
+                        "nodeType": "",
+                        "nodeTypeName": "",
+                        "nodeUserId": 0,
+                        "nodeUserName": "",
+                        "createdUserId": 0,
+                        "createdTime": "",
+                        "modifyiedUserId": 0,
+                        "modifyiedTime": ""
+                      }
+                    ],
+                    "showColor": "",
+                    "workCenterId": 0,
+                    "shiftShowColor": "",
+                    "shiftStartTime": "",
+                    "shiftEndTime": "",
+                    "reportImgList": [""],
+                    "disposeImgList": [""],
+                    "reportImgUrls": "",
+                    "disposeImgUrls": "",
+                    "shiftName": "",
+                    "completedUserId": 0,
+                    "completedUserName": ""
+                  },
+                  "success": false
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/api/web/workcenter-operate/add-andon-record-node-desc": {
+      "post": {
+        "summary": "addAndonRecordNodeDesc",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "clientid",
+            "in": "header",
+            "description": "",
+            "example": "e5cd7e4891bf95d1d19206ce24a7b32e",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/JSONObject",
+                "description": ""
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResult",
+                  "description": ""
+                },
+                "example": {
+                  "code": "-1",
+                  "message": "安灯记录id不能为空",
+                  "data": null,
+                  "success": false
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/api/web/workcenter-operate/get-device-list": {
+      "post": {
+        "summary": "getDeviceList",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "ID",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "factoryId",
+            "in": "query",
+            "description": "工厂ID",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "deptId",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "workshopId",
+            "in": "query",
+            "description": "车间ID",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "lineId",
+            "in": "query",
+            "description": "产线ID",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "categoryId",
+            "in": "query",
+            "description": "分类ID",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "signalId",
+            "in": "query",
+            "description": "灯ID",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "lightSn",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "machineCode",
+            "in": "query",
+            "description": "设备编号",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "machineName",
+            "in": "query",
+            "description": "设备名称",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "pinyin",
+            "in": "query",
+            "description": "拼音码",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "wubi",
+            "in": "query",
+            "description": "五笔码",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "imgUrlStrs",
+            "in": "query",
+            "description": "医院图片",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "manageUserId",
+            "in": "query",
+            "description": "管理员ID",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "trademark",
+            "in": "query",
+            "description": "品牌",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "model",
+            "in": "query",
+            "description": "型号",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "serialNo",
+            "in": "query",
+            "description": "序列号",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "supplier",
+            "in": "query",
+            "description": "供应商",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "activationDate",
+            "in": "query",
+            "description": "启用日期",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "checkDate",
+            "in": "query",
+            "description": "验收日期",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "productionDate",
+            "in": "query",
+            "description": "出厂日期",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "pulseInterval",
+            "in": "query",
+            "description": "脉冲间隔",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "standardUseRate",
+            "in": "query",
+            "description": "标准利用率",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "location",
+            "in": "query",
+            "description": "放置地点",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "state",
+            "in": "query",
+            "description": "状态,1启用,2 停用",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "remark",
+            "in": "query",
+            "description": "备注",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "deleteFlag",
+            "in": "query",
+            "description": "删除标记",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "createdUserId",
+            "in": "query",
+            "description": "创建人",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "createdTime",
+            "in": "query",
+            "description": "创建时间",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "modifyiedUserId",
+            "in": "query",
+            "description": "最后更新人",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "modifyiedTime",
+            "in": "query",
+            "description": "最后更新时间",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "datetimeStamp",
+            "in": "query",
+            "description": "时间戳",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "searchKey",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "oeeState",
+            "in": "query",
+            "description": "0 关机，1 运行，2 等待，3 异常",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "oeeTime",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "stateRecordId",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "stateStartTime",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "clientid",
+            "in": "header",
+            "description": "",
+            "example": "e5cd7e4891bf95d1d19206ce24a7b32e",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string",
+                "description": ""
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResult",
+                  "description": ""
+                },
+                "example": {
+                  "code": "1",
+                  "message": "成功",
+                  "data": {
+                    "records": [
+                      {
+                        "value": "",
+                        "label": "",
+                        "param1": "",
+                        "id": 0,
+                        "factoryId": 0,
+                        "factoryName": "",
+                        "deptId": 0,
+                        "deptName": "",
+                        "workshopId": 0,
+                        "workshopName": "",
+                        "lineId": 0,
+                        "lineName": "",
+                        "signalId": 0,
+                        "signalCode": "",
+                        "signalName": "",
+                        "machineCode": "",
+                        "machineName": "",
+                        "pinyin": "",
+                        "wubi": "",
+                        "imgUrlStrs": "",
+                        "manageUserId": 0,
+                        "manageUserName": "",
+                        "trademark": "",
+                        "model": "",
+                        "serialNo": "",
+                        "supplier": "",
+                        "activationDate": "",
+                        "checkDate": "",
+                        "productionDate": "",
+                        "pulseInterval": 0,
+                        "standardUseRate": "",
+                        "location": "",
+                        "state": "",
+                        "remark": "",
+                        "deleteFlag": "",
+                        "createdUserId": 0,
+                        "createdTime": "",
+                        "modifyiedUserId": 0,
+                        "modifyiedTime": "",
+                        "datetimeStamp": "",
+                        "mainImgUrl": "",
+                        "oeeState": "",
+                        "oeeTime": ""
+                      }
+                    ],
+                    "total": 0,
+                    "size": 0,
+                    "current": 0,
+                    "orders": [
+                      {
+                        "column": "",
+                        "asc": false
+                      }
+                    ],
+                    "optimizeCountSql": false,
+                    "searchCount": false,
+                    "optimizeJoinOfCountSql": false,
+                    "maxLimit": 0,
+                    "countId": "",
+                    "startTime": "",
+                    "startTimeStr": "",
+                    "endTime": "",
+                    "endTimeStr": "",
+                    "hasNextPage": false,
+                    "pages": 0
+                  },
+                  "success": true
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/api/web/workcenter-operate/add-device-machine": {
+      "post": {
+        "summary": "addDeviceMachine",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "clientid",
+            "in": "header",
+            "description": "",
+            "example": "e5cd7e4891bf95d1d19206ce24a7b32e",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddDeviceMachine",
+                "description": ""
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResult",
+                  "description": ""
+                },
+                "example": {
+                  "code": "-1",
+                  "message": "设备编号已存在！",
+                  "data": null,
+                  "success": false
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/api/web/workcenter-operate/update-device-machine": {
+      "post": {
+        "summary": "updateDeviceMachine",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "clientid",
+            "in": "header",
+            "description": "",
+            "example": "e5cd7e4891bf95d1d19206ce24a7b32e",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddDeviceMachine",
+                "description": ""
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResult",
+                  "description": ""
+                },
+                "example": {
+                  "code": "-1",
+                  "message": "deviceMachineId不能为空",
+                  "data": null,
+                  "success": false
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/api/web/workcenter-operate/get-abnormal-record": {
+      "post": {
+        "summary": "getAbnormalRecord",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "clientid",
+            "in": "header",
+            "description": "",
+            "example": "e5cd7e4891bf95d1d19206ce24a7b32e",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/JSONObject",
+                "description": ""
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResult",
+                  "description": ""
+                },
+                "example": {
+                  "code": "1",
+                  "message": "成功",
+                  "data": {
+                    "records": [
+                      {
+                        "id": 0,
+                        "factoryId": 0,
+                        "factoryName": "",
+                        "deptId": 0,
+                        "deptName": "",
+                        "workshopId": 0,
+                        "workshopName": "",
+                        "lineId": 0,
+                        "lineName": "",
+                        "machineId": 0,
+                        "machineName": "",
+                        "machineCode": "",
+                        "signalId": 0,
+                        "calendarDetailId": 0,
+                        "calendarId": 0,
+                        "calendarDate": "",
+                        "shiftDetailName": "",
+                        "shiftName": "",
+                        "abnormalEventId": 0,
+                        "abnormalEventName": "",
+                        "reportTime": "",
+                        "reportComments": "",
+                        "reportDate": "",
+                        "notifyUseridStrs": "",
+                        "andonId": 0,
+                        "state": "",
+                        "eventAnalysis": "",
+                        "createdUserId": 0,
+                        "createdTime": "",
+                        "modifyiedUserId": 0,
+                        "modifyiedTime": "",
+                        "datetimeStamp": "",
+                        "disposeUserId": 0,
+                        "disposeUserName": "",
+                        "disposeDesc": "",
+                        "disposeTime": "",
+                        "disposeDurationTime": "",
+                        "abnormalType": "",
+                        "oeeDetailId": 0,
+                        "showTimeSt": "",
+                        "startTime": "",
+                        "endTime": "",
+                        "durationTime": "",
+                        "shiftShowColor": "",
+                        "shiftStartTime": "",
+                        "shiftEndTime": "",
+                        "notifyDetails": ""
+                      }
+                    ],
+                    "total": 0,
+                    "size": 0,
+                    "current": 0,
+                    "orders": [
+                      {
+                        "column": "",
+                        "asc": false
+                      }
+                    ],
+                    "optimizeCountSql": false,
+                    "searchCount": false,
+                    "optimizeJoinOfCountSql": false,
+                    "maxLimit": 0,
+                    "countId": "",
+                    "startTime": "",
+                    "startTimeStr": "",
+                    "endTime": "",
+                    "endTimeStr": "",
+                    "hasNextPage": false,
+                    "pages": 0
+                  },
+                  "success": true
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/api/web/workcenter-operate/get-abnormal-event-cfg-list": {
+      "post": {
+        "summary": "获取异常事件配置",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "clientid",
+            "in": "header",
+            "description": "",
+            "example": "e5cd7e4891bf95d1d19206ce24a7b32e",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/JSONObject",
+                "description": ""
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResult",
+                  "description": ""
+                },
+                "example": {
+                  "code": "1",
+                  "message": "成功",
+                  "data": [
+                    {
+                      "parentId": 0,
+                      "id": 0,
+                      "name": "",
+                      "children": [
+                        {
+                          "parentId": 0,
+                          "id": 0,
+                          "name": "",
+                          "children": [
+                            {
+                              "parentId": 0,
+                              "id": 0,
+                              "name": "",
+                              "children": []
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "parentId": 0,
+                      "id": 0,
+                      "name": "",
+                      "children": [
+                        {
+                          "parentId": 0,
+                          "id": 0,
+                          "name": "",
+                          "children": [
+                            {
+                              "parentId": 0,
+                              "id": 0,
+                              "name": "",
+                              "children": []
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ],
+                  "success": true
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/api/web/workcenter-operate/report-abnormal-event": {
+      "post": {
+        "summary": "报告异常事件",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "clientid",
+            "in": "header",
+            "description": "",
+            "example": "e5cd7e4891bf95d1d19206ce24a7b32e",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReportAbnormalEventDTO",
+                "description": ""
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResult",
+                  "description": ""
+                },
+                "example": {
+                  "code": "1",
+                  "message": "操作成功",
+                  "data": {
+                    "id": 0,
+                    "sourceId": 0,
+                    "factoryId": 0,
+                    "deptId": 0,
+                    "workshopId": 0,
+                    "lineId": 0,
+                    "eventTypeId": 0,
+                    "abnormalType": "",
+                    "eventName": "",
+                    "andonEventConfigId": 0,
+                    "pinyin": "",
+                    "wubi": "",
+                    "defaultFlag": "",
+                    "evaluationFlag": "",
+                    "state": "",
+                    "deleteFlag": "",
+                    "createdTime": "",
+                    "createdUserId": 0,
+                    "modifyiedUserId": 0,
+                    "modifyiedTime": "",
+                    "datetimeStamp": ""
+                  },
+                  "success": true
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/api/web/workcenter-operate/get-esop-list": {
+      "post": {
+        "summary": "getEsopList",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "clientid",
+            "in": "header",
+            "description": "",
+            "example": "e5cd7e4891bf95d1d19206ce24a7b32e",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/JSONObject",
+                "description": ""
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResult",
+                  "description": ""
+                },
+                "example": {
+                  "code": "1",
+                  "message": "成功",
+                  "data": [
+                    {
+                      "id": 0,
+                      "factoryId": 0,
+                      "fileCode": "",
+                      "fileName": "",
+                      "fileType": "",
+                      "filePath": "",
+                      "uploadTime": "",
+                      "uploadUserId": 0,
+                      "uploadUserName": "",
+                      "createdTime": "",
+                      "createdUserId": 0,
+                      "modifyiedUserId": 0,
+                      "modifyiedTime": "",
+                      "productCode": "",
+                      "customerName": ""
+                    }
+                  ],
+                  "success": true
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/api/web/workcenter-operate/remark-status": {
+      "post": {
+        "summary": "remarkStatus",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "clientid",
+            "in": "header",
+            "description": "",
+            "example": "e5cd7e4891bf95d1d19206ce24a7b32e",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/JSONObject",
+                "description": ""
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResult",
+                  "description": ""
+                },
+                "example": {
+                  "code": "-1",
+                  "message": "workCenterId不能为空",
+                  "data": null,
+                  "success": false
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/api/web/workcenter-operate/cancel-remark-status": {
+      "post": {
+        "summary": "cancelRemarkStatus",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "clientid",
+            "in": "header",
+            "description": "",
+            "example": "e5cd7e4891bf95d1d19206ce24a7b32e",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/JSONObject",
+                "description": ""
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResult",
+                  "description": ""
+                },
+                "example": {
+                  "code": "-1",
+                  "message": "workCenterId不能为空",
+                  "data": null,
+                  "success": false
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/api/web/workcenter-operate/get-current-shift": {
+      "post": {
+        "summary": "getCurrentShift",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "clientid",
+            "in": "header",
+            "description": "",
+            "example": "e5cd7e4891bf95d1d19206ce24a7b32e",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/JSONObject",
+                "description": ""
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResultString"
+                },
+                "example": {
+                  "code": "",
+                  "message": "",
+                  "data": "",
+                  "success": false
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "OrderItem": {
+        "type": "object",
+        "properties": {
+          "column": {
+            "type": "string",
+            "description": ""
+          },
+          "asc": {
+            "type": "boolean",
+            "description": ""
+          }
+        }
+      },
+      "AndonRecordNode": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "",
+            "format": "int64"
+          },
+          "andonRecordId": {
+            "type": "integer",
+            "description": "",
+            "format": "int64"
+          },
+          "nodeDesc": {
+            "type": "string",
+            "description": "节点描述"
+          },
+          "nodeRemark": {
+            "type": "string",
+            "description": "节点备注"
+          },
+          "nodeType": {
+            "type": "string",
+            "description": "1 已上报，2 已接收，3 已处理(关闭)， 4 更换处理人 5 变更内容 6 自定义回复 9 已撤销"
+          },
+          "nodeTypeName": {
+            "type": "string",
+            "description": ""
+          },
+          "nodeUserId": {
+            "type": "integer",
+            "description": "",
+            "format": "int64"
+          },
+          "nodeUserName": {
+            "type": "string",
+            "description": ""
+          },
+          "createdUserId": {
+            "type": "integer",
+            "description": "",
+            "format": "int64"
+          },
+          "createdTime": {
+            "type": "string",
+            "description": ""
+          },
+          "modifyiedUserId": {
+            "type": "integer",
+            "description": "",
+            "format": "int64"
+          },
+          "modifyiedTime": {
+            "type": "string",
+            "description": ""
+          }
+        }
+      },
+      "PlatformUser": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "用户ID",
+            "format": "int64"
+          },
+          "teamId": {
+            "type": "integer",
+            "description": "团队id",
+            "format": "int64"
+          },
+          "factoryId": {
+            "type": "integer",
+            "description": "工厂id",
+            "format": "int64"
+          },
+          "deptId": {
+            "type": "integer",
+            "description": "",
+            "format": "int64"
+          },
+          "workshopId": {
+            "type": "integer",
+            "description": "所属车间id",
+            "format": "int64"
+          },
+          "lineId": {
+            "type": "integer",
+            "description": "所属产线d",
+            "format": "int64"
+          },
+          "userName": {
+            "type": "string",
+            "description": "用户姓名"
+          },
+          "email": {
+            "type": "string",
+            "description": "邮箱"
+          },
+          "jobTitle": {
+            "type": "string",
+            "description": "职称"
+          },
+          "jobNo": {
+            "type": "string",
+            "description": "用户工号"
+          },
+          "accountNo": {
+            "type": "string",
+            "description": "用户账号"
+          },
+          "password": {
+            "type": "string",
+            "description": "用户密码"
+          },
+          "idNumber": {
+            "type": "string",
+            "description": "身份证号"
+          },
+          "dateOfBirth": {
+            "type": "string",
+            "description": "出生日期"
+          },
+          "telephone": {
+            "type": "string",
+            "description": "联系电话"
+          },
+          "headImageUrl": {
+            "type": "string",
+            "description": "头像url"
+          },
+          "userType": {
+            "type": "string",
+            "description": "用户类型，1 平台，2 团队，3 工厂"
+          },
+          "adminFlag": {
+            "type": "string",
+            "description": "管理员标识，1 管理员，0 非管理员"
+          },
+          "state": {
+            "type": "string",
+            "description": "状态（1:在用 2:停用）"
+          },
+          "deleteFlag": {
+            "type": "string",
+            "description": "是否删除(0:否 1:是)"
+          },
+          "passwordModifyiedTime": {
+            "type": "string",
+            "description": "修改密码时间"
+          },
+          "createdUserId": {
+            "type": "integer",
+            "description": "创建人",
+            "format": "int64"
+          },
+          "createdTime": {
+            "type": "string",
+            "description": "创建时间"
+          },
+          "modifyiedUserId": {
+            "type": "integer",
+            "description": "最后更新人",
+            "format": "int64"
+          },
+          "modifyiedTime": {
+            "type": "string",
+            "description": "最后更新时间"
+          },
+          "datetimeStamp": {
+            "type": "string",
+            "description": "时间戳"
+          },
+          "genderCode": {
+            "type": "string",
+            "description": "1男 2女 9 未知"
+          },
+          "publicOpenId": {
+            "type": "string",
+            "description": ""
+          },
+          "currentFactoryId": {
+            "type": "integer",
+            "description": "",
+            "format": "int64"
+          },
+          "remark": {
+            "type": "string",
+            "description": "备注"
+          }
+        }
+      },
+      "AndonRecordVO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "ID",
+            "format": "int64"
+          },
+          "factoryId": {
+            "type": "integer",
+            "description": "工厂id",
+            "format": "int64"
+          },
+          "factoryName": {
+            "type": "string",
+            "description": ""
+          },
+          "deptId": {
+            "type": "integer",
+            "description": "",
+            "format": "int64"
+          },
+          "deptName": {
+            "type": "string",
+            "description": ""
+          },
+          "workshopId": {
+            "type": "integer",
+            "description": "车间id",
+            "format": "int64"
+          },
+          "workshopName": {
+            "type": "string",
+            "description": ""
+          },
+          "lineId": {
+            "type": "integer",
+            "description": "产线d",
+            "format": "int64"
+          },
+          "lineName": {
+            "type": "string",
+            "description": ""
+          },
+          "machineId": {
+            "type": "integer",
+            "description": "设备ID",
+            "format": "int64"
+          },
+          "signalId": {
+            "type": "integer",
+            "description": "灯ID",
+            "format": "int64"
+          },
+          "calendarDetailId": {
+            "type": "integer",
+            "description": "日历排班ID",
+            "format": "int64"
+          },
+          "calendarId": {
+            "type": "integer",
+            "description": "",
+            "format": "int64"
+          },
+          "calendarDate": {
+            "type": "string",
+            "description": ""
+          },
+          "shiftDetailName": {
+            "type": "string",
+            "description": ""
+          },
+          "machineName": {
+            "type": "string",
+            "description": ""
+          },
+          "machineCode": {
+            "type": "string",
+            "description": ""
+          },
+          "configId": {
+            "type": "integer",
+            "description": "事件配置ID",
+            "format": "int64"
+          },
+          "configName": {
+            "type": "string",
+            "description": ""
+          },
+          "eventName": {
+            "type": "string",
+            "description": ""
+          },
+          "reportUserId": {
+            "type": "integer",
+            "description": "报告人ID",
+            "format": "int64"
+          },
+          "reportUserName": {
+            "type": "string",
+            "description": ""
+          },
+          "reportTime": {
+            "type": "string",
+            "description": "开始时间"
+          },
+          "reportComments": {
+            "type": "string",
+            "description": "报告备注"
+          },
+          "reportDate": {
+            "type": "string",
+            "description": "报告日期"
+          },
+          "priority": {
+            "type": "string",
+            "description": "优先级"
+          },
+          "notifyUseridStrs": {
+            "type": "string",
+            "description": "通知人ID列表"
+          },
+          "receiveUserId": {
+            "type": "integer",
+            "description": "接收人",
+            "format": "int64"
+          },
+          "receiveUserName": {
+            "type": "string",
+            "description": ""
+          },
+          "receiveTime": {
+            "type": "string",
+            "description": "接收时间"
+          },
+          "receiveDurationTime": {
+            "type": "integer",
+            "description": "接收用时",
+            "format": "int64"
+          },
+          "disposeDurationTime": {
+            "type": "integer",
+            "description": "",
+            "format": "int64"
+          },
+          "disposeUserId": {
+            "type": "integer",
+            "description": "处理人ID",
+            "format": "int64"
+          },
+          "disposeUserName": {
+            "type": "string",
+            "description": ""
+          },
+          "disposeDesc": {
+            "type": "string",
+            "description": "处理方式"
+          },
+          "disposeTime": {
+            "type": "string",
+            "description": "处理时间"
+          },
+          "totalDurationTime": {
+            "type": "integer",
+            "description": "持续时间，单位秒",
+            "format": "int64"
+          },
+          "sourceType": {
+            "type": "string",
+            "description": "来源，1 移动端，2 安灯盒按钮， 3 异常事件"
+          },
+          "state": {
+            "type": "string",
+            "description": "状态，1 已上报，2 已接收，3 已处理， 9 已撤销"
+          },
+          "eventAnalysis": {
+            "type": "string",
+            "description": "原因分析"
+          },
+          "createdUserId": {
+            "type": "integer",
+            "description": "创建人",
+            "format": "int64"
+          },
+          "createdTime": {
+            "type": "string",
+            "description": "创建时间"
+          },
+          "modifyiedUserId": {
+            "type": "integer",
+            "description": "最后更新人",
+            "format": "int64"
+          },
+          "modifyiedTime": {
+            "type": "string",
+            "description": "最后更新时间"
+          },
+          "datetimeStamp": {
+            "type": "string",
+            "description": "时间戳"
+          },
+          "oeeDetailId": {
+            "type": "integer",
+            "description": "oee明细ID",
+            "format": "int64"
+          },
+          "workCenterName": {
+            "type": "string",
+            "description": ""
+          },
+          "workCenterCode": {
+            "type": "string",
+            "description": ""
+          },
+          "disposeUserNames": {
+            "type": "string",
+            "description": ""
+          },
+          "disposeUserIds": {
+            "type": "string",
+            "description": ""
+          },
+          "totalDurationTimeSt": {
+            "type": "string",
+            "description": ""
+          },
+          "receiveDurationTimeSt": {
+            "type": "string",
+            "description": ""
+          },
+          "disposeDurationTimeSt": {
+            "type": "string",
+            "description": ""
+          },
+          "statusText": {
+            "type": "string",
+            "description": "表状态，1 已上报，2 已接收，3 已处理， 9 已撤销\n转换状态 已申请 已响应 已关闭 已撤销"
+          },
+          "disposeUserList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PlatformUser",
+              "description": "<p>平台_用户</p>"
+            },
+            "description": ""
+          },
+          "recordNodeList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AndonRecordNode",
+              "description": "<p>安灯记录-节点</p>"
+            },
+            "description": ""
+          },
+          "showColor": {
+            "type": "string",
+            "description": ""
+          },
+          "workCenterId": {
+            "type": "integer",
+            "description": "",
+            "format": "int64"
+          },
+          "shiftShowColor": {
+            "type": "string",
+            "description": ""
+          },
+          "shiftStartTime": {
+            "type": "string",
+            "description": ""
+          },
+          "shiftEndTime": {
+            "type": "string",
+            "description": ""
+          },
+          "reportImgList": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": ""
+          },
+          "disposeImgList": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": ""
+          },
+          "reportImgUrls": {
+            "type": "string",
+            "description": ""
+          },
+          "disposeImgUrls": {
+            "type": "string",
+            "description": ""
+          },
+          "shiftName": {
+            "type": "string",
+            "description": ""
+          },
+          "completedUserId": {
+            "type": "integer",
+            "description": "",
+            "format": "int64"
+          },
+          "completedUserName": {
+            "type": "string",
+            "description": ""
+          }
+        }
+      },
+      "MyPageAndonRecordVO": {
+        "type": "object",
+        "properties": {
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AndonRecordVO",
+              "description": "<p>安灯_记录</p>"
+            },
+            "description": ""
+          },
+          "total": {
+            "type": "integer",
+            "description": "",
+            "format": "int64"
+          },
+          "size": {
+            "type": "integer",
+            "description": "",
+            "format": "int64"
+          },
+          "current": {
+            "type": "integer",
+            "description": "",
+            "format": "int64"
+          },
+          "orders": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OrderItem",
+              "description": "com.baomidou.mybatisplus.core.metadata.OrderItem"
+            },
+            "description": ""
+          },
+          "optimizeCountSql": {
+            "type": "boolean",
+            "description": ""
+          },
+          "searchCount": {
+            "type": "boolean",
+            "description": ""
+          },
+          "optimizeJoinOfCountSql": {
+            "type": "boolean",
+            "description": ""
+          },
+          "maxLimit": {
+            "type": "integer",
+            "description": "",
+            "format": "int64"
+          },
+          "countId": {
+            "type": "string",
+            "description": ""
+          },
+          "startTime": {
+            "type": "string",
+            "description": ""
+          },
+          "startTimeStr": {
+            "type": "string",
+            "description": ""
+          },
+          "endTime": {
+            "type": "string",
+            "description": ""
+          },
+          "endTimeStr": {
+            "type": "string",
+            "description": ""
+          },
+          "hasNextPage": {
+            "type": "boolean",
+            "description": "",
+            "default": false
+          }
+        }
+      },
+      "ApiResult": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "状态码"
+          },
+          "message": {
+            "type": "string",
+            "description": "提示"
+          },
+          "data": {
+            "description": "数据",
+            "type": "object",
+            "properties": {}
+          },
+          "success": {
+            "type": "boolean",
+            "description": "是否成功"
+          }
+        }
+      },
+      "": {
+        "type": "object",
+        "properties": {}
+      },
+      "ApiResultString": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "状态码"
+          },
+          "message": {
+            "type": "string",
+            "description": "提示"
+          },
+          "data": {
+            "type": "string",
+            "description": "数据"
+          },
+          "success": {
+            "type": "boolean",
+            "description": "是否成功"
+          }
+        }
+      },
+      "ReportAbnormalEventDTO": {
+        "type": "object",
+        "properties": {
+          "abnormalRecordId": {
+            "type": "integer",
+            "description": "异常记录id",
+            "format": "int64"
+          },
+          "eventId": {
+            "type": "integer",
+            "description": "事件id",
+            "format": "int64"
+          },
+          "processDispatchId": {
+            "type": "integer",
+            "description": "工序派工id",
+            "format": "int64"
+          }
+        },
+        "required": ["abnormalRecordId"]
+      },
+      "AddDeviceMachine": {
+        "type": "object",
+        "properties": {
+          "lineId": {
+            "type": "integer",
+            "description": "",
+            "format": "int64"
+          },
+          "lineName": {
+            "type": "string",
+            "description": ""
+          },
+          "machineCode": {
+            "type": "string",
+            "description": ""
+          },
+          "machineName": {
+            "type": "string",
+            "description": ""
+          },
+          "manageUserId": {
+            "type": "integer",
+            "description": "",
+            "format": "int64"
+          },
+          "manageUserName": {
+            "type": "string",
+            "description": ""
+          },
+          "lightSn": {
+            "type": "string",
+            "description": ""
+          },
+          "signalId": {
+            "type": "integer",
+            "description": "",
+            "format": "int64"
+          },
+          "serialNo": {
+            "type": "string",
+            "description": ""
+          },
+          "location": {
+            "type": "string",
+            "description": ""
+          },
+          "imgList": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "",
+            "default": "new ArrayList<>()"
+          },
+          "deviceMachineId": {
+            "type": "integer",
+            "description": "更新才有",
+            "format": "int64"
+          }
+        },
+        "required": ["lineId", "machineCode", "machineName", "lightSn"]
+      },
+      "ApiResultAndonRecordVO": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "状态码"
+          },
+          "message": {
+            "type": "string",
+            "description": "提示"
+          },
+          "data": {
+            "$ref": "#/components/schemas/AndonRecordVO",
+            "description": "<p>安灯_记录</p>"
+          },
+          "success": {
+            "type": "boolean",
+            "description": "是否成功"
+          }
+        }
+      },
+      "AndonClose": {
+        "type": "object",
+        "properties": {
+          "andonRecordId": {
+            "type": "integer",
+            "description": "",
+            "format": "int64"
+          },
+          "disposeDesc": {
+            "type": "string",
+            "description": ""
+          },
+          "disposeImgUrls": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": ""
+          }
+        },
+        "required": ["andonRecordId"]
+      },
+      "ApiResultMyPageAndonRecordVO": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "状态码"
+          },
+          "message": {
+            "type": "string",
+            "description": "提示"
+          },
+          "data": {
+            "$ref": "#/components/schemas/MyPageAndonRecordVO",
+            "description": "数据"
+          },
+          "success": {
+            "type": "boolean",
+            "description": "是否成功"
+          }
+        }
+      },
+      "AndonRecordQuery": {
+        "type": "object",
+        "properties": {
+          "queryDeptId": {
+            "type": "integer",
+            "description": "",
+            "format": "int64"
+          },
+          "myRelatedFlag": {
+            "type": "string",
+            "description": "与我有关, 处理人或者报告人是我或者接收人是我",
+            "default": "0"
+          },
+          "queryDisposeStatus": {
+            "type": "string",
+            "description": "处理状态 1 查询未处理的 2 查询已处理的"
+          },
+          "queryTimeType": {
+            "type": "string",
+            "description": "1 60天内 2 今天 3 本月 5 日期范围查询 默认1",
+            "default": "1"
+          },
+          "factoryId": {
+            "type": "integer",
+            "description": "",
+            "format": "int64"
+          },
+          "startTime": {
+            "type": "string",
+            "description": ""
+          },
+          "endTime": {
+            "type": "string",
+            "description": ""
+          },
+          "size": {
+            "type": "integer",
+            "description": "",
+            "format": "int64",
+            "default": 30
+          },
+          "current": {
+            "type": "integer",
+            "description": "",
+            "format": "int64",
+            "default": 1
+          }
+        }
+      },
+      "AndonReq": {
+        "type": "object",
+        "properties": {
+          "configId": {
+            "type": "integer",
+            "description": "",
+            "format": "int64"
+          },
+          "configName": {
+            "type": "string",
+            "description": ""
+          },
+          "imgList": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": ""
+          },
+          "reportComments": {
+            "type": "string",
+            "description": ""
+          },
+          "selectHandlerUserIds": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            },
+            "description": "处理用户"
+          },
+          "workCenterId": {
+            "type": "integer",
+            "description": "",
+            "format": "int64"
+          },
+          "reqUserId": {
+            "type": "integer",
+            "description": "",
+            "format": "int64"
+          },
+          "sourceType": {
+            "type": "string",
+            "description": "来源"
+          },
+          "processDispatchId": {
+            "type": "integer",
+            "description": "工序派工id",
+            "format": "int64"
+          }
+        },
+        "required": [
+          "configId",
+          "configName",
+          "selectHandlerUserIds",
+          "workCenterId"
+        ]
+      },
+      "JSONObject": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "object",
+            "properties": {}
+          }
+        }
+      }
+    },
+    "securitySchemes": {}
+  },
+  "servers": []
+}

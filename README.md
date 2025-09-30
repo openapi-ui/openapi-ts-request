@@ -267,6 +267,7 @@ openapi --i ./spec.json --o ./apis
 | customType | ({<br>schemaObject: SchemaObject \| ReferenceObject,<br>namespace: string,<br>originGetType:(schemaObject: SchemaObject \| ReferenceObject, namespace: string, schemas?: ComponentsObject['schemas']) => string,<br>schemas?: ComponentsObject['schemas'],<br>}) => string | 自定义类型 <br> _返回非字符串将使用默认方法获取type_ |
 | customFileNames | (<br>operationObject: OperationObject,<br>apiPath: string,<br>apiMethod: string,<br>) => string[] | 自定义生成的请求客户端文件名称，可以返回多个文件名称的数组(表示生成多个文件). <br> _返回为空，则使用默认的方法获取_ |
 | customTemplates | {<br>[TypescriptFileType.serviceController]?: <T, U>(item: T, context: U) => string;<br>} | 自定义模板，详情请看源码 |
+| customRenderTemplateData | {<br>[TypescriptFileType]?: (list: any[], context: {fileName: string, params: Record<string, unknown>}) => any[]<br>} | 自定义文件生成时的 list 参数处理，支持对不同文件类型进行精细化控制 |
 
 ## Apifox-Config
 

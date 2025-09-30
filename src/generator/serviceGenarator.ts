@@ -101,7 +101,6 @@ import {
   // resolveFunctionName,
   resolveRefs,
   resolveTypeName,
-  // stripDot,
 } from './util';
 
 export default class ServiceGenerator {
@@ -865,6 +864,101 @@ export default class ServiceGenerator {
   ): boolean {
     try {
       const template = this.getTemplate(type);
+
+      // 应用 customRenderTemplateData hook (如果存在)
+      let processedParams = { ...params };
+      const customListHooks = this.config.hook?.customRenderTemplateData;
+
+      if (customListHooks && params.list) {
+        try {
+          const context = {
+            fileName,
+            params: processedParams,
+          };
+
+          let processedList = params.list;
+
+          // 根据不同的文件类型调用相应的 hook 函数
+          switch (type) {
+            case TypescriptFileType.serviceController:
+              if (customListHooks.serviceController) {
+                processedList = customListHooks.serviceController(
+                  params.list as APIDataType[],
+                  context
+                );
+              }
+              break;
+            case TypescriptFileType.reactQuery:
+              if (customListHooks.reactQuery) {
+                processedList = customListHooks.reactQuery(
+                  params.list as APIDataType[],
+                  context
+                );
+              }
+              break;
+            case TypescriptFileType.interface:
+              if (customListHooks.interface) {
+                processedList = customListHooks.interface(
+                  params.list as ITypeItem[],
+                  context
+                );
+              }
+              break;
+            case TypescriptFileType.displayEnumLabel:
+              if (customListHooks.displayEnumLabel) {
+                processedList = customListHooks.displayEnumLabel(
+                  params.list as ITypeItem[],
+                  context
+                );
+              }
+              break;
+            case TypescriptFileType.displayTypeLabel:
+              if (customListHooks.displayTypeLabel) {
+                processedList = customListHooks.displayTypeLabel(
+                  params.list as ITypeItem[],
+                  context
+                );
+              }
+              break;
+            case TypescriptFileType.schema:
+              if (customListHooks.schema) {
+                processedList = customListHooks.schema(
+                  params.list as ISchemaItem[],
+                  context
+                );
+              }
+              break;
+            case TypescriptFileType.serviceIndex:
+              if (customListHooks.serviceIndex) {
+                processedList = customListHooks.serviceIndex(
+                  params.list as ControllerType[],
+                  context
+                );
+              }
+              break;
+          }
+
+          if (processedList !== params.list) {
+            processedParams = {
+              ...processedParams,
+              list: processedList,
+            };
+            this.log(
+              `customRenderTemplateData hook applied for ${type}: ${fileName}`
+            );
+          }
+        } catch (error) {
+          console.error(
+            `[GenSDK] customRenderTemplateData hook error for ${type}:`,
+            error
+          );
+          this.log(
+            `customRenderTemplateData hook failed for ${type}, using original list`
+          );
+          // 发生错误时使用原始参数继续执行
+        }
+      }
+
       // 设置输出不转义
       const env = nunjucks.configure({
         autoescape: false,
@@ -874,7 +968,7 @@ export default class ServiceGenerator {
       const destPath = join(this.config.serversPath, fileName);
       const destCode = nunjucks.renderString(template, {
         disableTypeCheck: false,
-        ...params,
+        ...processedParams,
       });
       let mergerProps: MergeOption = {} as MergeOption;
 
