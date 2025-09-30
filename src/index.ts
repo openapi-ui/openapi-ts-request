@@ -4,7 +4,12 @@ import { PriorityRule, ReactQueryMode } from './config';
 import type { TypescriptFileType } from './generator/config';
 import { mockGenerator } from './generator/mockGenarator';
 import ServiceGenerator from './generator/serviceGenarator';
-import type { APIDataType, ITypeItem } from './generator/type';
+import type {
+  APIDataType,
+  ControllerType,
+  ISchemaItem,
+  ITypeItem,
+} from './generator/type';
 import type {
   ComponentsObject,
   IPriorityRule,
@@ -264,6 +269,82 @@ export type GenerateServiceProps = {
         types: T[],
         config: U
       ) => ITypeItem[];
+    };
+    /**
+     * 自定义 genFileFromTemplate 的 list 参数 hook
+     * 可以在模板渲染前对 list 参数进行自定义处理
+     */
+    customRenderTemplateData?: {
+      /**
+       * 自定义 serviceController 文件的 list 参数
+       */
+      [TypescriptFileType.serviceController]?: (
+        list: APIDataType[],
+        context: {
+          fileName: string;
+          params: Record<string, unknown>;
+        }
+      ) => APIDataType[];
+      /**
+       * 自定义 interface 文件的 list 参数
+       */
+      [TypescriptFileType.interface]?: (
+        list: ITypeItem[],
+        context: {
+          fileName: string;
+          params: Record<string, unknown>;
+        }
+      ) => ITypeItem[];
+      /**
+       * 自定义 displayEnumLabel 文件的 list 参数
+       */
+      [TypescriptFileType.displayEnumLabel]?: (
+        list: ITypeItem[],
+        context: {
+          fileName: string;
+          params: Record<string, unknown>;
+        }
+      ) => ITypeItem[];
+      /**
+       * 自定义 displayTypeLabel 文件的 list 参数
+       */
+      [TypescriptFileType.displayTypeLabel]?: (
+        list: ITypeItem[],
+        context: {
+          fileName: string;
+          params: Record<string, unknown>;
+        }
+      ) => ITypeItem[];
+      /**
+       * 自定义 schema 文件的 list 参数
+       */
+      [TypescriptFileType.schema]?: (
+        list: ISchemaItem[],
+        context: {
+          fileName: string;
+          params: Record<string, unknown>;
+        }
+      ) => ISchemaItem[];
+      /**
+       * 自定义 serviceIndex 文件的 list 参数
+       */
+      [TypescriptFileType.serviceIndex]?: (
+        list: ControllerType[],
+        context: {
+          fileName: string;
+          params: Record<string, unknown>;
+        }
+      ) => ControllerType[];
+      /**
+       * 自定义 reactQuery 文件的 list 参数
+       */
+      [TypescriptFileType.reactQuery]?: (
+        list: APIDataType[],
+        context: {
+          fileName: string;
+          params: Record<string, unknown>;
+        }
+      ) => APIDataType[];
     };
   };
 };
