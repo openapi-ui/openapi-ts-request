@@ -880,7 +880,7 @@ export default class ServiceGenerator {
 
           // 根据不同的文件类型调用相应的 hook 函数
           switch (type) {
-            case 'serviceController':
+            case TypescriptFileType.serviceController:
               if (customListHooks.serviceController) {
                 processedList = customListHooks.serviceController(
                   params.list as APIDataType[],
@@ -888,7 +888,7 @@ export default class ServiceGenerator {
                 );
               }
               break;
-            case 'reactQuery':
+            case TypescriptFileType.reactQuery:
               if (customListHooks.reactQuery) {
                 processedList = customListHooks.reactQuery(
                   params.list as APIDataType[],
@@ -896,7 +896,7 @@ export default class ServiceGenerator {
                 );
               }
               break;
-            case 'interface':
+            case TypescriptFileType.interface:
               if (customListHooks.interface) {
                 processedList = customListHooks.interface(
                   params.list as ITypeItem[],
@@ -904,7 +904,7 @@ export default class ServiceGenerator {
                 );
               }
               break;
-            case 'displayEnumLabel':
+            case TypescriptFileType.displayEnumLabel:
               if (customListHooks.displayEnumLabel) {
                 processedList = customListHooks.displayEnumLabel(
                   params.list as ITypeItem[],
@@ -912,7 +912,7 @@ export default class ServiceGenerator {
                 );
               }
               break;
-            case 'displayTypeLabel':
+            case TypescriptFileType.displayTypeLabel:
               if (customListHooks.displayTypeLabel) {
                 processedList = customListHooks.displayTypeLabel(
                   params.list as ITypeItem[],
@@ -920,7 +920,7 @@ export default class ServiceGenerator {
                 );
               }
               break;
-            case 'schema':
+            case TypescriptFileType.schema:
               if (customListHooks.schema) {
                 processedList = customListHooks.schema(
                   params.list as ISchemaItem[],
@@ -928,7 +928,7 @@ export default class ServiceGenerator {
                 );
               }
               break;
-            case 'serviceIndex':
+            case TypescriptFileType.serviceIndex:
               if (customListHooks.serviceIndex) {
                 processedList = customListHooks.serviceIndex(
                   params.list as ControllerType[],
