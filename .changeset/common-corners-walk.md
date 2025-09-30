@@ -2,4 +2,4 @@
 'openapi-ts-request': minor
 ---
 
-Added customGenFileFromTemplateList hook functionality
+Added customRenderTemplateData hook functionality

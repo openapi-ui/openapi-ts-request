@@ -9,7 +9,7 @@ vi.setConfig({
   testTimeout: 15_000,
 });
 
-describe('customGenFileFromTemplateList hook 测试', () => {
+describe('customRenderTemplateData hook 测试', () => {
   it('测试 ServiceController hook - 过滤和修改 API 列表', async (ctx) => {
     await openAPI.generateService({
       schemaPath: join(
@@ -18,7 +18,7 @@ describe('customGenFileFromTemplateList hook 测试', () => {
       ),
       serversPath: './apis/test-service-controller-hook',
       hook: {
-        customGenFileFromTemplateList: {
+        customRenderTemplateData: {
           [TypescriptFileType.serviceController]: (list, context) => {
             // 过滤掉路径包含 deprecated 的 API
             const filteredList = list.filter(
@@ -49,7 +49,7 @@ describe('customGenFileFromTemplateList hook 测试', () => {
       ),
       serversPath: './apis/test-interface-hook',
       hook: {
-        customGenFileFromTemplateList: {
+        customRenderTemplateData: {
           [TypescriptFileType.interface]: (list, context) => {
             return list.map((item) => ({
               ...item,
@@ -78,7 +78,7 @@ describe('customGenFileFromTemplateList hook 测试', () => {
       ),
       serversPath: './apis/test-interface-json-object-hook',
       hook: {
-        customGenFileFromTemplateList: {
+        customRenderTemplateData: {
           [TypescriptFileType.interface]: (list, context) => {
             return list.map((item) => {
               if (item.typeName === 'JSONObject') {
@@ -110,7 +110,7 @@ describe('customGenFileFromTemplateList hook 测试', () => {
       serversPath: './apis/test-enum-label-hook',
       isDisplayTypeLabel: true,
       hook: {
-        customGenFileFromTemplateList: {
+        customRenderTemplateData: {
           [TypescriptFileType.displayEnumLabel]: (list, context) => {
             // 只保留包含 Status 的枚举类型
             return list.filter(
@@ -136,7 +136,7 @@ describe('customGenFileFromTemplateList hook 测试', () => {
       serversPath: './apis/test-type-label-hook',
       isDisplayTypeLabel: true,
       hook: {
-        customGenFileFromTemplateList: {
+        customRenderTemplateData: {
           [TypescriptFileType.displayTypeLabel]: (list, context) => {
             // 只保留非枚举类型，并添加前缀
             return list
@@ -164,7 +164,7 @@ describe('customGenFileFromTemplateList hook 测试', () => {
       serversPath: './apis/test-schema-hook',
       isGenJsonSchemas: true,
       hook: {
-        customGenFileFromTemplateList: {
+        customRenderTemplateData: {
           [TypescriptFileType.schema]: (list, context) => {
             return list.map((item) => ({
               ...item,
@@ -189,7 +189,7 @@ describe('customGenFileFromTemplateList hook 测试', () => {
       ),
       serversPath: './apis/test-service-index-hook',
       hook: {
-        customGenFileFromTemplateList: {
+        customRenderTemplateData: {
           [TypescriptFileType.serviceIndex]: (list, context) => {
             // 按文件名倒序排列
             return [...list].sort((a, b) =>
@@ -214,7 +214,7 @@ describe('customGenFileFromTemplateList hook 测试', () => {
       serversPath: './apis/test-react-query-hook',
       isGenReactQuery: true,
       hook: {
-        customGenFileFromTemplateList: {
+        customRenderTemplateData: {
           [TypescriptFileType.reactQuery]: (list, context) => {
             // 只为 GET 方法生成 React Query hooks
             return list.filter((api) => api.method.toLowerCase() === 'get');
@@ -244,7 +244,7 @@ describe('customGenFileFromTemplateList hook 测试', () => {
         customClassName: (tagName) => `Hook${tagName}Controller`,
 
         // 新的文件模板 list hook
-        customGenFileFromTemplateList: {
+        customRenderTemplateData: {
           [TypescriptFileType.serviceController]: (list, context) => {
             return list
               .filter((api) => !api.path.includes('deprecated'))
@@ -277,7 +277,7 @@ describe('customGenFileFromTemplateList hook 测试', () => {
       serversPath: './apis/test-hook-error-handling',
       enableLogging: true,
       hook: {
-        customGenFileFromTemplateList: {
+        customRenderTemplateData: {
           [TypescriptFileType.serviceController]: (list, context) => {
             // 故意抛出错误测试错误处理
             throw new Error('测试 hook 错误处理');
@@ -326,7 +326,7 @@ describe('customGenFileFromTemplateList hook 测试', () => {
       ),
       serversPath: './apis/test-hook-context',
       hook: {
-        customGenFileFromTemplateList: {
+        customRenderTemplateData: {
           [TypescriptFileType.serviceController]: (list, context) => {
             // 记录 context 信息用于验证
             contextLog.push({

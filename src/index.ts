@@ -274,7 +274,7 @@ export type GenerateServiceProps = {
      * 自定义 genFileFromTemplate 的 list 参数 hook
      * 可以在模板渲染前对 list 参数进行自定义处理
      */
-    customGenFileFromTemplateList?: {
+    customRenderTemplateData?: {
       /**
        * 自定义 serviceController 文件的 list 参数
        */

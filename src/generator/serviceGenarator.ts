@@ -865,9 +865,9 @@ export default class ServiceGenerator {
     try {
       const template = this.getTemplate(type);
 
-      // 应用 customGenFileFromTemplateList hook (如果存在)
+      // 应用 customRenderTemplateData hook (如果存在)
       let processedParams = { ...params };
-      const customListHooks = this.config.hook?.customGenFileFromTemplateList;
+      const customListHooks = this.config.hook?.customRenderTemplateData;
 
       if (customListHooks && params.list) {
         try {
@@ -944,16 +944,16 @@ export default class ServiceGenerator {
               list: processedList,
             };
             this.log(
-              `customGenFileFromTemplateList hook applied for ${type}: ${fileName}`
+              `customRenderTemplateData hook applied for ${type}: ${fileName}`
             );
           }
         } catch (error) {
           console.error(
-            `[GenSDK] customGenFileFromTemplateList hook error for ${type}:`,
+            `[GenSDK] customRenderTemplateData hook error for ${type}:`,
             error
           );
           this.log(
-            `customGenFileFromTemplateList hook failed for ${type}, using original list`
+            `customRenderTemplateData hook failed for ${type}, using original list`
           );
           // 发生错误时使用原始参数继续执行
         }
