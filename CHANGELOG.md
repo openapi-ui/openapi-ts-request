@@ -1,5 +1,11 @@
 # openapi-ts-request
 
+## 1.9.0
+
+### Minor Changes
+
+- [#511](https://github.com/openapi-ui/openapi-ts-request/pull/511) [`1fd308e`](https://github.com/openapi-ui/openapi-ts-request/commit/1fd308e0de291ca0a62b90002c0325f934a7d823) Thanks [@zwmmm](https://github.com/zwmmm)! - feat: Added customRenderTemplateData hook functionality #512
+
 ## 1.8.4
 
 ### Patch Changes
