@@ -64,7 +64,7 @@
           {%- for file in api.file -%}
             {{ file.title | safe }}
             {{- "?" if not api.file.required -}}
-            : File {{ "[]" if file.multiple }}
+            : globalThis.File {{ "[]" if file.multiple }}
             {{ ";" if not loop.last }}
           {%- endfor -%}
         {%- endif -%}
@@ -105,7 +105,7 @@
           {% endif %}
             if (item !== undefined && item !== null) {
               {% if genType === "ts" %}
-                if (typeof item === 'object' && !(item instanceof File)) {
+                if (typeof item === 'object' && !(item instanceof globalThis.File)) {
                   if (item instanceof Array) {
                     item.forEach((f) => formData.append(ele, f || ''));
                   } else {
