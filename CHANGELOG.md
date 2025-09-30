@@ -1,5 +1,11 @@
 # openapi-ts-request
 
+## 1.8.4
+
+### Patch Changes
+
+- [#508](https://github.com/openapi-ui/openapi-ts-request/pull/508) [`a9da8c3`](https://github.com/openapi-ui/openapi-ts-request/commit/a9da8c3d3a67e91f44937d18e9cecbeeb6138b22) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - fix: fix global File type conflict #507
+
 ## 1.8.3
 
 ### Patch Changes
