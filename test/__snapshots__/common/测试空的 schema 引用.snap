@@ -42,7 +42,7 @@ export function electricityClassificationTimeSharingElectricityUsingPost({
   body,
   options,
 }: {
-  body: API.FenxiangshebaoziranshijiantongjichaxunDto;
+  body: API.FenxiangshebeiziranshijiantongjichaxunDto;
   options?: { [key: string]: unknown };
 }) {
   return request<API.StatisticsQueryVo>(
@@ -62,7 +62,7 @@ export function electricityClassificationTimeSharingElectricityUsingPost({
 export * from './types';
 export * from './displayEnumLabel';
 
-export * from './fenxiangyongdimokuai6C76B49E435F7713E0531F0B10Ac7013';
+export * from './fenxiangyongdianmokuai6C76B49E435F7713E0531F0B10Ac7013';
 /* eslint-disable */
 // @ts-ignore
 
@@ -98,7 +98,7 @@ export type ElectricityClassificationTimeSharingElectricityUsingPostResponses =
     404: unknown;
   };
 
-export type FenxiangshebaoziranshijiantongjichaxunDto = {
+export type FenxiangshebeiziranshijiantongjichaxunDto = {
   /** 业务类型 */
   businessType?: 'CLASSIFICATION' | 'DEVICE' | 'INSTRUMENT';
   /** 结束时间 */
