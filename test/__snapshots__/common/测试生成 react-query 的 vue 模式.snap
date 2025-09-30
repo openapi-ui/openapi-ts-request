@@ -2653,7 +2653,7 @@ export function v2ApiFileUsingPost({
     const item = (body as { [key: string]: any })[ele];
 
     if (item !== undefined && item !== null) {
-      if (typeof item === 'object' && !(item instanceof File)) {
+      if (typeof item === 'object' && !(item instanceof globalThis.File)) {
         if (item instanceof Array) {
           item.forEach((f) => formData.append(ele, f || ''));
         } else {
