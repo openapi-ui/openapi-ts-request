@@ -2,4 +2,4 @@
 'openapi-ts-request': minor
 ---
 
-Added customRenderTemplateData hook functionality
+feat: Added customRenderTemplateData hook functionality #512
