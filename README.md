@@ -1,5 +1,3 @@
-<!-- TODO:需要修改文档, 添加参数, 添加apifox的配置支持 -->
-
 ## 介绍
 
 [![GitHub Repo stars](https://img.shields.io/github/stars/openapi-ui/openapi-ts-request?style=social)](https://github.com/openapi-ui/openapi-ts-request) [![npm (scoped)](https://img.shields.io/npm/v/openapi-ts-request)](https://www.npmjs.com/package/openapi-ts-request) ![GitHub tag](https://img.shields.io/github/v/tag/openapi-ui/openapi-ts-request?include_prereleases)
@@ -29,6 +27,7 @@
 - 支持 JSON/YAML 定义文件
 - 支持将中文 tag 名称翻译为英文 tag 名称
 - 支持直接配置`apifox`的`token`和`projectId`直接生成
+- 支持自定义二进制媒体类型，自动处理文件上传/下载接口
 
 ## 使用
 
@@ -50,8 +49,6 @@ pnpm i openapi-ts-request -D
 import type { GenerateServiceProps } from 'openapi-ts-request';
 
 export default {
-  // schemaPath: './openapi.json', // 本地openapi文件
-  // serversPath: './src/apis', // 接口存放路径
   schemaPath: 'http://petstore.swagger.io/v2/swagger.json',
 } as GenerateServiceProps;
 ```
@@ -254,6 +251,7 @@ openapi --i ./spec.json --o ./apis
 | isOnlyGenTypeScriptType | 否 | boolean | false | 仅生成 typescript 类型 |
 | isCamelCase | 否 | boolean | true | 小驼峰命名文件和请求函数 |
 | isSupportParseEnumDesc | 否 | boolean | false | 解析枚举描述生成枚举标签，格式参考：`系统用户角色:User(普通用户)=0,Agent(经纪人)=1,Admin(管理员)=2` |
+| binaryMediaTypes | 否 | string[] | - | 自定义二进制媒体类型列表，默认包含：['application/octet-stream', 'application/pdf', 'image/*', 'video/*', 'audio/*'] |
 | hook | 否 | [Custom Hook](#Custom-Hook) | - | 自定义 hook |
 
 ## 自定义 Hook

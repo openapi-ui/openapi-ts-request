@@ -252,6 +252,7 @@ openapi -i ./spec.json -o ./apis
 | isOnlyGenTypeScriptType | no | boolean | false | only generate typescript type |
 | isCamelCase | no | boolean | true | camelCase naming of controller files and request client |
 | isSupportParseEnumDesc | no | boolean | false | parse enum description to generate enum label, format example: `UserRole:User(Normal User)=0,Agent(Agent)=1,Admin(Administrator)=2` |
+| binaryMediaTypes | no | string[] | - | custom binary media types list, default includes: ['application/octet-stream', 'application/pdf', 'image/*', 'video/*', 'audio/*'] |
 | hook | no | [Custom Hook](#Custom-Hook) | - | custom hook |
 
 ## Custom Hook

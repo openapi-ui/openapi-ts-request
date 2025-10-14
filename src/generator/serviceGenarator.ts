@@ -2,7 +2,6 @@ import { existsSync, readFileSync } from 'fs';
 import { globSync } from 'glob';
 import type { Dictionary } from 'lodash';
 import {
-  // camelCase,
   entries,
   filter,
   find,
@@ -81,7 +80,10 @@ import { type MergeOption } from './type';
 import {
   capitalizeFirstLetter,
   genDefaultFunctionName,
+  getAxiosResponseType,
   getBasePrefix,
+  getBinaryMediaTypes,
+  getBinaryResponseType,
   getDefaultFileTag,
   getDefaultType,
   getFinalFileName,
@@ -92,13 +94,13 @@ import {
   isAllNumeric,
   isArraySchemaObject,
   isBinaryArraySchemaObject,
+  isBinaryMediaType,
   isNonArraySchemaObject,
   isReferenceObject,
   isSchemaObject,
   markAllowedSchema,
   parseDescriptionEnum,
   replaceDot,
-  // resolveFunctionName,
   resolveRefs,
   resolveTypeName,
 } from './util';
@@ -1152,6 +1154,7 @@ export default class ServiceGenerator {
       mediaType: '*/*',
       type: 'unknown',
       isAnonymous: false,
+      responseType: undefined as string | undefined,
     };
 
     if (!response) {
@@ -1160,9 +1163,16 @@ export default class ServiceGenerator {
 
     const resContent: ContentObject | undefined = response.content;
     const resContentMediaTypes = keys(resContent);
+
+    // 检测二进制流媒体类型
+    const binaryMediaTypes = getBinaryMediaTypes(this.config.binaryMediaTypes);
+    const binaryMediaType = resContentMediaTypes.find((mediaType) =>
+      isBinaryMediaType(mediaType, binaryMediaTypes)
+    );
+
     const mediaType = resContentMediaTypes.includes('application/json')
       ? 'application/json'
-      : resContentMediaTypes[0]; // 优先使用 application/json
+      : binaryMediaType || resContentMediaTypes[0]; // 优先使用 application/json，然后是二进制类型
 
     if (!isObject(resContent) || !mediaType) {
       return defaultResponse;
@@ -1174,7 +1184,19 @@ export default class ServiceGenerator {
       mediaType,
       type: 'unknown',
       isAnonymous: false,
+      responseType: undefined as string | undefined,
     };
+
+    // 如果是二进制媒体类型，直接返回二进制类型
+    if (isBinaryMediaType(mediaType, binaryMediaTypes)) {
+      const binaryType = getBinaryResponseType();
+      responseSchema.type = binaryType;
+
+      // 自动为二进制响应添加 responseType 配置
+      responseSchema.responseType = getAxiosResponseType(binaryType);
+
+      return responseSchema;
+    }
 
     if (isReferenceObject(schema)) {
       const refName = getLastRefName(schema.$ref);
@@ -1306,12 +1328,24 @@ export default class ServiceGenerator {
 
     const resContent: ContentObject = response.content;
     const resContentMediaTypes = keys(resContent);
+
+    // 检测二进制流媒体类型
+    const binaryMediaTypes = getBinaryMediaTypes(this.config.binaryMediaTypes);
+    const binaryMediaType = resContentMediaTypes.find((mediaType) =>
+      isBinaryMediaType(mediaType, binaryMediaTypes)
+    );
+
     const mediaType = resContentMediaTypes.includes('application/json')
       ? 'application/json'
-      : resContentMediaTypes[0];
+      : binaryMediaType || resContentMediaTypes[0];
 
     if (!isObject(resContent) || !mediaType) {
       return 'unknown';
+    }
+
+    // 如果是二进制媒体类型，直接返回二进制类型
+    if (isBinaryMediaType(mediaType, binaryMediaTypes)) {
+      return getBinaryResponseType();
     }
 
     let schema = (resContent[mediaType].schema ||

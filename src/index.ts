@@ -173,6 +173,11 @@ export type GenerateServiceProps = {
    */
   uniqueKey?: string;
   /**
+   * 自定义二进制媒体类型列表
+   * 默认包含: ['application/octet-stream', 'application/pdf', 'image/*', 'video/*', 'audio/*']
+   */
+  binaryMediaTypes?: string[];
+  /**
    * 自定义 hook
    */
   hook?: {
