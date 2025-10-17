@@ -128,6 +128,9 @@
         return request{{ ("<" + api.response.type + ">") | safe if genType === "ts" }}('{{ api.path }}', {
       {% endif -%}
         method: '{{ api.method | upper }}',
+        {%- if api.response.responseType %}
+        responseType: '{{ api.response.responseType }}',
+        {%- endif %}
         {%- if api.hasHeader and api.body.mediaType %}
           headers: {
             {%- if api.body.mediaType %}

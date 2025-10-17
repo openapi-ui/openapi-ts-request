@@ -81,7 +81,7 @@
     "openapi-types": "^12.1.3",
     "sanitize-filename": "^1.6.3",
     "ts-node": "^10.9.2",
-    "typescript": "5.9.2",
+    "typescript": "5.9.3",
     "vitest": "^2.1.9"
   },
   "keywords": [

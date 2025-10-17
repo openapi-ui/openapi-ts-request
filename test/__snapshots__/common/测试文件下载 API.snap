@@ -1,0 +1,73 @@
+/* eslint-disable */
+// @ts-ignore
+import { queryOptions, useMutation } from '@tanstack/react-query';
+import type { DefaultError } from '@tanstack/react-query';
+import request from 'axios';
+
+import * as apis from './fileId';
+import * as API from './types';
+
+/** 下载文件 根据文件ID下载对应的文件流。 GET /files/${param0}/download */
+export function filesFileIdDownloadUsingGetQueryOptions(options: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.FilesFileIdDownloadUsingGetParams;
+  options?: { [key: string]: unknown };
+}) {
+  return queryOptions({
+    queryFn: ({ queryKey }) => {
+      return apis.filesFileIdDownloadUsingGet(queryKey[1] as typeof options);
+    },
+    queryKey: ['filesFileIdDownloadUsingGet', options],
+  });
+}
+/* eslint-disable */
+// @ts-ignore
+import request from 'axios';
+
+import * as API from './types';
+
+/** 下载文件 根据文件ID下载对应的文件流。 GET /files/${param0}/download */
+export function filesFileIdDownloadUsingGet({
+  params,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.FilesFileIdDownloadUsingGetParams;
+  options?: { [key: string]: unknown };
+}) {
+  const { fileId: param0, ...queryParams } = params;
+
+  return request<Blob>(`/files/${param0}/download`, {
+    method: 'GET',
+    responseType: 'blob',
+    params: { ...queryParams },
+    ...(options || {}),
+  });
+}
+/* eslint-disable */
+// @ts-ignore
+export * from './types';
+
+export * from './fileId';
+export * from './fileId.reactquery';
+/* eslint-disable */
+// @ts-ignore
+
+export type FilesFileIdDownloadUsingGetParams = {
+  /** 文件的唯一标识符 */
+  fileId: string;
+};
+
+export type FilesFileIdDownloadUsingGetResponses = {
+  /**
+   * 文件下载成功
+   */
+  200: Blob;
+  /**
+   * 文件未找到
+   */
+  404: {
+    code?: number;
+    message?: string;
+  };
+};

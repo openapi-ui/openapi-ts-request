@@ -497,4 +497,18 @@ export async function ${api.functionName}(${api.body ? `data: ${api.body.type}` 
       readGeneratedFiles('./apis/components-parameters')
     ).resolves.toMatchFileSnapshot(getSnapshotDir(ctx));
   });
+
+  it('测试文件下载 API', async (ctx) => {
+    await openAPI.generateService({
+      schemaPath: join(
+        import.meta.dirname,
+        './example-files/openapi-file-download.json'
+      ),
+      serversPath: './apis/file-download',
+      isGenReactQuery: true,
+    });
+    await expect(
+      readGeneratedFiles('./apis/file-download')
+    ).resolves.toMatchFileSnapshot(getSnapshotDir(ctx));
+  });
 });
