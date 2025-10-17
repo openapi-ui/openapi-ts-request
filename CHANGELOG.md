@@ -1,5 +1,11 @@
 # openapi-ts-request
 
+## 1.9.1
+
+### Patch Changes
+
+- [#533](https://github.com/openapi-ui/openapi-ts-request/pull/533) [`4123907`](https://github.com/openapi-ui/openapi-ts-request/commit/412390793d8857af779ae39a1003218fcbc5e69d) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - fix: fix bug #525
+
 ## 1.9.0
 
 ### Minor Changes
