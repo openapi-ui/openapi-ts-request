@@ -572,3 +572,77 @@ export const parseDescriptionEnum = (
 
   return enumMap;
 };
+
+/**
+ * 获取默认的二进制媒体类型列表
+ */
+export const getDefaultBinaryMediaTypes = (): string[] => {
+  return [
+    'application/octet-stream',
+    'application/pdf',
+    'application/zip',
+    'application/x-zip-compressed',
+    'image/*',
+    'video/*',
+    'audio/*',
+  ];
+};
+
+/**
+ * 获取二进制媒体类型列表
+ * 支持配置自定义二进制媒体类型
+ * @param customBinaryTypes 自定义二进制媒体类型列表
+ */
+export const getBinaryMediaTypes = (
+  customBinaryTypes: string[] = []
+): string[] => {
+  const defaultBinaryTypes = getDefaultBinaryMediaTypes();
+  return [...defaultBinaryTypes, ...customBinaryTypes];
+};
+
+/**
+ * 检测是否为二进制媒体类型
+ * @param mediaType 媒体类型
+ * @param binaryMediaTypes 二进制媒体类型列表
+ */
+export const isBinaryMediaType = (
+  mediaType: string,
+  binaryMediaTypes: string[]
+): boolean => {
+  return binaryMediaTypes.some((type) => {
+    if (type.endsWith('/*')) {
+      // 处理通配符类型，如 image/*, video/*
+      const prefix = type.slice(0, -1);
+      return mediaType.startsWith(prefix);
+    }
+    return mediaType === type;
+  });
+};
+
+/**
+ * 获取二进制响应类型
+ * 默认返回 Blob，这是浏览器环境中最常用的二进制类型
+ */
+export const getBinaryResponseType = (): string => {
+  return 'Blob';
+};
+
+/**
+ * 获取 axios responseType 配置
+ * 根据二进制响应类型返回对应的 responseType
+ * @param binaryType 二进制类型
+ */
+export const getAxiosResponseType = (binaryType: string): string => {
+  switch (binaryType.toLowerCase()) {
+    case 'blob':
+      return 'blob';
+    case 'arraybuffer':
+      return 'arraybuffer';
+    case 'uint8array':
+      return 'arraybuffer'; // Uint8Array 需要从 ArrayBuffer 转换
+    case 'buffer':
+      return 'arraybuffer'; // Node.js Buffer 需要从 ArrayBuffer 转换
+    default:
+      return 'blob';
+  }
+};
