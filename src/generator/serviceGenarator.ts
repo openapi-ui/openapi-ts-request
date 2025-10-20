@@ -688,12 +688,22 @@ export default class ServiceGenerator {
 
               if (response?.isAnonymous) {
                 const responseName = upperFirst(`${functionName}Response`);
+                // 使用正则表达式移除 response?.type 中包含 this.config.namespace 的部分，isAnonymous模式不需要 this.config.namespace 前缀
+                const cleanType = response?.type?.includes(
+                  `${this.config.namespace}.`
+                )
+                  ? response?.type?.replace(
+                      new RegExp(`${this.config.namespace}\\.`, 'g'),
+                      ''
+                    )
+                  : response?.type || '';
                 this.interfaceTPConfigs.push({
                   typeName: responseName,
-                  type: response?.type,
+                  type: cleanType,
                   isEnum: false,
                   props: [],
                 });
+
                 response.type = `${this.config.namespace}.${responseName}`;
               }
 
