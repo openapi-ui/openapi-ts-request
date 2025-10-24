@@ -455,7 +455,7 @@ export default class ServiceGenerator {
     );
 
     // 打印日志
-    log('✅ 成功生成 api 文件目录-> ', this.config.serversPath);
+    log('✅ 成功生成 api 文件目录-> ', `  ${this.config.serversPath}`);
   }
 
   private getInterfaceTPConfigs() {
