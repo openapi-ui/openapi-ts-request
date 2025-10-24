@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { cancel, intro, isCancel, multiselect, outro } from '@clack/prompts';
 import chalk from 'chalk';
 import { program } from 'commander';
 
@@ -30,10 +31,33 @@ async function run() {
         ? config
         : [config];
 
+      /** 是否交互式 */
+      let isInteractive = false;
+
       if (options.uniqueKey) {
         configs = configs.filter(
           (config) => config.uniqueKey === options.uniqueKey
         );
+      } else if (configs.length > 1) {
+        // 如果没有指定 uniqueKey，并且有多个配置，则交互式选择
+        isInteractive = true;
+
+        console.log(''); // 添加一个空行
+        intro('🎉 欢迎使用 openapi-ts-request 生成器');
+        const selected = await multiselect({
+          message: '请选择要生成的 service',
+          options: configs.map((config) => ({
+            value: config,
+            label: config.describe || config.schemaPath,
+          })),
+        });
+
+        if (isCancel(selected)) {
+          cancel('👋 Has cancelled');
+          process.exit(0);
+        }
+
+        configs = selected;
       }
 
       for (const config of configs) {
@@ -54,6 +78,10 @@ async function run() {
 
       if (errorMsg) {
         throw new Error(errorMsg);
+      }
+
+      if (isInteractive && !errors.length) {
+        outro('🎉 All done!');
       }
     } else {
       throw new Error('config is not found');

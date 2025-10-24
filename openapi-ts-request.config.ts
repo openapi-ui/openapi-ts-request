@@ -1,8 +1,14 @@
-import { type GenerateServiceProps } from './src/index';
+import { defineConfig } from './src/index';
 
-export default [
+export default defineConfig([
   {
     schemaPath: 'http://petstore.swagger.io/v2/swagger.json',
     serversPath: './apis/app',
+    describe: 'Petstore API-1',
   },
-] as GenerateServiceProps[];
+  {
+    schemaPath: 'http://petstore.swagger.io/v2/swagger.json',
+    serversPath: './apis/app2',
+    describe: 'Petstore API-2',
+  },
+]);

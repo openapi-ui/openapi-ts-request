@@ -35,6 +35,10 @@ export type GenerateServiceProps = {
    */
   schemaPath: string;
   /**
+   * 描述信息，在用 cli 可交互运行方式时会用到
+   */
+  describe?: string;
+  /**
    * 生成的文件夹的路径
    */
   serversPath?: string;
@@ -447,4 +451,13 @@ export async function generateService({
       mockFolder: mockFolder,
     });
   }
+}
+
+/**
+ * Defines the configuration for openapi-ts-request.
+ */
+export function defineConfig(
+  config: GenerateServiceProps | GenerateServiceProps[]
+) {
+  return config;
 }

@@ -45,19 +45,28 @@ pnpm i openapi-ts-request -D
 > 配置文件还支持 **_.openapi-ts-request.ts_**, **_openapi-ts-request.config.cjs_** 等格式，参考 [cosmiconfig](https://github.com/cosmiconfig/cosmiconfig?tab=readme-ov-file#cosmiconfig)
 
 ```ts
-import type { GenerateServiceProps } from 'openapi-ts-request';
+import { defineConfig } from 'openapi-ts-request';
 
-export default {
+export default defineConfig({
   schemaPath: 'http://petstore.swagger.io/v2/swagger.json',
-} as GenerateServiceProps;
+  serversPath: './src/apis',
+});
+
+// 或
+
+// import type { GenerateServiceProps } from 'openapi-ts-request';
+
+// export default {
+//   schemaPath: 'http://petstore.swagger.io/v2/swagger.json',
+// } as GenerateServiceProps;
 ```
 
 支持传入数组配置进行生成
 
 ```ts
-import type { GenerateServiceProps } from 'openapi-ts-request';
+import { defineConfig } from 'openapi-ts-request';
 
-export default [
+export default defineConfig([
   {
     schemaPath: 'http://app.swagger.io/v2/swagger.json',
     serversPath: './src/apis/app',
@@ -66,7 +75,22 @@ export default [
     schemaPath: 'http://auth.swagger.io/v2/swagger.json',
     serversPath: './src/apis/auth',
   },
-] as GenerateServiceProps[];
+]);
+
+// 或
+
+// import type { GenerateServiceProps } from 'openapi-ts-request';
+
+// export default [
+//   {
+//     schemaPath: 'http://app.swagger.io/v2/swagger.json',
+//     serversPath: './src/apis/app',
+//   },
+//   {
+//     schemaPath: 'http://auth.swagger.io/v2/swagger.json',
+//     serversPath: './src/apis/auth',
+//   },
+// ] as GenerateServiceProps[];
 ```
 
 在 `package.json` 的 `script` 中添加命令: `"openapi": "openapi-ts",`
@@ -227,6 +251,7 @@ openapi --i ./spec.json --o ./apis
 | serversPath | 否 | string | './src/apis' | 运行结果文件夹路径 |
 | requestLibPath | 否 | string | 'axios' | 自定义请求方法路径，例如：'@/request'、'node-fetch' |
 | full | 否 | boolean | true | 是否全量替换 |
+| describe | 否 | string | - | 描述信息，在用 cli 可交互运行方式时会用到 |
 | enableLogging | 否 | boolean | false | 是否开启日志 |
 | priorityRule | 否 | string | 'include' | 模式规则，可选include/exclude/both |
 | filterCaseInsensitive | 否 | boolean | false | 执行 includeTags、includePaths、excludeTags、excludePaths 过滤时是否忽略大小写 |
