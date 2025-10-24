@@ -452,3 +452,12 @@ export async function generateService({
     });
   }
 }
+
+/**
+ * Defines the configuration for openapi-ts-request.
+ */
+export function defineConfig(
+  config: GenerateServiceProps | GenerateServiceProps[]
+) {
+  return config;
+}
