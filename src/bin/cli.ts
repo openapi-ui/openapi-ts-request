@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 import { cancel, intro, isCancel, multiselect, outro } from '@clack/prompts';
-import chalk from 'chalk';
 import { program } from 'commander';
 
 import type { GenerateServiceProps } from '../index';
 import { generateService } from '../index';
+import { logError } from '../log';
 import { readConfig } from '../readConfig';
 
 program
@@ -15,6 +15,11 @@ program
 program.parse();
 const options = program.opts();
 
+/**
+ * 1. 执行 cli 命令读取配置文件，已经使用 openapi.ts 替代了 cli.ts，后期会废弃 cli.ts
+ * 2. 如果配置文件中有 uniqueKey，则根据 uniqueKey 生成 service
+ * 3. 如果配置文件中没有 uniqueKey，且有多个 service，则交互式选择要生成的 service
+ */
 async function run() {
   const config = await readConfig<
     GenerateServiceProps | GenerateServiceProps[]
@@ -65,29 +70,29 @@ async function run() {
       }
 
       const results = await Promise.allSettled(tasks);
-      const errors: PromiseRejectedResult[] = results.filter(
-        (result) => result.status === 'rejected'
-      );
       let errorMsg = '';
 
-      for (let i = 0; i < errors.length; i++) {
-        const error = errors[i];
-        const cnf = configs[i];
-        errorMsg += `${cnf.uniqueKey}${cnf.uniqueKey && ':'}${error.reason}\n`;
+      for (let i = 0; i < results.length; i++) {
+        const result = results[i];
+        if (result.status === 'rejected') {
+          const cnf = configs[i];
+          errorMsg += `${cnf.uniqueKey}${cnf.uniqueKey && ':'}${result.reason}\n`;
+        }
       }
 
       if (errorMsg) {
         throw new Error(errorMsg);
       }
 
-      if (isInteractive && !errors.length) {
+      if (isInteractive && !errorMsg) {
         outro('🎉 All done!');
       }
     } else {
       throw new Error('config is not found');
     }
   } catch (error) {
-    console.log(chalk.red(error));
+    logError(error);
+    process.exit(1);
   }
 }
 

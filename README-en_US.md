@@ -51,14 +51,6 @@ export default defineConfig({
   schemaPath: 'http://petstore.swagger.io/v2/swagger.json',
   serversPath: './src/apis',
 });
-
-// 或
-
-// import type { GenerateServiceProps } from 'openapi-ts-request';
-
-// export default {
-//   schemaPath: 'http://petstore.swagger.io/v2/swagger.json',
-// } as GenerateServiceProps;
 ```
 
 support passing in array config for generate
@@ -76,21 +68,6 @@ export default defineConfig([
     serversPath: './src/apis/auth',
   },
 ]);
-
-// or
-
-// import type { GenerateServiceProps } from 'openapi-ts-request';
-
-// export default [
-//   {
-//     schemaPath: 'http://app.swagger.io/v2/swagger.json',
-//     serversPath: './src/apis/app',
-//   },
-//   {
-//     schemaPath: 'http://auth.swagger.io/v2/swagger.json',
-//     serversPath: './src/apis/auth',
-//   },
-// ] as GenerateServiceProps[];
 ```
 
 add the command in `script` of `package.json`: `"openapi": "openapi-ts",`

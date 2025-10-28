@@ -51,14 +51,6 @@ export default defineConfig({
   schemaPath: 'http://petstore.swagger.io/v2/swagger.json',
   serversPath: './src/apis',
 });
-
-// 或
-
-// import type { GenerateServiceProps } from 'openapi-ts-request';
-
-// export default {
-//   schemaPath: 'http://petstore.swagger.io/v2/swagger.json',
-// } as GenerateServiceProps;
 ```
 
 支持传入数组配置进行生成
@@ -76,21 +68,6 @@ export default defineConfig([
     serversPath: './src/apis/auth',
   },
 ]);
-
-// 或
-
-// import type { GenerateServiceProps } from 'openapi-ts-request';
-
-// export default [
-//   {
-//     schemaPath: 'http://app.swagger.io/v2/swagger.json',
-//     serversPath: './src/apis/app',
-//   },
-//   {
-//     schemaPath: 'http://auth.swagger.io/v2/swagger.json',
-//     serversPath: './src/apis/auth',
-//   },
-// ] as GenerateServiceProps[];
 ```
 
 在 `package.json` 的 `script` 中添加命令: `"openapi": "openapi-ts",`

@@ -35,10 +35,6 @@ export type GenerateServiceProps = {
    */
   schemaPath: string;
   /**
-   * 描述信息，在用 cli 可交互运行方式时会用到
-   */
-  describe?: string;
-  /**
    * 生成的文件夹的路径
    */
   serversPath?: string;
@@ -53,6 +49,10 @@ export type GenerateServiceProps = {
    * 是否全量替换, 默认: true, 如果为false, 则进行增量替换
    */
   full?: boolean;
+  /**
+   * 描述信息，在用 cli 可交互运行方式时会用到
+   */
+  describe?: string;
   /**
    * 开启日志
    */
