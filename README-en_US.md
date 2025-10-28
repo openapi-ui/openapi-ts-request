@@ -45,21 +45,28 @@ create `openapi-ts-request.config.ts` file in the project root directory
 > the config file also supports **_.openapi-ts-request.ts_**, **_openapi-ts-request.config.cjs_** format, reference [cosmiconfig](https://github.com/cosmiconfig/cosmiconfig?tab=readme-ov-file#cosmiconfig)
 
 ```ts
-import type { GenerateServiceProps } from 'openapi-ts-request';
+import { defineConfig } from 'openapi-ts-request';
 
-export default {
-  // schemaPath: './openapi.json', // local openapi file
-  // serversPath: './src/apis', // interface storage path
+export default defineConfig({
   schemaPath: 'http://petstore.swagger.io/v2/swagger.json',
-} as GenerateServiceProps;
+  serversPath: './src/apis',
+});
+
+// 或
+
+// import type { GenerateServiceProps } from 'openapi-ts-request';
+
+// export default {
+//   schemaPath: 'http://petstore.swagger.io/v2/swagger.json',
+// } as GenerateServiceProps;
 ```
 
 support passing in array config for generate
 
 ```ts
-import type { GenerateServiceProps } from 'openapi-ts-request';
+import { defineConfig } from 'openapi-ts-request';
 
-export default [
+export default defineConfig([
   {
     schemaPath: 'http://app.swagger.io/v2/swagger.json',
     serversPath: './src/apis/app',
@@ -68,7 +75,22 @@ export default [
     schemaPath: 'http://auth.swagger.io/v2/swagger.json',
     serversPath: './src/apis/auth',
   },
-] as GenerateServiceProps[];
+]);
+
+// or
+
+// import type { GenerateServiceProps } from 'openapi-ts-request';
+
+// export default [
+//   {
+//     schemaPath: 'http://app.swagger.io/v2/swagger.json',
+//     serversPath: './src/apis/app',
+//   },
+//   {
+//     schemaPath: 'http://auth.swagger.io/v2/swagger.json',
+//     serversPath: './src/apis/auth',
+//   },
+// ] as GenerateServiceProps[];
 ```
 
 add the command in `script` of `package.json`: `"openapi": "openapi-ts",`
@@ -229,6 +251,7 @@ openapi -i ./spec.json -o ./apis
 | serversPath | no | string | './src/apis' | the folder path for the run results |
 | requestLibPath | no | string | 'axios' | custom request lib path, for example: '@/request', 'node-fetch' |
 | full | no | boolean | true | full replacement |
+| describe | no | string | - | description information, which will be used when using cli interactive operation mode |
 | enableLogging | no | boolean | false | open the log |
 | priorityRule | no | string | 'include' | priority rule, include/exclude/both |
 | filterCaseInsensitive | no | boolean | false | whether to perform a case-insensitive match with includeTags, includePaths, excludeTags, excludePaths filters |

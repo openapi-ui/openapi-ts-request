@@ -291,6 +291,8 @@ openapi --i ./spec.json --o ./apis
 | customTemplates | {<br>[TypescriptFileType.serviceController]?: <T, U>(item: T, context: U) => string;<br>} | 自定义模板，详情请看源码 |
 | customRenderTemplateData | {<br>[TypescriptFileType]?: (list: any[], context: {fileName: string, params: Record<string, unknown>}) => any[]<br>} | 自定义文件生成时的 list 参数处理，支持对不同文件类型进行精细化控制 |
 
+[hooks 示例](https://github.com/openapi-ui/openapi-ts-request/blob/main/agents.md#-advanced-customization-hooks)
+
 ## Apifox-Config
 
 | 属性 | 类型 | 说明 | 必填 |
@@ -368,7 +370,8 @@ export default {
 4. 确保你的代码可以通过所有测试用例(新增功能需要添加新的功能测试用例)：`pnpm test:unit`
 5. 创建 changeset 文件通过命令：`pnpm changeset`
 6. 使用 commit 提交你的修改(需遵循 commitlint 规范)
-7. 发起 Pull Request
+7. 如果涉及文档，请同步更新 README.md、READMD-en_US.md、agents.md
+8. 发起 Pull Request
 
 ## 感谢
 
