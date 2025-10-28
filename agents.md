@@ -102,6 +102,7 @@ else if (isNodeProject) {
 | `namespace` | string | `"API"` | TypeScript namespace | Custom namespace |
 | `templatesFolder` | string | - | Custom template directory | Custom templates |
 | `apifoxConfig` | object | - | Apifox-specific configuration | Apifox integration |
+| `describe` | string | - | description information | Using cli interactive operation mode |
 
 ### 3. Feature Requirements Mapping
 

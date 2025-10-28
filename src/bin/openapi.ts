@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { cancel, intro, isCancel, multiselect, outro } from '@clack/prompts';
 import { type OptionValues, program } from 'commander';
 import { pickBy } from 'lodash';
 import { join } from 'path';
@@ -171,11 +172,33 @@ async function run() {
     if (cnf) {
       const tasks = [];
       let configs: GenerateServiceProps[] = Array.isArray(cnf) ? cnf : [cnf];
+      /** 是否交互式 */
+      let isInteractive = false;
 
       if (params.uniqueKey) {
         configs = configs.filter(
           (config) => config.uniqueKey === params.uniqueKey
         );
+      } else if (configs.length > 1) {
+        // 如果没有指定 uniqueKey，并且有多个配置，则交互式选择
+        isInteractive = true;
+
+        console.log(''); // 添加一个空行
+        intro('🎉 欢迎使用 openapi-ts-request 生成器');
+        const selected = await multiselect({
+          message: '请选择要生成的 service',
+          options: configs.map((config) => ({
+            value: config,
+            label: config.describe || config.schemaPath,
+          })),
+        });
+
+        if (isCancel(selected)) {
+          cancel('👋 Has cancelled');
+          process.exit(0);
+        }
+
+        configs = selected;
       }
 
       for (const config of configs) {
@@ -183,37 +206,27 @@ async function run() {
       }
 
       const results = await Promise.allSettled(tasks);
-      const errors: PromiseRejectedResult[] = results.filter(
-        (result) => result.status === 'rejected'
-      );
       let errorMsg = '';
 
-      for (let i = 0; i < errors.length; i++) {
-        const error = errors[i];
-        const cnf = configs[i];
-        errorMsg += `${cnf.uniqueKey}${cnf.uniqueKey && ':'}${error.reason}\n`;
+      for (let i = 0; i < results.length; i++) {
+        const result = results[i];
+        if (result.status === 'rejected') {
+          const cnf = configs[i];
+          errorMsg += `${cnf.uniqueKey}${cnf.uniqueKey && ':'}${result.reason}\n`;
+        }
       }
 
       if (errorMsg) {
-        logError(errorMsg);
-        process.exit(1);
-      }
-    } else {
-      if (!params.input || !params.output) {
-        logError(
-          'Please provide either input/output options or a configuration file path and name.'
-        );
-        process.exit(1);
+        throw new Error(errorMsg);
       }
 
-      const options = baseGenerate(params);
-      await generateService(
-        pickBy(
-          options,
-          (value) => value !== null && value !== undefined && value !== ''
-        ) as GenerateServiceProps
+      if (isInteractive && !errorMsg) {
+        outro('🎉 All done!');
+      }
+    } else {
+      throw new Error(
+        'Please provide either input/output options or a configuration file path and name.'
       );
-      process.exit(0);
     }
   } catch (error) {
     logError(error);
