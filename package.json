@@ -35,6 +35,7 @@
     "openapi-ts-request": "openapi-ts"
   },
   "dependencies": {
+    "@clack/prompts": "^0.11.0",
     "@prettier/sync": "^0.6.1",
     "@trivago/prettier-plugin-sort-imports": "^5.2.1",
     "axios": "^1.7.2",

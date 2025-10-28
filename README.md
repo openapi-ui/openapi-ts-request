@@ -45,19 +45,28 @@ pnpm i openapi-ts-request -D
 > 配置文件还支持 **_.openapi-ts-request.ts_**, **_openapi-ts-request.config.cjs_** 等格式，参考 [cosmiconfig](https://github.com/cosmiconfig/cosmiconfig?tab=readme-ov-file#cosmiconfig)
 
 ```ts
-import type { GenerateServiceProps } from 'openapi-ts-request';
+import { defineConfig } from 'openapi-ts-request';
 
-export default {
+export default defineConfig({
   schemaPath: 'http://petstore.swagger.io/v2/swagger.json',
-} as GenerateServiceProps;
+  serversPath: './src/apis',
+});
+
+// 或
+
+// import type { GenerateServiceProps } from 'openapi-ts-request';
+
+// export default {
+//   schemaPath: 'http://petstore.swagger.io/v2/swagger.json',
+// } as GenerateServiceProps;
 ```
 
 支持传入数组配置进行生成
 
 ```ts
-import type { GenerateServiceProps } from 'openapi-ts-request';
+import { defineConfig } from 'openapi-ts-request';
 
-export default [
+export default defineConfig([
   {
     schemaPath: 'http://app.swagger.io/v2/swagger.json',
     serversPath: './src/apis/app',
@@ -66,7 +75,22 @@ export default [
     schemaPath: 'http://auth.swagger.io/v2/swagger.json',
     serversPath: './src/apis/auth',
   },
-] as GenerateServiceProps[];
+]);
+
+// 或
+
+// import type { GenerateServiceProps } from 'openapi-ts-request';
+
+// export default [
+//   {
+//     schemaPath: 'http://app.swagger.io/v2/swagger.json',
+//     serversPath: './src/apis/app',
+//   },
+//   {
+//     schemaPath: 'http://auth.swagger.io/v2/swagger.json',
+//     serversPath: './src/apis/auth',
+//   },
+// ] as GenerateServiceProps[];
 ```
 
 在 `package.json` 的 `script` 中添加命令: `"openapi": "openapi-ts",`
@@ -227,6 +251,7 @@ openapi --i ./spec.json --o ./apis
 | serversPath | 否 | string | './src/apis' | 运行结果文件夹路径 |
 | requestLibPath | 否 | string | 'axios' | 自定义请求方法路径，例如：'@/request'、'node-fetch' |
 | full | 否 | boolean | true | 是否全量替换 |
+| describe | 否 | string | - | 描述信息，在用 cli 可交互运行方式时会用到 |
 | enableLogging | 否 | boolean | false | 是否开启日志 |
 | priorityRule | 否 | string | 'include' | 模式规则，可选include/exclude/both |
 | filterCaseInsensitive | 否 | boolean | false | 执行 includeTags、includePaths、excludeTags、excludePaths 过滤时是否忽略大小写 |
@@ -265,6 +290,8 @@ openapi --i ./spec.json --o ./apis
 | customFileNames | (<br>operationObject: OperationObject,<br>apiPath: string,<br>apiMethod: string,<br>) => string[] | 自定义生成的请求客户端文件名称，可以返回多个文件名称的数组(表示生成多个文件). <br> _返回为空，则使用默认的方法获取_ |
 | customTemplates | {<br>[TypescriptFileType.serviceController]?: <T, U>(item: T, context: U) => string;<br>} | 自定义模板，详情请看源码 |
 | customRenderTemplateData | {<br>[TypescriptFileType]?: (list: any[], context: {fileName: string, params: Record<string, unknown>}) => any[]<br>} | 自定义文件生成时的 list 参数处理，支持对不同文件类型进行精细化控制 |
+
+[hooks 示例](https://github.com/openapi-ui/openapi-ts-request/blob/main/agents.md#-advanced-customization-hooks)
 
 ## Apifox-Config
 
@@ -343,7 +370,8 @@ export default {
 4. 确保你的代码可以通过所有测试用例(新增功能需要添加新的功能测试用例)：`pnpm test:unit`
 5. 创建 changeset 文件通过命令：`pnpm changeset`
 6. 使用 commit 提交你的修改(需遵循 commitlint 规范)
-7. 发起 Pull Request
+7. 如果涉及文档，请同步更新 README.md、READMD-en_US.md、agents.md
+8. 发起 Pull Request
 
 ## 感谢
 
