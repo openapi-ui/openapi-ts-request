@@ -368,7 +368,8 @@ export default {
 4. make sure your code passes all test cases (new functional test cases need to be added for new features)：`pnpm test:unit`
 5. create a changeset file using the command：`pnpm changeset`
 6. submit your changes using commit (must follow commitlint specification)
-7. submit Pull Request
+7. If documents are involved, please update README.md, READMD-en_US.md, and agents.md simultaneousl
+8. submit Pull Request
 
 ## Thanks
 
