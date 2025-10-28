@@ -1,5 +1,11 @@
 # openapi-ts-request
 
+## 1.10.0
+
+### Minor Changes
+
+- [#543](https://github.com/openapi-ui/openapi-ts-request/pull/543) [`b845463`](https://github.com/openapi-ui/openapi-ts-request/commit/b8454635b404545571dbf8e05fb807fde3258bd6) Thanks [@GreatAuk](https://github.com/GreatAuk)! - feat: 以 cli 方式使用时添加交互行为 & 新增 defineConfig 定义配置
+
 ## 1.9.2
 
 ### Patch Changes
