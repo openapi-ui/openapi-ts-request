@@ -19,7 +19,6 @@ const params = program
   .option('-o, --output <string>', 'output directory')
   .option('-cfn, --configFileName <string>', 'config file name')
   .option('-cfp, --configFilePath <string>', 'config file path')
-  .option('-u, --uniqueKey <string>', 'unique key')
   .option(
     '--requestLibPath <string>',
     'custom request lib path, for example: "@/request", "node-fetch" (default: "axios")'
@@ -175,12 +174,8 @@ async function run() {
       /** 是否交互式 */
       let isInteractive = false;
 
-      if (params.uniqueKey) {
-        configs = configs.filter(
-          (config) => config.uniqueKey === params.uniqueKey
-        );
-      } else if (configs.length > 1) {
-        // 如果没有指定 uniqueKey，并且有多个配置，则交互式选择
+      if (configs.length > 1) {
+        // 有多个配置，则交互式选择
         isInteractive = true;
 
         console.log(''); // 添加一个空行
@@ -210,9 +205,11 @@ async function run() {
 
       for (let i = 0; i < results.length; i++) {
         const result = results[i];
+
         if (result.status === 'rejected') {
           const cnf = configs[i];
-          errorMsg += `${cnf.uniqueKey}${cnf.uniqueKey && ':'}${result.reason}\n`;
+          const label = cnf.describe || cnf.schemaPath;
+          errorMsg += `${label}${label && ':'}${result.reason}\n`;
         }
       }
 

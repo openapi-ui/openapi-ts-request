@@ -93,7 +93,6 @@ else if (isNodeProject) {
 | `mockFolder` | string | - | Mock data output directory | Development with mocks |
 | `authorization` | string | - | API documentation auth token | Protected docs |
 | `timeout` | number | `60000` | Request timeout in ms | Slow APIs |
-| `uniqueKey` | string | - | Multi-gateway identifier | Multiple API sources |
 
 #### Advanced Options
 

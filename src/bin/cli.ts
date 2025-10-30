@@ -9,16 +9,14 @@ import { readConfig } from '../readConfig';
 
 program
   .option('-cfn, --configFileName <string>', 'config file name')
-  .option('-cfp, --configFilePath <string>', 'config file path')
-  .option('-u, --uniqueKey <string>', 'unique key');
+  .option('-cfp, --configFilePath <string>', 'config file path');
 
 program.parse();
 const options = program.opts();
 
 /**
  * 1. 执行 cli 命令读取配置文件，已经使用 openapi.ts 替代了 cli.ts，后期会废弃 cli.ts
- * 2. 如果配置文件中有 uniqueKey，则根据 uniqueKey 生成 service
- * 3. 如果配置文件中没有 uniqueKey，且有多个 service，则交互式选择要生成的 service
+ * 2. 如果配置文件有多个 service，则交互式选择要生成的 service
  */
 async function run() {
   const config = await readConfig<
@@ -35,16 +33,11 @@ async function run() {
       let configs: GenerateServiceProps[] = Array.isArray(config)
         ? config
         : [config];
-
       /** 是否交互式 */
       let isInteractive = false;
 
-      if (options.uniqueKey) {
-        configs = configs.filter(
-          (config) => config.uniqueKey === options.uniqueKey
-        );
-      } else if (configs.length > 1) {
-        // 如果没有指定 uniqueKey，并且有多个配置，则交互式选择
+      if (configs.length > 1) {
+        // 有多个配置，则交互式选择
         isInteractive = true;
 
         console.log(''); // 添加一个空行
@@ -74,9 +67,11 @@ async function run() {
 
       for (let i = 0; i < results.length; i++) {
         const result = results[i];
+
         if (result.status === 'rejected') {
           const cnf = configs[i];
-          errorMsg += `${cnf.uniqueKey}${cnf.uniqueKey && ':'}${result.reason}\n`;
+          const label = cnf.describe || cnf.schemaPath;
+          errorMsg += `${label}${label && ':'}${result.reason}\n`;
         }
       }
 

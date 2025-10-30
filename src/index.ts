@@ -62,7 +62,6 @@ export type GenerateServiceProps = {
    * 优先规则, include(只允许include列表) | exclude(只排除exclude列表) | both(允许include列表，排除exclude列表)
    */
   priorityRule?: IPriorityRule;
-
   /**
    *  includeTags、includePaths、excludeTags、excludePaths 过滤器执行时是否忽略大小写
    */
@@ -172,10 +171,6 @@ export type GenerateServiceProps = {
    * 请求超时时间
    */
   timeout?: number;
-  /**
-   * 多网关唯一标识
-   */
-  uniqueKey?: string;
   /**
    * 自定义二进制媒体类型列表
    * 默认包含: ['application/octet-stream', 'application/pdf', 'image/*', 'video/*', 'audio/*']
