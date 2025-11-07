@@ -186,7 +186,6 @@ $ openapi --help
     -o, --output <string>               output directory
     -cfn, --configFileName <string>     config file name
     -cfp, --configFilePath <string>     config file path
-    -u, --uniqueKey <string>            unique key
     --requestLibPath <string>           custom request lib path, for example: "@/request", "node-fetch" (default: "axios")
     -f, --full <boolean>                full replacement (default: true)
     --enableLogging <boolean>           open the log (default: false)
