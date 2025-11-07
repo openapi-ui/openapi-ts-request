@@ -1,5 +1,11 @@
 # openapi-ts-request
 
+## 1.10.1
+
+### Patch Changes
+
+- [#557](https://github.com/openapi-ui/openapi-ts-request/pull/557) [`826237b`](https://github.com/openapi-ui/openapi-ts-request/commit/826237b3af65292e2736802723ddfb4ca2e72310) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - chore: remove uniquekey, please use interactive mode
+
 ## 1.10.0
 
 ### Minor Changes
