@@ -92,7 +92,7 @@ importers:
         version: 20.0.0
       '@tanstack/react-query':
         specifier: ^5.62.10
-        version: 5.90.8(react@19.0.0)
+        version: 5.90.10(react@19.0.0)
       '@tanstack/vue-query':
         specifier: ^5.62.16
         version: 5.91.1(vue@3.5.13(typescript@5.9.3))
@@ -698,14 +698,14 @@ packages:
     resolution: {integrity: sha512-Wo1iKt2b9OT7d+YGhvEPD3DXvPv2etTusIMhMUoG7fbhmxcXCtIjJDEygy91Y2JFlwGyjqiBPRozme7UD8hoqg==}
     engines: {node: '>=12'}
 
-  '@tanstack/query-core@5.90.8':
-    resolution: {integrity: sha512-4E0RP/0GJCxSNiRF2kAqE/LQkTJVlL/QNU7gIJSptaseV9HP6kOuA+N11y4bZKZxa3QopK3ZuewwutHx6DqDXQ==}
+  '@tanstack/query-core@5.90.10':
+    resolution: {integrity: sha512-EhZVFu9rl7GfRNuJLJ3Y7wtbTnENsvzp+YpcAV7kCYiXni1v8qZh++lpw4ch4rrwC0u/EZRnBHIehzCGzwXDSQ==}
 
   '@tanstack/query-core@5.90.9':
     resolution: {integrity: sha512-UFOCQzi6pRGeVTVlPNwNdnAvT35zugcIydqjvFUzG62dvz2iVjElmNp/hJkUoM5eqbUPfSU/GJIr/wbvD8bTUw==}
 
-  '@tanstack/react-query@5.90.8':
-    resolution: {integrity: sha512-/3b9QGzkf4rE5/miL6tyhldQRlLXzMHcySOm/2Tm2OLEFE9P1ImkH0+OviDBSvyAvtAOJocar5xhd7vxdLi3aQ==}
+  '@tanstack/react-query@5.90.10':
+    resolution: {integrity: sha512-BKLss9Y8PQ9IUjPYQiv3/Zmlx92uxffUOX8ZZNoQlCIZBJPT5M+GOMQj7xislvVQ6l1BstBjcX0XB/aHfFYVNw==}
     peerDependencies:
       react: ^18 || ^19
 
@@ -1153,8 +1153,8 @@ packages:
     resolution: {integrity: sha512-uV2QOWP2nWzsy2aMp8aRibhi9dlzF5Hgh5SHaB9OiTGEyDTiJJyx0uy51QXdyWbtAHNua4XJzUKca3OzKUd3vA==}
     engines: {node: '>= 8'}
 
-  csstype@3.2.0:
-    resolution: {integrity: sha512-si++xzRAY9iPp60roQiFta7OFbhrgvcthrhlNAGeQptSY25uJjkfUV8OArC3KLocB8JT8ohz+qgxWCmz8RhjIg==}
+  csstype@3.2.3:
+    resolution: {integrity: sha512-z1HGKcYy2xA8AGQfwrn0PAy+PB7X/GSj3UVJW9qKyn43xWa+gl5nXmU4qqLMRzWVLFC8KusUX8T/0kCiOYpAIQ==}
 
   d@1.0.2:
     resolution: {integrity: sha512-MOqHvMWF9/9MX6nza0KgvFH4HpMU0EF5uUDXqX/BtxtU8NfB0QzRtJ8Oe/6SuS4kbhyzVJwjd97EA4PKrzJ8bw==}
@@ -3168,13 +3168,13 @@ snapshots:
     dependencies:
       remove-accents: 0.5.0
 
-  '@tanstack/query-core@5.90.8': {}
+  '@tanstack/query-core@5.90.10': {}
 
   '@tanstack/query-core@5.90.9': {}
 
-  '@tanstack/react-query@5.90.8(react@19.0.0)':
+  '@tanstack/react-query@5.90.10(react@19.0.0)':
     dependencies:
-      '@tanstack/query-core': 5.90.8
+      '@tanstack/query-core': 5.90.10
       react: 19.0.0
 
   '@tanstack/vue-query@5.91.1(vue@3.5.13(typescript@5.9.3))':
@@ -3428,7 +3428,7 @@ snapshots:
       '@vue/reactivity': 3.5.13
       '@vue/runtime-core': 3.5.13
       '@vue/shared': 3.5.13
-      csstype: 3.2.0
+      csstype: 3.2.3
 
   '@vue/server-renderer@3.5.13(vue@3.5.13(typescript@5.9.3))':
     dependencies:
@@ -3665,7 +3665,7 @@ snapshots:
       shebang-command: 2.0.0
       which: 2.0.2
 
-  csstype@3.2.0: {}
+  csstype@3.2.3: {}
 
   d@1.0.2:
     dependencies:
