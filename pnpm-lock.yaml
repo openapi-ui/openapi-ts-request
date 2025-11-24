@@ -22,7 +22,7 @@ importers:
         version: 1.13.2
       bing-translate-api:
         specifier: ^4.0.2
-        version: 4.1.0
+        version: 4.2.0
       chalk:
         specifier: ^4.1.2
         version: 4.1.2
@@ -1000,8 +1000,8 @@ packages:
     resolution: {integrity: sha512-pbnl5XzGBdrFU/wT4jqmJVPn2B6UHPBOhzMQkY/SPUPB6QtUXtmBHBIwCbXJol93mOpGMnQyP/+BB19q04xj7g==}
     engines: {node: '>=4'}
 
-  bing-translate-api@4.1.0:
-    resolution: {integrity: sha512-oP2663Yd5MXX4kbB/3LdS9YgPiE+ls9+2iFZH2ZXigWhWyHT3R4m6aCup4TNJd3/U4gqHHnQoxTaIW7uOf4+vA==}
+  bing-translate-api@4.2.0:
+    resolution: {integrity: sha512-7a9yo1NbGcHPS8zXTdz8tCOymHZp2pvCuYOChCaXKjOX8EIwdV3SLd4D7RGIqZt1UhffypYBUcAV2gDcTgK0rA==}
 
   brace-expansion@1.1.11:
     resolution: {integrity: sha512-iCuPHDFgrHX7H2vEI/5xpz07zSHB00TpugqhmYtVmMO6518mCuRMoOYFldEBl0g187ufozdaHgWKcYFb61qGiA==}
@@ -3512,7 +3512,7 @@ snapshots:
     dependencies:
       is-windows: 1.0.2
 
-  bing-translate-api@4.1.0:
+  bing-translate-api@4.2.0:
     dependencies:
       got: 11.8.6
 
