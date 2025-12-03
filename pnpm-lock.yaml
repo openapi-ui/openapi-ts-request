@@ -13,10 +13,10 @@ importers:
         version: 0.11.0
       '@prettier/sync':
         specifier: ^0.6.1
-        version: 0.6.1(prettier@3.7.3)
+        version: 0.6.1(prettier@3.7.4)
       '@trivago/prettier-plugin-sort-imports':
         specifier: ^5.2.1
-        version: 5.2.2(@vue/compiler-sfc@3.5.13)(prettier@3.7.3)
+        version: 5.2.2(@vue/compiler-sfc@3.5.13)(prettier@3.7.4)
       axios:
         specifier: ^1.7.2
         version: 1.13.2
@@ -58,7 +58,7 @@ importers:
         version: 3.2.4
       prettier:
         specifier: ^3.3.2
-        version: 3.7.3
+        version: 3.7.4
       reserved-words:
         specifier: ^0.1.2
         version: 0.1.2
@@ -2088,8 +2088,8 @@ packages:
     engines: {node: '>=10.13.0'}
     hasBin: true
 
-  prettier@3.7.3:
-    resolution: {integrity: sha512-QgODejq9K3OzoBbuyobZlUhznP5SKwPqp+6Q6xw6o8gnhr4O85L2U915iM2IDcfF2NPXVaM9zlo9tdwipnYwzg==}
+  prettier@3.7.4:
+    resolution: {integrity: sha512-v6UNi1+3hSlVvv8fSaoUbggEM5VErKmmpGA7Pl3HF8V6uKY7rvClBOJlH6yNwQtfTueNkGVpOv/mtWL9L4bgRA==}
     engines: {node: '>=14'}
     hasBin: true
 
@@ -3090,10 +3090,10 @@ snapshots:
   '@pkgjs/parseargs@0.11.0':
     optional: true
 
-  '@prettier/sync@0.6.1(prettier@3.7.3)':
+  '@prettier/sync@0.6.1(prettier@3.7.4)':
     dependencies:
       make-synchronized: 0.8.0
-      prettier: 3.7.3
+      prettier: 3.7.4
 
   '@rollup/rollup-android-arm-eabi@4.44.1':
     optional: true
@@ -3180,7 +3180,7 @@ snapshots:
       vue: 3.5.13(typescript@5.9.3)
       vue-demi: 0.14.10(vue@3.5.13(typescript@5.9.3))
 
-  '@trivago/prettier-plugin-sort-imports@5.2.2(@vue/compiler-sfc@3.5.13)(prettier@3.7.3)':
+  '@trivago/prettier-plugin-sort-imports@5.2.2(@vue/compiler-sfc@3.5.13)(prettier@3.7.4)':
     dependencies:
       '@babel/generator': 7.26.5
       '@babel/parser': 7.26.7
@@ -3188,7 +3188,7 @@ snapshots:
       '@babel/types': 7.26.7
       javascript-natural-sort: 0.7.1
       lodash: 4.17.21
-      prettier: 3.7.3
+      prettier: 3.7.4
     optionalDependencies:
       '@vue/compiler-sfc': 3.5.13
     transitivePeerDependencies:
@@ -4578,7 +4578,7 @@ snapshots:
 
   prettier@2.8.8: {}
 
-  prettier@3.7.3: {}
+  prettier@3.7.4: {}
 
   proxy-from-env@1.1.0: {}
 
