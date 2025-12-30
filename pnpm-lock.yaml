@@ -92,7 +92,7 @@ importers:
         version: 20.2.0
       '@tanstack/react-query':
         specifier: ^5.62.10
-        version: 5.90.15(react@19.0.0)
+        version: 5.90.16(react@19.0.0)
       '@tanstack/vue-query':
         specifier: ^5.62.16
         version: 5.92.4(vue@3.5.13(typescript@5.9.3))
@@ -701,8 +701,11 @@ packages:
   '@tanstack/query-core@5.90.15':
     resolution: {integrity: sha512-mInIZNUZftbERE+/Hbtswfse49uUQwch46p+27gP9DWJL927UjnaWEF2t3RMOqBcXbfMdcNkPe06VyUIAZTV1g==}
 
-  '@tanstack/react-query@5.90.15':
-    resolution: {integrity: sha512-uQvnDDcTOgJouNtAyrgRej+Azf0U5WDov3PXmHFUBc+t1INnAYhIlpZtCGNBLwCN41b43yO7dPNZu8xWkUFBwQ==}
+  '@tanstack/query-core@5.90.16':
+    resolution: {integrity: sha512-MvtWckSVufs/ja463/K4PyJeqT+HMlJWtw6PrCpywznd2NSgO3m4KwO9RqbFqGg6iDE8vVMFWMeQI4Io3eEYww==}
+
+  '@tanstack/react-query@5.90.16':
+    resolution: {integrity: sha512-bpMGOmV4OPmif7TNMteU/Ehf/hoC0Kf98PDc0F4BZkFrEapRMEqI/V6YS0lyzwSV6PQpY1y4xxArUIfBW5LVxQ==}
     peerDependencies:
       react: ^18 || ^19
 
@@ -3168,9 +3171,11 @@ snapshots:
 
   '@tanstack/query-core@5.90.15': {}
 
-  '@tanstack/react-query@5.90.15(react@19.0.0)':
+  '@tanstack/query-core@5.90.16': {}
+
+  '@tanstack/react-query@5.90.16(react@19.0.0)':
     dependencies:
-      '@tanstack/query-core': 5.90.15
+      '@tanstack/query-core': 5.90.16
       react: 19.0.0
 
   '@tanstack/vue-query@5.92.4(vue@3.5.13(typescript@5.9.3))':
