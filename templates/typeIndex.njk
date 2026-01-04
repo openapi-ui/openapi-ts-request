@@ -1,0 +1,17 @@
+/* eslint-disable */
+// @ts-ignore
+
+// 导出枚举类型
+{%- if hasEnumTypes %}
+export * from './enum';
+{%- endif %}
+
+// 导出公共类型
+{%- if hasCommonTypes %}
+export * from './common.type';
+{%- endif %}
+
+// 导出各模块类型
+{%- for module in moduleList %}
+export * from './{{ module }}.type';
+{%- endfor %}

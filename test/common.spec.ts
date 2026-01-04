@@ -511,4 +511,19 @@ export async function ${api.functionName}(${api.body ? `data: ${api.body.type}` 
       readGeneratedFiles('./apis/file-download')
     ).resolves.toMatchFileSnapshot(getSnapshotDir(ctx));
   });
+
+  it('测试按模块拆分类型文件', async (ctx) => {
+    await openAPI.generateService({
+      schemaPath: join(
+        import.meta.dirname,
+        './example-files/openapi-display-enum-label.json'
+      ),
+      serversPath: './apis/split-types-by-module',
+      splitTypesByModule: true,
+      isGenReactQuery: true,
+    });
+    await expect(
+      readGeneratedFiles('./apis/split-types-by-module')
+    ).resolves.toMatchFileSnapshot(getSnapshotDir(ctx));
+  });
 });

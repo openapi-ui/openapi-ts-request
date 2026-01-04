@@ -49,9 +49,11 @@ import {
   DEFAULT_SCHEMA,
   LangType,
   TypescriptFileType,
+  commonTypeFileName,
   displayEnumLabelFileName,
   displayReactQueryFileName,
   displayTypeLabelFileName,
+  enumFileName,
   interfaceFileName,
   lineBreakReg,
   methods,
@@ -113,6 +115,8 @@ export default class ServiceGenerator {
   protected openAPIData: OpenAPIObject;
   protected schemaList: ISchemaItem[] = [];
   protected interfaceTPConfigs: ITypeItem[] = [];
+  // 记录每个类型被哪些模块使用（用于拆分类型文件）
+  protected typeModuleMap: Map<string, Set<string>> = new Map();
 
   constructor(config: GenerateServiceProps, openAPIData: OpenAPIObject) {
     this.config = {
@@ -348,14 +352,81 @@ export default class ServiceGenerator {
 
     // 生成 ts 类型声明
     if (!isGenJavaScript) {
-      this.genFileFromTemplate(
-        `${interfaceFileName}.ts`,
-        TypescriptFileType.interface,
-        {
-          nullable: this.config.nullable,
-          list: this.interfaceTPConfigs,
+      if (this.config.splitTypesByModule) {
+        // 按模块拆分类型文件
+        const { moduleTypes, commonTypes, enumTypes } =
+          this.groupTypesByModule();
+
+        // 生成枚举文件
+        if (enumTypes.length > 0) {
+          this.genFileFromTemplate(
+            `${enumFileName}.ts`,
+            TypescriptFileType.enum,
+            {
+              list: enumTypes,
+            }
+          );
         }
-      );
+
+        // 生成公共类型文件
+        if (commonTypes.length > 0) {
+          this.genFileFromTemplate(
+            `${commonTypeFileName}.ts`,
+            TypescriptFileType.moduleType,
+            {
+              nullable: this.config.nullable,
+              list: commonTypes,
+            }
+          );
+        }
+
+        // 生成每个模块的类型文件
+        moduleTypes.forEach((types, moduleName) => {
+          if (types.length > 0) {
+            // 分析该模块需要导入哪些类型
+            const { commonImports, enumImports } = this.getModuleImports(
+              types,
+              commonTypes,
+              enumTypes
+            );
+
+            this.genFileFromTemplate(
+              `${moduleName}.type.ts`,
+              TypescriptFileType.moduleType,
+              {
+                nullable: this.config.nullable,
+                list: types,
+                commonImports, // 需要导入的公共类型
+                enumImports, // 需要导入的枚举类型
+              }
+            );
+          }
+        });
+
+        // 生成 types.ts 作为统一导出入口
+        this.genFileFromTemplate(
+          `${interfaceFileName}.ts`,
+          TypescriptFileType.typeIndex,
+          {
+            hasEnumTypes: enumTypes.length > 0,
+            hasCommonTypes: commonTypes.length > 0,
+            moduleList: Array.from(moduleTypes.keys()).filter((moduleName) => {
+              const types = moduleTypes.get(moduleName);
+              return types ? types.length > 0 : false;
+            }),
+          }
+        );
+      } else {
+        // 传统方式：所有类型在一个文件
+        this.genFileFromTemplate(
+          `${interfaceFileName}.ts`,
+          TypescriptFileType.interface,
+          {
+            nullable: this.config.nullable,
+            list: this.interfaceTPConfigs,
+          }
+        );
+      }
     }
 
     // 生成枚举翻译
@@ -464,6 +535,8 @@ export default class ServiceGenerator {
     const lastTypes: Array<ITypeItem> = this.interfaceTPConfigs;
     const includeTags = this.config?.includeTags || [];
     const includePaths = this.config?.includePaths || [];
+    // 记录每个 schema 被哪些模块使用（用于拆分类型）
+    const schemaUsageMap: Map<string, Set<string>> = new Map();
 
     // 强行替换掉请求参数params的类型，生成方法对应的 xxxxParams 类型
     keys(this.openAPIData.paths).forEach((pathKey) => {
@@ -501,6 +574,36 @@ export default class ServiceGenerator {
 
         // 筛选出 pathItem 包含的 $ref 对应的schema
         markAllowedSchema(JSON.stringify(pathItem), this.openAPIData);
+
+        // 如果启用了类型拆分，记录每个 schema 被哪些模块使用
+        if (this.config.splitTypesByModule) {
+          const pathItemStr = JSON.stringify(pathItem);
+          const refRegex = /"\$ref":\s*"#\/components\/schemas\/([^"]+)"/g;
+          let match: RegExpExecArray | null;
+          while ((match = refRegex.exec(pathItemStr)) !== null) {
+            const schemaName = match[1];
+            if (!schemaName) continue;
+            tags.forEach((tag) => {
+              if (tag) {
+                const tagTypeName = resolveTypeName(tag);
+                const tagKey = this.config.isCamelCase
+                  ? camelCase(tagTypeName)
+                  : lowerFirst(tagTypeName);
+                const className = this.config.hook?.customClassName
+                  ? this.config.hook.customClassName(tag)
+                  : replaceDot(tagKey);
+
+                if (!schemaUsageMap.has(schemaName)) {
+                  schemaUsageMap.set(schemaName, new Set<string>());
+                }
+                const moduleSet = schemaUsageMap.get(schemaName);
+                if (moduleSet) {
+                  moduleSet.add(className);
+                }
+              }
+            });
+          }
+        }
 
         operationObject.parameters = operationObject.parameters?.filter(
           (item: ParameterObject | ReferenceObject) => {
@@ -552,6 +655,22 @@ export default class ServiceGenerator {
             props: [props],
             isEnum: false,
           });
+
+          // 记录 Params 类型归属（属于对应的 tag/module）
+          if (this.config.splitTypesByModule) {
+            tags.forEach((tag) => {
+              if (tag) {
+                const tagTypeName = resolveTypeName(tag);
+                const tagKey = this.config.isCamelCase
+                  ? camelCase(tagTypeName)
+                  : lowerFirst(tagTypeName);
+                const className = this.config.hook?.customClassName
+                  ? this.config.hook.customClassName(tag)
+                  : replaceDot(tagKey);
+                this.markTypeUsedByModule(typeName, className);
+              }
+            });
+          }
         }
       });
     });
@@ -587,9 +706,10 @@ export default class ServiceGenerator {
             const enumObj = this.resolveEnumObject(
               item as unknown as SchemaObject
             );
+            const enumTypeName = `${upperFirst(item.name)}Enum`;
 
             lastTypes.push({
-              typeName: `${upperFirst(item.name)}Enum`,
+              typeName: enumTypeName,
               type: enumObj.type,
               props: [],
               isEnum: enumObj.isEnum,
@@ -597,6 +717,19 @@ export default class ServiceGenerator {
               enumLabelType: enumObj.enumLabelType,
               description: enumObj.description,
             });
+
+            // 记录枚举类型归属（继承父 schema 的归属）
+            if (
+              this.config.splitTypesByModule &&
+              schemaUsageMap.has(schemaKey)
+            ) {
+              const moduleSet = schemaUsageMap.get(schemaKey);
+              if (moduleSet) {
+                moduleSet.forEach((className) => {
+                  this.markTypeUsedByModule(enumTypeName, className);
+                });
+              }
+            }
           }
         });
       }
@@ -616,6 +749,16 @@ export default class ServiceGenerator {
           enumLabelType: isEnum ? (result.enumLabelType as string) : '',
           description: result.description as string,
         });
+
+        // 记录 schema 类型归属
+        if (this.config.splitTypesByModule && schemaUsageMap.has(schemaKey)) {
+          const moduleSet = schemaUsageMap.get(schemaKey);
+          if (moduleSet) {
+            moduleSet.forEach((className) => {
+              this.markTypeUsedByModule(typeName, className);
+            });
+          }
+        }
       }
 
       if (this.config.isGenJsonSchemas) {
@@ -639,6 +782,12 @@ export default class ServiceGenerator {
       .map((tag, index) => {
         // functionName tag 级别防重
         const tmpFunctionRD: Record<string, number> = {};
+        // 获取当前模块的 className (用于记录类型归属)
+        const fileName = replaceDot(tag) || `api${index}`;
+        const className = this.config.hook?.customClassName
+          ? this.config.hook.customClassName(tag)
+          : fileName;
+
         const genParams = this.apiData[tag]
           .filter(
             (api) =>
@@ -684,6 +833,10 @@ export default class ServiceGenerator {
                   isEnum: false,
                   props: [],
                 });
+                // 记录类型归属
+                if (this.config.splitTypesByModule) {
+                  this.markTypeUsedByModule(bodyName, className);
+                }
                 body.type = `${this.config.namespace}.${bodyName}`;
               }
 
@@ -704,6 +857,10 @@ export default class ServiceGenerator {
                   isEnum: false,
                   props: [],
                 });
+                // 记录类型归属
+                if (this.config.splitTypesByModule) {
+                  this.markTypeUsedByModule(responseName, className);
+                }
 
                 response.type = `${this.config.namespace}.${responseName}`;
               }
@@ -715,12 +872,19 @@ export default class ServiceGenerator {
 
               // 如果有多个响应类型，生成对应的类型定义
               if (responsesType) {
+                const responsesTypeName = upperFirst(
+                  `${functionName}Responses`
+                );
                 this.interfaceTPConfigs.push({
-                  typeName: upperFirst(`${functionName}Responses`),
+                  typeName: responsesTypeName,
                   type: responsesType,
                   isEnum: false,
                   props: [],
                 });
+                // 记录类型归属
+                if (this.config.splitTypesByModule) {
+                  this.markTypeUsedByModule(responsesTypeName, className);
+                }
               }
 
               let formattedPath = newApi.path.replace(
@@ -846,13 +1010,7 @@ export default class ServiceGenerator {
           // 排序下，防止git乱
           .sort((a, b) => a.path.localeCompare(b.path));
 
-        const fileName = replaceDot(tag) || `api${index}`;
-        let className = fileName;
-
-        if (this.config.hook?.customClassName) {
-          className = this.config.hook.customClassName(tag);
-        }
-
+        // fileName 和 className 已在方法开始时声明
         if (genParams.length) {
           this.classNameList.push({
             fileName: className,
@@ -1739,5 +1897,145 @@ export default class ServiceGenerator {
     }
 
     return false; // 对于其他类型，返回 false
+  }
+
+  /**
+   * 记录类型被某个模块使用
+   * @param typeName 类型名称
+   * @param moduleName 模块名称
+   */
+  private markTypeUsedByModule(typeName: string, moduleName: string) {
+    if (!this.typeModuleMap.has(typeName)) {
+      this.typeModuleMap.set(typeName, new Set());
+    }
+    const moduleSet = this.typeModuleMap.get(typeName);
+    if (moduleSet) {
+      moduleSet.add(moduleName);
+    }
+  }
+
+  /**
+   * 分析类型定义中使用的类型名称
+   * @param types 类型列表
+   * @returns 使用的类型名称集合
+   */
+  private analyzeTypeReferences(types: ITypeItem[]): Set<string> {
+    const references = new Set<string>();
+
+    types.forEach((typeItem) => {
+      // 分析 type 字段
+      if (typeof typeItem.type === 'string') {
+        // 匹配类型引用，例如: Category, Tag[], Category | null
+        const typeMatches = typeItem.type.match(/\b[A-Z][a-zA-Z0-9]*\b/g);
+        if (typeMatches) {
+          typeMatches.forEach((match) => references.add(match));
+        }
+      }
+
+      // 分析 props
+      if (typeItem.props && typeItem.props.length > 0) {
+        typeItem.props.forEach((propGroup) => {
+          propGroup.forEach((prop) => {
+            if (prop.type) {
+              // 匹配类型引用
+              const propTypeMatches = prop.type.match(/\b[A-Z][a-zA-Z0-9]*\b/g);
+              if (propTypeMatches) {
+                propTypeMatches.forEach((match) => references.add(match));
+              }
+            }
+          });
+        });
+      }
+    });
+
+    return references;
+  }
+
+  /**
+   * 获取模块需要导入的类型
+   * @param moduleTypes 模块类型列表
+   * @param commonTypes 公共类型列表
+   * @param enumTypes 枚举类型列表
+   * @returns 导入信息
+   */
+  private getModuleImports(
+    moduleTypes: ITypeItem[],
+    commonTypes: ITypeItem[],
+    enumTypes: ITypeItem[]
+  ): { commonImports: string[]; enumImports: string[] } {
+    const references = this.analyzeTypeReferences(moduleTypes);
+
+    // 获取公共类型名称集合
+    const commonTypeNames = new Set(commonTypes.map((t) => t.typeName));
+
+    // 获取枚举类型名称集合（包括 IEnumName）
+    const enumTypeNames = new Set<string>();
+    enumTypes.forEach((t) => {
+      enumTypeNames.add(t.typeName);
+      if (t.isEnum) {
+        enumTypeNames.add(`I${t.typeName}`);
+      }
+    });
+
+    // 筛选出实际需要导入的类型
+    const commonImports = Array.from(references).filter((ref) =>
+      commonTypeNames.has(ref)
+    );
+
+    const enumImports = Array.from(references).filter((ref) =>
+      enumTypeNames.has(ref)
+    );
+
+    return { commonImports, enumImports };
+  }
+
+  /**
+   * 分组类型：按模块、公共类型和枚举
+   * @returns 分组后的类型
+   */
+  private groupTypesByModule(): {
+    moduleTypes: Map<string, ITypeItem[]>;
+    commonTypes: ITypeItem[];
+    enumTypes: ITypeItem[];
+  } {
+    const moduleTypes = new Map<string, ITypeItem[]>();
+    const commonTypes: ITypeItem[] = [];
+    const enumTypes: ITypeItem[] = [];
+
+    // 初始化每个模块的类型数组
+    this.classNameList.forEach((controller) => {
+      moduleTypes.set(controller.fileName, []);
+    });
+
+    // 遍历所有类型，根据使用情况分组
+    this.interfaceTPConfigs.forEach((typeItem) => {
+      // 枚举类型单独处理，放入 enumTypes
+      if (typeItem.isEnum) {
+        enumTypes.push(typeItem);
+        return;
+      }
+
+      const modules = this.typeModuleMap.get(typeItem.typeName);
+
+      if (!modules || modules.size === 0) {
+        // 未被任何模块使用的类型，放入公共类型
+        commonTypes.push(typeItem);
+      } else if (modules.size === 1) {
+        // 只被一个模块使用，放入该模块
+        const moduleName = Array.from(modules)[0];
+        const moduleTypeList = moduleTypes.get(moduleName);
+        if (moduleTypeList) {
+          moduleTypeList.push(typeItem);
+        } else {
+          // 如果模块不存在（可能是因为过滤），放入公共类型
+          commonTypes.push(typeItem);
+        }
+      } else {
+        // 被多个模块使用，放入公共类型
+        commonTypes.push(typeItem);
+      }
+    });
+
+    return { moduleTypes, commonTypes, enumTypes };
   }
 }

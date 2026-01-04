@@ -101,6 +101,11 @@ const params = program
     '--supportParseEnumDescByReg <string>',
     'custom regex for parsing enum description'
   )
+  .option(
+    '--splitTypesByModule <boolean>',
+    'split types by module, generates {module}.type.ts, common.type.ts, enum.ts, types.ts',
+    false
+  )
   .parse(process.argv)
   .opts();
 
@@ -151,6 +156,8 @@ const baseGenerate = (_params_: OptionValues): GenerateServiceProps => {
     supportParseEnumDescByReg: _params_.supportParseEnumDescByReg as
       | string
       | RegExp,
+    splitTypesByModule:
+      JSON.parse(_params_.splitTypesByModule as string) === true,
   };
 
   return options;

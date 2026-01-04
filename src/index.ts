@@ -103,6 +103,12 @@ export type GenerateServiceProps = {
         functionName: string;
       }) => string);
   /**
+   * 是否按模块拆分类型文件
+   * 默认: false
+   * 开启后会生成: {module}.type.ts, common.type.ts, types.ts(重新导出)
+   */
+  splitTypesByModule?: boolean;
+  /**
    * 是否生成 react-query 配置
    */
   isGenReactQuery?: boolean;

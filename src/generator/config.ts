@@ -12,6 +12,10 @@ export const displayTypeLabelFileName = 'displayTypeLabel';
 
 export const schemaFileName = 'schema';
 
+export const enumFileName = 'enum';
+
+export const commonTypeFileName = 'common.type';
+
 export const displayReactQueryFileName = (reactQueryMode: IReactQueryMode) => {
   return {
     react: 'reactquery',
@@ -27,6 +31,9 @@ export enum TypescriptFileType {
   displayTypeLabel = 'displayTypeLabel',
   schema = 'schema',
   reactQuery = 'reactQuery',
+  moduleType = 'moduleType',
+  typeIndex = 'typeIndex',
+  enum = 'enum',
 }
 
 export const DEFAULT_SCHEMA: SchemaObject = {
