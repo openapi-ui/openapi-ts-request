@@ -187,6 +187,7 @@ $ openapi --help
     -cfn, --configFileName <string>     config file name
     -cfp, --configFilePath <string>     config file path
     --requestLibPath <string>           custom request lib path, for example: "@/request", "node-fetch" (default: "axios")
+    --splitTypesByModule <boolean>      split types by module, generates {module}.type.ts, common.type.ts, enum.ts, types.ts (default: false)
     -f, --full <boolean>                full replacement (default: true)
     --enableLogging <boolean>           open the log (default: false)
     --priorityRule <string>             priority rule, include/exclude/both (default: "include")
@@ -211,7 +212,6 @@ $ openapi --help
     --isCamelCase <boolean>             camelCase naming of controller files and request client (default: true)
     --isSupportParseEnumDesc <boolean>  parse enum description to generate enum label (default: false)
     --supportParseEnumDescByReg <string> custom regex for parsing enum description
-    --splitTypesByModule <boolean>      split types by module, generates {module}.type.ts, common.type.ts, enum.ts, types.ts (default: false)
     -h, --help                          display help for command
 ```
 
@@ -228,6 +228,7 @@ openapi --i ./spec.json --o ./apis
 | schemaPath | 是 | string | - | Swagger2/OpenAPI3 地址 |
 | serversPath | 否 | string | './src/apis' | 运行结果文件夹路径 |
 | requestLibPath | 否 | string | 'axios' | 自定义请求方法路径，例如：'@/request'、'node-fetch' |
+| splitTypesByModule | 否 | boolean | false | 按模块拆分类型文件，开启后会生成：{module}.type.ts（各模块类型）、common.type.ts（公共类型）、enum.ts（枚举类型）、types.ts（统一导出） |
 | full | 否 | boolean | true | 是否全量替换 |
 | describe | 否 | string | - | 描述信息，在用 cli 可交互运行方式时会用到 |
 | enableLogging | 否 | boolean | false | 是否开启日志 |
@@ -254,7 +255,6 @@ openapi --i ./spec.json --o ./apis
 | isCamelCase | 否 | boolean | true | 小驼峰命名文件和请求函数 |
 | isSupportParseEnumDesc | 否 | boolean | false | 解析枚举描述生成枚举标签，格式参考：`系统用户角色:User(普通用户)=0,Agent(经纪人)=1,Admin(管理员)=2` |
 | supportParseEnumDescByReg | 否 | string \| RegExp | - | 自定义正则表达式，用于解析 description 中的枚举定义。如果设置了此参数，将使用此正则表达式替代默认的 parseDescriptionEnum 方法。例如：`/([^\s=<>/&;]+(?:\s+[^\s=<>/&;]+)*)\s*=\s*(\d+)/g` 可以匹配 "普通 = 0" 或 "SampleMaker = 1" 这样的格式 |
-| splitTypesByModule | 否 | boolean | false | 按模块拆分类型文件，开启后会生成：{module}.type.ts（各模块类型）、common.type.ts（公共类型）、enum.ts（枚举类型）、types.ts（统一导出） |
 | binaryMediaTypes | 否 | string[] | - | 自定义二进制媒体类型列表，默认包含：['application/octet-stream', 'application/pdf', 'image/*', 'video/*', 'audio/*'] |
 | hook | 否 | [Custom Hook](#Custom-Hook) | - | 自定义 hook |
 

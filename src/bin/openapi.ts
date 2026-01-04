@@ -23,6 +23,11 @@ const params = program
     '--requestLibPath <string>',
     'custom request lib path, for example: "@/request", "node-fetch" (default: "axios")'
   )
+  .option(
+    '--splitTypesByModule <boolean>',
+    'split types by module, generates {module}.type.ts, common.type.ts, enum.ts, types.ts',
+    false
+  )
   .option('-f, --full <boolean>', 'full replacement', true)
   .option('--enableLogging <boolean>', 'open the log', false)
   .option(
@@ -100,11 +105,6 @@ const params = program
   .option(
     '--supportParseEnumDescByReg <string>',
     'custom regex for parsing enum description'
-  )
-  .option(
-    '--splitTypesByModule <boolean>',
-    'split types by module, generates {module}.type.ts, common.type.ts, enum.ts, types.ts',
-    false
   )
   .parse(process.argv)
   .opts();

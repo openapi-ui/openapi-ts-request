@@ -187,6 +187,7 @@ $ openapi --help
     -cfn, --configFileName <string>     config file name
     -cfp, --configFilePath <string>     config file path
     --requestLibPath <string>           custom request lib path, for example: "@/request", "node-fetch" (default: "axios")
+    --splitTypesByModule <boolean>      split types by module, generates {module}.type.ts, common.type.ts, enum.ts, types.ts (default: false)
     -f, --full <boolean>                full replacement (default: true)
     --enableLogging <boolean>           open the log (default: false)
     --priorityRule <string>             priority rule, include/exclude/both (default: "include")
@@ -211,7 +212,6 @@ $ openapi --help
     --isCamelCase <boolean>             camelCase naming of controller files and request client (default: true)
     --isSupportParseEnumDesc <boolean>  parse enum description to generate enum label (default: false)
     --supportParseEnumDescByReg <string> custom regex for parsing enum description
-    --splitTypesByModule <boolean>      split types by module, generates {module}.type.ts, common.type.ts, enum.ts, types.ts (default: false)
     -h, --help                          display help for command
 ```
 
@@ -228,6 +228,7 @@ openapi -i ./spec.json -o ./apis
 | schemaPath | yes | string | - | Swagger2/OpenAPI3 URL |
 | serversPath | no | string | './src/apis' | the folder path for the run results |
 | requestLibPath | no | string | 'axios' | custom request lib path, for example: '@/request', 'node-fetch' |
+| splitTypesByModule | no | boolean | false | split types by module, generates {module}.type.ts (module types), common.type.ts (common types), enum.ts (enum types), types.ts (unified export) |
 | full | no | boolean | true | full replacement |
 | describe | no | string | - | description information, which will be used when using cli interactive operation mode |
 | enableLogging | no | boolean | false | open the log |
@@ -254,7 +255,6 @@ openapi -i ./spec.json -o ./apis
 | isCamelCase | no | boolean | true | camelCase naming of controller files and request client |
 | isSupportParseEnumDesc | no | boolean | false | parse enum description to generate enum label, format example: `UserRole:User(Normal User)=0,Agent(Agent)=1,Admin(Administrator)=2` |
 | supportParseEnumDescByReg | no | string \| RegExp | - | custom regex for parsing enum descriptions. If set, replaces default parseDescriptionEnum method. Example: `/([^\s=<>/&;]+(?:\s+[^\s=<>/&;]+)*)\s*=\s*(\d+)/g` matches "Normal = 0" or "SampleMaker = 1" |
-| splitTypesByModule | no | boolean | false | split types by module, generates {module}.type.ts (module types), common.type.ts (common types), enum.ts (enum types), types.ts (unified export) |
 | binaryMediaTypes | no | string[] | - | custom binary media types list, default includes: ['application/octet-stream', 'application/pdf', 'image/*', 'video/*', 'audio/*'] |
 | hook | no | [Custom Hook](#Custom-Hook) | - | custom hook |
 

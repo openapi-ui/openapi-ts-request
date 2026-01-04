@@ -370,12 +370,20 @@ export default class ServiceGenerator {
 
         // 生成公共类型文件
         if (commonTypes.length > 0) {
+          // 分析公共类型需要导入的枚举
+          const { enumImports } = this.getModuleImports(
+            commonTypes,
+            [], // 公共类型不依赖其他公共类型
+            enumTypes
+          );
+
           this.genFileFromTemplate(
             `${commonTypeFileName}.ts`,
             TypescriptFileType.moduleType,
             {
               nullable: this.config.nullable,
               list: commonTypes,
+              enumImports, // 公共类型需要导入的枚举
             }
           );
         }
@@ -2036,6 +2044,50 @@ export default class ServiceGenerator {
       }
     });
 
+    // 处理公共类型的依赖：如果公共类型依赖某个模块类型，将该类型也移到公共类型
+    this.moveCommonTypeDependenciesToCommon(moduleTypes, commonTypes);
+
     return { moduleTypes, commonTypes, enumTypes };
+  }
+
+  /**
+   * 将公共类型依赖的类型从模块类型移到公共类型
+   * @param moduleTypes 模块类型
+   * @param commonTypes 公共类型
+   * @param enumTypes 枚举类型
+   */
+  private moveCommonTypeDependenciesToCommon(
+    moduleTypes: Map<string, ITypeItem[]>,
+    commonTypes: ITypeItem[]
+  ): void {
+    let moved = true;
+    while (moved) {
+      moved = false;
+
+      // 获取当前公共类型引用的所有类型名称
+      const commonTypeRefs = this.analyzeTypeReferences(commonTypes);
+
+      // 遍历所有模块
+      moduleTypes.forEach((types) => {
+        const toMove: ITypeItem[] = [];
+
+        types.forEach((typeItem) => {
+          // 如果这个类型被公共类型引用，需要移到公共类型
+          if (commonTypeRefs.has(typeItem.typeName)) {
+            toMove.push(typeItem);
+            moved = true;
+          }
+        });
+
+        // 移动类型
+        toMove.forEach((typeItem) => {
+          const index = types.indexOf(typeItem);
+          if (index > -1) {
+            types.splice(index, 1);
+            commonTypes.push(typeItem);
+          }
+        });
+      });
+    }
   }
 }
