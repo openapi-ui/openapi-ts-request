@@ -574,6 +574,57 @@ export const parseDescriptionEnum = (
 };
 
 /**
+ * 通过自定义正则表达式解析 description 中的枚举翻译
+ * @param description 描述文本
+ * @param regex 自定义正则表达式，用于匹配枚举项，例如：(\S+)\s*=\s*(\S+)
+ * @returns Map<number, string> 枚举值到标签的映射
+ */
+export const parseDescriptionEnumByReg = (
+  description: string,
+  regex: string | RegExp
+): Map<number, string> => {
+  const enumMap = new Map<number, string>();
+  if (!description) return enumMap;
+
+  // 将字符串正则转换为 RegExp 对象，确保有全局标志
+  let regExp: RegExp;
+  if (typeof regex === 'string') {
+    const flagsMatch = regex.match(/\/([gimsuy]*)$/);
+    if (flagsMatch) {
+      const parts = regex.split('/');
+      const pattern = parts.slice(1, -1).join('/');
+      const flags = flagsMatch[1] || '';
+      regExp = new RegExp(pattern, flags.includes('g') ? flags : flags + 'g');
+    } else {
+      regExp = new RegExp(regex, 'g');
+    }
+  } else {
+    const flags = regex.flags;
+    regExp = flags.includes('g')
+      ? regex
+      : new RegExp(regex.source, flags + 'g');
+  }
+
+  // 匹配所有结果，然后对每个匹配结果按 = 拆分
+  let match: RegExpExecArray | null;
+  while ((match = regExp.exec(description)) !== null) {
+    const fullMatch = match[0].trim();
+    // 按 = 拆分，左边是标签，右边是值
+    const parts = fullMatch.split(/\s*=\s*/);
+    if (parts.length >= 2) {
+      const label = parts[0].trim();
+      const valueStr = parts[1].trim();
+      const numValue = Number(valueStr);
+      if (label && valueStr && !isNaN(numValue)) {
+        enumMap.set(numValue, label);
+      }
+    }
+  }
+
+  return enumMap;
+};
+
+/**
  * 获取默认的二进制媒体类型列表
  */
 export const getDefaultBinaryMediaTypes = (): string[] => {

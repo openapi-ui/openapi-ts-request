@@ -97,6 +97,10 @@ const params = program
     'parse enum description to generate enum label',
     false
   )
+  .option(
+    '--supportParseEnumDescByReg <string>',
+    'custom regex for parsing enum description'
+  )
   .parse(process.argv)
   .opts();
 
@@ -144,6 +148,9 @@ const baseGenerate = (_params_: OptionValues): GenerateServiceProps => {
     isCamelCase: JSON.parse(_params_.isCamelCase as string) === true,
     isSupportParseEnumDesc:
       JSON.parse(_params_.isSupportParseEnumDesc as string) === true,
+    supportParseEnumDescByReg: _params_.supportParseEnumDescByReg as
+      | string
+      | RegExp,
   };
 
   return options;

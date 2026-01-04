@@ -160,6 +160,12 @@ export type GenerateServiceProps = {
    */
   isSupportParseEnumDesc?: boolean;
   /**
+   * 自定义正则表达式，用于解析 description 中的枚举定义
+   * 如果设置了此参数，将使用此正则表达式替代默认的 parseDescriptionEnum 方法
+   * 例如：/([^\s=<>/&;]+(?:\s+[^\s=<>/&;]+)*)\s*=\s*(\d+)/g 可以匹配 "普通 = 0" 或 "SampleMaker = 1" 这样的格式
+   */
+  supportParseEnumDescByReg?: string | RegExp;
+  /**
    * 命名空间名称，默认为API，不需要关注
    */
   namespace?: string;

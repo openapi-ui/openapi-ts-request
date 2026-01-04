@@ -210,6 +210,7 @@ $ openapi --help
     --isOnlyGenTypeScriptType <boolean> only generate typescript type (default: false)
     --isCamelCase <boolean>             camelCase naming of controller files and request client (default: true)
     --isSupportParseEnumDesc <boolean>  parse enum description to generate enum label (default: false)
+    --supportParseEnumDescByReg <string> custom regex for parsing enum description
     -h, --help                          display help for command
 ```
 
@@ -251,6 +252,7 @@ openapi --i ./spec.json --o ./apis
 | isOnlyGenTypeScriptType | 否 | boolean | false | 仅生成 typescript 类型 |
 | isCamelCase | 否 | boolean | true | 小驼峰命名文件和请求函数 |
 | isSupportParseEnumDesc | 否 | boolean | false | 解析枚举描述生成枚举标签，格式参考：`系统用户角色:User(普通用户)=0,Agent(经纪人)=1,Admin(管理员)=2` |
+| supportParseEnumDescByReg | 否 | string \| RegExp | - | 自定义正则表达式，用于解析 description 中的枚举定义。如果设置了此参数，将使用此正则表达式替代默认的 parseDescriptionEnum 方法。例如：`/([^\s=<>/&;]+(?:\s+[^\s=<>/&;]+)*)\s*=\s*(\d+)/g` 可以匹配 "普通 = 0" 或 "SampleMaker = 1" 这样的格式 |
 | binaryMediaTypes | 否 | string[] | - | 自定义二进制媒体类型列表，默认包含：['application/octet-stream', 'application/pdf', 'image/*', 'video/*', 'audio/*'] |
 | hook | 否 | [Custom Hook](#Custom-Hook) | - | 自定义 hook |
 
