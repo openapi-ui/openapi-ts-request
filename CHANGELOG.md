@@ -1,5 +1,11 @@
 # openapi-ts-request
 
+## 1.11.0
+
+### Minor Changes
+
+- [#598](https://github.com/openapi-ui/openapi-ts-request/pull/598) [`58c7213`](https://github.com/openapi-ui/openapi-ts-request/commit/58c72135d0da8a8597f993dcdffdb623375f75c3) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - feat: add supportParseEnumDescByReg func
+
 ## 1.10.1
 
 ### Patch Changes
