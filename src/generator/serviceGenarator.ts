@@ -100,6 +100,7 @@ import {
   isSchemaObject,
   markAllowedSchema,
   parseDescriptionEnum,
+  parseDescriptionEnumByReg,
   replaceDot,
   resolveRefs,
   resolveTypeName,
@@ -1551,8 +1552,17 @@ export default class ServiceGenerator {
       }).join(',')}}`;
     } else {
       if (numberEnum.includes(schemaObject.type) || isAllNumber(enumArray)) {
-        if (this.config.isSupportParseEnumDesc && schemaObject.description) {
-          const enumMap = parseDescriptionEnum(schemaObject.description);
+        if (
+          (this.config.isSupportParseEnumDesc ||
+            this.config.supportParseEnumDescByReg) &&
+          schemaObject.description
+        ) {
+          const enumMap = this.config.isSupportParseEnumDesc
+            ? parseDescriptionEnum(schemaObject.description)
+            : parseDescriptionEnumByReg(
+                schemaObject.description,
+                this.config.supportParseEnumDescByReg
+              );
           enumLabelTypeStr = `{${map(enumArray, (value) => {
             const enumLabel = enumMap.get(Number(value));
             return `${Number(value)}:"${enumLabel}"`;
