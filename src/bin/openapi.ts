@@ -99,7 +99,7 @@ const params = program
   )
   .option(
     '--supportParseEnumDescByReg <string>',
-    'custom regex for parsing enum description, e.g., "(\\S+)\\s*=\\s*(\\S+)"'
+    'custom regex for parsing enum description'
   )
   .parse(process.argv)
   .opts();

@@ -69,6 +69,7 @@ else if (isNodeProject) {
 | `isOnlyGenTypeScriptType` | boolean | `false` | Only types, no request functions | Type-only needs |
 | `isCamelCase` | boolean | `true` | Use camelCase naming | Consistent naming |
 | `isSupportParseEnumDesc` | boolean | `false` | Parse enum descriptions | Labeled enums |
+| `supportParseEnumDescByReg` | `string \| RegExp` | - | Custom regex for parsing enum descriptions. If set, replaces default parseDescriptionEnum method. Example: `/([^\s=<>/&;]+(?:\s+[^\s=<>/&;]+)*)\s*=\s*(\d+)/g` matches "普通 = 0" or "SampleMaker = 1" | Custom enum description formats |
 
 #### Request Customization
 
@@ -118,6 +119,7 @@ else if (isNodeProject) {
 | "支持文件上传" | Check OpenAPI for multipart | Auto-detects file uploads |
 | "翻译中文标签" | `isTranslateToEnglishTag: true` | Chinese to English tags |
 | "解析枚举描述" | `isSupportParseEnumDesc: true` | Enum with descriptions |
+| "自定义枚举解析正则" | `supportParseEnumDescByReg: /pattern/g` | Custom enum description parsing |
 | "生成JSON验证" | `isGenJsonSchemas: true` | Schema validation |
 | "前缀API路径" | `apiPrefix: "'api'"` | Add prefix to paths |
 
@@ -205,6 +207,8 @@ else if (isNodeProject) {
   isTranslateToEnglishTag: true,
   isDisplayTypeLabel: true,
   isSupportParseEnumDesc: true,
+  // Custom regex for parsing enum descriptions like "普通 = 0" or "SampleMaker = 1"
+  supportParseEnumDescByReg: /([^\s=<>/&;]+(?:\s+[^\s=<>/&;]+)*)\s*=\s*(\d+)/g,
   isCamelCase: true,
   filterCaseInsensitive: true,
 }
