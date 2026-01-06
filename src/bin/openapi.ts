@@ -23,6 +23,11 @@ const params = program
     '--requestLibPath <string>',
     'custom request lib path, for example: "@/request", "node-fetch" (default: "axios")'
   )
+  .option(
+    '--isSplitTypesByModule <boolean>',
+    'split types by module, generates {module}.type.ts, common.type.ts, enum.ts, types.ts',
+    false
+  )
   .option('-f, --full <boolean>', 'full replacement', true)
   .option('--enableLogging <boolean>', 'open the log', false)
   .option(
@@ -151,6 +156,8 @@ const baseGenerate = (_params_: OptionValues): GenerateServiceProps => {
     supportParseEnumDescByReg: _params_.supportParseEnumDescByReg as
       | string
       | RegExp,
+    isSplitTypesByModule:
+      JSON.parse(_params_.isSplitTypesByModule as string) === true,
   };
 
   return options;

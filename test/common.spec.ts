@@ -363,6 +363,20 @@ export async function ${api.functionName}(${api.body ? `data: ${api.body.type}` 
     ).resolves.toMatchFileSnapshot(getSnapshotDir(ctx));
   });
 
+  it('测试只生成 typescript 类型，不生成请求函数，拆分类型文件', async (ctx) => {
+    await openAPI.generateService({
+      schemaPath: join(import.meta.dirname, './example-files/openapi.json'),
+      serversPath: './apis/only-generate-split-typescript-type-by-module',
+      isOnlyGenTypeScriptType: true,
+      isDisplayTypeLabel: true,
+      isGenJsonSchemas: true,
+      isSplitTypesByModule: true,
+    });
+    await expect(
+      readGeneratedFiles('./apis/only-generate-typescript-type')
+    ).resolves.toMatchFileSnapshot(getSnapshotDir(ctx));
+  });
+
   it('测试 number类型 枚举', async (ctx) => {
     await openAPI.generateService({
       schemaPath: join(
@@ -509,6 +523,21 @@ export async function ${api.functionName}(${api.body ? `data: ${api.body.type}` 
     });
     await expect(
       readGeneratedFiles('./apis/file-download')
+    ).resolves.toMatchFileSnapshot(getSnapshotDir(ctx));
+  });
+
+  it('测试按模块拆分类型文件', async (ctx) => {
+    await openAPI.generateService({
+      schemaPath: join(
+        import.meta.dirname,
+        './example-files/openapi-display-enum-label.json'
+      ),
+      serversPath: './apis/split-types-by-module',
+      isSplitTypesByModule: true,
+      isGenReactQuery: true,
+    });
+    await expect(
+      readGeneratedFiles('./apis/split-types-by-module')
     ).resolves.toMatchFileSnapshot(getSnapshotDir(ctx));
   });
 });

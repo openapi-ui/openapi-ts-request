@@ -1,0 +1,14 @@
+/* eslint-disable */
+// @ts-ignore
+
+{%- if list.length > 0 %}
+  {% for type in list -%}
+    {%- if type.isEnum  %}
+      export enum {{ type.typeName | safe }} {{ type.type }};
+
+      export type I{{ type.typeName | safe }} = keyof typeof {{ type.typeName }}
+    {%- endif %}
+  {% endfor %}
+{%- else %}
+  export {}
+{%- endif %}

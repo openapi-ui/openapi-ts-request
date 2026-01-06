@@ -36,6 +36,8 @@ export interface ITypeItem {
   displayLabelFuncName?: string;
   enumLabelType?: string;
   description?: string;
+  /** 类型所属的模块名称（用于拆分类型文件） */
+  belongsToModules?: Set<string>;
 }
 
 export type ICustomSchemaObject = SchemaObject & { isAllowed?: boolean };
