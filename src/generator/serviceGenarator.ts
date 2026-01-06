@@ -2,10 +2,7 @@ import { existsSync, readFileSync } from 'fs';
 import { globSync } from 'glob';
 import type { Dictionary } from 'lodash';
 import {
-  entries,
   filter,
-  find,
-  findIndex,
   forEach,
   isArray,
   isEmpty,
@@ -45,7 +42,6 @@ import type {
 } from '../type';
 import { camelCase } from '../util';
 import {
-  DEFAULT_PATH_PARAM,
   DEFAULT_SCHEMA,
   LangType,
   TypescriptFileType,
@@ -58,7 +54,6 @@ import {
   lineBreakReg,
   methods,
   numberEnum,
-  parametersIn,
   parametersInsEnum,
   schemaFileName,
   serviceEntryFileName,
@@ -66,6 +61,7 @@ import {
 import { writeFile } from './file';
 import { Merger } from './merge';
 import { patchSchema } from './patchSchema';
+import * as Helper from './serviceGeneratorHelper';
 import type {
   APIDataType,
   ControllerType,
@@ -90,21 +86,14 @@ import {
   getDefaultType,
   getFinalFileName,
   getLastRefName,
-  getRefName,
   handleDuplicateTypeNames,
-  isAllNumber,
-  isAllNumeric,
   isArraySchemaObject,
-  isBinaryArraySchemaObject,
   isBinaryMediaType,
   isNonArraySchemaObject,
   isReferenceObject,
   isSchemaObject,
   markAllowedSchema,
-  parseDescriptionEnum,
-  parseDescriptionEnumByReg,
   replaceDot,
-  resolveRefs,
   resolveTypeName,
 } from './util';
 
@@ -1288,36 +1277,11 @@ export default class ServiceGenerator {
   }
 
   private resolveFileTP(obj: SchemaObject) {
-    let ret = [] as Array<{ title: string; multiple: boolean }>;
-    const resolved = this.resolveObject(obj) as ITypeItem;
-
-    const props =
-      (resolved.props?.length > 0 &&
-        resolved.props[0].filter(
-          (p) =>
-            p.format === 'binary' ||
-            p.format === 'base64' ||
-            isBinaryArraySchemaObject(p)
-        )) ||
-      [];
-
-    if (props.length > 0) {
-      ret = props.map((p) => {
-        // 这里 p.type 是自定义type, 注意别混淆
-        return {
-          title: p.name,
-          multiple:
-            p.type === `${SchemaObjectType.array}` ||
-            p.type === `${SchemaObjectType.stringArray}`,
-        };
-      });
-    }
-
-    if (resolved.type) {
-      ret = [...ret, ...this.resolveFileTP(resolved.type as SchemaObject)];
-    }
-
-    return ret;
+    return Helper.resolveFileTP({
+      obj,
+      resolveObjectFunc: (schemaObject: SchemaObject) =>
+        this.resolveObject(schemaObject),
+    });
   }
 
   private getResponseTP(responses: ResponsesObject = {}) {
@@ -1418,72 +1382,17 @@ export default class ServiceGenerator {
     responses: ResponsesObject = {},
     functionName: string
   ) {
-    if (
-      isEmpty(responses) ||
-      ~findIndex(
-        this.interfaceTPConfigs,
-        (item) => item.typeName === upperFirst(`${functionName}Responses`)
-      )
-    ) {
-      return null;
-    }
-
-    const { components } = this.openAPIData;
-    // 生成主响应类型名称
-    const mainResponseTypeName = upperFirst(`${functionName}Response`);
-    const responseEntries = this.parseResponseEntries(responses, components);
-
-    const responseTypes = responseEntries.map(
-      ({ statusCode, type, description = '' }) => {
-        // 检查是否已存在对应的主响应类型，如果存在则复用，避免重复定义
-        const existType = this.interfaceTPConfigs.find(
-          (item) => item.typeName === mainResponseTypeName
-        );
-        const lastType = existType ? mainResponseTypeName : type;
-
-        // 格式化描述文本，让描述支持换行
-        const formattedDescription = lineBreakReg.test(description)
-          ? description.split('\n')?.join('\n * ')
-          : description;
-
-        // 生成带注释的类型定义
-        return formattedDescription
-          ? `  /**\n   * ${formattedDescription}\n   */\n  ${statusCode}: ${lastType};`
-          : `  ${statusCode}: ${lastType};`;
-      }
-    );
-
-    // 返回完整的对象类型定义
-    return `{\n${responseTypes.join('\n')}\n}`;
-  }
-
-  /**
-   * 解析响应条目，提取每个状态码对应的类型和描述信息
-   *
-   * @param responses OpenAPI 响应对象
-   * @param components OpenAPI 组件对象，用于解析引用类型
-   * @returns 响应条目数组，包含状态码、类型和描述
-   */
-  private parseResponseEntries(
-    responses: ResponsesObject,
-    components: OpenAPIV3.ComponentsObject
-  ) {
-    return keys(responses).map((statusCode) => {
-      const response = this.resolveRefObject(
-        responses[statusCode] as ResponseObject
-      );
-
-      if (!response) {
-        return { statusCode, type: 'unknown', description: '' };
-      }
-
-      const responseType = this.getResponseTypeFromContent(
-        response,
-        components
-      );
-      const description = response.description || '';
-
-      return { statusCode, type: responseType, description };
+    return Helper.getResponsesType({
+      responses,
+      functionName,
+      interfaceTPConfigs: this.interfaceTPConfigs,
+      components: this.openAPIData.components,
+      getResponseTypeFromContentFunc: (params: {
+        response: ResponseObject;
+        components: OpenAPIV3.ComponentsObject;
+      }) => this.getResponseTypeFromContent(params.response, params.components),
+      resolveRefObjectFunc: <T>(refObject: ReferenceObject | T) =>
+        this.resolveRefObject<T>(refObject),
     });
   }
 
@@ -1499,123 +1408,30 @@ export default class ServiceGenerator {
     response: ResponseObject,
     components: OpenAPIV3.ComponentsObject
   ): string {
-    if (!response.content) {
-      return 'unknown';
-    }
-
-    const resContent: ContentObject = response.content;
-    const resContentMediaTypes = keys(resContent);
-
-    // 检测二进制流媒体类型
-    const binaryMediaTypes = getBinaryMediaTypes(this.config.binaryMediaTypes);
-    const binaryMediaType = resContentMediaTypes.find((mediaType) =>
-      isBinaryMediaType(mediaType, binaryMediaTypes)
-    );
-
-    const mediaType = resContentMediaTypes.includes('application/json')
-      ? 'application/json'
-      : binaryMediaType || resContentMediaTypes[0];
-
-    if (!isObject(resContent) || !mediaType) {
-      return 'unknown';
-    }
-
-    // 如果是二进制媒体类型，直接返回二进制类型
-    if (isBinaryMediaType(mediaType, binaryMediaTypes)) {
-      return getBinaryResponseType();
-    }
-
-    let schema = (resContent[mediaType].schema ||
-      DEFAULT_SCHEMA) as SchemaObject;
-
-    if (isReferenceObject(schema)) {
-      const refName = getLastRefName(schema.$ref);
-      const childrenSchema = components.schemas[refName];
-
-      // 如果配置了 dataFields，尝试从指定字段提取类型
-      if (isNonArraySchemaObject(childrenSchema) && this.config.dataFields) {
-        schema = (this.config.dataFields
-          .map((field) => childrenSchema.properties[field])
-          .filter(Boolean)?.[0] ||
-          resContent[mediaType].schema ||
-          DEFAULT_SCHEMA) as SchemaObject;
-      }
-
-      return this.getType(schema);
-    } else if (isSchemaObject(schema)) {
-      // 设置属性的 required 状态
-      keys(schema.properties).map((fieldName) => {
-        schema.properties[fieldName]['required'] =
-          schema.required?.includes(fieldName) ?? false;
-      });
-      return this.getType(schema);
-    } else {
-      return this.getType(schema);
-    }
+    return Helper.getResponseTypeFromContent({
+      response,
+      components,
+      config: this.config,
+      getType: (schema: SchemaObject) => this.getType(schema),
+    });
   }
 
   private getParamsTP(
     parameters: (ParameterObject | ReferenceObject)[] = [],
     path: string = null
   ): Record<string, ParameterObject[]> {
-    const templateParams: Record<string, ParameterObject[]> = {};
-
-    if (parameters?.length) {
-      forEach(parametersIn, (source) => {
-        const params = parameters
-          .map((p) => this.resolveRefObject(p))
-          .filter((p) => p.in === source)
-          .map((p) => {
-            const isDirectObject =
-              ((p.schema as SchemaObject)?.type === 'object' ||
-                (p as unknown as SchemaObject).type) === 'object';
-            const refName = getLastRefName(
-              (p.schema as ReferenceObject)?.$ref ||
-                (p as unknown as ReferenceObject).$ref
-            );
-            const deRefObj =
-              entries(this.openAPIData.components?.schemas).find(
-                ([k]) => k === refName
-              ) || [];
-            const isRefObject =
-              (deRefObj[1] as SchemaObject)?.type === 'object' &&
-              !isEmpty((deRefObj[1] as SchemaObject)?.properties);
-
-            return {
-              ...p,
-              isObject: isDirectObject || isRefObject,
-              type: this.getType(
-                p.schema || DEFAULT_SCHEMA,
-                this.config.namespace
-              ),
-            } as ICustomParameterObject;
-          });
-
-        if (params.length) {
-          templateParams[source] = params;
-        }
-      });
-    }
-
-    if (path && path.length > 0) {
-      const regex = /\{(\w+)\}/g;
-      templateParams.path = templateParams.path || [];
-      let match: RegExpExecArray | null = null;
-
-      while ((match = regex.exec(path))) {
-        if (!templateParams.path.some((p) => p.name === match[1])) {
-          templateParams.path.push({
-            ...DEFAULT_PATH_PARAM,
-            name: match[1],
-          });
-        }
-      }
-
-      // 如果 path 没有内容，则将删除 path 参数，避免影响后续的 hasParams 判断
-      if (!templateParams.path.length) delete templateParams.path;
-    }
-
-    return templateParams;
+    return Helper.getParamsTP({
+      parameters,
+      path,
+      namespace: this.config.namespace,
+      openAPIData: this.openAPIData,
+      getType: (schema: ISchemaObject, namespace?: string) =>
+        this.getType(schema, namespace),
+      resolveParameterRefFunc: (params: {
+        param: ParameterObject | ReferenceObject;
+        openAPIData: any;
+      }) => this.resolveParameterRef(params.param),
+    });
   }
 
   private resolveObject(schemaObject: ISchemaObject): unknown {
@@ -1651,192 +1467,68 @@ export default class ServiceGenerator {
   }
 
   private resolveArray(schemaObject: ArraySchemaObject) {
-    if (isReferenceObject(schemaObject.items)) {
-      const refName = getRefName(schemaObject.items);
-
-      return {
-        type: `${refName}[]`,
-      };
-    } else if (schemaObject.items?.enum) {
-      return {
-        type: this.getType(schemaObject, this.config.namespace),
-      };
-    }
-
-    // 这里需要解析出具体属性，但由于 parser 层还不确定，所以暂时先返回 unknown[]
-    return { type: 'unknown[]' };
+    return Helper.resolveArray({
+      schemaObject,
+      namespace: this.config.namespace,
+      getType: (schema: ISchemaObject, namespace?: string) =>
+        this.getType(schema, namespace),
+    });
   }
 
   private resolveProperties(schemaObject: SchemaObject) {
-    return {
-      props: [this.getProps(schemaObject)],
-    };
+    return Helper.resolveProperties({
+      schemaObject,
+      getProps: (schema: SchemaObject) => this.getProps(schema),
+    });
   }
 
   private resolveEnumObject(schemaObject: SchemaObject) {
-    const enumArray = schemaObject.enum;
-    let enumStr = '';
-    let enumLabelTypeStr = '';
-
-    if (numberEnum.includes(schemaObject.type) || isAllNumber(enumArray)) {
-      if (this.config.isSupportParseEnumDesc && schemaObject.description) {
-        const enumMap = parseDescriptionEnum(schemaObject.description);
-        enumStr = `{${map(enumArray, (value) => {
-          const enumLabel = enumMap.get(Number(value));
-          return `${enumLabel}=${Number(value)}`;
-        }).join(',')}}`;
-      } else {
-        enumStr = `{${map(enumArray, (value) => `"NUMBER_${value}"=${Number(value)}`).join(',')}}`;
-      }
-    } else if (isAllNumeric(enumArray)) {
-      enumStr = `{${map(enumArray, (value) => `"STRING_NUMBER_${value}"="${value}"`).join(',')}}`;
-    } else {
-      enumStr = `{${map(enumArray, (value) => `"${value}"="${value}"`).join(',')}}`;
-    }
-
-    // 翻译枚举
-    if (schemaObject['x-enum-varnames'] && schemaObject['x-enum-comments']) {
-      enumLabelTypeStr = `{${map(enumArray, (value, index) => {
-        const enumKey = schemaObject['x-enum-varnames'][index];
-
-        return `${value}:"${schemaObject['x-enum-comments'][enumKey]}"`;
-      }).join(',')}}`;
-    } else if (schemaObject?.['x-apifox']?.['enumDescriptions']) {
-      enumLabelTypeStr = `{${map(enumArray, (value: string) => {
-        const enumLabel = schemaObject['x-apifox']['enumDescriptions'][value];
-
-        return `${value}:"${enumLabel}"`;
-      }).join(',')}}`;
-    } else if (schemaObject?.['x-apifox-enum']) {
-      enumLabelTypeStr = `{${map(enumArray, (value: string) => {
-        const enumLabel = find(
-          schemaObject['x-apifox-enum'],
-          (item) => item.value === value
-        )?.description;
-
-        return `${value}:"${enumLabel}"`;
-      }).join(',')}}`;
-    } else {
-      if (numberEnum.includes(schemaObject.type) || isAllNumber(enumArray)) {
-        if (
-          (this.config.isSupportParseEnumDesc ||
-            this.config.supportParseEnumDescByReg) &&
-          schemaObject.description
-        ) {
-          const enumMap = this.config.isSupportParseEnumDesc
-            ? parseDescriptionEnum(schemaObject.description)
-            : parseDescriptionEnumByReg(
-                schemaObject.description,
-                this.config.supportParseEnumDescByReg
-              );
-          enumLabelTypeStr = `{${map(enumArray, (value) => {
-            const enumLabel = enumMap.get(Number(value));
-            return `${Number(value)}:"${enumLabel}"`;
-          }).join(',')}}`;
-        } else {
-          enumLabelTypeStr = `{${map(enumArray, (value) => `${Number(value) >= 0 ? Number(value) : `"${value}"`}:"NUMBER_${value}"`).join(',')}}`;
-        }
-      } else if (isAllNumeric(enumArray)) {
-        enumLabelTypeStr = `{${map(enumArray, (value) => `"${value}":"STRING_NUMBER_${value}"`).join(',')}}`;
-      } else {
-        enumLabelTypeStr = `{${map(enumArray, (value) => `"${value}":"${value}"`).join(',')}}`;
-      }
-    }
-
-    return {
-      isEnum: true,
-      type: Array.isArray(enumArray) ? enumStr : 'string',
-      enumLabelType: enumLabelTypeStr,
-      description: schemaObject.description,
-    };
+    return Helper.resolveEnumObject({
+      schemaObject,
+      config: {
+        isSupportParseEnumDesc: this.config.isSupportParseEnumDesc,
+        supportParseEnumDescByReg: this.config.supportParseEnumDescByReg,
+      },
+    });
   }
 
   private resolveAllOfObject(schemaObject: SchemaObject) {
-    const props = map(schemaObject.allOf, (item) => {
-      return isReferenceObject(item)
-        ? [{ ...item, type: this.getType(item) }]
-        : this.getProps(item);
+    return Helper.resolveAllOfObject({
+      schemaObject,
+      getType: (schema: ISchemaObject, namespace?: string) =>
+        this.getType(schema, namespace),
+      getProps: (schema: SchemaObject) => this.getProps(schema),
     });
-
-    if (schemaObject.properties) {
-      const extProps = this.getProps(schemaObject);
-
-      return { props: [...props, extProps] };
-    }
-
-    return { props };
   }
 
   // 获取 TS 类型的属性列表
   private getProps(schemaObject: SchemaObject) {
-    const requiredPropKeys = schemaObject?.required ?? false;
-    const properties = schemaObject.properties;
-
-    return keys(properties).map((propKey) => {
-      const schema = (properties?.[propKey] || DEFAULT_SCHEMA) as SchemaObject;
-      // 剔除属性键值中的特殊符号，因为函数入参变量存在特殊符号会导致解析文件失败
-      // eslint-disable-next-line no-useless-escape
-      propKey = propKey.replace(/[\[|\]]/g, '');
-
-      // 复用 schema 部分字段
-      return {
-        ...schema,
-        name: propKey,
-        type: this.getType(schema),
-        desc: [schema.title, schema.description]
-          .filter((item) => item)
-          .join(' ')
-          .replace(lineBreakReg, ''),
-        // 如果没有 required 信息，默认全部是非必填
-        required: requiredPropKeys
-          ? requiredPropKeys.some((key) => key === propKey)
-          : false,
-      };
+    return Helper.getProps({
+      schemaObject,
+      getType: (schema: ISchemaObject, namespace?: string) =>
+        this.getType(schema, namespace),
     });
   }
 
   private resolveParameterRef(
     param: ParameterObject | ReferenceObject
   ): ParameterObject | null {
-    if (!isReferenceObject(param)) {
-      return param;
-    }
-
-    // 解析 $ref 引用，从 components.parameters 中获取实际定义
-    const refName = getLastRefName(param.$ref);
-    const parameter = this.openAPIData.components?.parameters?.[
-      refName
-    ] as ParameterObject;
-
-    return parameter || null;
+    return Helper.resolveParameterRef({
+      param,
+      openAPIData: this.openAPIData,
+    });
   }
 
   private resolveRefObject<T>(refObject: ReferenceObject | T): T {
-    if (!isReferenceObject(refObject)) {
-      return refObject;
-    }
-
-    const refPaths = refObject.$ref.split('/');
-
-    if (refPaths[0] === '#') {
-      const schema = resolveRefs(
-        this.openAPIData,
-        refPaths.slice(1)
-      ) as ISchemaObject;
-
-      if (!schema) {
-        throw new Error(`[GenSDK] Data Error! Notfoud: ${refObject.$ref}`);
-      }
-
-      return {
-        ...(this.resolveRefObject(schema) || {}),
-        type: isReferenceObject(schema)
-          ? this.resolveRefObject<SchemaObject>(schema).type
-          : schema.type,
-      } as T;
-    }
-
-    return refObject as T;
+    return Helper.resolveRefObject<T>({
+      refObject,
+      openAPIData: this.openAPIData,
+      resolveRefObjectFunc: (params: {
+        refObject: ReferenceObject | T;
+        openAPIData: any;
+        resolveRefObjectFunc: any;
+      }) => this.resolveRefObject<T>(params.refObject),
+    });
   }
 
   public log(message: string) {
@@ -1923,46 +1615,6 @@ export default class ServiceGenerator {
   }
 
   /**
-   * 分析类型定义中使用的类型名称
-   * @param types 类型列表
-   * @returns 使用的类型名称集合
-   */
-  private analyzeTypeReferences(types: ITypeItem[]): Set<string> {
-    const references = new Set<string>();
-
-    types.forEach((typeItem) => {
-      // 分析 type 字段
-      if (typeof typeItem.type === 'string') {
-        // 匹配类型引用，例如: Category, Tag[], _CInputDto, Category | null
-        // 支持以下划线开头的类型名
-        const typeMatches = typeItem.type.match(/\b_*[A-Z][a-zA-Z0-9_]*\b/g);
-        if (typeMatches) {
-          typeMatches.forEach((match) => references.add(match));
-        }
-      }
-
-      // 分析 props
-      if (typeItem.props && typeItem.props.length > 0) {
-        typeItem.props.forEach((propGroup) => {
-          propGroup.forEach((prop) => {
-            if (prop.type) {
-              // 匹配类型引用，支持以下划线开头的类型名
-              const propTypeMatches = prop.type.match(
-                /\b_*[A-Z][a-zA-Z0-9_]*\b/g
-              );
-              if (propTypeMatches) {
-                propTypeMatches.forEach((match) => references.add(match));
-              }
-            }
-          });
-        });
-      }
-    });
-
-    return references;
-  }
-
-  /**
    * 获取模块需要导入的类型
    * @param moduleTypes 模块类型列表
    * @param commonTypes 公共类型列表
@@ -1974,30 +1626,11 @@ export default class ServiceGenerator {
     commonTypes: ITypeItem[],
     enumTypes: ITypeItem[]
   ): { commonImports: string[]; enumImports: string[] } {
-    const references = this.analyzeTypeReferences(moduleTypes);
-
-    // 获取公共类型名称集合
-    const commonTypeNames = new Set(commonTypes.map((t) => t.typeName));
-
-    // 获取枚举类型名称集合（包括 IEnumName）
-    const enumTypeNames = new Set<string>();
-    enumTypes.forEach((t) => {
-      enumTypeNames.add(t.typeName);
-      if (t.isEnum) {
-        enumTypeNames.add(`I${t.typeName}`);
-      }
+    return Helper.getModuleImports({
+      moduleTypes,
+      commonTypes,
+      enumTypes,
     });
-
-    // 筛选出实际需要导入的类型
-    const commonImports = Array.from(references).filter((ref) =>
-      commonTypeNames.has(ref)
-    );
-
-    const enumImports = Array.from(references).filter((ref) =>
-      enumTypeNames.has(ref)
-    );
-
-    return { commonImports, enumImports };
   }
 
   /**
@@ -2048,103 +1681,8 @@ export default class ServiceGenerator {
     });
 
     // 处理公共类型的依赖：如果公共类型依赖某个模块类型，将该类型也移到公共类型
-    this.moveCommonTypeDependenciesToCommon(moduleTypes, commonTypes);
+    Helper.moveCommonTypeDependenciesToCommon({ moduleTypes, commonTypes });
 
     return { moduleTypes, commonTypes, enumTypes };
-  }
-
-  /**
-   * 将公共类型依赖的类型从模块类型移到公共类型
-   * 同时检测跨模块引用，将被多个模块使用的类型移到公共类型
-   * @param moduleTypes 模块类型
-   * @param commonTypes 公共类型
-   */
-  private moveCommonTypeDependenciesToCommon(
-    moduleTypes: Map<string, ITypeItem[]>,
-    commonTypes: ITypeItem[]
-  ): void {
-    let moved = true;
-    while (moved) {
-      moved = false;
-
-      // 1. 处理公共类型的依赖
-      const commonTypeRefs = this.analyzeTypeReferences(commonTypes);
-
-      moduleTypes.forEach((types) => {
-        const toMove: ITypeItem[] = [];
-
-        types.forEach((typeItem) => {
-          if (commonTypeRefs.has(typeItem.typeName)) {
-            toMove.push(typeItem);
-            moved = true;
-          }
-        });
-
-        toMove.forEach((typeItem) => {
-          const index = types.indexOf(typeItem);
-          if (index > -1) {
-            types.splice(index, 1);
-            commonTypes.push(typeItem);
-          }
-        });
-      });
-
-      // 2. 检测跨模块引用：如果一个类型被其他模块引用，移到 common
-      // 首先建立类型名称到定义模块的映射
-      const typeDefModule = new Map<string, string>(); // typeName -> moduleName (where it's defined)
-      moduleTypes.forEach((types, moduleName) => {
-        types.forEach((typeItem) => {
-          typeDefModule.set(typeItem.typeName, moduleName);
-        });
-      });
-
-      // 收集每个模块引用了哪些定义在其他模块的类型
-      const crossModuleRefs = new Map<string, Set<string>>(); // typeName -> Set<moduleName that references it>
-
-      moduleTypes.forEach((types, moduleName) => {
-        const referencedTypes = this.analyzeTypeReferences(types);
-
-        referencedTypes.forEach((typeName) => {
-          const defModule = typeDefModule.get(typeName);
-          // 如果这个类型定义在其他模块，记录跨模块引用
-          if (defModule && defModule !== moduleName) {
-            if (!crossModuleRefs.has(typeName)) {
-              crossModuleRefs.set(typeName, new Set());
-            }
-            crossModuleRefs.get(typeName).add(moduleName);
-          }
-        });
-      });
-
-      // 找出被其他模块引用的类型（包括被一个或多个其他模块引用）
-      const typesToMove = new Set<string>();
-      crossModuleRefs.forEach((referencingModules, typeName) => {
-        if (referencingModules.size > 0) {
-          typesToMove.add(typeName);
-        }
-      });
-
-      // 将这些类型移到 common
-      if (typesToMove.size > 0) {
-        moduleTypes.forEach((types) => {
-          const toMove: ITypeItem[] = [];
-
-          types.forEach((typeItem) => {
-            if (typesToMove.has(typeItem.typeName)) {
-              toMove.push(typeItem);
-              moved = true;
-            }
-          });
-
-          toMove.forEach((typeItem) => {
-            const index = types.indexOf(typeItem);
-            if (index > -1) {
-              types.splice(index, 1);
-              commonTypes.push(typeItem);
-            }
-          });
-        });
-      }
-    }
   }
 }
