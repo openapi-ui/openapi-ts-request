@@ -2052,12 +2052,6 @@ export function v1ApiAppAppIdPluginUsingPut({
 // @ts-ignore
 import type { ErrorResp } from './common.type';
 
-export type AppModelConfigPromptPrefix = {
-  background?: string;
-  role?: string;
-  switchRecommendedQuestion?: boolean;
-};
-
 export type V1ApiAppAppIdModelConfigsUsingPostParams = {
   /** 应用id */
   appID: string;
@@ -3282,7 +3276,7 @@ export function v2ApiChatMessagesUsingPost({
 }
 /* eslint-disable */
 // @ts-ignore
-import type { ErrorResp } from './common.type';
+import type { AppRecommendedContext, ErrorResp } from './common.type';
 
 export type Chat = {
   conversation_id?: string;
@@ -3403,6 +3397,7 @@ export type V2ApiChatMessagesUsingPostResponses = {
 };
 /* eslint-disable */
 // @ts-ignore
+import type { RbacRole, ProviderType } from './enum';
 
 export type AddAppkeyReq = {
   appid: string;
@@ -3872,6 +3867,22 @@ export type WorkspaceGroup = {
 export type WxExtra = {
   encodingAESKey?: string;
   token?: string;
+};
+
+export type AppModelConfigPromptPrefix = {
+  background?: string;
+  role?: string;
+  switchRecommendedQuestion?: boolean;
+};
+
+export type AppRecommendedContext = {
+  appID?: string;
+  appRecommendedContextID?: string;
+  context?: string;
+  createdAt?: string;
+  description?: string;
+  name?: string;
+  updatedAt?: string;
 };
 /* eslint-disable */
 // @ts-ignore
@@ -5584,17 +5595,7 @@ export function v1ApiAppAppIdRecommendedContextUsingPost({
 }
 /* eslint-disable */
 // @ts-ignore
-import type { ErrorResp } from './common.type';
-
-export type AppRecommendedContext = {
-  appID?: string;
-  appRecommendedContextID?: string;
-  context?: string;
-  createdAt?: string;
-  description?: string;
-  name?: string;
-  updatedAt?: string;
-};
+import type { AppRecommendedContext, ErrorResp } from './common.type';
 
 export type V1ApiAppAppIdRecommendedContextUsingGetParams = {
   /** 应用id */
