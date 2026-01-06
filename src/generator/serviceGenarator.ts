@@ -1933,8 +1933,9 @@ export default class ServiceGenerator {
     types.forEach((typeItem) => {
       // 分析 type 字段
       if (typeof typeItem.type === 'string') {
-        // 匹配类型引用，例如: Category, Tag[], Category | null
-        const typeMatches = typeItem.type.match(/\b[A-Z][a-zA-Z0-9]*\b/g);
+        // 匹配类型引用，例如: Category, Tag[], _CInputDto, Category | null
+        // 支持以下划线开头的类型名
+        const typeMatches = typeItem.type.match(/\b_*[A-Z][a-zA-Z0-9_]*\b/g);
         if (typeMatches) {
           typeMatches.forEach((match) => references.add(match));
         }
@@ -1945,8 +1946,10 @@ export default class ServiceGenerator {
         typeItem.props.forEach((propGroup) => {
           propGroup.forEach((prop) => {
             if (prop.type) {
-              // 匹配类型引用
-              const propTypeMatches = prop.type.match(/\b[A-Z][a-zA-Z0-9]*\b/g);
+              // 匹配类型引用，支持以下划线开头的类型名
+              const propTypeMatches = prop.type.match(
+                /\b_*[A-Z][a-zA-Z0-9_]*\b/g
+              );
               if (propTypeMatches) {
                 propTypeMatches.forEach((match) => references.add(match));
               }
@@ -2052,9 +2055,9 @@ export default class ServiceGenerator {
 
   /**
    * 将公共类型依赖的类型从模块类型移到公共类型
+   * 同时检测跨模块引用，将被多个模块使用的类型移到公共类型
    * @param moduleTypes 模块类型
    * @param commonTypes 公共类型
-   * @param enumTypes 枚举类型
    */
   private moveCommonTypeDependenciesToCommon(
     moduleTypes: Map<string, ITypeItem[]>,
@@ -2064,22 +2067,19 @@ export default class ServiceGenerator {
     while (moved) {
       moved = false;
 
-      // 获取当前公共类型引用的所有类型名称
+      // 1. 处理公共类型的依赖
       const commonTypeRefs = this.analyzeTypeReferences(commonTypes);
 
-      // 遍历所有模块
       moduleTypes.forEach((types) => {
         const toMove: ITypeItem[] = [];
 
         types.forEach((typeItem) => {
-          // 如果这个类型被公共类型引用，需要移到公共类型
           if (commonTypeRefs.has(typeItem.typeName)) {
             toMove.push(typeItem);
             moved = true;
           }
         });
 
-        // 移动类型
         toMove.forEach((typeItem) => {
           const index = types.indexOf(typeItem);
           if (index > -1) {
@@ -2088,6 +2088,63 @@ export default class ServiceGenerator {
           }
         });
       });
+
+      // 2. 检测跨模块引用：如果一个类型被其他模块引用，移到 common
+      // 首先建立类型名称到定义模块的映射
+      const typeDefModule = new Map<string, string>(); // typeName -> moduleName (where it's defined)
+      moduleTypes.forEach((types, moduleName) => {
+        types.forEach((typeItem) => {
+          typeDefModule.set(typeItem.typeName, moduleName);
+        });
+      });
+
+      // 收集每个模块引用了哪些定义在其他模块的类型
+      const crossModuleRefs = new Map<string, Set<string>>(); // typeName -> Set<moduleName that references it>
+
+      moduleTypes.forEach((types, moduleName) => {
+        const referencedTypes = this.analyzeTypeReferences(types);
+
+        referencedTypes.forEach((typeName) => {
+          const defModule = typeDefModule.get(typeName);
+          // 如果这个类型定义在其他模块，记录跨模块引用
+          if (defModule && defModule !== moduleName) {
+            if (!crossModuleRefs.has(typeName)) {
+              crossModuleRefs.set(typeName, new Set());
+            }
+            crossModuleRefs.get(typeName).add(moduleName);
+          }
+        });
+      });
+
+      // 找出被其他模块引用的类型（包括被一个或多个其他模块引用）
+      const typesToMove = new Set<string>();
+      crossModuleRefs.forEach((referencingModules, typeName) => {
+        if (referencingModules.size > 0) {
+          typesToMove.add(typeName);
+        }
+      });
+
+      // 将这些类型移到 common
+      if (typesToMove.size > 0) {
+        moduleTypes.forEach((types) => {
+          const toMove: ITypeItem[] = [];
+
+          types.forEach((typeItem) => {
+            if (typesToMove.has(typeItem.typeName)) {
+              toMove.push(typeItem);
+              moved = true;
+            }
+          });
+
+          toMove.forEach((typeItem) => {
+            const index = types.indexOf(typeItem);
+            if (index > -1) {
+              types.splice(index, 1);
+              commonTypes.push(typeItem);
+            }
+          });
+        });
+      }
     }
   }
 }
