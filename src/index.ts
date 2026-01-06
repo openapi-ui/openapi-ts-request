@@ -50,7 +50,7 @@ export type GenerateServiceProps = {
    * 默认: false
    * 开启后会生成: {module}.type.ts, common.type.ts, types.ts(重新导出)
    */
-  splitTypesByModule?: boolean;
+  isSplitTypesByModule?: boolean;
   /**
    * 是否全量替换, 默认: true, 如果为false, 则进行增量替换
    */

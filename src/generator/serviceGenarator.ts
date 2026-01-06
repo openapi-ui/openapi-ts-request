@@ -341,7 +341,7 @@ export default class ServiceGenerator {
 
     // 生成 ts 类型声明
     if (!isGenJavaScript) {
-      if (this.config.splitTypesByModule) {
+      if (this.config.isSplitTypesByModule) {
         // 按模块拆分类型文件
         const { moduleTypes, commonTypes, enumTypes } =
           this.groupTypesByModule();
@@ -573,7 +573,7 @@ export default class ServiceGenerator {
         markAllowedSchema(JSON.stringify(pathItem), this.openAPIData);
 
         // 如果启用了类型拆分，记录每个 schema 被哪些模块使用
-        if (this.config.splitTypesByModule) {
+        if (this.config.isSplitTypesByModule) {
           const pathItemStr = JSON.stringify(pathItem);
           const refRegex = /"\$ref":\s*"#\/components\/schemas\/([^"]+)"/g;
           let match: RegExpExecArray | null;
@@ -654,7 +654,7 @@ export default class ServiceGenerator {
           });
 
           // 记录 Params 类型归属（属于对应的 tag/module）
-          if (this.config.splitTypesByModule) {
+          if (this.config.isSplitTypesByModule) {
             tags.forEach((tag) => {
               if (tag) {
                 const tagTypeName = resolveTypeName(tag);
@@ -717,7 +717,7 @@ export default class ServiceGenerator {
 
             // 记录枚举类型归属（继承父 schema 的归属）
             if (
-              this.config.splitTypesByModule &&
+              this.config.isSplitTypesByModule &&
               schemaUsageMap.has(schemaKey)
             ) {
               const moduleSet = schemaUsageMap.get(schemaKey);
@@ -748,7 +748,7 @@ export default class ServiceGenerator {
         });
 
         // 记录 schema 类型归属
-        if (this.config.splitTypesByModule && schemaUsageMap.has(schemaKey)) {
+        if (this.config.isSplitTypesByModule && schemaUsageMap.has(schemaKey)) {
           const moduleSet = schemaUsageMap.get(schemaKey);
           if (moduleSet) {
             moduleSet.forEach((className) => {
@@ -831,7 +831,7 @@ export default class ServiceGenerator {
                   props: [],
                 });
                 // 记录类型归属
-                if (this.config.splitTypesByModule) {
+                if (this.config.isSplitTypesByModule) {
                   this.markTypeUsedByModule(bodyName, className);
                 }
                 body.type = `${this.config.namespace}.${bodyName}`;
@@ -855,7 +855,7 @@ export default class ServiceGenerator {
                   props: [],
                 });
                 // 记录类型归属
-                if (this.config.splitTypesByModule) {
+                if (this.config.isSplitTypesByModule) {
                   this.markTypeUsedByModule(responseName, className);
                 }
 
@@ -879,7 +879,7 @@ export default class ServiceGenerator {
                   props: [],
                 });
                 // 记录类型归属
-                if (this.config.splitTypesByModule) {
+                if (this.config.isSplitTypesByModule) {
                   this.markTypeUsedByModule(responsesTypeName, className);
                 }
               }

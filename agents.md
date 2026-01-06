@@ -70,7 +70,7 @@ else if (isNodeProject) {
 | `isCamelCase` | boolean | `true` | Use camelCase naming | Consistent naming |
 | `isSupportParseEnumDesc` | boolean | `false` | Parse enum descriptions | Labeled enums |
 | `supportParseEnumDescByReg` | `string \| RegExp` | - | Custom regex for parsing enum descriptions. If set, replaces default parseDescriptionEnum method. Example: `/([^\s=<>/&;]+(?:\s+[^\s=<>/&;]+)*)\s*=\s*(\d+)/g` matches "普通 = 0" or "SampleMaker = 1" | Custom enum description formats |
-| `splitTypesByModule` | boolean | `false` | Split types by module, generates {module}.type.ts, common.type.ts, enum.ts, types.ts | Large projects with many types |
+| `isSplitTypesByModule` | boolean | `false` | Split types by module, generates {module}.type.ts, common.type.ts, enum.ts, types.ts | Large projects with many types |
 
 #### Request Customization
 
@@ -123,7 +123,7 @@ else if (isNodeProject) {
 | "自定义枚举解析正则" | `supportParseEnumDescByReg: /pattern/g` | Custom enum description parsing |
 | "生成JSON验证" | `isGenJsonSchemas: true` | Schema validation |
 | "前缀API路径" | `apiPrefix: "'api'"` | Add prefix to paths |
-| "按模块拆分类型" | `splitTypesByModule: true` | Large projects, better code organization |
+| "按模块拆分类型" | `isSplitTypesByModule: true` | Large projects, better code organization |
 
 ## 📋 Common Configuration Scenarios
 
@@ -285,7 +285,7 @@ else if (isNodeProject) {
 {
   schemaPath: "./openapi.json",
   serversPath: "./src/apis",
-  splitTypesByModule: true, // Split types by module
+  isSplitTypesByModule: true, // Split types by module
   isGenReactQuery: true,
   isDisplayTypeLabel: true,
   isCamelCase: true,
@@ -324,7 +324,7 @@ else if (isNodeProject) {
 - **Development**: `mockFolder + enableLogging + full: false`
 - **International**: `isTranslateToEnglishTag + isDisplayTypeLabel + isSupportParseEnumDesc`
 - **Type-only libraries**: `isOnlyGenTypeScriptType + isGenJsonSchemas + namespace`
-- **Large projects**: `splitTypesByModule: true + isGenReactQuery + isDisplayTypeLabel`
+- **Large projects**: `isSplitTypesByModule: true + isGenReactQuery + isDisplayTypeLabel`
 
 ## 🔧 Advanced Customization Hooks
 
@@ -567,7 +567,7 @@ export const ${api.functionName} = async (${api.params}) => {
 
 ## 📁 Generated File Structure
 
-### Default Structure (splitTypesByModule: false)
+### Default Structure (isSplitTypesByModule: false)
 
 ```
 src/apis/
@@ -583,7 +583,7 @@ src/apis/
     └── ...
 ```
 
-### Module-Based Structure (splitTypesByModule: true)
+### Module-Based Structure (isSplitTypesByModule: true)
 
 ```
 src/apis/

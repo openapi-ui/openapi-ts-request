@@ -187,7 +187,7 @@ $ openapi --help
     -cfn, --configFileName <string>     config file name
     -cfp, --configFilePath <string>     config file path
     --requestLibPath <string>           custom request lib path, for example: "@/request", "node-fetch" (default: "axios")
-    --splitTypesByModule <boolean>      split types by module, generates {module}.type.ts, common.type.ts, enum.ts, types.ts (default: false)
+    --isSplitTypesByModule <boolean>      split types by module, generates {module}.type.ts, common.type.ts, enum.ts, types.ts (default: false)
     -f, --full <boolean>                full replacement (default: true)
     --enableLogging <boolean>           open the log (default: false)
     --priorityRule <string>             priority rule, include/exclude/both (default: "include")
@@ -228,7 +228,7 @@ openapi --i ./spec.json --o ./apis
 | schemaPath | 是 | string | - | Swagger2/OpenAPI3 地址 |
 | serversPath | 否 | string | './src/apis' | 运行结果文件夹路径 |
 | requestLibPath | 否 | string | 'axios' | 自定义请求方法路径，例如：'@/request'、'node-fetch' |
-| splitTypesByModule | 否 | boolean | false | 按模块拆分类型文件，开启后会生成：{module}.type.ts（各模块类型）、common.type.ts（公共类型）、enum.ts（枚举类型）、types.ts（统一导出） |
+| isSplitTypesByModule | 否 | boolean | false | 按模块拆分类型文件，开启后会生成：{module}.type.ts（各模块类型）、common.type.ts（公共类型）、enum.ts（枚举类型）、types.ts（统一导出） |
 | full | 否 | boolean | true | 是否全量替换 |
 | describe | 否 | string | - | 描述信息，在用 cli 可交互运行方式时会用到 |
 | enableLogging | 否 | boolean | false | 是否开启日志 |
