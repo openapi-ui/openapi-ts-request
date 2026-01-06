@@ -6,6 +6,7 @@ import type {
   ArraySchemaObject,
   ContentObject,
   ISchemaObject,
+  OpenAPIObject,
   ParameterObject,
   ReferenceObject,
   ResponseObject,
@@ -42,7 +43,7 @@ import {
  */
 export interface ResolveObjectParams {
   schemaObject: ISchemaObject;
-  openAPIData: any;
+  openAPIData: OpenAPIObject;
   config: {
     namespace?: string;
     isSupportParseEnumDesc?: boolean;
@@ -247,9 +248,8 @@ export function getProps(params: {
  */
 export function resolveParameterRef(params: {
   param: ParameterObject | ReferenceObject;
-  openAPIData: any;
+  openAPIData: OpenAPIObject;
 }): ParameterObject | null {
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   const { param, openAPIData } = params;
 
   if (!isReferenceObject(param)) {
@@ -258,25 +258,26 @@ export function resolveParameterRef(params: {
 
   // 解析 $ref 引用，从 components.parameters 中获取实际定义
   const refName = getLastRefName(param.$ref);
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-  const parameter = openAPIData.components?.parameters?.[
-    refName
-  ] as ParameterObject;
+  const parameter =
+    (openAPIData.components?.parameters?.[refName] as ParameterObject) || null;
 
-  return parameter || null;
+  return parameter;
 }
 
 /**
  * 解析引用对象
  */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-member-access */
 export function resolveRefObject<T>(params: {
   refObject: ReferenceObject | T;
-  openAPIData: any;
+  openAPIData: OpenAPIObject;
   resolveRefObjectFunc: (params: {
     refObject: ReferenceObject | T;
-    openAPIData: any;
-    resolveRefObjectFunc: any;
+    openAPIData: OpenAPIObject;
+    resolveRefObjectFunc: (params: {
+      refObject: ReferenceObject | T;
+      openAPIData: OpenAPIObject;
+      resolveRefObjectFunc: any;
+    }) => T;
   }) => T;
 }): T {
   const { refObject, openAPIData, resolveRefObjectFunc } = params;
@@ -288,33 +289,42 @@ export function resolveRefObject<T>(params: {
   const refPaths = refObject.$ref.split('/');
 
   if (refPaths[0] === '#') {
-    const schema = resolveRefs(openAPIData, refPaths.slice(1)) as ISchemaObject;
+    const schema = resolveRefs(openAPIData, refPaths.slice(1)) as
+      | ISchemaObject
+      | undefined;
 
     if (!schema) {
       throw new Error(`[GenSDK] Data Error! Notfoud: ${refObject.$ref}`);
     }
 
-    return {
-      ...(resolveRefObjectFunc({
-        refObject: schema as any,
+    const resolvedSchema = resolveRefObjectFunc({
+      refObject: schema as ReferenceObject | T,
+      openAPIData,
+      resolveRefObjectFunc,
+    });
+
+    let resolvedType: string | undefined;
+    if (isReferenceObject(schema)) {
+      const refResolved = resolveRefObjectFunc({
+        refObject: schema as ReferenceObject | T,
         openAPIData,
         resolveRefObjectFunc,
-      }) || {}),
-      type: isReferenceObject(schema)
-        ? (
-            resolveRefObjectFunc({
-              refObject: schema as any,
-              openAPIData,
-              resolveRefObjectFunc,
-            }) as any
-          ).type
-        : (schema as any).type,
+      });
+      resolvedType = (refResolved as { type?: string })?.type;
+    } else {
+      const schemaObj: SchemaObject = schema;
+      resolvedType = schemaObj.type;
+    }
+
+    const finalSchema = schema as SchemaObject;
+    return {
+      ...(resolvedSchema || {}),
+      type: resolvedType || finalSchema.type,
     } as T;
   }
 
   return refObject as T;
 }
-/* eslint-enable @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-member-access */
 
 /**
  * 生成多状态码响应类型定义
@@ -490,16 +500,15 @@ export function getResponseTypeFromContent(params: {
 /**
  * 获取参数模板
  */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-argument */
 export function getParamsTP(params: {
   parameters?: (ParameterObject | ReferenceObject)[];
   path?: string;
   namespace?: string;
-  openAPIData: any;
+  openAPIData: OpenAPIObject;
   getType: (schema: ISchemaObject, namespace?: string) => string;
   resolveParameterRefFunc: (params: {
     param: ParameterObject | ReferenceObject;
-    openAPIData: any;
+    openAPIData: OpenAPIObject;
   }) => ParameterObject | null;
 }): Record<string, ParameterObject[]> {
   const {
@@ -517,7 +526,7 @@ export function getParamsTP(params: {
     forEach(parametersIn, (source) => {
       const paramsList = parameters
         .map((p) => resolveParameterRefFunc({ param: p, openAPIData }))
-        .filter((p) => p.in === source)
+        .filter((p): p is ParameterObject => p !== null && p.in === source)
         .map((p) => {
           const isDirectObject =
             ((p.schema as SchemaObject)?.type === 'object' ||
@@ -526,14 +535,15 @@ export function getParamsTP(params: {
             (p.schema as ReferenceObject)?.$ref ||
               (p as unknown as ReferenceObject).$ref
           );
-          const deRefObj =
-            Object.entries(openAPIData.components?.schemas || {}).find(
-              ([k]) => k === refName
-            ) || [];
+          const schemas = openAPIData.components?.schemas || {};
+          const deRefObjEntry = Object.entries(schemas).find(
+            ([k]) => k === refName
+          );
+          const deRefSchema = deRefObjEntry?.[1] as SchemaObject | undefined;
           const isRefObject =
-            (deRefObj[1] as SchemaObject)?.type === 'object' &&
-            Object.keys((deRefObj[1] as SchemaObject)?.properties || {})
-              .length > 0;
+            deRefSchema !== undefined &&
+            deRefSchema?.type === 'object' &&
+            Object.keys(deRefSchema?.properties || {}).length > 0;
 
           return {
             ...p,
@@ -568,7 +578,6 @@ export function getParamsTP(params: {
 
   return templateParams;
 }
-/* eslint-enable @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-argument */
 
 /**
  * 分析类型定义中使用的类型名称
