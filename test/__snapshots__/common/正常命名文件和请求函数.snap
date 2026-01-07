@@ -411,6 +411,7 @@ export type PetUsingPutResponses = {
   405: unknown;
 };
 
+/** Order Status */
 export enum StatusEnum {
   'placed' = 'placed',
   'approved' = 'approved',
@@ -419,6 +420,7 @@ export enum StatusEnum {
 
 export type IStatusEnum = keyof typeof StatusEnum;
 
+/** pet status in the store */
 export enum StatusEnum2 {
   'available' = 'available',
   'pending' = 'pending',

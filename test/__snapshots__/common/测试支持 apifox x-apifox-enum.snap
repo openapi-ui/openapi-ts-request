@@ -68,6 +68,7 @@ export * from './dingdanguanli';
 /* eslint-disable */
 // @ts-ignore
 
+/** 业务服务 */
 export enum BusinessServiceEnum {
   'EXPERT_CONSULTATION_TEXT' = 'EXPERT_CONSULTATION_TEXT',
   'EXPERT_CONSULTATION_VIDEO' = 'EXPERT_CONSULTATION_VIDEO',

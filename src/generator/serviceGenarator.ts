@@ -1507,6 +1507,7 @@ export default class ServiceGenerator {
       schemaObject,
       getType: (schema: ISchemaObject, namespace?: string) =>
         this.getType(schema, namespace),
+      openAPIData: this.openAPIData,
     });
   }
 

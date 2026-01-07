@@ -154,6 +154,7 @@ export type CityGetRes = {
 };
 
 export type CityPutRes = {
+  /** Poi2CategoryEnum poi2分类 */
   city: Poi2CategoryEnum;
 };
 
@@ -162,6 +163,7 @@ export type HTTPValidationError = {
   detail?: ValidationError[];
 };
 
+/** poi2分类 */
 export enum Poi2CategoryEnum {
   'STRING_NUMBER_-1' = '-1',
   'STRING_NUMBER_-1000' = '-1000',

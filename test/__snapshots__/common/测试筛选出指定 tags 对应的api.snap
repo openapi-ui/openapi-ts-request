@@ -322,6 +322,7 @@ export type PetUsingPutResponses = {
   405: unknown;
 };
 
+/** pet status in the store */
 export enum StatusEnum {
   'available' = 'available',
   'pending' = 'pending',
