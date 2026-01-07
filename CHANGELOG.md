@@ -1,5 +1,11 @@
 # openapi-ts-request
 
+## 1.12.0
+
+### Minor Changes
+
+- [#602](https://github.com/openapi-ui/openapi-ts-request/pull/602) [`8d4a7c7`](https://github.com/openapi-ui/openapi-ts-request/commit/8d4a7c76da0f331dd9cee0508a89159d2cadaa20) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - feat: add isSplitTypesByModule func
+
 ## 1.11.0
 
 ### Minor Changes
