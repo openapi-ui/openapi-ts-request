@@ -70,6 +70,7 @@ export type PetFindByStatusUsingGetResponses = {
   400: unknown;
 };
 
+/** pet status in the store */
 export enum StatusEnum {
   'available' = 'available',
   'pending' = 'pending',

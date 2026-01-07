@@ -35,6 +35,7 @@ export type ResultOutputUserInfoOutput = {
   data?: UserInfoOutput;
 };
 
+/** 系统用户角色:User(普通用户)=0,Agent(经纪人)=1,Admin(管理员)=2 */
 export enum SysUserRole {
   User = 0,
   Agent = 1,
@@ -50,6 +51,7 @@ export type UserInfoOutput = {
   avatar?: string;
   /** 手机号 */
   phone?: string;
+  /** 系统用户角色:User(普通用户)=0,Agent(经纪人)=1,Admin(管理员)=2 */
   role?: SysUserRole;
 };
 /* eslint-disable */

@@ -229,7 +229,7 @@ export type ApiResboolean = {
 export type ApiResCaptchaTokenVO = {
   /** 状态码；大于零为处理成功的不同状态，小于零的状态则视为失败的情况 */
   code: number;
-  /** 相应数据 */
+  /** 相应数据CaptchaTokenVO */
   data?: CaptchaTokenVO;
   /** 提示消息 */
   msg: string;
@@ -250,7 +250,7 @@ export type ApiResCaptchaTokenVO = {
 export type ApiResImgCaptchaDTO = {
   /** 状态码；大于零为处理成功的不同状态，小于零的状态则视为失败的情况 */
   code: number;
-  /** 相应数据 */
+  /** 相应数据ImgCaptchaDTO */
   data?: ImgCaptchaDTO;
   /** 提示消息 */
   msg: string;
@@ -271,7 +271,7 @@ export type ApiResImgCaptchaDTO = {
 export type ApiResTokenDTO = {
   /** 状态码；大于零为处理成功的不同状态，小于零的状态则视为失败的情况 */
   code: number;
-  /** 相应数据 */
+  /** 相应数据TokenDTO */
   data?: TokenDTO;
   /** 提示消息 */
   msg: string;
@@ -446,6 +446,7 @@ export type LoginIsNeedCaptchaResponses = {
   404: unknown;
 };
 
+/** 消息提示方式 */
 export enum ShowTypeEnum {
   'DIALOG' = 'DIALOG',
   'ERROR' = 'ERROR',
@@ -461,6 +462,7 @@ export enum ShowTypeEnum {
 
 export type IShowTypeEnum = keyof typeof ShowTypeEnum;
 
+/** 消息提示方式 */
 export enum ShowTypeEnum2 {
   'DIALOG' = 'DIALOG',
   'ERROR' = 'ERROR',
@@ -476,6 +478,7 @@ export enum ShowTypeEnum2 {
 
 export type IShowTypeEnum2 = keyof typeof ShowTypeEnum2;
 
+/** 消息提示方式 */
 export enum ShowTypeEnum3 {
   'DIALOG' = 'DIALOG',
   'ERROR' = 'ERROR',
@@ -491,6 +494,7 @@ export enum ShowTypeEnum3 {
 
 export type IShowTypeEnum3 = keyof typeof ShowTypeEnum3;
 
+/** 消息提示方式 */
 export enum ShowTypeEnum4 {
   'DIALOG' = 'DIALOG',
   'ERROR' = 'ERROR',
@@ -515,6 +519,7 @@ export type TokenDTO = {
   userId: number;
 };
 
+/** 验证码类型，1->注册，2->登录，3->忘记密码，4->修改密码 */
 export enum TypeEnum {
   'EDIT_PASSWORD' = 'EDIT_PASSWORD',
   'FORGOT_PASSWORD' = 'FORGOT_PASSWORD',
@@ -524,6 +529,7 @@ export enum TypeEnum {
 
 export type ITypeEnum = keyof typeof TypeEnum;
 
+/** 验证码类型 */
 export enum TypeEnum2 {
   'EDIT_PASSWORD' = 'EDIT_PASSWORD',
   'FORGOT_PASSWORD' = 'FORGOT_PASSWORD',

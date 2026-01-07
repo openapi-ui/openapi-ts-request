@@ -4,6 +4,9 @@
 {%- if list.length > 0 %}
   {% for type in list -%}
     {%- if type.isEnum  %}
+      {%- if type.description%} 
+      /** {{ type.description }} */
+      {%- endif %}
       export enum {{ type.typeName | safe }} {{ type.type }};
 
       export type I{{ type.typeName | safe }} = keyof typeof {{ type.typeName }}

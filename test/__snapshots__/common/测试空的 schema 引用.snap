@@ -66,6 +66,7 @@ export * from './fenxiangyongdianmokuai6C76B49E435F7713E0531F0B10Ac7013';
 /* eslint-disable */
 // @ts-ignore
 
+/** 业务类型 */
 export enum BusinessTypeEnum {
   'CLASSIFICATION' = 'CLASSIFICATION',
   'DEVICE' = 'DEVICE',
@@ -128,6 +129,7 @@ export type FenxiangshebeiziranshijiantongjichaxunDto = {
   vsType?: 'CLASSIFICATION' | 'DEVICE' | 'TIME';
 };
 
+/** 时间粒度 */
 export enum TimeIntervalEnum {
   'DAY' = 'DAY',
   'HALFHOUR' = 'HALFHOUR',
@@ -140,6 +142,7 @@ export enum TimeIntervalEnum {
 
 export type ITimeIntervalEnum = keyof typeof TimeIntervalEnum;
 
+/** 查询类型 自然时间-NATURAL,班制时间-SHIFT */
 export enum TimeQueryTypeEnum {
   'NATURAL' = 'NATURAL',
   'SHIFT' = 'SHIFT',
@@ -147,6 +150,7 @@ export enum TimeQueryTypeEnum {
 
 export type ITimeQueryTypeEnum = keyof typeof TimeQueryTypeEnum;
 
+/** 比较类型 */
 export enum VsTypeEnum {
   'CLASSIFICATION' = 'CLASSIFICATION',
   'DEVICE' = 'DEVICE',
