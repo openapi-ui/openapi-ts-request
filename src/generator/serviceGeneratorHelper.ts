@@ -215,8 +215,9 @@ export function resolveAllOfObject(params: {
 export function getProps(params: {
   schemaObject: SchemaObject;
   getType: (schema: SchemaObject) => string;
+  openAPIData?: OpenAPIObject;
 }): IPropObject[] {
-  const { schemaObject, getType } = params;
+  const { schemaObject, getType, openAPIData } = params;
   const requiredPropKeys = schemaObject?.required ?? false;
   const properties = schemaObject.properties;
 
@@ -226,15 +227,35 @@ export function getProps(params: {
     // eslint-disable-next-line no-useless-escape
     propKey = propKey.replace(/[\[|\]]/g, '');
 
+    // 获取描述信息，如果是 $ref 引用，尝试获取引用对象的描述
+    let desc = [schema.title, schema.description]
+      .filter((item) => item)
+      .join(' ')
+      .replace(lineBreakReg, '');
+
+    // 如果是 $ref 引用，尝试获取引用对象的描述
+    if (isReferenceObject(schema) && openAPIData) {
+      const refName = getLastRefName(schema.$ref);
+      const refSchema = openAPIData.components?.schemas?.[
+        refName
+      ] as SchemaObject;
+      if (refSchema) {
+        const refDesc = [refSchema.title, refSchema.description]
+          .filter((item) => item)
+          .join(' ')
+          .replace(lineBreakReg, '');
+        if (refDesc) {
+          desc = desc + refDesc;
+        }
+      }
+    }
+
     // 复用 schema 部分字段
     return {
       ...schema,
       name: propKey,
       type: getType(schema),
-      desc: [schema.title, schema.description]
-        .filter((item) => item)
-        .join(' ')
-        .replace(lineBreakReg, ''),
+      desc: desc,
       // 如果没有 required 信息，默认全部是非必填
       required: requiredPropKeys
         ? requiredPropKeys.some((key) => key === propKey)

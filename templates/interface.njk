@@ -43,6 +43,7 @@
       {%- endfor %}
     {%- else %}
       {%- if type.isEnum  %}
+        /** {{ type.description }} */
         export enum {{ type.typeName | safe }} {{ type.type }};
 
         export type I{{ type.typeName | safe }} = keyof typeof {{ type.typeName }}
