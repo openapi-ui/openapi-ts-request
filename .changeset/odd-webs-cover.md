@@ -2,4 +2,4 @@
 'openapi-ts-request': patch
 ---
 
-增加枚举注释
+perf: 增加枚举注释
