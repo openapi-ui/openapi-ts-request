@@ -132,18 +132,16 @@ export interface APIFoxBody {
   oasVersion?: '2.0' | '3.0' | '3.1';
   exportFormat?: 'JSON' | 'YAML';
   environmentIds?: string[];
+  branchId?: number;
+  moduleId?: number;
 }
 
-export interface GetSchemaByApifoxProps
-  extends Pick<APIFoxBody, 'oasVersion' | 'exportFormat'>,
-    Pick<
-      APIFoxBody['options'],
-      'includeApifoxExtensionProperties' | 'addFoldersToTags'
-    > {
+export type GetSchemaByApifoxProps = {
   projectId: string;
   apifoxToken: string;
   locale?: string;
   apifoxVersion?: string;
   selectedTags?: string[];
   excludedByTags?: string[];
-}
+} & Pick<APIFoxBody, 'oasVersion' | 'exportFormat' | 'branchId' | 'moduleId'> &
+  APIFoxBody['options'];

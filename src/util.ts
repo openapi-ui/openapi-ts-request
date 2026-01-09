@@ -52,6 +52,8 @@ const getSchemaByApifox = async ({
   exportFormat = 'JSON',
   includeApifoxExtensionProperties = false,
   addFoldersToTags = false,
+  branchId,
+  moduleId,
 }: GetSchemaByApifoxProps): Promise<OpenAPI.Document | null> => {
   try {
     const body: APIFoxBody = {
@@ -65,6 +67,15 @@ const getSchemaByApifox = async ({
       oasVersion,
       exportFormat,
     };
+
+    if (branchId !== undefined) {
+      body.branchId = branchId;
+    }
+
+    if (moduleId !== undefined) {
+      body.moduleId = moduleId;
+    }
+
     const tags = !isEmpty(selectedTags) ? selectedTags : '*';
 
     if (tags === '*') {

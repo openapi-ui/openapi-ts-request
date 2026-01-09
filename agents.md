@@ -270,7 +270,9 @@ else if (isNodeProject) {
     local: "zh-CN",
     selectedTags: ["user", "order"],
     oasVersion: "3.0",
-    exportFormat: "JSON"
+    exportFormat: "JSON",
+    branchId: 123, // Optional: branch id
+    moduleId: 456  // Optional: module id
   },
   serversPath: "./src/apis",
   isGenReactQuery: true,

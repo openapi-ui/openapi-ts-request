@@ -287,6 +287,8 @@ openapi --i ./spec.json --o ./apis
 | exportFormat | string | 指定导出的 OpenAPI 文件的格式，可以有值如 'JSON' 或 'YAML' | 'JSON' |
 | includeApifoxExtensionProperties | boolean | 指定是否包含 Apifox 的 OpenAPI 规范扩展字段 `x-apifox` | false |
 | addFoldersToTags | boolean | 指定是否在标签字段中包含接口的目录名称 | false |
+| branchId | number | 分支ID | false |
+| moduleId | number | 模块ID | false |
 
 ## JSON Schemas
 
