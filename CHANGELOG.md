@@ -1,5 +1,13 @@
 # openapi-ts-request
 
+## 1.12.1
+
+### Patch Changes
+
+- [#610](https://github.com/openapi-ui/openapi-ts-request/pull/610) [`be12c8e`](https://github.com/openapi-ui/openapi-ts-request/commit/be12c8eb9ff9c26f75ef751fba12dbdcd22998e8) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - perf: support apifox config branchId, moduleId
+
+- [#604](https://github.com/openapi-ui/openapi-ts-request/pull/604) [`94953da`](https://github.com/openapi-ui/openapi-ts-request/commit/94953da4b71c31a09c56ee832c7eb6b54e40d2fc) Thanks [@vsqq0](https://github.com/vsqq0)! - perf: 增加枚举注释
+
 ## 1.12.0
 
 ### Minor Changes
