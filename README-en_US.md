@@ -285,6 +285,8 @@ openapi -i ./spec.json -o ./apis
 | exportFormat | string | specify the format of the exported OpenAPI file, can have values such as 'JSON' or 'YAML' | 'JSON' |
 | includeApifoxExtensionProperties | boolean | specify whether to include the OpenAPI specification extension fields `x-apifox` | false |
 | addFoldersToTags | boolean | specify whether to include the directory name of the interface in the tag field | false |
+| branchId | number | branch id | false |
+| moduleId | number | module id | false |
 
 ## JSON Schemas
 
