@@ -1,6 +1,6 @@
 {
   "name": "openapi-ts-request",
-  "version": "1.12.1",
+  "version": "1.12.2",
   "description": "Swagger2/OpenAPI3/Apifox to TypeScript/JavaScript, request client(support any client), request mock service, enum and enum translation, react-query/vue-query, type field label, JSON Schemas",
   "packageManager": "pnpm@9.15.0",
   "engines": {

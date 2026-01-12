@@ -1,5 +1,11 @@
 # openapi-ts-request
 
+## 1.12.2
+
+### Patch Changes
+
+- [#612](https://github.com/openapi-ui/openapi-ts-request/pull/612) [`484e60b`](https://github.com/openapi-ui/openapi-ts-request/commit/484e60b6b9a97c9de4dacb2d30010cb31f493593) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - perf: perf config props validate
+
 ## 1.12.1
 
 ### Patch Changes
