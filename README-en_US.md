@@ -225,7 +225,8 @@ openapi -i ./spec.json -o ./apis
 
 | props | required | type | default | remark |
 | --- | --- | --- | --- | --- |
-| schemaPath | yes | string | - | Swagger2/OpenAPI3 URL |
+| schemaPath | no\* | string | - | Swagger2/OpenAPI3 URL (mutually exclusive with apifoxConfig, one of them is required) |
+| apifoxConfig | no\* | [Apifox Config](#Apifox-Config) | - | apifox configs (mutually exclusive with schemaPath, one of them is required) |
 | serversPath | no | string | './src/apis' | the folder path for the run results |
 | requestLibPath | no | string | 'axios' | custom request lib path, for example: '@/request', 'node-fetch' |
 | isSplitTypesByModule | no | boolean | false | split types by module, generates {module}.type.ts (module types), common.type.ts (common types), enum.ts (enum types), types.ts (unified export) |
@@ -248,7 +249,6 @@ openapi -i ./spec.json -o ./apis
 | isGenJsonSchemas | no | boolean | false | generate JSON Schemas |
 | mockFolder | no | string | - | mock file path, for example: './mocks' |
 | authorization | no | string | - | docs authorization |
-| apifoxConfig | no | [Apifox Config](#Apifox-Config) | - | apifox configs |
 | nullable | no | boolean | false | null instead of optional |
 | isTranslateToEnglishTag | no | boolean | false | translate chinese tag name to english tag name |
 | isOnlyGenTypeScriptType | no | boolean | false | only generate typescript type |
