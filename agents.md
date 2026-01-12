@@ -40,7 +40,8 @@ else if (isNodeProject) {
 
 | Configuration | Type | Default | Description | When to Use |
 | --- | --- | --- | --- | --- |
-| `schemaPath` | string | **required** | OpenAPI/Swagger spec URL or file path | Always required |
+| `schemaPath` | string | - | OpenAPI/Swagger spec URL or file path | Use when providing OpenAPI spec URL/file path (mutually exclusive with apifoxConfig) |
+| `apifoxConfig` | object | - | Apifox configuration | Use when fetching spec from Apifox (mutually exclusive with schemaPath) |
 | `serversPath` | string | `"./src/apis"` | Output directory for generated files | Custom output location |
 | `requestLibPath` | string | `"axios"` | HTTP client library path | Custom request client |
 | `full` | boolean | `true` | Full replacement vs incremental | Incremental updates |

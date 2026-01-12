@@ -32,7 +32,7 @@
     "lint:fix": "eslint ./src --report-unused-disable-directives --max-warnings=0 --fix",
     "test:unit": "vitest",
     "prepare": "husky",
-    "openapi-ts-request": "openapi-ts"
+    "openapi-ts-request": "openapi"
   },
   "dependencies": {
     "@clack/prompts": "^0.11.0",

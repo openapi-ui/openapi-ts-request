@@ -14,6 +14,7 @@ import type {
   ComponentsObject,
   IPriorityRule,
   IReactQueryMode,
+  MutuallyExclusive,
   OpenAPIObject,
   OperationObject,
   ReferenceObject,
@@ -29,11 +30,7 @@ import {
 
 export * from './generator/patchSchema';
 
-export type GenerateServiceProps = {
-  /**
-   * Swagger2/OpenAPI3 地址
-   */
-  schemaPath: string;
+export type GenerateServicePropsBase = {
   /**
    * 生成的文件夹的路径
    */
@@ -141,10 +138,6 @@ export type GenerateServiceProps = {
    * 文档权限凭证
    */
   authorization?: string;
-  /**
-   * apifox 配置
-   */
-  apifoxConfig?: GetSchemaByApifoxProps;
   /**
    * 默认为false，true时使用null代替可选值
    */
@@ -365,6 +358,21 @@ export type GenerateServiceProps = {
   };
 };
 
+/**
+ * Swagger2/OpenAPI3 地址或 Apifox 配置，两者必须填写一个
+ */
+export type GenerateServiceProps = GenerateServicePropsBase &
+  MutuallyExclusive<{
+    /**
+     * Swagger2/OpenAPI3 地址
+     */
+    schemaPath: string;
+    /**
+     * apifox 配置
+     */
+    apifoxConfig: GetSchemaByApifoxProps;
+  }>;
+
 export async function generateService({
   requestLibPath,
   schemaPath,
@@ -382,7 +390,15 @@ export async function generateService({
   ...rest
 }: GenerateServiceProps) {
   if (!schemaPath && !apifoxConfig) {
-    return;
+    throw new Error(
+      'Either schemaPath or apifoxConfig must be provided. Please provide at least one configuration option.'
+    );
+  }
+
+  if (schemaPath && apifoxConfig) {
+    throw new Error(
+      'schemaPath and apifoxConfig cannot be provided at the same time. Please provide only one configuration option.'
+    );
   }
 
   let openAPI: OpenAPIObject | null = null;
@@ -415,7 +431,7 @@ export async function generateService({
   const requestImportStatement = getImportStatement(requestLibPath);
   const serviceGenerator = new ServiceGenerator(
     {
-      schemaPath,
+      ...(schemaPath ? { schemaPath } : { apifoxConfig }),
       serversPath: './src/apis',
       requestImportStatement,
       enableLogging: false,
@@ -447,7 +463,7 @@ export async function generateService({
       isSupportParseEnumDesc: false,
       full: true,
       ...rest,
-    },
+    } as GenerateServiceProps,
     openAPI
   );
   serviceGenerator.genFile();

@@ -6,6 +6,7 @@ import type { GenerateServiceProps } from '../index';
 import { generateService } from '../index';
 import { logError } from '../log';
 import { readConfig } from '../readConfig';
+import { createMultiselectOptions } from './utils';
 
 program
   .option('-cfn, --configFileName <string>', 'config file name')
@@ -44,10 +45,9 @@ async function run() {
         intro('🎉 欢迎使用 openapi-ts-request 生成器');
         const selected = await multiselect({
           message: '请选择要生成的 service',
-          options: configs.map((config) => ({
-            value: config,
-            label: config.describe || config.schemaPath,
-          })),
+          options: createMultiselectOptions(configs) as Parameters<
+            typeof multiselect
+          >[0]['options'],
         });
 
         if (isCancel(selected)) {
@@ -55,7 +55,7 @@ async function run() {
           process.exit(0);
         }
 
-        configs = selected;
+        configs = selected as GenerateServiceProps[];
       }
 
       for (const config of configs) {
@@ -70,7 +70,9 @@ async function run() {
 
         if (result.status === 'rejected') {
           const cnf = configs[i];
-          const label = cnf.describe || cnf.schemaPath;
+          const label =
+            cnf.describe ||
+            ('schemaPath' in cnf ? cnf.schemaPath : 'Apifox Config');
           errorMsg += `${label}${label && ':'}${result.reason}\n`;
         }
       }

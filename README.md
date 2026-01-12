@@ -225,7 +225,8 @@ openapi --i ./spec.json --o ./apis
 
 | 属性 | 必填 | 类型 | 默认值 | 说明 |
 | --- | --- | --- | --- | --- |
-| schemaPath | 是 | string | - | Swagger2/OpenAPI3 地址 |
+| schemaPath | 否\* | string | - | Swagger2/OpenAPI3 地址（与 apifoxConfig 互斥，两者必填其一） |
+| apifoxConfig | 否\* | [Apifox Config](#Apifox-Config) | - | apifox 配置（与 schemaPath 互斥，两者必填其一） |
 | serversPath | 否 | string | './src/apis' | 运行结果文件夹路径 |
 | requestLibPath | 否 | string | 'axios' | 自定义请求方法路径，例如：'@/request'、'node-fetch' |
 | isSplitTypesByModule | 否 | boolean | false | 按模块拆分类型文件，开启后会生成：{module}.type.ts（各模块类型）、common.type.ts（公共类型）、enum.ts（枚举类型）、types.ts（统一导出） |
@@ -248,7 +249,6 @@ openapi --i ./spec.json --o ./apis
 | isGenJsonSchemas | 否 | boolean | false | 是否生成 JSON Schemas |
 | mockFolder | 否 | string | - | mock文件路径，例如：'./mocks' |
 | authorization | 否 | string | - | 文档权限凭证 |
-| apifoxConfig | 否 | [Apifox Config](#Apifox-Config) | - | apifox 配置 |
 | nullable | 否 | boolean | false | 使用 null 代替可选 |
 | isTranslateToEnglishTag | 否 | boolean | false | 将中文 tag 名称翻译成英文 tag 名称 |
 | isOnlyGenTypeScriptType | 否 | boolean | false | 仅生成 typescript 类型 |
