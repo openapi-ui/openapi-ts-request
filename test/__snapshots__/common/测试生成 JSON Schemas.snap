@@ -1682,7 +1682,7 @@ export function v1ApiAppAppIdRecommendedContextUsingPost({
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
   params: API.V1ApiAppAppIdRecommendedContextUsingPostParams;
-  body: API.AppRecommendedContext;
+  body: API.AppRecommendedContext2;
   options?: { [key: string]: unknown };
 }) {
   const { appID: param0, ...queryParams } = params;

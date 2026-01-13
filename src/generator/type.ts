@@ -38,6 +38,8 @@ export interface ITypeItem {
   description?: string;
   /** 类型所属的模块名称（用于拆分类型文件） */
   belongsToModules?: Set<string>;
+  /** 原始的 schema key（用于处理重名后的类型映射） */
+  originalSchemaKey?: string;
 }
 
 export type ICustomSchemaObject = SchemaObject & { isAllowed?: boolean };
