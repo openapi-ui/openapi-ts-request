@@ -543,7 +543,10 @@ export async function ${api.functionName}(${api.body ? `data: ${api.body.type}` 
 
   it('测试 OpenAPI 3.1 type 数组格式 (如 ["string", "null"])', async (ctx) => {
     await openAPI.generateService({
-      schemaPath: join(import.meta.dirname, './openapi-3.1-type-array.json'),
+      schemaPath: join(
+        import.meta.dirname,
+        './example-files/openapi-3.1-type-array.json'
+      ),
       serversPath: './apis/openapi-3.1-type-array',
       isDisplayTypeLabel: true,
     });
