@@ -1,0 +1,47 @@
+{
+  "openapi": "3.1.0",
+  "info": { "title": "OpenAPI 3.1 Type Array Test", "version": "1.0.0" },
+  "paths": {
+    "/user": {
+      "get": {
+        "summary": "Get user",
+        "operationId": "getUser",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/User" }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "User": {
+        "type": "object",
+        "properties": {
+          "idCard": {
+            "type": ["string", "null"],
+            "description": "身份证号",
+            "example": "110101199001011234"
+          },
+          "name": { "type": ["string", "null"], "description": "姓名" },
+          "age": { "type": ["integer", "null"], "description": "年龄" },
+          "isActive": {
+            "type": ["boolean", "null"],
+            "description": "是否激活"
+          },
+          "tags": {
+            "type": ["array", "null"],
+            "items": { "type": "string" },
+            "description": "标签"
+          }
+        }
+      }
+    }
+  }
+}

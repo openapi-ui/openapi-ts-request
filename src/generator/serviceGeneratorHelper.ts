@@ -112,7 +112,18 @@ export function resolveEnumObject(params: {
   let enumStr = '';
   let enumLabelTypeStr = '';
 
-  if (numberEnum.includes(schemaObject.type) || isAllNumber(enumArray)) {
+  // 获取实际的类型（处理 OpenAPI 3.1 的 type 数组情况）
+  const getActualType = (type: typeof schemaObject.type): string => {
+    if (Array.isArray(type)) {
+      // 如果是数组，返回第一个非 null 类型
+      return type.find((t) => t !== 'null') || 'string';
+    }
+    return type;
+  };
+
+  const actualType = getActualType(schemaObject.type);
+
+  if (numberEnum.includes(actualType) || isAllNumber(enumArray)) {
     if (config.isSupportParseEnumDesc && schemaObject.description) {
       const enumMap = parseDescriptionEnum(schemaObject.description);
       enumStr = `{${map(enumArray, (value) => {
@@ -151,7 +162,7 @@ export function resolveEnumObject(params: {
       return `${value}:"${enumLabel}"`;
     }).join(',')}}`;
   } else {
-    if (numberEnum.includes(schemaObject.type) || isAllNumber(enumArray)) {
+    if (numberEnum.includes(actualType) || isAllNumber(enumArray)) {
       if (
         (config.isSupportParseEnumDesc || config.supportParseEnumDescByReg) &&
         schemaObject.description
@@ -334,7 +345,13 @@ export function resolveRefObject<T>(params: {
       resolvedType = (refResolved as { type?: string })?.type;
     } else {
       const schemaObj: SchemaObject = schema;
-      resolvedType = schemaObj.type;
+      // 处理 OpenAPI 3.1 的 type 数组情况
+      if (Array.isArray(schemaObj.type)) {
+        // 如果是数组，使用第一个非 null 类型
+        resolvedType = schemaObj.type.find((t) => t !== 'null') || 'string';
+      } else {
+        resolvedType = schemaObj.type;
+      }
     }
 
     const finalSchema = schema as SchemaObject;

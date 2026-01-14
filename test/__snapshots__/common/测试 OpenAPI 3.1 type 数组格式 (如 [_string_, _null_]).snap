@@ -1,0 +1,58 @@
+/* eslint-disable */
+// @ts-ignore
+import * as API from './types';
+
+export function displayUser(field: keyof API.User) {
+  return {
+    idCard: '身份证号',
+    name: '姓名',
+    age: '年龄',
+    isActive: '是否激活',
+    tags: '标签',
+  }[field];
+}
+/* eslint-disable */
+// @ts-ignore
+import request from 'axios';
+
+import * as API from './types';
+
+/** Get user GET /user */
+export function userUsingGet({
+  options,
+}: {
+  options?: { [key: string]: unknown };
+}) {
+  return request<API.User>('/user', {
+    method: 'GET',
+    ...(options || {}),
+  });
+}
+/* eslint-disable */
+// @ts-ignore
+export * from './types';
+export * from './displayTypeLabel';
+
+export * from './getUser';
+/* eslint-disable */
+// @ts-ignore
+
+export type User = {
+  /** 身份证号 */
+  idCard?: string | null;
+  /** 姓名 */
+  name?: string | null;
+  /** 年龄 */
+  age?: number | null;
+  /** 是否激活 */
+  isActive?: boolean | null;
+  /** 标签 */
+  tags?: string[] | null;
+};
+
+export type UserUsingGetResponses = {
+  /**
+   * Success
+   */
+  200: User;
+};

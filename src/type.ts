@@ -18,7 +18,8 @@ export type MutuallyExclusiveWithFallback<T, N> = {
 type Modify<T, R> = Omit<T, keyof R> & R;
 
 type ICustomBaseSchemaObject = {
-  type: ISchemaObjectType;
+  // OpenAPI 3.1 支持 type 为数组，例如 ["string", "null"]
+  type: ISchemaObjectType | ISchemaObjectType[];
   format?: ISchemaObjectFormat;
   additionalProperties?: boolean | ISchemaObject;
   properties?: {

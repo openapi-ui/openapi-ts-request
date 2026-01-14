@@ -144,6 +144,20 @@ export function getDefaultType(
   const dateEnum = ['Date', 'date', 'dateTime', 'date-time', 'datetime'];
   const stringEnum = ['string', 'email', 'password', 'url', 'byte', 'binary'];
 
+  // OpenAPI 3.1 支持 type 为数组，例如 ["string", "null"]
+  if (Array.isArray(type)) {
+    return type
+      .map((t) => {
+        // 为数组中的每个类型创建一个临时的 schemaObject
+        const tempSchema: ISchemaObject = {
+          ...schemaObject,
+          type: t,
+        };
+        return getDefaultType(tempSchema, namespace, schemas);
+      })
+      .join(' | ');
+  }
+
   if (type === 'null') {
     return 'null';
   }
