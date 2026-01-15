@@ -3294,7 +3294,10 @@ export type ChatMessageReq = {
 
 export type QuestionRecommendReq = {
   conversation_id?: string;
-  /** Query          string `json:"query"`Answer         string `json:"answer"` */
+  /**
+   * Query          string `json:"query"`
+   * Answer         string `json:"answer"`
+   */
   user?: string;
 };
 
@@ -3489,10 +3492,26 @@ export type AppDetail = {
   workspaceID?: string;
 };
 
+export type AppModelConfigPromptPrefix = {
+  background?: string;
+  role?: string;
+  switchRecommendedQuestion?: boolean;
+};
+
 export type AppModelConfigs = {
   configs?: ModelConfigsMap;
   prePrompt?: string;
   providerId?: string;
+};
+
+export type AppRecommendedContext = {
+  appID?: string;
+  appRecommendedContextID?: string;
+  context?: string;
+  createdAt?: string;
+  description?: string;
+  name?: string;
+  updatedAt?: string;
 };
 
 export type AppRecommendedContext2 = {
@@ -3867,22 +3886,6 @@ export type WorkspaceGroup = {
 export type WxExtra = {
   encodingAESKey?: string;
   token?: string;
-};
-
-export type AppModelConfigPromptPrefix = {
-  background?: string;
-  role?: string;
-  switchRecommendedQuestion?: boolean;
-};
-
-export type AppRecommendedContext = {
-  appID?: string;
-  appRecommendedContextID?: string;
-  context?: string;
-  createdAt?: string;
-  description?: string;
-  name?: string;
-  updatedAt?: string;
 };
 /* eslint-disable */
 // @ts-ignore
@@ -5581,7 +5584,7 @@ export function v1ApiAppAppIdRecommendedContextUsingPost({
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
   params: API.V1ApiAppAppIdRecommendedContextUsingPostParams;
-  body: API.AppRecommendedContext;
+  body: API.AppRecommendedContext2;
   options?: { [key: string]: unknown };
 }) {
   const { appID: param0, ...queryParams } = params;

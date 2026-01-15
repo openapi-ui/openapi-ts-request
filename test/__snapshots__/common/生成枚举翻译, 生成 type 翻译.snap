@@ -1319,1846 +1319,2626 @@ export function displayWorkspaceRoleEnum(field: API.WorkspaceRole) {
 // @ts-ignore
 import * as API from './types';
 
-export function displayAddAppkeyReq(field: keyof API.AddAppkeyReq) {
-  return {
-    appid: 'appid',
-    appkey: 'appkey',
-    appsecret: 'appsecret',
-    encodingAESKey: 'encodingAESKey',
-    token: 'token',
-    type: 'wjl,dingding,feishu,wxa,wx',
-  }[field];
-}
-
-export function displayApiToken(field: keyof API.ApiToken) {
-  return {
-    apiTokenID: 'apiTokenID',
-    appID: 'appID',
-    createdAt: 'createdAt',
-    token: 'token',
-    updatedAt: 'updatedAt',
-  }[field];
-}
-
-export function displayApiTokenDataList(field: keyof API.ApiTokenDataList) {
-  return {
-    data: 'data',
-    total: 'total',
-  }[field];
-}
-
-export function displayApp(field: keyof API.App) {
-  return {
-    appID: 'appID',
-    appImage: 'appImage',
-    appStatus: 'appStatus',
-    appType: '应用类型',
-    createdAt: 'createdAt',
-    description: 'description',
-    groupID: 'groupID',
-    guidance: '开场提问引导',
-    name: 'name',
-    operator: 'operator',
-    priority: '应用优先级',
-    prologue: 'prologue',
-    recommendSwitch: 'recommendSwitch',
-    templateStatus: '是否模版',
-    updatedAt: 'updatedAt',
-    workspaceID: 'workspaceID',
-  }[field];
-}
-
-export function displayAppDataset(field: keyof API.AppDataset) {
-  return {
-    description: '描述',
-    llmDesc: 'llm描述',
-    name: '知识库名',
-  }[field];
-}
-
-export function displayAppDatasetConfig(field: keyof API.AppDatasetConfig) {
-  return {
-    appDatasetConfigID: 'appDatasetConfigID',
-    appID: 'appID',
-    createdAt: 'createdAt',
-    minScore: 'minScore',
-    searchSource: 'searchSource',
-    timeoutSecond: 'timeoutSecond',
-    topK: 'topK',
-    updatedAt: 'updatedAt',
-  }[field];
-}
-
-export function displayAppDatasetConfigs(field: keyof API.AppDatasetConfigs) {
-  return {
-    minScore: '最低分数',
-    searchSource: '知识库源，默认 warehouse',
-    timeoutSecond: '知识库查询超时时间',
-    topK: '知识库条数',
-  }[field];
-}
-
-export function displayAppDatasets(field: keyof API.AppDatasets) {
-  return {
-    appCount: 'appCount',
-    author: 'author',
-    datasetID: 'datasetID',
-    datasetName: 'datasetName',
-    docCount: 'docCount',
-    state: 'state',
-  }[field];
-}
-
-export function displayAppDetail(field: keyof API.AppDetail) {
-  return {
-    AnswerTokensCount: '消耗输出token',
-    appDatasetConfig: 'appDatasetConfig',
-    appDatasets: '数据集Id列表',
-    appGroupID: 'appGroupID',
-    appID: 'appID',
-    appImage: '应用头像',
-    appName: '应用名',
-    appPrePrompt: 'PrePrompt',
-    appPromptPrefix: 'appPromptPrefix',
-    appProvider: '模型',
-    appProviderID:
-      'AppDatasetSource   database2.AppDatasetSourceInfo     `json:"appDatasetSource"`',
-    appProviderName: '模型名',
-    appRecommendedContext: '推荐内容',
-    appStatus: 'appStatus',
-    appToken: '应用token列表',
-    configs: 'configs',
-    conversationCount: '会话总数',
-    createAt: 'createAt',
-    description: '应用描述',
-    guidance: '开场提问引导',
-    h5RandomPath: 'H5随机分享路径',
-    historyLimit: 'historyLimit',
-    messagesCount: '消息总数',
-    pcRandomPath: 'PC随机分享路径',
-    prologue: '开场白',
-    queryTokensCount: '消耗输入token',
-    switchRecommendedQuestion: 'switchRecommendedQuestion',
-    templateStatus: 'templateStatus',
-    totalTokens: '消耗总token',
-    workspaceID: 'workspaceID',
-  }[field];
-}
-
-export function displayAppMessagesCount(field: keyof API.AppMessagesCount) {
-  return {
-    total: 'total',
-  }[field];
-}
-
-export function displayAppModelConfigPromptPrefix(
-  field: keyof API.AppModelConfigPromptPrefix
-) {
-  return {
-    background: 'background',
-    role: 'role',
-    switchRecommendedQuestion: 'switchRecommendedQuestion',
-  }[field];
-}
-
-export function displayAppModelConfigs(field: keyof API.AppModelConfigs) {
-  return {
-    configs: 'configs',
-    prePrompt: 'prePrompt',
-    providerId: 'providerId',
-  }[field];
-}
-
-export function displayAppRecommendedContext(
-  field: keyof API.AppRecommendedContext
-) {
-  return {
-    appID: 'appID',
-    appRecommendedContextID: 'appRecommendedContextID',
-    context: 'context',
-    createdAt: 'createdAt',
-    description: 'description',
-    name: 'name',
-    updatedAt: 'updatedAt',
-  }[field];
-}
-
-export function displayAppRecommendedContext2(
-  field: keyof API.AppRecommendedContext2
-) {
-  return {
-    context: 'context',
-    description: 'description',
-    id: 'id',
-    name: 'name',
-  }[field];
-}
-
-export function displayAppRecommendedContext3(
-  field: keyof API.AppRecommendedContext3
-) {
-  return {
-    context: 'context',
-    description: 'description',
-    id: 'id',
-    name: 'name',
-  }[field];
-}
-
-export function displayAppRecommendedContextResp(
-  field: keyof API.AppRecommendedContextResp
-) {
-  return {
-    questions: 'questions',
-    recommendSwitch: 'recommendSwitch',
-  }[field];
-}
-
-export function displayAppResp(field: keyof API.AppResp) {
-  return {
-    appGroupID: 'appGroupID',
-    appGroupName: 'appGroupName',
-    appImage: 'appImage',
-    appStatus: 'appStatus',
-    createAt: 'createAt',
-    datasetCount: 'datasetCount',
-    description: 'description',
-    h5: 'h5',
-    id: 'id',
-    name: 'name',
-    pc: 'pc',
-    workspaceID: 'workspaceID',
-  }[field];
-}
-
-export function displayAppWithPermission(field: keyof API.AppWithPermission) {
-  return {
-    appID: 'appID',
-    appImage: 'appImage',
-    appStatus: 'appStatus',
-    appType: '应用类型',
-    createdAt: 'createdAt',
-    description: 'description',
-    groupID: 'groupID',
-    guidance: '开场提问引导',
-    isAppAdmin: 'isAppAdmin',
-    name: 'name',
-    operator: 'operator',
-    priority: '应用优先级',
-    prologue: 'prologue',
-    recommendSwitch: 'recommendSwitch',
-    templateStatus: '是否模版',
-    updatedAt: 'updatedAt',
-    workspaceID: 'workspaceID',
-  }[field];
-}
-
-export function displayAttentionDataCountResp(
-  field: keyof API.AttentionDataCountResp
-) {
-  return {
-    total: 'total',
-  }[field];
-}
-
-export function displayAttentionUser(field: keyof API.AttentionUser) {
-  return {
-    email: 'email',
-    isAttentionUser: 'isAttentionUser',
-    phone: 'phone',
-    userID: 'userID',
-    userName: 'userName',
-  }[field];
-}
-
-export function displayAttentionUserResp(field: keyof API.AttentionUserResp) {
-  return {
-    email: 'email',
-    lastMessageTime: 'lastMessageTime',
-    phone: 'phone',
-    userID: 'userID',
-    userName: 'userName',
-  }[field];
-}
-
-export function displayAuthAuthorizeUsingGetParams(
-  field: keyof API.AuthAuthorizeUsingGetParams
-) {
-  return {
-    redirect_uri: '业务回调地址',
-    state: '保持请求和回调的状态，授权成功后会回传该参数',
-  }[field];
-}
-
-export function displayAuthExchangeUsingGetParams(
-  field: keyof API.AuthExchangeUsingGetParams
-) {
-  return {
-    code: 'code',
-    redirect_uri: '业务回调地址',
-  }[field];
-}
-
-export function displayChat(field: keyof API.Chat) {
-  return {
-    conversation_id: 'conversation_id',
-    inputs: 'inputs',
-    isIgnore: 'isIgnore',
-    query: 'query',
-    response_mode: 'response_mode',
-    user: 'user',
-  }[field];
-}
-
-export function displayChatMessageReq(field: keyof API.ChatMessageReq) {
-  return {
-    prompt: 'prompt',
-    query: 'query',
-  }[field];
-}
-
-export function displayConversationLogsResp(
-  field: keyof API.ConversationLogsResp
-) {
-  return {
-    AnswerTokensCount: '消耗输出token',
-    appID: 'appID',
-    conversationID: 'conversationID',
-    conversationName: 'conversationName',
-    createdAt: 'createdAt',
-    messagesCount: 'messagesCount',
-    queryTokensCount: '消耗输入token',
-    totalTokens: '消耗总token',
-    userID: 'userID',
-    userInfo: 'userInfo',
-  }[field];
-}
-
-export function displayConversationMsg(field: keyof API.ConversationMsg) {
-  return {
-    conversationId: 'conversationId',
-    createAt: 'createAt',
-    name: 'name',
-    userId: 'userId',
-  }[field];
-}
-
-export function displayConversationResp(field: keyof API.ConversationResp) {
-  return {
-    AnswerTokensCount: '消耗输出token',
-    appID: 'appID',
-    appName: 'appName',
-    conversationID: 'conversationID',
-    conversationName: 'conversationName',
-    createdAt: 'createdAt',
-    lastMessagesTime: 'lastMessagesTime',
-    messagesCount: 'messagesCount',
-    queryTokensCount: '消耗输入token',
-    totalTokens: '消耗总token',
-    userID: 'userID',
-    userInfo: 'userInfo',
-  }[field];
-}
-
-export function displayCopyAppReq(field: keyof API.CopyAppReq) {
-  return {
-    appID: 'appID',
-    workspaceID: 'workspaceID',
-  }[field];
-}
-
-export function displayCreateApiTokenRESP(field: keyof API.CreateApiTokenRESP) {
-  return {
-    token: 'token',
-  }[field];
-}
-
-export function displayCreateAppReq(field: keyof API.CreateAppReq) {
-  return {
-    description: 'description',
-    guidance: 'guidance',
-    name: 'name',
-    prologue: 'prologue',
-  }[field];
-}
-
-export function displayCreateAppReqV2(field: keyof API.CreateAppReqV2) {
-  return {
-    appDescription: 'appDescription',
-    appGroupID: 'appGroupID',
-    appGuidance: '提示查询',
-    appImage: 'appImage',
-    appName: 'appName',
-    appPrologue: '开场白',
-    historyLimit: 'historyLimit',
-    modelConfigs: 'modelConfigs',
-    prePrompt: 'prePrompt',
-    providerId: 'providerId',
-  }[field];
-}
-
-export function displayCreateAttentionReq(field: keyof API.CreateAttentionReq) {
-  return {
-    followeeUserIDList: 'followeeUserIDList',
-    iamID: 'iamID',
-  }[field];
-}
-
-export function displayCreateSharePathRESP(
-  field: keyof API.CreateSharePathRESP
-) {
-  return {
-    path: 'path',
-  }[field];
-}
-
-export function displayData(field: keyof API.Data) {
-  return {
-    appkey: 'appkey',
-    appsecret: 'appsecret',
-    state: '0-未开启，1-开启',
-    url: 'url',
-    wxExtra: 'wxExtra',
-  }[field];
-}
-
-export function displayDatasetData(field: keyof API.DatasetData) {
-  return {
-    author: 'author',
-    description: 'description',
-    docCount: 'docCount',
-    document_count: 'document_count',
-    id: 'id',
-    name: 'name',
-    permission: 'permission',
-    state: 'state',
-    uuid: 'uuid',
-    word_count: 'word_count',
-  }[field];
-}
-
-export function displayDeleteAttentionReq(field: keyof API.DeleteAttentionReq) {
-  return {
-    followeeUserIDList: 'followeeUserIDList',
-    iamID: 'iamID',
-  }[field];
-}
-
-export function displayDeleteMemberBody(field: keyof API.DeleteMemberBody) {
-  return {
-    userID: '用户id',
-  }[field];
-}
-
-export function displayDeleteResp(field: keyof API.DeleteResp) {
-  return {
-    msg: 'msg',
-  }[field];
-}
-
-export function displayErrorResp(field: keyof API.ErrorResp) {
-  return {
-    msg: 'msg',
-    type: 'type',
-  }[field];
-}
-
-export function displayExchangeTokenRESP(field: keyof API.ExchangeTokenRESP) {
-  return {
-    access_token: '访问令牌',
-    expires_in: '访问令牌过期时间',
-    refresh_expires_in: '刷新令牌过期时间',
-    refresh_token: '刷新令牌',
-    token_type: '令牌类型',
-  }[field];
-}
-
-export function displayFeedback(field: keyof API.Feedback) {
-  return {
-    comment: '评论',
-    conversation_id: 'conversation_id',
-    createdAt: 'createdAt',
-    message_id: 'message_id',
-    rating: 'like/unlike',
-    score: '打分',
-    updatedAt: 'updatedAt',
-  }[field];
-}
-
-export function displayFeedbacksReqBody(field: keyof API.FeedbacksReqBody) {
-  return {
-    comment: '评论',
-    conversation_id: 'conversation_id',
-    rating: 'like/unlike',
-    score: '分数1-10',
-  }[field];
-}
-
-export function displayFilestreamResp(field: keyof API.FilestreamResp) {
-  return {
-    conversation_id: 'conversation_id',
-  }[field];
-}
-
-export function displayGetApiTokenByRandomPathRESP(
-  field: keyof API.GetApiTokenByRandomPathRESP
-) {
-  return {
-    apiTokenID: 'apiTokenID',
-    appID: 'appID',
-    appName: 'appName',
-    createdAt: 'createdAt',
-    recommendedContext: 'recommendedContext',
-    switchRecommendedContext: 'switchRecommendedContext',
-    switchRecommendedQuestion: 'switchRecommendedQuestion',
-    token: 'token',
-    updatedAt: 'updatedAt',
-  }[field];
-}
-
-export function displayGetAppKeyReq(field: keyof API.GetAppKeyReq) {
-  return {
-    appid: 'appid',
-    type: 'wjl,dingding,feishu,wxa,wx',
-  }[field];
-}
-
-export function displayGetAttentionDataCountReq(
-  field: keyof API.GetAttentionDataCountReq
-) {
-  return {
-    appIDList: 'appIDList',
-    iamID: 'iamID',
-    userID: 'userID',
-  }[field];
-}
-
-export function displayGetImagePreSignedUrlResp(
-  field: keyof API.GetImagePreSignedUrlResp
-) {
-  return {
-    appImage: 'appImage',
-    preSignedPutUrl: 'preSignedPutUrl',
-  }[field];
-}
-
-export function displayGuidances(field: keyof API.Guidances) {
-  return {
-    items: 'items',
-  }[field];
-}
-
-export function displayHistoryInfo(field: keyof API.HistoryInfo) {
-  return {
-    Rating: 'like/unlike',
-    answer: 'answer',
-    answerToken: 'answerToken',
-    comment: '评论',
-    createAt: 'createAt',
-    format: 'format',
-    messageId: 'messageId',
-    query: 'query',
-    queryToken: 'queryToken',
-    score: '打分',
-    totalToken: 'totalToken',
-  }[field];
-}
-
-export function displayIAMUserInfo(field: keyof API.IAMUserInfo) {
-  return {
-    createdTime: '创建时间',
-    email: 'Cid         string `json:"cid"`',
-    id: '用户id',
-    idpId: 'idpId',
-    isAdmin: '是否iam管理员',
-    isAppAdmin: 'isAppAdmin',
-    isRkUser: '是否罗克佳华人员',
-    isSuperUser: '是否超级管理员',
-    isSystemAdmin: 'isSystemAdmin',
-    lastTime: 'Deleted     int32  `json:"deleted"`     // 逻辑删除',
-    loginName: '登录名',
-    msgType: '消息类型',
-    phone: '电话',
-    rkUserCard: '罗克佳华用户账号',
-    sign: '个性签名',
-    status: '状态：1可用；0未激活；-1禁用',
-    updatedTime: '修改时间',
-    useType: '用户类型',
-    userName: '用户名',
-    wechatAppId: 'wechatAppId',
-    wechatSwitch: 'wechatSwitch',
-    wechatgzhSwitch: 'wechatgzhSwitch',
-  }[field];
-}
-
-export function displayListAllAttentionUser(
-  field: keyof API.ListAllAttentionUser
-) {
-  return {
-    data: 'data',
-    total: 'total',
-  }[field];
-}
-
-export function displayListAppDatasetConfigResp(
-  field: keyof API.ListAppDatasetConfigResp
-) {
-  return {
-    data: 'data',
-    total: 'total',
-  }[field];
-}
-
-export function displayListAppDatasets(field: keyof API.ListAppDatasets) {
-  return {
-    Data: 'Data',
-    total: 'total',
-  }[field];
-}
-
-export function displayListAppResp(field: keyof API.ListAppResp) {
-  return {
-    data: 'data',
-    total: 'total',
-  }[field];
-}
-
-export function displayListAttentionConversationReq(
-  field: keyof API.ListAttentionConversationReq
-) {
-  return {
-    appIDList: 'appIDList',
-    iamID: 'iamID',
-    offset: 'offset',
-    size: 'size',
-    userID: 'userID',
-  }[field];
-}
-
-export function displayListAttentionUserResp(
-  field: keyof API.ListAttentionUserResp
-) {
-  return {
-    data: 'data',
-    total: 'total',
-  }[field];
-}
-
-export function displayListConversationLogsResp(
-  field: keyof API.ListConversationLogsResp
-) {
-  return {
-    data: 'data',
-    total: 'total',
-  }[field];
-}
-
-export function displayListConversationResp(
-  field: keyof API.ListConversationResp
-) {
-  return {
-    data: 'data',
-    total: 'total',
-  }[field];
-}
-
-export function displayListDatasetsResp(field: keyof API.ListDatasetsResp) {
-  return {
-    data: 'data',
-    has_more: 'has_more',
-    offset: 'offset',
-    size: 'size',
-    total: 'total',
-  }[field];
-}
-
-export function displayListFeedbacksResp(field: keyof API.ListFeedbacksResp) {
-  return {
-    data: 'data',
-    total: 'total',
-  }[field];
-}
-
-export function displayListMemberRESP(field: keyof API.ListMemberRESP) {
-  return {
-    data: 'data',
-    total: 'total',
-  }[field];
-}
-
-export function displayListProviderResp(field: keyof API.ListProviderResp) {
-  return {
-    data: 'data',
-    total: 'total',
-  }[field];
-}
-
-export function displayListUserWithAppRESP(
-  field: keyof API.ListUserWithAppRESP
-) {
-  return {
-    data: 'data',
-    total: 'total',
-  }[field];
-}
-
-export function displayListWorkspaceGroup(field: keyof API.ListWorkspaceGroup) {
-  return {
-    data: 'data',
-  }[field];
-}
-
-export function displayListWorkspacePermissions(
-  field: keyof API.ListWorkspacePermissions
-) {
-  return {
-    data: 'data',
-    total: 'total',
-  }[field];
-}
-
-export function displayMemberBody(field: keyof API.MemberBody) {
-  return {
-    role: '角色(system_admin-系统管理员;system_user-系统管普通用户;app_admin-应用管理员;app_user-应用普通用户)',
-    userID: '用户id',
-  }[field];
-}
-
-export function displayMemberWithRoleData(field: keyof API.MemberWithRoleData) {
-  return {
-    appRole: '应用角色',
-    createdAt: 'createdAt',
-    email: 'email',
-    idpID: 'idpID',
-    isAppAdmin: '是否是app管理员',
-    isSystemAdmin: '是否是系统管理员',
-    operator: 'operator',
-    phone: 'phone',
-    role: '角色(系统管理员、系统普通用户)',
-    updatedAt: 'updatedAt',
-    userID: 'iam 用户id',
-    userName: 'userName',
-  }[field];
-}
-
-export function displayMessagesCountResp(field: keyof API.MessagesCountResp) {
-  return {
-    messagesCount: '请求消耗token',
-    time: 'time',
-  }[field];
-}
-
-export function displayMessagesTokenResp(field: keyof API.MessagesTokenResp) {
-  return {
-    answerToken: '回答消耗token',
-    queryToken: '请求消耗token',
-    time: 'time',
-    totalToken: 'totalToken',
-  }[field];
-}
-
-export function displayModelConfigsMap(field: keyof API.ModelConfigsMap) {
-  return {
-    model_type:
-      '模型(ERNIE-Bot-4;ERNIE-Bot;ERNIE-Bot-turbo;gpt-3.5-turbo-16k;gpt-4-1106-preview)',
-    penalty_score:
-      '通过对已生成的token增加惩罚，减少重复生成的现象。取值范围：[1.0, 2.0]',
-    temperature:
-      '较高的数值会使输出更加随机，而较低的数值会使其更加集中和确定。默认0.95，范围 (0, 1.0]',
-    tools_call: 'tools call',
-    top_p:
-      '影响输出文本的多样性，取值越大，生成文本的多样性越强。取值范围 [0, 1.0]',
-  }[field];
-}
-
-export function displayModelConfigsMap2(field: keyof API.ModelConfigsMap2) {
-  return {
-    model_type:
-      '模型(ERNIE-Bot-4;ERNIE-Bot;ERNIE-Bot-turbo;gpt-3.5-turbo-16k;gpt-4-1106-preview)',
-    penalty_score:
-      '通过对已生成的token增加惩罚，减少重复生成的现象。取值范围：[1.0, 2.0]',
-    temperature:
-      '较高的数值会使输出更加随机，而较低的数值会使其更加集中和确定。默认0.95，范围 (0, 1.0]',
-    tools_call: 'tools_call',
-    top_p:
-      '影响输出文本的多样性，取值越大，生成文本的多样性越强。取值范围 [0, 1.0]',
-  }[field];
-}
-
-export function displayProviderResp(field: keyof API.ProviderResp) {
-  return {
-    name: '名字',
-    providerID: 'providerID',
-    subType: 'subType',
-    type: '类型',
-  }[field];
-}
-
-export function displayQueryTokenResp(field: keyof API.QueryTokenResp) {
-  return {
-    AnswerTokensCount: '消耗输出token',
-    queryTokensCount: '消耗输入token',
-    totalTokens: '消耗总token',
-  }[field];
-}
-
-export function displayQuestionRecommendReq(
-  field: keyof API.QuestionRecommendReq
-) {
-  return {
-    conversation_id: 'conversation_id',
-    user: 'Query          string `json:"query"`Answer         string `json:"answer"`',
-  }[field];
-}
-
-export function displayRecommendQuestionAndContext(
-  field: keyof API.RecommendQuestionAndContext
-) {
-  return {
-    contexts: 'contexts',
-    questions: 'questions',
-  }[field];
-}
-
-export function displayRefreshTokenBody(field: keyof API.RefreshTokenBody) {
-  return {
-    refreshToken: 'refreshToken',
-  }[field];
-}
-
-export function displayReleaseDiscoverReq(field: keyof API.ReleaseDiscoverReq) {
-  return {
-    alterAppID: 'alterAppID',
-    appType: '应用类型',
-    templateStatus: '是否作为模版 TRUE:作为模版；FALSE:不作为',
-  }[field];
-}
-
-export function displayResponseData(field: keyof API.ResponseData) {
-  return {
-    answer: 'answer',
-    conversation_id: 'conversation_id',
-    created_at: 'created_at',
-    event: 'event',
-    id: 'id',
-    trace_id: 'trace_id',
-  }[field];
-}
-
-export function displayResponseRecommendData(
-  field: keyof API.ResponseRecommendData
-) {
-  return {
-    answer: 'answer',
-    conversation_id: 'conversation_id',
-    created_at: 'created_at',
-    event: 'event',
-    id: 'id',
-    trace_id: 'trace_id',
-  }[field];
-}
-
-export function displaySpeechToTextResp(field: keyof API.SpeechToTextResp) {
-  return {
-    text: '转化的结果',
-  }[field];
-}
-
-export function displayTextToSpeechReq(field: keyof API.TextToSpeechReq) {
-  return {
-    text: '需要转的文字',
-  }[field];
-}
-
-export function displayUpdateAppGroup(field: keyof API.UpdateAppGroup) {
-  return {
-    appGroupID: 'appGroupID',
-  }[field];
-}
-
-export function displayUpdateAppKeyStateReq(
-  field: keyof API.UpdateAppKeyStateReq
-) {
-  return {
-    appid: 'appid',
-    state: '0-关闭，1-启动',
-    type: 'wjl,dingding,feishu',
-  }[field];
-}
-
-export function displayUpdateAppReq(field: keyof API.UpdateAppReq) {
-  return {
-    appDescription: 'appDescription',
-    appGroupID: 'appGroupID',
-    appImage: 'appImage',
-    appName: 'appName',
-  }[field];
-}
-
-export function displayUpdateAppReqV2(field: keyof API.UpdateAppReqV2) {
-  return {
-    appGroupID: 'appGroupID',
-    appGuidance: '提示查询',
-    appPrologue: '开场白',
-    appRecommendedContexts: '推荐内容',
-    historyLimit: 'historyLimit',
-    modelConfigs: 'modelConfigs',
-    prePrompt: 'prePrompt',
-    providerId: 'providerId',
-    recommendSwitch: 'recommendSwitch',
-  }[field];
-}
-
-export function displayUpdateAppStatusReq(field: keyof API.UpdateAppStatusReq) {
-  return {
-    appStatus: 'PUBLIC:公开；PRIVATE:私有',
-  }[field];
-}
-
-export function displayUpdateUserRoleBody(field: keyof API.UpdateUserRoleBody) {
-  return {
-    role: '角色(system_admin-系统管理员;system_user-系统管普通用户;app_admin-应用管理员;app_user-应用普通用户)',
-    userID: '用户id',
-  }[field];
-}
-
-export function displayUser(field: keyof API.User) {
-  return {
-    createdAt: 'createdAt',
-    email: 'email',
-    idpID: 'idpID',
-    operator: 'operator',
-    phone: 'phone',
-    role: '角色(系统管理员、系统普通用户)',
-    updatedAt: 'updatedAt',
-    userID: 'iam 用户id',
-    userName: 'userName',
-  }[field];
-}
-
-export function displayUserWithAppData(field: keyof API.UserWithAppData) {
-  return {
-    appWithPermissionList: 'appWithPermissionList',
-    createdAt: 'createdAt',
-    email: 'email',
-    idpID: 'idpID',
-    isSystemAdmin: 'isSystemAdmin',
-    operator: 'operator',
-    phone: 'phone',
-    role: '角色(系统管理员、系统普通用户)',
-    updatedAt: 'updatedAt',
-    userID: 'iam 用户id',
-    userName: 'userName',
-  }[field];
-}
-
-export function displayV1ApiAppAppIdApiTokenUsingGetParams(
-  field: keyof API.V1ApiAppAppIdApiTokenUsingGetParams
-) {
-  return {
-    appID: '应用id',
-    size: '每页大小',
-    offset: '分页',
-  }[field];
-}
-
-export function displayV1ApiAppAppIdApiTokenUsingPostParams(
-  field: keyof API.V1ApiAppAppIdApiTokenUsingPostParams
-) {
-  return {
-    appID: '应用id',
-  }[field];
-}
-
-export function displayV1ApiAppAppIdDatasetConfigsUsingDeleteParams(
-  field: keyof API.V1ApiAppAppIdDatasetConfigsUsingDeleteParams
-) {
-  return {
-    appID: '应用id',
-    appDatasetConfigID: '应用知识库配置id',
-  }[field];
-}
-
-export function displayV1ApiAppAppIdDatasetConfigsUsingGetParams(
-  field: keyof API.V1ApiAppAppIdDatasetConfigsUsingGetParams
-) {
-  return {
-    appID: '应用id',
-  }[field];
-}
-
-export function displayV1ApiAppAppIdDatasetConfigsUsingPostParams(
-  field: keyof API.V1ApiAppAppIdDatasetConfigsUsingPostParams
-) {
-  return {
-    appID: '应用id',
-  }[field];
-}
-
-export function displayV1ApiAppAppIdDatasetConfigsUsingPutParams(
-  field: keyof API.V1ApiAppAppIdDatasetConfigsUsingPutParams
-) {
-  return {
-    appID: '应用id',
-  }[field];
-}
-
-export function displayV1ApiAppAppIdDatasetsListUsingGetParams(
-  field: keyof API.V1ApiAppAppIdDatasetsListUsingGetParams
-) {
-  return {
-    appID: '应用id',
-    size: 'size',
-    offset: 'offset',
-  }[field];
-}
-
-export function displayV1ApiAppAppIdDatasetsUsingDeleteParams(
-  field: keyof API.V1ApiAppAppIdDatasetsUsingDeleteParams
-) {
-  return {
-    appID: '应用id',
-    datasetID: '数据集id',
-  }[field];
-}
-
-export function displayV1ApiAppAppIdDatasetsUsingPostParams(
-  field: keyof API.V1ApiAppAppIdDatasetsUsingPostParams
-) {
-  return {
-    appID: '应用id',
-  }[field];
-}
-
-export function displayV1ApiAppAppIdDetailsUsingGetParams(
-  field: keyof API.V1ApiAppAppIdDetailsUsingGetParams
-) {
-  return {
-    appID: '应用id',
-  }[field];
-}
-
-export function displayV1ApiAppAppIdHourlyMessagesUsingGetParams(
-  field: keyof API.V1ApiAppAppIdHourlyMessagesUsingGetParams
-) {
-  return {
-    appID: '应用id',
-    starTimestamp: '开始时间，秒级时间戳',
-    endTimestamp: '结束时间，秒级时间戳',
-  }[field];
-}
-
-export function displayV1ApiAppAppIdHourlyTokenUsingGetParams(
-  field: keyof API.V1ApiAppAppIdHourlyTokenUsingGetParams
-) {
-  return {
-    appID: '应用id',
-    starTimestamp: '开始时间，秒级时间戳',
-    endTimestamp: '结束时间，秒级时间戳',
-  }[field];
-}
-
-export function displayV1ApiAppAppIdLogsConversationIdMessagesUsingGetParams(
-  field: keyof API.V1ApiAppAppIdLogsConversationIdMessagesUsingGetParams
-) {
-  return {
-    appID: '应用id',
-    conversationID: '会话id',
-  }[field];
-}
-
-export function displayV1ApiAppAppIdLogsUsingGetParams(
-  field: keyof API.V1ApiAppAppIdLogsUsingGetParams
-) {
-  return {
-    appID: '应用id',
-    conversationID: '会话id',
-    endTimestamp: '结束时间',
-    pageOffset: '页数1开始',
-    pageSize: '每页数量',
-    providerID: '模型id',
-    starTimestamp: '开始时间',
-    userID: '用户id',
-  }[field];
-}
-
-export function displayV1ApiAppAppIdMemberRoleUsingPutParams(
-  field: keyof API.V1ApiAppAppIdMemberRoleUsingPutParams
-) {
-  return {
-    appID: '应用id',
-  }[field];
-}
-
-export function displayV1ApiAppAppIdMemberUsingDeleteParams(
-  field: keyof API.V1ApiAppAppIdMemberUsingDeleteParams
-) {
-  return {
-    appID: '应用id',
-  }[field];
-}
-
-export function displayV1ApiAppAppIdMemberUsingGetParams(
-  field: keyof API.V1ApiAppAppIdMemberUsingGetParams
-) {
-  return {
-    appID: '应用id',
-    size: '每页大小',
-    offset: '分页',
-  }[field];
-}
-
-export function displayV1ApiAppAppIdMemberUsingPostParams(
-  field: keyof API.V1ApiAppAppIdMemberUsingPostParams
-) {
-  return {
-    appID: '应用id',
-  }[field];
-}
-
-export function displayV1ApiAppAppIdMessagesUsingGetParams(
-  field: keyof API.V1ApiAppAppIdMessagesUsingGetParams
-) {
-  return {
-    appID: '应用id',
-    starTimestamp: '开始时间，秒级时间戳',
-    endTimestamp: '结束时间，秒级时间戳',
-  }[field];
-}
-
-export function displayV1ApiAppAppIdModelConfigsUsingPostParams(
-  field: keyof API.V1ApiAppAppIdModelConfigsUsingPostParams
-) {
-  return {
-    appID: '应用id',
-  }[field];
-}
-
-export function displayV1ApiAppAppIdModelConfigsUsingPutParams(
-  field: keyof API.V1ApiAppAppIdModelConfigsUsingPutParams
-) {
-  return {
-    appID: '应用id',
-  }[field];
-}
-
-export function displayV1ApiAppAppIdModelPromptUsingPostParams(
-  field: keyof API.V1ApiAppAppIdModelPromptUsingPostParams
-) {
-  return {
-    appID: '应用id',
-  }[field];
-}
-
-export function displayV1ApiAppAppIdOpenApiDeleteUsingDeleteParams(
-  field: keyof API.V1ApiAppAppIdOpenApiDeleteUsingDeleteParams
-) {
-  return {
-    appID: '应用id',
-  }[field];
-}
-
-export function displayV1ApiAppAppIdPluginUsingPutParams(
-  field: keyof API.V1ApiAppAppIdPluginUsingPutParams
-) {
-  return {
-    appID: '应用id',
-  }[field];
-}
-
-export function displayV1ApiAppAppIdRecommendedContextUsingGetParams(
-  field: keyof API.V1ApiAppAppIdRecommendedContextUsingGetParams
-) {
-  return {
-    appID: '应用id',
-  }[field];
-}
-
-export function displayV1ApiAppAppIdRecommendedContextUsingPostParams(
-  field: keyof API.V1ApiAppAppIdRecommendedContextUsingPostParams
-) {
-  return {
-    appID: '应用id',
-  }[field];
-}
-
-export function displayV1ApiAppAppIdShareUsingPutParams(
-  field: keyof API.V1ApiAppAppIdShareUsingPutParams
-) {
-  return {
-    appID: '应用id',
-    isH5: '是否h5',
-  }[field];
-}
-
-export function displayV1ApiAppAppIdTokenUsingGetParams(
-  field: keyof API.V1ApiAppAppIdTokenUsingGetParams
-) {
-  return {
-    appID: '应用id',
-    starTimestamp: '开始时间，秒级时间戳',
-    endTimestamp: '结束时间，秒级时间戳',
-  }[field];
-}
-
-export function displayV1ApiAppAppIdUpdateStatusUsingPutParams(
-  field: keyof API.V1ApiAppAppIdUpdateStatusUsingPutParams
-) {
-  return {
-    appID: '应用id',
-  }[field];
-}
-
-export function displayV1ApiAppAppIdUpdateUsingPutParams(
-  field: keyof API.V1ApiAppAppIdUpdateUsingPutParams
-) {
-  return {
-    appID: '应用id',
-  }[field];
-}
-
-export function displayV1ApiAppH5ShareApiTokenUsingGetParams(
-  field: keyof API.V1ApiAppH5ShareApiTokenUsingGetParams
-) {
-  return {
-    randomPath: '分享的随机path',
-  }[field];
-}
-
-export function displayV1ApiAppIdCostUsingPostParams(
-  field: keyof API.V1ApiAppIdCostUsingPostParams
-) {
-  return {
-    appID: '应用id',
-    conversationID: '会话id',
-    endTimestamp: '结束时间',
-    pageOffset: '页数1开始',
-    pageSize: '每页数量',
-    providerID: '模型id',
-    starTimestamp: '开始时间',
-    userID: '用户id',
-  }[field];
-}
-
-export function displayV1ApiAppListPrivateUsingGetParams(
-  field: keyof API.V1ApiAppListPrivateUsingGetParams
-) {
-  return {
-    onlyConversations: '是否只查看会话过的应用',
-  }[field];
-}
-
-export function displayV1ApiAppListPublicUsingGetParams(
-  field: keyof API.V1ApiAppListPublicUsingGetParams
-) {
-  return {
-    onlyConversations: '是否只查看会话过的应用',
-  }[field];
-}
-
-export function displayV1ApiAppShareApiTokenUsingGetParams(
-  field: keyof API.V1ApiAppShareApiTokenUsingGetParams
-) {
-  return {
-    randomPath: '分享的随机path',
-  }[field];
-}
-
-export function displayV1ApiAttentionAppListUsingGetParams(
-  field: keyof API.V1ApiAttentionAppListUsingGetParams
-) {
-  return {
-    iamID: 'IAM用户id',
-  }[field];
-}
-
-export function displayV1ApiAttentionMessagesHistoryUsingGetParams(
-  field: keyof API.V1ApiAttentionMessagesHistoryUsingGetParams
-) {
-  return {
-    iamID: 'IAM ID',
-    appID: '应用id',
-    conversationID: '会话id',
-  }[field];
-}
-
-export function displayV1ApiAttentionUserAllUsingGetParams(
-  field: keyof API.V1ApiAttentionUserAllUsingGetParams
-) {
-  return {
-    iamID: '登陆用户IAMID',
-    isAttention: '用户id',
-    nameOrPhone: '名字或电话，模糊匹配',
-    offset: 'offset',
-    phone: '电话号码',
-    size: 'size',
-    userID: '用户id',
-    userName: '用户名字用于搜索',
-  }[field];
-}
-
-export function displayV1ApiAttentionUserListUsingPostParams(
-  field: keyof API.V1ApiAttentionUserListUsingPostParams
-) {
-  return {
-    iamID: 'IAM ID',
-    size: '默认10',
-    offset: '默认0',
-  }[field];
-}
-
-export function displayV1ApiConversationsConversationIdHistoryUsingDeleteParams(
-  field: keyof API.V1ApiConversationsConversationIdHistoryUsingDeleteParams
-) {
-  return {
-    conversation_id: '会话id',
-    message_id: '聊天信息id',
-  }[field];
-}
-
-export function displayV1ApiConversationsConversationIdHistoryUsingGetParams(
-  field: keyof API.V1ApiConversationsConversationIdHistoryUsingGetParams
-) {
-  return {
-    conversation_id: '会话id',
-  }[field];
-}
-
-export function displayV1ApiConversationsUsingDeleteParams(
-  field: keyof API.V1ApiConversationsUsingDeleteParams
-) {
-  return {
-    conversation_id: '会话id',
-  }[field];
-}
-
-export function displayV1ApiConversationsUsingGetParams(
-  field: keyof API.V1ApiConversationsUsingGetParams
-) {
-  return {
-    user_id: '用户id,空值不返回',
-  }[field];
-}
-
-export function displayV1ApiFeedbacksMessageIdUsingDeleteParams(
-  field: keyof API.V1ApiFeedbacksMessageIdUsingDeleteParams
-) {
-  return {
-    message_id: '消息id',
-    conversation_id: '会话id',
-  }[field];
-}
-
-export function displayV1ApiFeedbacksMessageIdUsingPostParams(
-  field: keyof API.V1ApiFeedbacksMessageIdUsingPostParams
-) {
-  return {
-    message_id: '消息id',
-  }[field];
-}
-
-export function displayV1ApiFeedbacksUsingGetParams(
-  field: keyof API.V1ApiFeedbacksUsingGetParams
-) {
-  return {
-    conversation_ID: 'conversation_ID',
-    message_ID: 'message_ID',
-    pageOffset: '页数1开始',
-    pageSize: '每页数量',
-  }[field];
-}
-
-export function displayV1ApiFileUsingPostParams(
-  field: keyof API.V1ApiFileUsingPostParams
-) {
-  return {
-    conversation_id: '会话id',
-    user_id: 'user id',
-  }[field];
-}
-
-export function displayV1ApiIamAccountUsingGetParams(
-  field: keyof API.V1ApiIamAccountUsingGetParams
-) {
-  return {
-    openId: 'openId',
-  }[field];
-}
-
-export function displayV1ApiProviderListUsingGetParams(
-  field: keyof API.V1ApiProviderListUsingGetParams
-) {
-  return {
-    size: 'size',
-    offset: 'offset',
-  }[field];
-}
-
-export function displayV1ApiRobotWorkspaceIdAppkeyStateUsingPostParams(
-  field: keyof API.V1ApiRobotWorkspaceIdAppkeyStateUsingPostParams
-) {
-  return {
-    workspaceID: '空间ID',
-  }[field];
-}
-
-export function displayV1ApiRobotWorkspaceIdAppkeyUsingDeleteParams(
-  field: keyof API.V1ApiRobotWorkspaceIdAppkeyUsingDeleteParams
-) {
-  return {
-    workspaceID: '空间ID',
-  }[field];
-}
-
-export function displayV1ApiRobotWorkspaceIdAppkeyUsingGetParams(
-  field: keyof API.V1ApiRobotWorkspaceIdAppkeyUsingGetParams
-) {
-  return {
-    workspaceID: '空间ID',
-    appid: 'appid',
-    type: 'wjl,dingding,feishu,wxa,wx',
-  }[field];
-}
-
-export function displayV1ApiRobotWorkspaceIdAppkeyUsingPostParams(
-  field: keyof API.V1ApiRobotWorkspaceIdAppkeyUsingPostParams
-) {
-  return {
-    workspaceID: '空间ID',
-  }[field];
-}
-
-export function displayV1ApiUserInfoUsingGetParams(
-  field: keyof API.V1ApiUserInfoUsingGetParams
-) {
-  return {
-    appID: '应用id',
-  }[field];
-}
-
-export function displayV1ApiUserUsingGetParams(
-  field: keyof API.V1ApiUserUsingGetParams
-) {
-  return {
-    offset: 'offset',
-    phone: '电话号码',
-    size: 'size',
-    userID: '用户id',
-    userName: '用户名字用于搜索',
-  }[field];
-}
-
-export function displayV2ApiAppAppIdDetailsUsingGetParams(
-  field: keyof API.V2ApiAppAppIdDetailsUsingGetParams
-) {
-  return {
-    appID: '应用id',
-  }[field];
-}
-
-export function displayV2ApiAppAppIdUpdateUsingPostParams(
-  field: keyof API.V2ApiAppAppIdUpdateUsingPostParams
-) {
-  return {
-    appID: '应用id',
-  }[field];
-}
-
-export function displayV2ApiAppListUsingGetParams(
-  field: keyof API.V2ApiAppListUsingGetParams
-) {
-  return {
-    onlyConversations: '是否只查看会话过的应用',
-  }[field];
-}
-
-export function displayV2ApiAppShareApiTokenUsingGetParams(
-  field: keyof API.V2ApiAppShareApiTokenUsingGetParams
-) {
-  return {
-    randomPath: '分享的随机path',
-  }[field];
-}
-
-export function displayV2ApiChatMessagesMessagesCountUsingGetParams(
-  field: keyof API.V2ApiChatMessagesMessagesCountUsingGetParams
-) {
-  return {
-    isPerPerson: '是否查询人均,默认false',
-    starTimestamp: '开始时间，秒级时间戳',
-    endTimestamp: '结束时间，秒级时间戳',
-  }[field];
-}
-
-export function displayV2ApiFileUsingPostParams(
-  field: keyof API.V2ApiFileUsingPostParams
-) {
-  return {
-    conversation_id: '会话id',
-    user_id: 'user id',
-  }[field];
-}
-
-export function displayV2ApiWorkspacesDefaultUsingPostParams(
-  field: keyof API.V2ApiWorkspacesDefaultUsingPostParams
-) {
-  return {
-    workspaceID: '空间ID',
-  }[field];
-}
-
-export function displayV2ApiWorkspacesRecommendedMessageIdDetailsUsingGetParams(
-  field: keyof API.V2ApiWorkspacesRecommendedMessageIdDetailsUsingGetParams
-) {
-  return {
-    messageId: '消息id',
-  }[field];
-}
-
-export function displayV2ApiWorkspacesWorkspaceIdAppAppIdDatasetsJoinUsingPostParams(
-  field: keyof API.V2ApiWorkspacesWorkspaceIdAppAppIdDatasetsJoinUsingPostParams
-) {
-  return {
-    workspaceID: '空间ID',
-    appID: '应用id',
-  }[field];
-}
-
-export function displayV2ApiWorkspacesWorkspaceIdAppAppIdDatasetsUsingDeleteParams(
-  field: keyof API.V2ApiWorkspacesWorkspaceIdAppAppIdDatasetsUsingDeleteParams
-) {
-  return {
-    appID: '应用id',
-    workspaceID: '空间ID',
-    datasetID: '数据集id',
-  }[field];
-}
-
-export function displayV2ApiWorkspacesWorkspaceIdAppAppIdDetailsUsingGetParams(
-  field: keyof API.V2ApiWorkspacesWorkspaceIdAppAppIdDetailsUsingGetParams
-) {
-  return {
-    workspaceID: '空间ID',
-    appID: '应用id',
-  }[field];
-}
-
-export function displayV2ApiWorkspacesWorkspaceIdAppAppIdHourlyMessagesUsingGetParams(
-  field: keyof API.V2ApiWorkspacesWorkspaceIdAppAppIdHourlyMessagesUsingGetParams
-) {
-  return {
-    workspaceID: '空间ID',
-    appID: '应用id',
-    starTimestamp: '开始时间，秒级时间戳',
-    endTimestamp: '结束时间，秒级时间戳',
-  }[field];
-}
-
-export function displayV2ApiWorkspacesWorkspaceIdAppAppIdHourlyTokenUsingGetParams(
-  field: keyof API.V2ApiWorkspacesWorkspaceIdAppAppIdHourlyTokenUsingGetParams
-) {
-  return {
-    workspaceID: '空间ID',
-    appID: '应用id',
-    starTimestamp: '开始时间，秒级时间戳',
-    endTimestamp: '结束时间，秒级时间戳',
-  }[field];
-}
-
-export function displayV2ApiWorkspacesWorkspaceIdAppAppIdLogsUsingGetParams(
-  field: keyof API.V2ApiWorkspacesWorkspaceIdAppAppIdLogsUsingGetParams
-) {
-  return {
-    appID: '应用id',
-    workspaceID: '空间ID',
-    conversationID: '会话id',
-    endTimestamp: '结束时间',
-    pageOffset: '页数1开始',
-    pageSize: '每页数量',
-    providerID: '模型id',
-    starTimestamp: '开始时间',
-    userID: '用户id',
-  }[field];
-}
-
-export function displayV2ApiWorkspacesWorkspaceIdAppAppIdMessagesUsingGetParams(
-  field: keyof API.V2ApiWorkspacesWorkspaceIdAppAppIdMessagesUsingGetParams
-) {
-  return {
-    workspaceID: '空间ID',
-    appID: '应用id',
-    starTimestamp: '开始时间，秒级时间戳',
-    endTimestamp: '结束时间，秒级时间戳',
-  }[field];
-}
-
-export function displayV2ApiWorkspacesWorkspaceIdAppAppIdModelConfigsUsingPutParams(
-  field: keyof API.V2ApiWorkspacesWorkspaceIdAppAppIdModelConfigsUsingPutParams
-) {
-  return {
-    appID: '应用id',
-    workspaceID: '空间ID',
-  }[field];
-}
-
-export function displayV2ApiWorkspacesWorkspaceIdAppAppIdPluginUsingGetParams(
-  field: keyof API.V2ApiWorkspacesWorkspaceIdAppAppIdPluginUsingGetParams
-) {
-  return {
-    appID: '应用id',
-    workspaceID: '空间ID',
-  }[field];
-}
-
-export function displayV2ApiWorkspacesWorkspaceIdAppAppIdTokenUsingGetParams(
-  field: keyof API.V2ApiWorkspacesWorkspaceIdAppAppIdTokenUsingGetParams
-) {
-  return {
-    appID: '应用id',
-    starTimestamp: '开始时间，秒级时间戳',
-    endTimestamp: '结束时间，秒级时间戳',
-  }[field];
-}
-
-export function displayV2ApiWorkspacesWorkspaceIdAppAppIdUpdateStatusUsingPutParams(
-  field: keyof API.V2ApiWorkspacesWorkspaceIdAppAppIdUpdateStatusUsingPutParams
-) {
-  return {
-    workspaceID: '空间ID',
-    appID: '应用id',
-  }[field];
-}
-
-export function displayV2ApiWorkspacesWorkspaceIdAppAppIdUsingPostParams(
-  field: keyof API.V2ApiWorkspacesWorkspaceIdAppAppIdUsingPostParams
-) {
-  return {
-    workspaceID: '空间ID',
-    appID: '应用id',
-  }[field];
-}
-
-export function displayV2ApiWorkspacesWorkspaceIdAppsAppIdBaseUsingPostParams(
-  field: keyof API.V2ApiWorkspacesWorkspaceIdAppsAppIdBaseUsingPostParams
-) {
-  return {
-    appID: '应用id',
-    workspaceID: '空间ID',
-  }[field];
-}
-
-export function displayV2ApiWorkspacesWorkspaceIdAppsAppIdGroupUsingPostParams(
-  field: keyof API.V2ApiWorkspacesWorkspaceIdAppsAppIdGroupUsingPostParams
-) {
-  return {
-    appID: '应用id',
-    workspaceID: '空间ID',
-  }[field];
-}
-
-export function displayV2ApiWorkspacesWorkspaceIdAppsAppIdUsingDeleteParams(
-  field: keyof API.V2ApiWorkspacesWorkspaceIdAppsAppIdUsingDeleteParams
-) {
-  return {
-    appID: '应用id',
-    workspaceID: '空间ID',
-  }[field];
-}
-
-export function displayV2ApiWorkspacesWorkspaceIdAppsUsingGetParams(
-  field: keyof API.V2ApiWorkspacesWorkspaceIdAppsUsingGetParams
-) {
-  return {
-    workspaceID: '空间ID',
-    onlyConversations: '是否只查看会话过的应用',
-    appName: '应用名，模糊查询',
-  }[field];
-}
-
-export function displayV2ApiWorkspacesWorkspaceIdAppsUsingPostParams(
-  field: keyof API.V2ApiWorkspacesWorkspaceIdAppsUsingPostParams
-) {
-  return {
-    workspaceID: '空间ID',
-  }[field];
-}
-
-export function displayV2ApiWorkspacesWorkspaceIdDatasetsUsingGetParams(
-  field: keyof API.V2ApiWorkspacesWorkspaceIdDatasetsUsingGetParams
-) {
-  return {
-    workspaceID: '空间ID',
-  }[field];
-}
-
-export function displayV2ApiWorkspacesWorkspaceIdDatasetsUsingPostParams(
-  field: keyof API.V2ApiWorkspacesWorkspaceIdDatasetsUsingPostParams
-) {
-  return {
-    workspaceID: '空间ID',
-  }[field];
-}
-
-export function displayV2ApiWorkspacesWorkspaceIdGroupsUsingGetParams(
-  field: keyof API.V2ApiWorkspacesWorkspaceIdGroupsUsingGetParams
-) {
-  return {
-    workspaceID: '空间ID',
-  }[field];
-}
-
-export function displayV2ApiWorkspacesWorkspaceIdGroupsUsingPostParams(
-  field: keyof API.V2ApiWorkspacesWorkspaceIdGroupsUsingPostParams
-) {
-  return {
-    workspaceID: '空间ID',
-  }[field];
-}
-
-export function displayV2ApiWorkspacesWorkspaceIdGroupsWorkspaceGroupIdUsingDeleteParams(
-  field: keyof API.V2ApiWorkspacesWorkspaceIdGroupsWorkspaceGroupIdUsingDeleteParams
-) {
-  return {
-    workspaceID: '空间ID',
-    workspaceGroupID: '分组ID',
-  }[field];
-}
-
-export function displayV2ApiWorkspacesWorkspaceIdGroupsWorkspaceGroupIdUsingPostParams(
-  field: keyof API.V2ApiWorkspacesWorkspaceIdGroupsWorkspaceGroupIdUsingPostParams
-) {
-  return {
-    workspaceID: '空间ID',
-    workspaceGroupID: '分组ID',
-  }[field];
-}
-
-export function displayV2ApiWorkspacesWorkspaceIdPermissionsUsingGetParams(
-  field: keyof API.V2ApiWorkspacesWorkspaceIdPermissionsUsingGetParams
-) {
-  return {
-    workspaceID: '空间ID',
-  }[field];
-}
-
-export function displayV2ApiWorkspacesWorkspaceIdUsersUsingGetParams(
-  field: keyof API.V2ApiWorkspacesWorkspaceIdUsersUsingGetParams
-) {
-  return {
-    workspaceID: '空间ID',
-  }[field];
-}
-
-export function displayV2ApiWorkspacesWorkspaceIdUsersUsingPostParams(
-  field: keyof API.V2ApiWorkspacesWorkspaceIdUsersUsingPostParams
-) {
-  return {
-    workspaceID: '空间ID',
-  }[field];
-}
-
-export function displayV2ApiWorkspacesWorkspaceIdUserUserIdUsingDeleteParams(
-  field: keyof API.V2ApiWorkspacesWorkspaceIdUserUserIdUsingDeleteParams
-) {
-  return {
-    workspaceID: '空间ID',
-    userID: 'userID',
-  }[field];
-}
-
-export function displayV2ApiWorkspacesWorkspaceIdUsingDeleteParams(
-  field: keyof API.V2ApiWorkspacesWorkspaceIdUsingDeleteParams
-) {
-  return {
-    workspaceID: '空间ID',
-  }[field];
-}
-
-export function displayV2ApiWorkspacesWorkspaceIdUsingPostParams(
-  field: keyof API.V2ApiWorkspacesWorkspaceIdUsingPostParams
-) {
-  return {
-    workspaceID: '空间ID',
-  }[field];
-}
-
-export function displayWJLAccount(field: keyof API.WJLAccount) {
-  return {
-    code: 'code',
-    data: 'data',
-    msg: 'msg',
-    success: 'success',
-  }[field];
-}
-
-export function displayWorkspaceGroup(field: keyof API.WorkspaceGroup) {
-  return {
-    createdAt: 'createdAt',
-    name: '分组名',
-    updatedAt: 'updatedAt',
-    workspaceGroupID: 'workspaceGroupID',
-    workspaceID: 'workspaceID',
-  }[field];
-}
-
-export function displayWorkspaceGroupReq(field: keyof API.WorkspaceGroupReq) {
-  return {
-    name: 'name',
-  }[field];
-}
-
-export function displayWorkspaceListResp(field: keyof API.WorkspaceListResp) {
-  return {
-    data: 'data',
-    total: 'total',
-  }[field];
-}
-
-export function displayWorkspacePermissions(
-  field: keyof API.WorkspacePermissions
-) {
-  return {
-    createdAt: 'createdAt',
-    email: 'email',
-    idpID: 'idpID',
-    operator: 'operator',
-    permission: '枚举read_only（只读）、operation（操作）',
-    phone: 'phone',
-    role: '角色(系统管理员、系统普通用户)',
-    updatedAt: 'updatedAt',
-    userID: 'iam 用户id',
-    userName: 'userName',
-  }[field];
-}
-
-export function displayWorkspaceReq(field: keyof API.WorkspaceReq) {
-  return {
-    description: '描述',
-    name: '空间名',
-  }[field];
-}
-
-export function displayWorkspaceResp(field: keyof API.WorkspaceResp) {
-  return {
-    description: '空间描述',
-    name: '空间名',
-    workspaceID: '空间ID',
-  }[field];
-}
-
-export function displayWorkspaceUser(field: keyof API.WorkspaceUser) {
-  return {
-    role: 'workspace_admin空间超管用户；workspace_user空间普通用户',
-    userID: '用户id',
-  }[field];
-}
-
-export function displayWxExtra(field: keyof API.WxExtra) {
-  return {
-    encodingAESKey: 'encodingAESKey',
-    token: 'token',
-  }[field];
-}
+
+
+
+    export function displayAddAppkeyReq(field: keyof API.AddAppkeyReq) {
+      return (
+          {
+              appid: 'appid',
+              appkey: 'appkey',
+              appsecret: 'appsecret',
+              encodingAESKey: 'encodingAESKey',
+              token: 'token',
+              type: 'wjl,dingding,feishu,wxa,wx',
+          }[field]
+        
+    )
+  }
+
+
+    export function displayApiToken(field: keyof API.ApiToken) {
+      return (
+          {
+              apiTokenID: 'apiTokenID',
+              appID: 'appID',
+              createdAt: 'createdAt',
+              token: 'token',
+              updatedAt: 'updatedAt',
+          }[field]
+        
+    )
+  }
+
+
+    export function displayApiTokenDataList(field: keyof API.ApiTokenDataList) {
+      return (
+          {
+              data: 'data',
+              total: 'total',
+          }[field]
+        
+    )
+  }
+
+
+    export function displayApp(field: keyof API.App) {
+      return (
+          {
+              appID: 'appID',
+              appImage: 'appImage',
+              appStatus: 'appStatus',
+              appType: '应用类型',
+              createdAt: 'createdAt',
+              description: 'description',
+              groupID: 'groupID',
+              guidance: '开场提问引导',
+              name: 'name',
+              operator: 'operator',
+              priority: '应用优先级',
+              prologue: 'prologue',
+              recommendSwitch: 'recommendSwitch',
+              templateStatus: '是否模版',
+              updatedAt: 'updatedAt',
+              workspaceID: 'workspaceID',
+          }[field]
+        
+    )
+  }
+
+
+    export function displayAppDataset(field: keyof API.AppDataset) {
+      return (
+          {
+              description: '描述',
+              llmDesc: 'llm描述',
+              name: '知识库名',
+          }[field]
+        
+    )
+  }
+
+
+    export function displayAppDatasetConfig(field: keyof API.AppDatasetConfig) {
+      return (
+          {
+              appDatasetConfigID: 'appDatasetConfigID',
+              appID: 'appID',
+              createdAt: 'createdAt',
+              minScore: 'minScore',
+              searchSource: 'searchSource',
+              timeoutSecond: 'timeoutSecond',
+              topK: 'topK',
+              updatedAt: 'updatedAt',
+          }[field]
+        
+    )
+  }
+
+
+    export function displayAppDatasetConfigs(field: keyof API.AppDatasetConfigs) {
+      return (
+          {
+              minScore: '最低分数',
+              searchSource: '知识库源，默认 warehouse',
+              timeoutSecond: '知识库查询超时时间',
+              topK: '知识库条数',
+          }[field]
+        
+    )
+  }
+
+
+    export function displayAppDatasets(field: keyof API.AppDatasets) {
+      return (
+          {
+              appCount: 'appCount',
+              author: 'author',
+              datasetID: 'datasetID',
+              datasetName: 'datasetName',
+              docCount: 'docCount',
+              state: 'state',
+          }[field]
+        
+    )
+  }
+
+
+    export function displayAppDetail(field: keyof API.AppDetail) {
+      return (
+          {
+              AnswerTokensCount: '消耗输出token',
+              appDatasetConfig: 'appDatasetConfig',
+              appDatasets: '数据集Id列表',
+              appGroupID: 'appGroupID',
+              appID: 'appID',
+              appImage: '应用头像',
+              appName: '应用名',
+              appPrePrompt: 'PrePrompt',
+              appPromptPrefix: 'appPromptPrefix',
+              appProvider: '模型',
+              appProviderID: 'AppDatasetSource   database2.AppDatasetSourceInfo     `json:"appDatasetSource"`',
+              appProviderName: '模型名',
+              appRecommendedContext: '推荐内容',
+              appStatus: 'appStatus',
+              appToken: '应用token列表',
+              configs: 'configs',
+              conversationCount: '会话总数',
+              createAt: 'createAt',
+              description: '应用描述',
+              guidance: '开场提问引导',
+              h5RandomPath: 'H5随机分享路径',
+              historyLimit: 'historyLimit',
+              messagesCount: '消息总数',
+              pcRandomPath: 'PC随机分享路径',
+              prologue: '开场白',
+              queryTokensCount: '消耗输入token',
+              switchRecommendedQuestion: 'switchRecommendedQuestion',
+              templateStatus: 'templateStatus',
+              totalTokens: '消耗总token',
+              workspaceID: 'workspaceID',
+          }[field]
+        
+    )
+  }
+
+
+    export function displayAppMessagesCount(field: keyof API.AppMessagesCount) {
+      return (
+          {
+              total: 'total',
+          }[field]
+        
+    )
+  }
+
+
+    export function displayAppModelConfigPromptPrefix(field: keyof API.AppModelConfigPromptPrefix) {
+      return (
+          {
+              background: 'background',
+              role: 'role',
+              switchRecommendedQuestion: 'switchRecommendedQuestion',
+          }[field]
+        
+    )
+  }
+
+
+    export function displayAppModelConfigs(field: keyof API.AppModelConfigs) {
+      return (
+          {
+              configs: 'configs',
+              prePrompt: 'prePrompt',
+              providerId: 'providerId',
+          }[field]
+        
+    )
+  }
+
+
+    export function displayAppRecommendedContext(field: keyof API.AppRecommendedContext) {
+      return (
+          {
+              appID: 'appID',
+              appRecommendedContextID: 'appRecommendedContextID',
+              context: 'context',
+              createdAt: 'createdAt',
+              description: 'description',
+              name: 'name',
+              updatedAt: 'updatedAt',
+          }[field]
+        
+    )
+  }
+
+
+    export function displayAppRecommendedContext2(field: keyof API.AppRecommendedContext2) {
+      return (
+          {
+              context: 'context',
+              description: 'description',
+              id: 'id',
+              name: 'name',
+          }[field]
+        
+    )
+  }
+
+
+    export function displayAppRecommendedContext3(field: keyof API.AppRecommendedContext3) {
+      return (
+          {
+              context: 'context',
+              description: 'description',
+              id: 'id',
+              name: 'name',
+          }[field]
+        
+    )
+  }
+
+
+    export function displayAppRecommendedContextResp(field: keyof API.AppRecommendedContextResp) {
+      return (
+          {
+              questions: 'questions',
+              recommendSwitch: 'recommendSwitch',
+          }[field]
+        
+    )
+  }
+
+
+    export function displayAppResp(field: keyof API.AppResp) {
+      return (
+          {
+              appGroupID: 'appGroupID',
+              appGroupName: 'appGroupName',
+              appImage: 'appImage',
+              appStatus: 'appStatus',
+              createAt: 'createAt',
+              datasetCount: 'datasetCount',
+              description: 'description',
+              h5: 'h5',
+              id: 'id',
+              name: 'name',
+              pc: 'pc',
+              workspaceID: 'workspaceID',
+          }[field]
+        
+    )
+  }
+
+
+    export function displayAppWithPermission(field: keyof API.AppWithPermission) {
+      return (
+          {
+              appID: 'appID',
+              appImage: 'appImage',
+              appStatus: 'appStatus',
+              appType: '应用类型',
+              createdAt: 'createdAt',
+              description: 'description',
+              groupID: 'groupID',
+              guidance: '开场提问引导',
+              isAppAdmin: 'isAppAdmin',
+              name: 'name',
+              operator: 'operator',
+              priority: '应用优先级',
+              prologue: 'prologue',
+              recommendSwitch: 'recommendSwitch',
+              templateStatus: '是否模版',
+              updatedAt: 'updatedAt',
+              workspaceID: 'workspaceID',
+          }[field]
+        
+    )
+  }
+
+
+    export function displayAttentionDataCountResp(field: keyof API.AttentionDataCountResp) {
+      return (
+          {
+              total: 'total',
+          }[field]
+        
+    )
+  }
+
+
+    export function displayAttentionUser(field: keyof API.AttentionUser) {
+      return (
+          {
+              email: 'email',
+              isAttentionUser: 'isAttentionUser',
+              phone: 'phone',
+              userID: 'userID',
+              userName: 'userName',
+          }[field]
+        
+    )
+  }
+
+
+    export function displayAttentionUserResp(field: keyof API.AttentionUserResp) {
+      return (
+          {
+              email: 'email',
+              lastMessageTime: 'lastMessageTime',
+              phone: 'phone',
+              userID: 'userID',
+              userName: 'userName',
+          }[field]
+        
+    )
+  }
+
+
+    export function displayAuthAuthorizeUsingGetParams(field: keyof API.AuthAuthorizeUsingGetParams) {
+      return (
+          {
+              redirect_uri: '业务回调地址',
+              state: '保持请求和回调的状态，授权成功后会回传该参数',
+          }[field]
+        
+    )
+  }
+
+
+
+
+    export function displayAuthExchangeUsingGetParams(field: keyof API.AuthExchangeUsingGetParams) {
+      return (
+          {
+              code: 'code',
+              redirect_uri: '业务回调地址',
+          }[field]
+        
+    )
+  }
+
+
+
+
+
+
+
+
+    export function displayChat(field: keyof API.Chat) {
+      return (
+          {
+              conversation_id: 'conversation_id',
+              inputs: 'inputs',
+              isIgnore: 'isIgnore',
+              query: 'query',
+              response_mode: 'response_mode',
+              user: 'user',
+          }[field]
+        
+    )
+  }
+
+
+    export function displayChatMessageReq(field: keyof API.ChatMessageReq) {
+      return (
+          {
+              prompt: 'prompt',
+              query: 'query',
+          }[field]
+        
+    )
+  }
+
+
+    export function displayConversationLogsResp(field: keyof API.ConversationLogsResp) {
+      return (
+          {
+              AnswerTokensCount: '消耗输出token',
+              appID: 'appID',
+              conversationID: 'conversationID',
+              conversationName: 'conversationName',
+              createdAt: 'createdAt',
+              messagesCount: 'messagesCount',
+              queryTokensCount: '消耗输入token',
+              totalTokens: '消耗总token',
+              userID: 'userID',
+              userInfo: 'userInfo',
+          }[field]
+        
+    )
+  }
+
+
+    export function displayConversationMsg(field: keyof API.ConversationMsg) {
+      return (
+          {
+              conversationId: 'conversationId',
+              createAt: 'createAt',
+              name: 'name',
+              userId: 'userId',
+          }[field]
+        
+    )
+  }
+
+
+    export function displayConversationResp(field: keyof API.ConversationResp) {
+      return (
+          {
+              AnswerTokensCount: '消耗输出token',
+              appID: 'appID',
+              appName: 'appName',
+              conversationID: 'conversationID',
+              conversationName: 'conversationName',
+              createdAt: 'createdAt',
+              lastMessagesTime: 'lastMessagesTime',
+              messagesCount: 'messagesCount',
+              queryTokensCount: '消耗输入token',
+              totalTokens: '消耗总token',
+              userID: 'userID',
+              userInfo: 'userInfo',
+          }[field]
+        
+    )
+  }
+
+
+    export function displayCopyAppReq(field: keyof API.CopyAppReq) {
+      return (
+          {
+              appID: 'appID',
+              workspaceID: 'workspaceID',
+          }[field]
+        
+    )
+  }
+
+
+    export function displayCreateApiTokenRESP(field: keyof API.CreateApiTokenRESP) {
+      return (
+          {
+              token: 'token',
+          }[field]
+        
+    )
+  }
+
+
+    export function displayCreateAppReq(field: keyof API.CreateAppReq) {
+      return (
+          {
+              description: 'description',
+              guidance: 'guidance',
+              name: 'name',
+              prologue: 'prologue',
+          }[field]
+        
+    )
+  }
+
+
+    export function displayCreateAppReqV2(field: keyof API.CreateAppReqV2) {
+      return (
+          {
+              appDescription: 'appDescription',
+              appGroupID: 'appGroupID',
+              appGuidance: '提示查询',
+              appImage: 'appImage',
+              appName: 'appName',
+              appPrologue: '开场白',
+              historyLimit: 'historyLimit',
+              modelConfigs: 'modelConfigs',
+              prePrompt: 'prePrompt',
+              providerId: 'providerId',
+          }[field]
+        
+    )
+  }
+
+
+    export function displayCreateAttentionReq(field: keyof API.CreateAttentionReq) {
+      return (
+          {
+              followeeUserIDList: 'followeeUserIDList',
+              iamID: 'iamID',
+          }[field]
+        
+    )
+  }
+
+
+
+
+    export function displayCreateSharePathRESP(field: keyof API.CreateSharePathRESP) {
+      return (
+          {
+              path: 'path',
+          }[field]
+        
+    )
+  }
+
+
+    export function displayData(field: keyof API.Data) {
+      return (
+          {
+              appkey: 'appkey',
+              appsecret: 'appsecret',
+              state: '0-未开启，1-开启',
+              url: 'url',
+              wxExtra: 'wxExtra',
+          }[field]
+        
+    )
+  }
+
+
+    export function displayDatasetData(field: keyof API.DatasetData) {
+      return (
+          {
+              author: 'author',
+              description: 'description',
+              docCount: 'docCount',
+              document_count: 'document_count',
+              id: 'id',
+              name: 'name',
+              permission: 'permission',
+              state: 'state',
+              uuid: 'uuid',
+              word_count: 'word_count',
+          }[field]
+        
+    )
+  }
+
+
+    export function displayDeleteAttentionReq(field: keyof API.DeleteAttentionReq) {
+      return (
+          {
+              followeeUserIDList: 'followeeUserIDList',
+              iamID: 'iamID',
+          }[field]
+        
+    )
+  }
+
+
+
+
+    export function displayDeleteMemberBody(field: keyof API.DeleteMemberBody) {
+      return (
+          {
+              userID: '用户id',
+          }[field]
+        
+    )
+  }
+
+
+    export function displayDeleteResp(field: keyof API.DeleteResp) {
+      return (
+          {
+              msg: 'msg',
+          }[field]
+        
+    )
+  }
+
+
+
+
+    export function displayErrorResp(field: keyof API.ErrorResp) {
+      return (
+          {
+              msg: 'msg',
+              type: 'type',
+          }[field]
+        
+    )
+  }
+
+
+    export function displayExchangeTokenRESP(field: keyof API.ExchangeTokenRESP) {
+      return (
+          {
+              access_token: '访问令牌',
+              expires_in: '访问令牌过期时间',
+              refresh_expires_in: '刷新令牌过期时间',
+              refresh_token: '刷新令牌',
+              token_type: '令牌类型',
+          }[field]
+        
+    )
+  }
+
+
+    export function displayFeedback(field: keyof API.Feedback) {
+      return (
+          {
+              comment: '评论',
+              conversation_id: 'conversation_id',
+              createdAt: 'createdAt',
+              message_id: 'message_id',
+              rating: 'like/unlike',
+              score: '打分',
+              updatedAt: 'updatedAt',
+          }[field]
+        
+    )
+  }
+
+
+    export function displayFeedbacksReqBody(field: keyof API.FeedbacksReqBody) {
+      return (
+          {
+              comment: '评论',
+              conversation_id: 'conversation_id',
+              rating: 'like/unlike',
+              score: '分数1-10',
+          }[field]
+        
+    )
+  }
+
+
+    export function displayFilestreamResp(field: keyof API.FilestreamResp) {
+      return (
+          {
+              conversation_id: 'conversation_id',
+          }[field]
+        
+    )
+  }
+
+
+    export function displayGetApiTokenByRandomPathRESP(field: keyof API.GetApiTokenByRandomPathRESP) {
+      return (
+          {
+              apiTokenID: 'apiTokenID',
+              appID: 'appID',
+              appName: 'appName',
+              createdAt: 'createdAt',
+              recommendedContext: 'recommendedContext',
+              switchRecommendedContext: 'switchRecommendedContext',
+              switchRecommendedQuestion: 'switchRecommendedQuestion',
+              token: 'token',
+              updatedAt: 'updatedAt',
+          }[field]
+        
+    )
+  }
+
+
+    export function displayGetAppKeyReq(field: keyof API.GetAppKeyReq) {
+      return (
+          {
+              appid: 'appid',
+              type: 'wjl,dingding,feishu,wxa,wx',
+          }[field]
+        
+    )
+  }
+
+
+    export function displayGetAttentionDataCountReq(field: keyof API.GetAttentionDataCountReq) {
+      return (
+          {
+              appIDList: 'appIDList',
+              iamID: 'iamID',
+              userID: 'userID',
+          }[field]
+        
+    )
+  }
+
+
+    export function displayGetImagePreSignedUrlResp(field: keyof API.GetImagePreSignedUrlResp) {
+      return (
+          {
+              appImage: 'appImage',
+              preSignedPutUrl: 'preSignedPutUrl',
+          }[field]
+        
+    )
+  }
+
+
+    export function displayGuidances(field: keyof API.Guidances) {
+      return (
+          {
+              items: 'items',
+          }[field]
+        
+    )
+  }
+
+
+    export function displayHistoryInfo(field: keyof API.HistoryInfo) {
+      return (
+          {
+              Rating: 'like/unlike',
+              answer: 'answer',
+              answerToken: 'answerToken',
+              comment: '评论',
+              createAt: 'createAt',
+              format: 'format',
+              messageId: 'messageId',
+              query: 'query',
+              queryToken: 'queryToken',
+              score: '打分',
+              totalToken: 'totalToken',
+          }[field]
+        
+    )
+  }
+
+
+    export function displayIAMUserInfo(field: keyof API.IAMUserInfo) {
+      return (
+          {
+              createdTime: '创建时间',
+              email: 'Cid         string `json:"cid"`',
+              id: '用户id',
+              idpId: 'idpId',
+              isAdmin: '是否iam管理员',
+              isAppAdmin: 'isAppAdmin',
+              isRkUser: '是否罗克佳华人员',
+              isSuperUser: '是否超级管理员',
+              isSystemAdmin: 'isSystemAdmin',
+              lastTime: 'Deleted     int32  `json:"deleted"`     // 逻辑删除',
+              loginName: '登录名',
+              msgType: '消息类型',
+              phone: '电话',
+              rkUserCard: '罗克佳华用户账号',
+              sign: '个性签名',
+              status: '状态：1可用；0未激活；-1禁用',
+              updatedTime: '修改时间',
+              useType: '用户类型',
+              userName: '用户名',
+              wechatAppId: 'wechatAppId',
+              wechatSwitch: 'wechatSwitch',
+              wechatgzhSwitch: 'wechatgzhSwitch',
+          }[field]
+        
+    )
+  }
+
+
+    export function displayListAllAttentionUser(field: keyof API.ListAllAttentionUser) {
+      return (
+          {
+              data: 'data',
+              total: 'total',
+          }[field]
+        
+    )
+  }
+
+
+    export function displayListAppDatasetConfigResp(field: keyof API.ListAppDatasetConfigResp) {
+      return (
+          {
+              data: 'data',
+              total: 'total',
+          }[field]
+        
+    )
+  }
+
+
+    export function displayListAppDatasets(field: keyof API.ListAppDatasets) {
+      return (
+          {
+              Data: 'Data',
+              total: 'total',
+          }[field]
+        
+    )
+  }
+
+
+    export function displayListAppResp(field: keyof API.ListAppResp) {
+      return (
+          {
+              data: 'data',
+              total: 'total',
+          }[field]
+        
+    )
+  }
+
+
+    export function displayListAttentionConversationReq(field: keyof API.ListAttentionConversationReq) {
+      return (
+          {
+              appIDList: 'appIDList',
+              iamID: 'iamID',
+              offset: 'offset',
+              size: 'size',
+              userID: 'userID',
+          }[field]
+        
+    )
+  }
+
+
+    export function displayListAttentionUserResp(field: keyof API.ListAttentionUserResp) {
+      return (
+          {
+              data: 'data',
+              total: 'total',
+          }[field]
+        
+    )
+  }
+
+
+    export function displayListConversationLogsResp(field: keyof API.ListConversationLogsResp) {
+      return (
+          {
+              data: 'data',
+              total: 'total',
+          }[field]
+        
+    )
+  }
+
+
+    export function displayListConversationResp(field: keyof API.ListConversationResp) {
+      return (
+          {
+              data: 'data',
+              total: 'total',
+          }[field]
+        
+    )
+  }
+
+
+    export function displayListDatasetsResp(field: keyof API.ListDatasetsResp) {
+      return (
+          {
+              data: 'data',
+              has_more: 'has_more',
+              offset: 'offset',
+              size: 'size',
+              total: 'total',
+          }[field]
+        
+    )
+  }
+
+
+    export function displayListFeedbacksResp(field: keyof API.ListFeedbacksResp) {
+      return (
+          {
+              data: 'data',
+              total: 'total',
+          }[field]
+        
+    )
+  }
+
+
+    export function displayListMemberRESP(field: keyof API.ListMemberRESP) {
+      return (
+          {
+              data: 'data',
+              total: 'total',
+          }[field]
+        
+    )
+  }
+
+
+    export function displayListProviderResp(field: keyof API.ListProviderResp) {
+      return (
+          {
+              data: 'data',
+              total: 'total',
+          }[field]
+        
+    )
+  }
+
+
+    export function displayListUserWithAppRESP(field: keyof API.ListUserWithAppRESP) {
+      return (
+          {
+              data: 'data',
+              total: 'total',
+          }[field]
+        
+    )
+  }
+
+
+    export function displayListWorkspaceGroup(field: keyof API.ListWorkspaceGroup) {
+      return (
+          {
+              data: 'data',
+          }[field]
+        
+    )
+  }
+
+
+    export function displayListWorkspacePermissions(field: keyof API.ListWorkspacePermissions) {
+      return (
+          {
+              data: 'data',
+              total: 'total',
+          }[field]
+        
+    )
+  }
+
+
+
+
+    export function displayMemberBody(field: keyof API.MemberBody) {
+      return (
+          {
+              role: '角色(system_admin-系统管理员;system_user-系统管普通用户;app_admin-应用管理员;app_user-应用普通用户)',
+              userID: '用户id',
+          }[field]
+        
+    )
+  }
+
+
+    export function displayMemberWithRoleData(field: keyof API.MemberWithRoleData) {
+      return (
+          {
+              appRole: '应用角色',
+              createdAt: 'createdAt',
+              email: 'email',
+              idpID: 'idpID',
+              isAppAdmin: '是否是app管理员',
+              isSystemAdmin: '是否是系统管理员',
+              operator: 'operator',
+              phone: 'phone',
+              role: '角色(系统管理员、系统普通用户)',
+              updatedAt: 'updatedAt',
+              userID: 'iam 用户id',
+              userName: 'userName',
+          }[field]
+        
+    )
+  }
+
+
+    export function displayMessagesCountResp(field: keyof API.MessagesCountResp) {
+      return (
+          {
+              messagesCount: '请求消耗token',
+              time: 'time',
+          }[field]
+        
+    )
+  }
+
+
+    export function displayMessagesTokenResp(field: keyof API.MessagesTokenResp) {
+      return (
+          {
+              answerToken: '回答消耗token',
+              queryToken: '请求消耗token',
+              time: 'time',
+              totalToken: 'totalToken',
+          }[field]
+        
+    )
+  }
+
+
+    export function displayModelConfigsMap(field: keyof API.ModelConfigsMap) {
+      return (
+          {
+              model_type: '模型(ERNIE-Bot-4;ERNIE-Bot;ERNIE-Bot-turbo;gpt-3.5-turbo-16k;gpt-4-1106-preview)',
+              penalty_score: '通过对已生成的token增加惩罚，减少重复生成的现象。取值范围：[1.0, 2.0]',
+              temperature: '较高的数值会使输出更加随机，而较低的数值会使其更加集中和确定。默认0.95，范围 (0, 1.0]',
+              tools_call: 'tools call',
+              top_p: '影响输出文本的多样性，取值越大，生成文本的多样性越强。取值范围 [0, 1.0]',
+          }[field]
+        
+    )
+  }
+
+
+    export function displayModelConfigsMap2(field: keyof API.ModelConfigsMap2) {
+      return (
+          {
+              model_type: '模型(ERNIE-Bot-4;ERNIE-Bot;ERNIE-Bot-turbo;gpt-3.5-turbo-16k;gpt-4-1106-preview)',
+              penalty_score: '通过对已生成的token增加惩罚，减少重复生成的现象。取值范围：[1.0, 2.0]',
+              temperature: '较高的数值会使输出更加随机，而较低的数值会使其更加集中和确定。默认0.95，范围 (0, 1.0]',
+              tools_call: 'tools_call',
+              top_p: '影响输出文本的多样性，取值越大，生成文本的多样性越强。取值范围 [0, 1.0]',
+          }[field]
+        
+    )
+  }
+
+
+    export function displayProviderResp(field: keyof API.ProviderResp) {
+      return (
+          {
+              name: '名字',
+              providerID: 'providerID',
+              subType: 'subType',
+              type: '类型',
+          }[field]
+        
+    )
+  }
+
+
+    export function displayQueryTokenResp(field: keyof API.QueryTokenResp) {
+      return (
+          {
+              AnswerTokensCount: '消耗输出token',
+              queryTokensCount: '消耗输入token',
+              totalTokens: '消耗总token',
+          }[field]
+        
+    )
+  }
+
+
+    export function displayQuestionRecommendReq(field: keyof API.QuestionRecommendReq) {
+      return (
+          {
+              conversation_id: 'conversation_id',
+              user: '
+ * Query          string `json:"query"`
+ * Answer         string `json:"answer"`
+',
+          }[field]
+        
+    )
+  }
+
+
+    export function displayRecommendQuestionAndContext(field: keyof API.RecommendQuestionAndContext) {
+      return (
+          {
+              contexts: 'contexts',
+              questions: 'questions',
+          }[field]
+        
+    )
+  }
+
+
+    export function displayRefreshTokenBody(field: keyof API.RefreshTokenBody) {
+      return (
+          {
+              refreshToken: 'refreshToken',
+          }[field]
+        
+    )
+  }
+
+
+    export function displayReleaseDiscoverReq(field: keyof API.ReleaseDiscoverReq) {
+      return (
+          {
+              alterAppID: 'alterAppID',
+              appType: '应用类型',
+              templateStatus: '是否作为模版 TRUE:作为模版；FALSE:不作为',
+          }[field]
+        
+    )
+  }
+
+
+    export function displayResponseData(field: keyof API.ResponseData) {
+      return (
+          {
+              answer: 'answer',
+              conversation_id: 'conversation_id',
+              created_at: 'created_at',
+              event: 'event',
+              id: 'id',
+              trace_id: 'trace_id',
+          }[field]
+        
+    )
+  }
+
+
+    export function displayResponseRecommendData(field: keyof API.ResponseRecommendData) {
+      return (
+          {
+              answer: 'answer',
+              conversation_id: 'conversation_id',
+              created_at: 'created_at',
+              event: 'event',
+              id: 'id',
+              trace_id: 'trace_id',
+          }[field]
+        
+    )
+  }
+
+
+    export function displaySpeechToTextResp(field: keyof API.SpeechToTextResp) {
+      return (
+          {
+              text: '转化的结果',
+          }[field]
+        
+    )
+  }
+
+
+    export function displayTextToSpeechReq(field: keyof API.TextToSpeechReq) {
+      return (
+          {
+              text: '需要转的文字',
+          }[field]
+        
+    )
+  }
+
+
+    export function displayUpdateAppGroup(field: keyof API.UpdateAppGroup) {
+      return (
+          {
+              appGroupID: 'appGroupID',
+          }[field]
+        
+    )
+  }
+
+
+    export function displayUpdateAppKeyStateReq(field: keyof API.UpdateAppKeyStateReq) {
+      return (
+          {
+              appid: 'appid',
+              state: '0-关闭，1-启动',
+              type: 'wjl,dingding,feishu',
+          }[field]
+        
+    )
+  }
+
+
+    export function displayUpdateAppReq(field: keyof API.UpdateAppReq) {
+      return (
+          {
+              appDescription: 'appDescription',
+              appGroupID: 'appGroupID',
+              appImage: 'appImage',
+              appName: 'appName',
+          }[field]
+        
+    )
+  }
+
+
+    export function displayUpdateAppReqV2(field: keyof API.UpdateAppReqV2) {
+      return (
+          {
+              appGroupID: 'appGroupID',
+              appGuidance: '提示查询',
+              appPrologue: '开场白',
+              appRecommendedContexts: '推荐内容',
+              historyLimit: 'historyLimit',
+              modelConfigs: 'modelConfigs',
+              prePrompt: 'prePrompt',
+              providerId: 'providerId',
+              recommendSwitch: 'recommendSwitch',
+          }[field]
+        
+    )
+  }
+
+
+    export function displayUpdateAppStatusReq(field: keyof API.UpdateAppStatusReq) {
+      return (
+          {
+              appStatus: 'PUBLIC:公开；PRIVATE:私有',
+          }[field]
+        
+    )
+  }
+
+
+    export function displayUpdateUserRoleBody(field: keyof API.UpdateUserRoleBody) {
+      return (
+          {
+              role: '角色(system_admin-系统管理员;system_user-系统管普通用户;app_admin-应用管理员;app_user-应用普通用户)',
+              userID: '用户id',
+          }[field]
+        
+    )
+  }
+
+
+    export function displayUser(field: keyof API.User) {
+      return (
+          {
+              createdAt: 'createdAt',
+              email: 'email',
+              idpID: 'idpID',
+              operator: 'operator',
+              phone: 'phone',
+              role: '角色(系统管理员、系统普通用户)',
+              updatedAt: 'updatedAt',
+              userID: 'iam 用户id',
+              userName: 'userName',
+          }[field]
+        
+    )
+  }
+
+
+    export function displayUserWithAppData(field: keyof API.UserWithAppData) {
+      return (
+          {
+              appWithPermissionList: 'appWithPermissionList',
+              createdAt: 'createdAt',
+              email: 'email',
+              idpID: 'idpID',
+              isSystemAdmin: 'isSystemAdmin',
+              operator: 'operator',
+              phone: 'phone',
+              role: '角色(系统管理员、系统普通用户)',
+              updatedAt: 'updatedAt',
+              userID: 'iam 用户id',
+              userName: 'userName',
+          }[field]
+        
+    )
+  }
+
+
+    export function displayV1ApiAppAppIdApiTokenUsingGetParams(field: keyof API.V1ApiAppAppIdApiTokenUsingGetParams) {
+      return (
+          {
+              appID: '应用id',
+              size: '每页大小',
+              offset: '分页',
+          }[field]
+        
+    )
+  }
+
+
+
+
+    export function displayV1ApiAppAppIdApiTokenUsingPostParams(field: keyof API.V1ApiAppAppIdApiTokenUsingPostParams) {
+      return (
+          {
+              appID: '应用id',
+          }[field]
+        
+    )
+  }
+
+
+
+
+    export function displayV1ApiAppAppIdDatasetConfigsUsingDeleteParams(field: keyof API.V1ApiAppAppIdDatasetConfigsUsingDeleteParams) {
+      return (
+          {
+              appID: '应用id',
+              appDatasetConfigID: '应用知识库配置id',
+          }[field]
+        
+    )
+  }
+
+
+
+
+    export function displayV1ApiAppAppIdDatasetConfigsUsingGetParams(field: keyof API.V1ApiAppAppIdDatasetConfigsUsingGetParams) {
+      return (
+          {
+              appID: '应用id',
+          }[field]
+        
+    )
+  }
+
+
+
+
+    export function displayV1ApiAppAppIdDatasetConfigsUsingPostParams(field: keyof API.V1ApiAppAppIdDatasetConfigsUsingPostParams) {
+      return (
+          {
+              appID: '应用id',
+          }[field]
+        
+    )
+  }
+
+
+
+
+    export function displayV1ApiAppAppIdDatasetConfigsUsingPutParams(field: keyof API.V1ApiAppAppIdDatasetConfigsUsingPutParams) {
+      return (
+          {
+              appID: '应用id',
+          }[field]
+        
+    )
+  }
+
+
+
+
+    export function displayV1ApiAppAppIdDatasetsListUsingGetParams(field: keyof API.V1ApiAppAppIdDatasetsListUsingGetParams) {
+      return (
+          {
+              appID: '应用id',
+              size: 'size',
+              offset: 'offset',
+          }[field]
+        
+    )
+  }
+
+
+
+
+    export function displayV1ApiAppAppIdDatasetsUsingDeleteParams(field: keyof API.V1ApiAppAppIdDatasetsUsingDeleteParams) {
+      return (
+          {
+              appID: '应用id',
+              datasetID: '数据集id',
+          }[field]
+        
+    )
+  }
+
+
+
+
+
+
+    export function displayV1ApiAppAppIdDatasetsUsingPostParams(field: keyof API.V1ApiAppAppIdDatasetsUsingPostParams) {
+      return (
+          {
+              appID: '应用id',
+          }[field]
+        
+    )
+  }
+
+
+
+
+    export function displayV1ApiAppAppIdDetailsUsingGetParams(field: keyof API.V1ApiAppAppIdDetailsUsingGetParams) {
+      return (
+          {
+              appID: '应用id',
+          }[field]
+        
+    )
+  }
+
+
+
+
+    export function displayV1ApiAppAppIdHourlyMessagesUsingGetParams(field: keyof API.V1ApiAppAppIdHourlyMessagesUsingGetParams) {
+      return (
+          {
+              appID: '应用id',
+              starTimestamp: '开始时间，秒级时间戳',
+              endTimestamp: '结束时间，秒级时间戳',
+          }[field]
+        
+    )
+  }
+
+
+
+
+    export function displayV1ApiAppAppIdHourlyTokenUsingGetParams(field: keyof API.V1ApiAppAppIdHourlyTokenUsingGetParams) {
+      return (
+          {
+              appID: '应用id',
+              starTimestamp: '开始时间，秒级时间戳',
+              endTimestamp: '结束时间，秒级时间戳',
+          }[field]
+        
+    )
+  }
+
+
+
+
+    export function displayV1ApiAppAppIdLogsConversationIdMessagesUsingGetParams(field: keyof API.V1ApiAppAppIdLogsConversationIdMessagesUsingGetParams) {
+      return (
+          {
+              appID: '应用id',
+              conversationID: '会话id',
+          }[field]
+        
+    )
+  }
+
+
+
+
+    export function displayV1ApiAppAppIdLogsUsingGetParams(field: keyof API.V1ApiAppAppIdLogsUsingGetParams) {
+      return (
+          {
+              appID: '应用id',
+              conversationID: '会话id',
+              endTimestamp: '结束时间',
+              pageOffset: '页数1开始',
+              pageSize: '每页数量',
+              providerID: '模型id',
+              starTimestamp: '开始时间',
+              userID: '用户id',
+          }[field]
+        
+    )
+  }
+
+
+
+
+    export function displayV1ApiAppAppIdMemberRoleUsingPutParams(field: keyof API.V1ApiAppAppIdMemberRoleUsingPutParams) {
+      return (
+          {
+              appID: '应用id',
+          }[field]
+        
+    )
+  }
+
+
+
+
+    export function displayV1ApiAppAppIdMemberUsingDeleteParams(field: keyof API.V1ApiAppAppIdMemberUsingDeleteParams) {
+      return (
+          {
+              appID: '应用id',
+          }[field]
+        
+    )
+  }
+
+
+
+
+    export function displayV1ApiAppAppIdMemberUsingGetParams(field: keyof API.V1ApiAppAppIdMemberUsingGetParams) {
+      return (
+          {
+              appID: '应用id',
+              size: '每页大小',
+              offset: '分页',
+          }[field]
+        
+    )
+  }
+
+
+
+
+    export function displayV1ApiAppAppIdMemberUsingPostParams(field: keyof API.V1ApiAppAppIdMemberUsingPostParams) {
+      return (
+          {
+              appID: '应用id',
+          }[field]
+        
+    )
+  }
+
+
+
+
+    export function displayV1ApiAppAppIdMessagesUsingGetParams(field: keyof API.V1ApiAppAppIdMessagesUsingGetParams) {
+      return (
+          {
+              appID: '应用id',
+              starTimestamp: '开始时间，秒级时间戳',
+              endTimestamp: '结束时间，秒级时间戳',
+          }[field]
+        
+    )
+  }
+
+
+
+
+    export function displayV1ApiAppAppIdModelConfigsUsingPostParams(field: keyof API.V1ApiAppAppIdModelConfigsUsingPostParams) {
+      return (
+          {
+              appID: '应用id',
+          }[field]
+        
+    )
+  }
+
+
+
+
+    export function displayV1ApiAppAppIdModelConfigsUsingPutParams(field: keyof API.V1ApiAppAppIdModelConfigsUsingPutParams) {
+      return (
+          {
+              appID: '应用id',
+          }[field]
+        
+    )
+  }
+
+
+
+
+    export function displayV1ApiAppAppIdModelPromptUsingPostParams(field: keyof API.V1ApiAppAppIdModelPromptUsingPostParams) {
+      return (
+          {
+              appID: '应用id',
+          }[field]
+        
+    )
+  }
+
+
+
+
+    export function displayV1ApiAppAppIdOpenApiDeleteUsingDeleteParams(field: keyof API.V1ApiAppAppIdOpenApiDeleteUsingDeleteParams) {
+      return (
+          {
+              appID: '应用id',
+          }[field]
+        
+    )
+  }
+
+
+
+
+    export function displayV1ApiAppAppIdPluginUsingPutParams(field: keyof API.V1ApiAppAppIdPluginUsingPutParams) {
+      return (
+          {
+              appID: '应用id',
+          }[field]
+        
+    )
+  }
+
+
+
+
+    export function displayV1ApiAppAppIdRecommendedContextUsingGetParams(field: keyof API.V1ApiAppAppIdRecommendedContextUsingGetParams) {
+      return (
+          {
+              appID: '应用id',
+          }[field]
+        
+    )
+  }
+
+
+
+
+    export function displayV1ApiAppAppIdRecommendedContextUsingPostParams(field: keyof API.V1ApiAppAppIdRecommendedContextUsingPostParams) {
+      return (
+          {
+              appID: '应用id',
+          }[field]
+        
+    )
+  }
+
+
+
+
+    export function displayV1ApiAppAppIdShareUsingPutParams(field: keyof API.V1ApiAppAppIdShareUsingPutParams) {
+      return (
+          {
+              appID: '应用id',
+              isH5: '是否h5',
+          }[field]
+        
+    )
+  }
+
+
+
+
+    export function displayV1ApiAppAppIdTokenUsingGetParams(field: keyof API.V1ApiAppAppIdTokenUsingGetParams) {
+      return (
+          {
+              appID: '应用id',
+              starTimestamp: '开始时间，秒级时间戳',
+              endTimestamp: '结束时间，秒级时间戳',
+          }[field]
+        
+    )
+  }
+
+
+
+
+    export function displayV1ApiAppAppIdUpdateStatusUsingPutParams(field: keyof API.V1ApiAppAppIdUpdateStatusUsingPutParams) {
+      return (
+          {
+              appID: '应用id',
+          }[field]
+        
+    )
+  }
+
+
+
+
+    export function displayV1ApiAppAppIdUpdateUsingPutParams(field: keyof API.V1ApiAppAppIdUpdateUsingPutParams) {
+      return (
+          {
+              appID: '应用id',
+          }[field]
+        
+    )
+  }
+
+
+
+
+    export function displayV1ApiAppH5ShareApiTokenUsingGetParams(field: keyof API.V1ApiAppH5ShareApiTokenUsingGetParams) {
+      return (
+          {
+              randomPath: '分享的随机path',
+          }[field]
+        
+    )
+  }
+
+
+
+
+    export function displayV1ApiAppIdCostUsingPostParams(field: keyof API.V1ApiAppIdCostUsingPostParams) {
+      return (
+          {
+              appID: '应用id',
+              conversationID: '会话id',
+              endTimestamp: '结束时间',
+              pageOffset: '页数1开始',
+              pageSize: '每页数量',
+              providerID: '模型id',
+              starTimestamp: '开始时间',
+              userID: '用户id',
+          }[field]
+        
+    )
+  }
+
+
+
+
+
+
+
+
+    export function displayV1ApiAppListPrivateUsingGetParams(field: keyof API.V1ApiAppListPrivateUsingGetParams) {
+      return (
+          {
+              onlyConversations: '是否只查看会话过的应用',
+          }[field]
+        
+    )
+  }
+
+
+
+
+    export function displayV1ApiAppListPublicUsingGetParams(field: keyof API.V1ApiAppListPublicUsingGetParams) {
+      return (
+          {
+              onlyConversations: '是否只查看会话过的应用',
+          }[field]
+        
+    )
+  }
+
+
+
+
+
+
+    export function displayV1ApiAppShareApiTokenUsingGetParams(field: keyof API.V1ApiAppShareApiTokenUsingGetParams) {
+      return (
+          {
+              randomPath: '分享的随机path',
+          }[field]
+        
+    )
+  }
+
+
+
+
+
+
+    export function displayV1ApiAttentionAppListUsingGetParams(field: keyof API.V1ApiAttentionAppListUsingGetParams) {
+      return (
+          {
+              iamID: 'IAM用户id',
+          }[field]
+        
+    )
+  }
+
+
+
+
+
+
+
+
+
+
+    export function displayV1ApiAttentionMessagesHistoryUsingGetParams(field: keyof API.V1ApiAttentionMessagesHistoryUsingGetParams) {
+      return (
+          {
+              iamID: 'IAM ID',
+              appID: '应用id',
+              conversationID: '会话id',
+          }[field]
+        
+    )
+  }
+
+
+
+
+    export function displayV1ApiAttentionUserAllUsingGetParams(field: keyof API.V1ApiAttentionUserAllUsingGetParams) {
+      return (
+          {
+              iamID: '登陆用户IAMID',
+              isAttention: '用户id',
+              nameOrPhone: '名字或电话，模糊匹配',
+              offset: 'offset',
+              phone: '电话号码',
+              size: 'size',
+              userID: '用户id',
+              userName: '用户名字用于搜索',
+          }[field]
+        
+    )
+  }
+
+
+
+
+
+
+    export function displayV1ApiAttentionUserListUsingPostParams(field: keyof API.V1ApiAttentionUserListUsingPostParams) {
+      return (
+          {
+              iamID: 'IAM ID',
+              size: '默认10',
+              offset: '默认0',
+          }[field]
+        
+    )
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    export function displayV1ApiConversationsConversationIdHistoryUsingDeleteParams(field: keyof API.V1ApiConversationsConversationIdHistoryUsingDeleteParams) {
+      return (
+          {
+              conversation_id: '会话id',
+              message_id: '聊天信息id',
+          }[field]
+        
+    )
+  }
+
+
+
+
+    export function displayV1ApiConversationsConversationIdHistoryUsingGetParams(field: keyof API.V1ApiConversationsConversationIdHistoryUsingGetParams) {
+      return (
+          {
+              conversation_id: '会话id',
+          }[field]
+        
+    )
+  }
+
+
+
+
+    export function displayV1ApiConversationsUsingDeleteParams(field: keyof API.V1ApiConversationsUsingDeleteParams) {
+      return (
+          {
+              conversation_id: '会话id',
+          }[field]
+        
+    )
+  }
+
+
+
+
+    export function displayV1ApiConversationsUsingGetParams(field: keyof API.V1ApiConversationsUsingGetParams) {
+      return (
+          {
+              user_id: '用户id,空值不返回',
+          }[field]
+        
+    )
+  }
+
+
+
+
+    export function displayV1ApiFeedbacksMessageIdUsingDeleteParams(field: keyof API.V1ApiFeedbacksMessageIdUsingDeleteParams) {
+      return (
+          {
+              message_id: '消息id',
+              conversation_id: '会话id',
+          }[field]
+        
+    )
+  }
+
+
+
+
+    export function displayV1ApiFeedbacksMessageIdUsingPostParams(field: keyof API.V1ApiFeedbacksMessageIdUsingPostParams) {
+      return (
+          {
+              message_id: '消息id',
+          }[field]
+        
+    )
+  }
+
+
+
+
+    export function displayV1ApiFeedbacksUsingGetParams(field: keyof API.V1ApiFeedbacksUsingGetParams) {
+      return (
+          {
+              conversation_ID: 'conversation_ID',
+              message_ID: 'message_ID',
+              pageOffset: '页数1开始',
+              pageSize: '每页数量',
+          }[field]
+        
+    )
+  }
+
+
+
+
+
+
+    export function displayV1ApiFileUsingPostParams(field: keyof API.V1ApiFileUsingPostParams) {
+      return (
+          {
+              conversation_id: '会话id',
+              user_id: 'user id',
+          }[field]
+        
+    )
+  }
+
+
+
+
+    export function displayV1ApiIamAccountUsingGetParams(field: keyof API.V1ApiIamAccountUsingGetParams) {
+      return (
+          {
+              openId: 'openId',
+          }[field]
+        
+    )
+  }
+
+
+
+
+    export function displayV1ApiProviderListUsingGetParams(field: keyof API.V1ApiProviderListUsingGetParams) {
+      return (
+          {
+              size: 'size',
+              offset: 'offset',
+          }[field]
+        
+    )
+  }
+
+
+
+
+    export function displayV1ApiRobotWorkspaceIdAppkeyStateUsingPostParams(field: keyof API.V1ApiRobotWorkspaceIdAppkeyStateUsingPostParams) {
+      return (
+          {
+              workspaceID: '空间ID',
+          }[field]
+        
+    )
+  }
+
+
+
+
+    export function displayV1ApiRobotWorkspaceIdAppkeyUsingDeleteParams(field: keyof API.V1ApiRobotWorkspaceIdAppkeyUsingDeleteParams) {
+      return (
+          {
+              workspaceID: '空间ID',
+          }[field]
+        
+    )
+  }
+
+
+
+
+    export function displayV1ApiRobotWorkspaceIdAppkeyUsingGetParams(field: keyof API.V1ApiRobotWorkspaceIdAppkeyUsingGetParams) {
+      return (
+          {
+              workspaceID: '空间ID',
+              appid: 'appid',
+              type: 'wjl,dingding,feishu,wxa,wx',
+          }[field]
+        
+    )
+  }
+
+
+
+
+    export function displayV1ApiRobotWorkspaceIdAppkeyUsingPostParams(field: keyof API.V1ApiRobotWorkspaceIdAppkeyUsingPostParams) {
+      return (
+          {
+              workspaceID: '空间ID',
+          }[field]
+        
+    )
+  }
+
+
+
+
+
+
+
+
+
+
+    export function displayV1ApiUserInfoUsingGetParams(field: keyof API.V1ApiUserInfoUsingGetParams) {
+      return (
+          {
+              appID: '应用id',
+          }[field]
+        
+    )
+  }
+
+
+
+
+
+
+    export function displayV1ApiUserUsingGetParams(field: keyof API.V1ApiUserUsingGetParams) {
+      return (
+          {
+              offset: 'offset',
+              phone: '电话号码',
+              size: 'size',
+              userID: '用户id',
+              userName: '用户名字用于搜索',
+          }[field]
+        
+    )
+  }
+
+
+
+
+    export function displayV2ApiAppAppIdDetailsUsingGetParams(field: keyof API.V2ApiAppAppIdDetailsUsingGetParams) {
+      return (
+          {
+              appID: '应用id',
+          }[field]
+        
+    )
+  }
+
+
+
+
+    export function displayV2ApiAppAppIdUpdateUsingPostParams(field: keyof API.V2ApiAppAppIdUpdateUsingPostParams) {
+      return (
+          {
+              appID: '应用id',
+          }[field]
+        
+    )
+  }
+
+
+
+
+    export function displayV2ApiAppListUsingGetParams(field: keyof API.V2ApiAppListUsingGetParams) {
+      return (
+          {
+              onlyConversations: '是否只查看会话过的应用',
+          }[field]
+        
+    )
+  }
+
+
+
+
+    export function displayV2ApiAppShareApiTokenUsingGetParams(field: keyof API.V2ApiAppShareApiTokenUsingGetParams) {
+      return (
+          {
+              randomPath: '分享的随机path',
+          }[field]
+        
+    )
+  }
+
+
+
+
+
+
+    export function displayV2ApiChatMessagesMessagesCountUsingGetParams(field: keyof API.V2ApiChatMessagesMessagesCountUsingGetParams) {
+      return (
+          {
+              isPerPerson: '是否查询人均,默认false',
+              starTimestamp: '开始时间，秒级时间戳',
+              endTimestamp: '结束时间，秒级时间戳',
+          }[field]
+        
+    )
+  }
+
+
+
+
+
+
+
+
+
+
+    export function displayV2ApiFileUsingPostParams(field: keyof API.V2ApiFileUsingPostParams) {
+      return (
+          {
+              conversation_id: '会话id',
+              user_id: 'user id',
+          }[field]
+        
+    )
+  }
+
+
+
+
+
+
+    export function displayV2ApiWorkspacesDefaultUsingPostParams(field: keyof API.V2ApiWorkspacesDefaultUsingPostParams) {
+      return (
+          {
+              workspaceID: '空间ID',
+          }[field]
+        
+    )
+  }
+
+
+
+
+    export function displayV2ApiWorkspacesRecommendedMessageIdDetailsUsingGetParams(field: keyof API.V2ApiWorkspacesRecommendedMessageIdDetailsUsingGetParams) {
+      return (
+          {
+              messageId: '消息id',
+          }[field]
+        
+    )
+  }
+
+
+
+
+
+
+
+
+
+
+    export function displayV2ApiWorkspacesWorkspaceIdAppAppIdDatasetsJoinUsingPostParams(field: keyof API.V2ApiWorkspacesWorkspaceIdAppAppIdDatasetsJoinUsingPostParams) {
+      return (
+          {
+              workspaceID: '空间ID',
+              appID: '应用id',
+          }[field]
+        
+    )
+  }
+
+
+
+
+    export function displayV2ApiWorkspacesWorkspaceIdAppAppIdDatasetsUsingDeleteParams(field: keyof API.V2ApiWorkspacesWorkspaceIdAppAppIdDatasetsUsingDeleteParams) {
+      return (
+          {
+              appID: '应用id',
+              workspaceID: '空间ID',
+              datasetID: '数据集id',
+          }[field]
+        
+    )
+  }
+
+
+
+
+    export function displayV2ApiWorkspacesWorkspaceIdAppAppIdDetailsUsingGetParams(field: keyof API.V2ApiWorkspacesWorkspaceIdAppAppIdDetailsUsingGetParams) {
+      return (
+          {
+              workspaceID: '空间ID',
+              appID: '应用id',
+          }[field]
+        
+    )
+  }
+
+
+
+
+    export function displayV2ApiWorkspacesWorkspaceIdAppAppIdHourlyMessagesUsingGetParams(field: keyof API.V2ApiWorkspacesWorkspaceIdAppAppIdHourlyMessagesUsingGetParams) {
+      return (
+          {
+              workspaceID: '空间ID',
+              appID: '应用id',
+              starTimestamp: '开始时间，秒级时间戳',
+              endTimestamp: '结束时间，秒级时间戳',
+          }[field]
+        
+    )
+  }
+
+
+
+
+    export function displayV2ApiWorkspacesWorkspaceIdAppAppIdHourlyTokenUsingGetParams(field: keyof API.V2ApiWorkspacesWorkspaceIdAppAppIdHourlyTokenUsingGetParams) {
+      return (
+          {
+              workspaceID: '空间ID',
+              appID: '应用id',
+              starTimestamp: '开始时间，秒级时间戳',
+              endTimestamp: '结束时间，秒级时间戳',
+          }[field]
+        
+    )
+  }
+
+
+
+
+    export function displayV2ApiWorkspacesWorkspaceIdAppAppIdLogsUsingGetParams(field: keyof API.V2ApiWorkspacesWorkspaceIdAppAppIdLogsUsingGetParams) {
+      return (
+          {
+              appID: '应用id',
+              workspaceID: '空间ID',
+              conversationID: '会话id',
+              endTimestamp: '结束时间',
+              pageOffset: '页数1开始',
+              pageSize: '每页数量',
+              providerID: '模型id',
+              starTimestamp: '开始时间',
+              userID: '用户id',
+          }[field]
+        
+    )
+  }
+
+
+
+
+    export function displayV2ApiWorkspacesWorkspaceIdAppAppIdMessagesUsingGetParams(field: keyof API.V2ApiWorkspacesWorkspaceIdAppAppIdMessagesUsingGetParams) {
+      return (
+          {
+              workspaceID: '空间ID',
+              appID: '应用id',
+              starTimestamp: '开始时间，秒级时间戳',
+              endTimestamp: '结束时间，秒级时间戳',
+          }[field]
+        
+    )
+  }
+
+
+
+
+    export function displayV2ApiWorkspacesWorkspaceIdAppAppIdModelConfigsUsingPutParams(field: keyof API.V2ApiWorkspacesWorkspaceIdAppAppIdModelConfigsUsingPutParams) {
+      return (
+          {
+              appID: '应用id',
+              workspaceID: '空间ID',
+          }[field]
+        
+    )
+  }
+
+
+
+
+    export function displayV2ApiWorkspacesWorkspaceIdAppAppIdPluginUsingGetParams(field: keyof API.V2ApiWorkspacesWorkspaceIdAppAppIdPluginUsingGetParams) {
+      return (
+          {
+              appID: '应用id',
+              workspaceID: '空间ID',
+          }[field]
+        
+    )
+  }
+
+
+
+
+    export function displayV2ApiWorkspacesWorkspaceIdAppAppIdTokenUsingGetParams(field: keyof API.V2ApiWorkspacesWorkspaceIdAppAppIdTokenUsingGetParams) {
+      return (
+          {
+              appID: '应用id',
+              starTimestamp: '开始时间，秒级时间戳',
+              endTimestamp: '结束时间，秒级时间戳',
+          }[field]
+        
+    )
+  }
+
+
+
+
+    export function displayV2ApiWorkspacesWorkspaceIdAppAppIdUpdateStatusUsingPutParams(field: keyof API.V2ApiWorkspacesWorkspaceIdAppAppIdUpdateStatusUsingPutParams) {
+      return (
+          {
+              workspaceID: '空间ID',
+              appID: '应用id',
+          }[field]
+        
+    )
+  }
+
+
+
+
+    export function displayV2ApiWorkspacesWorkspaceIdAppAppIdUsingPostParams(field: keyof API.V2ApiWorkspacesWorkspaceIdAppAppIdUsingPostParams) {
+      return (
+          {
+              workspaceID: '空间ID',
+              appID: '应用id',
+          }[field]
+        
+    )
+  }
+
+
+
+
+    export function displayV2ApiWorkspacesWorkspaceIdAppsAppIdBaseUsingPostParams(field: keyof API.V2ApiWorkspacesWorkspaceIdAppsAppIdBaseUsingPostParams) {
+      return (
+          {
+              appID: '应用id',
+              workspaceID: '空间ID',
+          }[field]
+        
+    )
+  }
+
+
+
+
+    export function displayV2ApiWorkspacesWorkspaceIdAppsAppIdGroupUsingPostParams(field: keyof API.V2ApiWorkspacesWorkspaceIdAppsAppIdGroupUsingPostParams) {
+      return (
+          {
+              appID: '应用id',
+              workspaceID: '空间ID',
+          }[field]
+        
+    )
+  }
+
+
+
+
+    export function displayV2ApiWorkspacesWorkspaceIdAppsAppIdUsingDeleteParams(field: keyof API.V2ApiWorkspacesWorkspaceIdAppsAppIdUsingDeleteParams) {
+      return (
+          {
+              appID: '应用id',
+              workspaceID: '空间ID',
+          }[field]
+        
+    )
+  }
+
+
+
+
+    export function displayV2ApiWorkspacesWorkspaceIdAppsUsingGetParams(field: keyof API.V2ApiWorkspacesWorkspaceIdAppsUsingGetParams) {
+      return (
+          {
+              workspaceID: '空间ID',
+              onlyConversations: '是否只查看会话过的应用',
+              appName: '应用名，模糊查询',
+          }[field]
+        
+    )
+  }
+
+
+
+
+    export function displayV2ApiWorkspacesWorkspaceIdAppsUsingPostParams(field: keyof API.V2ApiWorkspacesWorkspaceIdAppsUsingPostParams) {
+      return (
+          {
+              workspaceID: '空间ID',
+          }[field]
+        
+    )
+  }
+
+
+
+
+    export function displayV2ApiWorkspacesWorkspaceIdDatasetsUsingGetParams(field: keyof API.V2ApiWorkspacesWorkspaceIdDatasetsUsingGetParams) {
+      return (
+          {
+              workspaceID: '空间ID',
+          }[field]
+        
+    )
+  }
+
+
+
+
+    export function displayV2ApiWorkspacesWorkspaceIdDatasetsUsingPostParams(field: keyof API.V2ApiWorkspacesWorkspaceIdDatasetsUsingPostParams) {
+      return (
+          {
+              workspaceID: '空间ID',
+          }[field]
+        
+    )
+  }
+
+
+
+
+    export function displayV2ApiWorkspacesWorkspaceIdGroupsUsingGetParams(field: keyof API.V2ApiWorkspacesWorkspaceIdGroupsUsingGetParams) {
+      return (
+          {
+              workspaceID: '空间ID',
+          }[field]
+        
+    )
+  }
+
+
+
+
+    export function displayV2ApiWorkspacesWorkspaceIdGroupsUsingPostParams(field: keyof API.V2ApiWorkspacesWorkspaceIdGroupsUsingPostParams) {
+      return (
+          {
+              workspaceID: '空间ID',
+          }[field]
+        
+    )
+  }
+
+
+
+
+    export function displayV2ApiWorkspacesWorkspaceIdGroupsWorkspaceGroupIdUsingDeleteParams(field: keyof API.V2ApiWorkspacesWorkspaceIdGroupsWorkspaceGroupIdUsingDeleteParams) {
+      return (
+          {
+              workspaceID: '空间ID',
+              workspaceGroupID: '分组ID',
+          }[field]
+        
+    )
+  }
+
+
+
+
+    export function displayV2ApiWorkspacesWorkspaceIdGroupsWorkspaceGroupIdUsingPostParams(field: keyof API.V2ApiWorkspacesWorkspaceIdGroupsWorkspaceGroupIdUsingPostParams) {
+      return (
+          {
+              workspaceID: '空间ID',
+              workspaceGroupID: '分组ID',
+          }[field]
+        
+    )
+  }
+
+
+
+
+    export function displayV2ApiWorkspacesWorkspaceIdPermissionsUsingGetParams(field: keyof API.V2ApiWorkspacesWorkspaceIdPermissionsUsingGetParams) {
+      return (
+          {
+              workspaceID: '空间ID',
+          }[field]
+        
+    )
+  }
+
+
+
+
+    export function displayV2ApiWorkspacesWorkspaceIdUsersUsingGetParams(field: keyof API.V2ApiWorkspacesWorkspaceIdUsersUsingGetParams) {
+      return (
+          {
+              workspaceID: '空间ID',
+          }[field]
+        
+    )
+  }
+
+
+
+
+    export function displayV2ApiWorkspacesWorkspaceIdUsersUsingPostParams(field: keyof API.V2ApiWorkspacesWorkspaceIdUsersUsingPostParams) {
+      return (
+          {
+              workspaceID: '空间ID',
+          }[field]
+        
+    )
+  }
+
+
+
+
+    export function displayV2ApiWorkspacesWorkspaceIdUserUserIdUsingDeleteParams(field: keyof API.V2ApiWorkspacesWorkspaceIdUserUserIdUsingDeleteParams) {
+      return (
+          {
+              workspaceID: '空间ID',
+              userID: 'userID',
+          }[field]
+        
+    )
+  }
+
+
+
+
+    export function displayV2ApiWorkspacesWorkspaceIdUsingDeleteParams(field: keyof API.V2ApiWorkspacesWorkspaceIdUsingDeleteParams) {
+      return (
+          {
+              workspaceID: '空间ID',
+          }[field]
+        
+    )
+  }
+
+
+
+
+    export function displayV2ApiWorkspacesWorkspaceIdUsingPostParams(field: keyof API.V2ApiWorkspacesWorkspaceIdUsingPostParams) {
+      return (
+          {
+              workspaceID: '空间ID',
+          }[field]
+        
+    )
+  }
+
+
+
+
+    export function displayWJLAccount(field: keyof API.WJLAccount) {
+      return (
+          {
+              code: 'code',
+              data: 'data',
+              msg: 'msg',
+              success: 'success',
+          }[field]
+        
+    )
+  }
+
+
+    export function displayWorkspaceGroup(field: keyof API.WorkspaceGroup) {
+      return (
+          {
+              createdAt: 'createdAt',
+              name: '分组名',
+              updatedAt: 'updatedAt',
+              workspaceGroupID: 'workspaceGroupID',
+              workspaceID: 'workspaceID',
+          }[field]
+        
+    )
+  }
+
+
+    export function displayWorkspaceGroupReq(field: keyof API.WorkspaceGroupReq) {
+      return (
+          {
+              name: 'name',
+          }[field]
+        
+    )
+  }
+
+
+    export function displayWorkspaceListResp(field: keyof API.WorkspaceListResp) {
+      return (
+          {
+              data: 'data',
+              total: 'total',
+          }[field]
+        
+    )
+  }
+
+
+    export function displayWorkspacePermissions(field: keyof API.WorkspacePermissions) {
+      return (
+          {
+              createdAt: 'createdAt',
+              email: 'email',
+              idpID: 'idpID',
+              operator: 'operator',
+              permission: '枚举read_only（只读）、operation（操作）',
+              phone: 'phone',
+              role: '角色(系统管理员、系统普通用户)',
+              updatedAt: 'updatedAt',
+              userID: 'iam 用户id',
+              userName: 'userName',
+          }[field]
+        
+    )
+  }
+
+
+    export function displayWorkspaceReq(field: keyof API.WorkspaceReq) {
+      return (
+          {
+              description: '描述',
+              name: '空间名',
+          }[field]
+        
+    )
+  }
+
+
+    export function displayWorkspaceResp(field: keyof API.WorkspaceResp) {
+      return (
+          {
+              description: '空间描述',
+              name: '空间名',
+              workspaceID: '空间ID',
+          }[field]
+        
+    )
+  }
+
+
+    export function displayWorkspaceUser(field: keyof API.WorkspaceUser) {
+      return (
+          {
+              role: 'workspace_admin空间超管用户；workspace_user空间普通用户',
+              userID: '用户id',
+          }[field]
+        
+    )
+  }
+
+
+    export function displayWxExtra(field: keyof API.WxExtra) {
+      return (
+          {
+              encodingAESKey: 'encodingAESKey',
+              token: 'token',
+          }[field]
+        
+    )
+  }
+
+
 /* eslint-disable */
 // @ts-ignore
 import request from 'axios';
@@ -3526,7 +4306,7 @@ export function v1ApiAppAppIdRecommendedContextUsingPost({
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
   params: API.V1ApiAppAppIdRecommendedContextUsingPostParams;
-  body: API.AppRecommendedContext;
+  body: API.AppRecommendedContext2;
   options?: { [key: string]: unknown };
 }) {
   const { appID: param0, ...queryParams } = params;
@@ -4370,7 +5150,10 @@ export type QueryTokenResp = {
 
 export type QuestionRecommendReq = {
   conversation_id?: string;
-  /** Query          string `json:"query"`Answer         string `json:"answer"` */
+  /**
+   * Query          string `json:"query"`
+   * Answer         string `json:"answer"`
+   */
   user?: string;
 };
 

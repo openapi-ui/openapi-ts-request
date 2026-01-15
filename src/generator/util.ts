@@ -114,6 +114,30 @@ export function getRefName(refObject: ReferenceObject | string) {
   return resolveTypeName(getLastRefName(refObject.$ref));
 }
 
+/**
+ * 获取引用类型名称，支持类型名称映射
+ * @param refObject 引用对象
+ * @param schemaKeyToTypeNameMap 从原始 schema key 到最终类型名称的映射（处理重名情况）
+ * @returns 最终的类型名称
+ */
+export function getRefNameWithMapping(
+  refObject: ReferenceObject | string,
+  schemaKeyToTypeNameMap?: Map<string, string>
+) {
+  if (!isReferenceObject(refObject)) {
+    return refObject;
+  }
+
+  const schemaKey = getLastRefName(refObject.$ref);
+  // 如果存在映射，使用映射后的类型名称
+  if (schemaKeyToTypeNameMap?.has(schemaKey)) {
+    return schemaKeyToTypeNameMap.get(schemaKey);
+  }
+
+  // 否则使用默认的类型名称解析
+  return resolveTypeName(schemaKey);
+}
+
 export function getLastRefName(refPath: string = '') {
   const refPaths = refPath.split('/');
 
@@ -125,7 +149,8 @@ export function getLastRefName(refPath: string = '') {
 export function getDefaultType(
   schemaObject?: ISchemaObject | string,
   namespace: string = '',
-  schemas?: ComponentsObject['schemas']
+  schemas?: ComponentsObject['schemas'],
+  schemaKeyToTypeNameMap?: Map<string, string>
 ): string {
   if (isUndefined(schemaObject) || isNull(schemaObject)) {
     return 'unknown';
@@ -136,8 +161,9 @@ export function getDefaultType(
   }
 
   if (isReferenceObject(schemaObject)) {
-    // return getRefName(schemaObject);
-    return [namespace, getRefName(schemaObject)].filter((s) => s).join('.');
+    // 使用映射获取正确的类型名称（处理重名情况）
+    const refName = getRefNameWithMapping(schemaObject, schemaKeyToTypeNameMap);
+    return [namespace, refName].filter((s) => s).join('.');
   }
 
   let type = schemaObject?.type;
@@ -196,14 +222,24 @@ export function getDefaultType(
     if (Array.isArray(items)) {
       const arrayItemType = items
         .map((subType: Dictionary<unknown>) =>
-          getDefaultType((subType.schema || subType) as SchemaObject, namespace)
+          getDefaultType(
+            (subType.schema || subType) as SchemaObject,
+            namespace,
+            schemas,
+            schemaKeyToTypeNameMap
+          )
         )
         .toString();
 
       return `[${arrayItemType}]`;
     }
 
-    const arrayType = getDefaultType(items, namespace);
+    const arrayType = getDefaultType(
+      items,
+      namespace,
+      schemas,
+      schemaKeyToTypeNameMap
+    );
 
     return arrayType.includes(' | ') ? `(${arrayType})[]` : `${arrayType}[]`;
   }
@@ -224,13 +260,17 @@ export function getDefaultType(
 
   if (schemaObject.oneOf && schemaObject.oneOf.length) {
     return schemaObject.oneOf
-      .map((item) => getDefaultType(item, namespace))
+      .map((item) =>
+        getDefaultType(item, namespace, schemas, schemaKeyToTypeNameMap)
+      )
       .join(' | ');
   }
 
   if (schemaObject.anyOf?.length) {
     return schemaObject.anyOf
-      .map((item) => getDefaultType(item, namespace))
+      .map((item) =>
+        getDefaultType(item, namespace, schemas, schemaKeyToTypeNameMap)
+      )
       .join(' | ');
   }
 
@@ -241,12 +281,16 @@ export function getDefaultType(
         const schemaKey = getLastRefName(item.$ref);
 
         if ((schemas?.[schemaKey] as SchemaObject)?.enum) {
-          // return `I${getDefaultType(item, namespace)}`;
-          return getDefaultType(item, namespace);
+          return getDefaultType(
+            item,
+            namespace,
+            schemas,
+            schemaKeyToTypeNameMap
+          );
         }
       }
 
-      return getDefaultType(item, namespace);
+      return getDefaultType(item, namespace, schemas, schemaKeyToTypeNameMap);
     });
 
     return `(${allofList.join(' & ')})`;
@@ -257,7 +301,8 @@ export function getDefaultType(
       const type = getDefaultType(
         schemaObject.additionalProperties,
         namespace,
-        schemas
+        schemas,
+        schemaKeyToTypeNameMap
       );
 
       return `Record<string, ${type}>`;
@@ -296,7 +341,9 @@ export function getDefaultType(
         return `
         ${property.description ? `/** ${property.description} */\n` : ''}'${key}'${required ? '' : '?'}: ${getDefaultType(
           property,
-          namespace
+          namespace,
+          schemas,
+          schemaKeyToTypeNameMap
         )}; `;
       })
       .join('')}}`;
@@ -333,9 +380,12 @@ function findDuplicateTypeNames(arr: string[]) {
 
 export function handleDuplicateTypeNames(
   interfaceTPConfigs: Array<
-    Pick<ITypeItem, 'typeName' | 'displayLabelFuncName'>
+    Pick<ITypeItem, 'typeName' | 'displayLabelFuncName' | 'originalSchemaKey'>
   >
-) {
+): Map<string, string> {
+  // 创建从原始 schema key 到最终类型名称的映射
+  const schemaKeyToTypeNameMap = new Map<string, string>();
+
   const duplicateTypeNames = findDuplicateTypeNames(
     map(interfaceTPConfigs, (item) => item.typeName)
   );
@@ -358,6 +408,18 @@ export function handleDuplicateTypeNames(
       });
     });
   }
+
+  // 建立映射关系（在处理重名之后）
+  forEach(interfaceTPConfigs, (interfaceTP) => {
+    if (interfaceTP.originalSchemaKey) {
+      schemaKeyToTypeNameMap.set(
+        interfaceTP.originalSchemaKey,
+        interfaceTP.typeName
+      );
+    }
+  });
+
+  return schemaKeyToTypeNameMap;
 }
 
 // 检测所有path重复区域（prefix）

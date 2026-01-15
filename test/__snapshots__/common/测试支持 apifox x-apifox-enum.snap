@@ -299,11 +299,18 @@ export type RspMsgItem = {
   From_Account?: string;
   /** 是否是空洞消息，当消息被删除或者消息过期后，MsgBody 为空，该字段为1，撤回的消息，该字段为2 */
   IsPlaceMsg?: number;
-  /** 消息内容，详情请参见 消息内容 MsgBody 说明isSystemMsg == 1 消息类型 ObjectisSystemMsg == 0 消息类型 Array */
+  /**
+   * 消息内容，详情请参见 消息内容 MsgBody 说明
+   * isSystemMsg == 1 消息类型 Object
+   * isSystemMsg == 0 消息类型 Array
+   */
   MsgBody?: Object;
   /** 字段为 1 时表示系统消息 */
   IsSystemMsg?: number;
-  /** 消息的优先级，用于消息去重，有客户端发消息时填写，如果没有填，服务端会自动生成，1表示 High 优先级消息，2表示 Normal 优先级消息，3表示 Low 优先级消息，4表示 Lowest 优先级消息 */
+  /**
+   * 消息的优先级，用于消息去重，有客户端发消息时填写，如果没有填，服务端会自动生成，
+   * 1表示 High 优先级消息，2表示 Normal 优先级消息，3表示 Low 优先级消息，4表示 Lowest 优先级消息
+   */
   MsgPriority?: number;
   /** 消息随机数，用于标记该条消息，数据范围 [0,4294967295] */
   MsgRandom?: number;

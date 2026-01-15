@@ -106,6 +106,8 @@ export default class ServiceGenerator {
   protected interfaceTPConfigs: ITypeItem[] = [];
   // 记录每个类型被哪些模块使用（用于拆分类型文件）
   protected typeModuleMap: Map<string, Set<string>> = new Map();
+  // 从原始 schema key 到最终类型名称的映射（用于处理重名情况）
+  protected schemaKeyToTypeNameMap: Map<string, string> = new Map();
 
   constructor(config: GenerateServiceProps, openAPIData: OpenAPIObject) {
     this.config = {
@@ -268,10 +270,16 @@ export default class ServiceGenerator {
     const reactQueryMode = this.config.reactQueryMode;
     const reactQueryFileName = displayReactQueryFileName(reactQueryMode);
 
+    // 先处理重复的 typeName，建立类型名称映射（在生成 service controller 之前）
+    this.interfaceTPConfigs = this.getInterfaceTPConfigs();
+    this.schemaKeyToTypeNameMap = handleDuplicateTypeNames(
+      this.interfaceTPConfigs
+    );
+
     if (!isOnlyGenTypeScriptType) {
       const prettierError = [];
 
-      // 生成 service controller 文件
+      // 生成 service controller 文件（此时类型名称映射已经建立）
       this.getServiceTPConfigs().forEach((tp) => {
         const { list, ...restTp } = tp;
         const payload: Omit<typeof tp, 'list'> &
@@ -334,10 +342,6 @@ export default class ServiceGenerator {
         );
       }
     }
-
-    // 处理重复的 typeName
-    this.interfaceTPConfigs = this.getInterfaceTPConfigs();
-    handleDuplicateTypeNames(this.interfaceTPConfigs);
 
     // 生成 ts 类型声明
     if (!isGenJavaScript) {
@@ -414,7 +418,10 @@ export default class ServiceGenerator {
           }
         );
       } else {
-        // 传统方式：所有类型在一个文件
+        // 在生成文件前，对 interfaceTPConfigs 进行排序（因为 getServiceTPConfigs 可能添加了新类型）
+        this.interfaceTPConfigs.sort((a, b) =>
+          a.typeName.localeCompare(b.typeName)
+        );
         this.genFileFromTemplate(
           `${interfaceFileName}.ts`,
           TypescriptFileType.interface,
@@ -745,6 +752,7 @@ export default class ServiceGenerator {
             : '',
           enumLabelType: isEnum ? (result.enumLabelType as string) : '',
           description: result.description as string,
+          originalSchemaKey: schemaKey, // 保存原始 schema key，用于处理重名后的类型映射
         });
 
         // 记录 schema 类型归属
@@ -771,7 +779,8 @@ export default class ServiceGenerator {
       }
     });
 
-    return lastTypes?.sort((a, b) => a.typeName.localeCompare(b.typeName)); // typeName排序
+    return lastTypes;
+    // return lastTypes?.sort((a, b) => a.typeName.localeCompare(b.typeName)); // typeName排序
   }
 
   private getServiceTPConfigs() {
@@ -963,32 +972,46 @@ export default class ServiceGenerator {
               };
 
               return {
+                // 如果 functionName 和 summary 相同，则不显示 summary
+                ...(() => {
+                  const rawDesc =
+                    functionName === newApi.summary
+                      ? newApi.description || ''
+                      : [
+                          newApi.summary,
+                          newApi.description,
+                          (newApi.responses?.default as ResponseObject)
+                            ?.description
+                            ? `返回值: ${(newApi.responses?.default as ResponseObject).description}`
+                            : '',
+                        ]
+                          .filter((s) => s)
+                          .join(' ');
+                  const hasLineBreak = lineBreakReg.test(rawDesc);
+                  // 格式化描述文本，让描述支持换行
+                  const desc = hasLineBreak
+                    ? '\n * ' + rawDesc.split('\n').join('\n * ') + '\n *'
+                    : rawDesc;
+                  // 如果描述有换行，pathInComment 结尾加换行使 */ 单独一行
+                  const pathInComment = hasLineBreak
+                    ? formattedPath.replace(/\*/g, '&#42;') + '\n'
+                    : formattedPath.replace(/\*/g, '&#42;');
+                  const originApifoxRunLink = newApi?.['x-run-in-apifox'];
+                  const apifoxRunLink =
+                    hasLineBreak && originApifoxRunLink
+                      ? ' * ' + originApifoxRunLink + '\n'
+                      : originApifoxRunLink;
+                  return { desc, pathInComment, apifoxRunLink };
+                })(),
                 ...newApi,
                 functionName: this.config.isCamelCase
                   ? camelCase(functionName)
                   : functionName,
                 typeName: this.getFunctionParamsTypeName(newApi),
                 path: getPrefixPath(),
-                pathInComment: formattedPath.replace(/\*/g, '&#42;'),
-                apifoxRunLink: newApi?.['x-run-in-apifox'],
                 hasPathVariables: formattedPath.includes('{'),
                 hasApiPrefix: !!this.config.apiPrefix,
                 method: newApi.method,
-                // 如果 functionName 和 summary 相同，则不显示 summary
-                desc:
-                  functionName === newApi.summary
-                    ? (newApi.description || '').replace(lineBreakReg, '')
-                    : [
-                        newApi.summary,
-                        newApi.description,
-                        (newApi.responses?.default as ResponseObject)
-                          ?.description
-                          ? `返回值: ${(newApi.responses?.default as ResponseObject).description}`
-                          : '',
-                      ]
-                        .filter((s) => s)
-                        .join(' ')
-                        .replace(lineBreakReg, ''),
                 hasHeader: !!params?.header || !!body?.mediaType,
                 params: finalParams,
                 hasParams: Boolean(keys(finalParams).length),
@@ -1196,13 +1219,21 @@ export default class ServiceGenerator {
   private getType(schemaObject: ISchemaObject, namespace?: string) {
     const customTypeHookFunc = this.config.hook?.customType;
     const schemas = this.openAPIData.components?.schemas;
+    const schemaKeyToTypeNameMap = this.schemaKeyToTypeNameMap;
 
     if (customTypeHookFunc) {
+      // 为自定义 hook 提供支持映射的 originGetType
+      const originGetTypeWithMapping = (
+        schema: ISchemaObject,
+        ns?: string,
+        s?: typeof schemas
+      ) => getDefaultType(schema, ns, s, schemaKeyToTypeNameMap);
+
       const type = customTypeHookFunc({
         schemaObject,
         namespace,
         schemas,
-        originGetType: getDefaultType,
+        originGetType: originGetTypeWithMapping,
       });
 
       if (typeof type === 'string') {
@@ -1210,7 +1241,12 @@ export default class ServiceGenerator {
       }
     }
 
-    return getDefaultType(schemaObject, namespace, schemas);
+    return getDefaultType(
+      schemaObject,
+      namespace,
+      schemas,
+      schemaKeyToTypeNameMap
+    );
   }
 
   private getFunctionParamsTypeName(data: APIDataType) {
@@ -1683,6 +1719,15 @@ export default class ServiceGenerator {
 
     // 处理公共类型的依赖：如果公共类型依赖某个模块类型，将该类型也移到公共类型
     Helper.moveCommonTypeDependenciesToCommon({ moduleTypes, commonTypes });
+
+    // 对每个模块的类型列表进行排序
+    moduleTypes.forEach((types) => {
+      types.sort((a, b) => a.typeName.localeCompare(b.typeName));
+    });
+
+    // 对公共类型和枚举类型进行排序
+    commonTypes.sort((a, b) => a.typeName.localeCompare(b.typeName));
+    enumTypes.sort((a, b) => a.typeName.localeCompare(b.typeName));
 
     return { moduleTypes, commonTypes, enumTypes };
   }
