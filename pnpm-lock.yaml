@@ -13,10 +13,10 @@ importers:
         version: 0.11.0
       '@prettier/sync':
         specifier: ^0.6.1
-        version: 0.6.1(prettier@3.7.4)
+        version: 0.6.1(prettier@3.8.0)
       '@trivago/prettier-plugin-sort-imports':
         specifier: ^5.2.1
-        version: 5.2.2(@vue/compiler-sfc@3.5.13)(prettier@3.7.4)
+        version: 5.2.2(@vue/compiler-sfc@3.5.13)(prettier@3.8.0)
       axios:
         specifier: ^1.7.2
         version: 1.13.2
@@ -58,7 +58,7 @@ importers:
         version: 3.2.4
       prettier:
         specifier: ^3.3.2
-        version: 3.7.4
+        version: 3.8.0
       reserved-words:
         specifier: ^0.1.2
         version: 0.1.2
@@ -337,10 +337,6 @@ packages:
 
   '@commitlint/top-level@20.0.0':
     resolution: {integrity: sha512-drXaPSP2EcopukrUXvUXmsQMu3Ey/FuJDc/5oiW4heoCfoE5BdLQyuc7veGeE3aoQaTVqZnh4D5WTWe2vefYKg==}
-    engines: {node: '>=v18'}
-
-  '@commitlint/types@20.2.0':
-    resolution: {integrity: sha512-KTy0OqRDLR5y/zZMnizyx09z/rPlPC/zKhYgH8o/q6PuAjoQAKlRfY4zzv0M64yybQ//6//4H1n14pxaLZfUnA==}
     engines: {node: '>=v18'}
 
   '@commitlint/types@20.3.1':
@@ -2092,8 +2088,8 @@ packages:
     engines: {node: '>=10.13.0'}
     hasBin: true
 
-  prettier@3.7.4:
-    resolution: {integrity: sha512-v6UNi1+3hSlVvv8fSaoUbggEM5VErKmmpGA7Pl3HF8V6uKY7rvClBOJlH6yNwQtfTueNkGVpOv/mtWL9L4bgRA==}
+  prettier@3.8.0:
+    resolution: {integrity: sha512-yEPsovQfpxYfgWNhCfECjG5AQaO+K3dp6XERmOepyPDVqcJm+bjyCVO3pmU+nAPe0N5dDvekfGezt/EIiRe1TA==}
     engines: {node: '>=14'}
     hasBin: true
 
@@ -2907,11 +2903,6 @@ snapshots:
     dependencies:
       find-up: 7.0.0
 
-  '@commitlint/types@20.2.0':
-    dependencies:
-      '@types/conventional-commits-parser': 5.0.2
-      chalk: 5.6.2
-
   '@commitlint/types@20.3.1':
     dependencies:
       '@types/conventional-commits-parser': 5.0.2
@@ -3100,10 +3091,10 @@ snapshots:
   '@pkgjs/parseargs@0.11.0':
     optional: true
 
-  '@prettier/sync@0.6.1(prettier@3.7.4)':
+  '@prettier/sync@0.6.1(prettier@3.8.0)':
     dependencies:
       make-synchronized: 0.8.0
-      prettier: 3.7.4
+      prettier: 3.8.0
 
   '@rollup/rollup-android-arm-eabi@4.44.1':
     optional: true
@@ -3190,7 +3181,7 @@ snapshots:
       vue: 3.5.13(typescript@5.9.3)
       vue-demi: 0.14.10(vue@3.5.13(typescript@5.9.3))
 
-  '@trivago/prettier-plugin-sort-imports@5.2.2(@vue/compiler-sfc@3.5.13)(prettier@3.7.4)':
+  '@trivago/prettier-plugin-sort-imports@5.2.2(@vue/compiler-sfc@3.5.13)(prettier@3.8.0)':
     dependencies:
       '@babel/generator': 7.26.5
       '@babel/parser': 7.26.7
@@ -3198,7 +3189,7 @@ snapshots:
       '@babel/types': 7.26.7
       javascript-natural-sort: 0.7.1
       lodash: 4.17.21
-      prettier: 3.7.4
+      prettier: 3.8.0
     optionalDependencies:
       '@vue/compiler-sfc': 3.5.13
     transitivePeerDependencies:
@@ -4588,7 +4579,7 @@ snapshots:
 
   prettier@2.8.8: {}
 
-  prettier@3.7.4: {}
+  prettier@3.8.0: {}
 
   proxy-from-env@1.1.0: {}
 
