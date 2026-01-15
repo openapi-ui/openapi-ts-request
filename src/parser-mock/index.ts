@@ -132,12 +132,18 @@ function primitive(
 ) {
   const schema = objectify(schemaParams);
   const { type, format } = schema;
+
+  // 处理 OpenAPI 3.1 的 type 数组情况
+  const actualType = Array.isArray(type)
+    ? type.find((t) => t !== 'null') || 'string'
+    : type;
+
   const value =
-    primitives[`${type}_${format || getDateByName(propsName)}`] ||
-    primitives[type];
+    primitives[`${actualType}_${format || getDateByName(propsName)}`] ||
+    primitives[actualType];
 
   if (isUndefined(schema.example)) {
-    return value || `Unknown Type: ${schema.type}`;
+    return value || `Unknown Type: ${actualType}`;
   }
 
   return schema.example as string;

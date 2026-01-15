@@ -1,5 +1,11 @@
 # openapi-ts-request
 
+## 1.12.3
+
+### Patch Changes
+
+- [#618](https://github.com/openapi-ui/openapi-ts-request/pull/618) [`76f4ecb`](https://github.com/openapi-ui/openapi-ts-request/commit/76f4ecb5e311594c2ea4680002f7bf0701ef6c46) Thanks [@bamboostrip](https://github.com/bamboostrip)! - perf: 添加 OpenAPI 3.1 type 数组支持，支持 type 字段为数组格式（如：["string", "null"]）
+
 ## 1.12.2
 
 ### Patch Changes
