@@ -996,7 +996,12 @@ export default class ServiceGenerator {
                   const pathInComment = hasLineBreak
                     ? formattedPath.replace(/\*/g, '&#42;') + '\n'
                     : formattedPath.replace(/\*/g, '&#42;');
-                  return { desc, pathInComment };
+                  const originApifoxRunLink = newApi?.['x-run-in-apifox'];
+                  const apifoxRunLink =
+                    hasLineBreak && originApifoxRunLink
+                      ? ' * ' + originApifoxRunLink + '\n'
+                      : originApifoxRunLink;
+                  return { desc, pathInComment, apifoxRunLink };
                 })(),
                 ...newApi,
                 functionName: this.config.isCamelCase
@@ -1004,7 +1009,6 @@ export default class ServiceGenerator {
                   : functionName,
                 typeName: this.getFunctionParamsTypeName(newApi),
                 path: getPrefixPath(),
-                apifoxRunLink: newApi?.['x-run-in-apifox'],
                 hasPathVariables: formattedPath.includes('{'),
                 hasApiPrefix: !!this.config.apiPrefix,
                 method: newApi.method,
