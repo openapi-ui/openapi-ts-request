@@ -4,7 +4,26 @@ import request from 'axios';
 
 import * as API from './types';
 
-/** 获取access_token > **为了安全考虑，开发者请勿将access_token返回给前端，需要开发者保存在后台，所有访问企业微信api的请求由后台发起**获取access_token是调用企业微信API接口的第一步，相当于创建了一个登录凭证，其它的业务API接口，都需要依赖于access_token来鉴权调用者身份。因此开发者，在使用业务接口前，要明确access_token的颁发来源，使用正确的access_token。**权限说明：**每个应用有独立的secret，获取到的access_token只能本应用使用，所以每个应用的access_token应该分开来获取。**注意事项：**开发者需要缓存access_token，用于后续接口的调用（注意：不能频繁调用gettoken接口，否则会受到频率拦截）。当access_token失效或过期时，需要重新获取。access_token的有效期通过返回的expires_in来传达，正常情况下为7200秒（2小时），有效期内重复获取返回相同结果，过期后获取会返回新的access_token。由于企业微信每个应用的access_token是彼此独立的，所以进行缓存时需要区分应用来进行存储。access_token至少保留512字节的存储空间。企业微信可能会出于运营需要，提前使access_token失效，开发者应实现access_token失效时重新获取的逻辑。 GET /cgi-bin/gettoken https://app.apifox.com/web/project/6276513/apis/api-288122020-run */
+/** 
+ * 获取access_token > **为了安全考虑，开发者请勿将access_token返回给前端，需要开发者保存在后台，所有访问企业微信api的请求由后台发起**
+ * 
+ * 获取access_token是调用企业微信API接口的第一步，相当于创建了一个登录凭证，其它的业务API接口，都需要依赖于access_token来鉴权调用者身份。
+ * 因此开发者，在使用业务接口前，要明确access_token的颁发来源，使用正确的access_token。
+ * 
+ * 
+ * **权限说明：**
+ * 每个应用有独立的secret，获取到的access_token只能本应用使用，所以每个应用的access_token应该分开来获取。
+ * 
+ * 
+ * **注意事项：**
+ * 开发者需要缓存access_token，用于后续接口的调用（注意：不能频繁调用gettoken接口，否则会受到频率拦截）。当access_token失效或过期时，需要重新获取。
+ * 
+ * access_token的有效期通过返回的expires_in来传达，正常情况下为7200秒（2小时），有效期内重复获取返回相同结果，过期后获取会返回新的access_token。
+ * 由于企业微信每个应用的access_token是彼此独立的，所以进行缓存时需要区分应用来进行存储。
+ * access_token至少保留512字节的存储空间。
+ * 企业微信可能会出于运营需要，提前使access_token失效，开发者应实现access_token失效时重新获取的逻辑。
+ * GET /cgi-bin/gettoken
+ https://app.apifox.com/web/project/6276513/apis/api-288122020-run */
 export function cgiBinGettokenUsingGet({
   params,
   body,

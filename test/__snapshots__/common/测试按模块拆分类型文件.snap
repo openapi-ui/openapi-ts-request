@@ -3294,7 +3294,10 @@ export type ChatMessageReq = {
 
 export type QuestionRecommendReq = {
   conversation_id?: string;
-  /** Query          string `json:"query"`Answer         string `json:"answer"` */
+  /**
+   * Query          string `json:"query"`
+   * Answer         string `json:"answer"`
+   */
   user?: string;
 };
 

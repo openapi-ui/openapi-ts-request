@@ -21,10 +21,10 @@
     "/hello": {
       "get": {
         "tags": ["student"],
-        "summary": "Returns a student object",
+        "summary": "Returns a student object \nname: string\nage: integer\ngender: string\nmajor: Major",
         "responses": {
           "200": {
-            "description": "A student object",
+            "description": "A student object \nname: string\nage: integer\ngender: string\nmajor: Major",
             "content": {
               "application/json": {
                 "schema": {
@@ -42,7 +42,8 @@
       "Major": {
         "type": "string",
         "enum": ["COMPUTER SCIENCE", "MATHEMATICS", "PHYSICS", "LITERATURE"],
-        "example": "COMPUTER SCIENCE"
+        "example": "COMPUTER SCIENCE",
+        "description": "Major enum \nCOMPUTER SCIENCE: Computer Science\nMATHEMATICS: Mathematics\nPHYSICS: Physics\nLITERATURE: Literature"
       },
       "Student": {
         "type": "object",

@@ -153,7 +153,7 @@ export type ErrorAndonRecordVO = {
   totalDurationTimeSt?: string;
   receiveDurationTimeSt?: string;
   disposeDurationTimeSt?: string;
-  /** 表状态，1 已上报，2 已接收，3 已处理， 9 已撤销转换状态 已申请 已响应 已关闭 已撤销 */
+  /** 表状态，1 已上报，2 已接收，3 已处理， 9 已撤销 转换状态 已申请 已响应 已关闭 已撤销 */
   statusText?: string;
   disposeUserList?: PlatformUser[];
   recordNodeList?: AndonRecordNode[];

@@ -3001,7 +3001,7 @@
           },
           "statusText": {
             "type": "string",
-            "description": "表状态，1 已上报，2 已接收，3 已处理， 9 已撤销\n转换状态 已申请 已响应 已关闭 已撤销"
+            "description": "表状态，1 已上报，2 已接收，3 已处理， 9 已撤销 转换状态 已申请 已响应 已关闭 已撤销"
           },
           "disposeUserList": {
             "type": "array",

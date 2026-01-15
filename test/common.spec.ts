@@ -540,4 +540,17 @@ export async function ${api.functionName}(${api.body ? `data: ${api.body.type}` 
       readGeneratedFiles('./apis/split-types-by-module')
     ).resolves.toMatchFileSnapshot(getSnapshotDir(ctx));
   });
+
+  it('测试描述信息支持换行', async (ctx) => {
+    await openAPI.generateService({
+      schemaPath: join(
+        import.meta.dirname,
+        './example-files/openapi-complex-enum-convert.json'
+      ),
+      serversPath: './apis/desc-line-break',
+    });
+    await expect(
+      readGeneratedFiles('./apis/desc-line-break')
+    ).resolves.toMatchFileSnapshot(getSnapshotDir(ctx));
+  });
 });

@@ -972,32 +972,42 @@ export default class ServiceGenerator {
               };
 
               return {
+                // 如果 functionName 和 summary 相同，则不显示 summary
+                ...(() => {
+                  const rawDesc =
+                    functionName === newApi.summary
+                      ? newApi.description || ''
+                      : [
+                          newApi.summary,
+                          newApi.description,
+                          (newApi.responses?.default as ResponseObject)
+                            ?.description
+                            ? `返回值: ${(newApi.responses?.default as ResponseObject).description}`
+                            : '',
+                        ]
+                          .filter((s) => s)
+                          .join(' ');
+                  const hasLineBreak = lineBreakReg.test(rawDesc);
+                  // 格式化描述文本，让描述支持换行
+                  const desc = hasLineBreak
+                    ? '\n * ' + rawDesc.split('\n').join('\n * ') + '\n *'
+                    : rawDesc;
+                  // 如果描述有换行，pathInComment 结尾加换行使 */ 单独一行
+                  const pathInComment = hasLineBreak
+                    ? formattedPath.replace(/\*/g, '&#42;') + '\n'
+                    : formattedPath.replace(/\*/g, '&#42;');
+                  return { desc, pathInComment };
+                })(),
                 ...newApi,
                 functionName: this.config.isCamelCase
                   ? camelCase(functionName)
                   : functionName,
                 typeName: this.getFunctionParamsTypeName(newApi),
                 path: getPrefixPath(),
-                pathInComment: formattedPath.replace(/\*/g, '&#42;'),
                 apifoxRunLink: newApi?.['x-run-in-apifox'],
                 hasPathVariables: formattedPath.includes('{'),
                 hasApiPrefix: !!this.config.apiPrefix,
                 method: newApi.method,
-                // 如果 functionName 和 summary 相同，则不显示 summary
-                desc:
-                  functionName === newApi.summary
-                    ? (newApi.description || '').replace(lineBreakReg, '')
-                    : [
-                        newApi.summary,
-                        newApi.description,
-                        (newApi.responses?.default as ResponseObject)
-                          ?.description
-                          ? `返回值: ${(newApi.responses?.default as ResponseObject).description}`
-                          : '',
-                      ]
-                        .filter((s) => s)
-                        .join(' ')
-                        .replace(lineBreakReg, ''),
                 hasHeader: !!params?.header || !!body?.mediaType,
                 params: finalParams,
                 hasParams: Boolean(keys(finalParams).length),

@@ -176,11 +176,17 @@ export function resolveEnumObject(params: {
     }
   }
 
+  // 格式化描述文本，让描述支持换行
+  const formattedDescription =
+    schemaObject.description && lineBreakReg.test(schemaObject.description)
+      ? '\n * ' + schemaObject.description.split('\n').join('\n * ') + '\n'
+      : schemaObject.description;
+
   return {
     isEnum: true,
     type: Array.isArray(enumArray) ? enumStr : 'string',
     enumLabelType: enumLabelTypeStr,
-    description: schemaObject.description,
+    description: formattedDescription,
   };
 }
 
@@ -230,8 +236,11 @@ export function getProps(params: {
     // 获取描述信息，如果是 $ref 引用，尝试获取引用对象的描述
     let desc = [schema.title, schema.description]
       .filter((item) => item)
-      .join(' ')
-      .replace(lineBreakReg, '');
+      .join(' ');
+    // 格式化描述文本，让描述支持换行
+    desc = lineBreakReg.test(desc)
+      ? '\n * ' + desc.split('\n').join('\n * ') + '\n'
+      : desc;
 
     // 如果是 $ref 引用，尝试获取引用对象的描述
     if (isReferenceObject(schema) && openAPIData) {
@@ -240,10 +249,13 @@ export function getProps(params: {
         refName
       ] as SchemaObject;
       if (refSchema) {
-        const refDesc = [refSchema.title, refSchema.description]
+        let refDesc = [refSchema.title, refSchema.description]
           .filter((item) => item)
-          .join(' ')
-          .replace(lineBreakReg, '');
+          .join(' ');
+        // 格式化描述文本，让描述支持换行
+        refDesc = lineBreakReg.test(refDesc)
+          ? '\n * ' + refDesc.split('\n').join('\n * ') + '\n'
+          : refDesc;
         if (refDesc) {
           desc = desc + refDesc;
         }
@@ -403,7 +415,7 @@ export function getResponsesType(params: {
 
       // 生成带注释的类型定义
       return formattedDescription
-        ? `  /**\n   * ${formattedDescription}\n   */\n  ${statusCode}: ${lastType};`
+        ? `  /**\n * ${formattedDescription}\n */\n ${statusCode}: ${lastType};`
         : `  ${statusCode}: ${lastType};`;
     }
   );
