@@ -1,5 +1,13 @@
 # openapi-ts-request
 
+## 1.12.4
+
+### Patch Changes
+
+- [#622](https://github.com/openapi-ui/openapi-ts-request/pull/622) [`4a80f61`](https://github.com/openapi-ui/openapi-ts-request/commit/4a80f613ee0a4bed6f8c1b5b54d56fd8f0229790) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - perf: support desc line break #306
+
+- [#622](https://github.com/openapi-ui/openapi-ts-request/pull/622) [`4a80f61`](https://github.com/openapi-ui/openapi-ts-request/commit/4a80f613ee0a4bed6f8c1b5b54d56fd8f0229790) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - fix: fix duplicate type reference error #601
+
 ## 1.12.3
 
 ### Patch Changes
