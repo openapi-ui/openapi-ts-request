@@ -1,5 +1,11 @@
 # openapi-ts-request
 
+## 1.12.5
+
+### Patch Changes
+
+- [#641](https://github.com/openapi-ui/openapi-ts-request/pull/641) [`5b8016d`](https://github.com/openapi-ui/openapi-ts-request/commit/5b8016d4f02a32848111f5a1c4fc5b406fff362d) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - fix: fix bug #640
+
 ## 1.12.4
 
 ### Patch Changes
