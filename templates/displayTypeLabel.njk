@@ -23,7 +23,7 @@ import * as {{ namespace }} from './{{ interfaceFileName }}';
             {%- if p["$ref"] and not p.name %}
               display{{ p.type | safe }}(field as keyof {{ namespace }}.{{ p.type }})
             {%- else %}
-              {{ p.name }}: '{{ p.desc if p.desc else p.name }}',
+              {{ p.name }}: '{{ (p.desc if p.desc else p.name) | escapeJs }}',
             {%- endif %}
           {%- endfor %}
         {%- if prop.length > 1 %}

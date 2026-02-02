@@ -548,6 +548,7 @@ export async function ${api.functionName}(${api.body ? `data: ${api.body.type}` 
         './example-files/openapi-complex-enum-convert.json'
       ),
       serversPath: './apis/desc-line-break',
+      isDisplayTypeLabel: true,
     });
     await expect(
       readGeneratedFiles('./apis/desc-line-break')
