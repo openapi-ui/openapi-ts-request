@@ -594,6 +594,20 @@ export function capitalizeFirstLetter(str: string) {
   return str.replace(/^[a-z]/, (match) => match.toUpperCase());
 }
 
+/**
+ * 转义字符串，用于 JavaScript 字符串字面量
+ * 将换行符、单引号等特殊字符转义为转义序列
+ */
+export function escapeStringForJs(str: string): string {
+  if (!str) return str;
+  return str
+    .replace(/\\/g, '\\\\') // 先转义反斜杠
+    .replace(/'/g, "\\'") // 转义单引号
+    .replace(/\n/g, '\\n') // 转义换行符
+    .replace(/\r/g, '\\r') // 转义回车符
+    .replace(/\t/g, '\\t'); // 转义制表符
+}
+
 // 解析 description 中的枚举翻译
 export const parseDescriptionEnum = (
   description: string

@@ -16,8 +16,23 @@ export function displayMajorEnum(field: API.Major) {
 }
 /* eslint-disable */
 // @ts-ignore
+import * as API from './types';
+
+export function displayStudent(field: keyof API.Student) {
+  return {
+    name: 'name',
+    age: 'age',
+    gender: 'gender',
+    major:
+      '\n * Major enum \n * COMPUTER SCIENCE: Computer Science\n * MATHEMATICS: Mathematics\n * PHYSICS: Physics\n * LITERATURE: Literature\n',
+  }[field];
+}
+/* eslint-disable */
+// @ts-ignore
 export * from './types';
 export * from './displayEnumLabel';
+
+export * from './displayTypeLabel';
 
 export * from './student';
 /* eslint-disable */
