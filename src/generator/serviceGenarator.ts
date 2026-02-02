@@ -77,6 +77,7 @@ import type {
 import { type MergeOption } from './type';
 import {
   capitalizeFirstLetter,
+  escapeStringForJs,
   genDefaultFunctionName,
   getAxiosResponseType,
   getBasePrefix,
@@ -1156,6 +1157,7 @@ export default class ServiceGenerator {
       });
 
       env.addFilter('capitalizeFirst', capitalizeFirstLetter);
+      env.addFilter('escapeJs', escapeStringForJs);
       const destPath = join(this.config.serversPath, fileName);
       const destCode = nunjucks.renderString(template, {
         disableTypeCheck: false,
