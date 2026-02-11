@@ -326,9 +326,23 @@ export async function translateChineseModuleNodeToEnglish(
           });
         });
         resolve(translateMap);
+
+        // 在写入前再次读取缓存，合并多个任务的翻译结果
+        const existingContent = readFileSafelySync(
+          process.cwd() + '/openapi-ts-request.cache.json'
+        );
+        let existingCache: Record<string, string> = {};
+
+        if (existingContent !== null && isJSONString(existingContent)) {
+          existingCache = JSON.parse(existingContent) as Record<string, string>;
+        }
+
+        // 合并现有缓存和新的翻译结果（新结果优先）
+        const mergedCache = { ...existingCache, ...translateMap };
+
         void writeFileAsync(
           process.cwd() + '/openapi-ts-request.cache.json',
-          JSON.stringify(translateMap, null, 2)
+          JSON.stringify(mergedCache, null, 2)
         );
       })
       .catch(() => {
