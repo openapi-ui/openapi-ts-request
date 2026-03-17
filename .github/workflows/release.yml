@@ -20,7 +20,7 @@ jobs:
           package-manager-cache: false
 
       - name: Install pnpm
-        uses: pnpm/action-setup@v4
+        uses: pnpm/action-setup@v5
 
       - name: Cache
         id: cache-dependencies
