@@ -16,8 +16,8 @@ import {
   map,
   upperFirst,
 } from 'lodash';
+import { pinyin } from 'pinyin-pro';
 import ReservedDict from 'reserved-words';
-import pinyin from 'tiny-pinyin';
 
 import { SchemaObjectType } from '../config';
 import log from '../log';
@@ -34,6 +34,13 @@ import type {
 } from '../type';
 import { numberEnum } from './config';
 import type { ICustomSchemaObject, ITypeItem } from './type';
+
+/**
+ * 汉字转连续无音调小写拼音（对齐原 tiny-pinyin 的 convertToPinyin(str, '', true)）
+ */
+export function toPlainPinyin(str: string): string {
+  return pinyin(str, { toneType: 'none', type: 'string', separator: '' });
+}
 
 export function stripDot(str: string) {
   return str.replace(/[-_ .](\w)/g, (_all, letter: string) =>
@@ -103,7 +110,7 @@ export function resolveTypeName(typeName: string) {
 
   const noBlankName = name.replace(/ +/g, '');
 
-  return upperFirst(pinyin.convertToPinyin(noBlankName, '', true));
+  return upperFirst(toPlainPinyin(noBlankName));
 }
 
 export function getRefName(refObject: ReferenceObject | string) {
