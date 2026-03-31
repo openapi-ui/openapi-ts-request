@@ -3,7 +3,6 @@ import type { Dictionary } from 'lodash';
 import { forEach, includes, isUndefined, keys } from 'lodash';
 import Mock from 'mockjs';
 import { dirname, join } from 'path';
-import pinyin from 'tiny-pinyin';
 
 import log from '../log';
 import OpenAPIParserMock from '../parser-mock/index';
@@ -17,6 +16,7 @@ import type {
 } from '../type';
 import { methods } from './config';
 import { prettierFile, writeFile } from './file';
+import { toPlainPinyin } from './util';
 
 Mock.Random.extend({
   country() {
@@ -214,7 +214,7 @@ export const mockGenerator = ({
         )?.replace(/[^\w^\s^\u4e00-\u9fa5]/gi, '');
 
         if (/[\u3220-\uFA29]/.test(conte)) {
-          conte = pinyin.convertToPinyin(conte, '', true);
+          conte = toPlainPinyin(conte);
         }
 
         if (!conte) {
