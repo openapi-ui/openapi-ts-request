@@ -1,5 +1,11 @@
 # openapi-ts-request
 
+## 1.12.7
+
+### Patch Changes
+
+- [#649](https://github.com/openapi-ui/openapi-ts-request/pull/649) [`90cd20c`](https://github.com/openapi-ui/openapi-ts-request/commit/90cd20ca620f609ae0cfa607e57acb6537d036ef) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - fix: fix chinese to pinyin conversion error
+
 ## 1.12.6
 
 ### Patch Changes
