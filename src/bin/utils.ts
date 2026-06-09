@@ -13,3 +13,15 @@ export function createMultiselectOptions(
       ('schemaPath' in config ? config.schemaPath : 'Apifox Config'),
   }));
 }
+
+export function parseInteractiveMode(value: unknown): boolean {
+  if (value === undefined) {
+    return true;
+  }
+
+  if (typeof value === 'boolean') {
+    return value;
+  }
+
+  return JSON.parse(value as string) === true;
+}

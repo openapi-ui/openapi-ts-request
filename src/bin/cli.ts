@@ -6,11 +6,12 @@ import type { GenerateServiceProps } from '../index';
 import { generateService } from '../index';
 import { logError } from '../log';
 import { readConfig } from '../readConfig';
-import { createMultiselectOptions } from './utils';
+import { createMultiselectOptions, parseInteractiveMode } from './utils';
 
 program
   .option('-cfn, --configFileName <string>', 'config file name')
-  .option('-cfp, --configFilePath <string>', 'config file path');
+  .option('-cfp, --configFilePath <string>', 'config file path')
+  .option('-i, --interactive <boolean>', 'enable interactive mode', true);
 
 program.parse();
 const options = program.opts();
@@ -37,7 +38,7 @@ async function run() {
       /** 是否交互式 */
       let isInteractive = false;
 
-      if (configs.length > 1) {
+      if (configs.length > 1 && parseInteractiveMode(options.interactive)) {
         // 有多个配置，则交互式选择
         isInteractive = true;
 
