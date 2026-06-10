@@ -1,5 +1,11 @@
 # openapi-ts-request
 
+## 1.12.8
+
+### Patch Changes
+
+- [#654](https://github.com/openapi-ui/openapi-ts-request/pull/654) [`8558082`](https://github.com/openapi-ui/openapi-ts-request/commit/8558082dab7af4cb03bfd917d6ed5d61466b07b8) Thanks [@AdoKevin](https://github.com/AdoKevin)! - perf: add option to cli for disabling interactive api generation
+
 ## 1.12.7
 
 ### Patch Changes
