@@ -10,7 +10,7 @@ import { generateService } from '../index';
 import { logError } from '../log';
 import { readConfig } from '../readConfig';
 import type { IPriorityRule, IReactQueryMode } from '../type';
-import { createMultiselectOptions } from './utils';
+import { createMultiselectOptions, parseInteractiveMode } from './utils';
 
 const params = program
   .name('openapi')
@@ -107,6 +107,7 @@ const params = program
     '--supportParseEnumDescByReg <string>',
     'custom regex for parsing enum description'
   )
+  .option('-i, --interactive <boolean>', 'enable interactive mode', true)
   .parse(process.argv)
   .opts();
 
@@ -189,7 +190,7 @@ async function run() {
       /** 是否交互式 */
       let isInteractive = false;
 
-      if (configs.length > 1) {
+      if (configs.length > 1 && parseInteractiveMode(params.interactive)) {
         // 有多个配置，则交互式选择
         isInteractive = true;
 
