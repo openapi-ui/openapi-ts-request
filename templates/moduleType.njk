@@ -22,7 +22,7 @@ import type { {{ commonImports.join(', ') }} } from './common.type';
         {%- endif %}
           {%- for p in prop %}
             {%- if p.desc %}
-              /** {{ p.desc }} */
+              /** {{ p.desc | escapeJsDoc }} */
             {%- endif %}
             {%- if p["$ref"] and not p.name %}
               // {{ p.$ref }}

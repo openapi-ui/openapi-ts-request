@@ -14,7 +14,7 @@ import * as apis from './{{ className }}';
 {% endif %}
 
 {% for api in list %}
-  /** {{ api.desc if api.desc else '此处后端没有提供注释' }} {{ api.method | upper }} {{ api.pathInComment | safe }}{{ ' ' if api.apifoxRunLink else '' }}{{ api.apifoxRunLink }} */
+  /** {{ (api.desc if api.desc else '此处后端没有提供注释') | escapeJsDoc }} {{ api.method | upper }} {{ api.pathInComment | safe }}{{ ' ' if api.apifoxRunLink else '' }}{{ api.apifoxRunLink }} */
   {%- if api.method | lower === "get" %}
     export function {{ api.functionName }}QueryOptions(options
     {%- if genType === "ts" -%}
@@ -28,7 +28,7 @@ import * as apis from './{{ className }}';
           & { // header
           {% for param in api.params.header -%}
             {% if param.description -%}
-              /** {{ param.description }} */
+              /** {{ param.description | escapeJsDoc }} */
             {% endif -%}
             '{{ param.name }}'
             {{- "?" if not param.required }}

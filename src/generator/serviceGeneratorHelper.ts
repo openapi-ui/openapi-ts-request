@@ -22,6 +22,7 @@ import {
 } from './config';
 import type { ICustomParameterObject, IPropObject, ITypeItem } from './type';
 import {
+  escapeJsDoc,
   getBinaryMediaTypes,
   getBinaryResponseType,
   getLastRefName,
@@ -434,7 +435,7 @@ export function getResponsesType(params: {
 
       // 生成带注释的类型定义
       return formattedDescription
-        ? `  /**\n * ${formattedDescription}\n */\n ${statusCode}: ${lastType};`
+        ? `  /**\n * ${escapeJsDoc(formattedDescription)}\n */\n ${statusCode}: ${lastType};`
         : `  ${statusCode}: ${lastType};`;
     }
   );
