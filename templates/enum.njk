@@ -5,7 +5,7 @@
   {% for type in list -%}
     {%- if type.isEnum  %}
       {%- if type.description%} 
-      /** {{ type.description }} */
+      /** {{ type.description | escapeJsDoc }} */
       {%- endif %}
       export enum {{ type.typeName | safe }} {{ type.type }};
 
