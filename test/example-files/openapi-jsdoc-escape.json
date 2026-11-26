@@ -1,0 +1,77 @@
+{
+  "openapi": "3.0.2",
+  "info": { "title": "JSDoc escape", "version": "1.0.0" },
+  "paths": {
+    "/files": {
+      "get": {
+        "tags": ["files"],
+        "operationId": "listFiles",
+        "summary": "List files",
+        "description": "Accepts */* or image/*",
+        "parameters": [
+          {
+            "name": "glob",
+            "in": "query",
+            "description": "Glob pattern, e.g. src/**/*",
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "x-accept",
+            "in": "header",
+            "description": "MIME pattern, e.g. */*",
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Matched files, any type */*",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/FileInfo" }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["files"],
+        "operationId": "createFile",
+        "summary": "Create file",
+        "description": "Line one */*\nLine two image/*",
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {
+                "schema": { "type": "string" }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "FileInfo": {
+        "type": "object",
+        "description": "File info */*",
+        "properties": {
+          "mime": {
+            "type": "string",
+            "description": "MIME pattern, e.g. */*"
+          },
+          "multiline": {
+            "type": "string",
+            "description": "first */*\nsecond image/*"
+          },
+          "kind": {
+            "type": "string",
+            "description": "File kind, e.g. */*",
+            "enum": ["image", "video"]
+          }
+        }
+      }
+    }
+  }
+}

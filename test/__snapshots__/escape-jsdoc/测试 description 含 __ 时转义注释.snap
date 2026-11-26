@@ -1,0 +1,93 @@
+/* eslint-disable */
+// @ts-ignore
+import * as API from './types';
+
+export function displayKindEnum(field: API.KindEnum) {
+  return { image: 'image', video: 'video' }[field];
+}
+/* eslint-disable */
+// @ts-ignore
+import request from 'axios';
+
+import * as API from './types';
+
+/** List files Accepts *\/* or image/* GET /files */
+export function filesUsingGet({
+  params,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.FilesUsingGetParams;
+  options?: { [key: string]: unknown };
+}) {
+  return request<API.FileInfo>('/files', {
+    method: 'GET',
+    params: {
+      ...params,
+    },
+    ...(options || {}),
+  });
+}
+
+/**
+ * Create file Line one *\/*
+ * Line two image/*
+ * POST /files
+ */
+export function filesUsingPost({
+  options,
+}: {
+  options?: { [key: string]: unknown };
+}) {
+  return request<string>('/files', {
+    method: 'POST',
+    ...(options || {}),
+  });
+}
+/* eslint-disable */
+// @ts-ignore
+export * from './types';
+export * from './displayEnumLabel';
+
+export * from './files';
+/* eslint-disable */
+// @ts-ignore
+
+export type FileInfo = {
+  /** MIME pattern, e.g. *\/* */
+  mime?: string;
+  /**
+   * first *\/*
+   * second image/*
+   */
+  multiline?: string;
+  /** File kind, e.g. *\/* */
+  kind?: 'image' | 'video';
+};
+
+export type FilesUsingGetParams = {
+  /** Glob pattern, e.g. src/**\/* */
+  glob?: string;
+};
+
+export type FilesUsingGetResponses = {
+  /**
+   * Matched files, any type *\/*
+   */
+  200: FileInfo;
+};
+
+export type FilesUsingPostResponses = {
+  /**
+   * ok
+   */
+  200: string;
+};
+
+/** File kind, e.g. *\/* */
+export enum KindEnum {
+  'image' = 'image',
+  'video' = 'video',
+}
+
+export type IKindEnum = keyof typeof KindEnum;

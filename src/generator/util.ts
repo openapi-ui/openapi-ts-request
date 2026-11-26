@@ -615,6 +615,14 @@ export function escapeStringForJs(str: string): string {
     .replace(/\t/g, '\\t'); // 转义制表符
 }
 
+/**
+ * 转义会提前结束 JSDoc 块注释的 `*\/`，例如 `*\/*`、`src/**\/*`
+ */
+export function escapeJsDoc(str: string): string {
+  if (!str) return str;
+  return str.replace(/\*\//g, '*\\/');
+}
+
 // 解析 description 中的枚举翻译
 export const parseDescriptionEnum = (
   description: string
