@@ -1,5 +1,11 @@
 # openapi-ts-request
 
+## 1.12.9
+
+### Patch Changes
+
+- [#659](https://github.com/openapi-ui/openapi-ts-request/pull/659) [`04ed295`](https://github.com/openapi-ui/openapi-ts-request/commit/04ed2950bbc1921937dfd0d8976f6bc2e0fabcc1) Thanks [@rookie-luochao](https://github.com/rookie-luochao)! - fix: escape `*/` in descriptions to avoid closing generated JSDoc comments early (#658)
+
 ## 1.12.8
 
 ### Patch Changes
